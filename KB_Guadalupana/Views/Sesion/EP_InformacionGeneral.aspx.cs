@@ -140,7 +140,7 @@ namespace KB_Guadalupana.Views.Sesion
                                     logic.insertartablas("ep_informaciongeneral", valores1);
 
                                     string sig2 = logic.siguiente("ep_infofamiliar", "codepinfofamiliar");
-                                    string[] valores2 = { sig2, sig, "", "", "", "", "", "", "", "", "", "", "" };
+                                    string[] valores2 = { sig2, sig, "", "", "", "", "", "", "2020-04-08", "", "", "", "" };
                                     logic.insertartablas("ep_infofamiliar", valores2);
 
                                     string sig4 = logic.siguiente("ep_bactivos ", "codepbactivos ");
@@ -295,7 +295,7 @@ namespace KB_Guadalupana.Views.Sesion
                                     logic.insertartablas("ep_informaciongeneral", valores1);
 
                                     string sig2 = logic.siguiente("ep_infofamiliar", "codepinfofamiliar");
-                                    string[] valores2 = { sig2, sig, "", "", "", "", "", "", "", "", "", "", "" };
+                                    string[] valores2 = { sig2, sig, "", "", "", "", "", "", "2020-04-08", "", "", "", "" };
                                     logic.insertartablas("ep_infofamiliar", valores2);
 
                                     string sig4 = logic.siguiente("ep_bactivos ", "codepbactivos ");
@@ -479,7 +479,7 @@ namespace KB_Guadalupana.Views.Sesion
             Text2.Disabled = true;
             Text3.Disabled = true;
             Date1.Disabled = true;
-            GridViewhijos.Enabled = false;
+            //GridViewhijos.Enabled = false;
             IFNombreCo.Disabled = true;
             IFtel.Disabled = true;
             IFparenteso.Disabled = true;
@@ -2296,17 +2296,24 @@ namespace KB_Guadalupana.Views.Sesion
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                try
-                {
+                try {
+                    //{
+                    //sqlCon.Open();
+                    //string QueryString = "SELECT codepinfofamiliar,ep_infofamiliarnombrehijos WHERE codepinformaciongeneralcif=1;";
+                    //MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    //DataTable ds4 = new DataTable();
+                    //myCommand.Fill(ds4);
+                    //GridViewhijos.DataSource = ds4;
+                    //GridViewhijos.DataBind();
+
                     sqlCon.Open();
-                    string QueryString = "SELECT codepinfofamiliar,ep_infofamiliarnombrehijos,ep_infofamiliarocupacionhijos,ep_infofamiliarfechanacimientohijo,ep_infofamiliarcomentario " +
-                        "FROM ep_infofamiliar " +
-                        "WHERE codepinformaciongeneralcif=16;";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    myCommand.Fill(ds4);
-                    GridViewhijos.DataSource = ds4;
+                    string QueryString = "select codepinfofamiliar, ep_infofamiliarnombrehijos,ep_infofamiliarocupacionhijos,ep_infofamiliarcomentario,ep_infofamiliarfechanacimientohijo from ep_infofamiliar where codepinformaciongeneralcif='"+cifactual+ "' AND ep_infofamiliarnombrehijos!=''";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    GridViewhijos.DataSource = ds3;
                     GridViewhijos.DataBind();
+
                 }
                 catch
                 {
@@ -2901,15 +2908,15 @@ namespace KB_Guadalupana.Views.Sesion
                 IGCIF.Value = Convert.ToString(var1[0]);
 
                 int id = Convert.ToInt32(var1[1]);
-                IGAgencia1.SelectedIndex = id;
+                IGAgencia1.SelectedValue = Convert.ToString(id);
                 llenarcomboarea(id);
                 //Para seleccionar el index del combo
                 int id2 = Convert.ToInt32(var1[2]);
-                IGADepa1.SelectedIndex = id2;
+                IGADepa1.SelectedValue = Convert.ToString(id2);
                 llenarcombopuesto(id2);
                 //---------------------------------------
                 int id13 = Convert.ToInt32(var1[3]);
-                IGDPuestos.SelectedIndex = id13;
+                IGDPuestos.SelectedValue = Convert.ToString(id13);
 
 
                 IGPApellido.Value = Convert.ToString(var1[4]);

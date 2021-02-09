@@ -320,21 +320,22 @@ body {
                             <asp:Label ID="lblnombrehijo" Text='<%# Eval("ep_infofamiliarnombrehijos") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField HeaderText="Ocupación">
+                         <asp:TemplateField HeaderText="Ocupacion">
                            <ItemTemplate>
                             <asp:Label ID="lblocupacionhijo" Text='<%# Eval("ep_infofamiliarocupacionhijos") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Comentarios">
+                          <asp:TemplateField HeaderText="Comentario">
                            <ItemTemplate>
                             <asp:Label ID="lblcomentariohijo" Text='<%# Eval("ep_infofamiliarcomentario") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Fecha de nacimiento">
+                          <asp:TemplateField HeaderText="Fecha Nacimiento">
                            <ItemTemplate>
-                            <asp:Label ID="lblfechanachijo" Text='<%# string.Format("{0: yyyy-MM-dd}",Eval("ep_infofamiliarfechanacimientohijo")) %>' runat="server" />
+                               <asp:Label ID="lblfechanachijo" Text='<%# string.Format("{0: yyyy-MM-dd}",Eval("ep_infofamiliarfechanacimientohijo")) %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                        
                             <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarhijogridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
                             <ItemStyle Width="150px"></ItemStyle>
                              </asp:ButtonField>

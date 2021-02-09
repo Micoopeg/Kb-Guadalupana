@@ -69,13 +69,13 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.WebControls.DropDownList IGADepa1;
 
         /// <summary>
-        /// Control IGPuesto.
+        /// Control IGDPuestos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText IGPuesto;
+        protected global::System.Web.UI.WebControls.DropDownList IGDPuestos;
 
         /// <summary>
         /// Control IGPApellido.
@@ -555,13 +555,22 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputText EUniversidad;
 
         /// <summary>
-        /// Control GridView1.
+        /// Control Text22.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text22;
+
+        /// <summary>
+        /// Control GridestudiosU.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridestudiosU;
 
         /// <summary>
         /// Control OECurso.
@@ -1041,13 +1050,40 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputText ACIMonto;
 
         /// <summary>
-        /// Control GridView2.
+        /// Control ACIOrigeninv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ACIOrigeninv;
+
+        /// <summary>
+        /// Control Text21.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text21;
+
+        /// <summary>
+        /// Control divGridInversiones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGridInversiones;
+
+        /// <summary>
+        /// Control gridviewinversiones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridviewinversiones;
 
         /// <summary>
         /// Control AgregarBI1.
@@ -1113,6 +1149,15 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputText ACLibro;
 
         /// <summary>
+        /// Control ACFinca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ACFinca;
+
+        /// <summary>
         /// Control ACDireccion.
         /// </summary>
         /// <remarks>
@@ -1138,6 +1183,15 @@ namespace KB_Guadalupana.Views.Sesion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText ACDes;
+
+        /// <summary>
+        /// Control ACcomentarioinmueble.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ACcomentarioinmueble;
 
         /// <summary>
         /// Control Text16.
@@ -2265,13 +2319,13 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputText EPPais1;
 
         /// <summary>
-        /// Control Select3.
+        /// Control Dropdownlist23.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Select3;
+        protected global::System.Web.UI.WebControls.DropDownList Dropdownlist23;
 
         /// <summary>
         /// Control btnguardaringreso.
@@ -2490,6 +2544,24 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.WebControls.LinkButton btnguardarcuenta;
 
         /// <summary>
+        /// Control btnguardarinversiones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnguardarinversiones;
+
+        /// <summary>
+        /// Control btnguardarestudiosuni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnguardarestudiosuni;
+
+        /// <summary>
         /// Control LinkButton1.
         /// </summary>
         /// <remarks>
@@ -2688,6 +2760,24 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.WebControls.LinkButton btnmodificartarjetacredito;
 
         /// <summary>
+        /// Control btnmodificarinversiones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnmodificarinversiones;
+
+        /// <summary>
+        /// Control btnmodificarestudiosuni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnmodificarestudiosuni;
+
+        /// <summary>
         /// Control btneliminarcelular.
         /// </summary>
         /// <remarks>
@@ -2785,5 +2875,23 @@ namespace KB_Guadalupana.Views.Sesion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btneliminartarjetacredito;
+
+        /// <summary>
+        /// Control btneliminarinversion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btneliminarinversion;
+
+        /// <summary>
+        /// Control btneliminarestudiosuni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btneliminarestudiosuni;
     }
 }

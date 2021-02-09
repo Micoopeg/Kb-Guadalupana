@@ -109,6 +109,12 @@ body {
 .seleccionarcuentasvariasgridview{
 
 }
+.seleccionarinversionesgridview{
+
+}
+.seleccionarestudiougridview{
+
+}
 .prueba
 {
     color: white;
@@ -121,10 +127,6 @@ body {
     text-align: center;
 }
 .diseño
-{
-    background-color:orange;
-}
-
 .topnav a.active {
   background-color: #69a43c;
   color: white;
@@ -165,11 +167,10 @@ body {
         <input id="cifai" runat="server" type="number" visible="false"/>
      
       <input id="IGCIF" runat="server" type="number"  placeholder="CIF (Codigo Empleado)"  min="1" pattern="^[0-9]+" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  />
-       <asp:DropDownList id="IGAgencia1" runat="server" class="tampe" AutoPostBack="true" OnTextChanged="cbosucursal_Click"></asp:DropDownList>
-       <asp:DropDownList id="IGADepa1" runat="server" class="tampe" AutoPostBack="true" ></asp:DropDownList>
-       <input id="IGPuesto" runat="server" type="text" class="tampe"  name="Puesto" placeholder="Puesto" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-     
-
+       <asp:DropDownList id="IGAgencia1"  OnSelectedIndexChanged="IGAgencia1_SelectedIndexChanged" runat="server" class="tampe" AutoPostBack="true" OnTextChanged="cbosucursal_Click"></asp:DropDownList>
+       <asp:DropDownList id="IGADepa1" OnSelectedIndexChanged="IGADepa1_SelectedIndexChanged" runat="server" class="tampe" AutoPostBack="true" ></asp:DropDownList>
+        <asp:DropDownList id="IGDPuestos" runat="server" class="tampe" AutoPostBack="true" ></asp:DropDownList>      
+        
      <hr class="solid" style="margin-top: 5px;" />
          <input id="IGPApellido" runat="server" type="text" class="tam"   placeholder="Primer Apellido" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
          <input id="IGSApellido" runat="server" type="text" class="tam"   placeholder="Segundo Apellido" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -358,17 +359,17 @@ body {
     <br/>
 
      <div id="Div1" runat="server" style="position: absolute;margin-top: 8px; margin-left: 50px;">
-             <a href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarestudios()">
+             <a href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarestudiosuni()">
                  <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
              </a>
        </div>
         <div id="Div2"  runat="server" style="position: absolute;margin-top: 32px; margin-left: 50px;">
-             <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarestudios()">
+             <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarestudiosuni()">
                  <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
              </a>
        </div>
         <div  id="Div3" runat="server" style="position: absolute;margin-top: 56px; margin-left: 50px;">
-             <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarestudios()">
+             <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarestudiosuni()">
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
        </div>
@@ -378,48 +379,38 @@ body {
     <input id="EAño" runat="server" type="number" class="tam" style="max-width: 250px;margin-left: 182px;"  placeholder="Ultimo Año Cursado" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <%-- <input type="text" class="tam"  id="idiomaestudio" runat="server" placeholder="Idioma" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />--%>
     <input id="EUniversidad" runat="server" type="text" class="tam"  style="max-width: 250px" placeholder="Universidad" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-    
+     <input visible="false" id="Text22" runat="server" type="text" class="tam"  style="max-width: 250px" placeholder="Universidad" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
   <%-- GRIDVIEW NUMEROS DE ESTUDIOS Univesitarios --%>
          <div id="divGridestudiosU" style="overflow: auto; height: 130px">
-    <asp:GridView ID="GridView1" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedestudios" BorderStyle="Solid">
+    <asp:GridView ID="GridestudiosU" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedestudiosu" BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField HeaderText="Numero Curso" Visible="False">
+                         <asp:TemplateField HeaderText="Numero universidad" Visible="False" >
                            <ItemTemplate>
-                            <asp:Label ID="lblnumerocurso" Text='<%# Eval("codepestudio") %>' runat="server" />
+                            <asp:Label ID="lblnumerouniversidad" Text='<%# Eval("codepestudio") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Nombre del Curso">
+                         <asp:TemplateField HeaderText="Nombre de la universidad">
                            <ItemTemplate>
-                            <asp:Label ID="lblnombrecurso" Text='<%# Eval("ep_estudionombre") %>' runat="server" />
+                            <asp:Label ID="lblnombreuniversidad" Text='<%# Eval("ep_estudionombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField HeaderText="Nombre del Establecimiento">
+                          <asp:TemplateField HeaderText="Duración">
                            <ItemTemplate>
-                            <asp:Label ID="lbllugar" Text='<%# Eval("ep_estudiolugar") %>' runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Tipo de Modalidad">
-                           <ItemTemplate>
-                            <asp:Label ID="lblmodalidad" Text='<%# Eval("ep_estudiomodalidad") %>' runat="server" />
+                            <asp:Label ID="lblduracionuniversidad" Text='<%# Eval("ep_estudioduracion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                            <asp:TemplateField HeaderText="Año Cursado">
                            <ItemTemplate>
-                            <asp:Label ID="lblaniocursado" Text='<%# Eval("ep_estudioaño") %>' runat="server" />
+                            <asp:Label ID="lblañouniversidad" Text='<%# Eval("ep_estudioaño") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Duración">
+                                     <asp:TemplateField HeaderText="Lugar de estudio">
                            <ItemTemplate>
-                            <asp:Label ID="lblduracion" Text='<%# Eval("ep_estudioduracion") %>' runat="server" />
+                            <asp:Label ID="lbllugaruniversidad" Text='<%# Eval("ep_estudiolugar") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Idioma">
-                           <ItemTemplate>
-                            <asp:Label ID="lblidioma" Text='<%# Eval("ep_estudioidioma") %>' runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                            <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarestudiogridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
+                            <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarestudiougridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
                             <ItemStyle Width="150px"></ItemStyle>
                              </asp:ButtonField>
                      </Columns>
@@ -654,7 +645,7 @@ body {
                          <asp:DropDownList id="ACCEstatus1" style="max-width: 150px;" runat="server" class="tampe" AutoPostBack="true" onchange="javascript:cmbestatusctacoope();" ></asp:DropDownList>
                         
                         <select class="tampe" id="Select1" runat="server" style="max-width: 150px;margin-left: 157px;">
-                            <option disabled selected>[Tipo de cuenta]</option>
+                            <option  value="0">[Tipo de cuenta]</option>
                             <option value="1">Monetaria</option>
                             <option value="2">Ahorro</option>
                        </select>
@@ -691,6 +682,11 @@ body {
                             <asp:Label ID="lblnumeroestatuscuentacoope" Text='<%# Eval("codeptipoestatuscuenta") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Numero cuenta cooperativa" Visible="False">
+                           <ItemTemplate>
+                            <asp:Label ID="lbltipocuentascooperativas" Text='<%# Eval("codeptipocuentacooperativa") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                          <asp:TemplateField HeaderText="Nombre Institución">
                            <ItemTemplate>
                             <asp:Label ID="lblinstitucioncuentacoope" Text='<%# Eval("ep_institucionnombre") %>' runat="server" />
@@ -706,6 +702,11 @@ body {
                             <asp:Label ID="lblestatuscuentacoope" Text='<%# Eval("ep_tipoestatuscuentanombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
+                  <asp:TemplateField HeaderText="Tipo de cuenta">
+                           <ItemTemplate>
+                            <asp:Label ID="lbltipodecuentacoope" Text='<%# Eval("ep_tipocuentacooperativanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
                          <asp:TemplateField HeaderText="Monto">
                            <ItemTemplate>
                             <asp:Label ID="lblmontocuentacoope" Text='<%# Eval("ep_cuentasmonto") %>' runat="server" />
@@ -716,7 +717,7 @@ body {
                             <asp:Label ID="lblorigencuentacoope" Text='<%# Eval("ep_cuentasorigen") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                            <asp:ButtonField Text="Select" ItemStyle-CssClass="seleccionarcooperativasgridview" CommandName="Select" ItemStyle-Width="150" >
+                            <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarcooperativasgridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
                             <ItemStyle Width="150px"></ItemStyle>
                              </asp:ButtonField>
                      </Columns>
@@ -775,7 +776,7 @@ body {
                             <asp:Label ID="lblmotivocuentapc" Text='<%# Eval("ep_cuentasorigen") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>                 
-                            <asp:ButtonField Text="Select" ItemStyle-CssClass="seleccionarcuentaporcobrargridview" CommandName="Select" ItemStyle-Width="150" >
+                            <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarcuentaporcobrargridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
                             <ItemStyle Width="150px"></ItemStyle>
                              </asp:ButtonField>
                      </Columns>
@@ -801,81 +802,89 @@ body {
            <h2 class="fs-title"><b>Inversiones</b></h2>
            <div class="col-12">
              <div id="AgregarBI11" style="position: absolute;margin-top: 2px; margin-left: 50px;">
-             <a id="A1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarbienesinmuebles()">
+             <a id="A1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarinversion()">
                  <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
              </a>
        </div>
         <div id="GuardarBI11" style="position: absolute;margin-top: 25px; margin-left: 50px;">
-             <a id="A2" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarbienesinmuebles()">
+             <a id="A2" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarinversion()">
                  <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
              </a>
        </div>
         <div  id="EliminarBI11" style="position: absolute;margin-top: 48px; margin-left: 50px;">
-             <a id="A3" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarbienesinmuebles()">
+             <a id="A3" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarinversiones()">
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
        </div>
                </div>
 
            <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -12px; right: 8px;max-width: 118px" />
-          <asp:DropDownList  id="DropDownList2" runat="server" class="tampe" AutoPostBack="true" style="max-width:250px;margin-left: 214px;" OnSelectedIndexChanged="PNEntidad1_SelectedIndexChanged" onchange="javascript:cmbtipoinstitucion();" ></asp:DropDownList>              
-            <asp:DropDownList  id="DropDownList3" runat="server" class="tampe" AutoPostBack="true" style="max-width:250px;" onchange="javascript:cmbtipoinstitucion();"></asp:DropDownList>                     
-           <input id="ACIPlazo" runat="server" type="text" class="tampe" style="max-width: 167px;margin-left: 187px;"   placeholder="Plazo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-           <asp:DropDownList id="ACIMoneda1" runat="server" class="tampe" style="max-width: 167px;" AutoPostBack="true" onchange="javascript:cmbmonedainversiones();"  ></asp:DropDownList>
+            <asp:DropDownList  id="DropDownList2" runat="server" class="tampe" AutoPostBack="true" style="max-width: 200px;margin-left: 152px;" OnSelectedIndexChanged="tipoinstitucioninversion_SelectedIndexChanged" onchange="javascript:cmbtipoinstitucioninversion();" ></asp:DropDownList>              
+            <asp:DropDownList  id="DropDownList3" runat="server" class="tampe" AutoPostBack="true" style="max-width:200px;" onchange="javascript:cmbtipoinstitucioninversion();"></asp:DropDownList>                     
+           
+        <input id="ACIPlazo" runat="server" type="text" class="tampe" style="max-width: 140px;"   placeholder="Plazo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+           <asp:DropDownList id="ACIMoneda1" runat="server" class="tampe" style="max-width: 167px;margin-left: 166px;" AutoPostBack="true" onchange="javascript:cmbmonedainversiones();"  ></asp:DropDownList>
            <input id="ACIMonto" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Monto" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+         <input id="ACIOrigeninv" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Fondo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>  
+        <input visible="false"  id="Text21" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Monto" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
            
          
          <%-- GRIDVIEW Inversiones--%>
-              <div id="divGridInversiones" style="overflow: auto; height: 130px">
-                 <asp:GridView ID="GridView2" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedcuentascooperativa" BorderStyle="Solid">
+              <div id="divGridInversiones" style="overflow: auto; height: 130px" runat="server">
+                 <asp:GridView ID="gridviewinversiones" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedinversiones" BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField HeaderText="Numero Cuentacooperativa" Visible="False">
+                         <asp:TemplateField HeaderText="Numero inversion" Visible="false">
                            <ItemTemplate>
-                            <asp:Label ID="lblnumerocuentacoope" Text='<%# Eval("codepcuentas") %>' runat="server" />
+                            <asp:Label ID="lblnumeroinversion" Text='<%# Eval("codepinversiones") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Numero institucion" Visible="False">
+                         <asp:TemplateField HeaderText="Numero tipo  institucion" Visible="false">
                            <ItemTemplate>
-                            <asp:Label ID="lblnumeroinsticuentacoope" Text='<%# Eval("codepinstitucion") %>' runat="server" />
+                            <asp:Label ID="lblnumerotipoinstitucioninversion" Text='<%# Eval("codeptipoinstitucion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField HeaderText="Numero moneda" Visible="False">
+                          <asp:TemplateField HeaderText="Numero institucion" Visible="false">
                            <ItemTemplate>
-                            <asp:Label ID="lblnumeromonedacuentacoope" Text='<%# Eval("codeptipomoneda") %>' runat="server" />
+                            <asp:Label ID="lblnumeroinstitucioninversion" Text='<%# Eval("codepinstitucion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Numero Estatus" Visible="False">
+                         <asp:TemplateField HeaderText="Numero tipo moneda" Visible="False">
                            <ItemTemplate>
-                            <asp:Label ID="lblnumeroestatuscuentacoope" Text='<%# Eval("codeptipoestatuscuenta") %>' runat="server" />
+                            <asp:Label ID="lblnumeromonedainversion" Text='<%# Eval("codeptipomoneda") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Nombre Institución">
+                         <asp:TemplateField HeaderText="Nombre tipo  Institución">
                            <ItemTemplate>
-                            <asp:Label ID="lblinstitucioncuentacoope" Text='<%# Eval("ep_institucionnombre") %>' runat="server" />
+                            <asp:Label ID="lbltipoinstitucionnombre" Text='<%# Eval("ep_tipoinstitucionnombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>    
-                         <asp:TemplateField HeaderText="Tipo de Moneda">
+                         <asp:TemplateField HeaderText="Nombre institucion">
                            <ItemTemplate>
-                            <asp:Label ID="lblmonedacuentacoope" Text='<%# Eval("ep_tipomonedanombre") %>' runat="server" />
+                            <asp:Label ID="lblnombreinstitucion" Text='<%# Eval("ep_institucionnombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                         <asp:TemplateField HeaderText="Estatus">
+                         <asp:TemplateField HeaderText="Moneda">
                            <ItemTemplate>
-                            <asp:Label ID="lblestatuscuentacoope" Text='<%# Eval("ep_tipoestatuscuentanombre") %>' runat="server" />
+                            <asp:Label ID="lbltipomonedanombre" Text='<%# Eval("ep_tipomonedanombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                         <asp:TemplateField HeaderText="Monto">
+                         <asp:TemplateField HeaderText="Plazo">
                            <ItemTemplate>
-                            <asp:Label ID="lblmontocuentacoope" Text='<%# Eval("ep_cuentasmonto") %>' runat="server" />
+                            <asp:Label ID="lblplazoinversion" Text='<%# Eval("ep_inversionesplazo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                         <asp:TemplateField HeaderText="Origen de fondo">
+                           <asp:TemplateField HeaderText="Monto">
                            <ItemTemplate>
-                            <asp:Label ID="lblorigencuentacoope" Text='<%# Eval("ep_cuentasorigen") %>' runat="server" />
+                            <asp:Label ID="lblmontoinversion" Text='<%# Eval("ep_inversionesmonto") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                            <asp:ButtonField Text="Select" ItemStyle-CssClass="seleccionarcooperativasgridview" CommandName="Select" ItemStyle-Width="150" >
+                         <asp:TemplateField HeaderText="Origen de la inversión">
+                           <ItemTemplate>
+                            <asp:Label ID="lblorigeninversion" Text='<%# Eval("ep_inversionesorigen") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                   <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarinversionesgridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
                             <ItemStyle Width="150px"></ItemStyle>
                              </asp:ButtonField>
                      </Columns>
@@ -913,14 +922,15 @@ body {
                          <option value="1">Ajeno</option>
                          <option value="2">Propio</option>
                 </select>
-                <br />
-                       <asp:DropDownList id="ACTInmueble1" runat="server" class="tampe" style="max-width:150px;margin-left: 237px;" AutoPostBack="true"  onchange="javascript:cmbinmueble();" ></asp:DropDownList>
-                       <input id="ACFolio" runat="server" type="text" class="tampe" style="max-width:150px;"   placeholder="Folio" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                       <asp:DropDownList id="ACTInmueble1" runat="server" class="tampe" style="max-width:150px" AutoPostBack="true"  onchange="javascript:cmbinmueble();" ></asp:DropDownList>
+                       <input id="ACFolio" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 239px;"   placeholder="Folio" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                        <input id="ACLibro" runat="server" type="text" class="tampe" style="max-width:150px;"  placeholder="Libro" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                       <input id="ACDireccion" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 237px;"   placeholder="Direccion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                       <input id="ACFinca" runat="server" type="text" class="tampe" style="max-width:150px;"   placeholder="Finca" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>                      
+                        <input id="ACDireccion" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 237px;"   placeholder="Direccion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                        <input id="ACVActual" runat="server" type="text" class="tampe" style="max-width:150px;"  placeholder="Valor Actual" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="ACDes" runat="server" type="text" class="tampe" style="max-width:150px;" placeholder="Comentario" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                           <input id="Text16" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="ACcomentarioinmueble" runat="server" type="text" class="tampe" style="max-width:150px;" placeholder="Comentario" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" hidden/>
+                        <input id="Text16" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                               <%-- GRIDVIEW NUMEROS DE BIENES INMUEBLES --%>
                         <div id="divGridbienesinmueble" style="overflow: auto; height: 130px">
                  <asp:GridView ID="GridViewbienesinmuebles" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
@@ -951,6 +961,11 @@ body {
                             <asp:Label ID="lblnumerodelibro" Text='<%# Eval("ep_inmueblelibro") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>   
+                                <asp:TemplateField HeaderText="Finca">
+                           <ItemTemplate>
+                            <asp:Label ID="lblinmueblefinca" Text='<%# Eval("ep_inmueblefinca") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
                              <asp:TemplateField HeaderText="Dirección">
                            <ItemTemplate>
                             <asp:Label ID="lbldireccioninmueble" Text='<%# Eval("ep_inmuebledireccion") %>' runat="server" />
@@ -964,6 +979,11 @@ body {
                              <asp:TemplateField HeaderText="Descripción">
                            <ItemTemplate>
                             <asp:Label ID="lbldescripcioninmueble" Text='<%# Eval("ep_inmuebledescripcion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                 <asp:TemplateField HeaderText="Comentario">
+                           <ItemTemplate>
+                            <asp:Label ID="lblcomentarioinmueble" Text='<%# Eval("ep_inmueblecomentario") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
                             <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarbienesinmueblesgridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
@@ -1039,9 +1059,14 @@ body {
                             <asp:Label ID="lblmodelo" Text='<%# Eval("ep_vehiculomodelo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                             <asp:TemplateField HeaderText="NÚmero de placa">
+                             <asp:TemplateField HeaderText="Número de placa">
                            <ItemTemplate>
                             <asp:Label ID="lblplaca" Text='<%# Eval("ep_vehiculoplaca") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+    <asp:TemplateField HeaderText="Comentario">
+                           <ItemTemplate>
+                            <asp:Label ID="lblcomentario" Text='<%# Eval("ep_vehiculocomentario") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
                             <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarvehiculosgridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
@@ -1131,11 +1156,11 @@ body {
      <h3 class="fs-title" style="margin-top:-10px"><b>Cuentas Por Pagar </b></h3>
          <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;"/>
         <asp:DropDownList id="TipoCuenta" style="max-width: 160px;margin-left: 135px;" runat="server"  AutoPostBack="true" onchange="javascript:cmbtiplazo();" ></asp:DropDownList>
-         <input id="PCPDes1" runat="server" type="text" class="tampes"   placeholder="Descripcion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="PCPDes1" runat="server" type="text" class="tampes"   placeholder="Descripcion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <input id="PCPMonto1" runat="server" type="number" class="tampes"   placeholder="Monto en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-          <input id="Text18" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />   
+        <input id="Text18" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />   
         <div id="AgregarPC" style="position: absolute;margin-top: -64px; margin-left: 50px;">
-             <a id="AgregarPC1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarcuentasporpagar()">
+        <a id="AgregarPC1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarcuentasporpagar()">
                  <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
              </a>
        </div>
@@ -1529,11 +1554,12 @@ body {
             <br/>
    <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;"/>
         <label for="start">Es usted Contratista y Proveedores del Estado (CPE):</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
-	 <select class="tampe" id="Select3" runat="server" style="max-width:250px;margin-left:0px;" >
-                         <option disabled selected>[Selección]</option>
-                         <option value="1">Si</option>
-                         <option value="2">No</option>
-                </select>
+         <asp:DropDownList id="Dropdownlist23" runat="server" class="tampe"  AutoPostBack="true" onchange="javascript:cmbproveedordelestado();" >
+             <asp:ListItem Text="Seleccione" Value="0"></asp:ListItem>  
+             <asp:ListItem Text="Si" Value="1"></asp:ListItem>
+                <asp:ListItem Text="No" Value="2"></asp:ListItem>
+         </asp:DropDownList>
+       
         <br/>
               <hr class="solid" style="margin-top: 5px;"/>
     <br/>
@@ -1571,6 +1597,8 @@ body {
         <asp:LinkButton ID="btnguardarhijos" runat="server" OnClick="btnguardarhijos_Click" ClientIDMode="Static"></asp:LinkButton>
     <asp:LinkButton ID="btnguardarestudios" runat="server" OnClick="btnguardarestudios_Click" ClientIDMode="Static"></asp:LinkButton>
         <asp:LinkButton ID="btnguardarcuenta" runat="server" OnClick="btnguardarcuenta_Click" ClientIDMode="Static"></asp:LinkButton>
+      <asp:LinkButton ID="btnguardarinversiones" runat="server" OnClick="btnguardarinversiones_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="btnguardarestudiosuni" runat="server" OnClick="btnguardarestudiosuni_Click" ClientIDMode="Static"></asp:LinkButton>
 
         <%-- BOTONES DE GUARDAR GRIDVIEW --%>
     <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnguardarcelular1_Click" ClientIDMode="Static"></asp:LinkButton>
@@ -1597,6 +1625,9 @@ body {
     <asp:LinkButton ID="btnmodificarcuentasporpagar" runat="server" OnClick="btnmodificarcuentasporpagar_Click" ClientIDMode="Static"></asp:LinkButton>
      <asp:LinkButton ID="btnmodificarprestamos" runat="server" OnClick="btnmodificarprestamos_Click" ClientIDMode="Static"></asp:LinkButton>
      <asp:LinkButton ID="btnmodificartarjetacredito" runat="server" OnClick="btnmodificartarjetacredito_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="btnmodificarinversiones" runat="server" OnClick="btnmodificarinversiones_Click" ClientIDMode="Static"></asp:LinkButton>
+      <asp:LinkButton ID="btnmodificarestudiosuni" runat="server" OnClick="btnmodificarestudiosuni_Click" ClientIDMode="Static"></asp:LinkButton>
+
 
      <%-- BOTONES DE ELIMINAR GRIDVIEW --%>
     <asp:LinkButton ID="btneliminarcelular" runat="server" OnClick="btneliminarcelular_Click" ClientIDMode="Static"></asp:LinkButton>
@@ -1610,6 +1641,10 @@ body {
     <asp:LinkButton ID="btneliminarcuentasporpagar" runat="server" OnClick="btneliminarcuentasporpagar_Click" ClientIDMode="Static"></asp:LinkButton>
      <asp:LinkButton ID="btneliminarprestamos" runat="server" OnClick="btneliminarprestamos_Click" ClientIDMode="Static"></asp:LinkButton>
     <asp:LinkButton ID="btneliminartarjetacredito" runat="server" OnClick="btneliminartarjetacredito_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="btneliminarinversion" runat="server" OnClick="btneliminarinversion_Click" ClientIDMode="Static"></asp:LinkButton>
+     <asp:LinkButton ID="btneliminarestudiosuni" runat="server" OnClick="btneliminarestudiosuni_Click" ClientIDMode="Static"></asp:LinkButton>
+
+
 </form>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -1637,9 +1672,11 @@ body {
                 if ($(this).val() === "1") {
                     $("#ACLibro").prop("disabled", true);
                     $("#ACFolio").prop("disabled", true);
+                    $("#ACFinca").prop("disabled", true);
                 } else {
                     $("#ACLibro").prop("disabled", false);
                     $("#ACFolio").prop("disabled", false);
+                    $("#ACFinca").prop("disabled", false);
                 }
             });
         });
@@ -1905,7 +1942,7 @@ body {
                 });
                 document.getElementById("IGDoc1").focus();
                 sessionStorage.setItem('bandera', 0);
-            }      
+            }
             if (sessionStorage.getItem('bandera') == 7) {
                 $("#progressbar li").eq($("fieldset").index('#segundof')).addClass("active");
                 $('#segundof').show();
@@ -1929,7 +1966,7 @@ body {
                 });
                 document.getElementById("IGTCel1").focus();
                 sessionStorage.setItem('bandera', 0);
-            }         
+            }
             if (sessionStorage.getItem('bandera') == 8) {
                 $("#progressbar li").eq($("fieldset").index('#primerof')).addClass("active");
                 $("#progressbar li").eq($("fieldset").index('#segundof')).addClass("active");
@@ -1979,11 +2016,11 @@ body {
                     //this comes from the custom easing plugin
                     easing: 'easeInOutBack'
                 });
-                
+
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("Text1").focus();
             }
-            if (sessionStorage.getItem('bandera') == 10) {               
+            if (sessionStorage.getItem('bandera') == 10) {
                 $("#progressbar li").eq($("fieldset").index('#cuartaf')).addClass("active");
                 $('#cuartaf').show();
                 $('#primerof').animate({ opacity: 0 }, {
@@ -2083,10 +2120,10 @@ body {
                     },
                     easing: 'easeInOutBack'
                 });
-              
+
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACTInmueble1").focus();
-            }         
+            }
             if (sessionStorage.getItem('bandera') == 14) {
                 $("#progressbar li").eq($("fieldset").index('#septimof')).addClass("active");
                 $('#septimof').show();
@@ -2110,7 +2147,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACTVehiculo1").focus();
-            }         
+            }
             if (sessionStorage.getItem('bandera') == 15) {
                 $("#progressbar li").eq($("fieldset").index('#septimof')).addClass("active");
                 $('#septimof').show();
@@ -2134,7 +2171,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACIMoneda1").focus();
-            }       
+            }
             if (sessionStorage.getItem('bandera') == 16) {
                 $("#progressbar li").eq($("fieldset").index('#novenof')).addClass("active");
                 $('#novenof').show();
@@ -2158,7 +2195,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("TipoCuenta").focus();
-            }       
+            }
             if (sessionStorage.getItem('bandera') == 17) {
                 $("#progressbar li").eq($("fieldset").index('#novenof')).addClass("active");
                 $('#novenof').show();
@@ -2182,7 +2219,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("PNEntidad1").focus();
-            }     
+            }
             if (sessionStorage.getItem('bandera') == 18) {
                 $("#progressbar li").eq($("fieldset").index('#novenof')).addClass("active");
                 $('#novenof').show();
@@ -2206,7 +2243,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("PTPrestamo1").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 19) {
                 $("#progressbar li").eq($("fieldset").index('#novenof')).addClass("active");
                 $('#novenof').show();
@@ -2230,7 +2267,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("PTPrestamo1").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 20) {
                 $("#progressbar li").eq($("fieldset").index('#decimof')).addClass("active");
                 $('#decimof').show();
@@ -2254,7 +2291,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("PTTEntidad1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 21) {
                 $("#progressbar li").eq($("fieldset").index('#decimof')).addClass("active");
                 $('#decimof').show();
@@ -2278,7 +2315,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("PTTNombre1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 22) {
                 $("#progressbar li").eq($("fieldset").index('#decimof')).addClass("active");
                 $('#decimof').show();
@@ -2302,7 +2339,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("PTTEntidad1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 23) {
                 $("#progressbar li").eq($("fieldset").index('#sextof')).addClass("active");
                 $('#sextof').show();
@@ -2326,7 +2363,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACCNBanco1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 24) {
                 $("#progressbar li").eq($("fieldset").index('#sextof')).addClass("active");
                 $('#sextof').show();
@@ -2350,7 +2387,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACCTMoneda1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 25) {
                 $("#progressbar li").eq($("fieldset").index('#sextof')).addClass("active");
                 $('#sextof').show();
@@ -2374,7 +2411,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACCEstatus1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 26) {
                 $("#progressbar li").eq($("fieldset").index('#quintof')).addClass("active");
                 $('#quintof').show();
@@ -2398,7 +2435,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("DropDownList1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 27) {
                 $("#progressbar li").eq($("fieldset").index('#quintof')).addClass("active");
                 $('#quintof').show();
@@ -2422,7 +2459,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACNBanco1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 28) {
                 $("#progressbar li").eq($("fieldset").index('#quintof')).addClass("active");
                 $('#quintof').show();
@@ -2446,7 +2483,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACEstatus1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 29) {
                 $("#progressbar li").eq($("fieldset").index('#quintof')).addClass("active");
                 $('#quintof').show();
@@ -2470,7 +2507,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("ACTMoneda1 ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 30) {
                 $("#progressbar li").eq($("fieldset").index('#octavof')).addClass("active");
                 $('#octavof').show();
@@ -2494,7 +2531,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("btnfinalactivo ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 31) {
                 $("#progressbar li").eq($("fieldset").index('#doceavof')).addClass("active");
                 $('#doceavof').show();
@@ -2518,7 +2555,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("btnguardaringreso ").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 32) {
                 $("#progressbar li").eq($("fieldset").index('#doceavof')).addClass("active");
                 $('#doceavof').show();
@@ -2542,7 +2579,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("EParentesco1").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 33) {
                 $("#progressbar li").eq($("fieldset").index('#doceavof')).addClass("active");
                 $('#doceavof').show();
@@ -2566,7 +2603,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("Modalidad1").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 34) {
                 $("#progressbar li").eq($("fieldset").index('#doceavof')).addClass("active");
                 $('#doceavof').show();
@@ -2590,7 +2627,7 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("EParentesco2").focus();
-            }  
+            }
             if (sessionStorage.getItem('bandera') == 35) {
                 $("#progressbar li").eq($("fieldset").index('#doceavof')).addClass("active");
                 $('#doceavof').show();
@@ -2614,8 +2651,104 @@ body {
                 });
                 sessionStorage.setItem('bandera', 0);
                 document.getElementById("Modalidad2").focus();
-            }  
+            }
+            if (sessionStorage.getItem('bandera') == 36) {
+                $("#progressbar li").eq($("fieldset").index('#septimof')).addClass("active");
+                $('#septimof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        scale = 1 - (1 - now) * 0.2;
+                        left = (now * 50) + "%";
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#septimof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 0,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+                document.getElementById("DropDownList2").focus();
+            }
+            if (sessionStorage.getItem('bandera') == 37) {
+                $("#progressbar li").eq($("fieldset").index('#septimof')).addClass("active");
+                $('#septimof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        scale = 1 - (1 - now) * 0.2;
+                        left = (now * 50) + "%";
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#septimof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 0,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+                document.getElementById("DropDownList3").focus();
+            }
+            if (sessionStorage.getItem('bandera') == 38) {
+                $("#progressbar li").eq($("fieldset").index('#cuartaf')).addClass("active");
+                $('#cuartaf').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        scale = 1 - (1 - now) * 0.2;
+                        left = (now * 50) + "%";
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#cuartaf').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 0,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+                document.getElementById("ENombreCarrera").focus();
+            }
 
+            if (sessionStorage.getItem('bandera') == 39) {
+            $("#progressbar li").eq($("fieldset").index('#doceavof')).addClass("active");
+            $('#doceavof').show();
+            $('#primerof').animate({ opacity: 0 }, {
+                step: function (now, mx) {
+                    scale = 1 - (1 - now) * 0.2;
+                    left = (now * 50) + "%";
+                    opacity = 1 - now;
+                    $('#primerof').css({
+                        'transform': 'scale(' + scale + ')',
+                        'position': 'absolute'
+                    });
+                    $('#doceavof').css({ 'left': left, 'opacity': opacity });
+                },
+                duration: 0,
+                complete: function () {
+                    $('#primerof').hide();
+                    animating = false;
+                },
+                easing: 'easeInOutBack'
+            });
+            sessionStorage.setItem('bandera', 0);
+            document.getElementById("Dropdownlist23").focus();
+        }  
 
 
 
@@ -3038,7 +3171,12 @@ body {
         function cmbparentesco2() {
             sessionStorage.setItem('bandera', '35');
         }
-
+        function cmbtipoinstitucioninversion() {
+            sessionStorage.setItem('bandera', '36');
+        }
+        function cmbproveedordelestado() {
+            sessionStorage.setItem('bandera', '39');
+        }
       
     </script>
 
@@ -3076,6 +3214,12 @@ body {
         }); 
         $(".seleccionarcuentasvariasgridview").click(function () {
             sessionStorage.setItem('bandera', '26');
+        }); 
+        $(".seleccionarinversionesgridview").click(function () {
+            sessionStorage.setItem('bandera', '36');
+        }); 
+        $(".seleccionarestudiougridview").click(function () {
+            sessionStorage.setItem('bandera', '38');
         }); 
 
         
@@ -3146,6 +3290,16 @@ body {
             document.getElementById('btnagregartarjeta').click();
             sessionStorage.setItem('bandera', '20');
         }
+        function agregarinversion() {
+
+            document.getElementById('btnguardarinversiones').click();
+            sessionStorage.setItem('bandera', '36');
+        }
+        function agregarestudiosuni() {
+
+            document.getElementById('btnguardarestudiosuni').click();
+            sessionStorage.setItem('bandera', '38');
+        }
 
         function modificarcelular() {
             document.getElementById('btnmodificarcelular').click();
@@ -3201,6 +3355,14 @@ body {
             document.getElementById('btnmodificartarjetacredito').click();
             sessionStorage.setItem('bandera', '20');
         }
+        function modificarinversion() {
+            document.getElementById('btnmodificarinversiones').click();
+            sessionStorage.setItem('bandera', '36');
+        }
+        function modificarestudiosuni() {
+            document.getElementById('btnmodificarestudiosuni').click();
+            sessionStorage.setItem('bandera', '38');
+        }
 
         function eliminarcelular() {
             document.getElementById('btneliminarcelular').click();
@@ -3255,6 +3417,15 @@ body {
         function eliminartarjetacredito() {
             document.getElementById('btneliminartarjetacredito').click();
             sessionStorage.setItem('bandera', '20');
+        }
+
+        function eliminarinversiones() {
+            document.getElementById('btneliminarinversion').click();
+            sessionStorage.setItem('bandera', '36');
+        }
+        function eliminarestudiosuni() {
+            document.getElementById('btneliminarestudiosuni').click();
+            sessionStorage.setItem('bandera', '38');
         }
     </script>
 

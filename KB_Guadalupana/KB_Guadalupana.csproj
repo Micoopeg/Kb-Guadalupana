@@ -238,6 +238,7 @@
     <Content Include="Views\Sesion\MantenimientoVehiculos.aspx" />
     <Content Include="Views\Sesion\MenuBarra.aspx" />
     <Content Include="Views\Sesion\MenuBarraMantenimientos.aspx" />
+    <Content Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx" />
     <Content Include="Views\Sesion\Reportes\ReporteEP.aspx" />
     <Content Include="Views\WebForm1.aspx" />
     <Content Include="Web.config" />
@@ -415,6 +416,13 @@
     </Compile>
     <Compile Include="Views\Sesion\MenuBarraMantenimientos.aspx.designer.cs">
       <DependentUpon>MenuBarraMantenimientos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx.cs">
+      <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx.designer.cs">
+      <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\Reportes\ReporteEP.aspx.cs">
       <DependentUpon>ReporteEP.aspx</DependentUpon>

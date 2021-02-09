@@ -162,6 +162,7 @@ namespace KB_Guadalupana.Controllers
             }
             catch (Exception excep)
             {
+                Console.WriteLine(excep);
             }
             finally
             {

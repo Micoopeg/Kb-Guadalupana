@@ -17,6 +17,7 @@ namespace KB_Guadalupana.Models
             sn.ingreso(cadena);
 
         }
+
         public string siguiente(string tabla, string campo)
         {
             string llave = sn.obtenerfinal(tabla, campo);
@@ -27,6 +28,7 @@ namespace KB_Guadalupana.Models
         {
           sn.insertartablas(tabla, datos);
         }
+
         public void modificartablas(string tabla, string[] campos, string[] datos)
         {
              sn.modificartablas(tabla, campos, datos);
@@ -37,31 +39,28 @@ namespace KB_Guadalupana.Models
              sn.modificartablasdoscampos(tabla, campos, datos);
         }
 
-
-
-
-
-
         //FUNCIONES PARA CONSULTAR ESTADO PATRIMONIAL YA INGRESADO
 
         //FUNCIONES DE MOSTRAR
-
 
         public MySqlDataReader consultarCodigo(string usuario)
         {
             return sn.consultarCodigo(usuario);
         }
 
-
         public MySqlDataReader consultarIE(string tabla, string campo, string valor)
         {
             return sn.consultarconcampoIE(tabla, campo, valor);
         }
 
-
         public MySqlDataReader consultarIO(string tabla, string campo, string valor)
         {
             return sn.consultarconcampoIO(tabla, campo, valor);
+        }
+        
+        public MySqlDataReader consultarcif(string valor)
+        {
+            return sn.consultarconcampoIOs(valor);
         }
 
         public MySqlDataReader consultarCaja(string tabla, string campo, string valor)

@@ -139,7 +139,7 @@ body {
              <div class="topnav">
             <a class="active" style="border: black 2px solid;"  href="../Inicio.aspx">Inicio</a>
             <a class="active" style="border: black 2px solid;" href="InformacionGeneralEP.aspx">Informacion General</a>
-            <a class="active" style="border: black 2px solid;" href="../Inicio.aspx">Estado Patrimonial</a>
+            <%--<a class="active" style="border: black 2px solid;" href="../Inicio.aspx">Estado Patrimonial</a>--%>
             <a class="active" style="border: black 2px solid;background-color: #003563;" href="ReporteEP.aspx">Declaracion de Bienes</a>
             <a href="../CerrarSesion.aspx" style="right: 0%;position: absolute;border: black 2px solid;">Cerrar Sesion</a>
     </div>

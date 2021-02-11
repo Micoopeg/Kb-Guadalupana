@@ -200,8 +200,6 @@ body {
       <input id="IGNacionalidad" runat="server" type="text" class="tam"   placeholder="Nacionalidad" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
       <input id="IGCorreo" runat="server" style="width: 36.5%;" type="email" class="tampe"   placeholder="Correo Electronico" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <input id="IGEstatura" runat="server" style="width: 20.0%;" type="number" class="tampe decimales"   placeholder="Estatura"   />
-        
-      
         <input id="IGPeso" runat="server" style="width: 20.0%;" type="number" class="tampe"   placeholder="Peso" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
       <input id="IGReligion" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
        <input id="Text6" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -396,7 +394,7 @@ body {
                             <asp:Label ID="lblnombreuniversidad" Text='<%# Eval("ep_estudionombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField HeaderText="Duración">
+                          <asp:TemplateField HeaderText="Último Semestre Cursado">
                            <ItemTemplate>
                             <asp:Label ID="lblduracionuniversidad" Text='<%# Eval("ep_estudioduracion") %>' runat="server" />
                         </ItemTemplate>
@@ -826,7 +824,7 @@ body {
         <input id="ACIPlazo" runat="server" type="text" class="tampe" style="max-width: 140px;"   placeholder="Plazo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
            <asp:DropDownList id="ACIMoneda1" runat="server" class="tampe" style="max-width: 167px;margin-left: 166px;" AutoPostBack="true" onchange="javascript:cmbmonedainversiones();"  ></asp:DropDownList>
            <input id="ACIMonto" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Monto" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-         <input id="ACIOrigeninv" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Fondo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>  
+         <input id="ACIOrigeninv" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Origen Fondos" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>  
         <input visible="false"  id="Text21" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Monto" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
            
          
@@ -924,10 +922,10 @@ body {
                          <option value="2">Propio</option>
                 </select>
                        <asp:DropDownList id="ACTInmueble1" runat="server" class="tampe" style="max-width:150px" AutoPostBack="true"  onchange="javascript:cmbinmueble();" ></asp:DropDownList>
+                       <input id="ACFinca" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 237px;"   placeholder="Finca" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>                      
                        <input id="ACFolio" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 239px;"   placeholder="Folio" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                        <input id="ACLibro" runat="server" type="text" class="tampe" style="max-width:150px;"  placeholder="Libro" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                       <input id="ACFinca" runat="server" type="text" class="tampe" style="max-width:150px;"   placeholder="Finca" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>                      
-                        <input id="ACDireccion" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 237px;"   placeholder="Direccion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        <input id="ACDireccion" runat="server" type="text" class="tampe" style="max-width:150px;"   placeholder="Direccion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                        <input id="ACVActual" runat="server" type="text" class="tampe" style="max-width:150px;"  placeholder="Valor Actual" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="ACDes" runat="server" type="text" class="tampe" style="max-width:150px;" placeholder="Comentario" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="ACcomentarioinmueble" runat="server" type="text" class="tampe" style="max-width:150px;" placeholder="Comentario" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" hidden/>
@@ -1132,6 +1130,10 @@ body {
         <label for="start" class="tampes">Telefono Movil</label>&nbsp;&nbsp;&nbsp;
         <input id="ACMATMovilC" runat="server" type="number" class="tampes" style="margin-left: 16px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
         <input id="ACMATMovilV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+       <br /> <label for="start" class="tampes">Otros </label>&nbsp;&nbsp;&nbsp;
+        <input id="Number3" runat="server" type="number" class="tampes" style="margin-left: 75px;"  placeholder="Descripcion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="Number4" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            
         <br/>
         
         
@@ -1139,9 +1141,14 @@ body {
              <h2 class="fs-title"><b>Otros Activos (Cosechas,Ganados,etc)</b></h2>
         
         <label for="start" class="tampes">Otros </label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMAODes" runat="server" type="number" class="tampes" style="margin-left: 75px;"  placeholder="Descripcion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-        <input id="ACMACantidadO" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-            <hr class="solid" style="margin-top: 5px;"/>
+        <input id="ACMAODes" runat="server" type="text" class="tampes" style="margin-left: 75px;"  placeholder="Descripcion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="ACMACantidadO" runat="server" type="number" class="tampes"   placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            
+        <label for="start" class="tampes">Fondo de retiro FENAFORE</label>&nbsp;&nbsp;&nbsp;
+        <input id="Text23" runat="server" type="text" class="tampes" style="margin-left: 0px;"  placeholder="Inversión fondo de retiro FENAFORE" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="Number5" runat="server" type="number" class="tampes"   placeholder="Saldo en Q y/o $" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+           
+        <hr class="solid" style="margin-top: 5px;"/>
             <br/>
             <input runat="server" type="button" name="guardar" class="next action-button" value="Guardar" id="btnfinalactivo" onclick="btnguardaractivo()" /> 
         <input type="button" name="previous" class="previous action-button" style="background-color: #0070D1" value="< Anterior" />
@@ -1371,12 +1378,12 @@ body {
                             <asp:Label ID="lblnumerotarjeta" Text='<%# Eval("codeptrajetadecredito") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Número Tipo institucion" Visible="False">
+                         <asp:TemplateField HeaderText="Tipo institucion" Visible="False">
                            <ItemTemplate>
                             <asp:Label ID="lblnumerotipoinstituciontarjeta" Text='<%# Eval("codeptipoinstitucion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Número institucion">
+                         <asp:TemplateField HeaderText="ID institucion">
                            <ItemTemplate>
                             <asp:Label ID="lblnumeroinstituciontarjeta" Text='<%# Eval("codepinstitucion") %>' runat="server" />
                         </ItemTemplate>
@@ -1482,7 +1489,7 @@ body {
             <br/>
     <input id="ISRNombre" runat="server" type="text" class="tam"   placeholder="Nombre Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <input id="ISRRelacion" runat="server" type="text" class="tam"   placeholder="Relacion Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-    <input id="ISRMonto" runat="server" type="number" class="tam"   placeholder="Promedio Mensual" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+    <input id="ISRMonto" runat="server" type="number" class="tam"   placeholder="Promedio Mensual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <input id="ISRPeriodo" runat="server" type="text" class="tam"   placeholder="Periodo Recepcion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
               <hr class="solid" style="margin-top: 5px;"/>
     <br/>
@@ -3456,26 +3463,6 @@ body {
             return document.getElementById(el);
         }
 
-        el('IGEstatura').addEventListener('input', function () {
-            var val = this.value;
-            this.value = val.replace(/\D|\-/, '');
-        });
-    </script>
-    <script>
-        function el(el) {
-            return document.getElementById(el);
-        }
-
-        el('IGPeso').addEventListener('input', function () {
-            var val = this.value;
-            this.value = val.replace(/\D|\-/, '');
-        });
-    </script> 
-    <script>
-        function el(el) {
-            return document.getElementById(el);
-        }
-
         el('IGCelular').addEventListener('input', function () {
             var val = this.value;
             this.value = val.replace(/\D|\-/, '');
@@ -3691,14 +3678,6 @@ body {
         }
 
         el('ACMACantidadO').addEventListener('input', function () {
-            var val = this.value;
-            this.value = val.replace(/\D|\-/, '');
-        });
-        function el(el) {
-            return document.getElementById(el);
-        }
-
-        el('PSActual').addEventListener('input', function () {
             var val = this.value;
             this.value = val.replace(/\D|\-/, '');
         });

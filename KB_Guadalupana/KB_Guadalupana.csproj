@@ -219,6 +219,16 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Sesion\AsignacionLotes.aspx" />
     <Content Include="Views\Sesion\AsignacionRolArea.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaALote.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaCuentas.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaEstado.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaEstatus.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaInmuebles.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaLote.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaPep.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaPrestamos.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaTelefono.aspx" />
+    <Content Include="Views\Sesion\Ayudas\AyudaVehiculo.aspx" />
     <Content Include="Views\Sesion\CerrarSesion.aspx" />
     <Content Include="Views\Sesion\EP_InformacionGeneral.aspx" />
     <Content Include="Views\Sesion\Inicio.aspx" />
@@ -290,6 +300,76 @@
     </Compile>
     <Compile Include="Views\Sesion\AsignacionRolArea.aspx.designer.cs">
       <DependentUpon>AsignacionRolArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaALote.aspx.cs">
+      <DependentUpon>AyudaALote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaALote.aspx.designer.cs">
+      <DependentUpon>AyudaALote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaCuentas.aspx.cs">
+      <DependentUpon>AyudaCuentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaCuentas.aspx.designer.cs">
+      <DependentUpon>AyudaCuentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaEstado.aspx.cs">
+      <DependentUpon>AyudaEstado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaEstado.aspx.designer.cs">
+      <DependentUpon>AyudaEstado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaEstatus.aspx.cs">
+      <DependentUpon>AyudaEstatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaEstatus.aspx.designer.cs">
+      <DependentUpon>AyudaEstatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaInmuebles.aspx.cs">
+      <DependentUpon>AyudaInmuebles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaInmuebles.aspx.designer.cs">
+      <DependentUpon>AyudaInmuebles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaLote.aspx.cs">
+      <DependentUpon>AyudaLote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaLote.aspx.designer.cs">
+      <DependentUpon>AyudaLote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaPep.aspx.cs">
+      <DependentUpon>AyudaPep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaPep.aspx.designer.cs">
+      <DependentUpon>AyudaPep.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaPrestamos.aspx.cs">
+      <DependentUpon>AyudaPrestamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaPrestamos.aspx.designer.cs">
+      <DependentUpon>AyudaPrestamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaTelefono.aspx.cs">
+      <DependentUpon>AyudaTelefono.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaTelefono.aspx.designer.cs">
+      <DependentUpon>AyudaTelefono.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaVehiculo.aspx.cs">
+      <DependentUpon>AyudaVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Ayudas\AyudaVehiculo.aspx.designer.cs">
+      <DependentUpon>AyudaVehiculo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\CerrarSesion.aspx.cs">
       <DependentUpon>CerrarSesion.aspx</DependentUpon>

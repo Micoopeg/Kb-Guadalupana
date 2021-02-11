@@ -14,7 +14,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-       <style>  
+       <style>
+           
+           .button 
+{
+  background-color: #69a43c; 
+  border: none;
+  color: white;
+  padding: 0px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button5:hover
+{
+  background-color: #555555;
+  color: white;
+}
         .responsive 
         {
             max-width: 100%;
@@ -214,6 +234,7 @@
 </style>
 </head>
 <body>
+    <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaVehiculo.aspx" ><i class="fa fa-question"></i></a>
      <div class="menu"></div>
         <div class="mantenimientos">
           <a href="MantenimientoVehiculos.aspx" class="active" onclick="MantenimientoVehiculos()">Vehículos</a>

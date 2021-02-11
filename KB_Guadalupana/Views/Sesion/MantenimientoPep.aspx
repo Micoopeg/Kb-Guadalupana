@@ -193,10 +193,31 @@
             justify-content: center;
             margin: 5px;
         }
-  
+          .button 
+{
+  background-color: #69a43c; 
+  border: none;
+  color: white;
+  padding: 0px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button5:hover
+{
+  background-color: #555555;
+  color: white;
+}
 </style>
 </head>
 <body>
+
+    <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaPep.aspx" ><i class="fa fa-question"></i></a>
+
      <div class="menu"></div>
         <div class="mantenimientos">
           <a href="MantenimientoVehiculos.aspx" class="active" onclick="MantenimientoVehiculos()">Vehículos</a>

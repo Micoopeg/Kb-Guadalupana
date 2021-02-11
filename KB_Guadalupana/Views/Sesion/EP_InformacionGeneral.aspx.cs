@@ -3320,7 +3320,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_cuentas", "codepcuentas");
-                    string[] valores1 = { sig, cifactual, DropDownList1.Value, ACTMoneda1.SelectedValue, ACEstatus1.SelectedValue, ACNBanco1.SelectedValue, "nulo", ACMonto.Value, ACOFondos.Value };
+                    string[] valores1 = { sig, cifactual, DropDownList1.Value, ACTMoneda1.SelectedValue, ACEstatus1.SelectedValue, ACNBanco1.SelectedValue, "1","nulo", ACMonto.Value, ACOFondos.Value };
                     logic.insertartablas("ep_cuentas", valores1);
                 }
                 catch (Exception err)

@@ -1131,6 +1131,15 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.WebControls.DropDownList ACTInmueble1;
 
         /// <summary>
+        /// Control ACFinca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ACFinca;
+
+        /// <summary>
         /// Control ACFolio.
         /// </summary>
         /// <remarks>
@@ -1147,15 +1156,6 @@ namespace KB_Guadalupana.Views.Sesion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText ACLibro;
-
-        /// <summary>
-        /// Control ACFinca.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText ACFinca;
 
         /// <summary>
         /// Control ACDireccion.
@@ -1491,13 +1491,31 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl ACMATMovilV;
 
         /// <summary>
+        /// Control Number3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Number3;
+
+        /// <summary>
+        /// Control Number4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Number4;
+
+        /// <summary>
         /// Control ACMAODes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl ACMAODes;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ACMAODes;
 
         /// <summary>
         /// Control ACMACantidadO.
@@ -1507,6 +1525,24 @@ namespace KB_Guadalupana.Views.Sesion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl ACMACantidadO;
+
+        /// <summary>
+        /// Control Text23.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text23;
+
+        /// <summary>
+        /// Control Number5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Number5;
 
         /// <summary>
         /// Control btnfinalactivo.

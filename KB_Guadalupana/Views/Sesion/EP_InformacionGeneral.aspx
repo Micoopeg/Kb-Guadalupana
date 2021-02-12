@@ -822,11 +822,14 @@ body {
             <asp:DropDownList  id="DropDownList3" runat="server" class="tampe" AutoPostBack="true" style="max-width:200px;" onchange="javascript:cmbtipoinstitucioninversion();"></asp:DropDownList>                     
            
         <input id="ACIPlazo" runat="server" type="text" class="tampe" style="max-width: 140px;"   placeholder="Plazo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-           <asp:DropDownList id="ACIMoneda1" runat="server" class="tampe" style="max-width: 167px;margin-left: 166px;" AutoPostBack="true" onchange="javascript:cmbmonedainversiones();"  ></asp:DropDownList>
-           <input id="ACIMonto" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Monto" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-         <input id="ACIOrigeninv" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Origen Fondos" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>  
+        <asp:DropDownList id="ACIMoneda1" runat="server" class="tampe" style="max-width: 137px;margin-left: 150px;" AutoPostBack="true" onchange="javascript:cmbmonedainversiones();"  ></asp:DropDownList>
+        <input id="ACIMonto" runat="server" type="text" class="tampe"  style="max-width: 125px;" placeholder="Monto" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+        <input id="ACIOrigeninv" runat="server" type="text" class="tampe"  style="max-width: 125px;" placeholder="Origen Fondos" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>  
         <input visible="false"  id="Text21" runat="server" type="text" class="tampe"  style="max-width: 164px;" placeholder="Monto" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-           
+        
+        <input id="Text24" runat="server" type="text" class="tampe"  style="max-width: 150px;" placeholder="No. Cuenta" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>  
+        <label for="start" style="margin-left: 175px;">Fecha de Apertura</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+        <input class="tam" id="Date2" runat="server" style="margin-left: 66px;max-width: 270px;"  type="date"  value="2020-04-25" min="1950-01-01" max="2021-12-31" />   
          
          <%-- GRIDVIEW Inversiones--%>
               <div id="divGridInversiones" style="overflow: auto; height: 130px" runat="server">
@@ -922,10 +925,10 @@ body {
                          <option value="2">Propio</option>
                 </select>
                        <asp:DropDownList id="ACTInmueble1" runat="server" class="tampe" style="max-width:150px" AutoPostBack="true"  onchange="javascript:cmbinmueble();" ></asp:DropDownList>
-                       <input id="ACFinca" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 237px;"   placeholder="Finca" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>                      
-                       <input id="ACFolio" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 239px;"   placeholder="Folio" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                       <input id="ACFinca" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 215px;"   placeholder="Finca" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>                      
+                       <input id="ACFolio" runat="server" type="text" class="tampe" style="max-width:150px;"   placeholder="Folio" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                        <input id="ACLibro" runat="server" type="text" class="tampe" style="max-width:150px;"  placeholder="Libro" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                        <input id="ACDireccion" runat="server" type="text" class="tampe" style="max-width:150px;"   placeholder="Direccion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        <input id="ACDireccion" runat="server" type="text" class="tampe" style="max-width:150px;margin-left: 215px;"   placeholder="Direccion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                        <input id="ACVActual" runat="server" type="text" class="tampe" style="max-width:150px;"  placeholder="Valor Actual" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="ACDes" runat="server" type="text" class="tampe" style="max-width:150px;" placeholder="Comentario" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="ACcomentarioinmueble" runat="server" type="text" class="tampe" style="max-width:150px;" placeholder="Comentario" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" hidden/>
@@ -998,17 +1001,17 @@ body {
         </div>
              <h2 class="fs-title" style="margin-top: 3px;"><b>Vehículos</b></h2>
        <div class="col-12">
-             <div id="AgregarV" style="position: absolute;margin-top: 2px; margin-left: 50px;">
+             <div id="AgregarV" style="position: absolute;margin-top: 67px; margin-left: 50px;">
              <a id="AgregarV1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarvehiculos()">
                  <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
              </a>
        </div>
-        <div id="GuardarV" style="position: absolute;margin-top: 25px; margin-left: 50px;">
+        <div id="GuardarV" style="position: absolute;margin-top: 95px; margin-left: 50px;">
              <a id="GuardarV1" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarvehiculos()">
                  <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
              </a>
        </div>
-        <div  id="EliminarV" style="position: absolute;margin-top: 48px; margin-left: 50px;">
+        <div  id="EliminarV" style="position: absolute;margin-top: 122px; margin-left: 50px;">
              <a id="EliminarV1" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarvehiculos()">
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
@@ -1016,14 +1019,22 @@ body {
                 <br/>
                 <div style="overflow-x:auto;margin-top: -16px;">
                     <div class="card-body">
-                       <asp:DropDownList id="ACTVehiculo1" runat="server" class="tampe" style="max-width:150px;margin-left: 237px;" AutoPostBack="true" onchange="javascript:cmbvehiculo();" ></asp:DropDownList>
-                       <input id="ACMarca" runat="server" type="text" class="tampe"  style="max-width:150px;"  placeholder="Marca" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                       <input id="ACLinea" runat="server" type="text" class="tampe" style="max-width:150px;"   placeholder="Linea" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                       <input id="ACModelo" runat="server" type="text" class="tam"  style="max-width:150px;margin-left: 237px;"  placeholder="Modelo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                       <input id="ACPlaca" runat="server" type="text" class="tam"  style="max-width:150px;"  placeholder="No. Placa" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                       <input id="ACCome" runat="server" type="text" class="tam"  style="max-width:150px;"  placeholder="Comentarios" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                       <input id="Text17" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                          <%-- GRIDVIEW NUMEROS DE VEHICULOS --%>
+                           <label for="start">El vehículo se encuentra a su nombre:</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+	                <b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activarr()" id="Radio1" runat="server" />
+	                <b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivarr()" id="Radio2" runat="server" />
+
+                       <asp:DropDownList id="ACTVehiculo1" runat="server" class="tampe" style="max-width:150px;margin-left: 237px;" AutoPostBack="true" disabled  onchange="javascript:cmbvehiculo();" ></asp:DropDownList>
+                       <input id="ACMarca" runat="server" type="text" class="tampe"  style="max-width:150px;"  placeholder="Marca" maxlength="100" disabled oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="ACLinea" runat="server" type="text" class="tampe" style="max-width:150px;"   placeholder="Linea" maxlength="100" disabled oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="ACModelo" runat="server" type="text" class="tam"  style="max-width:150px;margin-left: 237px;"  placeholder="Modelo" disabled maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                       <input id="ACPlaca" runat="server" type="text" class="tam"  style="max-width:150px;"  placeholder="No. Placa" maxlength="100" disabled oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="ACCome" runat="server" type="text" class="tam"  style="max-width:150px;"  placeholder="Comentarios" maxlength="100" disabled oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="Text17" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion"  disabled maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                          
+                       <input id="Text25" runat="server" type="text" class="tam"  style="max-width: 236px; margin-left: 235px;" disabled placeholder="A nombre de quien se encuentra" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="Text26" runat="server" type="text" class="tam"  style="max-width:225px;"  placeholder="Motivo/comentario" disabled  maxlength="100"  oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        
+                        <%-- GRIDVIEW NUMEROS DE VEHICULOS --%>
                         <div id="divGridvehiculos" style="overflow: auto; height: 130px">
                  <asp:GridView ID="GridViewvehiculos" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedvehiculos" BorderStyle="Solid">
@@ -1490,8 +1501,17 @@ body {
     <input id="ISRNombre" runat="server" type="text" class="tam"   placeholder="Nombre Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <input id="ISRRelacion" runat="server" type="text" class="tam"   placeholder="Relacion Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <input id="ISRMonto" runat="server" type="number" class="tam"   placeholder="Promedio Mensual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-    <input id="ISRPeriodo" runat="server" type="text" class="tam"   placeholder="Periodo Recepcion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-              <hr class="solid" style="margin-top: 5px;"/>
+    <select class="tampe" id="ISRPeriodo" runat="server" >
+                         <option disabled selected>[Periodo Recepción]</option>
+                         <option value="1">Diario</option>
+                         <option value="2">Semanal</option>
+                         <option value="3">Mensual</option>
+                         <option value="4">Trimestral</option>
+                         <option value="5">Semestral</option>
+                         <option value="6">Anual</option>
+                </select>    
+        
+        <hr class="solid" style="margin-top: 5px;"/>
     <br/>
         <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
         <input type="button" name="next" class="next action-button" style="background-color: #00AFEB" value="Siguiente >" />
@@ -1717,7 +1737,26 @@ body {
             document.getElementById("ITIMensuales").disabled = true;
             document.getElementById("ITEMensuales").disabled = true;
             document.getElementById("ITDireccion").disabled = true;
-
+        }
+        function Activarr() {
+            document.getElementById("ACTVehiculo1").disabled = false;
+            document.getElementById("ACMarca").disabled = false;
+            document.getElementById("ACLinea").disabled = false;
+            document.getElementById("ACModelo").disabled = false;
+            document.getElementById("ACPlaca").disabled = false;
+            document.getElementById("ACCome").disabled = false;
+            document.getElementById("Text25").disabled = true;
+            document.getElementById("Text26").disabled = true;
+        }
+        function Desactivarr() {
+            document.getElementById("ACTVehiculo1").disabled = true;
+            document.getElementById("ACMarca").disabled = true;
+            document.getElementById("ACLinea").disabled = true;
+            document.getElementById("ACModelo").disabled = true;
+            document.getElementById("ACPlaca").disabled = true;
+            document.getElementById("ACCome").disabled = true;
+            document.getElementById("Text25").disabled = false;
+            document.getElementById("Text26").disabled = false;
         }
         function Activar1() {
             document.getElementById("ISRNombre").disabled = false;
@@ -1800,7 +1839,7 @@ body {
         }
 
 
-</script>
+    </script>
 
     <script>
         $(document).ready(function () {

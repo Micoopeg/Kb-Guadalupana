@@ -1068,6 +1068,24 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text21;
 
         /// <summary>
+        /// Control Text24.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text24;
+
+        /// <summary>
+        /// Control Date2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Date2;
+
+        /// <summary>
         /// Control divGridInversiones.
         /// </summary>
         /// <remarks>
@@ -1239,6 +1257,24 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlAnchor EliminarV1;
 
         /// <summary>
+        /// Control Radio1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton Radio1;
+
+        /// <summary>
+        /// Control Radio2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton Radio2;
+
+        /// <summary>
         /// Control ACTVehiculo1.
         /// </summary>
         /// <remarks>
@@ -1300,6 +1336,24 @@ namespace KB_Guadalupana.Views.Sesion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text17;
+
+        /// <summary>
+        /// Control Text25.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text25;
+
+        /// <summary>
+        /// Control Text26.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text26;
 
         /// <summary>
         /// Control GridViewvehiculos.
@@ -2082,7 +2136,7 @@ namespace KB_Guadalupana.Views.Sesion
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText ISRPeriodo;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect ISRPeriodo;
 
         /// <summary>
         /// Control ITAlimen.

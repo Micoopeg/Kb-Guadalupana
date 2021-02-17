@@ -82,7 +82,7 @@
                                      <%--<asp:Button ID="Button1" class="w3-bar-item w3-button" runat="server" Text="Estado Patrimonial"></asp:Button>--%>
                                     <a href="Reportes/InformacionGeneralEP.aspx" class="w3-bar-item w3-button">Imprimir Estado Patrimonial</a>
                                      <asp:Button ID="Button2" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Área Administrativa"></asp:Button>
-                                    <%--<a href="MenuBarraMantenimientos" class="w3-bar-item w3-button">Area Administrativa Otro</a>--%>
+                                      <a href="Reporte.aspx" class="w3-bar-item w3-button">Reporte EP</a>
                                 </div>
                             </div> 
                         </span>

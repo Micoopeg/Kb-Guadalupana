@@ -885,7 +885,12 @@ body {
                            <ItemTemplate>
                             <asp:Label ID="lblorigeninversion" Text='<%# Eval("ep_inversionesorigen") %>' runat="server" />
                         </ItemTemplate>
-                    </asp:TemplateField> 
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Numero de cuenta">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumerodecuenta" Text='<%# Eval("ep_inversionesnumerocuenta") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                    <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarinversionesgridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
                             <ItemStyle Width="150px"></ItemStyle>
                              </asp:ButtonField>
@@ -1077,6 +1082,16 @@ body {
     <asp:TemplateField HeaderText="Comentario">
                            <ItemTemplate>
                             <asp:Label ID="lblcomentario" Text='<%# Eval("ep_vehiculocomentario") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                            <asp:TemplateField HeaderText="A quién esta">
+                           <ItemTemplate>
+                            <asp:Label ID="lblaquienesta" Text='<%# Eval("ep_vehiculoanombrede") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                            <asp:TemplateField HeaderText="Motivo">
+                           <ItemTemplate>
+                            <asp:Label ID="lblmotivo" Text='<%# Eval("ep_vehiculomotivodeanombrede") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
                             <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarvehiculosgridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >
@@ -1501,15 +1516,15 @@ body {
     <input id="ISRNombre" runat="server" type="text" class="tam"   placeholder="Nombre Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <input id="ISRRelacion" runat="server" type="text" class="tam"   placeholder="Relacion Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <input id="ISRMonto" runat="server" type="number" class="tam"   placeholder="Promedio Mensual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-    <select class="tampe" id="ISRPeriodo" runat="server" >
-                         <option disabled selected>[Periodo Recepción]</option>
-                         <option value="1">Diario</option>
-                         <option value="2">Semanal</option>
-                         <option value="3">Mensual</option>
-                         <option value="4">Trimestral</option>
-                         <option value="5">Semestral</option>
-                         <option value="6">Anual</option>
-                </select>    
+    <asp:DropDownList  class="tampe" id="ISRPeriodo" runat="server">
+           <asp:ListItem Value="0">[Periodo Recepción]</asp:ListItem>
+        <asp:ListItem Value="1">Diario</asp:ListItem>
+        <asp:ListItem Value="2">Semanual</asp:ListItem>
+        <asp:ListItem Value="3">Mensual</asp:ListItem>
+        <asp:ListItem Value="4">Trimestral</asp:ListItem>
+        <asp:ListItem Value="5">Semestral</asp:ListItem>
+          <asp:ListItem Value="6">Anual</asp:ListItem>
+    </asp:DropDownList>
         
         <hr class="solid" style="margin-top: 5px;"/>
     <br/>
@@ -1749,12 +1764,12 @@ body {
             document.getElementById("Text26").disabled = true;
         }
         function Desactivarr() {
-            document.getElementById("ACTVehiculo1").disabled = true;
-            document.getElementById("ACMarca").disabled = true;
-            document.getElementById("ACLinea").disabled = true;
-            document.getElementById("ACModelo").disabled = true;
-            document.getElementById("ACPlaca").disabled = true;
-            document.getElementById("ACCome").disabled = true;
+            document.getElementById("ACTVehiculo1").disabled = false;
+            document.getElementById("ACMarca").disabled = false;
+            document.getElementById("ACLinea").disabled = false;
+            document.getElementById("ACModelo").disabled = false;
+            document.getElementById("ACPlaca").disabled = false;
+            document.getElementById("ACCome").disabled = false;
             document.getElementById("Text25").disabled = false;
             document.getElementById("Text26").disabled = false;
         }

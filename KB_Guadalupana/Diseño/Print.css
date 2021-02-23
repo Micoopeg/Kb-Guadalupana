@@ -1,0 +1,12 @@
+
+
+
+@media print 
+{
+    .encabezado {
+    background-color:  yellow;
+    margin: 0;
+    padding: 1em 1.5em;
+    text-align: center;
+}
+}

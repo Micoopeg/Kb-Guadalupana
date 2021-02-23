@@ -64,10 +64,12 @@ body, html
      <br />
         </form>
     <script type="text/javascript">
-        function iniciar_sesion2() {
+        function iniciar_sesion2()
+        {
             iniciar_sesion();
         }
-        function iniciar_sesion() {
+        function iniciar_sesion()
+        {
             document.getElementById('iniciarsesion').click();
         }
       

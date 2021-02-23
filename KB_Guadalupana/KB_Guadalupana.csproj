@@ -250,6 +250,8 @@
     <Content Include="Views\Sesion\MenuBarra.aspx" />
     <Content Include="Views\Sesion\MenuBarraMantenimientos.aspx" />
     <Content Include="Views\Sesion\Reporte.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx" />
     <Content Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx" />
     <Content Include="Views\Sesion\Reportes\ReporteEP.aspx" />
     <Content Include="Views\WebForm1.aspx" />
@@ -512,6 +514,20 @@
     </Compile>
     <Compile Include="Views\Sesion\Reporte.aspx.designer.cs">
       <DependentUpon>Reporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx.cs">
+      <DependentUpon>ReporteAdmin1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx.designer.cs">
+      <DependentUpon>ReporteAdmin1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx.cs">
+      <DependentUpon>ReporteAdmin2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx.designer.cs">
+      <DependentUpon>ReporteAdmin2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx.cs">
       <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>

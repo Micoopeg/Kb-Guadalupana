@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="UsuarioTiitulo" targetNamespace="http://tempuri.org/UsuarioTiitulo.xsd" xmlns:mstns="http://tempuri.org/UsuarioTiitulo.xsd" xmlns="http://tempuri.org/UsuarioTiitulo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="usuariostareasTableAdapter" GeneratorDataComponentClassName="usuariostareasTableAdapter" Name="usuariostareas" UserDataComponentName="usuariostareasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString (Web.config)" DbObjectName="bdkbguadalupana.usuariostareas" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `gen_usuarionombre`, `codavtarea`, `codavagenda`, `av_titulo`, `fechaini`, `fechafin`, `av_estado` FROM `bdkbguadalupana`.`usuariostareas`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="gen_usuarionombre" DataSetColumn="gen_usuarionombre" />
+              <Mapping SourceColumn="codavtarea" DataSetColumn="codavtarea" />
+              <Mapping SourceColumn="codavagenda" DataSetColumn="codavagenda" />
+              <Mapping SourceColumn="av_titulo" DataSetColumn="av_titulo" />
+              <Mapping SourceColumn="fechaini" DataSetColumn="fechaini" />
+              <Mapping SourceColumn="fechafin" DataSetColumn="fechafin" />
+              <Mapping SourceColumn="av_estado" DataSetColumn="av_estado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="UsuarioTiitulo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="UsuarioTiitulo" msprop:Generator_UserDSName="UsuarioTiitulo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="usuariostareas" msprop:Generator_TableClassName="usuariostareasDataTable" msprop:Generator_TableVarName="tableusuariostareas" msprop:Generator_TablePropName="usuariostareas" msprop:Generator_RowDeletingName="usuariostareasRowDeleting" msprop:Generator_RowChangingName="usuariostareasRowChanging" msprop:Generator_RowEvHandlerName="usuariostareasRowChangeEventHandler" msprop:Generator_RowDeletedName="usuariostareasRowDeleted" msprop:Generator_UserTableName="usuariostareas" msprop:Generator_RowChangedName="usuariostareasRowChanged" msprop:Generator_RowEvArgName="usuariostareasRowChangeEvent" msprop:Generator_RowClassName="usuariostareasRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="gen_usuarionombre" msprop:Generator_ColumnVarNameInTable="columngen_usuarionombre" msprop:Generator_ColumnPropNameInRow="gen_usuarionombre" msprop:Generator_ColumnPropNameInTable="gen_usuarionombreColumn" msprop:Generator_UserColumnName="gen_usuarionombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="codavtarea" msprop:Generator_ColumnVarNameInTable="columncodavtarea" msprop:Generator_ColumnPropNameInRow="codavtarea" msprop:Generator_ColumnPropNameInTable="codavtareaColumn" msprop:Generator_UserColumnName="codavtarea" type="xs:int" />
+              <xs:element name="codavagenda" msprop:Generator_ColumnVarNameInTable="columncodavagenda" msprop:Generator_ColumnPropNameInRow="codavagenda" msprop:Generator_ColumnPropNameInTable="codavagendaColumn" msprop:Generator_UserColumnName="codavagenda" type="xs:int" />
+              <xs:element name="av_titulo" msprop:Generator_ColumnVarNameInTable="columnav_titulo" msprop:Generator_ColumnPropNameInRow="av_titulo" msprop:Generator_ColumnPropNameInTable="av_tituloColumn" msprop:Generator_UserColumnName="av_titulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fechaini" msprop:Generator_ColumnVarNameInTable="columnfechaini" msprop:Generator_ColumnPropNameInRow="fechaini" msprop:Generator_ColumnPropNameInTable="fechainiColumn" msprop:Generator_UserColumnName="fechaini">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="90" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fechafin" msprop:Generator_ColumnVarNameInTable="columnfechafin" msprop:Generator_ColumnPropNameInRow="fechafin" msprop:Generator_ColumnPropNameInTable="fechafinColumn" msprop:Generator_UserColumnName="fechafin">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="90" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="av_estado" msprop:Generator_ColumnVarNameInTable="columnav_estado" msprop:Generator_ColumnPropNameInRow="av_estado" msprop:Generator_ColumnPropNameInTable="av_estadoColumn" msprop:Generator_UserColumnName="av_estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -33,13 +33,13 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl RCif;
 
         /// <summary>
-        /// Control Button1.
+        /// Control Buscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Buscar;
 
         /// <summary>
         /// Control Text6.

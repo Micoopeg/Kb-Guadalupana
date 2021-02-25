@@ -106,6 +106,18 @@
                     </a>
                 </li>
             </ul>
+
+            <ul id="ButtonAgenda" runat="server" class ="opc1">
+               <li>
+                    <a href="../Agenda/AgendaPrin.aspx">
+                       <i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">
+                            Agenda
+                            <%--<asp:Button ID="prueba" OnClick="seguridad_Click" class="w3-bar-item w3-button" runat="server" Text="Seguridad"></asp:Button>--%>
+                        </span>
+                    </a>
+                </li>
+            </ul>
        <%-- <ul class ="opc1">
               <li class="has-subnav">
                     <a href="#">

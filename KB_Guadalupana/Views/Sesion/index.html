@@ -1,4 +1,4 @@
-
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EP_InformacionGeneral.aspx.cs" Inherits="KB_Guadalupana.Views.Sesion.EP_InformacionGeneral" %>
 
 <!DOCTYPE html>
 
@@ -12,12 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link  rel="stylesheet" href="../../DiseñoCss/EstilosCss.css" type="text/css" />
-    <link rel="stylesheet" href="../../DiseñosGrid/Grids.css" type="text/css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="../../DiseñoCss/StyleCss.css" type="text/css" />
 </head>
     <style>
 body {
@@ -80,10 +76,1247 @@ body {
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
             <a href="CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
-    <br>
-    <br>
-    <br>
-          <input type="button" name="previous" class="previous action-button" style="background-color: #003563" value="< Anterior"  />
 
+    <div class="menu"></div>
+<form id="msform" runat="server" class="forrmulario">
+   <ul id="progressbar">
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+       <li class="estilo"></li>
+    <li class="estilo"></li>
+    <li class="estilo"></li>
+    <li class="estilo"></li>
+    <li class="estilo1"></li>
+    <li class="estilo1"></li>
+    <li class="estilo2"></li>
+    <li class="estilo2"></li>
+  </ul>
+  <fieldset style="margin-top: -18px;box-shadow: 0 0 15px 1px rgb(0 53 99);" id="primerof" >
+    <h2 class="fs-title"><b>Información General</b></h2>
+        <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+      <br/>
+      <input id="IGCIF" runat="server" type="number"  placeholder="CIF (Codigo Empleado)" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required />
+      <input id="IGPuesto" runat="server" type="text" class="tampe"  name="Puesto" placeholder="Puesto" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      
+
+      <asp:DropDownList id="IGAgencia1" runat="server" class="tampe" AutoPostBack="true" ></asp:DropDownList>
+
+        <select class="tampe" id="IGADepa" runat="server" onchange="cmbarea()">
+            <option disabled selected>Area/Departamento</option>
+            <option value="volvo">Informatica</option>
+            <option value="saab">Cumplimiento</option>
+        </select>
+     <hr class="solid" style="margin-top: 5px;" />
+         <input id="IGPApellido" runat="server" type="text" class="tam"   placeholder="Primer Apellido" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+         <input id="IGSApellido" runat="server" type="text" class="tam"   placeholder="Segundo Apellido" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+         <input id="IGPNombre" runat="server" type="text" class="tampe"   placeholder="Primer Nombre" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+         <input id="IGSNombre" runat="server" type="text" class="tampe"   placeholder="Segundo Nombre" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+         <input id="IGONombre" runat="server" type="text" class="tampe"   placeholder="Otros Nombres" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+       
+        
+      <select class="tampe" id="IGPDepartamento" runat="server" onchange="cmbdepartamento()">
+            <option disabled selected>Departamento</option>
+            <option value="volvo">Informatica</option>
+            <option value="saab">Cumplimiento</option>
+        </select>
+      <select class="tampe" id="IGMunicipio" runat="server" onchange="cmbmunicipio()">
+            <option disabled selected>Municipio</option>
+            <option value="volvo">Informatica</option>
+            <option value="saab">Cumplimiento</option>
+        </select>
+      <select class="tampe" id="IGPAZona" runat="server" onchange="cmbzona()">
+            <option disabled selected>Zona</option>
+            <option value="volvo">Zona 2</option>
+            <option value="saab">Zona 1</option>
+        </select>
+      <input id="IGDireccion" runat="server" type="text"  placeholder="Dirección" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <select class="tam" id="IGDoc" runat="server" onchange="cmbtipodoc()">
+            <option disabled selected>Documento de Identificacion</option>
+            <option value="volvo">DPI</option>
+            <option value="saab">Pasaporte</option>
+        </select>
+      <input id="IGNoDoc" runat="server" type="text" class="tam"   placeholder="No. Documento Identificación" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+            <hr class="solid" style="margin-top: 5px;"/>
+      <br/>
+      <input type="button" name="next" style="background-color: #003563" class="next action-button" value="Siguiente >" />
+  </fieldset>
+  <fieldset id="segundof" style="box-shadow: 0 0 15px 1px rgb(0 53 99);">
+    <h2 class="fs-title"><b>Información General</b></h2>
+                <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
+      <br />
+      <label for="start">Fecha Nacimiento</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <input id="IGFNacimiento" runat="server" class="tam" type="date"  name="trip-start"
+       value="2018-07-22"
+       min="1950-01-01" max="2021-12-31" />
+       <input id="IGNits" runat="server" type="text" class="tam"   placeholder="Nit" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="IGNacionalidad" runat="server" type="text" class="tam"   placeholder="Nacionalidad" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <hr class="solid" style="margin-top: 5px;" />
+    <input id="IGCelular" runat="server" type="number" class="tampe"   placeholder="Celular" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <input id="IGTCasa" runat="server" type="number" class="tampe"   placeholder="Teléfono Casa" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <input id="IGCorreo" runat="server" type="email" class="tampe"   placeholder="Correo Electrónico" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <input id="IGEstatura" runat="server" type="number" class="tampe"   placeholder="Estatura" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <input id="IGPeso" runat="server" type="number" class="tampe"   placeholder="Peso" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <input id="IGReligion" runat="server" type="text" class="tampe"   placeholder="Religión" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+            <hr class="solid" style="margin-top: 5px;" />
+      <br/>
+      <input type="button" name="previous" class="previous action-button" style="background-color: #003563" value="< Anterior"  />
+      <input type="button" name="next" class="next action-button" style="background-color: #003563" value="Siguiente >"  />
+  </fieldset>
+  <fieldset id="tercerof" style="box-shadow: 0 0 15px 1px rgb(0 53 99);">
+    <h2 class="fs-title"><b>Información Familiar</b></h2>
+      <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+     <br/>
+     <div>
+    <label for="start">Estado Civil</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <select name='id_categoria' id='id_categoria' runat="server" onchange="cmbestadocivil()">
+        <option disabled selected>Estado Civil</option>
+        <option value="1">Soltero (A)</option>
+        <option value="2">Casado (A)</option>
+        <option value="3">Unido  (A)</option>
+        <option value="4">Divorciado (A)</option>
+        <option value="5">Viudo (A)</option>
+    </select>
+         
+     <hr class="solid" style="margin-top: 5px;" />
+         <input  type="text" class="tam"  id="IFNombre" runat="server"   placeholder="Nombre Completo Conyuge" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0,  this.maxLength);"  />
+         <input  type="text" class="tam"  id="IFOcupacion" runat="server" placeholder="Ocupacion Conyuge" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"   required/>
+          <label for="start">Fecha Nacimiento Conyuge</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+          <input class="tam" id="IFFecha" runat="server" style="margin-left: 31px;"  type="date"  value="2020-04-24" min="1950-01-01" max="2021-12-31" />
+</div>
+     <hr class="solid" style="margin-top: 5px;"/>
+   <input  type="text" class="tam"  id="Text1" runat="server"   placeholder="Nombre Completo Hijo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0,  this.maxLength);"  />
+   <input  type="text" class="tam"  id="Text2" runat="server" placeholder="Ocupacion Hijo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"   required/>
+   <label for="start">Fecha Nacimiento Hijo</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+   <input class="tam" id="Date1" runat="server" style="margin-left: 66px;"  type="date"  value="2020-04-24" min="1950-01-01" max="2021-12-31" />
+  <input  type="text" id="Text3" runat="server" placeholder="Comentarios" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"   required/>
+     <hr class="solid" style="margin-top: 5px;"/>
+
+    
+     <input type="text" id="id_input5" runat="server" class="tampe"   placeholder="Apellido Casada" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required />&nbsp;&nbsp;&nbsp; 
+      <label for="start">Fecha Boda</label>&nbsp;&nbsp; 
+    <input id="id_input6" class="tampe" runat="server"  type="date"  name="trip-start" value="2020-04-24" min="1950-01-01" max="2021-12-31" />
+    <hr class="solid" style="margin-top: 5px;"/>
+      <h3 class="fs-title"><b>En caso de emergencia llamar a:</b></h3>
+     <input id="IFNombreCo" runat="server" type="text" class="tampe"   placeholder="Nombre Completo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <input id="IFtel" runat="server" type="number" class="tampe"   placeholder="Numero Telefono" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <input id="IFparenteso" runat="server" type="text" class="tampe"   placeholder="Parentesco" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <hr class="solid" style="margin-top: 5px;">
+
+ 
+      <input type="button" name="previous" class="previous action-button" style="background-color: #003563" value="< Anterior" />
+      <input type="button" name="next" class="next action-button" style="background-color: #003563" value="Siguiente >" />
+  </fieldset>
+  <fieldset id="cuartaf" runat="server" style="box-shadow: 0 0 15px 1px rgb(0 53 99);">
+    <h2 class="fs-title"><b>Estudios Universitarios</b></h2>
+     <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+      <br/>
+    <input id="ENombreCarrera" runat="server" type="text" class="tam"   placeholder="Nombre Carrera" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <input id="ESemestre" runat="server" type="text" class="tam"   placeholder="Ultimo Semestre Cursado" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <input id="EAño" runat="server" type="number" class="tam"   placeholder="Ultimo Año Cursado" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+     <input type="text" class="tam"  id="idiomaestudio" runat="server" placeholder="Idioma" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <input id="EUniversidad" runat="server" type="text" class=""   placeholder="Universidad" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <hr class="solid" style="margin-top: 5px;" />
+    <h3 class="fs-title"><b>Otros Estudios:</b></h3>
+     <input id="OECurso" runat="server" type="text" class="tam"   placeholder="Nombre Curso" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+     <input id="OEEstablecimiento" runat="server" type="text" class="tam"   placeholder="Nombre Establecimiento" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+     <input id="OEModalidad" runat="server" type="text" class="tampe"   placeholder="Modalidad" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+     <input id="OEAño" runat="server" type="number" class="tampe"   placeholder="Año" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+     <input id="OEDuracion" runat="server" type="text" class="tampe"   placeholder="Duración" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+     <input type="text"  id="Text4" runat="server" placeholder="Idioma" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+         <hr class="solid" style="margin-top: 5px;">
+      <br/>
+      <input type="button" runat="server" name="next" class="next action-button" value="Guardar" onclick="guardarepfinal()"
+             id="btnepigfinal" /> 
+      <input type="button" name="previous" class="previous action-button" style="background-color: #003563" value="< Anterior"  />
+      <input type="button" name="next" class="next action-button" style="background-color: #003563" value="Siguiente >"  />
+            </fieldset>
+
+<!--
+        FUNCIONES DE CARGA
+        -->
+    <!--  Area Formulario Activos y sus 4 Secciones    -->
+    <fieldset id="quintof" style="box-shadow: 0 0 15px 1px rgb(0 112 209);">
+            <h2 class="fs-title"><b>Activos</b></h2>
+     <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+        <input id="ACCaja" runat="server" type="number" class="tam"   placeholder="Caja" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+     <h3 class="fs-title" style="margin-top:-10px"><b>Cuentas Monetarias:</b></h3>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <div class="col-12">
+              <div style="position: absolute;margin-top: -20px;">
+                <a href="javascript:void(0);" class="CuentasMonetarias" title="Add field">
+                     <i class="fa fa-plus" aria-hidden="true"></i>Agregar fila
+                  </a>
+           </div>
+                                <br/>
+                <div style="overflow-x:auto;">
+                    <div class="card-body">
+                        <input id="ACNBanco" class="tampe" runat="server"  placeholder="Nombre Banco"  />
+                        <select class="tampe"  id='ACTMoneda' runat="server" onchange="cmbtipomoneda1()">
+                            <option disabled selected>Tipo Moneda</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                        <select class="tampe"   id='ACEstatus' runat="server" onchange="cmbtipoestatus1()">
+                            <option disabled selected>Estatus</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                       <input id="ACMonto" runat="server" type="number" class="tam"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                       <input id="ACOFondos" runat="server" type="text" class="tam"   placeholder="Origen Fondos" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                 <hr class="solid" style="margin-top: 5px;">
+                    </div>
+                </div>
+                <div class="MostrarCuentasMonetarias">
+                </div> 
+    </div>
+    <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+     <h3 class="fs-title" style="margin-top:-10px"><b>Cuentas Ahorro (Bancos)</b></h3>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <div class="col-12">
+              <div style="position: absolute;margin-top: -20px;">
+                <a href="javascript:void(0);" id="crear" class="add_button1" title="Add field">
+                     <i class="fa fa-plus" aria-hidden="true"></i>Agregar fila
+                  </a>
+           </div>
+                                <br/>
+                <div style="overflow-x:auto;">
+                    <div class="card-body">
+                        <input id="ACANBanco" class="tampe" runat="server"  placeholder="Nombre Banco"  />
+                        <select class="tampe"  id='ACATMoneda' runat="server" onchange="cmbtipomoneda2()">
+                            <option disabled selected>Tipo Moneda</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                        <select class="tampe"   id='ACAEstatus' runat="server" onchange="cmbtipoestatus2()">
+                            <option disabled selected>Estatus</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                       <input id="ACAMonto" runat="server" type="number" class="tam"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                       <input id="ACAOFondos" runat="server" type="text" class="tam"   placeholder="Origen Fondos" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                 <hr class="solid" style="margin-top: 5px;">
+                    </div>
+                </div>
+                <div class="field_wrapper1">
+                </div> 
+    </div>
+    <br/>
+        <input type="button" name="previous" class="previous action-button" style="background-color: #0070D1" value="< Anterior" />
+        <input type="button" name="next" class="next action-button" style="background-color: #0070D1" value="Siguiente >" />
+  </fieldset>
+    <fieldset id="sextof" style="box-shadow: 0 0 15px 1px rgb(0 112 209);">
+       <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+        <br>
+        <br>
+        <br>
+             <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+     <h3 class="fs-title" style="margin-top:-10px"><b>Cuentas En Cooperativas</b></h3>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <div class="col-12">
+              <div style="position: absolute;margin-top: -20px;">
+                <a href="javascript:void(0);" id="crear" class="Cooperativas" title="Add field">
+                     <i class="fa fa-plus" aria-hidden="true"></i>Agregar fila
+                  </a>
+           </div>
+                <br/>
+                <div style="overflow-x:auto;">
+                    <div class="card-body">
+                        <input id="ACCNBanco" class="tampe" runat="server"  placeholder="Nombre Banco"  />
+                        <select class="tampe"  id='ACCTMoneda' runat="server" onchange="cmbtipomoneda3()">
+                            <option disabled selected>Tipo Moneda</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                        <select class="tampe"   id='ACCEstatus' runat="server" onchange="cmbtipoestatus3()">
+                            <option disabled selected>Estatus</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                       <input id="ACCMonto" runat="server" type="number" class="tam"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                       <input id="ACCOFondos" runat="server" type="text" class="tam"   placeholder="Origen Fondos" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                 <hr class="solid" style="margin-top: 5px;">
+                    </div>
+                </div>
+                <div class="MostrarCooperativas">
+                </div> 
+              <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+     <h3 class="fs-title" style="margin-top:-10px"><b>Cuentas Por Cobrar</b></h3>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <div class="col-12">
+              <div style="position: absolute;margin-top: -20px;">
+                <a href="javascript:void(0);" id="crear" class="PorCobrar" title="Add field">
+                     <i class="fa fa-plus" aria-hidden="true"></i>Agregar fila
+                  </a>
+           </div>
+                <br/>
+                <div style="overflow-x:auto;">
+                    <div class="card-body">
+                       <input id="ACPNombre" runat="server" type="text" class="tam"   placeholder="Nombre persona o entidad" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                       <input id="ACPMonto" runat="server" type="number" class="tam"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                       <input id="ACPMotivo" runat="server" type="text"   placeholder="Motivo" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+
+                 <hr class="solid" style="margin-top: 5px;">
+                    </div>
+                </div>
+                <div class="MostrarPorCobrar">
+              </div>
+             <h3 class="fs-title" style="margin-top: 0px;"><b>Inventarios</b></h3>
+              <input id="Text5" runat="server" type="text" class="tam"   placeholder="Tipo de mercadería (especifique)" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+              <input id="Number1" runat="server" type="number" class="tam"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+</div>
+    </div>
+    <br/>
+        <input type="button" name="previous" class="previous action-button" style="background-color: #0070D1" value="< Anterior" />
+        <input type="button" name="next" class="next action-button" style="background-color: #0070D1" value="Siguiente >" />
+    </fieldset>
+    <fieldset id="septimof" style="box-shadow: 0 0 15px 1px rgb(0 112 209);">
+           <h2 class="fs-title"><b>Inversiones</b></h2>
+    <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+           <input id="ACIInst" runat="server" type="text" class="tam"   placeholder="Tipo de Institución" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+           <input id="ACINombre" runat="server" type="text" class="tam"   placeholder="Nombre de Institución" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+           <input id="ACIPlazo" runat="server" type="text" class="tampe"   placeholder="Plazo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+           <select class="tampe"  id='ACIMoneda' runat="server" onchange="cmbtipomoneda4()">
+                            <option disabled selected>Tipo Moneda</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+            <input id="ACIMonto" runat="server" type="text" class="tampe"   placeholder="Monto" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+            <hr class="solid" style="margin-top: 5px;">
+             <h2 class="fs-title"><b>Bienes Inmuebles</b></h2>
+       <div class="col-12">
+              <div style="position: absolute;margin-top: -20px;">
+                <a href="javascript:void(0);" id="crear" class="Inmuebles" title="Add field">
+                     <i class="fa fa-plus" aria-hidden="true"></i>Agregar fila
+                  </a>
+           </div>
+                <br/>
+                <div style="overflow-x:auto;">
+                    <div class="card-body">
+                        <select class="tampe"  id='ACTInmueble' runat="server" onchange="cmbtipoinmueble()">
+                            <option disabled selected>Tipo Inmueble</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                       <input id="ACFolio" runat="server" type="text" class="tampe"   placeholder="Folio" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                       <input id="ACLibro" runat="server" type="text" class="tampe"   placeholder="Libro" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                        <input id="ACDireccion" runat="server" type="text" class="tampe"   placeholder="Direccion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                        <input id="ACVActual" runat="server" type="text" class="tampe"   placeholder="Valor Actual" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                        <input id="ACDes" runat="server" type="text" class="tampe"   placeholder="Descripción" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                 <hr class="solid" style="margin-top: 5px;">
+                    </div>
+                </div>
+                <div class="MostrarInmuebles">
+              </div>
+        </div>
+             <h2 class="fs-title"><b>Vehículos</b></h2>
+       <div class="col-12">
+              <div style="position: absolute;margin-top: -20px;">
+                <a href="javascript:void(0);" id="crear" class="Vehiculos" title="Add field">
+                     <i class="fa fa-plus" aria-hidden="true"></i>Agregar fila
+                  </a>
+           </div>
+                <br/>
+                <div style="overflow-x:auto;">
+                    <div class="card-body">
+                        <select class="tampe"  id='ACTVehiculo' runat="server" onchange="cmbtipovehiculo()">
+                            <option disabled selected>Tipo Vehículo</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                       <input id="ACMarca" runat="server" type="text" class="tampe"   placeholder="Marca" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                       <input id="ACLinea" runat="server" type="text" class="tampe"   placeholder="Linea" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                        <input id="ACModelo" runat="server" type="text" class="tam"   placeholder="Modelo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                        <input id="ACPlaca" runat="server" type="text" class="tam"   placeholder="No. Placa" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                 <hr class="solid" style="margin-top: 5px;">
+                    </div>
+                </div>
+                <div class="MostrarVehiculos">
+              </div>
+        </div>
+        
+            <br/>
+        <input type="button" name="previous" class="previous action-button" style="background-color: #0070D1" value="< Anterior" />
+        <input type="button" name="next" class="next action-button" style="background-color: #0070D1" value="Siguiente >" />
+    </fieldset>
+    <fieldset id="octavof" style="box-shadow: 0 0 15px 1px rgb(0 112 209);">
+           <h2 class="fs-title"><b>Maquinaria y Equipo</b></h2>
+        <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+             <input id="ACTMAquinaria" runat="server" type="text" class="tam"   placeholder="Tipo de Maquinaria" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+             <input id="Number2" runat="server" type="number" class="tam"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+             <input id="ACComentarios" runat="server" type="text"    placeholder="Especifique" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+            <hr class="solid" style="margin-top: 5px;">
+             <h2 class="fs-title"><b>Menaje (Bienes en su casa)</b></h2>
+         <label for="start">Equipo de Computo</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMEComputo" runat="server" type="number" class="tam"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        
+        <label for="start">Amueblado Sala</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMASala" runat="server" type="number" class="tam"  style="margin-left: 21px;" placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        
+        <label for="start">Amueblado Comedor</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMAComedor" runat="server" type="number" class="tam"  style="margin-left: -7px;" placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" class="tampes">Televisor </label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMATelevisorC" runat="server" type="number" class="tampes"  style="margin-left: 38px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ACMATelevisorV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" class="tampes">Equipo de Sonido</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMASonidoC" runat="server" type="number" class="tampes"  style="margin-left: -10px;" placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ACMASonidoV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/> 
+        <br>
+        <label for="start" class="tampes">Lavadora</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMALavadoraC" runat="server" type="number" class="tampes" style="margin-left: 38px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ACMALavadoraV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" class="tampes">Secadora</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMASecadoraC" runat="server" type="number" class="tampes"  style="margin-left: 38px;" placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ACMASecadoraV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" class="tampes">Estufa</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMAEstufaC" runat="server" type="number" class="tampes" style="margin-left: 57px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ACMAEstufaV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" class="tampes">Refrigeradora</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMARefrigeradoraC" runat="server" type="number" class="tampes" style="margin-left: 14px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ACMARefrigeradoraV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" class="tampes">Telefono Movil</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMATMovilC" runat="server" type="number" class="tampes" style="margin-left: 10px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ACMATMovilV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" class="tampes">Otros</label>&nbsp;&nbsp;&nbsp;
+        <input id="ACMAODes" runat="server" type="number" class="tampes" style="margin-left: 63px;"  placeholder="Descripción" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ACMACantidadO" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+            <hr class="solid" style="margin-top: 5px;">
+            <br/>
+            <input runat="server" type="button" name="guardar" class="next action-button" value="Guardar" id="btnfinalactivo" onclick="btnguardaractivo()" /> 
+        <input type="button" name="previous" class="previous action-button" style="background-color: #0070D1" value="< Anterior" />
+        <input type="button" name="next" class="next action-button" style="background-color: #0070D1" value="Siguiente >" />
+    </fieldset>
+<!--  Fin Area de Formulario de Activos y sus 4 Secciones  -->
+    <fieldset  style="box-shadow: 0 0 15px 1px rgb(0 175 235);">
+        <h2 class="fs-title"><b>Pasivo</b></h2>
+           <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
+        <br>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+     <h3 class="fs-title" style="margin-top:-10px"><b>Cuentas Por Pagar Corto Plazp (Menor a un año )</b></h3>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+        <label for="start">Linea #1</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+         <input id="PCPDes1" runat="server" type="text" class="tampes" style="margin-left: 63px;"  placeholder="Descripción" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="PCPMonto1" runat="server" type="number" class="tampes"   placeholder="Monto en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start">Linea #2</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+         <input id="PCPDes2" runat="server" type="text" class="tampes" style="margin-left: 63px;"  placeholder="Descripción" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="PCPMonto2" runat="server" type="number" class="tampes"   placeholder="Monto en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+     <h3 class="fs-title" style="margin-top:-10px"><b>Cuentas Por Pagar Largo Plazo (Mayor a un año)</b></h3>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <label for="start">Linea #1</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+         <input id="PCPDesL1" runat="server" type="text" class="tampes" style="margin-left: 63px;"  placeholder="Descripción" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="PCPMontoL1" runat="server" type="number" class="tampes"   placeholder="Monto en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start">Linea #2</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+         <input id="PCPDesL2" runat="server" type="text" class="tampes" style="margin-left: 63px;"  placeholder="Descripción" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="PCPMontoL2" runat="server" type="number" class="tampes"   placeholder="Monto en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <hr class="solid" style="margin-top: 5px;">
+             <h3 class="fs-title" style="margin-top:-10px"><b>Prestamos</b></h3>
+        <br>
+          <div class="col-12">
+              <div style="position: absolute;margin-top: -20px;">
+                <a href="javascript:void(0);" id="crear" class="Cooperativas" title="Add field">
+                     <i class="fa fa-plus" aria-hidden="true"></i>Agregar fila
+                  </a>
+           </div>
+                <br/>
+                <div style="overflow-x:auto;">
+                    <div class="card-body">
+
+                            <input id="Text7" class="tampe" runat="server"  placeholder="Nombre Entidad"  />
+           <input id="PNEntidad" class="tampe" runat="server"  placeholder="Nombre Entidad"  />
+                        <select class="tampe"  id='PTPrestamo' runat="server">
+                            <option disabled selected>Tipo Prestamo</option>
+                            <option value="1">Soltero (A)</option>
+                            <option value="2">Casado (A)</option>
+                        </select>
+                    <input id="PMInicial" runat="server" type="number" class="tampe"   placeholder="Monto Inicial" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                    <input id="PSActual" runat="server" type="number" class="tampe"   placeholder="Saldo Actual" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                    <input id="PFDestino" runat="server" type="text" class="tampe"   placeholder="Destino" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                  <label for="start">Fecha Desenbolso</label>&nbsp;&nbsp; 
+                  <input id="PFDesenbol" class="tampe"   type="date"  name="trip-start"value="1997-04-24" min="1950-01-01" max="2021-12-31" />
+                        <br>
+                  <label for="start">Fecha Finalizacion</label>&nbsp;&nbsp; 
+                  <input id="PFFinali" class="tampe"   type="date"  name="trip-start" value="2020-04-24" min="1950-01-01" max="2021-12-31" />
+                 <hr class="solid" style="margin-top: 5px;">
+                    </div>
+                </div>
+                <div class="MostrarCooperativas">
+                </div> 
+    </div>
+    <br/>
+    <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
+        
+        <input type="button" name="next" class="next action-button" style="background-color: #00AFEB" value="Siguiente >" />
+    </fieldset>
+    <fieldset  style="box-shadow: 0 0 15px 1px rgb(0 175 235);">
+        <h2 class="fs-title"><b>Tarjeta de Credito</b></h2>
+        <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+        <br>
+          <div class="col-12">
+              <div style="position: absolute;margin-top: -20px;">
+                <a href="javascript:void(0);" id="crear" class="Cooperativas" title="Add field">
+                     <i class="fa fa-plus" aria-hidden="true"></i>Agregar fila
+                  </a>
+           </div>
+                <br/>
+                <div style="overflow-x:auto;">
+                    <div class="card-body">
+
+                         <input id="PTTEntidad" class="tampe" runat="server"  placeholder="Tipo  Entidad"  />
+           <input id="PTTNombre" class="tampe" runat="server"  placeholder="Nombre Entidad"  />
+                    <input id="PTTLimite" runat="server" type="number" class="tampe"   placeholder="Limite en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                    <input id="PTTLimite2" runat="server" type="number" class="tampe"   placeholder="Limite en $" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                    <input id="PTTSaldo" runat="server" type="number" class="tampe"   placeholder="Saldo Actual" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                 <hr class="solid" style="margin-top: 5px;">
+                           <h2 class="fs-title"><b>Otras Deudas</b></h2>
+                    <input id="PODeudas" runat="server" type="text" class="tam"   placeholder="Especifique" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                    <input id="POMonto" runat="server" type="number" class="tampe"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                <hr class="solid" style="margin-top: 5px;">
+                           <h2 class="fs-title"><b>Pasivo Contigente</b></h2>
+                     <input id="PTNEntidad" runat="server" type="text" class="tam"   placeholder="Nombre Entidad" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                     <input id="PTNDeudor" runat="server" type="text" class="tam"   placeholder="Nombre Deudor" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                     <input id="PTRelacion" runat="server" type="text" class="tam"   placeholder="Relacion con Deudor" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                     <input id="PTSaldo" runat="server" type="number" class="tam"   placeholder="Saldo en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+      <label for="start">Fecha Desembolso</label>&nbsp;&nbsp; 
+                  <input id="Date2" class="tampe"   type="date"  name="trip-start"value="2020-04-24" min="1950-01-01" max="2021-12-31" /><br>
+       <label for="start">Fecha Finalizacion</label>&nbsp;&nbsp; 
+                  <input id="Date3" class="tampe"   type="date"  name="trip-start"value="2020-04-24" min="1950-01-01" max="2021-12-31" />
+                 <hr class="solid" style="margin-top: 5px;">
+                    </div>
+                </div>
+                <div class="MostrarCooperativas">
+                </div> 
+    </div>
+    <br/>
+              <input type="button" runat="server" name="guardar" class="next action-button" value="Guardar" onclick="guardarepfinal()" id="btnguardarpasivo">
+        <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
+        <input type="button" name="next" class="next action-button" style="background-color: #00AFEB" value="Siguiente >" />
+    </fieldset>
+    <fieldset  style="box-shadow: 0 0 15px 1px rgb(0 228 235);">
+        <h2 class="fs-title"><b>Ingresos</b></h2>
+           <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+        <br>
+            <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <label for="start">Ingresos Mensuales en la Cooperativa Guadalupana</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+                 <input id="ISBase" runat="server" type="number" class="tampe"   placeholder="Sueldo Base" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                 <input id="IBoni" runat="server" type="number" class="tampe"   placeholder="Bonifiaciones" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                 <input id="ICMensuales" runat="server" type="number" class="tampe"   placeholder="Comisiones Mensuales" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                        <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <label for="start">Tiene negocio propio:</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+	<b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar()" />
+	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar()" />
+Asignación de costos
+
+	<input id="ITNegocio" runat="server" type="text" class="tampe"   placeholder="Tipo de Negocio" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+	<input id="ITNNegocio" runat="server" type="number" class="tampe"   placeholder="Nombre Negocio" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+	<input id="ITpatente" runat="server" type="text" class="tampe"   placeholder="No. Patente" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+	<input id="ITNEmpleados" runat="server" type="number" class="tampe"   placeholder="No. Empleados" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+	<input id="ITONegocio" runat="server" type="text" class="tampe"   placeholder="Objeto del Negocio" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+	<input id="ITIMensuales" runat="server" type="number" class="tampe"   placeholder="Ingresos Mensuales" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+	<input id="ITEMensuales" runat="server" type="number" class="tampe"   placeholder="Egresos Mensuales" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+	<input id="ITDireccion" runat="server" type="text" class="tam"   placeholder="Direccion" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+  <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <label for="start">Remesas:</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+	<b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar1()" />
+	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar1()" />
+            <br>
+    <input id="ISRNombre" runat="server" type="text" class="tam"   placeholder="Nombre Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <input id="ISRRelacion" runat="server" type="text" class="tam"   placeholder="Relacion Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <input id="ISRMonto" runat="server" type="number" class="tam"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <input id="ISRPeriodo" runat="server" type="text" class="tam"   placeholder="Periodo Recepcion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+              <hr class="solid" style="margin-top: 5px;">
+    <br/>
+        <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
+        <input type="button" name="next" class="next action-button" style="background-color: #00AFEB" value="Siguiente >" />
+    </fieldset>
+    <fieldset  style="box-shadow: 0 0 15px 1px rgb(0 228 235);">
+        <h2 class="fs-title"><b>Egresos</b></h2>
+           <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: -13px; right: 1px;max-width: 140px" />
+        <br>
+          <label for="start">Alimentacion</label>&nbsp;&nbsp;&nbsp;
+        <input id="ITAlimen" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+         <label for="start" style="margin-left: -57px;">Transporte o Gasolina</label>&nbsp;&nbsp;&nbsp;
+        <input id="ITTras" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start">Pago Estudios</label>&nbsp;&nbsp;&nbsp;
+        <input id="ITPago" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" style="margin-left: 26px;">Prestamos</label>&nbsp;&nbsp;&nbsp;
+        <input id="ITPrestamos" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br> 
+        <label for="start" style="margin-left: -20px;">Tarjeta de Credito</label>&nbsp;&nbsp;&nbsp;
+        <input id="ITTarjeta" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" style="margin-left: 35px;">Vestuario</label>&nbsp;&nbsp;&nbsp;
+        <input id="ITVestuario" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" style="margin-left: 23px;">Recreacion</label>&nbsp;&nbsp;&nbsp;
+        <input id="ITRecreacion" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+        <label for="start" style="margin-left: 2px;">Otros Egresos</label>&nbsp;&nbsp;&nbsp;
+        <input id="ITOtros" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <br>
+
+  <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <label for="start">Es usted una Persona Expuesta Políticamente (PEP):</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+        <br>
+	<b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar11()" />
+	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar11()" />
+            <br>
+    <input id="ENIns" runat="server" type="text" class="tampe"   placeholder="Nombre Institucion" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <input id="EPuesto" runat="server" type="text" class="tampe"   placeholder="Puesto" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+    <input id="EPais" runat="server" type="number" class="tampe"   placeholder="Pais de la Institucion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <label for="start">Tiene usted algún parentesco con una Persona Expuesta Políticamente (PEP):</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+	<b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar111()" />
+	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar111()" />
+        <select class="tampe"  id='EParentesco' runat="server">
+                            <option disabled selected>Parentesco</option>
+                            <option value="1">Padre</option>
+                            <option value="2">Madre</option>
+                        </select>
+         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;">
+          <label for="start">Es usted asociado cercano de una Persona Expuesta Políticamente (PEP):</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+	<b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar1111()" />
+	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar1111()" />
+        <br>
+        <input id="EMotivos" runat="server" type="text" class="tampe"   placeholder="Motivos" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="ENombre" runat="server" type="text" class="tampe"   placeholder="Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="EINombre" runat="server" type="text" class="tampe"   placeholder="Nombre Institucion" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="Text6" runat="server" type="text" class="tampe"   placeholder="Puesto" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+        <input id="EPPais" runat="server" type="text" class="tampe"   placeholder="Pais" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+            <br>
+   
+              <hr class="solid" style="margin-top: 5px;">
+    <br/>
+        <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
+        <input type="button" runat="server" name="guardar" class="next action-button" value="Terminar" onclick="guardarepfinal()" id="btnguardaringreso">
+    </fieldset>
+
+    <!--
+        FUNCIONES DE CARGA
+        -->
+<asp:LinkButton ID="combosucursal" runat="server" OnClick="cbosucursal_Click" ClientIDMode="Static"></asp:LinkButton>
+<asp:LinkButton ID="comboarea" runat="server" OnClick="cboarea_Click" ClientIDMode="Static"></asp:LinkButton>
+<asp:LinkButton ID="combodepartamento" runat="server" OnClick="cbodepartamento_Click" ClientIDMode="Static"></asp:LinkButton>
+<asp:LinkButton ID="combomunicipio" runat="server" OnClick="cbomunicipio_Click" ClientIDMode="Static"></asp:LinkButton>
+<asp:LinkButton ID="combozona" runat="server" OnClick="cbozona_Click" ClientIDMode="Static"></asp:LinkButton>
+<asp:LinkButton ID="combotipodoc" runat="server" OnClick="cbotipodoc_Click" ClientIDMode="Static"></asp:LinkButton>
+<asp:LinkButton ID="comboestadocivil" runat="server" OnClick="cboestadocivil_Click" ClientIDMode="Static"></asp:LinkButton>
+
+<asp:LinkButton ID="combotipomoneda1" runat="server" OnClick="cbotipomoneda1_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="combotipomoneda2" runat="server" OnClick="cbotipomoneda2_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="combotipomoneda3" runat="server" OnClick="cbotipomoneda3_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="combotipomoneda4" runat="server" OnClick="cbotipomoneda4_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="combotipoestatus1" runat="server" OnClick="cbotipoestatus1_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="combotipoestatus2" runat="server" OnClick="cbotipoestatus2_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="combotipoestatus3" runat="server" OnClick="cbotipoestatus3_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="combotipoinmueble" runat="server" OnClick="cbotipoinmueble_Click" ClientIDMode="Static"></asp:LinkButton>
+     <asp:LinkButton ID="combotipovehiculo" runat="server" OnClick="cbotipovehiculo_Click" ClientIDMode="Static"></asp:LinkButton>
+
+
+<asp:LinkButton ID="btnguardarinicio" runat="server" OnClick="btnguardarepinicio_Click" ClientIDMode="Static"></asp:LinkButton>
+<asp:LinkButton ID="btnguardarmedio" runat="server" OnClick="btnepguardarmedio_Click" ClientIDMode="Static"></asp:LinkButton>
+<asp:LinkButton ID="btnguardarfin" runat="server" OnClick="btnepguardarfin_Click" ClientIDMode="Static"></asp:LinkButton>
+
+    <asp:LinkButton ID="btnguardaractivo" runat="server" OnClick="btnguardaractivo_Click" ClientIDMode="Static"></asp:LinkButton>
+
+
+</form>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+    <script  src="../../DiseñoForms/script.js"></script>
+
+    <script>
+        function Activar() {
+            document.getElementById("ITNegocio").disabled = false;
+            document.getElementById("ITNNegocio").disabled = false;
+            document.getElementById("ITpatente").disabled = false;
+            document.getElementById("ITNEmpleados").disabled = false;
+            document.getElementById("ITONegocio").disabled = false;
+            document.getElementById("ITIMensuales").disabled = false;
+            document.getElementById("ITEMensuales").disabled = false;
+            document.getElementById("ITDireccion").disabled = false;
+
+        }
+        function Desactivar() {
+            document.getElementById("ITNegocio").disabled = true;
+            document.getElementById("ITNNegocio").disabled = true;
+            document.getElementById("ITpatente").disabled = true;
+            document.getElementById("ITNEmpleados").disabled = true;
+            document.getElementById("ITONegocio").disabled = true;
+            document.getElementById("ITIMensuales").disabled = true;
+            document.getElementById("ITEMensuales").disabled = true;
+            document.getElementById("ITDireccion").disabled = true;
+
+        }
+        function Activar1() {
+            document.getElementById("ISRNombre").disabled = false;
+            document.getElementById("ISRRelacion").disabled = false;
+            document.getElementById("ISRMonto").disabled = false;
+            document.getElementById("ISRPeriodo").disabled = false;
+
+        }
+        function Desactivar1() {
+            document.getElementById("ISRNombre").disabled = true;
+            document.getElementById("ISRRelacion").disabled = true;
+            document.getElementById("ISRMonto").disabled = true;
+            document.getElementById("ISRPeriodo").disabled = true;
+
+        }
+        function Activar11() {
+            document.getElementById("ENIns").disabled = false;
+            document.getElementById("EPuesto").disabled = false;
+            document.getElementById("EPais").disabled = false;
+
+        }
+        function Desactivar11() {
+            document.getElementById("ENIns").disabled = true;
+            document.getElementById("EPuesto").disabled = true;
+            document.getElementById("EPais").disabled = true;
+
+        }
+        function Activar111() {
+            document.getElementById("EParentesco").disabled = false;
+
+        }
+        function Desactivar111() {
+            document.getElementById("EParentesco").disabled = true;
+
+        }
+        function Activar1111() {
+            document.getElementById("EMotivos").disabled = false;
+            document.getElementById("ENombre").disabled = false;
+            document.getElementById("EINombre").disabled = false;
+            document.getElementById("EPuesto").disabled = false;
+            document.getElementById("EPais").disabled = false;
+
+        }
+        function Desactivar1111() {
+            document.getElementById("EMotivos").disabled = true;
+            document.getElementById("ENombre").disabled = true;
+            document.getElementById("EINombre").disabled = true;
+            document.getElementById("EPuesto").disabled = true;
+            document.getElementById("EPais").disabled = true;
+
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            if (sessionStorage.getItem('bandera') == 7) {
+                console.log("probando cbo");
+                //color
+                $("#progressbar li").eq($("fieldset").index('#primerof')).addClass("active");
+                $("#progressbar li").eq($("fieldset").index('#segundof')).addClass("active");
+                $('#tercerof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#tercerof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 8) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#familia')).addClass("active");
+                $('#familia').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#familia').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 9) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#familia')).addClass("active");
+                $('#familia').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#familia').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 10) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#cuartaf')).addClass("active");
+                $('#cuartaf').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#cuartaf').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 11) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#quintof')).addClass("active");
+                $('#quintof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#quintof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 12) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#quintof')).addClass("active");
+                $('#quintof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#quintof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 13) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#sextof')).addClass("active");
+                $('#sextof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#sextof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 14) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#septimof')).addClass("active");
+                $('#septimof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#septimof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 15) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#quintof')).addClass("active");
+                $('#quintof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#quintof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 16) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#quintof')).addClass("active");
+                $('#quintof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#quintof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 17) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#sextof')).addClass("active");
+                $('#sextof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#sextof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 18) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#septimof')).addClass("active");
+                $('#septimof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#septimof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 19) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#septimof')).addClass("active");
+                $('#septimof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#septimof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+            if (sessionStorage.getItem('bandera') == 20) {
+                console.log("probando cbo");
+                $("#progressbar li").eq($("fieldset").index('#octavof')).addClass("active");
+                $('#octavof').show();
+                $('#primerof').animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        $('#primerof').css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        $('#octavof').css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        $('#primerof').hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+                sessionStorage.setItem('bandera', 0);
+            }
+        });
+    </script>        
+  
+  
+      <!--   ////////////////////////////////////////////////////  -->
+    <script type="text/javascript">
+        function cmbsucursal() {
+            document.getElementById('combosucursal').click();
+            sessionStorage.setItem('bandera', '1');
+        }
+        function cmbarea() {
+            document.getElementById('comboarea').click();
+            sessionStorage.setItem('bandera', '2');
+
+        }
+        function cmbdepartamento() {
+            document.getElementById('combodepartamento').click();
+            sessionStorage.setItem('bandera', '3');
+        }
+        function cmbmunicipio() {
+            document.getElementById('combomunicipio').click();
+            sessionStorage.setItem('bandera', '4');
+        }
+        function cmbzona() {
+            document.getElementById('combozona').click();
+            sessionStorage.setItem('bandera', '5');
+        }
+        function cmbtipodoc() {
+            document.getElementById('combotipodoc').click();
+            sessionStorage.setItem('bandera', '6');
+        }
+        function cmbestadocivil() {
+            //document.getElementById("familia").focus();
+            document.getElementById('comboestadocivil').click();
+            //sessionStorage.setItem('bandera', '1');
+            sessionStorage.setItem('bandera', '7');
+
+        }
+
+        function guardarepinicial() {
+            document.getElementById("btnguardarinicio").click();
+            //sessionStorage.setItem('bandera', '1');
+            sessionStorage.setItem('bandera', '8');
+        };
+
+        function guardarepmedio() {
+            document.getElementById('btnguardarmedio').click();
+            sessionStorage.setItem('bandera', '9');
+        }
+        function guardarepfinal() {
+            document.getElementById('btnguardarfin').click();
+            sessionStorage.setItem('bandera', '10');
+        }
+        function cmbtipomoneda1() {
+            document.getElementById('combotipomoneda1').click();
+            sessionStorage.setItem('bandera', '11');
+        }
+        function cmbtipomoneda2() {
+            document.getElementById('combotipomoneda2').click();
+            sessionStorage.setItem('bandera', '12');
+        }
+        function cmbtipomoneda3() {
+            document.getElementById('combotipomoneda3').click();
+            sessionStorage.setItem('bandera', '13');
+        }
+        function cmbtipomoneda4() {
+            document.getElementById('combotipomoneda4').click();
+            sessionStorage.setItem('bandera', '14');
+        }
+        function cmbtipoestatus1() {
+            document.getElementById('combotipoestatus1').click();
+            sessionStorage.setItem('bandera', '15');
+        }
+        function cmbtipoestatus2() {
+            document.getElementById('combotipoestatus2').click();
+            sessionStorage.setItem('bandera', '16');
+        }
+        function cmbtipoestatus3() {
+            document.getElementById('combotipoestatus3').click();
+            sessionStorage.setItem('bandera', '17');
+        }
+        function cmbtipoinmueble() {
+            document.getElementById('combotipoinmueble').click();
+            sessionStorage.setItem('bandera', '18');
+        }
+        function cmbtipovehiculo() {
+            document.getElementById('combotipovehiculo').click();
+            sessionStorage.setItem('bandera', '19');
+        }
+        function btnguardaractivo() {
+            document.getElementById('btnguardaractivo').click();
+            sessionStorage.setItem('bandera', '20');
+        }
+    </script>
 </body>
 </html>

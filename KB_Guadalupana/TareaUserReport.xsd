@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TareaUserReport" targetNamespace="http://tempuri.org/TareaUserReport.xsd" xmlns:mstns="http://tempuri.org/TareaUserReport.xsd" xmlns="http://tempuri.org/TareaUserReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vistausuariostareaTableAdapter" GeneratorDataComponentClassName="vistausuariostareaTableAdapter" Name="vistausuariostarea" UserDataComponentName="vistausuariostareaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString (Web.config)" DbObjectName="bdkbguadalupana.vistausuariostarea" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `gen_usuarionombre`, `codavtarea`, `codavagenda`, `av_pnombre`, `av_papellido`, `fechaini`, `fechafin`, `av_estado` FROM `bdkbguadalupana`.`vistausuariostarea`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="gen_usuarionombre" DataSetColumn="gen_usuarionombre" />
+              <Mapping SourceColumn="codavtarea" DataSetColumn="codavtarea" />
+              <Mapping SourceColumn="codavagenda" DataSetColumn="codavagenda" />
+              <Mapping SourceColumn="av_pnombre" DataSetColumn="av_pnombre" />
+              <Mapping SourceColumn="av_papellido" DataSetColumn="av_papellido" />
+              <Mapping SourceColumn="fechaini" DataSetColumn="fechaini" />
+              <Mapping SourceColumn="fechafin" DataSetColumn="fechafin" />
+              <Mapping SourceColumn="av_estado" DataSetColumn="av_estado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TareaUserReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TareaUserReport" msprop:Generator_UserDSName="TareaUserReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vistausuariostarea" msprop:Generator_TableClassName="vistausuariostareaDataTable" msprop:Generator_TableVarName="tablevistausuariostarea" msprop:Generator_TablePropName="vistausuariostarea" msprop:Generator_RowDeletingName="vistausuariostareaRowDeleting" msprop:Generator_RowChangingName="vistausuariostareaRowChanging" msprop:Generator_RowEvHandlerName="vistausuariostareaRowChangeEventHandler" msprop:Generator_RowDeletedName="vistausuariostareaRowDeleted" msprop:Generator_UserTableName="vistausuariostarea" msprop:Generator_RowChangedName="vistausuariostareaRowChanged" msprop:Generator_RowEvArgName="vistausuariostareaRowChangeEvent" msprop:Generator_RowClassName="vistausuariostareaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="gen_usuarionombre" msprop:Generator_ColumnVarNameInTable="columngen_usuarionombre" msprop:Generator_ColumnPropNameInRow="gen_usuarionombre" msprop:Generator_ColumnPropNameInTable="gen_usuarionombreColumn" msprop:Generator_UserColumnName="gen_usuarionombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="codavtarea" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncodavtarea" msprop:Generator_ColumnPropNameInRow="codavtarea" msprop:Generator_ColumnPropNameInTable="codavtareaColumn" msprop:Generator_UserColumnName="codavtarea" type="xs:int" />
+              <xs:element name="codavagenda" msprop:Generator_ColumnVarNameInTable="columncodavagenda" msprop:Generator_ColumnPropNameInRow="codavagenda" msprop:Generator_ColumnPropNameInTable="codavagendaColumn" msprop:Generator_UserColumnName="codavagenda" type="xs:int" />
+              <xs:element name="av_pnombre" msprop:Generator_ColumnVarNameInTable="columnav_pnombre" msprop:Generator_ColumnPropNameInRow="av_pnombre" msprop:Generator_ColumnPropNameInTable="av_pnombreColumn" msprop:Generator_UserColumnName="av_pnombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="av_papellido" msprop:Generator_ColumnVarNameInTable="columnav_papellido" msprop:Generator_ColumnPropNameInRow="av_papellido" msprop:Generator_ColumnPropNameInTable="av_papellidoColumn" msprop:Generator_UserColumnName="av_papellido">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fechaini" msprop:Generator_ColumnVarNameInTable="columnfechaini" msprop:Generator_ColumnPropNameInRow="fechaini" msprop:Generator_ColumnPropNameInTable="fechainiColumn" msprop:Generator_UserColumnName="fechaini">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="90" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fechafin" msprop:Generator_ColumnVarNameInTable="columnfechafin" msprop:Generator_ColumnPropNameInRow="fechafin" msprop:Generator_ColumnPropNameInTable="fechafinColumn" msprop:Generator_UserColumnName="fechafin">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="90" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="av_estado" msprop:Generator_ColumnVarNameInTable="columnav_estado" msprop:Generator_ColumnPropNameInRow="av_estado" msprop:Generator_ColumnPropNameInTable="av_estadoColumn" msprop:Generator_UserColumnName="av_estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vistausuariostarea" />
+      <xs:field xpath="mstns:codavtarea" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

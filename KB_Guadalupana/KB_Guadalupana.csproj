@@ -324,6 +324,13 @@
     <Content Include="Views\Agenda\Error 401.aspx" />
     <Content Include="Views\Agenda\NuevaTarea.aspx" />
     <Content Include="Views\Agenda\pruebas.aspx" />
+    <Content Include="Views\Arqueos\ArqueoCajaChica.aspx" />
+    <Content Include="Views\Arqueos\ArqueoCajero.aspx" />
+    <Content Include="Views\Arqueos\ArqueoCajero2.aspx" />
+    <Content Include="Views\Arqueos\ArqueoCajeroAutomatico.aspx" />
+    <Content Include="Views\Arqueos\ArqueoTesoreria.aspx" />
+    <Content Include="Views\Arqueos\ArqueoTesoreria2.aspx" />
+    <Content Include="Views\Arqueos\MenuArqueos.aspx" />
     <Content Include="Views\Sesion\AsignacionLotes.aspx" />
     <Content Include="Views\Sesion\AsignacionRolArea.aspx" />
     <Content Include="Views\Sesion\Ayudas\AyudaALote.aspx" />
@@ -379,8 +386,10 @@
       <DependentUpon>chart.xsd</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Conexion.cs" />
+    <Compile Include="Controllers\Conexion_arqueos.cs" />
     <Compile Include="Controllers\ModeloAV.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
+    <Compile Include="Controllers\Sentencia_arqueos.cs" />
     <Compile Include="DataMontos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -391,6 +400,7 @@
     </Compile>
     <Compile Include="Models\ControladorAV.cs" />
     <Compile Include="Models\Logica.cs" />
+    <Compile Include="Models\Logica_arqueos.cs" />
     <Compile Include="montodatos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -520,6 +530,55 @@
     </Compile>
     <Compile Include="Views\Agenda\pruebas.aspx.designer.cs">
       <DependentUpon>pruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajaChica.aspx.cs">
+      <DependentUpon>ArqueoCajaChica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajaChica.aspx.designer.cs">
+      <DependentUpon>ArqueoCajaChica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajero.aspx.cs">
+      <DependentUpon>ArqueoCajero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajero.aspx.designer.cs">
+      <DependentUpon>ArqueoCajero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajero2.aspx.cs">
+      <DependentUpon>ArqueoCajero2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajero2.aspx.designer.cs">
+      <DependentUpon>ArqueoCajero2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajeroAutomatico.aspx.cs">
+      <DependentUpon>ArqueoCajeroAutomatico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajeroAutomatico.aspx.designer.cs">
+      <DependentUpon>ArqueoCajeroAutomatico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoTesoreria.aspx.cs">
+      <DependentUpon>ArqueoTesoreria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoTesoreria.aspx.designer.cs">
+      <DependentUpon>ArqueoTesoreria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoTesoreria2.aspx.cs">
+      <DependentUpon>ArqueoTesoreria2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoTesoreria2.aspx.designer.cs">
+      <DependentUpon>ArqueoTesoreria2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\MenuArqueos.aspx.cs">
+      <DependentUpon>MenuArqueos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\MenuArqueos.aspx.designer.cs">
+      <DependentUpon>MenuArqueos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\AsignacionLotes.aspx.cs">
       <DependentUpon>AsignacionLotes.aspx</DependentUpon>

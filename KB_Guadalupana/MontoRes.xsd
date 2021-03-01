@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MontoRes" targetNamespace="http://tempuri.org/MontoRes.xsd" xmlns:mstns="http://tempuri.org/MontoRes.xsd" xmlns="http://tempuri.org/MontoRes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="montosresTableAdapter" GeneratorDataComponentClassName="montosresTableAdapter" Name="montosres" UserDataComponentName="montosresTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString (Web.config)" DbObjectName="bdkbguadalupana.montosres" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `resultado` FROM `bdkbguadalupana`.`montosres`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="resultado" DataSetColumn="resultado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MontoRes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="MontoRes" msprop:Generator_UserDSName="MontoRes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="montosres" msprop:Generator_TableClassName="montosresDataTable" msprop:Generator_TableVarName="tablemontosres" msprop:Generator_TablePropName="montosres" msprop:Generator_RowDeletingName="montosresRowDeleting" msprop:Generator_RowChangingName="montosresRowChanging" msprop:Generator_RowEvHandlerName="montosresRowChangeEventHandler" msprop:Generator_RowDeletedName="montosresRowDeleted" msprop:Generator_UserTableName="montosres" msprop:Generator_RowChangedName="montosresRowChanged" msprop:Generator_RowEvArgName="montosresRowChangeEvent" msprop:Generator_RowClassName="montosresRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="resultado" msprop:Generator_ColumnVarNameInTable="columnresultado" msprop:Generator_ColumnPropNameInRow="resultado" msprop:Generator_ColumnPropNameInTable="resultadoColumn" msprop:Generator_UserColumnName="resultado" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

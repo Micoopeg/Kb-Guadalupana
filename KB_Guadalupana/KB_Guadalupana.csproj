@@ -196,6 +196,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AvDiseños\AvIndex.css" />
+    <Content Include="AvDiseños\AvMantenimientoSite.css" />
+    <Content Include="AvDiseños\AvMantenimientoSite2.css" />
     <Content Include="AvDiseños\Botones.css" />
     <Content Include="AvDiseños\estiloalert.css" />
     <Content Include="AvDiseños\estilos401.css" />
@@ -269,6 +271,17 @@
     <Content Include="montodatos.xss">
       <DependentUpon>montodatos.xsd</DependentUpon>
     </Content>
+    <Content Include="MontoRes.xsc">
+      <DependentUpon>MontoRes.xsd</DependentUpon>
+    </Content>
+    <None Include="MontoRes.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MontoRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="MontoRes.xss">
+      <DependentUpon>MontoRes.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="ReportesAv\ReporteUsuarios.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -322,6 +335,7 @@
     <Content Include="Views\Agenda\Av_Tracking.aspx" />
     <Content Include="Views\Agenda\DashBoard.aspx" />
     <Content Include="Views\Agenda\Error 401.aspx" />
+    <Content Include="Views\Agenda\MantenimientoSite.aspx" />
     <Content Include="Views\Agenda\NuevaTarea.aspx" />
     <Content Include="Views\Agenda\pruebas.aspx" />
     <Content Include="Views\Arqueos\ArqueoCajaChica.aspx" />
@@ -405,6 +419,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>montodatos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MontoRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MontoRes.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportesAv\ReporteUsuarios.aspx.cs">
@@ -516,6 +535,13 @@
     </Compile>
     <Compile Include="Views\Agenda\Error 401.aspx.designer.cs">
       <DependentUpon>Error 401.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\MantenimientoSite.aspx.cs">
+      <DependentUpon>MantenimientoSite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\MantenimientoSite.aspx.designer.cs">
+      <DependentUpon>MantenimientoSite.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Agenda\NuevaTarea.aspx.cs">
       <DependentUpon>NuevaTarea.aspx</DependentUpon>

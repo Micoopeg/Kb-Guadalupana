@@ -81,7 +81,7 @@ namespace KBGuada.Models
             }
 
         }
-        public DataTable reportemontos( string fecha1, string fecha2)
+        public DataTable reportemontos(string fecha1, string fecha2)
         {
 
             DataTable dt = new DataTable();
@@ -91,7 +91,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT cast( (SELECT COUNT( avcr.av_numcredito) FROM av_tarea avt INNER JOIN av_credito avcr ON avt.codavtarea = avcr.codavtarea  WHERE avt.av_fechaini  BETWEEN '"+fecha1+"' AND '"+fecha2+"' ) / (SELECT COUNT(avt.codavtarea) as tareas  FROM av_tarea avt   WHERE avt.av_fechaini  BETWEEN '"+fecha1+"' AND '"+fecha2+"' AND avt.cod_estado = 3 and avt.codtipotarea=1) as decimal(4,3) ) * 100 as resultado", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT cast( (SELECT COUNT( avcr.av_numcredito) FROM av_tarea avt INNER JOIN av_credito avcr ON avt.codavtarea = avcr.codavtarea  WHERE  avt.av_monto > 1 AND avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ) / (SELECT COUNT(avt.codavtarea) as tareas  FROM av_tarea avt   WHERE avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avt.cod_estado = 3 and avt.codtipotarea=1 AND avt.av_monto > 1 ) as decimal(4,3) ) * 100 as resultado", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -114,7 +114,30 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" select `avt`.`codavtarea` AS `codavtarea`,`avt`.`av_titulo` AS `av_titulo`,`ave`.`av_estado` AS `av_estado`,`avt`.`av_monto` AS `av_monto`, `avt`.`fechaini` AS `fechaini`, `avt`.`fechafin` AS `fechafin` from (`bdkbguadalupana`.`av_tarea` `avt` join `bdkbguadalupana`.`av_estado` `ave` on(`avt`.`cod_estado` = `ave`.`codestado`)) where avt.av_fechaini BETWEEN '"+fecha1+"' AND '"+fecha2+"' AND `avt`.`cod_estado` = 3 and `avt`.`codtipotarea` = 1", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" select `avt`.`codavtarea` AS `codavtarea`,`avt`.`av_titulo` AS `av_titulo`,`ave`.`av_estado` AS `av_estado`,`avt`.`av_monto` AS `av_monto`, `avt`.`fechaini` AS `fechaini`, `avt`.`fechafin` AS `fechafin` from (`bdkbguadalupana`.`av_tarea` `avt` join `bdkbguadalupana`.`av_estado` `ave` on(`avt`.`cod_estado` = `ave`.`codestado`)) where avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND `avt`.`cod_estado` = 3 and `avt`.`codtipotarea` = 1 and `avt`.`av_monto` > 1;", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+
+        }
+        public DataTable reportemontosresultante(string fecha1, string fecha2)
+        {
+
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT  (SELECT SUM(avt.av_monto) FROM av_tarea avt INNER JOIN av_credito avcr ON avt.codavtarea=avcr.codavtarea WHERE avt.cod_estado=3 AND avt.codtipotarea=1 AND avt.av_monto > 1 AND  avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "'  )-(SELECT SUM(avt.av_monto)  FROM av_tarea avt WHERE  avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avt.codtipotarea=1 AND avt.cod_estado=3 AND avt.av_monto > 1 AND  NOT EXISTS  ( SELECT null FROM  av_credito avcr WHERE avt.codavtarea=avcr.codavtarea )) as resultado", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -137,7 +160,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" select `avt`.`codavtarea` AS `codavtarea`,`avt`.`av_titulo` AS `av_titulo`,`ave`.`av_estado` AS `av_estado`,`avt`.`av_monto` AS `av_monto`, `avt`.`fechaini` AS `fechaini`, `avt`.`fechafin` AS `fechafin` from (`bdkbguadalupana`.`av_tarea` `avt` join `bdkbguadalupana`.`av_estado` `ave` on(`avt`.`cod_estado` = `ave`.`codestado`)) where avt.av_fechaini BETWEEN '"+fecha1+"' AND '"+fecha2+"' AND `avt`.`cod_estado` = 3 and `avt`.`codtipotarea` = 1", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" select `avt`.`codavtarea` AS `codavtarea`,`avt`.`av_titulo` AS `av_titulo`,`ave`.`av_estado` AS `av_estado`,`avt`.`av_monto` AS `av_monto`, `avt`.`fechaini` AS `fechaini`, `avt`.`fechafin` AS `fechafin` from (`bdkbguadalupana`.`av_tarea` `avt` join `bdkbguadalupana`.`av_estado` `ave` on(`avt`.`cod_estado` = `ave`.`codestado`)) where avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND `avt`.`cod_estado` = 3 and `avt`.`codtipotarea` = 1 AND `avt`.`av_monto` > 1  ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);

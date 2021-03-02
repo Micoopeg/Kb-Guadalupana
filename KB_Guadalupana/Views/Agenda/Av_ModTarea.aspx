@@ -166,7 +166,8 @@
                <h1 style="border-top: double; border-bottom: double;font-size: 37px; font-family: Montserrat;  padding-bottom: 10px; " >Modificar Tarea</h1>
 
                 </label>
-
+                    </div>
+                <div class="form-group" style="text-align: center">
                 <label for="exampleInputEmail1">
                     <h1>Titulo de la tarea</h1>
                 </label>

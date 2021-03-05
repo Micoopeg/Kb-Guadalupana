@@ -81,7 +81,7 @@
                                   <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;">
                                     <a href="EP_InformacionGeneral.aspx" class="w3-bar-item w3-button">Estado Patrimonial</a>
                                      <%--<asp:Button ID="Button1" class="w3-bar-item w3-button" runat="server" Text="Estado Patrimonial"></asp:Button>--%>
-                                    <a href="Reportes/InformacionGeneralEP.aspx" class="w3-bar-item w3-button">Imprimir Estado Patrimonial</a>
+                                    <a href="ReportesAdmin/InformacionGeneralEP.aspx" class="w3-bar-item w3-button">Imprimir Estado Patrimonial</a>
                                      <asp:Button ID="Button2" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Área Administrativa"></asp:Button>
                                       <a href="Reporte.aspx" class="w3-bar-item w3-button">Reporte EP</a>
                                 </div>

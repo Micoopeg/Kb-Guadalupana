@@ -168,5 +168,9 @@ namespace KB_Guadalupana.Models
             sn.eliminarregistro(tabla, campo, dato);
         }
 
+        public MySqlDataReader consultarCif(string cif)
+        {
+            return sn.consultarconcampoCif(cif);
+        }
     }
 }

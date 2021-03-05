@@ -26,10 +26,10 @@ namespace Login_Web
 
             if (AuthenticateUser(IdUser.Value, PSUser.Value))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Si Se Autentifica el Usuario');", true);
-                Session["sesion_usuario"] = IdUser.Value;
-                Session["Nombre"] = nombre;
-                Response.Redirect("Views/Sesion/Inicio.aspx");
+                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Si Se Autentifica el Usuario');", true);
+                //Session["sesion_usuario"] = IdUser.Value;
+                //Session["Nombre"] = nombre;
+                //Response.Redirect("Views/Sesion/Inicio.aspx");
 
             }
             else
@@ -38,10 +38,10 @@ namespace Login_Web
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Si Se Autentifica el Usuario');", true);
             //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Si Se Autentifica el Usuario');", true);
-            //Session["sesion_usuario"] = "pgdgomez";
+            Session["sesion_usuario"] = "pgdgomez";
             //Session["sesion_usuario"] = "pgaortiz";
-            //Session["Nombre"] = "Aida Jimena Ortiz Delgado";
-            //Response.Redirect("Views/Sesion/Inicio.aspx");
+            Session["Nombre"] = "Aida Jimena Ortiz Delgado";
+            Response.Redirect("Views/Sesion/Inicio.aspx");
         }
 
         private bool AuthenticateUser(string userName, string password)

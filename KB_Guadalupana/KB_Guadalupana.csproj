@@ -378,8 +378,10 @@
     <Content Include="Views\Sesion\MenuBarra.aspx" />
     <Content Include="Views\Sesion\MenuBarraMantenimientos.aspx" />
     <Content Include="Views\Sesion\Reporte.aspx" />
-    <Content Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx" />
-    <Content Include="Views\Sesion\Reportes\ReporteEP.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\InformacionGeneralEP.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\ReporteEP.aspx" />
     <Content Include="Views\WebForm1.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -830,18 +832,32 @@
     <Compile Include="Views\Sesion\Reporte.aspx.designer.cs">
       <DependentUpon>Reporte.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx.cs">
+    <Compile Include="Views\Sesion\ReportesAdmin\InformacionGeneralEP.aspx.cs">
       <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx.designer.cs">
+    <Compile Include="Views\Sesion\ReportesAdmin\InformacionGeneralEP.aspx.designer.cs">
       <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sesion\Reportes\ReporteEP.aspx.cs">
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx.cs">
+      <DependentUpon>ReporteAdmin1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx.designer.cs">
+      <DependentUpon>ReporteAdmin1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx.cs">
+      <DependentUpon>ReporteAdmin2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx.designer.cs">
+      <DependentUpon>ReporteAdmin2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteEP.aspx.cs">
       <DependentUpon>ReporteEP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Sesion\Reportes\ReporteEP.aspx.designer.cs">
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteEP.aspx.designer.cs">
       <DependentUpon>ReporteEP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\WebForm1.aspx.cs">

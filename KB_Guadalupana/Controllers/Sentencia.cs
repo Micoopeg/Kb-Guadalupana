@@ -1765,6 +1765,22 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public MySqlDataReader consultarconcampoCif(string cif)
+        {
+            try
+            {
+                cn.conectar();
+                string consultaGraAsis = "select ep_informaciongeneralcif from ep_informaciongeneral where codepinformaciongeneralcif='" + cif + "'";
+                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                return mostrarResultados;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
 
     }
 

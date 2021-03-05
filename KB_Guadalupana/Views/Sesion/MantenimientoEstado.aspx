@@ -226,10 +226,8 @@
         <div class="mantenimientos">
           <a href="MantenimientoVehiculos.aspx" class="active" onclick="MantenimientoVehiculos()">Vehículos</a>
           <a href="MantenimientoMoneda.aspx" onclick="MantenimientoMoneda()" id="MantenimientoMoneda">Moneda</a>
-          <a href="MantenimientoCuentas.aspx">Cuentas</a>
           <a href="MantenimientoInmueble.aspx">Inmueble</a>
           <a href="MantenimientoTelefono.aspx">Teléfono</a>
-          <a href="MantenimientoPep.aspx">PEP</a>
           <a href="MantenimientoPrestamos.aspx">Prestamos</a>
           <a href="MantenimientoEstado.aspx">Estado</a>
           <a href="MantenimientoEstatus.aspx">Estatus Cuentas</a>

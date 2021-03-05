@@ -1,6 +1,7 @@
 ﻿using KB_Guadalupana.Controllers;
 using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -171,6 +172,11 @@ namespace KB_Guadalupana.Models
         public MySqlDataReader consultarCif(string cif)
         {
             return sn.consultarconcampoCif(cif);
+        }
+
+        public DataTable buscarCIF(string cif)
+        {
+            return sn.buscarCIF(cif);
         }
     }
 }

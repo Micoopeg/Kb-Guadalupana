@@ -19,9 +19,9 @@ namespace Modulo_de_arqueos.Views
                 //    nombreuser.InnerText = Session["Nombre"].ToString();
                 //    abre = Session["sesion_usuario"].ToString();
                 //    string resultado = abre.Substring(2, 2);
-                Session["sesion_usuario"] = "pgaortiz";
+                //Session["sesion_usuario"] = "pgaortiz";
                 usuario = Session["sesion_usuario"] as string;
-                Session["Nombre"] = "Aida Jimena Ortiz Delgado";
+                //Session["Nombre"] = "Aida Jimena Ortiz Delgado";
                 NombreUsuario.InnerHtml = Session["Nombre"] as string;
                 Session["puesto_usuario"] = sn.obtenerpuesto(usuario);
             }

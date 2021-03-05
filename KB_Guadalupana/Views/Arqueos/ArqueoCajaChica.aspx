@@ -8,14 +8,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script>
+import { write } from "@popperjs/core";
+
         function obtenerimagen() {
             takeScreenshot(function (screenshot) {
                 printPage(screenshot);
             });
         }
-    </script>
     
-<script>
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+
     function printPage(screenshot) {
         var win = window.open('EstadoPatrimonial', 'EstadoPatrimonial');
         win.document.write('<html>');
@@ -25,8 +29,11 @@
         win.document.write('</body>');
         win.document.write('</html>');
     }
-</script>
-<script>
+
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+
     function printPage1(screenshot) {
         var win = window.open('EstadoPatrimonial', 'EstadoPatrimonial');
         win.document.write('<html>');
@@ -38,8 +45,11 @@
         win.print();
         win.close();
     }
-</script>  
-    <script>        
+
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+        
         function takeScreenshot(cb) {
             html2canvas(document.getElementById('area'),
                 {
@@ -51,6 +61,10 @@
                 });
         }
     </script>
+    
+<script></script>
+<script></script>  
+    <script></script>
     <title>Caja Chica</title>
     <style>
         body{
@@ -334,6 +348,30 @@
         .nombre:hover{
             color: white;
         }
+         .ayuda 
+        {
+          background-color: #69a43c; 
+          border: none;
+          color: white;
+          padding: 0px 0px;
+          text-align: center;
+          text-decoration: none;
+          display: flex;
+          font-size: 16px;
+          margin: 4px 2px;
+          transition-duration: 0.4s;
+          align-items: center;
+          justify-content:center;
+          align-content:center;
+          cursor: pointer;
+          width:30px;
+          height:30px;
+        }
+        .ayuda:hover
+        {
+          background-color: #555555;
+          color: white;
+        }
     </style>
 </head>
 <body>
@@ -342,6 +380,7 @@
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
+    <a class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajaChica.aspx" ><i class="fa fa-question"></i></a>
          <div style="display: flex;justify-content: center;align-items: center;">
     <div  id="visualizar" runat="server" class="boton2" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">
 				<a style="cursor:pointer;" class="nombre">
@@ -366,8 +405,10 @@
              <asp:Button ID="Buscararqueo"  Width="100%" OnClick="buscararqueo_Click" runat="server" CssClass="boton4" Text="Buscar arqueo" />
             </div>
         <div id="EBuscar" runat="server" class="datosGenerales2">
-            <asp:DropDownList id="CAUsuario" runat="server" Width="40%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-                <input id="CABuscarfecha" runat="server" Width="40%" type="date" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" required/>
+            <input id="CABuscarfecha" runat="server" onchange="traerArqueos();" Width="40%" type="date" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" required/>
+            <asp:DropDownList id="CAUsuario" runat="server" OnSelectedIndexChanged="CAUsuario_SelectedIndexChanged" Width="40%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
+              <asp:DropDownList id="DropNumarqueo" runat="server" Width="35%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
+             <asp:LinkButton ID="btnArqueos" runat="server" OnClick="btnArqueos_Click" ClientIDMode="Static"></asp:LinkButton>
             <asp:Button ID="Buscar" OnClick="buscar_Click" runat="server" Width="20%" CssClass="boton" Text="Buscar" />
             </div>
         <div id="arqueo" runat="server" class="arqueo">
@@ -384,7 +425,7 @@
             <div style="display:flex; align-content:center;align-items:center; justify-content:center; flex-direction:column">
             <div style="display:flex; align-content:center;align-items:center; justify-content:center; flex-direction:row">
                 <asp:DropDownList id="CCAgencia" OnSelectedIndexChanged="CCAgencia_SelectedIndexChanged" runat="server" style="width:45%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-                 <input id="CCNumagencia" readonly="true" runat="server" type="text" placeholder="No. de agencia" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:30%" />
+                 <input id="CCNumagencia" readonly="true" runat="server" type="text" placeholder="No. de agencia" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:30%" required/>
             </div>
            
             <div class="datosGenerales2">
@@ -393,17 +434,18 @@
             </div>
              <label style="width:60%; display:flex; justify-content:flex-start"><b>Persona a quien se dirige el arqueo</b></label>
                  <div style="flex-direction:row; display:flex; width:60%">
-                     <input id="CCNombre" runat="server" maxlength="50"  type="text" placeholder="Nombre" class="etiquetas" required/>
-                     <input id="CCOperador" runat="server" maxlength="11" type="number" placeholder="Operador" class="etiquetas" required/>
+                     <input id="CCNombre" runat="server" maxlength="50"  type="text" placeholder="Nombre" class="etiquetas"  onchange="agregar(this.value);" required/>
+                     <input id="CCOperador" runat="server" maxlength="11" type="text" placeholder="Operador" class="etiquetas" required/>
+                     <input id="CCPuestooperador" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
                  </div>
                  <label style="width:60%; display:flex; justify-content:flex-start"><b>Persona que realiza el arqueo</b></label>
                  <div style="display:flex; flex-direction: row; width:60%; align-items:center">
-                     <input id="CCNombreencargado" runat="server" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" onchange="agregar(this.value);" required/>
-                     <input id="CCPuestoencargado" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
+                     <input id="CCNombreencargado" runat="server" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
+                     <input id="CCPuestoencargado" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value);" required/>
                  </div>
                 <div style="display:flex; width:60%; flex-direction: row; align-items:center; justify-content:center">
                      <label style="width:10px;" class="etiquetas2">Q </label>
-                   <input id="SaldoInicial2" runat="server" min="0" maxlength="11" type="number" placeholder="Saldo inicial" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:30%" />
+                   <input id="SaldoInicial2" runat="server" min="0" maxlength="11" type="text" placeholder="Saldo inicial" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:30%" />
             </div>
             <br />
             </div>
@@ -498,10 +540,10 @@
             </div>
 
             <div style ="display:flex; flex-direction:row; width:100%;">
-                <label style="width:745px; display:flex; justify-content:flex-end" class="etiquetas">Total Documentos</label>
+                <label style="width:730px; display:flex; justify-content:flex-end" class="etiquetas">Total Documentos</label>
                 <label style="width:3px" class="etiquetas"><b>Q </b></label>
                 <input style="width:65px" type="text" id="CCTotalhaber" readOnly="true" min="0" value="0" runat="server" class="etiquetas"/>
-                <label style="width:3px" class="etiquetas"><b>Q </b></label>
+                <label style="width:3px" class="etiquetas"><b> </b></label>
                 <input style="width:65px" type="text" id="CCTotalsaldo" readOnly="true" runat="server" class="etiquetas"/>
             </div>
             <br />
@@ -665,8 +707,8 @@
             </div>
 
             <div class="datosGenerales2">
-                <span id="PuestoFirma" runat="server"  style="width:50%; display:flex; justify-content:center"><b></b></span>&nbsp;&nbsp;
-                 <label style="width:50%; display:flex; justify-content:center"><b>Auditoria Interna</b></label>&nbsp;&nbsp;
+                <b><span id="PuestoFirma" runat="server"  style="width:500px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
+                <b><span id="PuestoFirma2" runat="server" style="width:500px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
             </div><br />
                </div>
         </div>
@@ -677,8 +719,15 @@
         </div>
     </form>
 </body>
+            <script type="text/javascript"> 
+                function traerArqueos() {
+                    //alert("FUNCIONA");
+                    document.getElementById('btnArqueos').click();
+                }
+            </script>
     <script>
         var texto1 = document.querySelector('#CCNumagencia');
+        var texto21 = document.querySelector('#CCOperador');
         var texto2 = document.querySelector('#SaldoInicial2');
         var texto3 = document.querySelector('#CCNumdocumento');
         var texto4 = document.querySelector('#CCDebe');
@@ -958,6 +1007,19 @@
                 event.preventDefault();
             }
         }, true)
+
+        texto21.addEventListener('keypress', function (e) {
+            // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
+            const decimalCode = 46;
+            // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
+            if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
+                e.preventDefault();
+            }
+            // chequeo que sólo exista un punto decimal
+            else if (e.keyCode == decimalCode && /\./.test(this.value)) {
+                event.preventDefault();
+            }
+        }, true)
     </script>
     <script>
         //SUMA DE BILLETES
@@ -992,7 +1054,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1018,7 +1080,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1056,7 +1118,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1082,7 +1144,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1120,7 +1182,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1146,7 +1208,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1184,7 +1246,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1210,7 +1272,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1248,7 +1310,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1274,7 +1336,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1312,7 +1374,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1338,7 +1400,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1376,7 +1438,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1402,7 +1464,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1440,7 +1502,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1466,7 +1528,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1505,7 +1567,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1531,7 +1593,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1569,7 +1631,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1595,7 +1657,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1633,7 +1695,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1659,7 +1721,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1697,7 +1759,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1723,7 +1785,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1761,7 +1823,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1787,7 +1849,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1825,7 +1887,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1851,7 +1913,7 @@
 
                 totalefectivo = document.getElementById('CATotalefectivo').innerHTML;
                 totalefectivo = (totalefectivo == null || totalefectivo == undefined || totalefectivo == "") ? 0 : totalefectivo;
-                reporte = document.getElementById('CCTotalsaldo').value;
+                reporte = document.getElementById('CCTotalhaber').value;
                 reporte = (reporte == null || reporte == undefined || reporte == "") ? 0 : reporte;
                 reporte = (parseFloat(totalefectivo) + parseFloat(reporte));
                 document.getElementById('CATotalcaja').innerHTML = reporte.toFixed(2);
@@ -1863,7 +1925,7 @@
             var nombre = "";
             valor1 = valor1.toString();
 
-            nombre = document.getElementById('CCNombreencargado').innerHTML;
+            nombre = document.getElementById('CCNombre').innerHTML;
             nombre = valor1.toString();
             document.getElementById('NombreFirma').innerHTML = nombre.toString();
         }
@@ -1872,9 +1934,18 @@
             var nombre = "";
             valor1 = valor1.toString();
 
-            nombre = document.getElementById('CCPuestoencargado').innerHTML;
+            nombre = document.getElementById('CCPuestooperador').innerHTML;
             nombre = valor1.toString();
             document.getElementById('PuestoFirma').innerHTML = nombre.toString();
+        }
+
+        function agregar3(valor1) {
+            var nombre = "";
+            valor1 = valor1.toString();
+
+            nombre = document.getElementById('CCPuestoencargado').innerHTML;
+            nombre = valor1.toString();
+            document.getElementById('PuestoFirma2').innerHTML = nombre.toString();
         }
     </script>
 </html>

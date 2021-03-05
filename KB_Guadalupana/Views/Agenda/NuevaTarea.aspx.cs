@@ -83,7 +83,7 @@ namespace KBGuada.Views.session
                 {
                     DropDownAcceso.Visible = false;
                 ASIGHOME.Visible = false;
-                DropDownEstado.Visible = false;
+
                 }
 
             
@@ -273,91 +273,43 @@ namespace KBGuada.Views.session
 
 
         }
-
+      
         //click
 
         protected void btnInsertar_Click(object sender, EventArgs e)
         {
-            string usuario = cav.obtenercoduser(Nombreuser);
-              rol = cav.consultarRol(usuario);
-            if (rol == "2")
+            if (AVTITULO.Value == "" || AVFECHAINI.Value == "" || AVFECHAFIN.Value == "") {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' La tarea debe contener al menos un Titulo y fechas ')", true);
+            }
+            else { 
+            if (DropDownTipoTarea.SelectedIndex == 1)
             {
-                DropDownAcceso.SelectedIndex = 1;
-                DropDownEstado.SelectedIndex = 1;
-                if (AVTITULO.Value == "" || AVFECHAINI.Value == "" || AVFECHAFIN.Value == "" ||  DropDownPrioridad.SelectedIndex == 0 || DropDownTipoTarea.SelectedIndex == 0)
+                if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == " ")
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' La tarea debe contener al menos un Titulo, fechas, Prioridad y Tipo ')", true);
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' LLene los campos Correspondientes NOMBRE, APELLIDO Y TELEFONO ')", true);
+
+
                 }
                 else
                 {
-                    if (DropDownTipoTarea.SelectedIndex == 1)
-                    {
-                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "")
-                        {
+                    btninsertar.Enabled = false;
+                    InsertarNTarea();
+                    limpiar();
+                  
 
-                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO Y TELEFONO ')";
-                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                    Response.Redirect("AgendaPrin.aspx");
 
-                        }
-                        else
-                        {
-
-                            btninsertar.Enabled = false;
-                            InsertarNTarea();
-                            limpiar();
-
-
-                            Response.Redirect("AgendaPrin.aspx");
-
-                        }
-                    }
-                    else
-                    {
-                        btninsertar.Enabled = false;
-                        InsertarNTarea();
-                        limpiar();
-
-                        Response.Redirect("AgendaPrin.aspx");
-                    }
                 }
             }
-            else if (rol == "3") {
-                if (AVTITULO.Value == "" || AVFECHAINI.Value == "" || AVFECHAFIN.Value == "" || DropDownAcceso.SelectedIndex == 0 || DropDownEstado.SelectedIndex == 0 || DropDownPrioridad.SelectedIndex == 0 || DropDownTipoTarea.SelectedIndex == 0)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' La tarea debe contener al menos un Titulo, fechas, Prioridad, Tipo, Estado y Acceso ')", true);
-                }
-                else {
-                    if (DropDownTipoTarea.SelectedIndex == 1)
-                    {
-                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "")
-                        {
+            else {
+                btninsertar.Enabled = false;
+                InsertarNTarea();
+                limpiar();
 
-                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO Y TELEFONO ')";
-                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-
-                        }
-                        else
-                        {
-
-                            btninsertar.Enabled = false;
-                            InsertarNTarea();
-                            limpiar();
-
-
-                            Response.Redirect("AgendaPrin.aspx");
-
-                        }
-                    }
-                    else {
-                        btninsertar.Enabled = false;
-                        InsertarNTarea();
-                        limpiar();
-
-                        Response.Redirect("AgendaPrin.aspx");
-                    }
-                }
+                Response.Redirect("AgendaPrin.aspx");
             }
-            } 
+            }
+        }
 
     }
 }

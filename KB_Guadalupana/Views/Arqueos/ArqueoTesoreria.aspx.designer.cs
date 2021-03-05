@@ -24,6 +24,15 @@ namespace Modulo_de_arqueos.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NombreUsuario;
 
         /// <summary>
+        /// Control ayuda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ayuda;
+
+        /// <summary>
         /// Control visualizar.
         /// </summary>
         /// <remarks>
@@ -78,6 +87,15 @@ namespace Modulo_de_arqueos.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EBuscar;
 
         /// <summary>
+        /// Control CABuscarfecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CABuscarfecha;
+
+        /// <summary>
         /// Control CAUsuario.
         /// </summary>
         /// <remarks>
@@ -87,13 +105,22 @@ namespace Modulo_de_arqueos.Views
         protected global::System.Web.UI.WebControls.DropDownList CAUsuario;
 
         /// <summary>
-        /// Control CABuscarfecha.
+        /// Control DropNumarqueo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CABuscarfecha;
+        protected global::System.Web.UI.WebControls.DropDownList DropNumarqueo;
+
+        /// <summary>
+        /// Control btnArqueos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnArqueos;
 
         /// <summary>
         /// Control Buscar.
@@ -166,6 +193,15 @@ namespace Modulo_de_arqueos.Views
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText TOperador;
+
+        /// <summary>
+        /// Control TPuestooperador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText TPuestooperador;
 
         /// <summary>
         /// Control TNombreencargado.
@@ -562,6 +598,15 @@ namespace Modulo_de_arqueos.Views
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl puesto2;
+
+        /// <summary>
+        /// Control puesto3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl puesto3;
 
         /// <summary>
         /// Control operar.

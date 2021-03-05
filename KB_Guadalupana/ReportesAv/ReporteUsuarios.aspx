@@ -23,21 +23,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
 
 </head>
-       <style>
-        @media screen and (min-width: 600px) and (max-width:1000px) {
-    #NombreUsuario{
-        font-size:15px;
-    }
-}
 
-
-</style>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
            <div id="navegador" class="topnav">
-           <a class="active" href="../Views/Sesion/Inicio.aspx">Inicio</a>
+            <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
                <a href="../Views/Agenda/AgendaPrin.aspx" > Agenda</a>
            <a href="../Views/Agenda/DashBoard.aspx" > Busqueda</a>
       <a  href="../Views/Agenda/NuevaTarea.aspx" > Nueva Tarea</a>

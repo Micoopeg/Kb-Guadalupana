@@ -321,6 +321,30 @@
         .nombre:hover{
             color: white;
         }
+             .ayuda 
+        {
+          background-color: #69a43c; 
+          border: none;
+          color: white;
+          padding: 0px 0px;
+          text-align: center;
+          text-decoration: none;
+          display: flex;
+          font-size: 16px;
+          margin: 4px 2px;
+          transition-duration: 0.4s;
+          align-items: center;
+          justify-content:center;
+          align-content:center;
+          cursor: pointer;
+          width:30px;
+          height:30px;
+        }
+        .ayuda:hover
+        {
+          background-color: #555555;
+          color: white;
+        }
     </style>
 </head>
 <body>
@@ -329,6 +353,8 @@
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
+
+      <a id="ayuda" runat="server" class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualTesoreria.aspx" ><i class="fa fa-question"></i></a>
         <div style="display: flex;justify-content: center;align-items: center;">
     <div id="visualizar" runat="server" class="boton2" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">
 				<a style="cursor:pointer;" class="nombre">
@@ -372,13 +398,14 @@
                   </div>
                  <label style="width:100%; display:flex; justify-content:flex-start"><b>Persona que realiza el arqueo</b></label>
                   <div style="display:flex; flex-direction: row; width:100%; align-items:center">
-                     <input id="TDNombreop" maxlength="50" runat="server" type="text" placeholder="Nombres y apellidos (operador)" class="etiquetas" required/>
+                     <input id="TDNombreop" maxlength="50" runat="server" type="text" placeholder="Nombres y apellidos (operador)" class="etiquetas" onchange="agregar(this.value)" required/>
                      <input id="TDNumoperador" maxlength="11" runat="server" type="text" placeholder="No. operador" class="etiquetas" required/>
+                     <input id="TDPuestooperador" maxlength="50" runat="server" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value)" required/>
                   </div>
                   <label style="width:100%; display:flex; justify-content:flex-start"><b>Persona a quien se dirige el arqueo</b></label>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
-                     <input id="TDNombreencargado" maxlength="50" runat="server" type="text" placeholder="Nombres y apellidos" class="etiquetas" onchange="agregar(this.value)" required/>
-                     <input id="TDPuestoencargado" maxlength="50" runat="server" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value)" required/>
+                     <input id="TDNombreencargado" maxlength="50" runat="server" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
+                     <input id="TDPuestoencargado" maxlength="50" runat="server" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value)" required/>
                 </div>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
                     <label class="etiquetas2"><b>Fondo: </b></label>
@@ -566,14 +593,13 @@
 
             <div class="datosGenerales2">
                 <b><span id="puesto2" runat="server" style="width:300px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
-                 <label style="width:300px; display:flex; justify-content:center"><b>Auditoria Interna</b></label>&nbsp;&nbsp;
+                 <b><span id="puesto3" runat="server" style="width:300px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
             </div><br />
                 </div>
             <div class="datosGenerales2">
-                <asp:LinkButton ID="atras" OnClick="atras_Click" runat="server" CssClass="boton" Text="< Atrás" />
-                <asp:Button ID="operar" OnClick="operar_Click" runat="server" CssClass="boton" Text="Operar" />
+                <%--<asp:LinkButton ID="atras" OnClick="atras_Click" runat="server" CssClass="boton" Text="< Atrás" />--%>
+                <asp:Button ID="operar" OnClick="operar_Click" runat="server" CssClass="boton" Text="Guardar" />
             </div>
-
         </div>
     </form>
 </body>
@@ -1826,12 +1852,21 @@
             var nombre = "";
             valor1 = valor1.toString();
 
-            nombre = document.getElementById('TDNombreencargado').innerHTML;
+            nombre = document.getElementById('TDNombreop').innerHTML;
             nombre = valor1.toString();
             document.getElementById('NombreFirma2').innerHTML = nombre.toString();
         }
 
         function agregar2(valor1) {
+            var nombre = "";
+            valor1 = valor1.toString();
+
+            nombre = document.getElementById('TDPuestooperador').innerHTML;
+            nombre = valor1.toString();
+            document.getElementById('puesto2').innerHTML = nombre.toString();
+        }
+
+        function agregar3(valor1) {
             var nombre = "";
             valor1 = valor1.toString();
 

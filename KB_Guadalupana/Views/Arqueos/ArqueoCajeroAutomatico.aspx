@@ -332,6 +332,30 @@
             display:flex;
             align-items:center;
         }
+                .ayuda 
+        {
+          background-color: #69a43c; 
+          border: none;
+          color: white;
+          padding: 0px 0px;
+          text-align: center;
+          text-decoration: none;
+          display: flex;
+          font-size: 16px;
+          margin: 4px 2px;
+          transition-duration: 0.4s;
+          align-items: center;
+          justify-content:center;
+          align-content:center;
+          cursor: pointer;
+          width:30px;
+          height:30px;
+        }
+        .ayuda:hover
+        {
+          background-color: #555555;
+          color: white;
+        }
     </style>
 </head>
 <body>
@@ -341,6 +365,7 @@
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
 
+     <a class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajeroAutomatico.aspx" ><i class="fa fa-question"></i></a>
     <div style="display: flex;justify-content: center;align-items: center; flex-direction:row; width:500px;">
     <div id="visualizar" runat="server" class="boton2" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">
 				<a style="cursor:pointer;" class="nombre">
@@ -365,8 +390,10 @@
              <asp:Button ID="Buscararqueo" OnClick="buscararqueo_Click" runat="server" CssClass="boton" Text="Buscar arqueo" />
             </div>
         <div id="EBuscar" runat="server" class="datosGenerales2">
-             <asp:DropDownList id="CAUsuario" runat="server" Width="35%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-                <input id="CABuscarfecha" runat="server" type="date" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:35%" required/>
+            <input id="CABuscarfecha" runat="server" type="date" onchange="traerArqueos();" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:35%" required/>
+             <asp:DropDownList id="CAUsuario" OnSelectedIndexChanged="CAUsuario_SelectedIndexChanged" runat="server" Width="35%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
+             <asp:DropDownList id="DropNumarqueo" runat="server" Width="35%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
+              <asp:LinkButton ID="btnArqueos" runat="server" OnClick="btnArqueos_Click" ClientIDMode="Static"></asp:LinkButton>
             <asp:Button ID="Buscar" OnClick="buscar_Click" Width="30%" runat="server" CssClass="boton" Text="Buscar" />
             </div>
         <div id="arqueo" runat="server" class="arqueo">
@@ -393,13 +420,14 @@
                 </div>
                    <label style="width:100%; display:flex; justify-content:flex-start"><b>Persona a quien se dirige el arqueo</b></label>
                   <div style="display:flex; flex-direction: row; width:100%">
-                     <input id="CAOperador" runat="server" type="text" maxlength="50" placeholder="Nombres y apellidos (operador)" class="etiquetas" required/>
+                     <input id="CAOperador" runat="server" type="text" maxlength="50" placeholder="Nombres y apellidos (operador)" class="etiquetas" onchange="agregar(this.value);" required/>
                      <input id="CANumperador" min="0" runat="server" type="text" maxlength="11" placeholder="No. operador" class="etiquetas" pattern="[0-9]*" required/>
+                      <input id="CAPuestooperador" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
                   </div>
                  <label style="width:100%; display:flex; justify-content:flex-start"><b>Persona que realiza el arqueo</b></label>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
-                     <input id="CANombreencargado" runat="server" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" onchange="agregar(this.value);" required/>
-                     <input id="CAPuestoencargado" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
+                     <input id="CANombreencargado" runat="server" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
+                     <input id="CAPuestoencargado" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value);" required/>
                 </div>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
                     <label class="etiquetas2"><b>Fondo: </b></label>
@@ -566,15 +594,23 @@
 
             <div class="datosGenerales2">
                 <b><span id="puesto2" runat="server" style="width:300px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
-                 <label style="width:300px; display:flex; justify-content:center"><b>Auditoria Interna</b></label>&nbsp;&nbsp;
+                 <b><span id="puesto3" runat="server" style="width:300px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
             </div><br />
             </div>
             <div class="datosGenerales2">
                 <asp:Button ID="operar" OnClick="operar_Click" runat="server" CssClass="boton" Text="Guardar" />
+             
             </div>
         </div>
     </form>
 </body>
+  
+    <script type="text/javascript"> 
+        function traerArqueos() {
+            //alert("FUNCIONA");
+            document.getElementById('btnArqueos').click();
+        }
+    </script>
     
 <script>
     var texto1 = document.querySelector('#CANumperador');
@@ -1670,7 +1706,7 @@
             var nombre = "";
             valor1 = valor1.toString();
 
-            nombre = document.getElementById('CANombreencargado').innerHTML;
+            nombre = document.getElementById('CAOperador').innerHTML;
             nombre = valor1.toString();
             document.getElementById('NombreFirma2').innerHTML = nombre.toString();
         }
@@ -1679,9 +1715,18 @@
             var nombre = "";
             valor1 = valor1.toString();
 
-            nombre = document.getElementById('CAPuestoencargado').innerHTML;
+            nombre = document.getElementById('CAPuestooperador').innerHTML;
             nombre = valor1.toString();
             document.getElementById('puesto2').innerHTML = nombre.toString();
+        }
+
+        function agregar3(valor1) {
+            var nombre = "";
+            valor1 = valor1.toString();
+
+            nombre = document.getElementById('CAPuestoencargado').innerHTML;
+            nombre = valor1.toString();
+            document.getElementById('puesto3').innerHTML = nombre.toString();
         }
     </script>
 </html>

@@ -23,14 +23,16 @@ namespace Modulo_de_arqueos.Views
         char delimitador = ':';
         char delimitador3 = '-';
         string concat = "T";
+        char concat2 = 'T';
         int cont = 0;
-        string op;
-        string fechamin, horamin, fechahora, fechatotal1, año, mes, dia, usuario, puesto, idusuario, idusuario2;
+        string op; 
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        string fechamin, horamin, fechahora, fechatotal1, año, mes, dia, dia2, usuario, puesto, idusuario, idusuario2, numarqueo;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Nombrefirma2.InnerHtml = Session["Nombre"] as string;
+                NombreFirma.InnerHtml = Session["Nombre"] as string;
                 puesto = Session["puesto_usuario"] as string;
                 usuario = Session["sesion_usuario"] as string;
                 NombreUsuario.InnerHtml = Session["Nombre"] as string;
@@ -48,6 +50,7 @@ namespace Modulo_de_arqueos.Views
                 now();
                 visualizar.Visible = false;
                 imprimir.Visible = false;
+                ayuda.Visible = true;
             }
             //siguiente.Enabled = false;
         }
@@ -103,10 +106,57 @@ namespace Modulo_de_arqueos.Views
             finally { try { cn.desconectar(); } catch { } }
         }
 
+        public void llenarcomboarqueos()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "";
+                    fecha = CABuscarfecha.Value;
+
+                    string[] fechasep2 = fecha.Split(delimitador3);
+                    año = fechasep2[0];
+                    mes = fechasep2[1];
+                    dia = fechasep2[2];
+                    puesto = Session["puesto_usuario"] as string;
+                    usuario = Session["sesion_usuario"] as string;
+                    idusuario = sn.obteneridusuario(usuario);
+
+
+                    if (puesto == "1")
+                    {
+                        QueryString = "SELECT sa_numarqueo FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + idusuario + "'";
+                    }
+                    else
+                    {
+                        QueryString = "SELECT sa_numarqueo FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + CAUsuario.SelectedValue + "'";
+                    }
+
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Arqueo");
+                    DropNumarqueo.DataSource = ds;
+                    DropNumarqueo.DataTextField = "sa_numarqueo";
+                    DropNumarqueo.DataValueField = "sa_numarqueo";
+                    DropNumarqueo.DataBind();
+                    DropNumarqueo.Items.Insert(0, new ListItem("[Numero de arqueo]", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+        }
+
         protected void TAgencia_SelectedIndexChanged(object sender, EventArgs e)
         {
             TCodigoagencia.Value = TAgencia.SelectedValue;
         }
+
+        protected void CAUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenarcomboarqueos();
+        }
+
         protected void operar_Click(object sender, EventArgs e)
         {
             try
@@ -188,17 +238,32 @@ namespace Modulo_de_arqueos.Views
                 Session["nombreop"] = nombreop.ToString();
                 string numoperador = TOperador.Value;
                 Session["numoperador"] = numoperador.ToString();
+                string puestooperador = TPuestooperador.Value;
+                Session["puestooperador"] = puestooperador.ToString();
                 string nombreencargado = TNombreencargado.Value;
                 Session["nombreencargado"] = nombreencargado.ToString();
                 string puestoencargado = TPuestoencargado.Value;
                 Session["puestoencargado"] = puestoencargado.ToString();
 
                 //INSERTAR ENCABEZADO
+                fecha = TFecha.Value;
+                string numeroarqueo = "";
+
+                string[] fechasep2 = fecha.Split(delimitador3);
+                año = fechasep2[0];
+                mes = fechasep2[1];
+                dia2 = fechasep2[2];
+
+                string[] fechadia = dia2.Split(concat2);
+                dia = fechadia[0];
+
                 usuario = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario);
+                numeroarqueo = sn.numarqueoT(año, mes, dia, idusuario);
+
                 string sig = logic.siguiente("sa_encabezadotesoreria", "idsa_encabezadotesoreria");
                 Session["idtesoreria"] = sig.ToString();
-                string[] valores = { sig, idusuario, TFecha.Value, TAgencia.SelectedValue, TNombreoperador.Value, TOperador.Value, TNombreencargado.Value, TPuestoencargado.Value, TTesoreria.Value, "" };
+                string[] valores = { sig, numeroarqueo, idusuario, TFecha.Value, TAgencia.SelectedValue, TNombreoperador.Value, TOperador.Value, TPuestooperador.Value, TNombreencargado.Value, TPuestoencargado.Value, TTesoreria.Value, "" };
                 logic.insertartablas("sa_encabezadotesoreria", valores);
 
                 //INSERTAR DETALLE
@@ -233,9 +298,10 @@ namespace Modulo_de_arqueos.Views
                 logic.insertartablas("sa_chequestesoreria", valores9);
 
                 siguiente.Enabled = true;
-                NombreFirma.InnerHtml = Session["Nombre"] as string;
-                Nombrefirma2.InnerHtml = TNombreencargado.Value;
-                puesto2.InnerHtml = TPuestoencargado.Value;
+                Nombrefirma2.InnerHtml = TNombreoperador.Value;
+                NombreFirma.InnerHtml = TNombreencargado.Value;
+                puesto2.InnerHtml = TPuestooperador.Value;
+                puesto3.InnerHtml = TPuestoencargado.Value;
             }
             catch (Exception err)
             {
@@ -246,6 +312,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
+            numarqueo = DropNumarqueo.SelectedValue;
             Session["siguiente2"] = "1";
             Session["op"] = "1";
             mostrartesoreria();
@@ -273,6 +340,7 @@ namespace Modulo_de_arqueos.Views
 
         public void mostrartesoreria()
         {
+            numarqueo = DropNumarqueo.SelectedValue;
             fecha = CABuscarfecha.Value;
             string[] fechasep2 = fecha.Split(delimitador3);
             año = fechasep2[0];
@@ -286,11 +354,11 @@ namespace Modulo_de_arqueos.Views
             string[] var;
             if (puesto == "1")
             {
-                var = sn.mostrarencabezadoT(año, mes, dia, idusuario);
+                var = sn.mostrarencabezadoT(año, mes, dia, idusuario, numarqueo);
             }
             else
             {
-                var = sn.mostrarencabezadoT(año, mes, dia, CAUsuario.SelectedValue);
+                var = sn.mostrarencabezadoT(año, mes, dia, CAUsuario.SelectedValue, numarqueo);
             }
                
             if (var[1] == null)
@@ -309,10 +377,14 @@ namespace Modulo_de_arqueos.Views
                     TAgencia.SelectedValue = Convert.ToString(var[2]);
                     TCodigoagencia.Value = Convert.ToString(var[2]);
                     TNombreoperador.Value = Convert.ToString(var[3]);
+                    Nombrefirma2.InnerHtml = Convert.ToString(var[3]);
                     TOperador.Value = Convert.ToString(var[4]);
-                    TNombreencargado.Value = Convert.ToString(var[5]);
-                    TPuestoencargado.Value = Convert.ToString(var[6]);
-                    TTesoreria.Value = Convert.ToString(var[7]);
+                    TPuestooperador.Value = Convert.ToString(var[5]);
+                    puesto2.InnerHtml = Convert.ToString(var[5]);
+                    TNombreencargado.Value = Convert.ToString(var[6]);
+                    TPuestoencargado.Value = Convert.ToString(var[7]);
+                    puesto3.InnerHtml = Convert.ToString(var[7]);
+                    TTesoreria.Value = Convert.ToString(var[8]);
                     Session["idtesoreria"] = id.ToString();
                     //string idcajero1 = id.ToString();
                     //Session["idcajero1"] = idcajero1.ToString();
@@ -505,7 +577,7 @@ namespace Modulo_de_arqueos.Views
                 Buscararqueo.Visible = false;
                 visualizar.Visible = true;
                 imprimir.Visible = true;
-                TNombreoperador.Value = Session["Nombre"] as string;
+                TNombreencargado.Value = Session["Nombre"] as string;
             }
             else
             {
@@ -529,12 +601,18 @@ namespace Modulo_de_arqueos.Views
 
             if (puesto == "1")
             {
+                llenarcomboarqueos();
                 CAUsuario.Visible = false;
             }
             else if (puesto == "2")
             {
                 CAUsuario.Visible = true;
             }
+        }
+
+        protected void btnArqueos_Click(object sender, EventArgs e)
+        {
+            llenarcomboarqueos();
         }
 
         public void now()

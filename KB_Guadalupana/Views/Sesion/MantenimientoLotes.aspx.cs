@@ -14,10 +14,7 @@ namespace KB_Guadalupana.Views.Sesion
     public partial class MantenimientoLotes : System.Web.UI.Page
     {
         Logica logic = new Logica();
-        Sentencia sn = new Sentencia();
         Conexion conn = new Conexion();
-        string fecha, año, mes, dia, fecha2, fechafin, fechafin2, año2, mes2, dia2;
-        char delimitador3 = '/';
         string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -63,65 +60,26 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                string ingreso;
-                ingreso = (gvPhoneBook.FooterRow.FindControl("txtContactFooter3") as TextBox).Text.Trim();
-                string estado;
-                estado = sn.estadoLote();
-                if (estado == "True" && ingreso == "1")
+                if (e.CommandName.Equals("AddNew"))
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Ya existe un lote activo');", true);
-                }
-                else
-                {
-                    if (e.CommandName.Equals("AddNew"))
+                    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
                     {
-                        using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
-                        {
-                            fecha = (gvPhoneBook.FooterRow.FindControl("txtContactFooter") as TextBox).Text.Trim();
-                            string[] fechasep2 = fecha.Split(delimitador3);
-                            dia = fechasep2[0];
-                            mes = fechasep2[1];
-                            año = fechasep2[2];
-                            fecha2 = año + "-" + mes + "-" + dia;
+                        sqlCon.Open();
+                        string query = "INSERT INTO ep_administracionlote (codepadministracionlote,ep_administracionlotefechainicio, ep_administracionfechafin, ep_administracionloteestado) VALUES (@FirstName,@Contact, @Contact2, @Contact3)";
+                        MySqlCommand sqlCmd = new MySqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@FirstName", (gvPhoneBook.FooterRow.FindControl("txtFirstNameFooter") as TextBox).Text.Trim());
+                        sqlCmd.Parameters.AddWithValue("@Contact", (gvPhoneBook.FooterRow.FindControl("txtContactFooter") as TextBox).Text.Trim());
+                        sqlCmd.Parameters.AddWithValue("@Contact2", (gvPhoneBook.FooterRow.FindControl("txtContactFooter2") as TextBox).Text.Trim());
+                        sqlCmd.Parameters.AddWithValue("@Contact3", (gvPhoneBook.FooterRow.FindControl("txtContactFooter3") as TextBox).Text.Trim());
+                        //sqlCmd.Parameters.AddWithValue("@FirstName", (logic.siguiente("ep_tipovehiculo", "codeptipovehiculo")));
 
-                            fechafin = (gvPhoneBook.FooterRow.FindControl("txtContactFooter2") as TextBox).Text.Trim();
-                            string[] fechasep = fechafin.Split(delimitador3);
-                            dia2 = fechasep[0];
-                            mes2 = fechasep[1];
-                            año2 = fechasep[2];
-                            fechafin2 = año2 + "-" + mes2 + "-" + dia2;
-
-                            string id = (gvPhoneBook.FooterRow.FindControl("txtFirstNameFooter") as TextBox).Text.Trim();
-                            string estadodelote = (gvPhoneBook.FooterRow.FindControl("txtContactFooter3") as TextBox).Text.Trim();
-
-                            string[] valores = { id, fecha2, fechafin2, estadodelote };
-                            sn.insertartablas("ep_administracionlote", valores);
-                            PopulateGridview();
-
-                            //sqlCon.Open();
-                            //string query = "INSERT INTO ep_administracionlote (codepadministracionlote,ep_administracionlotefechainicio, ep_administracionfechafin, ep_administracionloteestado) VALUES (@FirstName, '" + fecha2 + "', '" + fechafin2 + "', @Contact3)";
-                            //MySqlCommand sqlCmd = new MySqlCommand(query, sqlCon);
-                            //sqlCmd.Parameters.AddWithValue("@FirstName", (gvPhoneBook.FooterRow.FindControl("txtFirstNameFooter") as TextBox).Text.Trim());
-                            ////sqlCmd.Parameters.AddWithValue("@Contact", (gvPhoneBook.FooterRow.FindControl("txtContactFooter") as TextBox).Text.Trim());
-                            ////sqlCmd.Parameters.AddWithValue("@Contact2", (gvPhoneBook.FooterRow.FindControl("txtContactFooter2") as TextBox).Text.Trim());
-                            //sqlCmd.Parameters.AddWithValue("@Contact3", (gvPhoneBook.FooterRow.FindControl("txtContactFooter3") as TextBox).Text.Trim());
-                            ////sqlCmd.Parameters.AddWithValue("@FirstName", (logic.siguiente("ep_tipovehiculo", "codeptipovehiculo")));
-
-                            //try
-                            //{
-                            //    //sqlCmd.ExecuteNonQuery();
-                            //    //PopulateGridview();
-                            //    //(gvPhoneBook.SelectedRow.FindControl("txtFirstNameFooter") as TextBox).Text = Convert.ToString(logic.siguiente("ep_administracionlote", "codepadministracionlote"));
-                            //}
-                            //catch
-                            //{
-                            //    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe llenar todos los campos');", true);
-                            //}
-
-                        }
+                        sqlCmd.ExecuteNonQuery();
+                        PopulateGridview();
+                        lblSuccessMessage.Text = "New Record Added";
+                        lblErrorMessage.Text = "";
+                        (gvPhoneBook.SelectedRow.FindControl("txtFirstNameFooter") as TextBox).Text = Convert.ToString(logic.siguiente("ep_tipovehiculo", "codeptipovehiculo"));
                     }
                 }
-               
             }
             catch (Exception ex)
             {
@@ -136,7 +94,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
 
 
-                string QueryString = "SELECT codepadministracionlote, ep_administracionlotefechainicio, ep_administracionfechafin, CASE ep_administracionloteestado WHEN 0 THEN 'Inactivo' WHEN 1 THEN 'Activo' END AS ep_administracionloteestado FROM ep_administracionlote  WHERE codepadministracionlote != 'NULL'   AND ep_administracionfechafin != '0000-00-00' AND ep_administracionlotefechainicio != '0000-00-00'";
+                string QueryString = "SELECT * FROM ep_administracionlote;";
                 MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conn.conectar());
                 DataTable ds3 = new DataTable();
                 myCommand.Fill(ds3);
@@ -165,33 +123,21 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                string ingreso2;
-                ingreso2 = (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName") as TextBox).Text.Trim();
-                string estado2;
-                estado2 = sn.estadoLote();
-
-                if (estado2 == "True" && ingreso2 == "1")
+                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Ya existe un lote activo');", true);
-                }
-                else
-                {
-                    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
-                    {
-                        sqlCon.Open();
-                        string query = "UPDATE ep_administracionlote SET ep_administracionloteestado=@FirstName WHERE codepadministracionlote = @id";
-                        MySqlCommand sqlCmd = new MySqlCommand(query, sqlCon);
-                        sqlCmd.Parameters.AddWithValue("@FirstName", (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName") as TextBox).Text.Trim());
-                        sqlCmd.Parameters.AddWithValue("@id", Convert.ToInt32(gvPhoneBook.DataKeys[e.RowIndex].Value.ToString()));
-                        //Convert.ToString(gvPhoneBook.DataKeys[e.RowIndex].Value.ToString()) = RVCodigo.Value;
-                        //Response.Write(prueba);
-                        //TextBox1.Text = prueba;
-                        sqlCmd.ExecuteNonQuery();
-                        gvPhoneBook.EditIndex = -1;
-                        PopulateGridview();
-                        lblSuccessMessage.Text = "Selected Record Updated";
-                        lblErrorMessage.Text = "";
-                    }
+                    sqlCon.Open();
+                    string query = "UPDATE ep_administracionlote SET ep_administracionloteestado=@FirstName WHERE codepadministracionlote = @id";
+                    MySqlCommand sqlCmd = new MySqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@FirstName", (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName") as TextBox).Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@id", Convert.ToInt32(gvPhoneBook.DataKeys[e.RowIndex].Value.ToString()));
+                    //Convert.ToString(gvPhoneBook.DataKeys[e.RowIndex].Value.ToString()) = RVCodigo.Value;
+                    //Response.Write(prueba);
+                    //TextBox1.Text = prueba;
+                    sqlCmd.ExecuteNonQuery();
+                    gvPhoneBook.EditIndex = -1;
+                    PopulateGridview();
+                    lblSuccessMessage.Text = "Selected Record Updated";
+                    lblErrorMessage.Text = "";
                 }
             }
             catch (Exception ex)
@@ -226,7 +172,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public DataSet GetCategoryNames()
         {
-            MySqlDataAdapter ad = new MySqlDataAdapter("SELECT codepadministracionlote, ep_administracionlotefechainicio, ep_administracionfechafin, CASE ep_administracionloteestado WHEN 0 THEN 'Inactivo' WHEN 1 THEN 'Activo' END AS Estado FROM ep_administracionlote; ", conn.conectar());
+            MySqlDataAdapter ad = new MySqlDataAdapter("SELECT * FROM ep_administracionlote;", conn.conectar());
             DataSet ds = new DataSet();
             ad.Fill(ds, "Nombre");
             return ds;

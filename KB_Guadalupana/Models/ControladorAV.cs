@@ -36,10 +36,7 @@ namespace KBGuada.Controllers
         {
             return mav.reportemontosdatos(fecha1, fecha2);
         }
-        public DataTable reportemontosresultante(string fecha1, string fecha2)
-        {
-            return mav.reportemontosresultante(fecha1, fecha2);
-        }
+
         public DataTable reportemontostotal(string fecha1, string fecha2)
         {
             return mav.reportemontostotal(fecha1, fecha2);

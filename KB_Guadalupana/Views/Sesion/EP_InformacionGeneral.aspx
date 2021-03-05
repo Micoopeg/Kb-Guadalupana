@@ -518,7 +518,7 @@ body {
               <asp:DropDownList style="max-width: 150px;" id="ACEstatus1" runat="server" class="tampe" AutoPostBack="true" onchange="javascript:cmbtipodeestadoactivo();"  ></asp:DropDownList>
               <br />
               <asp:DropDownList style="max-width: 150px; margin-left: 120px;" id="ACTMoneda1" runat="server" class="tampe" AutoPostBack="true" onchange="javascript:cmbtipomonedaactivo();"  ></asp:DropDownList>
-              <input id="ACMonto" style="max-width: 32.5%;" runat="server" type="number" class="tam"   placeholder="Saldo en Cuenta" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+              <input id="ACMonto" style="max-width: 32.5%;" runat="server" type="number" class="tam"   placeholder="Saldo en Cuenta" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(-1, this.maxLength);"/>
               <input id="ACOFondos" runat="server"  style="max-width: 150px;" type="text" class="tam"   placeholder="Origen Fondos" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                <input id="Text13" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
               <br />
@@ -645,7 +645,7 @@ body {
                         
                         <select class="tampe" id="Select1" runat="server" style="max-width: 150px;margin-left: 157px;">
                             <option  value="0">[Tipo de cuenta]</option>
-                            <option value="1">Monetaria</option>
+                            <option value="1">Aportaciones</option>
                             <option value="2">Ahorro</option>
                        </select>
                        <input id="ACCMonto" runat="server" type="number" class="tam" style="max-width: 150px;"  placeholder="Saldo en Cuenta" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>

@@ -22,10 +22,12 @@ namespace Modulo_de_arqueos.Views
         char delimitador2 = ' ';
         char delimitador = ':';
         string concat = "T";
+        char concat2 = 'T';
         char delimitador3 = '-';
-        string fechamin, horamin, fechahora, fechatotal1, año, mes, dia, usuario, puesto, idusuario, idusuario2;
+        string fechamin, horamin, fechahora, fechatotal1, año, mes, dia, dia2, usuario, puesto, idusuario, idusuario2, numarqueo;
         string op;
         int cont = 0;
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         protected void Page_Load(object sender, EventArgs e)
         {
             //CFecha.Value = Convert.ToString(fecha.Date);
@@ -52,15 +54,16 @@ namespace Modulo_de_arqueos.Views
                 puesto = Session["puesto_usuario"] as string;
                 usuario = Session["sesion_usuario"] as string;
                 NombreUsuario.InnerHtml = Session["Nombre"] as string;
-                CUsuario.Value = Session["sesion_usuario"] as string;
+                //CUsuario.Value = Session["sesion_usuario"] as string;
                 //CFecha.Value = Session["fecha2"] as string;
                 CAgencia.SelectedValue = Session["agencia"] as string;
                 CCAgencia.Value = Session["codigo"] as string;
-                CNombre.Value = Session["nombre"] as string;
+                //CNombre.Value = Session["nombre"] as string;
                 CUsuario.Value = Session["usuario"] as string;
                 COperador.Value = Session["operador"] as string;
                 CJefe.Value = Session["jefe"] as string;
                 CPuestoencargado.Value = Session["puesto"] as string;
+                CJefe.Value = Session["Nombre"] as string;
 
                 llenarcomboagencia();
                 llenarcombousuario();
@@ -111,10 +114,57 @@ namespace Modulo_de_arqueos.Views
             finally { try { cn.desconectar(); } catch { } }
         }
 
+        public void llenarcomboarqueos()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "";
+                    fecha = CABuscarfecha.Value;
+
+                    string[] fechasep2 = fecha.Split(delimitador3);
+                    año = fechasep2[0];
+                    mes = fechasep2[1];
+                    dia = fechasep2[2];
+                    puesto = Session["puesto_usuario"] as string;
+                    usuario = Session["sesion_usuario"] as string;
+                    idusuario = sn.obteneridusuario(usuario);
+
+
+                    if (puesto == "1")
+                    {
+                        QueryString = "SELECT sa_numarqueo FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + idusuario + "'";
+                    }
+                    else
+                    {
+                        QueryString = "SELECT sa_numarqueo FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + CAUsuario.SelectedValue + "'";
+                    }
+
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Arqueo");
+                    DropNumarqueo.DataSource = ds;
+                    DropNumarqueo.DataTextField = "sa_numarqueo";
+                    DropNumarqueo.DataValueField = "sa_numarqueo";
+                    DropNumarqueo.DataBind();
+                    DropNumarqueo.Items.Insert(0, new ListItem("[Numero de arqueo]", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+        }
+
         protected void CAgencia_SelectedIndexChanged(object sender, EventArgs e)
         {
             CCAgencia.Value = CAgencia.SelectedValue;
         }
+
+        protected void CAUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenarcomboarqueos();
+        }
+
         protected void siguiente_Click(object sender, EventArgs e)
         {
             op = Session["op"] as string;
@@ -169,12 +219,26 @@ namespace Modulo_de_arqueos.Views
                 //CMTotal6.Value = Convert.ToString(sumam6);
 
                 //INSERTAR ENCABEZADO
+                fecha = CFecha.Value;
+                string numeroarqueo = "";
+
+                string[] fechasep2 = fecha.Split(delimitador3);
+                año = fechasep2[0];
+                mes = fechasep2[1];
+                dia2 = fechasep2[2];
+
+                string[] fechadia = dia2.Split(concat2);
+                dia = fechadia[0];
+
+
                 string usuario2;
                 usuario2 = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario2);
+                numeroarqueo = sn.numarqueoC(año, mes, dia, idusuario);
+
                 string sig = logic.siguiente("sa_encabezadocajero", "idsa_encabezadocajero");
                     Session["id"] = sig.ToString();
-                string[] valores1 = { sig, idusuario, CFecha.Value, CCAgencia.Value, CNombre.Value, CUsuario.Value, COperador.Value, CJefe.Value, CPuestoencargado.Value, CComentario.Value };
+                string[] valores1 = { sig, numeroarqueo, idusuario, CFecha.Value, CCAgencia.Value, CNombre.Value, CUsuario.Value, COperador.Value, CPuestooperador.Value, CJefe.Value, CPuestoencargado.Value, CComentario.Value };
                 logic.insertartablas("sa_encabezadocajero", valores1);
 
                 //VARIABLES SESSION DEL ENCABEZADO
@@ -185,11 +249,13 @@ namespace Modulo_de_arqueos.Views
                 string codigo = CCAgencia.Value;
                 Session["codigo"] = codigo.ToString();
                 string nombre = CNombre.Value;
-                Session["nombre"] = nombre.ToString();
+                Session["nombreoperador"] = nombre.ToString();
                 string usuario = CUsuario.Value;
                 Session["usuario"] = usuario.ToString();
                 string operador = COperador.Value;
                 Session["operador"] = operador.ToString();
+                string puestooperador = CPuestooperador.Value;
+                Session["puestooperador"] = puestooperador.ToString();
                 string jefe = CJefe.Value;
                 Session["jefe"] = jefe.ToString();
                 string puesto = CPuestoencargado.Value;
@@ -238,6 +304,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
+            numarqueo = DropNumarqueo.SelectedValue;
             Session["siguiente"] = "1";
             Session["op"] = "1";
             mostrarcajero();
@@ -261,6 +328,7 @@ namespace Modulo_de_arqueos.Views
 
         public void mostrarcajero()
         {
+            numarqueo = DropNumarqueo.SelectedValue;
             fecha = CABuscarfecha.Value;
             string[] fechasep2 = fecha.Split(delimitador3);
             año = fechasep2[0];
@@ -274,11 +342,11 @@ namespace Modulo_de_arqueos.Views
             string[] var;
             if (puesto == "1")
             {
-                var = sn.mostrarencabezadoC(año, mes, dia, idusuario);
+                var = sn.mostrarencabezadoC(año, mes, dia, idusuario, numarqueo);
             }
             else
             {
-                var = sn.mostrarencabezadoC(año, mes, dia, CAUsuario.SelectedValue);
+                var = sn.mostrarencabezadoC(año, mes, dia, CAUsuario.SelectedValue, numarqueo);
             }
 
             if (var[1] == null)
@@ -299,16 +367,26 @@ namespace Modulo_de_arqueos.Views
                     CNombre.Value = Convert.ToString(var[3]);
                     CUsuario.Value = Convert.ToString(var[4]);
                     COperador.Value = Convert.ToString(var[5]);
-                    CJefe.Value = Convert.ToString(var[6]);
-                    CPuestoencargado.Value = Convert.ToString(var[7]);
-                    CComentario.Value = Convert.ToString(var[8]);
+                    CPuestooperador.Value = Convert.ToString(var[6]);
+                    CJefe.Value = Convert.ToString(var[7]);
+                    CPuestoencargado.Value = Convert.ToString(var[8]);
+                    CComentario.Value = Convert.ToString(var[9]);
                     string idcajero1 = id.ToString();
                     Session["idcajero1"] = idcajero1.ToString();
 
-                    string nombre = Convert.ToString(var[6]);
+                    string nombreoperador = Convert.ToString(var[3]);
+                    Session["nombreoperador"] = nombreoperador.ToString();
+
+                    string operador = Convert.ToString(var[5]);
+                    Session["operador"] = operador.ToString();
+
+                    string puestooperador = Convert.ToString(var[6]);
+                    Session["puestooperador"] = puestooperador.ToString();
+
+                    string nombre = Convert.ToString(var[7]);
                     Session["jefe"] = nombre.ToString();
 
-                    string puesto2 = Convert.ToString(var[7]);
+                    string puesto2 = Convert.ToString(var[8]);
                     Session["puesto"] = puesto2.ToString();
 
                     string[] fechasep = fechaenc.Split(delimitador2);
@@ -439,25 +517,36 @@ namespace Modulo_de_arqueos.Views
             usuario3 = Session["sesion_usuario"] as string;
             idusuario2 = sn.obteneridusuario(usuario3);
             consulta = sn.consultararqueoC(idusuario2);
-            if (consulta == "")
-            {
-                Session["op"] = "2";
-                arqueo.Visible = true;
-                Creararqueo.Visible = false;
-                Buscararqueo.Visible = false;
-                visualizar.Visible = true;
-                imprimir.Visible = true;
-                CUsuario.Value = Session["sesion_usuario"] as string;
-            }
-            else
-            {
-                String script = "alert('Ya tiene un arqueo creado por el dia de hoy');";
-                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                arqueo.Visible = false;
-                EBuscar.Visible = false;
-                visualizar.Visible = false;
-                imprimir.Visible = false;
-            }
+
+            Session["op"] = "2";
+            arqueo.Visible = true;
+            Creararqueo.Visible = false;
+            Buscararqueo.Visible = false;
+            visualizar.Visible = true;
+            imprimir.Visible = true;
+            CJefe.Value = Session["Nombre"] as string;
+            //CJefe.Value = Session["sesion_usuario"] as string;
+
+            //if (consulta == "")
+            //{
+            //    Session["op"] = "2";
+            //    arqueo.Visible = true;
+            //    Creararqueo.Visible = false;
+            //    Buscararqueo.Visible = false;
+            //    visualizar.Visible = true;
+            //    imprimir.Visible = true;
+            //    CJefe.Value = Session["Nombre"] as string;
+            //    //CJefe.Value = Session["sesion_usuario"] as string;
+            //}
+            //else
+            //{
+            //    String script = "alert('Ya tiene un arqueo creado por el dia de hoy');";
+            //    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            //    arqueo.Visible = false;
+            //    EBuscar.Visible = false;
+            //    visualizar.Visible = false;
+            //    imprimir.Visible = false;
+            //}
             
         }
 
@@ -477,6 +566,11 @@ namespace Modulo_de_arqueos.Views
             {
                 CAUsuario.Visible = true;
             }
+        }
+
+        protected void btnArqueos_Click(object sender, EventArgs e)
+        {
+            llenarcomboarqueos();
         }
 
         public void now()

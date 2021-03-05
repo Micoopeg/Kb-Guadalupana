@@ -1,6 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -64,27 +63,7 @@ namespace KB_Guadalupana.Controllers
         }
 
 
-        public DataTable buscarCIF(string cif)
-        {
-            DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
-            {
 
-                try
-                {
-                    sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gen_usuarionombre, codepinformaciongeneralcif FROM gen_usuario INNER JOIN ep_control ON gen_usuario.codgenusuario = ep_control.codgenusuario WHERE codepinformaciongeneralcif='" + cif + "'", sqlCon);
-                    MySqlDataAdapter ds = new MySqlDataAdapter();
-                    ds.SelectCommand = command;
-                    ds.Fill(dt);
-
-
-                }
-                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
-
-                return dt;
-            }
-        }
 
 
 
@@ -1786,41 +1765,6 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public string estadoLote()
-        {
-            String camporesultante = "";
-            try
-            {
-                string sql = "SELECT ep_administracionloteestado FROM ep_administracionlote WHERE ep_administracionloteestado = 1";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
-        }
-
-        public MySqlDataReader consultarconcampoCif(string cif)
-        {
-            try
-            {
-                cn.conectar();
-                string consultaGraAsis = "select ep_informaciongeneralcif from ep_informaciongeneral where codepinformaciongeneralcif='" + cif + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
 
     }
 

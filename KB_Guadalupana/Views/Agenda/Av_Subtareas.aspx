@@ -134,7 +134,7 @@
                                 <td>
                                     <center>
          <%-- <input type="datetime-local"  id="datef"   value="<%# Eval("av_fechafin") %>"/>--%>
-               <input type="text" id="datef" value="<%# Eval("av_fechafin") %>"  disabled />
+               <input type="text" id="datef" value="<%# Eval("av_fechaini") %>"  disabled />
         </center>
                                 </td>
                                 <td style="text-align: center;">

@@ -16,6 +16,7 @@ namespace Modulo_de_arqueos.Views
         Conexion_arqueos cn = new Conexion_arqueos();
         Logica_arqueos logic = new Logica_arqueos();
         Sentencia_arqueos sn = new Sentencia_arqueos();
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         string fecha;
         string id;
         int cont = 0;
@@ -23,7 +24,9 @@ namespace Modulo_de_arqueos.Views
         char delimitador = ':';
         char delimitador3 = '-';
         string concat = "T";
-        string fechamin, horamin, fechahora, fechatotal1, año, mes, dia, usuario, puesto, idusuario, idusuario2;
+        char concat2 = 'T';
+        string numarqueo;
+        string fechamin, horamin, fechahora, fechatotal1, año, mes, dia, dia2, usuario, puesto, idusuario, idusuario2;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,8 +34,10 @@ namespace Modulo_de_arqueos.Views
                 puesto = Session["puesto_usuario"] as string;
                 usuario = Session["sesion_usuario"] as string;
                 NombreUsuario.InnerHtml = Session["Nombre"] as string;
+                NombreFirma.InnerHtml = Session["Nombre"] as string;
                 llenarcomboagencia();
                 llenarcombousuario();
+ 
                 EBuscar.Visible = false;
                 arqueo.Visible = false;
                 now();
@@ -79,9 +84,55 @@ namespace Modulo_de_arqueos.Views
             finally { try { cn.desconectar(); } catch { } }
         }
 
+        public void llenarcomboarqueos()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "";
+                    fecha = CABuscarfecha.Value;
+
+                    string[] fechasep2 = fecha.Split(delimitador3);
+                    año = fechasep2[0];
+                    mes = fechasep2[1];
+                    dia = fechasep2[2];
+                    puesto = Session["puesto_usuario"] as string;
+                    usuario = Session["sesion_usuario"] as string;
+                    idusuario = sn.obteneridusuario(usuario);
+
+                   
+                    if (puesto == "1")
+                    {
+                        QueryString = "SELECT sa_numarqueo FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '"+ año +"' AND DATE_FORMAT(sa_fechayhora,  '%m') = '"+ mes +"' AND DATE_FORMAT(sa_fechayhora,  '%d') = '"+ dia +"' AND idsa_usuario = '"+ idusuario +"'";
+                    }
+                    else
+                    {
+                        QueryString = "SELECT sa_numarqueo FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + CAUsuario.SelectedValue + "'";
+                    }
+                    
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Arqueo");
+                    DropNumarqueo.DataSource = ds;
+                    DropNumarqueo.DataTextField = "sa_numarqueo";
+                    DropNumarqueo.DataValueField = "sa_numarqueo";
+                    DropNumarqueo.DataBind();
+                    DropNumarqueo.Items.Insert(0, new ListItem("[Numero de arqueo]", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+        }
+
         protected void CAAgencia_SelectedIndexChanged(object sender, EventArgs e)
         {
             CACodigoagencia.Value = CAAgencia.SelectedValue;
+        }
+
+        protected void CAUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenarcomboarqueos();
         }
         protected void operar_Click(object sender, EventArgs e)
         {
@@ -143,10 +194,24 @@ namespace Modulo_de_arqueos.Views
                 //CADiferencia.Value = diferencia.ToString();
 
                 //INSERTAR ENCABEZADO
+                fecha = CAFecha.Value;
+                string numeroarqueo = "";
+
+                string[] fechasep2 = fecha.Split(delimitador3);
+                año = fechasep2[0];
+                mes = fechasep2[1];
+                dia2 = fechasep2[2];
+
+                string[] fechadia = dia2.Split(concat2);
+                dia = fechadia[0];
+                puesto = Session["puesto_usuario"] as string;
+
                 usuario = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario);
+                numeroarqueo = sn.numarqueoCA(año, mes, dia, idusuario);
+
                 string sig = logic.siguiente("sa_encabezadocajeroaut", "idsa_encabezadocajeroaut");
-                string[] valores1 = { sig, idusuario, CAFecha.Value, CACodigoagencia.Value, CAOperador.Value, CANumperador.Value, CANombreencargado.Value, CAPuestoencargado.Value, CAAtm.Value };
+                string[] valores1 = { sig, numeroarqueo, idusuario, CAFecha.Value, CACodigoagencia.Value, CAOperador.Value, CANumperador.Value, CAPuestooperador.Value, CANombreencargado.Value, CAPuestoencargado.Value, CAAtm.Value };
                 logic.insertartablas("sa_encabezadocajeroaut", valores1);
 
                 //INSERTAR DETALLE
@@ -182,6 +247,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
+            numarqueo = DropNumarqueo.SelectedValue;
             mostrarcajeroauto();
             if(cont == 1)
             {
@@ -204,6 +270,7 @@ namespace Modulo_de_arqueos.Views
 
         public void mostrarcajeroauto()
         {
+            numarqueo = DropNumarqueo.SelectedValue;
             fecha = CABuscarfecha.Value;
 
             string[] fechasep2 = fecha.Split(delimitador3);
@@ -218,11 +285,11 @@ namespace Modulo_de_arqueos.Views
             string[] var;
             if (puesto == "1")
             {
-                var = sn.mostrarencabezadoCA(año, mes, dia, idusuario);
+                var = sn.mostrarencabezadoCA(año, mes, dia, idusuario, numarqueo);
             }
             else
             {
-                var = sn.mostrarencabezadoCA(año, mes, dia, CAUsuario.SelectedValue);
+                var = sn.mostrarencabezadoCA(año, mes, dia, CAUsuario.SelectedValue, numarqueo);
             }
             
             if (var[1] == null)
@@ -242,12 +309,14 @@ namespace Modulo_de_arqueos.Views
                     CACodigoagencia.Value = Convert.ToString(var[2]);
                     CAOperador.Value = Convert.ToString(var[3]);
                     CANumperador.Value = Convert.ToString(var[4]);
-                    CANombreencargado.Value = Convert.ToString(var[5]);
-                    CAPuestoencargado.Value = Convert.ToString(var[6]);
-                    CAAtm.Value = Convert.ToString(var[7]);
-                    NombreFirma.InnerText = Convert.ToString(var[3]);
-                    NombreFirma2.InnerHtml = Convert.ToString(var[5]);
-                    puesto2.InnerHtml = Convert.ToString(var[6]);
+                    CAPuestooperador.Value = Convert.ToString(var[5]);
+                    CANombreencargado.Value = Convert.ToString(var[6]);
+                    CAPuestoencargado.Value = Convert.ToString(var[7]);
+                    CAAtm.Value = Convert.ToString(var[8]);
+                    NombreFirma2.InnerText = Convert.ToString(var[3]);
+                    NombreFirma.InnerHtml = Convert.ToString(var[6]);
+                    puesto2.InnerHtml = Convert.ToString(var[5]);
+                    puesto3.InnerHtml = Convert.ToString(var[7]);
 
                     string[] fechasep = fechaenc.Split(delimitador2);
                     string[] horai = fechasep[3].Split(delimitador);
@@ -399,25 +468,33 @@ namespace Modulo_de_arqueos.Views
             idusuario2 = sn.obteneridusuario(usuario3);
             consulta = sn.consultararqueoCA(idusuario2);
 
-            if (consulta == "")
-            {
-                arqueo.Visible = true;
-                Creararqueo.Visible = false;
-                Buscararqueo.Visible = false;
-                visualizar.Visible = true;
-                imprimir.Visible = true;
-                CAOperador.Value = Session["Nombre"] as string;
-                NombreFirma.InnerHtml = Session["Nombre"] as string;
-            }
-            else
-            {
-                String script = "alert('Ya tiene un arqueo creado por el dia de hoy');";
-                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                arqueo.Visible = false;
-                EBuscar.Visible = false;
-                visualizar.Visible = false;
-                imprimir.Visible = false;
-            }
+            arqueo.Visible = true;
+            Creararqueo.Visible = false;
+            Buscararqueo.Visible = false;
+            visualizar.Visible = true;
+            imprimir.Visible = true;
+            CANombreencargado.Value = Session["Nombre"] as string;
+            NombreFirma.InnerHtml = Session["Nombre"] as string;
+
+            //if (consulta == "")
+            //{
+            //    arqueo.Visible = true;
+            //    Creararqueo.Visible = false;
+            //    Buscararqueo.Visible = false;
+            //    visualizar.Visible = true;
+            //    imprimir.Visible = true;
+            //    CANombreencargado.Value = Session["Nombre"] as string;
+            //    NombreFirma.InnerHtml = Session["Nombre"] as string;
+            //}
+            //else
+            //{
+            //    String script = "alert('Ya tiene un arqueo creado por el dia de hoy');";
+            //    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            //    arqueo.Visible = false;
+            //    EBuscar.Visible = false;
+            //    visualizar.Visible = false;
+            //    imprimir.Visible = false;
+            //}
                 
         }
 
@@ -435,7 +512,12 @@ namespace Modulo_de_arqueos.Views
             {
                 CAUsuario.Visible = true;
             }
-          
+        }
+
+
+        protected void btnArqueos_Click(object sender, EventArgs e)
+        {
+            llenarcomboarqueos();
         }
 
         public void now()

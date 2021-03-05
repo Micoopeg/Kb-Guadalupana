@@ -29,24 +29,28 @@ namespace Modulo_de_arqueos.Views
         char delimitador = ':';
         char delimitador3 = '-';
         string concat = "T";
-        string fechamin, horamin, fechahora, usuario, idusuario, totalhaber, puesto, año, mes, dia, fechatotal1, fechamin2, año2, mes2, dia2, idusuario2;
+        char concat2 = 'T';
+        string numarqueo;
+        string fechamin, horamin, fechahora, usuario, idusuario, totalhaber, puesto, año, mes, dia, dia3, fechatotal1, fechamin2, año2, mes2, dia2, idusuario2;
         int cont;
-        string connectionString = @"Server=localhost;Database=bd_arqueos;Uid=root;Pwd=;";
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 NombreFirma2.InnerHtml = Session["Nombre"] as string;
                 NombreUsuario.InnerHtml = Session["Nombre"] as string;
-                //llenargridviewcajachica();
-                mostrargridviewcajachica();
 
+                //llenargridviewcajachica();
+                //mostrargridviewcajachica();
+                CCTotalsaldo.Visible = false;
                 llenarcomboagencia();
                 llenarcombousuario();
                 GuardarCambios.Visible = false;
                 Eliminar.Visible = false;
                 EBuscar.Visible = false;
                 arqueo.Visible = false;
+                CCNombreencargado.Disabled = false;
                 now();
                 visualizar.Visible = false;
                 imprimir.Visible = false;
@@ -145,9 +149,55 @@ namespace Modulo_de_arqueos.Views
             finally { try { conn.desconectar(); } catch { } }
         }
 
+        public void llenarcomboarqueos()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "";
+                    fecha = CABuscarfecha.Value;
+
+                    string[] fechasep2 = fecha.Split(delimitador3);
+                    año = fechasep2[0];
+                    mes = fechasep2[1];
+                    dia = fechasep2[2];
+                    puesto = Session["puesto_usuario"] as string;
+                    usuario = Session["sesion_usuario"] as string;
+                    idusuario = sn.obteneridusuario(usuario);
+
+
+                    if (puesto == "1")
+                    {
+                        QueryString = "SELECT sa_numarqueo FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fecha,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fecha,  '%d') = '" + dia + "' AND idsa_usuario = '" + idusuario + "'";
+                    }
+                    else
+                    {
+                        QueryString = "SELECT sa_numarqueo FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fecha,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fecha,  '%d') = '" + dia + "' AND idsa_usuario = '" + CAUsuario.SelectedValue + "'";
+                    }
+
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Arqueo");
+                    DropNumarqueo.DataSource = ds;
+                    DropNumarqueo.DataTextField = "sa_numarqueo";
+                    DropNumarqueo.DataValueField = "sa_numarqueo";
+                    DropNumarqueo.DataBind();
+                    DropNumarqueo.Items.Insert(0, new ListItem("[Numero de arqueo]", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+        }
+
         protected void CCAgencia_SelectedIndexChanged(object sender, EventArgs e)
         {
             CCNumagencia.Value = CCAgencia.SelectedValue;
+        }
+
+        protected void CAUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenarcomboarqueos();
         }
 
         protected void agregar_Click(object sender, EventArgs e)
@@ -156,7 +206,8 @@ namespace Modulo_de_arqueos.Views
             try
             {
                 sig1 = Session["idcajachica"] as string;
-                    string sig2 = logic.siguiente("sa_detallecajachica", "idsa_detallecajachica");
+                id = Session["idcajachica"] as string;
+                string sig2 = logic.siguiente("sa_detallecajachica", "idsa_detallecajachica");
                     string[] valores2 = { sig2, CCFecha.Value, CCNumdocumento.Value, CCProveedor.Value, CCDescripcion.Value, CCDebe.Value, CCHaber.Value, sig1 };
                     logic.insertartablas("sa_detallecajachica", valores2);
                
@@ -167,6 +218,10 @@ namespace Modulo_de_arqueos.Views
             }
             finally { try { conn.desconectar(); } catch { } }
             mostrargridviewcajachica();
+
+            totalhaber = sn.totalhaber(id);
+            CCTotalhaber.Value = totalhaber;
+            CCTotalsaldo.Value = totalhaber;
         }
 
         protected void guardarencabezado_Click(object sender, EventArgs e)
@@ -174,17 +229,35 @@ namespace Modulo_de_arqueos.Views
 
             try
             {
-                    //INSERTAR ENCABEZADO
-                    usuario = Session["sesion_usuario"] as string;
-                    idusuario = sn.obteneridusuario(usuario);
-                    sig1 = logic.siguiente("sa_encabezadocajachica", "idsa_encabezadocajachica");
-                    string[] valores1 = { sig1, idusuario, CCNumagencia.Value, CCFechaencabezado.Value, CCNombre.Value, CCOperador.Value, CCNombreencargado.Value, CCPuestoencargado.Value, SaldoInicial2.Value };
-                    logic.insertartablas("sa_encabezadocajachica", valores1);
+                //INSERTAR ENCABEZADO
+                fecha = CCFechaencabezado.Value;
+                string numeroarqueo = "";
+
+                string[] fechasep2 = fecha.Split(delimitador3);
+                año = fechasep2[0];
+                mes = fechasep2[1];
+                dia3 = fechasep2[2];
+
+                string[] fechadia = dia3.Split(concat2);
+                dia = fechadia[0];
+                puesto = Session["puesto_usuario"] as string;
+
+                usuario = Session["sesion_usuario"] as string;
+                idusuario = sn.obteneridusuario(usuario);
+                numeroarqueo = sn.numarqueoCC(año, mes, dia, idusuario);
+                sig1 = logic.siguiente("sa_encabezadocajachica", "idsa_encabezadocajachica");
+                string[] valores1 = { sig1, numeroarqueo, idusuario, CCNumagencia.Value, CCFechaencabezado.Value, CCNombre.Value, CCOperador.Value, CCPuestooperador.Value, CCNombreencargado.Value, CCPuestoencargado.Value, SaldoInicial2.Value };
+                logic.insertartablas("sa_encabezadocajachica", valores1);
                 Session["idcajachica"] = sig1.ToString();
+                id = Session["idcajachica"] as string;
 
                 Saldoinicial.Value = SaldoInicial2.Value;
                 parte2.Visible = true;
                 guardar.Visible = true;
+                NombreFirma.InnerText = CCNombre.Value;
+                NombreFirma2.InnerHtml = CCNombreencargado.Value;
+                PuestoFirma.InnerHtml = CCPuestooperador.Value;
+                PuestoFirma2.InnerHtml = CCPuestoencargado.Value;
             }
             catch (Exception err)
             {
@@ -269,6 +342,7 @@ namespace Modulo_de_arqueos.Views
         {
             try
             {
+                id= Session["idcajachica"] as string;
                 sig1 = Session["idcajachica"] as string;
                 sn.modificarRegistros(Text6.Value, CCFecha.Value, CCNumdocumento.Value, CCProveedor.Value, CCDescripcion.Value, CCDebe.Value, CCHaber.Value);
             }
@@ -278,6 +352,9 @@ namespace Modulo_de_arqueos.Views
             }
             finally { try { conn.desconectar(); } catch { } }
             mostrargridviewcajachica();
+            totalhaber = sn.totalhaber(id);
+            CCTotalhaber.Value = totalhaber;
+            CCTotalsaldo.Value = totalhaber;
             GuardarCambios.Visible = false;
             Eliminar.Visible = false;
             Agregar.Visible = true;
@@ -302,6 +379,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
+            numarqueo = DropNumarqueo.SelectedValue;
             mostrarcajachica();
             if (cont == 1)
             {
@@ -324,8 +402,11 @@ namespace Modulo_de_arqueos.Views
             }
         }
 
+     
+
         public void mostrarcajachica()
         {
+            numarqueo = DropNumarqueo.SelectedValue;
             fecha = CABuscarfecha.Value;
             string[] fechasep2 = fecha.Split(delimitador3);
             año = fechasep2[0];
@@ -339,11 +420,11 @@ namespace Modulo_de_arqueos.Views
             string[] var;
             if (puesto == "1")
             {
-                var = sn.mostrarencabezadoCC(año, mes, dia, idusuario);
+                var = sn.mostrarencabezadoCC(año, mes, dia, idusuario, numarqueo);
             }
             else
             {
-                var = sn.mostrarencabezadoCC(año, mes, dia, CAUsuario.SelectedValue);
+                var = sn.mostrarencabezadoCC(año, mes, dia, CAUsuario.SelectedValue, numarqueo);
             }
 
             if (var[2] == null)
@@ -357,16 +438,21 @@ namespace Modulo_de_arqueos.Views
                 for (int i = 0; i < var.Length; i++)
                 {
                     id = Convert.ToString(var[0]);
-                    Session["idcajachica"] = id.ToString();
+                    //Session["idcajachica"] = "2";
                     CCAgencia.SelectedValue = Convert.ToString(var[1]);
                     CCNumagencia.Value = Convert.ToString(var[1]);
                     string fechaenc = Convert.ToString(var[2]);
                     CCNombre.Value = Convert.ToString(var[3]);
+                    NombreFirma.InnerHtml = Convert.ToString(var[3]);
                     CCOperador.Value = Convert.ToString(var[4]);
-                    CCNombreencargado.Value = Convert.ToString(var[5]);
-                    CCPuestoencargado.Value = Convert.ToString(var[6]);
-                    SaldoInicial2.Value = Convert.ToString(var[7]);
-                    Saldoinicial.Value = Convert.ToString(var[7]);
+                    CCPuestooperador.Value = Convert.ToString(var[5]);
+                    PuestoFirma.InnerHtml = Convert.ToString(var[5]);
+                    CCNombreencargado.Value = Convert.ToString(var[6]);
+                    NombreFirma2.InnerHtml = Convert.ToString(var[6]);
+                    CCPuestoencargado.Value = Convert.ToString(var[7]);
+                    PuestoFirma2.InnerHtml = Convert.ToString(var[7]);
+                    SaldoInicial2.Value = Convert.ToString(var[8]);
+                    Saldoinicial.Value = Convert.ToString(var[8]);
                     //Session["idtesoreria"] = id.ToString();
                     //string idcajero1 = id.ToString();
                     //Session["idcajero1"] = idcajero1.ToString();
@@ -389,6 +475,11 @@ namespace Modulo_de_arqueos.Views
             mostrardetalle5();
             mostrardetalle6();
             mostrardetalle7();
+
+            totalhaber = sn.totalhaber(id);
+            CCTotalhaber.Value = totalhaber;
+            CCTotalsaldo.Value = totalhaber;
+            mostrargridviewcajachica();
         }
 
         public void mostrardetalle1()
@@ -510,27 +601,35 @@ namespace Modulo_de_arqueos.Views
 
         public void mostrargridviewcajachica()
         {
-            try
-            {
-                id2 = Session["idcajachica"] as string;
-                string QueryString = "SELECT * FROM sa_detallecajachica WHERE idsa_encabezadocajachica = '"+ id2 +"'";
-                // "ON a.codeptipotelefono=b.codeptipotelefono WHERE codepinformaciongeneralcif='"+cifactual+"';";
-                MySqlConnection conect = conn.conectar();
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
-                DataTable ds3 = new DataTable();
-                myCommand.Fill(ds3);
-                GridViewCajaChica.DataSource = ds3;
-                GridViewCajaChica.DataBind();
-                conn.desconexion(conect);
+            DataTable dt1 = new DataTable();
+            dt1 = logic.llenarGridView(id);
+            GridViewCajaChica.DataSource = dt1;
+            GridViewCajaChica.DataBind();
 
-                totalhaber = sn.totalhaber(id2);
-                CCTotalhaber.Value = totalhaber;
-                CCTotalsaldo.Value = totalhaber;
-            }
-            catch
-            {
-            }
-            finally { conn.desconectar(); }
+            //try
+            //{
+
+            //    ////id2 = Session["idcajachica"] as string;
+            //    //string QueryString = "SELECT * FROM sa_detallecajachica WHERE idsa_encabezadocajachica = '"+ id +"'";
+            //    //// "ON a.codeptipotelefono=b.codeptipotelefono WHERE codepinformaciongeneralcif='"+cifactual+"';";
+            //    //MySqlConnection conect = conn.conectar();
+            //    //MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
+            //    //DataTable ds3 = new DataTable();
+            //    //myCommand.Fill(ds3);
+            //    //GridViewCajaChica.DataSource = ds3;
+            //    //GridViewCajaChica.DataBind();
+            //    //conn.desconexion(conect);
+
+            //    //totalhaber = sn.totalhaber(id);
+            //    //CCTotalhaber.Value = totalhaber;
+            //    //CCTotalsaldo.Value = totalhaber;
+
+
+            //}
+            //catch
+            //{
+            //}
+            //finally { conn.desconectar(); }
         }
 
         //public void mostrargridviewcajachica2()
@@ -563,27 +662,37 @@ namespace Modulo_de_arqueos.Views
             usuario3 = Session["sesion_usuario"] as string;
             idusuario2 = sn.obteneridusuario(usuario3);
             consulta = sn.consultararqueoCC(idusuario2);
+            arqueo.Visible = true;
+            Creararqueo.Visible = false;
+            Buscararqueo.Visible = false;
+            visualizar.Visible = true;
+            imprimir.Visible = true;
+            CCNombreencargado.Value = Session["Nombre"] as string;
+            parte2.Visible = false;
+            guardar.Visible = false;
+            mostrargridviewcajachica();
 
-            if (consulta == "")
-            {
-                arqueo.Visible = true;
-                Creararqueo.Visible = false;
-                Buscararqueo.Visible = false;
-                visualizar.Visible = true;
-                imprimir.Visible = true;
-                CCNombre.Value = Session["Nombre"] as string;
-                parte2.Visible = false;
-                guardar.Visible = false;
-            }
-            else
-            {
-                String script = "alert('Ya tiene un arqueo creado por el dia de hoy');";
-                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                arqueo.Visible = false;
-                EBuscar.Visible = false;
-                visualizar.Visible = false;
-                imprimir.Visible = false;
-            }
+            //if (consulta == "")
+            //{
+            //    arqueo.Visible = true;
+            //    Creararqueo.Visible = false;
+            //    Buscararqueo.Visible = false;
+            //    visualizar.Visible = true;
+            //    imprimir.Visible = true;
+            //    CCNombreencargado.Value = Session["Nombre"] as string;
+            //    parte2.Visible = false;
+            //    guardar.Visible = false;
+            //    mostrargridviewcajachica();
+            //}
+            //else
+            //{
+            //    String script = "alert('Ya tiene un arqueo creado por el dia de hoy');";
+            //    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            //    arqueo.Visible = false;
+            //    EBuscar.Visible = false;
+            //    visualizar.Visible = false;
+            //    imprimir.Visible = false;
+            //}
                
         }
 
@@ -604,6 +713,10 @@ namespace Modulo_de_arqueos.Views
             }
         }
 
+        protected void btnArqueos_Click(object sender, EventArgs e)
+        {
+            llenarcomboarqueos();
+        }
         public void now()
         {
 

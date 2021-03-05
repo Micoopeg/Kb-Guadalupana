@@ -1,6 +1,7 @@
 ﻿using SA_Arqueos.Controllers;
 using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -105,9 +106,12 @@ namespace SA_Arqueos.Models
         }
 
 
-       
+        public DataTable llenarGridView(string id)
+        {
+            return sn.llenarGridView(id);
+        }
 
 
-    
+
     }
 }

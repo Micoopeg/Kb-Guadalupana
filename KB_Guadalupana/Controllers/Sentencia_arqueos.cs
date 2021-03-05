@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -605,13 +606,124 @@ namespace SA_Arqueos.Controllers
             return camporesultante;
         }
 
+        public DataTable llenarGridView(string id)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM sa_detallecajachica WHERE idsa_encabezadocajachica = '" + id + "'", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        //OBETNER NUMERO DE ARQUEO
+        public string numarqueoCA(string año, string mes, string dia, string id)
+        {
+            String camporesultante = "";
+            try
+            {
+                string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '"+ mes +"' AND DATE_FORMAT(sa_fechayhora,  '%d') = '"+ dia +"' AND idsa_usuario = '" + id + "'";
+                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                camporesultante = reader.GetValue(0).ToString();
+                //Console.WriteLine("El resultado es: " + camporesultante);
+                if (String.IsNullOrEmpty(camporesultante))
+                    camporesultante = "1";
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(camporesultante);
+            }
+            finally { cn.desconectar(); }
+            return camporesultante;
+        }
+
+        public string numarqueoCC(string año, string mes, string dia, string id)
+        {
+            String camporesultante = "";
+            try
+            {
+                string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fecha,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fecha,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
+                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                camporesultante = reader.GetValue(0).ToString();
+                //Console.WriteLine("El resultado es: " + camporesultante);
+                if (String.IsNullOrEmpty(camporesultante))
+                    camporesultante = "1";
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(camporesultante);
+            }
+            finally { cn.desconectar(); }
+            return camporesultante;
+        }
+
+        public string numarqueoC(string año, string mes, string dia, string id)
+        {
+            String camporesultante = "";
+            try
+            {
+                string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
+                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                camporesultante = reader.GetValue(0).ToString();
+                //Console.WriteLine("El resultado es: " + camporesultante);
+                if (String.IsNullOrEmpty(camporesultante))
+                    camporesultante = "1";
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(camporesultante);
+            }
+            finally { cn.desconectar(); }
+            return camporesultante;
+        }
+
+        public string numarqueoT(string año, string mes, string dia, string id)
+        {
+            String camporesultante = "";
+            try
+            {
+                string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
+                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                camporesultante = reader.GetValue(0).ToString();
+                //Console.WriteLine("El resultado es: " + camporesultante);
+                if (String.IsNullOrEmpty(camporesultante))
+                    camporesultante = "1";
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(camporesultante);
+            }
+            finally { cn.desconectar(); }
+            return camporesultante;
+        }
+
         //MOSTRAR PUESTO
         public string obtenerpuesto(string usuario)
         {
             String camporesultante = "";
             try
             {
-                string sql = "SELECT gen_rol FROM gen_usuario where gen_usuarionombre = '"+ usuario + "'";
+                string sql = "SELECT gen_puesto FROM gen_usuario where gen_usuarionombre = '" + usuario + "'";
                 MySqlCommand command = new MySqlCommand(sql, cn.conectar());
                 MySqlDataReader reader = command.ExecuteReader();
                 reader.Read();
@@ -665,7 +777,7 @@ namespace SA_Arqueos.Controllers
         }
 
         //MOSTRAR ENCABEZADO
-        public string[] mostrarencabezadoCA(string año, string mes, string dia, string usuario)
+        public string[] mostrarencabezadoCA(string año, string mes, string dia, string usuario, string numarqueo)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
@@ -673,7 +785,7 @@ namespace SA_Arqueos.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT idsa_encabezadocajeroaut, DATE_FORMAT(sa_fechayhora,  '%Y %m %d %T'), sa_agencia, sa_nombreoperador, sa_numoperador, sa_nombreencargado, sa_puestoencargado, sa_atm FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + usuario + "'";
+                    string consultaGraAsis = "SELECT idsa_encabezadocajeroaut, DATE_FORMAT(sa_fechayhora,  '%Y %m %d %T'), sa_agencia, sa_nombreoperador, sa_numoperador, sa_puestooperador, sa_nombreencargado, sa_puestoencargado, sa_atm FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + usuario + "' AND sa_numarqueo = '" + numarqueo + "'";
 
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
@@ -692,7 +804,7 @@ namespace SA_Arqueos.Controllers
             }
         }
 
-        public string[] mostrarencabezadoC(string año, string mes, string dia, string usuario)
+        public string[] mostrarencabezadoC(string año, string mes, string dia, string usuario, string numarqueo)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
@@ -700,7 +812,7 @@ namespace SA_Arqueos.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT idsa_encabezadocajero, DATE_FORMAT(sa_fechayhora,  '%Y %m %d %T'), sa_agencia, sa_nombre, sa_usuario, sa_operador, sa_nombreencargado, sa_puestoencargado, sa_comentarios FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + usuario + "'";
+                    string consultaGraAsis = "SELECT idsa_encabezadocajero, DATE_FORMAT(sa_fechayhora,  '%Y %m %d %T'), sa_agencia, sa_nombre, sa_usuario, sa_operador, sa_puestooperador, sa_nombreencargado, sa_puestoencargado, sa_comentarios FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + usuario + "' AND sa_numarqueo = '" + numarqueo + "'";
 
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
@@ -719,7 +831,7 @@ namespace SA_Arqueos.Controllers
             }
         }
 
-        public string[] mostrarencabezadoT(string año, string mes, string dia, string usuario)
+        public string[] mostrarencabezadoT(string año, string mes, string dia, string usuario, string numarqueo)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
@@ -727,7 +839,7 @@ namespace SA_Arqueos.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT idsa_encabezadotesoreria, DATE_FORMAT(sa_fechayhora,  '%Y %m %d %T'), sa_agencia, sa_nombreoperador, sa_numoperador, sa_nombreencargado, sa_puestoencargado, sa_tesoreriaQ, sa_tesoreriaDol FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + usuario + "'";
+                    string consultaGraAsis = "SELECT idsa_encabezadotesoreria, DATE_FORMAT(sa_fechayhora,  '%Y %m %d %T'), sa_agencia, sa_nombreoperador, sa_numoperador, sa_puestooperador, sa_nombreencargado, sa_puestoencargado, sa_tesoreriaQ, sa_tesoreriaDol FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + usuario + "' AND sa_numarqueo = '" + numarqueo + "'";
 
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
@@ -754,7 +866,7 @@ namespace SA_Arqueos.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT idsa_encabezadotesoreria, DATE_FORMAT(sa_fechayhora,  '%Y %m %d %T'), sa_agencia, sa_nombreoperador, sa_numoperador, sa_nombreencargado, sa_puestoencargado, sa_tesoreriaQ, sa_tesoreriaDol FROM sa_encabezadotesoreria WHERE idsa_encabezadotesoreria = '" + id + "'";
+                    string consultaGraAsis = "SELECT idsa_encabezadotesoreria, DATE_FORMAT(sa_fechayhora,  '%Y %m %d %T'), sa_agencia, sa_nombreoperador, sa_numoperador, sa_puestooperador, sa_nombreencargado, sa_puestoencargado, sa_tesoreriaQ, sa_tesoreriaDol FROM sa_encabezadotesoreria WHERE idsa_encabezadotesoreria = '" + id + "'";
 
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
@@ -773,7 +885,7 @@ namespace SA_Arqueos.Controllers
             }
         }
 
-        public string[] mostrarencabezadoCC(string año, string mes, string dia, string usuario)
+        public string[] mostrarencabezadoCC(string año, string mes, string dia, string usuario, string numarqueo)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
@@ -781,7 +893,7 @@ namespace SA_Arqueos.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT idsa_encabezadocajachica, sa_agencia, DATE_FORMAT(sa_fecha, '%Y %m %d %T'), sa_nombre, sa_numoperador, sa_nombreencargado, sa_puestoencargado, sa_saldoinicial FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha, '%Y') = '" + año + "' AND DATE_FORMAT(sa_fecha,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fecha,  '%d') = '" + dia + "' AND idsa_usuario = '" + usuario + "'";
+                    string consultaGraAsis = "SELECT idsa_encabezadocajachica, sa_agencia, DATE_FORMAT(sa_fecha, '%Y %m %d %T'), sa_nombre, sa_numoperador, sa_puestooperador, sa_nombreencargado, sa_puestoencargado, sa_saldoinicial FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha, '%Y') = '" + año + "' AND DATE_FORMAT(sa_fecha,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fecha,  '%d') = '" + dia + "' AND idsa_usuario = '" + usuario + "' AND sa_numarqueo = '" + numarqueo + "'";
 
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);

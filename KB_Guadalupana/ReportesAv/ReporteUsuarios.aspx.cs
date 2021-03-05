@@ -62,16 +62,14 @@ namespace KBGuada.Reportes
             ReportViewer1.Reset();
             ReportDataSource fuente = new ReportDataSource("DataSet5", obtenermontos());
             ReportDataSource fuente2 = new ReportDataSource("DataSet2", obtenermontosdatos());
-            ReportDataSource fuente3 = new ReportDataSource("DataSet1", obtenermontosrestante());
+   
 
             ReportViewer1.LocalReport.DataSources.Add(fuente);
             ReportViewer1.LocalReport.DataSources.Add(fuente2);
-            ReportViewer1.LocalReport.DataSources.Add(fuente3);
+
             ReportViewer1.LocalReport.ReportPath = "ReportesAv/ReporteMontos.rdlc";
 
             ReportViewer1.LocalReport.Refresh();
-
-
 
 
 
@@ -118,36 +116,7 @@ namespace KBGuada.Reportes
 
         }
 
-        private DataTable obtenermontosrestante()
-        {
-            DataTable dt3 = new DataTable();
 
-
-            if (AVFECHAINI.Value == "" || AVFECHAFIN.Value == "")
-            {
-
-                String script = "alert('Ingrese el rango de fechas a buscar ');";
-                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-
-
-
-            }
-            else
-            {
-
-
-                dt3 = cav.reportemontosresultante(AVFECHAINI.Value, AVFECHAFIN.Value);
-
-
-            }
-
-
-
-            return dt3;
-
-
-
-        }
         private DataTable obtenerdatos()
         {
 

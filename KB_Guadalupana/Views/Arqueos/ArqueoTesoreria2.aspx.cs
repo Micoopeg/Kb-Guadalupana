@@ -35,6 +35,7 @@ namespace Modulo_de_arqueos.Views
                 TDCodigoagencia.Value = Session["codigoagencia"] as string;
                 TDNombreop.Value = Session["nombreop"] as string;
                 TDNumoperador.Value = Session["numoperador"] as string;
+                TDPuestooperador.Value = Session["puestooperador"] as string;
                 TDNombreencargado.Value = Session["nombreencargado"] as string;
                 TDPuestoencargado.Value = Session["puestoencargado"] as string;
 
@@ -186,9 +187,9 @@ namespace Modulo_de_arqueos.Views
                 string[] valores9 = { sig9, "2", "2", TDChequesa.Value, TDMontoa.Value, Convert.ToString(cantidad), Convert.ToString(monto), id };
                 logic.insertartablas("sa_chequestesoreria", valores9);
 
-                NombreFirma.InnerHtml = Session["Nombre"] as string;
-                NombreFirma2.InnerHtml = TDNombreencargado.Value;
-                puesto2.InnerHtml = TDPuestoencargado.Value;
+                //NombreFirma.InnerHtml = Session["Nombre"] as string;
+                //NombreFirma2.InnerHtml = TDNombreencargado.Value;
+                //puesto2.InnerHtml = TDPuestoencargado.Value;
             }
             catch (Exception err)
             {
@@ -208,9 +209,10 @@ namespace Modulo_de_arqueos.Views
                 TDCodigoagencia.Value = Convert.ToString(var[2]);
                 TDNombreop.Value = Convert.ToString(var[3]);
                 TDNumoperador.Value = Convert.ToString(var[4]);
-                TDNombreencargado.Value = Convert.ToString(var[5]);
-                TDPuestoencargado.Value = Convert.ToString(var[6]);
-                TDTesoreria.Value = Convert.ToString(var[8]);
+                TDPuestooperador.Value = Convert.ToString(var[5]);
+                TDNombreencargado.Value = Convert.ToString(var[6]);
+                TDPuestoencargado.Value = Convert.ToString(var[7]);
+                TDTesoreria.Value = Convert.ToString(var[9]);
                 //string idcajero1 = id.ToString();
                 //Session["idcajero1"] = idcajero1.ToString();
 
@@ -219,9 +221,10 @@ namespace Modulo_de_arqueos.Views
                 fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horai[0] + ":" + horai[1];
                 TDFechayhora.Attributes.Add("value", fechatotal1);
 
-                NombreFirma.InnerHtml = Session["Nombre"] as string;
+                NombreFirma.InnerHtml = TDNombreop.Value;
                 NombreFirma2.InnerHtml = TDNombreencargado.Value;
-                puesto2.InnerHtml = TDPuestoencargado.Value;
+                puesto2.InnerHtml = TDPuestooperador.Value;
+                puesto3.InnerHtml = TDPuestoencargado.Value;
             }
         }
 

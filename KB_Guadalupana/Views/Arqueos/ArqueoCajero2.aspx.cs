@@ -19,11 +19,12 @@ namespace Modulo_de_arqueos.Views
         protected void Page_Load(object sender, EventArgs e)
         {
             operadorDescripción.InnerHtml = Session["operador"] as string;
-            usuarioDescripcion.InnerHtml = Session["Nombre"] as string;
+            usuarioDescripcion.InnerHtml = Session["nombreoperador"] as string;
             NombreUsuario.InnerHtml = Session["Nombre"] as string;
-            Nombrefirma2.InnerHtml = Session["jefe"] as string;
-            NombreFirma.InnerHtml = Session["Nombre"] as string;
-            puesto2.InnerHtml = Session["puesto"] as string;
+            Nombrefirma2.InnerHtml = Session["nombreoperador"] as string;
+            NombreFirma.InnerHtml = Session["jefe"] as string;
+            puesto2.InnerHtml = Session["puestooperador"] as string;
+            puesto.InnerHtml = Session["puesto"] as string;
             id = Session["idcajero1"] as string;
             siguiente = Session["siguiente"] as string;
             if(siguiente == "1")
@@ -90,9 +91,12 @@ namespace Modulo_de_arqueos.Views
             mostrardetalle3();
             mostrardetalle4();
             operar.Visible = true;
-            NombreFirma.InnerHtml = Session["Nombre"] as string;
-            Nombrefirma2.InnerHtml = Session["jefe"] as string;
-            puesto2.InnerHtml = Session["puesto"] as string;
+            NombreFirma.InnerHtml = Session["jefe"] as string;
+            Nombrefirma2.InnerHtml = Session["nombreoperador"] as string;
+            puesto2.InnerHtml = Session["puestooperador"] as string;
+            puesto.InnerHtml = Session["puesto"] as string;
+            usuarioDescripcion.InnerHtml = Session["nombreoperador"] as string;
+            operadorDescripción.InnerHtml = Session["operador"] as string;
         }
 
         public void mostrardetalle1()

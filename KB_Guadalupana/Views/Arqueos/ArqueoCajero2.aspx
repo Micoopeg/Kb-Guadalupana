@@ -252,6 +252,30 @@
         .nombre:hover{
             color: white;
         }
+                .ayuda 
+        {
+          background-color: #69a43c; 
+          border: none;
+          color: white;
+          padding: 0px 0px;
+          text-align: center;
+          text-decoration: none;
+          display: flex;
+          font-size: 16px;
+          margin: 4px 2px;
+          transition-duration: 0.4s;
+          align-items: center;
+          justify-content:center;
+          align-content:center;
+          cursor: pointer;
+          width:30px;
+          height:30px;
+        }
+        .ayuda:hover
+        {
+          background-color: #555555;
+          color: white;
+        }
     </style>
 </head>
 <body>
@@ -260,6 +284,8 @@
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
      </div>
+
+     <a class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajero.aspx" ><i class="fa fa-question"></i></a>
          <div style="display: flex;justify-content: center;align-items: center;">
     <div id="visualizar" runat="server" class="boton2" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">
 				<a style="cursor:pointer;" class="nombre">
@@ -391,12 +417,12 @@
 
             <div class="datosGenerales2">
                 <b><span id="puesto2" runat="server" style="width:300px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
-                 <label style="width:300px; display:flex; justify-content:center"><b>Sub jefe de agencia</b></label>&nbsp;&nbsp;
+                <b><span id="puesto" runat="server" style="width:300px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
             </div><br />
                 </div>
             <br /><br />
             <div class="datosGenerales2">
-                <asp:Button ID="anterior" OnClick="anterior_Click" runat="server" CssClass="boton" Text="< Anterior" />
+              <%--  <asp:Button ID="anterior" OnClick="anterior_Click" runat="server" CssClass="boton" Text="< Anterior" />--%>
                 <asp:Button ID="operar" OnClick="operar_Click" runat="server" CssClass="boton" Text="Guardar" />
             </div>
         </div>

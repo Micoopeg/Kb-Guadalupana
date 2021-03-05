@@ -24,6 +24,15 @@ namespace Modulo_de_arqueos.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NombreUsuario;
 
         /// <summary>
+        /// Control ayuda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ayuda;
+
+        /// <summary>
         /// Control visualizar.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace Modulo_de_arqueos.Views
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText TDNumoperador;
+
+        /// <summary>
+        /// Control TDPuestooperador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText TDPuestooperador;
 
         /// <summary>
         /// Control TDNombreencargado.
@@ -492,13 +510,13 @@ namespace Modulo_de_arqueos.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl puesto2;
 
         /// <summary>
-        /// Control atras.
+        /// Control puesto3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton atras;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl puesto3;
 
         /// <summary>
         /// Control operar.

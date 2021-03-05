@@ -43,8 +43,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.11.4\lib\net45\Google.Protobuf.dll</HintPath>
@@ -59,11 +59,35 @@
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.22\lib\net452\MySql.Data.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1427.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
-      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1427.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1427.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1427.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1427.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1427.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.23.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.23\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlConnector, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.1.2.1\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2020.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2020.0.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -87,6 +111,9 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
@@ -123,7 +150,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.22\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+      <HintPath>..\packages\MySql.Data.8.0.23\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -141,7 +168,7 @@
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.22\lib\net452\Zstandard.Net.dll</HintPath>
+      <HintPath>..\packages\MySql.Data.8.0.23\lib\net452\Zstandard.Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -168,12 +195,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AvDiseños\AvIndex.css" />
+    <Content Include="AvDiseños\AvMantenimientoSite.css" />
+    <Content Include="AvDiseños\AvMantenimientoSite2.css" />
+    <Content Include="AvDiseños\Botones.css" />
+    <Content Include="AvDiseños\estiloalert.css" />
+    <Content Include="AvDiseños\estilos401.css" />
+    <Content Include="AvDiseños\EstilosAVActividad.css" />
+    <Content Include="AvDiseños\EstilosDash.css" />
+    <Content Include="AvDiseños\EstilosIndex.css" />
+    <Content Include="AvDiseños\EstilosReportes.css" />
+    <Content Include="AvDiseños\script.js" />
+    <Content Include="AvDiseños\scriptdas.js" />
+    <Content Include="AvDiseños\style.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="DiseñoCss\EstilosCss.css" />
+    <Content Include="DiseñoCss\estilosav.css" />
+    <Content Include="DiseñoCss\EstilosavSub.css" />
     <Content Include="DiseñosGrid\Grids.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -186,7 +227,63 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="montodatos.xsc">
+      <DependentUpon>montodatos.xsd</DependentUpon>
+    </Content>
+    <Content Include="bdkbguadalupanaDataSet.xsc">
+      <DependentUpon>bdkbguadalupanaDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="bdkbguadalupanaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdkbguadalupanaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="bdkbguadalupanaDataSet.xss">
+      <DependentUpon>bdkbguadalupanaDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="chart.xsc">
+      <DependentUpon>chart.xsd</DependentUpon>
+    </Content>
+    <None Include="chart.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>chart.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="chart.xss">
+      <DependentUpon>chart.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataMontos.xsc">
+      <DependentUpon>DataMontos.xsd</DependentUpon>
+    </Content>
+    <None Include="DataMontos.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataMontos.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataMontos.xss">
+      <DependentUpon>DataMontos.xsd</DependentUpon>
+    </Content>
+    <None Include="montodatos.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>montodatos.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="montodatos.xss">
+      <DependentUpon>montodatos.xsd</DependentUpon>
+    </Content>
+    <Content Include="MontoRes.xsc">
+      <DependentUpon>MontoRes.xsd</DependentUpon>
+    </Content>
+    <None Include="MontoRes.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MontoRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="MontoRes.xss">
+      <DependentUpon>MontoRes.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="ReportesAv\ReporteUsuarios.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -216,7 +313,38 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\Agenda\AgendaPrin.aspx" />
+    <Content Include="Views\Agenda\Av_AsignarTarea.aspx" />
+    <Content Include="Views\Agenda\Av_ModTarea.aspx" />
+    <Content Include="Views\Agenda\Av_Reasignar.aspx" />
+    <Content Include="Views\Agenda\Av_Subtareas.aspx" />
+    <Content Include="Views\Agenda\Av_Tracking.aspx" />
+    <Content Include="Views\Agenda\DashBoard.aspx" />
+    <Content Include="Views\Agenda\Error 401.aspx" />
+    <Content Include="Views\Agenda\MantenimientoSite.aspx" />
+    <Content Include="Views\Agenda\NuevaTarea.aspx" />
+    <Content Include="Views\Agenda\pruebas.aspx" />
+    <Content Include="Views\Arqueos\ArqueoCajaChica.aspx" />
+    <Content Include="Views\Arqueos\ArqueoCajero.aspx" />
+    <Content Include="Views\Arqueos\ArqueoCajero2.aspx" />
+    <Content Include="Views\Arqueos\ArqueoCajeroAutomatico.aspx" />
+    <Content Include="Views\Arqueos\ArqueoTesoreria.aspx" />
+    <Content Include="Views\Arqueos\ArqueoTesoreria2.aspx" />
+    <Content Include="Views\Arqueos\MenuArqueos.aspx" />
     <Content Include="Views\Sesion\AsignacionLotes.aspx" />
     <Content Include="Views\Sesion\AsignacionRolArea.aspx" />
     <Content Include="Views\Sesion\Ayudas\AyudaALote.aspx" />
@@ -250,10 +378,10 @@
     <Content Include="Views\Sesion\MenuBarra.aspx" />
     <Content Include="Views\Sesion\MenuBarraMantenimientos.aspx" />
     <Content Include="Views\Sesion\Reporte.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\InformacionGeneralEP.aspx" />
     <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx" />
     <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx" />
-    <Content Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx" />
-    <Content Include="Views\Sesion\Reportes\ReporteEP.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\ReporteEP.aspx" />
     <Content Include="Views\WebForm1.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -263,13 +391,50 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="bdkbguadalupanaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdkbguadalupanaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="chart.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>chart.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Conexion.cs" />
+    <Compile Include="Controllers\Conexion_arqueos.cs" />
+    <Compile Include="Controllers\ModeloAV.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
+    <Compile Include="Controllers\Sentencia_arqueos.cs" />
+    <Compile Include="DataMontos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataMontos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ControladorAV.cs" />
     <Compile Include="Models\Logica.cs" />
+    <Compile Include="Models\Logica_arqueos.cs" />
+    <Compile Include="montodatos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>montodatos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MontoRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MontoRes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportesAv\ReporteUsuarios.aspx.cs">
+      <DependentUpon>ReporteUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportesAv\ReporteUsuarios.aspx.designer.cs">
+      <DependentUpon>ReporteUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -284,12 +449,164 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="sumamonto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sumamonto.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sumatoriatotal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sumatoriatotal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TareasUsuariosReporte.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TareasUsuariosReporte.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TareaUserReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TareaUserReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioTiitulo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsuarioTiitulo.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\AgendaPrin.aspx.cs">
+      <DependentUpon>AgendaPrin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\AgendaPrin.aspx.designer.cs">
+      <DependentUpon>AgendaPrin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_AsignarTarea.aspx.cs">
+      <DependentUpon>Av_AsignarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_AsignarTarea.aspx.designer.cs">
+      <DependentUpon>Av_AsignarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_ModTarea.aspx.cs">
+      <DependentUpon>Av_ModTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_ModTarea.aspx.designer.cs">
+      <DependentUpon>Av_ModTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_Reasignar.aspx.cs">
+      <DependentUpon>Av_Reasignar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_Reasignar.aspx.designer.cs">
+      <DependentUpon>Av_Reasignar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_Subtareas.aspx.cs">
+      <DependentUpon>Av_Subtareas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_Subtareas.aspx.designer.cs">
+      <DependentUpon>Av_Subtareas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_Tracking.aspx.cs">
+      <DependentUpon>Av_Tracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\Av_Tracking.aspx.designer.cs">
+      <DependentUpon>Av_Tracking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\DashBoard.aspx.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\DashBoard.aspx.designer.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\Error 401.aspx.cs">
+      <DependentUpon>Error 401.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\Error 401.aspx.designer.cs">
+      <DependentUpon>Error 401.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\MantenimientoSite.aspx.cs">
+      <DependentUpon>MantenimientoSite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\MantenimientoSite.aspx.designer.cs">
+      <DependentUpon>MantenimientoSite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\NuevaTarea.aspx.cs">
+      <DependentUpon>NuevaTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\NuevaTarea.aspx.designer.cs">
+      <DependentUpon>NuevaTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Agenda\pruebas.aspx.cs">
+      <DependentUpon>pruebas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Agenda\pruebas.aspx.designer.cs">
+      <DependentUpon>pruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajaChica.aspx.cs">
+      <DependentUpon>ArqueoCajaChica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajaChica.aspx.designer.cs">
+      <DependentUpon>ArqueoCajaChica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajero.aspx.cs">
+      <DependentUpon>ArqueoCajero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajero.aspx.designer.cs">
+      <DependentUpon>ArqueoCajero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajero2.aspx.cs">
+      <DependentUpon>ArqueoCajero2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajero2.aspx.designer.cs">
+      <DependentUpon>ArqueoCajero2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajeroAutomatico.aspx.cs">
+      <DependentUpon>ArqueoCajeroAutomatico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoCajeroAutomatico.aspx.designer.cs">
+      <DependentUpon>ArqueoCajeroAutomatico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoTesoreria.aspx.cs">
+      <DependentUpon>ArqueoTesoreria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoTesoreria.aspx.designer.cs">
+      <DependentUpon>ArqueoTesoreria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoTesoreria2.aspx.cs">
+      <DependentUpon>ArqueoTesoreria2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\ArqueoTesoreria2.aspx.designer.cs">
+      <DependentUpon>ArqueoTesoreria2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Arqueos\MenuArqueos.aspx.cs">
+      <DependentUpon>MenuArqueos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Arqueos\MenuArqueos.aspx.designer.cs">
+      <DependentUpon>MenuArqueos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\AsignacionLotes.aspx.cs">
       <DependentUpon>AsignacionLotes.aspx</DependentUpon>
@@ -515,6 +832,13 @@
     <Compile Include="Views\Sesion\Reporte.aspx.designer.cs">
       <DependentUpon>Reporte.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\InformacionGeneralEP.aspx.cs">
+      <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\InformacionGeneralEP.aspx.designer.cs">
+      <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx.cs">
       <DependentUpon>ReporteAdmin1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -529,18 +853,11 @@
     <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx.designer.cs">
       <DependentUpon>ReporteAdmin2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx.cs">
-      <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx.designer.cs">
-      <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Sesion\Reportes\ReporteEP.aspx.cs">
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteEP.aspx.cs">
       <DependentUpon>ReporteEP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Sesion\Reportes\ReporteEP.aspx.designer.cs">
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteEP.aspx.designer.cs">
       <DependentUpon>ReporteEP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\WebForm1.aspx.cs">
@@ -558,12 +875,71 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="sumamonto.xsc">
+      <DependentUpon>sumamonto.xsd</DependentUpon>
+    </Content>
+    <None Include="sumamonto.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sumamonto.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="sumamonto.xss">
+      <DependentUpon>sumamonto.xsd</DependentUpon>
+    </Content>
+    <Content Include="sumatoriatotal.xsc">
+      <DependentUpon>sumatoriatotal.xsd</DependentUpon>
+    </Content>
+    <None Include="sumatoriatotal.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sumatoriatotal.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="sumatoriatotal.xss">
+      <DependentUpon>sumatoriatotal.xsd</DependentUpon>
+    </Content>
+    <Content Include="TareasUsuariosReporte.xsc">
+      <DependentUpon>TareasUsuariosReporte.xsd</DependentUpon>
+    </Content>
+    <None Include="TareasUsuariosReporte.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TareasUsuariosReporte.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="TareasUsuariosReporte.xss">
+      <DependentUpon>TareasUsuariosReporte.xsd</DependentUpon>
+    </Content>
+    <Content Include="TareaUserReport.xsc">
+      <DependentUpon>TareaUserReport.xsd</DependentUpon>
+    </Content>
+    <None Include="TareaUserReport.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TareaUserReport.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="TareaUserReport.xss">
+      <DependentUpon>TareaUserReport.xsd</DependentUpon>
+    </Content>
+    <Content Include="UsuarioTiitulo.xsc">
+      <DependentUpon>UsuarioTiitulo.xsd</DependentUpon>
+    </Content>
+    <None Include="UsuarioTiitulo.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UsuarioTiitulo.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="UsuarioTiitulo.xss">
+      <DependentUpon>UsuarioTiitulo.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReportesAv\Report1.rdlc" />
+    <EmbeddedResource Include="ReportesAv\ReporteMontos.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

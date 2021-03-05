@@ -53,11 +53,6 @@ namespace KB_Guadalupana.Models
             return sn.consultarconcampoIE(tabla, campo, valor);
         }
 
-        public MySqlDataReader consultarCif(string cif)
-        {
-            return sn.consultarconcampoCif(cif);
-        }
-
         public MySqlDataReader consultarIO(string tabla, string campo, string valor)
         {
             return sn.consultarconcampoIO(tabla, campo, valor);
@@ -173,5 +168,9 @@ namespace KB_Guadalupana.Models
             sn.eliminarregistro(tabla, campo, dato);
         }
 
+        public MySqlDataReader consultarCif(string cif)
+        {
+            return sn.consultarconcampoCif(cif);
+        }
     }
 }

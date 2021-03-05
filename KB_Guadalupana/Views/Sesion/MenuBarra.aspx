@@ -8,6 +8,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
@@ -80,7 +81,7 @@
                                   <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;">
                                     <a href="EP_InformacionGeneral.aspx" class="w3-bar-item w3-button">Estado Patrimonial</a>
                                      <%--<asp:Button ID="Button1" class="w3-bar-item w3-button" runat="server" Text="Estado Patrimonial"></asp:Button>--%>
-                                    <a href="Reportes/InformacionGeneralEP.aspx" class="w3-bar-item w3-button">Imprimir Estado Patrimonial</a>
+                                    <a href="ReportesAdmin/InformacionGeneralEP.aspx" class="w3-bar-item w3-button">Imprimir Estado Patrimonial</a>
                                      <asp:Button ID="Button2" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Área Administrativa"></asp:Button>
                                       <a href="Reporte.aspx" class="w3-bar-item w3-button">Reporte EP</a>
                                 </div>
@@ -102,6 +103,29 @@
                         <span class="nav-text">
                             Seguridad
                             <%--<asp:Button ID="prueba" OnClick="seguridad_Click" class="w3-bar-item w3-button" runat="server" Text="Seguridad"></asp:Button>--%>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul id="ButtonAgenda" runat="server" class ="opc1">
+               <li>
+                    <a href="../Agenda/AgendaPrin.aspx">
+                       <i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">
+                            Agenda
+                            <%--<asp:Button ID="prueba" OnClick="seguridad_Click" class="w3-bar-item w3-button" runat="server" Text="Seguridad"></asp:Button>--%>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+              <ul id="Ul1" runat="server" class ="opc1">
+               <li>
+                    <a href="../Arqueos/MenuArqueos.aspx">
+                       <i class="fa fa-files-o fa-2x"></i>
+                        <span class="nav-text">
+                            Arqueos
                         </span>
                     </a>
                 </li>

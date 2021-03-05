@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="montodatos" targetNamespace="http://tempuri.org/montodatos.xsd" xmlns:mstns="http://tempuri.org/montodatos.xsd" xmlns="http://tempuri.org/montodatos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="montodatosTableAdapter" GeneratorDataComponentClassName="montodatosTableAdapter" Name="montodatos" UserDataComponentName="montodatosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString (Web.config)" DbObjectName="bdkbguadalupana.montodatos" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `codavtarea`, `av_titulo`, `av_estado`, `av_monto` FROM `bdkbguadalupana`.`montodatos`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="codavtarea" DataSetColumn="codavtarea" />
+              <Mapping SourceColumn="av_titulo" DataSetColumn="av_titulo" />
+              <Mapping SourceColumn="av_estado" DataSetColumn="av_estado" />
+              <Mapping SourceColumn="av_monto" DataSetColumn="av_monto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="montodatos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="montodatos" msprop:Generator_UserDSName="montodatos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="montodatos" msprop:Generator_TableClassName="montodatosDataTable" msprop:Generator_TableVarName="tablemontodatos" msprop:Generator_TablePropName="_montodatos" msprop:Generator_RowDeletingName="montodatosRowDeleting" msprop:Generator_RowChangingName="montodatosRowChanging" msprop:Generator_RowEvHandlerName="montodatosRowChangeEventHandler" msprop:Generator_RowDeletedName="montodatosRowDeleted" msprop:Generator_UserTableName="montodatos" msprop:Generator_RowChangedName="montodatosRowChanged" msprop:Generator_RowEvArgName="montodatosRowChangeEvent" msprop:Generator_RowClassName="montodatosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="codavtarea" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncodavtarea" msprop:Generator_ColumnPropNameInRow="codavtarea" msprop:Generator_ColumnPropNameInTable="codavtareaColumn" msprop:Generator_UserColumnName="codavtarea" type="xs:int" />
+              <xs:element name="av_titulo" msprop:Generator_ColumnVarNameInTable="columnav_titulo" msprop:Generator_ColumnPropNameInRow="av_titulo" msprop:Generator_ColumnPropNameInTable="av_tituloColumn" msprop:Generator_UserColumnName="av_titulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="av_estado" msprop:Generator_ColumnVarNameInTable="columnav_estado" msprop:Generator_ColumnPropNameInRow="av_estado" msprop:Generator_ColumnPropNameInTable="av_estadoColumn" msprop:Generator_UserColumnName="av_estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="av_monto" msprop:Generator_ColumnVarNameInTable="columnav_monto" msprop:Generator_ColumnPropNameInRow="av_monto" msprop:Generator_ColumnPropNameInTable="av_montoColumn" msprop:Generator_UserColumnName="av_monto" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:montodatos" />
+      <xs:field xpath="mstns:codavtarea" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

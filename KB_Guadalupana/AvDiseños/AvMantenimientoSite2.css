@@ -1,0 +1,32 @@
+﻿body,
+html {
+    background: #000000;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.construction-message {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+}
+
+h1 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 3em;
+}
+
+h2 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.5em;
+}

@@ -15,20 +15,20 @@ namespace KB_Guadalupana.Views.Sesion
     {
         Logica logic = new Logica();
         Conexion conn = new Conexion();
+        Sentencia sn = new Sentencia();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
                 llenargridviewreporte();
             }
-
-           
         }
 
         public void llenargridviewreporte()
         {
             try
             {
-                string QueryString = "SELECT gen_usuarionombre, codepinformaciongeneralcif FROM gen_usuario INNER JOIN ep_control ON gen_usuario.codgenusuario = ep_control.codgenusuario where codepinformaciongeneralcif != 'NUll'";
+                string QueryString = "SELECT gen_usuarionombre, codepinformaciongeneralcif FROM gen_usuario INNER JOIN ep_control ON gen_usuario.codgenusuario = ep_control.codgenusuario";
                 // "ON a.codeptipotelefono=b.codeptipotelefono WHERE codepinformaciongeneralcif='"+cifactual+"';";
                 MySqlConnection conect = conn.conectar();
                 MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
@@ -61,7 +61,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     id = Convert.ToString(mostrar.GetString(0));
                     Session["IDReporte1"] = id;
-                    
+
                     Response.Redirect("ReportesAdmin/ReporteAdmin1.aspx");
                 }
             }
@@ -78,7 +78,30 @@ namespace KB_Guadalupana.Views.Sesion
             GridViewRow row = GridViewReporte.SelectedRow;
             Text6.Value = (GridViewReporte.SelectedRow.FindControl("lblnombre") as Label).Text;
             RCif.Value = Convert.ToString((GridViewReporte.SelectedRow.FindControl("lblcif") as Label).Text);
-           
+
+        }
+
+        protected void buscar_Click(object sender, EventArgs e)
+        {
+            DataTable dt1 = new DataTable();
+            dt1 = logic.buscarCIF(RBuscarcif.Value);
+            GridViewReporte.DataSource = dt1;
+            GridViewReporte.DataBind();
+            //try
+            //{
+            //    string QueryString = "SELECT gen_usuarionombre, codepinformaciongeneralcif FROM gen_usuario INNER JOIN ep_control ON gen_usuario.codgenusuario = ep_control.codgenusuario WHERE codepinformaciongeneralcif='" + RBuscarcif.Value + "'";
+            //    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conn.conectar());
+            //    DataTable ds3 = new DataTable();
+            //    myCommand.Fill(ds3);
+            //    GridViewReporte.DataSource = ds3;
+            //    GridViewReporte.DataBind();
+            //}
+            //catch { }
+        }
+
+        protected void VerTodos_Click(object sender, EventArgs e)
+        {
+            llenargridviewreporte();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using KB_Guadalupana.Controllers;
 using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,17 +27,17 @@ namespace KB_Guadalupana.Models
 
         public void insertartablas(string tabla, string[] datos)
         {
-          sn.insertartablas(tabla, datos);
+            sn.insertartablas(tabla, datos);
         }
 
         public void modificartablas(string tabla, string[] campos, string[] datos)
         {
-             sn.modificartablas(tabla, campos, datos);
+            sn.modificartablas(tabla, campos, datos);
         }
 
         public void modificartablasdoscampos(string tabla, string[] campos, string[] datos)
         {
-             sn.modificartablasdoscampos(tabla, campos, datos);
+            sn.modificartablasdoscampos(tabla, campos, datos);
         }
 
         //FUNCIONES PARA CONSULTAR ESTADO PATRIMONIAL YA INGRESADO
@@ -53,16 +54,11 @@ namespace KB_Guadalupana.Models
             return sn.consultarconcampoIE(tabla, campo, valor);
         }
 
-        public MySqlDataReader consultarCif(string cif)
-        {
-            return sn.consultarconcampoCif(cif);
-        }
-
         public MySqlDataReader consultarIO(string tabla, string campo, string valor)
         {
             return sn.consultarconcampoIO(tabla, campo, valor);
         }
-        
+
         public MySqlDataReader consultarcif(string valor)
         {
             return sn.consultarconcampoIOs(valor);
@@ -173,5 +169,14 @@ namespace KB_Guadalupana.Models
             sn.eliminarregistro(tabla, campo, dato);
         }
 
+        public MySqlDataReader consultarCif(string cif)
+        {
+            return sn.consultarconcampoCif(cif);
+        }
+
+        public DataTable buscarCIF(string cif)
+        {
+            return sn.buscarCIF(cif);
+        }
     }
 }

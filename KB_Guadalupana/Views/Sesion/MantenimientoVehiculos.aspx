@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MantenimientoVehiculos.aspx.cs" Inherits="KB_Guadalupana.Views.Sesion.MantenimientoVehiculos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MantenimientoTelefono.aspx.cs" Inherits="KB_Guadalupana.Views.Sesion.MantenimientoTelefono" %>
 
 <!DOCTYPE html>
 
@@ -6,41 +6,20 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <title>Vehiculos</title>
+    <title>Telefono</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-       <style>
-           
-           .button 
-{
-  background-color: #69a43c; 
-  border: none;
-  color: white;
-  padding: 0px 0px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-.button5:hover
-{
-  background-color: #555555;
-  color: white;
-}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <style>  
         .responsive 
         {
             max-width: 100%;
             height: auto;
         }
-
         body {
            display: flex;
             justify-content: center;
@@ -52,7 +31,6 @@
             flex-direction: column;
           font-family: Arial, Helvetica, sans-serif;
           padding-top:50px;
-
         }
 
         .topnav {
@@ -83,31 +61,32 @@
           background-color: #003563;
         }
 
-        .topnav a {
-          float: left;
-          color: #f2f2f2;
-          text-align: center;
-          padding: 15px 35px;
-          text-decoration: none;
-          font-size: 17px;
-        }
+           .topnav a {
+               float: left;
+               color: #f2f2f2;
+               text-align: center;
+               padding: 15px 35px;
+               text-decoration: none;
+               font-size: 17px;
+           }
 
-        .topnav a:hover {
-          background-color: #B80416;;
-          color: White;
-        }
+               .topnav a:hover {
+                   background-color: #B80416;
+                   ;
+                   color: White;
+               }
 
-        .topnav a.active {
-          background-color: #69a43c;
-          color: white;
-        }
+               .topnav a.active {
+                   background-color: #69a43c;
+                   color: white;
+               }
 
-        .tampe {
-            margin: 4px;
-            padding: 6px;
-            border: 1px lightgray solid;
-            width: 100px;
-        }
+           .tampe {
+               margin: 4px;
+               padding: 6px;
+               border: 1px lightgray solid;
+               width: 100px;
+           }
 
         .tamp {
             margin: 0px;
@@ -127,7 +106,7 @@
            background-color: #003A6E;
         }
         
-      
+     
         .mantenimientos {
             display: flex;
             flex-direction: row;
@@ -144,34 +123,34 @@
             /*position: absolute;*/
         }
 
-        .mantenimientos a {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-content: center;
-          align-items:center;
-          background-color: #0066BF; /* Green background */
-          border: 0px; /* Green border */
-          color: white; /* White text */
-          padding: 5px; /* Some padding */
-          cursor: pointer; /* Pointer/hand icon */
-          float: left; /* Float the buttons side by side */
-          padding: 5px;
-          margin: 1px;
-          width: 110px;
-          height: 30px;
-          font-family: 'Montserrat';
-          font-size: 10px;
-        }
+           .mantenimientos a {
+               display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-content: center;
+              align-items:center;
+              background-color: #0066BF; /* Green background */
+              border: 0px; /* Green border */
+              color: white; /* White text */
+              padding: 5px; /* Some padding */
+              cursor: pointer; /* Pointer/hand icon */
+              float: left; /* Float the buttons side by side */
+              padding: 5px;
+              margin: 1px;
+              width: 110px;
+              height: 30px;
+              font-family: 'Montserrat';
+              font-size: 10px;
+           }
 
 
-        h2.fs-title {
+           h2.fs-title {
             justify-content: center;
             align-items: center;
             display: flex;
         }
 
-       .tabla {
+       .tabla{
            border-collapse:collapse;
            align-items: center;
            align-content: center;
@@ -182,7 +161,7 @@
            align-items: center;
            justify-content:center;
            border: 0.5px solid black;
-           align-content:center;
+           align-content:center;  
            padding: 5px;
        }
 
@@ -195,80 +174,81 @@
        }
 
        .tabla td {
-           align-items: center;
+             align-items: center;
            justify-content:center;
            border: 0.5px solid black;
-           align-content:center;
+         align-content:center;
            padding: 5px;
        }
 
-        /*.formulario {
-            -webkit-box-shadow: 1px 0px 15px 5px rgba(0,0,0,0.81); 
-            box-shadow: 1px 0px 15px 5px rgba(0,0,0,0.81);
-            width:auto;
-            height:auto;
-            padding:20px;
+        .encabezado {
+            flex-direction:row;
             display: flex;
-            flex-direction: column;
-            overflow:auto;
-            margin-bottom:20px;
-        }*/
-
-           .encabezado {
-               flex-direction: row;
-               display: flex;
-               justify-content: space-between;
-               padding-top: 10px;
-           }
-
-           .buscar {
-               flex-direction: row;
-               display: flex;
-               justify-content: center;
-               margin: 5px;
-           }
-        .btnprueba{
-
+            justify-content: space-between;
+            padding-top:10px;
         }
-  
+
+        .buscar {
+            flex-direction: row;
+            display: flex;
+            justify-content: center;
+            margin: 5px;
+        }
+        .button 
+{
+  background-color: #69a43c; 
+  border: none;
+  color: white;
+  padding: 0px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button5:hover
+{
+  background-color: #555555;
+  color: white;
+}
+
 </style>
 </head>
 <body>
-    <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaVehiculo.aspx" ><i class="fa fa-question"></i></a>
+    <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaTelefono.aspx" ><i class="fa fa-question"></i></a>   
      <div class="menu"></div>
         <div class="mantenimientos">
           <a href="MantenimientoVehiculos.aspx" class="active" onclick="MantenimientoVehiculos()">Vehículos</a>
           <a href="MantenimientoMoneda.aspx" onclick="MantenimientoMoneda()" id="MantenimientoMoneda">Moneda</a>
-          <a href="MantenimientoCuentas.aspx">Cuentas</a>
           <a href="MantenimientoInmueble.aspx">Inmueble</a>
           <a href="MantenimientoTelefono.aspx">Teléfono</a>
-          <a href="MantenimientoPep.aspx">PEP</a>
           <a href="MantenimientoPrestamos.aspx">Prestamos</a>
           <a href="MantenimientoEstado.aspx">Estado</a>
           <a href="MantenimientoEstatus.aspx">Estatus Cuentas</a>
         </div>
-
- <form id="form1" runat="server">
- <div >
+    <form id="form1" runat="server">
+    <div>
      <div class="encabezado">
-         <h2 class="fs-title">
-            <b>Registro Tipo Vehículos</b>
+         <h2 class="fs-title" style="margin-left:0">
+            <b>Registro Tipo Teléfono</b>
         </h2>
         <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="width: 180px; height: 120px; top: 0; margin-left: 0px;" />
      </div>
-
-  <input id="RVCodigo" disabled="disabled" readonly="readonly" runat="server" type="text" class="tam" style="width:10%;" required/>
-  <div class="buscar">
-    <asp:TextBox ID="TextBox1" placeholder="Ingrese tipo vehículo" runat="server" CssClass="tamp"></asp:TextBox>
+     <input id="RTCodigo" disabled="disabled" readonly="readonly" runat="server" type="text" class="tam" style="width:10%;" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+     <div class="buscar">
+    <asp:TextBox ID="TextBox1" placeholder="Ingrese tipo teléfono" runat="server" CssClass="tamp"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Buscar" CssClass="tam" />
     <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Ver todos" CssClass="tam" />
   </div>
-        <br />
-            <asp:GridView ID="gvPhoneBook" CssClass="tabla" runat="server" AutoGenerateColumns="false" ShowFooter="true" DataKeyNames="codeptipovehiculo"
+             <br />
+
+        <asp:GridView ID="gvPhoneBook" CssClass="tabla" runat="server" AutoGenerateColumns="false" ShowFooter="true" DataKeyNames="codeptipotelefono"
                 ShowHeaderWhenEmpty="true"
                 OnRowCommand="gvPhoneBook_RowCommand" OnRowEditing="gvPhoneBook_RowEditing" OnRowCancelingEdit="gvPhoneBook_RowCancelingEdit"
                 OnRowUpdating="gvPhoneBook_RowUpdating" OnRowDeleting="gvPhoneBook_RowDeleting"
-                BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="496px">
+                BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="496px" OnSelectedIndexChanged="gvPhoneBook_SelectedIndexChanged">
                 <%-- Theme Properties --%>
                 <FooterStyle BackColor="White" ForeColor="#000066"/>
                 <HeaderStyle BackColor="#0071D4" Font-Bold="True" ForeColor="White" />
@@ -283,28 +263,27 @@
                 <Columns>
                     <asp:TemplateField HeaderText="Código">
                         <ItemTemplate>
-                            <asp:Label  Text='<%# Eval("codeptipovehiculo") %>' runat="server" />
+                            <asp:Label Text='<%# Eval("codeptipotelefono") %>' runat="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtFirstName" Text='<%# Eval("codeptipovehiculo") %>' runat="server" />
+                            <asp:TextBox ID="txtFirstName" Text='<%# Eval("codeptipotelefono") %>' runat="server" />
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="txtFirstNameFooter" runat="server" />
-                           <%-- <asp:TextBox ID="TextBox2" ReadOnly="true" runat="server"/>--%>
+                            <asp:TextBox ID="txtFirstNameFooter" runat="server"/>
                         </FooterTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Tipo Vehiculo">
+                    <asp:TemplateField HeaderText="Tipo Teléfono">
                   <ItemTemplate>
-                            <asp:Label Text='<%# Eval("ep_tipovehiculonombre") %>' runat="server" />
+                            <asp:Label Text='<%# Eval("ep_tipotelefononombre") %>' runat="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtContact" Text='<%# Eval("ep_tipovehiculonombre") %>' runat="server" />
+                            <asp:TextBox ID="txtContact" Text='<%# Eval("ep_tipotelefononombre") %>' runat="server" />
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="txtContactFooter" placeholder="Ingrese tipo vehículo" runat="server" />
+                            <asp:TextBox ID="txtContactFooter" placeholder="Tipo de teléfono" runat="server" />
                         </FooterTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Opciones">
+                    <asp:TemplateField>
                         <ItemTemplate>
                             <asp:ImageButton ImageUrl="../../Imagenes/edit.png" runat="server" CommandName="Edit" ToolTip="Edit" Width="20px" Height="20px"/>
                             <asp:ImageButton ImageUrl="../../Imagenes/delete.png" runat="server" CommandName="Delete" ToolTip="Delete" Width="20px" Height="20px"/>
@@ -328,21 +307,21 @@
      
   </div>
       </form>
-
 </body>
    <script>
        $(document).ready(function () {
            $('.menu').load('MenuBarra.aspx');
        });
+       ////function MantenimientoVehiculos() {
+       ////    document.getElementById('MantenimientoVehiculos').click();
+       ////}
 
        function MantenimientoMoneda() {
            document.getElementById('MantenimientoMoneda').click();
        }
 
-       function agregarRegistro() {
-           document.getElementById('agregarRegistro').click();
-       }
-
 
    </script>
 </html>
+
+

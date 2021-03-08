@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -44,8 +45,6 @@ namespace KB_Guadalupana.Controllers
 
         }
 
-
-
         public MySqlDataReader consultarCodigo(string usuario)
         {
             try
@@ -62,10 +61,27 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public DataTable buscarCIF(string cif)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT gen_usuarionombre, codepinformaciongeneralcif FROM gen_usuario INNER JOIN ep_control ON gen_usuario.codgenusuario = ep_control.codgenusuario WHERE codepinformaciongeneralcif='" + cif + "'", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
 
 
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
 
-
+                return dt;
+            }
+        }
 
         public MySqlDataReader consultaridcontrol(string usuario, string lote)
         {
@@ -84,7 +100,6 @@ namespace KB_Guadalupana.Controllers
             }
             finally { cn.desconectar(); }
         }
-
 
         //CONSULTAR DATOS DE UN EP EXISTENTE
         public MySqlDataReader consultarepingresado(string sucursal, string estadocivil, string tipoidentificacion, string departamento, string municipio, string zona, string area, string cif)
@@ -123,15 +138,7 @@ namespace KB_Guadalupana.Controllers
             finally { cn.desconectar(); }
         }
 
-     
-
         //MOSTRAR DATOS
-
-
-
-
-
-
 
         //Consultar Reporte
 
@@ -198,25 +205,7 @@ namespace KB_Guadalupana.Controllers
                     "FROM ep_infofamiliar epif " +
                     "INNER JOIN ep_informaciongeneral epig ON epig.codepinformaciongeneralcif = epif.codepinformaciongeneralcif " +
                     "INNER JOIN ep_estadocivil epec ON epec.codepestadocivil = epig.codepestadocivil " +
-                    "WHERE epig.ep_informaciongeneralcif ='"+cif+"'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-
-
-        public MySqlDataReader consultarconcampoCif( string cif)
-        {
-            try
-            {
-                cn.conectar();
-                string consultaGraAsis = "select ep_informaciongeneralcif from ep_informaciongeneral where codepinformaciongeneralcif='"+cif+"'";
+                    "WHERE epig.ep_informaciongeneralcif ='" + cif + "'";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -240,7 +229,7 @@ namespace KB_Guadalupana.Controllers
                     " epes.ep_estudiolugar " +
                     " FROM ep_estudio epes " +
                     "INNER JOIN ep_informaciongeneral epig ON epes.codepinformaciongeneralcif = epig.codepinformaciongeneralcif  " +
-                    "  WHERE  epig.ep_informaciongeneralcif = '"+ valor + "' AND epes.ep_estudiotipo = 0 ;";
+                    "  WHERE  epig.ep_informaciongeneralcif = '" + valor + "' AND epes.ep_estudiotipo = 0 ;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -257,7 +246,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "select codepinformaciongeneralcif from ep_informaciongeneral where ep_informaciongeneralcif='"+valor+"'";
+                string consultaGraAsis = "select codepinformaciongeneralcif from ep_informaciongeneral where ep_informaciongeneralcif='" + valor + "'";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -274,7 +263,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_bactivoscaja from ep_bactivos where codepinformaciongeneralcif='"+valor+"'";
+                string consultaGraAsis = "SELECT ep_bactivoscaja from ep_bactivos where codepinformaciongeneralcif='" + valor + "'";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -291,7 +280,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "select ep_inventarionombre,ep_inventariomonto from ep_inventario where codepinformaciongeneralcif='"+valor+"';";
+                string consultaGraAsis = "select ep_inventarionombre,ep_inventariomonto from ep_inventario where codepinformaciongeneralcif='" + valor + "';";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -308,7 +297,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "select  ep_maquinarianombre,ep_maquinariadescripcion,ep_maquinariamonto from ep_maquinaria where codepinformaciongeneralcif='"+valor+"';";
+                string consultaGraAsis = "select  ep_maquinarianombre,ep_maquinariadescripcion,ep_maquinariamonto from ep_maquinaria where codepinformaciongeneralcif='" + valor + "';";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -325,7 +314,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=1;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=1;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -342,7 +331,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=2";
+                string consultaGraAsis = "SELECT ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=2";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -359,7 +348,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=3";
+                string consultaGraAsis = "SELECT ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=3";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -376,7 +365,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=4;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=4;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -393,7 +382,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=5;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=5;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -410,7 +399,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=6;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=6;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -427,7 +416,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=7;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=7;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -444,7 +433,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=8;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=8;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -461,7 +450,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=9;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=9;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -478,7 +467,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=10;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=10;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -495,7 +484,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='"+valor+"' AND a.codeptipobien=11;";
+                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado WHERE b.codepinformaciongeneralcif='" + valor + "' AND a.codeptipobien=11;";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -512,7 +501,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_deudasvariasdescripcion,ep_deudasvariasvalor from ep_deudasvarias where codepinformaciongeneralcif='"+valor+"';";
+                string consultaGraAsis = "SELECT ep_deudasvariasdescripcion,ep_deudasvariasvalor from ep_deudasvarias where codepinformaciongeneralcif='" + valor + "';";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -531,7 +520,7 @@ namespace KB_Guadalupana.Controllers
                 cn.conectar();
                 string consultaGraAsis = "Select ep_pasivocontigenombre,ep_pasivocontigentedeudor,ep_pasivocontigentecondeudor,ep_pasivocontigentesaldo," +
                     "DATE_FORMAT(ep_pasivocontigentefechadesembolso, '%Y-%m-%d')," +
-                    "DATE_FORMAT(ep_pasivocontigentefechafinalizacion, '%Y-%m-%d') FROM ep_pasivocontigente where codepinformaciongeneralcif='"+valor+"';";
+                    "DATE_FORMAT(ep_pasivocontigentefechafinalizacion, '%Y-%m-%d') FROM ep_pasivocontigente where codepinformaciongeneralcif='" + valor + "';";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -548,7 +537,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT ep_ingresosueldo,ep_ingresobonificacion,ep_ingresocomisiones FROM ep_ingreso a INNER JOIN ep_controlingreso b ON a.codepcontrolingreso=b.codepcontrolingreso WHERE b.codepinformaciongeneralcif='"+valor+"'";
+                string consultaGraAsis = "SELECT ep_ingresosueldo,ep_ingresobonificacion,ep_ingresocomisiones FROM ep_ingreso a INNER JOIN ep_controlingreso b ON a.codepcontrolingreso=b.codepcontrolingreso WHERE b.codepinformaciongeneralcif='" + valor + "'";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -571,7 +560,7 @@ namespace KB_Guadalupana.Controllers
                     "ep_negocioobjeto,ep_negocioingresos," +
                     "ep_negocioegresos,ep_negociodireccion " +
                     "FROM ep_negocio a INNER JOIN ep_controlingreso b ON a.codepcontrolingreso=b.codepcontrolingreso " +
-                    "WHERE b.codepinformaciongeneralcif='"+valor+"'";
+                    "WHERE b.codepinformaciongeneralcif='" + valor + "'";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -594,7 +583,7 @@ namespace KB_Guadalupana.Controllers
                     "DATE_FORMAT(ep_remesasperiodo, '%Y-%m-%d') " +
                     "FROM ep_remesas a " +
                     "INNER JOIN ep_controlingreso b ON a.codepcontrolingreso=b.codepcontrolingreso " +
-                    "WHERE b.codepinformaciongeneralcif='"+valor+"'";
+                    "WHERE b.codepinformaciongeneralcif='" + valor + "'";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -611,7 +600,7 @@ namespace KB_Guadalupana.Controllers
             try
             {
                 cn.conectar();
-                string consultaGraAsis = "SELECT * from ep_egresos where codinformaciongeneralcif='"+valor+"'";
+                string consultaGraAsis = "SELECT * from ep_egresos where codinformaciongeneralcif='" + valor + "'";
                 comm = new MySqlCommand(consultaGraAsis, cn.conectar());
                 MySqlDataReader mostrarResultados = comm.ExecuteReader();
                 return mostrarResultados;
@@ -666,7 +655,7 @@ namespace KB_Guadalupana.Controllers
             int i = 0;
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-               
+
                 try
                 {
                     string consulta = "SELECT a.codepinformaciongeneralcif,a.codepadministracionlote,c.ep_administracionlotefechainicio " +
@@ -687,7 +676,7 @@ namespace KB_Guadalupana.Controllers
                     }
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
-                           
+
             }
             return Campos;// devuelve un arrgeglo con los campos  
         }
@@ -704,7 +693,7 @@ namespace KB_Guadalupana.Controllers
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT * FROM "+tabla+" where "+campo+"='"+dato+"'", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM " + tabla + " where " + campo + "='" + dato + "'", sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -730,9 +719,9 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     string consultaGraAsis = "SELECT ep_informaciongeneralcif from ep_informaciongeneral" +
-                        " where ep_informaciongeneralprimernombre='"+ nombre1 + "'" +
-                        " and ep_informaciongeneralsegundonombre='"+ nombre2 + "' " +
-                        "and ep_informaciongeneralprimerapellido='"+ apellido1 + "'";
+                        " where ep_informaciongeneralprimernombre='" + nombre1 + "'" +
+                        " and ep_informaciongeneralsegundonombre='" + nombre2 + "' " +
+                        "and ep_informaciongeneralprimerapellido='" + apellido1 + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -750,7 +739,7 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public string[] consultarinformaciong( string cif)
+        public string[] consultarinformaciong(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
@@ -773,7 +762,7 @@ namespace KB_Guadalupana.Controllers
                         "inner join gen_zona t6 on t0.codgenzona = t6.codgenzona " +
                         "inner join gen_area t7 on t0.codgenarea = t7.codgenarea " +
                         "inner join gen_puestos t8 on t0.codgenpuesto = t8.codgenpuestos " +
-                        "where t0.ep_informaciongeneralcif='"+cif+"'";
+                        "where t0.ep_informaciongeneralcif='" + cif + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -816,6 +805,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
+
         public string[] validarfechadeingreso_ep()
         {
 
@@ -848,20 +838,21 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos               
             }
         }
+
         public string[] busquedacif(string usuario, string lote)
         {
             string[] Campos = new string[30];
             int i = 0;
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-               
+
                 try
                 {
                     sqlCon.Open();
                     string consulta = "SELECT codepinformaciongeneralcif,gen_usuarionombre " +
                  "FROM ep_control a " +
                     "INNER JOIN gen_usuario b " +
-                  "ON a.codgenusuario = b.codgenusuario AND codepadministracionlote= '" + lote + "' where  b.gen_usuarionombre ='" + usuario + "';";         
+                  "ON a.codgenusuario = b.codgenusuario AND codepadministracionlote= '" + lote + "' where  b.gen_usuarionombre ='" + usuario + "';";
                     MySqlCommand command = new MySqlCommand(consulta, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -874,10 +865,11 @@ namespace KB_Guadalupana.Controllers
                     }
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
-                     
+
             }
             return Campos;// devuelve un arrgeglo con los campos      
         }
+
         public string[] estadodeprocesocif(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -903,6 +895,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos               
             }
         }
+
         public string[] consultarRol(string usuario)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -955,6 +948,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarcamposgeneral(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -981,6 +975,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarcamposgeneralfam(string cif)
         {
 
@@ -1008,6 +1003,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarestudios(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1033,6 +1029,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarcaja(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1058,6 +1055,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarinventario(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1083,6 +1081,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmaquinaria(string cif)
         {
 
@@ -1109,6 +1108,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarcontratistaproveedor(string cif)
         {
 
@@ -1118,7 +1118,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT ep_contratistaproveedor_si_no from ep_contratistaproveedor where codepcontratistaproveedor='"+cif+"';";
+                    string consultaGraAsis = "SELECT ep_contratistaproveedor_si_no from ep_contratistaproveedor where codepcontratistaproveedor='" + cif + "';";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -1135,6 +1135,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarinversion(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1160,9 +1161,10 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje1(string cif)
         {
-             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1185,8 +1187,9 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje2(string cif)
-        {          
+        {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
@@ -1210,9 +1213,10 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje3(string cif)
         {
-           using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1235,6 +1239,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje4(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1260,6 +1265,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje5(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1285,6 +1291,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje6(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1310,9 +1317,10 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje7(string cif)
         {
-           using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1336,9 +1344,10 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
+
         public string[] mostrarmenaje8(string cif)
         {
-           using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1361,6 +1370,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje9(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1386,8 +1396,9 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje10(string cif)
-        {         
+        {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
@@ -1411,8 +1422,9 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarmenaje11(string cif)
-        {         
+        {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
@@ -1436,6 +1448,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrardeudas(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1461,6 +1474,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarpasivocontigente(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1486,9 +1500,10 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostraringresos(string cif)
         {
-           using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1511,9 +1526,10 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarnegocios(string cif)
         {
-           using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1536,6 +1552,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarremesas(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1561,6 +1578,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostraregresos(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1586,9 +1604,10 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarexpuestapep(string cif)
         {
-             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1611,6 +1630,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarparentescopep(string cif)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1636,9 +1656,10 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string[] mostrarasociadocopep(string cif)
         {
-           
+
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string[] Campos = new string[30];
@@ -1662,6 +1683,7 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
         public string obtenerfinal(string tabla, string campo)
         {
             String camporesultante = "";
@@ -1688,6 +1710,7 @@ namespace KB_Guadalupana.Controllers
 
 
         }
+
         public void insertartablas(string tabla, string[] datos)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1707,7 +1730,7 @@ namespace KB_Guadalupana.Controllers
                     sqlCon.Open();
                     string consulta = "insert into " + tabla + " values(" + query + ");";
                     Console.WriteLine(consulta);
-                    comm = new MySqlCommand(consulta,sqlCon);
+                    comm = new MySqlCommand(consulta, sqlCon);
                     MySqlDataReader mostrar = comm.ExecuteReader();
                 }
                 catch (Exception err)
@@ -1717,6 +1740,7 @@ namespace KB_Guadalupana.Controllers
                 }
             }
         }
+
         public void modificartablas(string tabla, string[] campos, string[] datos)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1749,6 +1773,7 @@ namespace KB_Guadalupana.Controllers
                 }
             }
         }
+
         public void modificartablasdoscampos(string tabla, string[] campos, string[] datos)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1783,6 +1808,41 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public string estadoLote()
+        {
+            String camporesultante = "";
+            try
+            {
+                string sql = "SELECT ep_administracionloteestado FROM ep_administracionlote WHERE ep_administracionloteestado = 1";
+                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                camporesultante = reader.GetValue(0).ToString();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(camporesultante);
+            }
+            finally { cn.desconectar(); }
+            return camporesultante;
+        }
+
+        public MySqlDataReader consultarconcampoCif(string cif)
+        {
+            try
+            {
+                cn.conectar();
+                string consultaGraAsis = "select ep_informaciongeneralcif from ep_informaciongeneral where codepinformaciongeneralcif='" + cif + "'";
+                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                return mostrarResultados;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
 
     }
 

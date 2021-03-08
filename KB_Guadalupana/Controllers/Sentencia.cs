@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Web;
 
 namespace KB_Guadalupana.Controllers
@@ -44,8 +45,6 @@ namespace KB_Guadalupana.Controllers
 
         }
 
-
-
         public MySqlDataReader consultarCodigo(string usuario)
         {
             try
@@ -61,11 +60,6 @@ namespace KB_Guadalupana.Controllers
                 return null;
             }
         }
-
-
-
-
-
 
         public MySqlDataReader consultaridcontrol(string usuario, string lote)
         {
@@ -84,7 +78,6 @@ namespace KB_Guadalupana.Controllers
             }
             finally { cn.desconectar(); }
         }
-
 
         //CONSULTAR DATOS DE UN EP EXISTENTE
         public MySqlDataReader consultarepingresado(string sucursal, string estadocivil, string tipoidentificacion, string departamento, string municipio, string zona, string area, string cif)
@@ -123,15 +116,7 @@ namespace KB_Guadalupana.Controllers
             finally { cn.desconectar(); }
         }
 
-     
-
         //MOSTRAR DATOS
-
-
-
-
-
-
 
         //Consultar Reporte
 
@@ -673,7 +658,6 @@ namespace KB_Guadalupana.Controllers
             }
             return Campos;// devuelve un arrgeglo con los campos  
         }
-
 
         public string[] consultarconcampo(string tabla, string campo, string dato)//metodo que obtiene la lista de los campos que requiere una tabla
         {
@@ -1765,7 +1749,44 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public MySqlDataReader consultarconcampoCif(string cif)
+        {
+            try
+            {
+                cn.conectar();
+                string consultaGraAsis = "select ep_informaciongeneralcif from ep_informaciongeneral where codepinformaciongeneralcif='" + cif + "'";
+                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                return mostrarResultados;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
 
+        public DataTable buscarCIF(string cif)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT gen_usuarionombre, codepinformaciongeneralcif FROM gen_usuario INNER JOIN ep_control ON gen_usuario.codgenusuario = ep_control.codgenusuario WHERE codepinformaciongeneralcif='" + cif + "'", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
     }
 
 }

@@ -145,7 +145,7 @@ body {
 </style>
 </head>
 <body>
-    <center><img class="sobre" src="../../../Imagenes/barra.png"/></center>
+    <center><img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/></center>
     <div class="menu"></div>
     <form id="form1" runat="server">
           <div class="topnav">

@@ -1787,6 +1787,25 @@ namespace KB_Guadalupana.Controllers
                 return dt;
             }
         }
+
+        public string estadoLote()
+        {
+            String camporesultante = "";
+            try
+            {
+                string sql = "SELECT ep_administracionloteestado FROM ep_administracionlote WHERE ep_administracionloteestado = 1";
+                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                camporesultante = reader.GetValue(0).ToString();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(camporesultante);
+            }
+            finally { cn.desconectar(); }
+            return camporesultante;
+        }
     }
 
 }

@@ -240,10 +240,22 @@
             width: 900px;
             height: 250px;
         }
-  
+  .sobre 
+        {
+        position: absolute;
+        top: 6%;
+        left: 33%;
+        margin-top: -40px;
+        margin-left: -33px;
+        max-width: 60%;
+        /*width: 100px;
+        height: 50px;*/
+        }
+
 </style>
 </head>
 <body>
+     <img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/>
     <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaLote.aspx" ><i class="fa fa-question"></i></a>
 
      <div class="menu"></div>

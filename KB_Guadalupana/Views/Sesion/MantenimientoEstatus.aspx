@@ -212,20 +212,31 @@
   background-color: #555555;
   color: white;
 }
+      .sobre 
+        {
+        position: absolute;
+        top: 6%;
+        left: 33%;
+        margin-top: -40px;
+        margin-left: -33px;
+        max-width: 60%;
+        /*width: 100px;
+        height: 50px;*/
+        }
 </style>
 </head>
 <body>
-
+    <img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/>
     <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaEstatus.aspx" ><i class="fa fa-question"></i></a>
 
      <div class="menu"></div>
         <div class="mantenimientos">
           <a href="MantenimientoVehiculos.aspx" class="active" onclick="MantenimientoVehiculos()">Vehículos</a>
           <a href="MantenimientoMoneda.aspx" onclick="MantenimientoMoneda()" id="MantenimientoMoneda">Moneda</a>
-          <a href="MantenimientoCuentas.aspx">Cuentas</a>
+          <%--<a href="MantenimientoCuentas.aspx">Cuentas</a>--%>
           <a href="MantenimientoInmueble.aspx">Inmueble</a>
           <a href="MantenimientoTelefono.aspx">Teléfono</a>
-          <a href="MantenimientoPep.aspx">PEP</a>
+          <%--<a href="MantenimientoPep.aspx">PEP</a>--%>
           <a href="MantenimientoPrestamos.aspx">Prestamos</a>
           <a href="MantenimientoEstado.aspx">Estado</a>
           <a href="MantenimientoEstatus.aspx">Estatus Cuentas</a>

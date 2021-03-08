@@ -200,8 +200,15 @@
            justify-content:center;
            border: 0.5px solid black;
            align-content:center;
-           padding: 5px;
+           height: 30px;
+           text-align: center;
+           
            background-color: white;
+       }
+
+       .tabla td input
+       {
+             height: 34px;
        }
 
          .tabla2 {
@@ -209,6 +216,7 @@
            align-items: center;
            align-content: center;
            justify-content:center;
+           text-align: center;
        }
 
        .tabla2 th {
@@ -227,6 +235,7 @@
            border: 0.5px solid black;
            align-content:center;
            padding: 5px;
+           text-align: center;
        }
 
        .tabla2 td {
@@ -236,6 +245,7 @@
            align-content:center;
            padding: 5px;
            height:35px;
+           text-align: center;
        }
 
            .encabezado {
@@ -243,6 +253,7 @@
                display: flex;
                justify-content: space-between;
                padding-top: 10px;
+
            }
 
            .buscar {
@@ -256,18 +267,29 @@
             justify-content: center;
             display:flex;
             overflow: scroll;
-            width: 740px;
-            height: 200px;
+            width: 900px;
+            height: 312px;
         }
 
         .imagen{
             height: 30px;
         }
   
+          .sobre 
+        {
+        position: absolute;
+        top: 6%;
+        left: 33%;
+        margin-top: -40px;
+        margin-left: -33px;
+        max-width: 60%;
+        /*width: 100px;
+        height: 50px;*/
+        }
 </style>
 </head>
 <body>
-
+    <img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/>
     <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaALote.aspx" ><i class="fa fa-question"></i></a>
 
 

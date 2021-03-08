@@ -84,7 +84,7 @@
 </style>
 </head>
 <body>
-    <img class="sobre" src="../../Imagenes/barra.png"/>
+    <img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/>
     <form id="form1" runat="server">
        <div class="menu"></div>
          <div class="btn-group">

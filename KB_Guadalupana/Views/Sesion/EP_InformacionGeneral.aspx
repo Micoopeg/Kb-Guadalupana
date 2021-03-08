@@ -645,7 +645,7 @@ body {
                         
                         <select class="tampe" id="Select1" runat="server" style="max-width: 150px;margin-left: 157px;">
                             <option  value="0">[Tipo de cuenta]</option>
-                            <option value="1">Monetaria</option>
+                            <option value="1">Aportaciones</option>
                             <option value="2">Ahorro</option>
                        </select>
                        <input id="ACCMonto" runat="server" type="number" class="tam" style="max-width: 150px;"  placeholder="Saldo en Cuenta" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>

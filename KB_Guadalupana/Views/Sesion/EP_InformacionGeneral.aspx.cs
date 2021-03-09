@@ -62,6 +62,8 @@ namespace KB_Guadalupana.Views.Sesion
         Sentencia sn = new Sentencia();
         protected void Page_Load(object sender, EventArgs e)
         {
+            string usuario = Session["sesion_usuario"].ToString();
+            logic.bitacoraingreso(usuario, "Estado Patrimonial", "Ingreso");
             obtencioncampos();
             if (!IsPostBack)
             {

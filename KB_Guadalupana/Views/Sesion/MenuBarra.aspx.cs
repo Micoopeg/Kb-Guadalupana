@@ -117,7 +117,7 @@ namespace Login_Web
         }
 
         protected void estadoPatrimonial_Click(object sender, EventArgs e)
-        {
+        {          
             Response.Redirect("EP_InformacionGeneral.aspx");
         }
 

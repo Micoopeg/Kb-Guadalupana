@@ -204,7 +204,7 @@ padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 10px;
-    width: 101.5%;
+    width: 100%;
     box-sizing: border-box;
     font-family: montserrat;
     color: #2C3E50;
@@ -221,25 +221,21 @@ padding: 8px;
     </div>
     
     
-  <form action="Seguridad4.aspx" method="post">
+  <form  runat="server">
   <h1 style="color:white">Estado Usuarios</h1>
   <div class="inset">
   <p>
     <label style="color:white">Usuarios</label>
-    <input style="color:white" type="text" name="email" id="email">
+       <asp:DropDownList ID="SUsuario" OnSelectedIndexChanged="SUsuario_SelectedIndexChanged" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
   </p>
   <p>
     <label style="color:white">Estado</label>
-    <select class="dis">
-            <option disabled selected>Departamento</option>
-            <option value="">Informatica</option>
-            <option value="">Cumplimiento</option>
-        </select>
+    <input id="SEstado" runat="server" type="text" class="dis" readonly="true" />
   </p>
   
   </div>
   <p class="p-container">
-    <input type="submit" value="Verificar">
+      <asp:Button ID="SVerificar" runat="server" Text="Verificar" OnClick="SVerificar_Click"/>
   </p>
 </form>
 

@@ -1,3 +1,5 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Seguridad3.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.Seguridad3" %>
+
 
 
 <!DOCTYPE html>

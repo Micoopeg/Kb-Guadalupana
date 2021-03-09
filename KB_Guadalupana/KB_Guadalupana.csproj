@@ -335,6 +335,9 @@
     <Content Include="Views\Arqueos\Manual\ManualCajeroAutomatico.aspx" />
     <Content Include="Views\Arqueos\Manual\ManualTesoreria.aspx" />
     <Content Include="Views\Arqueos\MenuArqueos.aspx" />
+    <Content Include="Views\Seguridad\Seguridad1.aspx" />
+    <Content Include="Views\Seguridad\Seguridad2.aspx" />
+    <Content Include="Views\Seguridad\Seguridad3.aspx" />
     <Content Include="Views\Sesion\AsignacionLotes.aspx" />
     <Content Include="Views\Sesion\AsignacionRolArea.aspx" />
     <Content Include="Views\Sesion\Ayudas\AyudaALote.aspx" />
@@ -613,6 +616,27 @@
     </Compile>
     <Compile Include="Views\Arqueos\MenuArqueos.aspx.designer.cs">
       <DependentUpon>MenuArqueos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\Seguridad1.aspx.cs">
+      <DependentUpon>Seguridad1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\Seguridad1.aspx.designer.cs">
+      <DependentUpon>Seguridad1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\Seguridad2.aspx.cs">
+      <DependentUpon>Seguridad2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\Seguridad2.aspx.designer.cs">
+      <DependentUpon>Seguridad2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\Seguridad3.aspx.cs">
+      <DependentUpon>Seguridad3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\Seguridad3.aspx.designer.cs">
+      <DependentUpon>Seguridad3.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\AsignacionLotes.aspx.cs">
       <DependentUpon>AsignacionLotes.aspx</DependentUpon>

@@ -1,3 +1,4 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Seguridad4.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.Seguridad4" %>
 
 
 <!DOCTYPE html>
@@ -17,8 +18,8 @@
         form 
 {
   background: #003563;
-  width: 700px;
-  margin: 130px auto;
+  width: 400px;
+  margin: 120px auto;
   border-radius: 0.4em;
   border: 1px solid #191919;
   overflow: hidden;
@@ -134,7 +135,7 @@ input[type=submit] {
   font-weight: bold;
   cursor: pointer;
   font-size: 13px;
-  margin-left: 260px;
+    margin-left: 125px;
 }
 
 input[type=submit]:hover {
@@ -217,48 +218,24 @@ padding: 8px;
 <body>
     <div class="topnav">
             <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
-            <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad KB-Guadalupana</b></span>
+            <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Creacion Modulos KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
     
     
   <form action="Seguridad2.aspx" method="post">
-  <h1 style="color:white">Estado Usuarios</h1>
+  <h1 style="color:white">Crea Modulo</h1>
   <div class="inset">
-<div class="row">
+      <div class="row">
     <p class="col-md-6">
-        <label  style="color:white">Usuarios</label>
+        <label  style="color:white">Abreviatura Modulo</label>
         <input style="color:white" type="text" name="email" id="email">
     </p>
     <p class="col-md-6">
-        <label style="color:white">Usuarios</label>
-       <select class="dis">
-            <option disabled selected>Departamento</option>
-            <option value="">Informatica</option>
-            <option value="">Cumplimiento</option>
-        </select>
-    </p>
-     <p class="col-md-4">
-        <label  style="color:white">Usuarios</label>
+        <label style="color:white">Nombre Modulo</label>
         <input style="color:white" type="text" name="email" id="email">
-    </p>
-    <p class="col-md-4">
-        <label style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
-     <p class="col-md-4">
-        <label style="color:white">Usuarios</label>
-        <select class="dis">
-            <option disabled selected>Departamento</option>
-            <option value="">Informatica</option>
-            <option value="">Cumplimiento</option>
-        </select>
     </p>
 </div>
-   <p >
-        <label  style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
   <p>
     <label style="color:white">Estado</label>
     <select class="dis">
@@ -267,6 +244,7 @@ padding: 8px;
             <option value="">Cumplimiento</option>
         </select>
   </p>
+  
   </div>
   <p class="p-container">
     <input type="submit" value="Guardar" >

@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Seguridad1.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.Seguridad1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Seguridad4.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.Seguridad4" %>
+
 
 <!DOCTYPE html>
 
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
     <style>
 
@@ -17,7 +19,7 @@
 {
   background: #003563;
   width: 400px;
-  margin: 175px auto;
+  margin: 120px auto;
   border-radius: 0.4em;
   border: 1px solid #191919;
   overflow: hidden;
@@ -216,18 +218,24 @@ padding: 8px;
 <body>
     <div class="topnav">
             <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
-            <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad KB-Guadalupana</b></span>
+            <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Creacion Modulos KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
     
     
-  <form action="Seguridad4.aspx" method="post">
-  <h1 style="color:white">Estado Usuarios</h1>
+  <form action="Seguridad2.aspx" method="post">
+  <h1 style="color:white">Crea Modulo</h1>
   <div class="inset">
-  <p>
-    <label style="color:white">Usuarios</label>
-    <input style="color:white" type="text" name="email" id="email">
-  </p>
+      <div class="row">
+    <p class="col-md-6">
+        <label  style="color:white">Abreviatura Modulo</label>
+        <input style="color:white" type="text" name="email" id="email">
+    </p>
+    <p class="col-md-6">
+        <label style="color:white">Nombre Modulo</label>
+        <input style="color:white" type="text" name="email" id="email">
+    </p>
+</div>
   <p>
     <label style="color:white">Estado</label>
     <select class="dis">
@@ -239,7 +247,7 @@ padding: 8px;
   
   </div>
   <p class="p-container">
-    <input type="submit" value="Verificar">
+    <input type="submit" value="Guardar" >
   </p>
 </form>
 

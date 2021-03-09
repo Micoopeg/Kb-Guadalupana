@@ -338,6 +338,7 @@
     <Content Include="Views\Seguridad\Seguridad1.aspx" />
     <Content Include="Views\Seguridad\Seguridad2.aspx" />
     <Content Include="Views\Seguridad\Seguridad3.aspx" />
+    <Content Include="Views\Seguridad\Seguridad4.aspx" />
     <Content Include="Views\Sesion\AsignacionLotes.aspx" />
     <Content Include="Views\Sesion\AsignacionRolArea.aspx" />
     <Content Include="Views\Sesion\Ayudas\AyudaALote.aspx" />
@@ -637,6 +638,13 @@
     </Compile>
     <Compile Include="Views\Seguridad\Seguridad3.aspx.designer.cs">
       <DependentUpon>Seguridad3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\Seguridad4.aspx.cs">
+      <DependentUpon>Seguridad4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\Seguridad4.aspx.designer.cs">
+      <DependentUpon>Seguridad4.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\AsignacionLotes.aspx.cs">
       <DependentUpon>AsignacionLotes.aspx</DependentUpon>

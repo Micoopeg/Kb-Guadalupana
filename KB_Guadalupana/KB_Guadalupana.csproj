@@ -397,9 +397,11 @@
     </Compile>
     <Compile Include="Controllers\Conexion.cs" />
     <Compile Include="Controllers\Conexion_arqueos.cs" />
+    <Compile Include="Controllers\Conexion_seguridad.cs" />
     <Compile Include="Controllers\ModeloAV.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
     <Compile Include="Controllers\Sentencia_arqueos.cs" />
+    <Compile Include="Controllers\Sentencia_seguridad.cs" />
     <Compile Include="DataMontos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

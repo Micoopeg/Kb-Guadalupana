@@ -2009,6 +2009,8 @@ CREATE TABLE `ep_vehiculo` (
   `ep_vehiculomodelo` varchar(100) DEFAULT NULL,
   `ep_vehiculoplaca` varchar(100) DEFAULT NULL,
   `ep_vehiculocomentario` varchar(100) DEFAULT NULL,
+  `ep_vehiculoanombrede` varchar(120) DEFAULT NULL,
+  `ep_vehiculomotivodeanombrede` varchar(120) DEFAULT NULL,
   PRIMARY KEY (`codepvehiculo`),
   KEY `fk_ep_vehiculo_ep_tipovehiculo1_idx` (`codeptipovehiculo`),
   KEY `fk_ep_vehiculo_ep_informaciongeneral1_idx` (`codepinformaciongeneralcif`),
@@ -2023,7 +2025,7 @@ CREATE TABLE `ep_vehiculo` (
 
 LOCK TABLES `ep_vehiculo` WRITE;
 /*!40000 ALTER TABLE `ep_vehiculo` DISABLE KEYS */;
-INSERT INTO `ep_vehiculo` VALUES (1,1,1,'Nissan','Lujo','2015','22545k',NULL),(2,1,1,'Toyota','Luxio','2015','11544k',NULL),(3,1,16,'Nissan','Lujo','2015','22545k',NULL),(4,1,16,'Toyota','Luxio','2015','11544k',NULL),(5,1,1,'Toyota','Lexus','M43','2565D8',NULL),(6,2,30,'asd','asd','asd','546',NULL),(7,1,21,'Prueba','Prueba','Prueba','sa5465',NULL),(8,1,31,'2','2','Prueba','546','asdas'),(9,1,32,'toyota','Yaris','2004','160BQX','CARRO PROPIO');
+INSERT INTO `ep_vehiculo` VALUES (1,1,1,'Nissan','Lujo','2015','22545k',NULL,NULL,NULL),(2,1,1,'Toyota','Luxio','2015','11544k',NULL,NULL,NULL),(3,1,16,'Nissan','Lujo','2015','22545k',NULL,NULL,NULL),(4,1,16,'Toyota','Luxio','2015','11544k',NULL,NULL,NULL),(5,1,1,'Toyota','Lexus','M43','2565D8',NULL,NULL,NULL),(6,2,30,'asd','asd','asd','546',NULL,NULL,NULL),(7,1,21,'Prueba','Prueba','Prueba','sa5465',NULL,NULL,NULL),(8,1,31,'2','2','Prueba','546','asdas',NULL,NULL),(9,1,32,'toyota','Yaris','2004','160BQX','CARRO PROPIO',NULL,NULL);
 /*!40000 ALTER TABLE `ep_vehiculo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3372,4 +3374,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-09 13:53:06
+-- Dump completed on 2021-03-09 13:59:55

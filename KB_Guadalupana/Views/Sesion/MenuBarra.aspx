@@ -130,6 +130,17 @@
                     </a>
                 </li>
             </ul>
+
+             <ul id="Ul2" runat="server" class ="opc1">
+               <li>
+                    <a href="../Seguridad/Seguridad1.aspx">
+                       <i class="fa fa-lock fa-2x"></i>
+                        <span class="nav-text">
+                            Seguridad
+                        </span>
+                    </a>
+                </li>
+            </ul>
        <%-- <ul class ="opc1">
               <li class="has-subnav">
                     <a href="#">

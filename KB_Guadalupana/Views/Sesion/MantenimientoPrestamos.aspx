@@ -216,7 +216,7 @@
         {
         position: absolute;
         top: 6%;
-        left: 33%;
+        left: 25%;
         margin-top: -40px;
         margin-left: -33px;
         max-width: 60%;
@@ -227,6 +227,11 @@
 </head>
 <body>
     <img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaPrestamos.aspx" ><i class="fa fa-question"></i></a>
 
 

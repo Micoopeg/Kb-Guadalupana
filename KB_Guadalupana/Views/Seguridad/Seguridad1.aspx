@@ -1,4 +1,4 @@
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Seguridad1.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.Seguridad1" %>
 
 <!DOCTYPE html>
 
@@ -10,15 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
     <style>
 
         form 
 {
   background: #003563;
-  width: 700px;
-  margin: 130px auto;
+  width: 400px;
+  margin: 175px auto;
   border-radius: 0.4em;
   border: 1px solid #191919;
   overflow: hidden;
@@ -134,7 +133,7 @@ input[type=submit] {
   font-weight: bold;
   cursor: pointer;
   font-size: 13px;
-  margin-left: 260px;
+    margin-left: 125px;
 }
 
 input[type=submit]:hover {
@@ -225,40 +224,10 @@ padding: 8px;
   <form action="Seguridad2.aspx" method="post">
   <h1 style="color:white">Estado Usuarios</h1>
   <div class="inset">
-<div class="row">
-    <p class="col-md-6">
-        <label  style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
-    <p class="col-md-6">
-        <label style="color:white">Usuarios</label>
-       <select class="dis">
-            <option disabled selected>Departamento</option>
-            <option value="">Informatica</option>
-            <option value="">Cumplimiento</option>
-        </select>
-    </p>
-     <p class="col-md-4">
-        <label  style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
-    <p class="col-md-4">
-        <label style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
-     <p class="col-md-4">
-        <label style="color:white">Usuarios</label>
-        <select class="dis">
-            <option disabled selected>Departamento</option>
-            <option value="">Informatica</option>
-            <option value="">Cumplimiento</option>
-        </select>
-    </p>
-</div>
-   <p >
-        <label  style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
+  <p>
+    <label style="color:white">Usuarios</label>
+    <input style="color:white" type="text" name="email" id="email">
+  </p>
   <p>
     <label style="color:white">Estado</label>
     <select class="dis">
@@ -267,9 +236,10 @@ padding: 8px;
             <option value="">Cumplimiento</option>
         </select>
   </p>
+  
   </div>
   <p class="p-container">
-    <input type="submit" value="Guardar" >
+    <input type="submit" value="Verificar" onclick="location.href='https://www.facebook.com'">
   </p>
 </form>
 

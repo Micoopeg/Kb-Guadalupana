@@ -255,7 +255,7 @@
 </style>
 </head>
 <body>
-     <img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/>
+    <%-- <img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/>--%>
     <a class="button button5" style="right: 8%;position: absolute;margin-top: -500px;" target="_blank" href="Ayudas/AyudaLote.aspx" ><i class="fa fa-question"></i></a>
 
      <div class="menu"></div>

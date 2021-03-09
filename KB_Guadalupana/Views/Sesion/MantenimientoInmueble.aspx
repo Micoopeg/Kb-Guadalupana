@@ -215,7 +215,7 @@
         {
         position: absolute;
         top: 6%;
-        left: 33%;
+        left: 25%;
         margin-top: -40px;
         margin-left: -33px;
         max-width: 60%;

@@ -1,4 +1,6 @@
 ﻿using System;
+using KB_Guadalupana.Controllers;
+using KB_Guadalupana.Models;
 using SA_Arqueos.Controllers;
 using SA_Arqueos.Models;
 using MySql.Data.MySqlClient;
@@ -14,6 +16,7 @@ namespace Modulo_de_arqueos.Views
     public partial class ArqueoCajaChica : System.Web.UI.Page
     {
         Logica_arqueos logic = new Logica_arqueos();
+        Logica lg = new Logica();
         Conexion_arqueos conn = new Conexion_arqueos();
         Sentencia_arqueos sn = new Sentencia_arqueos();
         string total;
@@ -210,7 +213,7 @@ namespace Modulo_de_arqueos.Views
                 string sig2 = logic.siguiente("sa_detallecajachica", "idsa_detallecajachica");
                     string[] valores2 = { sig2, CCFecha.Value, CCNumdocumento.Value, CCProveedor.Value, CCDescripcion.Value, CCDebe.Value, CCHaber.Value, sig1 };
                     logic.insertartablas("sa_detallecajachica", valores2);
-               
+                
             }
             catch (Exception err)
             {
@@ -250,6 +253,8 @@ namespace Modulo_de_arqueos.Views
                 logic.insertartablas("sa_encabezadocajachica", valores1);
                 Session["idcajachica"] = sig1.ToString();
                 id = Session["idcajachica"] as string;
+
+                lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Ingreso de datos", "Creación de arqueo Caja Chica");
 
                 Saldoinicial.Value = SaldoInicial2.Value;
                 parte2.Visible = true;
@@ -379,6 +384,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
+            lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Consulta de datos", "Búsqueda de arqueo Caja Chica");
             numarqueo = DropNumarqueo.SelectedValue;
             mostrarcajachica();
             if (cont == 1)

@@ -18,7 +18,7 @@ namespace KB_Guadalupana.Controllers
             String campo = "";
             try
             {
-                string sql = "SELECT gen_estado FROM gen_usuario where codgenusuario = '" + usuario + "'";
+                string sql = "SELECT gen_usuarioest FROM gen_usuario where codgenusuario = '" + usuario + "'";
                 MySqlCommand command = new MySqlCommand(sql, cn.conectar());
                 MySqlDataReader reader = command.ExecuteReader();
                 reader.Read();
@@ -58,6 +58,69 @@ namespace KB_Guadalupana.Controllers
             }
             finally { cn.desconectar(); }
             return camporesultante;
+        }
+
+        public void actualizarArqueos(string puesto, string usuario)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE sa_control_ingreso SET cod_puesto = '"+puesto+ "' WHERE cod_genusuario = '"+usuario+"'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public string obteneridusuario(string usuario)
+        {
+            String camporesultante = "";
+            try
+            {
+                string sql = "SELECT codgenusuario FROM gen_usuario WHERE gen_usuarionombre = '" + usuario + "'";
+                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                camporesultante = reader.GetValue(0).ToString();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(camporesultante);
+            }
+            finally { cn.desconectar(); }
+            return camporesultante;
+        }
+
+        public string[] datetime()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT NOW();", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using KB_Guadalupana.Models;
 using SA_Arqueos.Controllers;
 using SA_Arqueos.Models;
 using MySql.Data.MySqlClient;
@@ -16,6 +17,7 @@ namespace Modulo_de_arqueos.Views
         Conexion_arqueos cn = new Conexion_arqueos();
         Logica_arqueos logic = new Logica_arqueos();
         Sentencia_arqueos sn = new Sentencia_arqueos();
+        Logica lg = new Logica();
         string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         string fecha;
         string id;
@@ -213,6 +215,7 @@ namespace Modulo_de_arqueos.Views
                 string sig = logic.siguiente("sa_encabezadocajeroaut", "idsa_encabezadocajeroaut");
                 string[] valores1 = { sig, numeroarqueo, idusuario, CAFecha.Value, CACodigoagencia.Value, CAOperador.Value, CANumperador.Value, CAPuestooperador.Value, CANombreencargado.Value, CAPuestoencargado.Value, CAAtm.Value };
                 logic.insertartablas("sa_encabezadocajeroaut", valores1);
+                lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Ingreso de datos", "Creación de arqueo Cajero Automático");
 
                 //INSERTAR DETALLE
                 string sig2 = logic.siguiente("sa_detallecajeroaut", "idsa_detallecajeroaut");
@@ -281,6 +284,7 @@ namespace Modulo_de_arqueos.Views
             puesto = Session["puesto_usuario"] as string;
             usuario = Session["sesion_usuario"] as string;
             idusuario = sn.obteneridusuario(usuario);
+            lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Consulta de datos", "Búsqueda de arqueo Cajero Automático");
 
             string[] var;
             if (puesto == "1")

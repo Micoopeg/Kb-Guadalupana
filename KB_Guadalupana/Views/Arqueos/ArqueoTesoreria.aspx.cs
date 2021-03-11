@@ -1,4 +1,5 @@
 ﻿using System;
+using KB_Guadalupana.Models;
 using SA_Arqueos.Models;
 using SA_Arqueos.Controllers;
 using MySql.Data.MySqlClient;
@@ -17,6 +18,7 @@ namespace Modulo_de_arqueos.Views
         Logica_arqueos logic = new Logica_arqueos();
         Logica_arqueos logic2 = new Logica_arqueos();
         Sentencia_arqueos sn = new Sentencia_arqueos();
+        Logica lg = new Logica();
         string fecha;
         string id;
         char delimitador2 = ' ';
@@ -265,6 +267,7 @@ namespace Modulo_de_arqueos.Views
                 Session["idtesoreria"] = sig.ToString();
                 string[] valores = { sig, numeroarqueo, idusuario, TFecha.Value, TAgencia.SelectedValue, TNombreoperador.Value, TOperador.Value, TPuestooperador.Value, TNombreencargado.Value, TPuestoencargado.Value, TTesoreria.Value, "" };
                 logic.insertartablas("sa_encabezadotesoreria", valores);
+                lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Ingreso de datos", "Creación de arqueo Cajero Tesorería");
 
                 //INSERTAR DETALLE
                 string sig1 = logic.siguiente("sa_detalletesoreria", "idsa_detalletesoreria");
@@ -350,6 +353,7 @@ namespace Modulo_de_arqueos.Views
             puesto = Session["puesto_usuario"] as string;
             usuario = Session["sesion_usuario"] as string;
             idusuario = sn.obteneridusuario(usuario);
+            lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Consulta de datos", "Búsqueda de arqueo Cajero Tesorería");
 
             string[] var;
             if (puesto == "1")

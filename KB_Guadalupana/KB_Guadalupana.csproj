@@ -389,6 +389,7 @@
     <Content Include="Views\ControlEX\Tracking.aspx" />
     <Content Include="Views\MantenimientosControl\controlAgenda.aspx" />
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
+    <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
     <Content Include="Views\Seguridad\Seguridad1.aspx" />
     <Content Include="Views\Seguridad\Seguridad2.aspx" />
     <Content Include="Views\Seguridad\Seguridad3.aspx" />
@@ -727,6 +728,13 @@
     </Compile>
     <Compile Include="Views\MantenimientosControl\controlArqueos.aspx.designer.cs">
       <DependentUpon>controlArqueos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.cs">
+      <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.designer.cs">
+      <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\Seguridad1.aspx.cs">
       <DependentUpon>Seguridad1.aspx</DependentUpon>

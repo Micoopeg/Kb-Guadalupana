@@ -16,7 +16,7 @@ namespace KB_Guadalupana.Views.Sesion
         Logica logic = new Logica();
         Sentencia sn = new Sentencia();
         Conexion conn = new Conexion();
-        string fecha, año, mes, dia, fecha2, fechafin, fechafin2, año2, mes2, dia2;
+        string fecha, año, mes, dia, fecha2, fechafin, fechafin2, año2, mes2, dia2, año3, mes3, dia3, fecha3, año4, mes4, dia4, fecha4;
         char delimitador3 = '/';
         string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         protected void Page_Load(object sender, EventArgs e)
@@ -178,15 +178,35 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
                     {
-                        sqlCon.Open();
-                        string query = "UPDATE ep_administracionlote SET ep_administracionloteestado=@FirstName WHERE codepadministracionlote = @id";
-                        MySqlCommand sqlCmd = new MySqlCommand(query, sqlCon);
-                        sqlCmd.Parameters.AddWithValue("@FirstName", (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName") as TextBox).Text.Trim());
-                        sqlCmd.Parameters.AddWithValue("@id", Convert.ToInt32(gvPhoneBook.DataKeys[e.RowIndex].Value.ToString()));
-                        //Convert.ToString(gvPhoneBook.DataKeys[e.RowIndex].Value.ToString()) = RVCodigo.Value;
-                        //Response.Write(prueba);
-                        //TextBox1.Text = prueba;
-                        sqlCmd.ExecuteNonQuery();
+                        string fecha1 = (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName2") as TextBox).Text.Trim();
+                        string[] fechasep3 = fecha1.Split(delimitador3);
+                        dia3 = fechasep3[0];
+                        mes3 = fechasep3[1];
+                        año3 = fechasep3[2];
+                        fecha3 = año3 + "-" + mes3 + "-" + dia3;
+
+                        string fecha2 = (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName3") as TextBox).Text.Trim();
+                        string[] fechasep4 = fecha2.Split(delimitador3);
+                        dia4 = fechasep4[0];
+                        mes4 = fechasep4[1];
+                        año4 = fechasep4[2];
+                        fecha4 = año4 + "-" + mes4 + "-" + dia4;
+
+                        string estado = (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName") as TextBox).Text.Trim();
+                        string id = (gvPhoneBook.DataKeys[e.RowIndex].Value.ToString());
+
+                        sn.modificarLote(fecha4, fecha3, estado, id);
+                        //PopulateGridview();
+
+                        //sqlCon.Open();
+                        //string query = "UPDATE ep_administracionlote SET ep_administracionfechafin='"+fecha3+"' ep_administracionloteestado=@FirstName WHERE codepadministracionlote = @id";
+                        //MySqlCommand sqlCmd = new MySqlCommand(query, sqlCon);
+                        //sqlCmd.Parameters.AddWithValue("@FirstName", (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName") as TextBox).Text.Trim());
+                        //sqlCmd.Parameters.AddWithValue("@id", Convert.ToInt32(gvPhoneBook.DataKeys[e.RowIndex].Value.ToString()));
+                        ////Convert.ToString(gvPhoneBook.DataKeys[e.RowIndex].Value.ToString()) = RVCodigo.Value;
+                        ////Response.Write(prueba);
+                        ////TextBox1.Text = prueba;
+                        //sqlCmd.ExecuteNonQuery();
                         gvPhoneBook.EditIndex = -1;
                         PopulateGridview();
                         lblSuccessMessage.Text = "Selected Record Updated";
@@ -231,6 +251,8 @@ namespace KB_Guadalupana.Views.Sesion
             ad.Fill(ds, "Nombre");
             return ds;
         }
+
+     
 
     }
 }

@@ -134,5 +134,11 @@ namespace KB_Guadalupana.Controllers
 
             return m_ProcessesToKill.Count;
         }
+
+        public string cadenadeconexion() //ACA SE REDIGIRA LA BASE DE DATOS EN BUSCA DE LOS LOGS
+        {
+            string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+            return connectionString;
+        }
     }
 }

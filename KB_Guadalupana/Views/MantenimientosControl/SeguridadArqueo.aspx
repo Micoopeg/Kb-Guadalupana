@@ -1,26 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Seguridad1.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.Seguridad1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SeguridadArqueo.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.SeguridadArqueo" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
-    <title>Seguridad</title>
+    <title>Seguridad Arqueo</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 </head>
     <style>
 
         form 
 {
   background: #003563;
-  width: 400px;
-  margin: 175px auto;
+  width: 700px;
+  margin: 130px auto;
   border-radius: 0.4em;
   border: 1px solid #191919;
   overflow: hidden;
@@ -136,7 +134,7 @@ input[type=submit] {
   font-weight: bold;
   cursor: pointer;
   font-size: 13px;
-    margin-left: 125px;
+  margin-left: 260px;
 }
 
 input[type=submit]:hover {
@@ -207,7 +205,7 @@ padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 10px;
-    width: 100%;
+    width: 101.5%;
     box-sizing: border-box;
     font-family: montserrat;
     color: #2C3E50;
@@ -224,27 +222,51 @@ padding: 8px;
     </div>
     
     
-  <form  runat="server">
-  <h1 style="color:white">Estado Usuarios</h1>
+  <form runat="server">
+  <h1 style="color:white">Estado Usuarios Sistema Arqueos</h1>
   <div class="inset">
-  <p>
-    <label style="color:white">Usuarios</label>
-       <asp:DropDownList ID="SUsuario" OnSelectedIndexChanged="SUsuario_SelectedIndexChanged" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
-  </p>
-      <br /><br />
+<div class="row">
+    <p class="col-md-6">
+        <label  style="color:white">Usuario</label>
+        <input style="color:black" type="text" id="SAUsuario" runat="server" readonly="true"/>
+    </p>
+    <p class="col-md-6">
+        <label style="color:white">Puesto</label>
+         <asp:DropDownList ID="SAPuesto" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
+    </p>
+     <%--<p class="col-md-4">
+        <label  style="color:white">Usuarios</label>
+        <input style="color:white" type="text" name="email" id="email">
+    </p>
+    <p class="col-md-4">
+        <label style="color:white">Usuarios</label>
+        <input style="color:white" type="text" name="email" id="email">
+    </p>
+     <p class="col-md-4">
+        <label style="color:white">Usuarios</label>
+        <select class="dis">
+            <option disabled selected>Departamento</option>
+            <option value="">Informatica</option>
+            <option value="">Cumplimiento</option>
+        </select>
+    </p>--%>
+</div>
+   <%--<p >
+        <label  style="color:white">Usuarios</label>
+        <input style="color:white" type="text" name="email" id="email">
+    </p>
   <p>
     <label style="color:white">Estado</label>
-    <input id="SEstado" runat="server" type="text" class="dis" readonly="true" />
-  </p>
-  
+    <select class="dis">
+            <option disabled selected>Departamento</option>
+            <option value="">Informatica</option>
+            <option value="">Cumplimiento</option>
+        </select>
+  </p>--%>
   </div>
   <p class="p-container">
-      <asp:Button ID="SVerificar" runat="server" Text="Verificar" OnClick="SVerificar_Click"/>
+     <asp:Button ID="SGuardar" runat="server" Text="Guardar" OnClick="SGuardar_Click"/>
   </p>
-      <br />
- <script>
-   $('#<%=SUsuario.ClientID%>').chosen();
-</script>
 </form>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

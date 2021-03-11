@@ -28,7 +28,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                string QueryString = "SELECT gen_usuarionombre, codepinformaciongeneralcif FROM gen_usuario INNER JOIN ep_control ON gen_usuario.codgenusuario = ep_control.codgenusuario";
+                string QueryString = "SELECT ep_control.codepinformaciongeneralcif, gen_usuario.gen_usuarionombre, ep_informaciongeneral.ep_informaciongeneralcif  FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif ORDER BY ep_control.codepcontrol";
                 // "ON a.codeptipotelefono=b.codeptipotelefono WHERE codepinformaciongeneralcif='"+cifactual+"';";
                 MySqlConnection conect = conn.conectar();
                 MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);

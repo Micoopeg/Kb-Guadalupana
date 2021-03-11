@@ -60,7 +60,7 @@ namespace KB_Guadalupana.Views.Seguridad
             estado = sn.obtenerestado(SUsuario.SelectedValue);
             if (estado == "True")
             {
-                Response.Redirect("Seguridad4.aspx");
+                Response.Redirect("Seguridad2.aspx");
             }
             else if (estado == "False")
             {

@@ -170,14 +170,19 @@ body {
      <asp:GridView ID="GridViewReporte" CssClass="mGrid" style="width: 950px;text-align:center;text-decoration: none;Color: black;" runat="server"  HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte" BorderStyle="Solid">
                      <Columns>
+                            <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="ID">
+                           <ItemTemplate>
+                           <asp:Label ID="lblcif" Text='<%# Eval("codepinformaciongeneralcif") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre">
                            <ItemTemplate>
                            <asp:Label ID="lblnombre" Text='<%# Eval("gen_usuarionombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="ID Usuario">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="CIF">
                            <ItemTemplate>
-                           <asp:Label ID="lblcif" Text='<%# Eval("codepinformaciongeneralcif") %>' runat="server" />
+                           <asp:Label ID="lblnumcif" Text='<%# Eval("ep_informaciongeneralcif") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                           <asp:ButtonField ItemStyle-Font-Underline="false" ItemStyle-CssClass="fa-check-circle"  Text="Seleccionar" CommandName="Select" ItemStyle-Width="150" >

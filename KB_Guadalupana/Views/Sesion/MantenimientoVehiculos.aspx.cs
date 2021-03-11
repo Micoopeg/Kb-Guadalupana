@@ -56,9 +56,9 @@ namespace KB_Guadalupana.Views.Sesion
 
                         sqlCmd.ExecuteNonQuery();
                         PopulateGridview();
-                        lblSuccessMessage.Text = "New Record Added";
-                        lblErrorMessage.Text = "";
-                        (gvPhoneBook.SelectedRow.FindControl("txtFirstNameFooter") as TextBox).Text = Convert.ToString(logic.siguiente("ep_tipovehiculo", "codeptipovehiculo"));
+                        //lblSuccessMessage.Text = "New Record Added";
+                        //lblErrorMessage.Text = "";
+                        //(gvPhoneBook.SelectedRow.FindControl("txtFirstNameFooter") as TextBox).Text = Convert.ToString(logic.siguiente("ep_tipovehiculo", "codeptipovehiculo"));
                     }
                 }
             }

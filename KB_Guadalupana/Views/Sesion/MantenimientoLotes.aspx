@@ -306,7 +306,7 @@
                             <asp:Label  Text='<%# Eval("codepadministracionlote") %>' runat="server" />
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="txtFirstNameFooter" placeholder="Ingrese no. de lote" runat="server" />
+                            <asp:TextBox ID="txtFirstNameFooter" type="number" min="0" placeholder="Ingrese no. de lote" runat="server" />
                            <%-- <asp:TextBox ID="TextBox2" ReadOnly="true" runat="server"/>--%>
                         </FooterTemplate>
                     </asp:TemplateField>
@@ -314,6 +314,9 @@
                   <ItemTemplate>
                             <asp:Label Text='<%# Eval("ep_administracionlotefechainicio", "{0:d}") %>' runat="server" />
                         </ItemTemplate>
+                          <EditItemTemplate>
+                        <asp:TextBox ID="txtFirstName3" Text='<%# Eval("ep_administracionlotefechainicio", "{0:d}") %>' runat="server" />
+                     </EditItemTemplate>
                         <FooterTemplate>
                             <asp:TextBox ID="txtContactFooter" placeholder="Ingrese fecha inicio" runat="server" />
                         </FooterTemplate>
@@ -322,6 +325,9 @@
                   <ItemTemplate>
                             <asp:Label Text='<%# Eval("ep_administracionfechafin", "{0:d}") %>' runat="server" />
                         </ItemTemplate>
+                         <EditItemTemplate>
+                        <asp:TextBox ID="txtFirstName2" Text='<%# Eval("ep_administracionfechafin", "{0:d}") %>' runat="server" />
+                     </EditItemTemplate>
                         <FooterTemplate>
                             <asp:TextBox ID="txtContactFooter2" placeholder="Ingrese fecha fin" runat="server" />
                         </FooterTemplate>
@@ -334,7 +340,7 @@
                         <asp:TextBox ID="txtFirstName" Text='<%# Eval("ep_administracionloteestado") %>' runat="server" />
                      </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="txtContactFooter3" placeholder="Ingrese estado" runat="server" />
+                            <asp:TextBox ID="txtContactFooter3" type="number" min="0" placeholder="Ingrese estado" runat="server" />
                         </FooterTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Opciones">
@@ -364,6 +370,21 @@
       </form>
 
 </body>
+    <script>
+        var texto1 = document.querySelector('#txtContactFooter3');
+        texto1.addEventListener('keypress', function (e) {
+            // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
+            const decimalCode = 46;
+            // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
+            if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
+                e.preventDefault();
+            }
+            // chequeo que sólo exista un punto decimal
+            else if (e.keyCode == decimalCode && /\./.test(this.value)) {
+                event.preventDefault();
+            }
+        }, true)
+</script>
    <script>
        $(document).ready(function () {
            $('.menu').load('MenuBarra.aspx');

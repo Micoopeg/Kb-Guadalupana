@@ -1,4 +1,5 @@
 ﻿using System;
+using KB_Guadalupana.Models;
 using SA_Arqueos.Controllers;
 using SA_Arqueos.Models;
 using MySql.Data.MySqlClient;
@@ -17,6 +18,7 @@ namespace Modulo_de_arqueos.Views
         Logica_arqueos logic = new Logica_arqueos();
         Logica_arqueos logic2 = new Logica_arqueos();
         Sentencia_arqueos sn = new Sentencia_arqueos();
+        Logica lg = new Logica();
         string fecha;
         string id;
         char delimitador2 = ' ';
@@ -185,9 +187,8 @@ namespace Modulo_de_arqueos.Views
             Session["op"] = "1";
             try
                 {
-                
-                  //SUMA DE BILLETES
-                    decimal sumab1, sumab2, sumab3, sumab4, sumab5, sumab6, sumab7;
+                //SUMA DE BILLETES
+                decimal sumab1, sumab2, sumab3, sumab4, sumab5, sumab6, sumab7;
                     sumab1 = Convert.ToDecimal(200.00) * Convert.ToDecimal(CCantidad1.Value);
                     //CBTotal1.Value = Convert.ToString(sumab1);
                     sumab2 = Convert.ToDecimal(100.00) * Convert.ToDecimal(CCantidad2.Value);
@@ -240,6 +241,7 @@ namespace Modulo_de_arqueos.Views
                     Session["id"] = sig.ToString();
                 string[] valores1 = { sig, numeroarqueo, idusuario, CFecha.Value, CCAgencia.Value, CNombre.Value, CUsuario.Value, COperador.Value, CPuestooperador.Value, CJefe.Value, CPuestoencargado.Value, CComentario.Value };
                 logic.insertartablas("sa_encabezadocajero", valores1);
+                lg.bitacoraingresoprocedimientos(usuario2, "Arqueos", "Ingreso de datos", "Creacion de arqueo Cajero");
 
                 //VARIABLES SESSION DEL ENCABEZADO
                 //string fecha = CFecha.Value;
@@ -304,6 +306,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
+    
             numarqueo = DropNumarqueo.SelectedValue;
             Session["siguiente"] = "1";
             Session["op"] = "1";
@@ -338,6 +341,7 @@ namespace Modulo_de_arqueos.Views
             puesto = Session["puesto_usuario"] as string;
             usuario = Session["sesion_usuario"] as string;
             idusuario = sn.obteneridusuario(usuario);
+            lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Consulta de datos", "Búsqueda de arqueo Cajero");
 
             string[] var;
             if (puesto == "1")

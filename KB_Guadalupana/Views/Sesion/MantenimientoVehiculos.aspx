@@ -257,7 +257,7 @@
           <a href="MantenimientoTelefono.aspx">Teléfono</a>
           <%--<a href="MantenimientoPep.aspx">PEP</a>--%>
           <a href="MantenimientoPrestamos.aspx">Prestamos</a>
-          <a href="MantenimientoEstado.aspx">Estado</a>
+         <%-- <a href="MantenimientoEstado.aspx">Estado</a>--%>
           <a href="MantenimientoEstatus.aspx">Estatus Cuentas</a>
         </div>
 

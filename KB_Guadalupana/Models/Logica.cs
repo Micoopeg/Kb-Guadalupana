@@ -5,17 +5,12 @@ using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Net;
-using System.Net.Sockets;
-using System.Net.NetworkInformation;
 
 namespace KB_Guadalupana.Models
 {
     public class Logica
     {
         Sentencia sn = new Sentencia();
-        Sentencia_seguridad snseguridad = new Sentencia_seguridad();
-        Conexion_seguridad cnseguridad = new Conexion_seguridad();
         public void insertarconcepto(string numero, string nombre)
         {
 
@@ -183,83 +178,5 @@ namespace KB_Guadalupana.Models
         {
             return sn.buscarCIF(cif);
         }
-        public static string GetLocalIPAddress()
-        {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-            throw new Exception("No network adapters with an IPv4 address in the system!");
-        }
-
-        public void bitacoraingreso(string nombreusuario, string modulo, string forma)
-        {
-            string[] var1 = snseguridad.datetime();
-            DateTime fechai = Convert.ToDateTime(var1[0]);
-            var macAddr = (from nic in NetworkInterface.GetAllNetworkInterfaces()
-                           where nic.OperationalStatus == OperationalStatus.Up
-                           select nic.GetPhysicalAddress().ToString()).FirstOrDefault();
-            using (MySqlConnection sqlCon = new MySqlConnection(cnseguridad.cadenadeconexion()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string strsql;
-                    strsql = "bitacora_ingresos_egresos";
-                    MySqlCommand comm = new MySqlCommand(strsql, sqlCon);
-                    comm.CommandType = CommandType.StoredProcedure;
-                    comm.Parameters.AddWithValue("@username", nombreusuario);
-                    comm.Parameters.AddWithValue("@ipaddress", GetLocalIPAddress());
-                    comm.Parameters.AddWithValue("@macaddress", macAddr);
-                    comm.Parameters.AddWithValue("@fechahora_actual", fechai);
-                    comm.Parameters.AddWithValue("@nombremodulo", modulo);
-                    comm.Parameters.AddWithValue("@ingresos_egresos", forma);
-                    comm.ExecuteNonQuery();
-                    comm.Connection.Close();
-                }
-                catch (Exception err)
-                {
-                }
-            }
-
-        }
-
-        public void bitacoraingresoprocedimientos(string nombreusuario, string modulo, string aplicacion, string operacion)
-        {
-            string[] var1 = snseguridad.datetime();
-            DateTime fechai = Convert.ToDateTime(var1[0]);
-            var macAddr = (from nic in NetworkInterface.GetAllNetworkInterfaces()
-                           where nic.OperationalStatus == OperationalStatus.Up
-                           select nic.GetPhysicalAddress().ToString()).FirstOrDefault();
-            using (MySqlConnection sqlCon = new MySqlConnection(cnseguridad.cadenadeconexion()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string strsql;
-                    strsql = "bitacora_procedimientos";
-                    MySqlCommand comm = new MySqlCommand(strsql, sqlCon);
-                    comm.CommandType = CommandType.StoredProcedure;
-                    comm.Parameters.AddWithValue("@username", nombreusuario);
-                    comm.Parameters.AddWithValue("@ipaddress", GetLocalIPAddress());
-                    comm.Parameters.AddWithValue("@macaddress", macAddr);
-                    comm.Parameters.AddWithValue("@fechahora_actual", fechai);
-                    comm.Parameters.AddWithValue("@nombremodulo", modulo);
-                    comm.Parameters.AddWithValue("@aplicacion", aplicacion);
-                    comm.Parameters.AddWithValue("@operacion", operacion);
-                    comm.ExecuteNonQuery();
-                    comm.Connection.Close();
-                }
-                catch (Exception err)
-                {
-                }
-            }
-
-        }
-
     }
 }

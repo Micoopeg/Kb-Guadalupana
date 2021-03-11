@@ -18,6 +18,7 @@ namespace Login_Web
         Sentencia sn = new Sentencia();
         Logica lg = new Logica();
         string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int rol=0;
@@ -33,6 +34,7 @@ namespace Login_Web
                     ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Favor ingresar su Usuario y Contraseña');", true);
                     Response.Redirect("MenuBarra.aspx");
                 }
+
                 else
                 {
                     try
@@ -117,7 +119,7 @@ namespace Login_Web
         }
 
         protected void estadoPatrimonial_Click(object sender, EventArgs e)
-        {          
+        {
             Response.Redirect("EP_InformacionGeneral.aspx");
         }
 

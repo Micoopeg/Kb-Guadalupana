@@ -888,6 +888,37 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos               
             }
         }
+
+        public string[] consultarcif(string nombre1)//metodo que obtiene la lista de los campos que requiere una tabla
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[300];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "select ep_informaciongeneralcif " +
+                        "from ep_informaciongeneral t0 " +
+                        "inner join ep_control t1 " +
+                        "inner join gen_usuario t2 on t1.codgenusuario=t2.codgenusuario " +
+                        "and t0.codepinformaciongeneralcif = t1.codepinformaciongeneralcif " +
+                        "where t2.gen_usuarionombre='" + nombre1 + "'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
         public string[] consultarRol(string usuario)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))

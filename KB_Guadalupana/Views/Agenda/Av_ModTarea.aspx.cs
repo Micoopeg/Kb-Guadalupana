@@ -62,8 +62,9 @@ namespace KBGuada.Views.session
                 {
                     DropDownAcceso.Visible = false;
                 ASIGHOME.Visible = false;
+                DropDownEstado.Visible = false;
 
-                }
+            }
             
 
         }
@@ -204,7 +205,7 @@ namespace KBGuada.Views.session
 
         public void modificarTarea(string tarea)
         {
-
+            
             AVTITULON = AVTITULO.Value;
             AVNOMBRE = AVPNOMBRE.Value;
             AVAPELLIDO = AVPAPELLIDO.Value;
@@ -238,10 +239,80 @@ namespace KBGuada.Views.session
         protected void modificar_Click(object sender, EventArgs e)
         {
 
+            if (rol == "2")
+            {
+                DropDownAcceso.SelectedIndex = 1;
+                DropDownEstado.SelectedIndex = 1;
+                if (AVTITULO.Value == "" || AVFECHAINI.Value == "" || AVFECHAFIN.Value == "" || DropDownPrioridad.SelectedIndex == 0 || DropDownTipoTarea.SelectedIndex == 0)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' La tarea debe contener al menos un Titulo, fechas, Prioridad y Tipo ')", true);
+                }
+                else
+                {
+                    if (DropDownTipoTarea.SelectedIndex == 1)
+                    {
+                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "")
+                        {
 
+                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO Y TELEFONO ')";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
-            modificarTarea(tarea);
-            Response.Redirect("AgendaPrin.aspx");
+                        }
+                        else
+                        {
+
+                            btnmodi.Enabled = false;
+                            modificarTarea(tarea);
+                            Response.Redirect("AgendaPrin.aspx");
+
+                        }
+                    }
+                    else
+                    {
+                        btnmodi.Enabled = false;
+                        modificarTarea(tarea);
+                        Response.Redirect("AgendaPrin.aspx");
+
+                       
+                    }
+                }
+            }
+            else if (rol == "3")
+            {
+                if (AVTITULO.Value == "" || AVFECHAINI.Value == "" || AVFECHAFIN.Value == "" || DropDownAcceso.SelectedIndex == 0 || DropDownEstado.SelectedIndex == 0 || DropDownPrioridad.SelectedIndex == 0 || DropDownTipoTarea.SelectedIndex == 0)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' La tarea debe contener al menos un Titulo, fechas, Prioridad, Tipo, Estado y Acceso ')", true);
+                }
+                else
+                {
+                    if (DropDownTipoTarea.SelectedIndex == 1)
+                    {
+                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "")
+                        {
+
+                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO Y TELEFONO ')";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+                        }
+                        else
+                        {
+
+                            btnmodi.Enabled = false;
+                            modificarTarea(tarea);
+                            Response.Redirect("AgendaPrin.aspx");
+
+                        }
+                    }
+                    else
+                    {
+                        btnmodi.Enabled = false;
+                        modificarTarea(tarea);
+                        Response.Redirect("AgendaPrin.aspx");
+                    }
+                }
+            }
+
+       
 
 
         }

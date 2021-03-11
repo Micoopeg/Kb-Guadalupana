@@ -6,14 +6,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
-    <title>Seguridad</title>
+      <title>Seguridad</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../AvDiseños/Botones.css" />
 </head>
-    <style>
+     <style>
 
         form 
 {
@@ -214,41 +215,57 @@ padding: 8px;
 }
 </style>
 
-
 <body>
-    <div class="topnav">
+   
+     <div class="topnav">
             <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Creacion Modulos KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
     
-    
-  <form action="Seguridad2.aspx" method="post">
-  <h1 style="color:white">Crea Modulo</h1>
+  <form action="form1" runat="server" >
+          
+         <h1 style="color:white">Crea Modulo</h1>
   <div class="inset">
       <div class="row">
     <p class="col-md-6">
         <label  style="color:white">Abreviatura Modulo</label>
-        <input style="color:white" type="text" name="email" id="email">
+        <input style="color:white" type="text" id="abrmodulo" runat="server"/>
     </p>
     <p class="col-md-6">
         <label style="color:white">Nombre Modulo</label>
-        <input style="color:white" type="text" name="email" id="email">
+        <input style="color:white" type="text"  id="nommodul" runat="server"/>
     </p>
 </div>
+ <div class="row">
+     <p class="col-lg-12">
+         <label  style="color:white">URL</label>
+        <input style="color:white" type="text"  id="url1" runat="server" />
+
+     </p>
+ </div>
+           
   <p>
     <label style="color:white">Estado</label>
-    <select class="dis">
-            <option disabled selected>Departamento</option>
-            <option value="">Informatica</option>
-            <option value="">Cumplimiento</option>
+
+  
+    <select id="seleccion" runat="server" class="dis">
+            <option disabled selected>Estado</option>
+            <option  value="">Activo</option>
+            <option  value="">Inactivo</option>
         </select>
+     
   </p>
   
   </div>
   <p class="p-container">
-    <input type="submit" value="Guardar" >
+      <center>
+   
+            <asp:LinkButton ID="btninsert" runat="server" CssClass="custom-btn btn-8 " Text="Guardar" ClientIDMode="Static" OnClick="btnguardar_Click"></asp:LinkButton>
+     </center>
   </p>
+ 
+      
 </form>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

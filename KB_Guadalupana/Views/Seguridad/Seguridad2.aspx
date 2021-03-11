@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="UTF-8" />
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Seguridad</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
@@ -77,7 +77,7 @@ padding: 8px;
         
 .item {
   box-sizing: border-box;
-  max-width: 750px;
+  max-width: 550px;
   position: relative;
   overflow: hidden;
   background:white;
@@ -120,7 +120,7 @@ padding: 8px;
 .item:before{
     content: '';
     position: absolute;
-    right: 0;
+    right: 289px;
     top: 0;
     background: #003563;
     width: 60%;
@@ -277,34 +277,31 @@ box-sizing: border-box;
     
 
 <body>
+
+     <form id="form1" runat="server">
+         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="topnav">
               <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Modulos KB-Guadalupana</b></span>
              <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
-    
+         
 <br>
 <br>
 <br>
-    
+    <asp:Repeater ID="repetirapp" runat="server">
+        <ItemTemplate>
    <div class="item">
-        <div class="texto">
-           <h5 style="    margin-top: 8px;font-weight: bold;">Desarrollador: Diego Gomez</h5>
-        </div>
-        <div class="botones">
-            <button class="button button1 detalle_cita" onclick="location.href='Seguridad3.aspx'">Estado Patrimonial</button>
+     
+        <div class="botones" >
+            <asp:Label ID="idapp" runat="server" Text='<%# Eval("codgenapp") %>' Visible="false" ></asp:Label>
+            <asp:LinkButton ID="btn1seg" runat="server" CssClass="button button1 detalle_cita" style="padding: 10px 35%; min-width:63% ;" OnClick="btnmantenimiento_Click" ><%# Eval("gen_nombreapp") %></asp:LinkButton>
         </div> 
    </div>
-    
-    <div class="item1">
-        <div class="botones">
-            <button class="button2 button1 detalle_cita" onclick="location.href='Seguridad3.aspx'">Agenda Virtual</button>
-        </div> 
-        <div class="texto" style="float: right;margin-right: -108px;">
-           <h5 style="margin-top: 8px;font-weight: bold;">Desarrollador: Edgar Casasola</h5>
-        </div>
-   </div>
-
+    </ItemTemplate>
+  </asp:Repeater>
+         </form>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  
 </body>
 </html>

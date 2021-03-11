@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MontoResul" targetNamespace="http://tempuri.org/MontoResul.xsd" xmlns:mstns="http://tempuri.org/MontoResul.xsd" xmlns="http://tempuri.org/MontoResul.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sumamontoTableAdapter" GeneratorDataComponentClassName="sumamontoTableAdapter" Name="sumamonto" UserDataComponentName="sumamontoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString (Web.config)" DbObjectName="bdkbguadalupana.sumamonto" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `SUM(avt.av_monto)` FROM `bdkbguadalupana`.`sumamonto`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SUM(avt.av_monto)" DataSetColumn="SUM(avt_av_monto)" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MontoResul" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="MontoResul" msprop:Generator_UserDSName="MontoResul">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="sumamonto" msprop:Generator_TableClassName="sumamontoDataTable" msprop:Generator_TableVarName="tablesumamonto" msprop:Generator_TablePropName="sumamonto" msprop:Generator_RowDeletingName="sumamontoRowDeleting" msprop:Generator_RowChangingName="sumamontoRowChanging" msprop:Generator_RowEvHandlerName="sumamontoRowChangeEventHandler" msprop:Generator_RowDeletedName="sumamontoRowDeleted" msprop:Generator_UserTableName="sumamonto" msprop:Generator_RowChangedName="sumamontoRowChanged" msprop:Generator_RowEvArgName="sumamontoRowChangeEvent" msprop:Generator_RowClassName="sumamontoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SUM_x0028_avt_av_monto_x0029_" msprop:Generator_ColumnVarNameInTable="_columnSUM_avt_av_monto_" msprop:Generator_ColumnPropNameInRow="_SUM_avt_av_monto_" msprop:Generator_ColumnPropNameInTable="_SUM_avt_av_monto_Column" msprop:Generator_UserColumnName="SUM(avt_av_monto)" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -214,6 +214,12 @@
     <Content Include="DiseñoCss\estilosav.css" />
     <Content Include="DiseñoCss\EstilosavSub.css" />
     <Content Include="DiseñosGrid\Grids.css" />
+    <Content Include="EXDiseños\EstilosDashboard.css" />
+    <Content Include="EXDiseños\scriptbarra.js" />
+    <Content Include="EXDiseños\scriptdash.js" />
+    <Content Include="EXDiseños\scriptpaginas.js" />
+    <Content Include="EXDiseños\stylebarra.css" />
+    <Content Include="EXDiseños\stylepaginas.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -261,6 +267,17 @@
     <Content Include="DataMontos.xss">
       <DependentUpon>DataMontos.xsd</DependentUpon>
     </Content>
+    <Content Include="graficmonto.xsc">
+      <DependentUpon>graficmonto.xsd</DependentUpon>
+    </Content>
+    <None Include="graficmonto.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>graficmonto.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="graficmonto.xss">
+      <DependentUpon>graficmonto.xsd</DependentUpon>
+    </Content>
     <None Include="montodatos.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>montodatos.Designer.cs</LastGenOutput>
@@ -268,6 +285,39 @@
     </None>
     <Content Include="montodatos.xss">
       <DependentUpon>montodatos.xsd</DependentUpon>
+    </Content>
+    <Content Include="MontoRes.xsc">
+      <DependentUpon>MontoRes.xsd</DependentUpon>
+    </Content>
+    <Content Include="MontoDatosReporte.xsc">
+      <DependentUpon>MontoDatosReporte.xsd</DependentUpon>
+    </Content>
+    <None Include="MontoDatosReporte.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MontoDatosReporte.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="MontoDatosReporte.xss">
+      <DependentUpon>MontoDatosReporte.xsd</DependentUpon>
+    </Content>
+    <None Include="MontoRes.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MontoRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="MontoRes.xss">
+      <DependentUpon>MontoRes.xsd</DependentUpon>
+    </Content>
+    <Content Include="MontoResul.xsc">
+      <DependentUpon>MontoResul.xsd</DependentUpon>
+    </Content>
+    <None Include="MontoResul.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MontoResul.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="MontoResul.xss">
+      <DependentUpon>MontoResul.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="ReportesAv\ReporteUsuarios.aspx" />
@@ -335,10 +385,15 @@
     <Content Include="Views\Arqueos\Manual\ManualCajeroAutomatico.aspx" />
     <Content Include="Views\Arqueos\Manual\ManualTesoreria.aspx" />
     <Content Include="Views\Arqueos\MenuArqueos.aspx" />
+    <Content Include="Views\ControlEX\Ex_Principal.aspx" />
+    <Content Include="Views\ControlEX\Tracking.aspx" />
+    <Content Include="Views\MantenimientosControl\controlAgenda.aspx" />
+    <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\Seguridad\Seguridad1.aspx" />
     <Content Include="Views\Seguridad\Seguridad2.aspx" />
     <Content Include="Views\Seguridad\Seguridad3.aspx" />
     <Content Include="Views\Seguridad\Seguridad4.aspx" />
+    <Content Include="Views\Seguridad\SeguridadMod.aspx" />
     <Content Include="Views\Sesion\AsignacionLotes.aspx" />
     <Content Include="Views\Sesion\AsignacionRolArea.aspx" />
     <Content Include="Views\Sesion\Ayudas\AyudaALote.aspx" />
@@ -410,6 +465,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="graficmonto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>graficmonto.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\ControladorAV.cs" />
     <Compile Include="Models\Logica.cs" />
     <Compile Include="Models\Logica_arqueos.cs" />
@@ -417,6 +477,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>montodatos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MontoDatosReporte.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MontoDatosReporte.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MontoRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MontoRes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MontoResul.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MontoResul.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportesAv\ReporteUsuarios.aspx.cs">
@@ -460,6 +535,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TareaUserReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosReporteControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsuariosReporteControl.xsd</DependentUpon>
     </Compile>
     <Compile Include="UsuarioTiitulo.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -620,6 +700,34 @@
     <Compile Include="Views\Arqueos\MenuArqueos.aspx.designer.cs">
       <DependentUpon>MenuArqueos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ControlEX\Ex_Principal.aspx.cs">
+      <DependentUpon>Ex_Principal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_Principal.aspx.designer.cs">
+      <DependentUpon>Ex_Principal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Tracking.aspx.cs">
+      <DependentUpon>Tracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Tracking.aspx.designer.cs">
+      <DependentUpon>Tracking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\controlAgenda.aspx.cs">
+      <DependentUpon>controlAgenda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\controlAgenda.aspx.designer.cs">
+      <DependentUpon>controlAgenda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\controlArqueos.aspx.cs">
+      <DependentUpon>controlArqueos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\controlArqueos.aspx.designer.cs">
+      <DependentUpon>controlArqueos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Seguridad\Seguridad1.aspx.cs">
       <DependentUpon>Seguridad1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -647,6 +755,13 @@
     </Compile>
     <Compile Include="Views\Seguridad\Seguridad4.aspx.designer.cs">
       <DependentUpon>Seguridad4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\SeguridadMod.aspx.cs">
+      <DependentUpon>SeguridadMod.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\SeguridadMod.aspx.designer.cs">
+      <DependentUpon>SeguridadMod.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\AsignacionLotes.aspx.cs">
       <DependentUpon>AsignacionLotes.aspx</DependentUpon>
@@ -961,6 +1076,17 @@
     </Content>
     <Content Include="UsuarioTiitulo.xsc">
       <DependentUpon>UsuarioTiitulo.xsd</DependentUpon>
+    </Content>
+    <Content Include="UsuariosReporteControl.xsc">
+      <DependentUpon>UsuariosReporteControl.xsd</DependentUpon>
+    </Content>
+    <None Include="UsuariosReporteControl.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UsuariosReporteControl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="UsuariosReporteControl.xss">
+      <DependentUpon>UsuariosReporteControl.xsd</DependentUpon>
     </Content>
     <None Include="UsuarioTiitulo.xsd">
       <Generator>MSDataSetGenerator</Generator>

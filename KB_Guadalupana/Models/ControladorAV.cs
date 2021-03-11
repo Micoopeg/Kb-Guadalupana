@@ -24,6 +24,10 @@ namespace KBGuada.Controllers
         {
             return mav.reportetable(coduser, area);
         }
+        public DataTable reportemontosresultante(string fecha1, string fecha2)
+        {
+            return mav.reportemontosresultante(fecha1, fecha2);
+        }
         public DataTable reportetableunososlo(string coduser, string fecha1, string fecha2)
         {
             return mav.reportetableunosolo(coduser, fecha1, fecha2);
@@ -186,42 +190,25 @@ namespace KBGuada.Controllers
             string coduseagenda = mav.consultaragenda(coduser);
             return coduseagenda;
         }
-
-        //public MySqlDataReader consultafecha(string tarea)
-        //{
-        //    return mav.consultafecha(tarea);
-        //}
-
-            public MySqlDataReader insertartablas(string tabla, string[] datos)
+        public DataSet consultarapps()
         {
-            return mav.insertartablas(tabla, datos);
+            return mav.consultarapps();
         }
-        //public  consultarFechas()
-        //{
-        //    return mav.consultarFechas();
-        //}
-        // public MySqlDataReader consultadatostarea(string tarea)
-        //{
-        //    return mav.consultadatostarea(tarea);
-        //}
-        public MySqlDataReader validarfechadeingreso_ep()
+        public string url(string app)
         {
-            return mav.validarfechadeingreso_ep();
+            string app1 = mav.url(app);
+            return app1;
+
         }
-        public MySqlDataReader busquedacif(string usuario, string lote)
+        public void Insertar(string sql)
         {
-            return mav.busquedacif(usuario, lote);
+
+            mav.Insertar(sql);
+
         }
 
-        public MySqlDataReader estadodeprocesocif(string cif)
-        {
-            return mav.estadodeprocesocif(cif);
-        }
-
-        public MySqlDataReader validarcifantiguo(string usuario)
-        {
-            return mav.validarcifantiguo(usuario);
-        }
+      
+     
 
         public void insertartarea(string sql) {
 

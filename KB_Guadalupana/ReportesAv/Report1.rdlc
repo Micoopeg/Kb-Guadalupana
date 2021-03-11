@@ -17,8 +17,8 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="gen_usuarionombre">
-          <DataField>gen_usuarionombre</DataField>
+        <Field Name="av_controlusuario">
+          <DataField>av_controlusuario</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="codavtarea">
@@ -47,8 +47,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>UsuarioTiitulo</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Informatica\Desktop\Agenda Virtual 1.0\AgendaVirtual\KBGuada\KBGuada\UsuarioTiitulo.xsd</rd:SchemaPath>
+        <rd:DataSetName>UsuariosReporteControl</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\UsuariosReporteControl.xsd</rd:SchemaPath>
         <rd:TableName>usuariostareas</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -273,21 +273,21 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="gen_usuarionombre">
+                        <Textbox Name="av_controlusuario">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!gen_usuarionombre.Value</Value>
+                                  <Value>=Fields!av_controlusuario.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>gen_usuarionombre</rd:DefaultName>
+                          <rd:DefaultName>av_controlusuario</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -363,7 +363,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="fechaini1">
+                        <Textbox Name="fechaini">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -377,7 +377,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>fechaini1</rd:DefaultName>
+                          <rd:DefaultName>fechaini</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -393,7 +393,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="fechafin1">
+                        <Textbox Name="fechafin">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -407,7 +407,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>fechafin1</rd:DefaultName>
+                          <rd:DefaultName>fechafin</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -423,7 +423,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="av_estado1">
+                        <Textbox Name="av_estado">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -437,7 +437,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>av_estado1</rd:DefaultName>
+                          <rd:DefaultName>av_estado</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -492,15 +492,15 @@
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!gen_usuarionombre.Value</GroupExpression>
+                      <GroupExpression>=Fields!av_controlusuario.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!gen_usuarionombre.Value</Value>
+                      <Value>=Fields!av_controlusuario.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!gen_usuarionombre.Value</Label>
+                  <Label>=Fields!av_controlusuario.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>

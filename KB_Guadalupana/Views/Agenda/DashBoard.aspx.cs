@@ -113,13 +113,13 @@ namespace KBGuada.Views.session
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "select * from gen_area;";
+                    string QueryString = "select * from av_controlsitio;";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "area");
                     DropDownArea.DataSource = ds;
-                    DropDownArea.DataTextField = "gen_areanombre";
-                    DropDownArea.DataValueField = "codgenarea";
+                    DropDownArea.DataTextField = "av_nombre";
+                    DropDownArea.DataValueField = "codavcontolsitio";
                     DropDownArea.DataBind();
                     DropDownArea.Items.Insert(0, new ListItem("[Area]", "0"));
                 }

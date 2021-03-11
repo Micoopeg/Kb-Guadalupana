@@ -35,8 +35,31 @@ namespace KBGuada.Models
             }
 
         }
+        public DataTable reportemontosresultante(string fecha1, string fecha2)
+        {
 
-        public DataTable reportetable(string coduser, string area) {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT  (SELECT SUM(avt.av_monto) FROM av_tarea avt INNER JOIN av_credito avcr ON avt.codavtarea=avcr.codavtarea WHERE avt.cod_estado=3 AND avt.codtipotarea=1 AND avt.av_monto > 1 AND  avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "'  )-(SELECT SUM(avt.av_monto)  FROM av_tarea avt WHERE  avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avt.codtipotarea=1 AND avt.cod_estado=3 AND avt.av_monto > 1 AND  NOT EXISTS  ( SELECT null FROM  av_credito avcr WHERE avt.codavtarea=avcr.codavtarea )) as resultado", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+
+        }
+        public DataTable reportetable(string coduser, string area)
+        {
 
             DataTable dt = new DataTable();
 
@@ -45,36 +68,85 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT DISTINCT geu.gen_usuarionombre , avt.codavtarea, avt.codavagenda, avt.av_titulo, avt.fechaini, avt.fechafin, ave.av_estado FROM av_estado ave INNER JOIN av_tarea avt ON ave.codestado=avt.cod_estado INNER JOIN av_agenda avg ON avt.codavagenda = avg.codavagenda INNER jOIN gen_usuario geu ON geu.codgenusuario= avg.codgenusuario INNER JOIN av_controlasignado avc ON avc.codgenusuario=geu.codgenusuario WHERE avg.codgenusuario = '" + coduser + "' AND geu.gen_area_codgenarea = '" + area + "'", sqlCon);
+                    MySqlCommand command = new MySqlCommand("  SELECT DISTINCT avci.av_controlusuario , avt.codavtarea, avt.codavagenda, avt.av_titulo, avt.fechaini, avt.fechafin, ave.av_estado FROM av_estado ave INNER JOIN av_tarea avt ON ave.codestado=avt.cod_estado INNER JOIN av_agenda avge ON avt.codavagenda = avge.codavagenda INNER jOIN av_controlingreso avci ON avci.codavcontroling= avge.codavcontroling INNER JOIN av_controlasignado avc ON avc.codavcontroling = avci.codavcontroling  WHERE avge.codavcontroling = '" + coduser + "' AND avci.av_controlarea = '" + area + "';", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
 
 
-                
+
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
 
                 return dt;
             }
         }
+        public string url(string app)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT gapp.gen_urlcontrol FROM gen_aplicacion gapp WHERE gapp.gen_estadoapp=1 AND gapp.codgenapp= '" + app + "' ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+
+
+        }
+        public DataSet consultarapps()
+        {
+            DataSet ds1 = new DataSet();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM gen_aplicacion gapp WHERE gapp.gen_estadoapp = 1; ", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
+
+            }
+
+
+
+        }
         public DataTable reportetableunosolo(string coduser, string fecha1, string fecha2)
         {
 
             DataTable dt = new DataTable();
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
-            { 
+            {
 
                 try
-            {
+                {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT DISTINCT geu.gen_usuarionombre , avt.codavtarea, avt.codavagenda, avt.av_titulo, avt.fechaini, avt.fechafin, ave.av_estado FROM av_estado ave INNER JOIN av_tarea avt ON ave.codestado=avt.cod_estado INNER JOIN av_agenda avg ON avt.codavagenda = avg.codavagenda INNER jOIN gen_usuario geu ON geu.codgenusuario= avg.codgenusuario INNER JOIN av_controlasignado avc ON avc.codgenusuario=geu.codgenusuario WHERE avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avg.codgenusuario = '" + coduser + "' ; ", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT DISTINCT avci.av_controlusuario , avt.codavtarea, avt.codavagenda, avt.av_titulo, avt.fechaini, avt.fechafin, ave.av_estado FROM av_estado ave INNER JOIN av_tarea avt ON ave.codestado=avt.cod_estado INNER JOIN av_agenda avge ON avt.codavagenda = avge.codavagenda INNER jOIN av_controlingreso avci ON avci.codavcontroling= avge.codavcontroling INNER JOIN av_controlasignado avc ON avc.codavcontroling=avci.codavcontroling WHERE avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avge.codavcontroling = '" + coduser + "' ; ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
 
-                  
-            }
+
+                }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
 
                 return dt;
@@ -162,7 +234,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT DISTINCT geu.gen_usuarionombre , avt.codavtarea, avt.codavagenda, avt.av_titulo, avt.fechaini, avt.fechafin, ave.av_estado FROM av_estado ave INNER JOIN av_tarea avt ON ave.codestado=avt.cod_estado INNER JOIN av_agenda avg ON avt.codavagenda = avg.codavagenda INNER jOIN gen_usuario geu ON geu.codgenusuario= avg.codgenusuario INNER JOIN av_controlasignado avc ON avc.codgenusuario=geu.codgenusuario WHERE avg.codgenusuario = '" + coduser + "' AND  avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND geu.gen_area_codgenarea = '" + area + "' ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT DISTINCT avci.av_controlusuario , avt.codavtarea, avt.codavagenda, avt.av_titulo, avt.fechaini, avt.fechafin, ave.av_estado FROM av_estado ave INNER JOIN av_tarea avt ON ave.codestado=avt.cod_estado INNER JOIN av_agenda avge ON avt.codavagenda = avge.codavagenda INNER jOIN av_controlingreso avci ON avci.codavcontroling= avge.codavcontroling INNER JOIN av_controlasignado avc ON avc.codavcontroling=avci.codavcontroling WHERE avge.codavcontroling = '" + coduser + "' AND  avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avci.av_controlarea = '" + area + "' ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -175,7 +247,7 @@ namespace KBGuada.Models
             }
 
         }
-        public DataTable reportetabletodos(string area )
+        public DataTable reportetabletodos(string area)
         {
 
             DataTable dt = new DataTable();
@@ -187,7 +259,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT DISTINCT geu.gen_usuarionombre , avt.codavtarea, avt.codavagenda, avt.av_titulo, avt.fechaini, avt.fechafin, ave.av_estado FROM av_estado ave INNER JOIN av_tarea avt ON ave.codestado=avt.cod_estado INNER JOIN av_agenda avg ON avt.codavagenda = avg.codavagenda INNER jOIN gen_usuario geu ON geu.codgenusuario= avg.codgenusuario INNER JOIN av_controlasignado avc ON avc.codgenusuario=geu.codgenusuario WHERE geu.gen_area_codgenarea ='" + area + "'; ", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT DISTINCT avci.av_controlusuario , avt.codavtarea, avt.codavagenda, avt.av_titulo, avt.fechaini, avt.fechafin, ave.av_estado FROM av_estado ave INNER JOIN av_tarea avt ON ave.codestado=avt.cod_estado INNER JOIN av_agenda avge ON avt.codavagenda = avge.codavagenda INNER jOIN av_controlingreso avci ON avci.codavcontroling= avge.codavcontroling INNER JOIN av_controlasignado avc ON avc.codavcontroling=avci.codavcontroling WHERE avci.av_controlarea ='" + area + "'; ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -224,24 +296,25 @@ namespace KBGuada.Models
             }
 
         }
-     
 
-        public DataSet consultar(string usertarea) {
+
+        public DataSet consultar(string usertarea)
+        {
             DataSet ds1 = new DataSet();
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-               
+
                 try
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT avt.*FROM av_tarea avt INNER JOIN av_controlasignado avc ON avc.codavtarea=avt.codavtarea WHERE avc.codgenusuario='" + usertarea + "' AND (avt.cod_estado=2 OR avt.cod_estado=1) ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT avt.*FROM av_tarea avt INNER JOIN av_controlasignado avc ON avc.codavtarea=avt.codavtarea WHERE avc.codavcontroling='" + usertarea + "' AND (avt.cod_estado=2 OR avt.cod_estado=1) ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
-                   
+
                 }
-                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -" ); }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
                 return ds1;
 
             }
@@ -249,14 +322,15 @@ namespace KBGuada.Models
 
 
         }
-        public string consultaragenda(string coduser) {
+        public string consultaragenda(string coduser)
+        {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT codavagenda FROM av_agenda WHERE codgenusuario  = '" + coduser + "'  ;";
+                    string sql = "SELECT codavagenda FROM av_agenda avge WHERE avge.codavcontroling   = '" + coduser + "'  ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -275,7 +349,7 @@ namespace KBGuada.Models
 
 
         }
-     
+
         public string[] estadopermisotarea(string tarea) {
           
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -331,9 +405,10 @@ namespace KBGuada.Models
 
 
         }
-        public DataSet consultarasigtarea(string tarea) {
+        public DataSet consultarasigtarea(string tarea)
+        {
             DataSet ds1 = new DataSet();
-        
+
 
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
@@ -342,11 +417,11 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT geu.gen_usuarionombre ,avc.avcifgeneral FROM av_controlasignado avc INNER JOIN gen_usuario geu  ON avc.codgenusuario = geu.codgenusuario WHERE avc.codavtarea = '" + tarea + "'; ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT avci.av_controlusuario  ,avc.avcifgeneral FROM av_controlasignado avc INNER JOIN av_controlingreso avci  ON avc.codavcontroling = avci.codavcontroling WHERE avc.codavtarea = '" + tarea + "'; ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
-                
+
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
                 return ds1;
@@ -441,7 +516,7 @@ namespace KBGuada.Models
             }
 
         }
-     
+
         public string consultarRol(string usuario)
         {
             String camporesultante = "";
@@ -450,7 +525,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT gen_roles_codgenroles FROM gen_usuario WHERE codgenusuario= '" + usuario + "'; ";
+                    string sql = " SELECT avci.av_controlrol FROM av_controlingreso avci WHERE avci.codavcontroling = '" + usuario + "';";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -475,7 +550,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT gen_area_codgenarea FROM bdkbguadalupana.gen_usuario WHERE codgenusuario = '" + usuario + "';";
+                    string sql = "SELECT avci.av_controlarea FROM av_controlingreso avci WHERE avci.codavcontroling = '" + usuario + "';";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -489,14 +564,15 @@ namespace KBGuada.Models
                 return camporesultante;
             }
         }
-        public string consultartareauserexistente(string user) {
+        public string consultartareauserexistente(string user)
+        {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT codavtarea FROM av_controlasignado WHERE codgenusuario= '"+user+"';";
+                    string sql = "SELECT avc.codavtarea FROM av_controlasignado avc WHERE avc.codavcontroling= '" + user + "';";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -519,7 +595,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT DISTINCT epc.codgenusuario FROM ep_control epc  INNER JOIN ep_informaciongeneral epig ON epig.ep_informaciongeneralcif=epc.codepinformaciongeneralcif WHERE epc.codepinformaciongeneralcif= '"+cif+"';";
+                    string sql = "SELECT  avci.codavcontroling FROM av_controlingreso avci  WHERE avci.avcifgeneral= '" + cif + "';";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -536,14 +612,15 @@ namespace KBGuada.Models
         }
 
 
-        public string areauser(string usuario) {
+        public string areauser(string usuario)
+        {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT gen_area_codgenarea FROM bdkbguadalupana.gen_usuario WHERE codgenusuario = '" + usuario + "' ; ";
+                    string sql = "SELECT avci.av_controlarea FROM av_controlingreso avci  WHERE avci.codavcontroling = '" + usuario + "' ; ";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -591,7 +668,7 @@ namespace KBGuada.Models
         public DataSet porcif(string cif, string area)
         {
             DataSet ds1 = new DataSet();
-          
+
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
 
@@ -599,7 +676,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avc.codavtarea = avt.codavtarea INNER JOIN gen_usuario geu ON geu.codgenusuario=avc.codgenusuario  WHERE avc.avcifgeneral = '" + cif + "' AND geu.gen_area_codgenarea = '" + area + "' ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avc.codavtarea = avt.codavtarea INNER JOIN av_controlingreso avci ON avci.codavcontroling=avc.codavcontroling  WHERE avc.avcifgeneral = '" + cif + "' AND avci.av_controlarea = '" + area + "' ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -611,7 +688,7 @@ namespace KBGuada.Models
             }
 
         }
-        public DataSet porFecha( string fecha1, string fecha2, string area)
+        public DataSet porFecha(string fecha1, string fecha2, string area)
         {
             DataSet ds1 = new DataSet();
 
@@ -622,7 +699,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avc.codavtarea = avt.codavtarea INNER JOIN gen_usuario geu ON geu.codgenusuario=avc.codgenusuario WHERE avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND geu.gen_area_codgenarea = '" + area + "'   ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avc.codavtarea = avt.codavtarea INNER JOIN av_controlingreso avci ON avci.codavcontroling=avc.codavcontroling WHERE avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avci.av_controlarea = '" + area + "'   ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -706,7 +783,7 @@ namespace KBGuada.Models
         public DataSet porareaFecha(string area, string fecha1, string fecha2)
         {
             DataSet ds1 = new DataSet();
-          
+
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
 
@@ -714,7 +791,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN gen_usuario geu ON avc.codgenusuario = geu.codgenusuario WHERE avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND geu.gen_area_codgenarea = '" + area + "';", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN av_controlingreso avci ON avc.codavcontroling = avci.codavcontroling WHERE avt.av_fechaini  BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avci.av_controlarea = '" + area + "';", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -730,7 +807,7 @@ namespace KBGuada.Models
         public DataSet porarea(string area)
         {
             DataSet ds1 = new DataSet();
-        
+
 
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
@@ -739,7 +816,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN gen_usuario geu ON avc.codgenusuario = geu.codgenusuario WHERE geu.gen_area_codgenarea = '" + area + "' ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN av_controlingreso avci ON avc.codavcontroling = avci.codavcontroling WHERE avci.av_controlarea = '" + area + "' ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -753,7 +830,7 @@ namespace KBGuada.Models
         public DataSet porareaEstado(string area, string estado)
         {
             DataSet ds1 = new DataSet();
-    
+
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
 
@@ -761,7 +838,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN gen_usuario geu ON avc.codgenusuario = geu.codgenusuario WHERE geu.gen_area_codgenarea = '" + area + "' AND avt.cod_estado= '" + estado + "' ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN av_controlingreso avci ON avc.codavcontroling = avci.codavcontroling WHERE avci.av_controlarea = '" + area + "' AND avt.cod_estado= '" + estado + "' ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -776,7 +853,7 @@ namespace KBGuada.Models
         public DataSet porareafechaEstado(string area, string fecha1, string fecha2, string estado)
         {
             DataSet ds1 = new DataSet();
-          
+
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
 
@@ -784,7 +861,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN gen_usuario geu ON avc.codgenusuario = geu.codgenusuario WHERE avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND geu.gen_area_codgenarea = '" + area + "' AND avt.cod_estado = '" + estado + "' ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN av_controlingreso avci ON avc.codavcontroling = avci.codavcontroling WHERE avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avci.av_controlarea = '" + area + "' AND avt.cod_estado = '" + estado + "' ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -799,7 +876,7 @@ namespace KBGuada.Models
         public DataSet porfechaEstado(string fecha1, string fecha2, string estado, string user)
         {
             DataSet ds1 = new DataSet();
-      
+
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
 
@@ -807,7 +884,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN gen_usuario geu ON avc.codgenusuario = geu.codgenusuario WHERE avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avt.cod_estado = '" + estado + "' AND geu.codgenusuario = '" + user + "' ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN av_controlingreso avci ON avc.codavcontroling = avci.codavcontroling WHERE avt.av_fechaini BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' AND avt.cod_estado = '" + estado + "' AND avci.codavcontroling = '" + user + "' ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -819,10 +896,10 @@ namespace KBGuada.Models
             }
 
         }
-        public DataSet porestadousuairo( string estado, string usuario)
+        public DataSet porestadousuairo(string estado, string usuario)
         {
             DataSet ds1 = new DataSet();
-       
+
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
 
@@ -830,7 +907,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN gen_usuario geu ON avc.codgenusuario = geu.codgenusuario WHERE avt.cod_estado = '" + estado + "' AND geu.codgenusuario= '" + usuario + "';", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN av_controlingreso avci ON avc.codavcontroling = avci.codavcontroling WHERE avt.cod_estado = '" + estado + "' AND avci.codavcontroling= '" + usuario + "';", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -853,7 +930,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN gen_usuario geu ON avc.codgenusuario = geu.codgenusuario WHERE avt.cod_estado = '" + estado + "' AND geu.gen_area_codgenarea = '" + area + "' ;", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT avt.* FROM av_tarea avt INNER JOIN av_controlasignado avc ON avt.codavtarea=avc.codavtarea INNER JOIN av_controlingreso avci ON avc.codavcontroling = avci.codavcontroling WHERE avt.cod_estado = '" + estado + "' AND avci.av_controlarea = '" + area + "' ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);
@@ -900,7 +977,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT geu.codgenusuario FROM gen_usuario geu WHERE geu.gen_usuarionombre = '" + nomuser + "';";
+                    string sql = "SELECT avci.codavcontroling FROM av_controlingreso avci WHERE avci.av_controlusuario = '" + nomuser + "';";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -926,7 +1003,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT DISTINCT epig.ep_informaciongeneralcif FROM ep_informaciongeneral epig INNER JOIN ep_control epc   ON epc.codepinformaciongeneralcif = epig.ep_informaciongeneralcif   WHERE  epc.codgenusuario =   '" + coduser + "'  ;";
+                    string sql = "SELECT  avci.avcifgeneral FROM av_controlingreso avci   WHERE  avci.codavcontroling =   '" + coduser + "'  ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -995,155 +1072,31 @@ namespace KBGuada.Models
 
 
         }
-        public MySqlDataReader insertartablas(string tabla, string[] datos)
+        public void Insertar(string sql)
         {
+            try
             {
-                string query = "";
-                for (int i = 0; i < datos.Length; i++)
-                {
-                    query += "'";
-                    query += datos[i];
-                    if (i == datos.Length - 1)
-                        query += "'";
-                    else
-                        query += "',";
-                }
-                try
-                {
-                    cn.conectar();
-                    string consulta = "insert into " + tabla + " values(" + query + ");";
-                    Console.WriteLine(consulta);
-                    comm = new MySqlCommand(consulta, cn.conectar());
-                    MySqlDataReader mostrar = comm.ExecuteReader();
-                    return mostrar;
-                }
-                catch (Exception err)
-                {
-                    Console.WriteLine(err.Message);
-                    return null;
-                }
+                cn.conectar();
+
+                Console.WriteLine(sql);
+                comm = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader mostrar = comm.ExecuteReader();
+
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+
             }
 
 
-
         }
+ 
 
 
         //update
 
-        public MySqlDataReader modificartablas(string tabla, string[] campos, string[] datos)
-        {
-            string query = "";
-            int n = 1;
-            query += " set ";
-            for (int i = 1; i < datos.Length; i++)
-            {
-                query += campos[n];
-                query += " = '";
-                query += datos[i];
-                if (i == datos.Length - 1)
-                    query += "'";
-                else
-                    query += "',";
-                n++;
-            }
-
-            try
-            {
-                cn.conectar();
-                string consulta = "UPDATE " + tabla + query + " where " + campos[0] + " = '" + datos[0] + "';";
-                comm = new MySqlCommand(consulta, cn.conectar());
-                MySqlDataReader mostrar = comm.ExecuteReader();
-                Console.WriteLine(consulta);
-                return mostrar;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-
-
-
-        //delete
-
-        //ingreso de usuario
-
-        public MySqlDataReader validarfechadeingreso_ep()
-        {
-            try
-            {
-                cn.conectar();
-                string consulta = "SELECT gen_usuarionombre,ep_administracionlotefechainicio,ep_administracionfechafin,a.codepadministracionlote,ep_administracionloteestado " +
-                    "FROM ep_control a " +
-                    "INNER JOIN gen_usuario b " +
-                    "INNER JOIN ep_administracionlote c " +
-                    "ON a.codgenusuario = b.codgenusuario AND a.codepadministracionlote = c.codepadministracionlote WHERE ep_administracionloteestado = 1;";
-                comm = new MySqlCommand(consulta, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-        public MySqlDataReader busquedacif(string usuario, string lote)
-        {
-            try
-            {
-                cn.conectar();
-                string consulta = "SELECT codepinformaciongeneralcif,gen_usuarionombre " +
-                    "FROM ep_control a " +
-                    "INNER JOIN gen_usuario b " +
-                    "ON a.codgenusuario = b.codgenusuario AND codepadministracionlote= '" + lote + "' where  b.gen_usuarionombre ='" + usuario + "';";
-                comm = new MySqlCommand(consulta, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-
-        public MySqlDataReader estadodeprocesocif(string cif)
-        {
-            try
-            {
-                cn.conectar();
-                string consulta = "SELECT codeptipoestado FROM ep_informaciongeneral WHERE codepinformaciongeneralcif = '" + cif + "';";
-                comm = new MySqlCommand(consulta, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
      
-        public MySqlDataReader validarcifantiguo(string usuario)
-        {
-            try
-            {
-                cn.conectar();
-                string consulta = "SELECT codepinformaciongeneralcif,codepadministracionlote FROM ep_control  WHERE codgenusuario='" + usuario + "' ORDER BY codepadministracionlote DESC limit 1,1;";
-                comm = new MySqlCommand(consulta, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                Console.WriteLine(consulta);
-
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
+       
     }
 }

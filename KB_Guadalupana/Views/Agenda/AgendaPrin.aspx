@@ -24,7 +24,15 @@
     </head>
     
 
+        <style>
+        @media screen and (min-width: 600px) and (max-width:1000px) {
+    #NombreUsuario{
+        font-size:15px;
+    }
+}
 
+
+</style>
 
 
 <body>
@@ -43,7 +51,7 @@
           <a id="a1" runat="server" href="~/ReportesAv/ReporteUsuarios.aspx" >Reportes </a>
           <a href="../Sesion/CerrarSesion.aspx"  >Cerrar Sesion</a>
              
-          <span class="nav-text" style=" font-size: 10px; right: 3%; position: absolute; margin-top:5px; color: white; height: 20px;"><b runat="server" id="NombreUsuario">Edgar Casasola</b></span>
+          <span class="nav-text" style=" font-size: 25px; right: 3%; position: absolute; margin-top:5px; color: white; height: 20px;"><b runat="server" id="NombreUsuario">Edgar Casasola</b></span>
          
 
       </div>

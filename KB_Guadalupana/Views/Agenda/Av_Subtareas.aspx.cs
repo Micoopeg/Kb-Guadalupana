@@ -116,7 +116,7 @@ namespace KBGuada.Views.session
                 string sig = cav.siguiente("av_credito", "codavcredit");
 
                 string sqlcredito = "INSERT INTO av_credito  VALUES( '" + sig + "', '" + tarea + "', '" + Credit.Value + "'  )";
-                string tareapa = "UPDATE `av_tarea ` SET `cod_estado` = 3 WHERE =codavtarea = '"+tarea+"'; ";
+                string tareapa = "UPDATE `av_tarea` SET `cod_estado` = 3 WHERE codavtarea = '"+tarea+"'; ";
                 cav.insertartarea(sqlcredito);
                 cav.insertartarea(tareapa);
                 Response.Redirect("AgendaPrin.aspx");
@@ -262,7 +262,7 @@ namespace KBGuada.Views.session
             }
             else{
 
-                string coment = " UPDATE `av_tarea` SET `av_comentario`= '"+AVCOMENT.Value+"' WHERE codavtarea = '"+tarea+"' ;";
+                string coment = " UPDATE `av_tarea` SET `av_comentario` = '"+AVCOMENT.Value+"' WHERE codavtarea = '"+tarea+"' ;";
                 string updatepadre = "UPDATE `av_tarea` SET `cod_estado` = '3' WHERE `av_tarea`.`codavtarea` = '" + tarea + "';";
                 cav.insertartarea(coment);
                 cav.insertartarea(updatepadre);
@@ -288,7 +288,7 @@ namespace KBGuada.Views.session
             else
             {
 
-                string coment = " UPDATE `av_tarea` SET `av_comentario`= '" + AVCOMENT.Value + "' WHERE codavtarea = '" + tarea + "' ;";
+                string coment = " UPDATE `av_tarea` SET `av_comentario` = '" + AVCOMENT.Value + "' WHERE codavtarea = '" + tarea + "' ;";
                 string updatepadre = "UPDATE `av_tarea` SET `cod_estado` = '4' WHERE `av_tarea`.`codavtarea` = '" + tarea + "';";
                 cav.insertartarea(coment);
                 cav.insertartarea(updatepadre);

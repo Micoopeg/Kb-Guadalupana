@@ -27,10 +27,10 @@ namespace KB_Guadalupana.Views.Seguridad
         public void ingresar()
         {
 
-            nommodul.Value = NOMAPP;
-            url1.Value = URL;
-            abrmodulo.Value = ABRAPP;
-            seleccion.Value = OP;
+            NOMAPP= nommodul.Value ;
+            URL = url1.Value;
+            ABRAPP = abrmodulo.Value;
+            OP = seleccion.Value;
             string sig = cav.siguiente("gen_aplicacion", "codgenapp");
 
             string sql = "INSERT INTO gen_aplicacion  VALUES('" + sig + "', '" + ABRAPP + "', '" + NOMAPP + "', '" + URL + "');";
@@ -47,20 +47,21 @@ namespace KB_Guadalupana.Views.Seguridad
         }
         protected void btnguardar_Click(object sender, EventArgs e)
         {
-            nommodul.Value = NOMAPP;
-            url1.Value = URL;
-            abrmodulo.Value = ABRAPP;
-            seleccion.Value = OP;
 
+            NOMAPP = nommodul.Value;
+            URL = url1.Value;
+            ABRAPP = abrmodulo.Value;
+            OP = seleccion.Value;
             if (NOMAPP != null || URL != null || ABRAPP != null || seleccion.Value == "Estado")
             {
-               
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('LLene todos los campos ')", true);
+                ingresar();
+
             }
 
             else
             {
-                ingresar();
+             
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('LLene todos los campos ')", true);
             }
 
         }

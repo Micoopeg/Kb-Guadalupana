@@ -310,7 +310,7 @@
 
   
   <div class="buscar">
-    <asp:TextBox ID="TextBox1" placeholder="Ingrese nombre de usuario" runat="server" CssClass="tamp"></asp:TextBox>
+    <asp:TextBox ID="TextBox1" placeholder="Ingrese número de CIF" runat="server" CssClass="tamp"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Buscar" CssClass="tam" />
     <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Ver todos" CssClass="tam" />
   </div>
@@ -421,6 +421,21 @@
       </form>
 
 </body>
+    <script>
+        var texto1 = document.querySelector('#TextBox1');
+        texto1.addEventListener('keypress', function (e) {
+            // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
+            const decimalCode = 46;
+            // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
+            if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
+                e.preventDefault();
+            }
+            // chequeo que sólo exista un punto decimal
+            else if (e.keyCode == decimalCode && /\./.test(this.value)) {
+                event.preventDefault();
+            }
+        }, true)
+</script>
    <script>
        $(document).ready(function () {
            $('.menu').load('MenuBarra.aspx');

@@ -16,6 +16,7 @@ namespace KB_Guadalupana.Views.Sesion
         int rol;
         Logica logic = new Logica();
         Conexion conn = new Conexion();
+        Sentencia sn = new Sentencia();
         string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +30,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
 
 
-                string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_control.codepinformaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario ORDER BY ep_control.codepcontrol; ";
+                string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_informaciongeneral.ep_informaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif ORDER BY ep_control.codepcontrol; ";
                 MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conn.conectar());
                 DataTable ds3 = new DataTable();
                 myCommand.Fill(ds3);
@@ -49,7 +50,7 @@ namespace KB_Guadalupana.Views.Sesion
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-            string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_control.codepinformaciongeneralcif FROM ep_control INNER JOIN gen_usuario WHERE gen_usuario.codgenusuario = ep_control.codgenusuario and gen_usuario.gen_usuarionombre ='" + TextBox1.Text + "';";
+            string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_informaciongeneral.ep_informaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif WHERE ep_informaciongeneral.ep_informaciongeneralcif = '" + TextBox1.Text + "' ORDER BY ep_control.codepcontrol; ";
             MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conn.conectar());
             DataTable ds3 = new DataTable();
             myCommand.Fill(ds3);
@@ -60,18 +61,15 @@ namespace KB_Guadalupana.Views.Sesion
             GridView2.HeaderRow.Cells[2].Text = "Correo";
             GridView2.HeaderRow.Cells[3].Text = "CIF";
 
-            MySqlDataReader reader = logic.consultarCodigo(TextBox1.Text);
-            if (reader.Read())
-            {
-                rol = Convert.ToInt32(reader.GetString(0));
+            string cif = sn.consultarCodigoCif(TextBox1.Text);
 
-                string QueryString2 = "SELECT codgenusuario, codepadministracionlote FROM ep_control WHERE codgenusuario = " + rol + "; ";
-                MySqlDataAdapter myCommand2 = new MySqlDataAdapter(QueryString2, conn.conectar());
-                DataTable ds2 = new DataTable();
-                myCommand2.Fill(ds2);
-                GridView3.DataSource = ds2;
-                GridView3.DataBind();
-            }
+            string QueryString2 = "SELECT codgenusuario, codepadministracionlote FROM ep_control WHERE codepinformaciongeneralcif = " + cif + "; ";
+            MySqlDataAdapter myCommand2 = new MySqlDataAdapter(QueryString2, conn.conectar());
+            DataTable ds2 = new DataTable();
+            myCommand2.Fill(ds2);
+            GridView3.DataSource = ds2;
+            GridView3.DataBind();
+
 
 
         }
@@ -80,7 +78,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_control.codepinformaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario ORDER BY ep_control.codepcontrol; ";
+                string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_informaciongeneral.ep_informaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif ORDER BY ep_control.codepcontrol; ";
                 MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conn.conectar());
                 DataTable ds3 = new DataTable();
                 myCommand.Fill(ds3);
@@ -102,14 +100,16 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-
-
-                string QueryString = "SELECT * FROM ep_control;";
+                string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_informaciongeneral.ep_informaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif ORDER BY ep_control.codepcontrol; ";
                 MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conn.conectar());
                 DataTable ds3 = new DataTable();
                 myCommand.Fill(ds3);
                 GridView2.DataSource = ds3;
                 GridView2.DataBind();
+                GridView2.HeaderRow.Cells[0].Text = "Código";
+                GridView2.HeaderRow.Cells[1].Text = "Nombre";
+                GridView2.HeaderRow.Cells[2].Text = "Correo";
+                GridView2.HeaderRow.Cells[3].Text = "CIF";
             }
             catch
             {
@@ -144,6 +144,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     //string query = "UPDATE ep_control SET codepadministracionlote=@FirstName WHERE codepcontrol = @id";
+
                     string query = "INSERT INTO ep_control VALUES('',4,@FirstName,'')";
                     MySqlCommand sqlCmd = new MySqlCommand(query, sqlCon);
                     sqlCmd.Parameters.AddWithValue("@Contact", (GridView2.Rows[e.RowIndex].FindControl("txtContact") as Label).Text.Trim());
@@ -212,8 +213,13 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
                 {
+                    string sig = logic.siguiente("ep_control", "codepcontrol");
+                    string codusuario = (GridView3.Rows[e.RowIndex].FindControl("txtContact") as TextBox).Text.Trim();
+                    string[] codigocif = sn.obtenerCif(codusuario);
+
+                    //string codigocif = sn.consultarCodigoCif();
                     sqlCon.Open();
-                    string query = "INSERT INTO ep_control VALUES('',@Contact,@FirstName,'')";
+                    string query = "INSERT INTO ep_control VALUES('" + sig + "',@Contact,@FirstName,'" + codigocif[0] + "')";
                     MySqlCommand sqlCmd = new MySqlCommand(query, sqlCon);
                     sqlCmd.Parameters.AddWithValue("@Contact", (GridView3.Rows[e.RowIndex].FindControl("txtContact") as TextBox).Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@FirstName", (GridView3.Rows[e.RowIndex].FindControl("txtFirstName") as TextBox).Text.Trim());
@@ -224,7 +230,7 @@ namespace KB_Guadalupana.Views.Sesion
                     sqlCmd.ExecuteNonQuery();
                     GridView3.EditIndex = -1;
                     PopulateGridview3();
-                    string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_control.codepinformaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario ORDER BY ep_control.codepcontrol; ";
+                    string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_informaciongeneral.ep_informaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif ORDER BY ep_control.codepcontrol; ";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conn.conectar());
                     DataTable ds3 = new DataTable();
                     myCommand.Fill(ds3);
@@ -234,6 +240,16 @@ namespace KB_Guadalupana.Views.Sesion
                     GridView2.HeaderRow.Cells[1].Text = "Nombre";
                     GridView2.HeaderRow.Cells[2].Text = "Correo";
                     GridView2.HeaderRow.Cells[3].Text = "CIF";
+                    //string QueryString = "SELECT ep_control.codepcontrol, gen_usuario.gen_usuarionombre, gen_usuario.gen_usuariocorreo, ep_control.codepinformaciongeneralcif FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario ORDER BY ep_control.codepcontrol; ";
+                    //MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conn.conectar());
+                    //DataTable ds3 = new DataTable();
+                    //myCommand.Fill(ds3);
+                    //GridView2.DataSource = ds3;
+                    //GridView2.DataBind();
+                    //GridView2.HeaderRow.Cells[0].Text = "Código";
+                    //GridView2.HeaderRow.Cells[1].Text = "Nombre";
+                    //GridView2.HeaderRow.Cells[2].Text = "Correo";
+                    //GridView2.HeaderRow.Cells[3].Text = "CIF";
                     //lblSuccessMessage.Text = "Selected Record Updated";
                     //lblErrorMessage.Text = "";
                 }

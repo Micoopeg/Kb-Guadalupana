@@ -430,7 +430,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                     "INNER JOIN ep_tipocuentaspopagar b INNER JOIN ep_informaciongeneral c " +
                     "ON a.codeptipocuentasporpagar=b.codeptipocuentaspopagar " +
                     "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                    "WHERE c.ep_informaciongeneralcif='"+cifnumero+"'";
+                    "WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
                 MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
                 DataTable ds4 = new DataTable();
                 myCommand.Fill(ds4);

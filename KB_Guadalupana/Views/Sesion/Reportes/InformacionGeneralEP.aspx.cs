@@ -161,38 +161,23 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 
                 string cifnumero = var10[0];
 
-                string cif;
-
-                MySqlDataReader mostrar = logic.consultarcif(sesion);
-                try
-                {
-                    if (mostrar.Read())
-                    {
-                        cif = Convert.ToString(mostrar.GetString(0));
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + cif + "');", true);
-                        string QueryString = "SELECT a.codeptelefono,a.codeptipotelefono,b.ep_tipotelefononombre,a.ep_telefononumero " +
+                string QueryString = "SELECT a.codeptelefono,a.codeptipotelefono,b.ep_tipotelefononombre,a.ep_telefononumero " +
                             "FROM ep_telefono a " +
                             "INNER JOIN ep_tipotelefono b " +
                             "ON a.codeptipotelefono=b.codeptipotelefono " +
                             "inner join ep_informaciongeneral c ON a.codepinformaciongeneralcif = c.codepinformaciongeneralcif " +
-                            "WHERE c.ep_informaciongeneralcif='"+cif+"'";
+                            "WHERE c.ep_informaciongeneralcif='"+cifnumero+"'";
                         // "ON a.codeptipotelefono=b.codeptipotelefono WHERE codepinformaciongeneralcif='"+cifactual+"';";
                         MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
                         DataTable ds3 = new DataTable();
                         myCommand.Fill(ds3);
                         GridViewcelular.DataSource = ds3;
                         GridViewcelular.DataBind();
-                    }
                 }
                 catch (Exception err)
                 {
                     Console.WriteLine(err.Message);
                 }
-            }
-
-            catch
-            {
-            }
         }
 
         //Hijos
@@ -200,39 +185,31 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         {
             try
             {
-                sesion = Session["sesion_usuario"].ToString();
 
-                string cif;
+            sesion = Session["sesion_usuario"].ToString();
 
-                MySqlDataReader mostrar = logic.consultarcif(sesion);
-                try
-                {
-                    if (mostrar.Read())
-                    {
-                        cif = Convert.ToString(mostrar.GetString(0));
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hijos: " + cif + "');", true);
-                        string QueryString = "select t1.codepinfofamiliar,t1.ep_infofamiliarnombrehijos,t1.ep_infofamiliarocupacionhijos," +
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
+
+            string[] var10 = sn.consultarcif(sesion);
+
+            string cifnumero = var10[0]; 
+            string QueryString = "select t1.codepinfofamiliar,t1.ep_infofamiliarnombrehijos,t1.ep_infofamiliarocupacionhijos," +
                             " t1.ep_infofamiliarcomentario, t1.ep_infofamiliarfechanacimientohijo " +
                             "from ep_informaciongeneral t0 " +
                             "inner join ep_infofamiliar t1 " +
                             "on t0.codepinformaciongeneralcif = t1.codepinformaciongeneralcif " +
-                            "where t0.ep_informaciongeneralcif='"+ cif + "'";
+                            "where t0.ep_informaciongeneralcif='"+ cifnumero + "'";
                         //  "WHERE codepinformaciongeneralcif='"+cifactual+"';";
                         MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
                         DataTable ds4 = new DataTable();
                         myCommand.Fill(ds4);
                         GridViewhijos.DataSource = ds4;
                         GridViewhijos.DataBind();
-                    }
-                }
-                catch (Exception err)
+            }
+            catch (Exception err)
                 {
                     Console.WriteLine(err.Message);
                 }
-            }
-            catch
-            {
-            }
         }
 
         //Otros Estudios
@@ -242,33 +219,24 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 sesion = Session["sesion_usuario"].ToString();
 
-                string cif;
+                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
 
-                MySqlDataReader mostrar = logic.consultarcif(sesion);
-                try
-                {
-                    if (mostrar.Read())
-                    {
-                        cif = Convert.ToString(mostrar.GetString(0));
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Estudios: " + cif + "');", true);
-                        string QueryString = "SELECT * FROM ep_estudio t0 inner join ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
-                            "where t1.ep_informaciongeneralcif='"+cif+"'  AND t0.ep_estudiotipo=1";
+                string[] var10 = sn.consultarcif(sesion);
+
+                string cifnumero = var10[0];
+                string QueryString = "SELECT * FROM ep_estudio t0 inner join ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
+                            "where t1.ep_informaciongeneralcif='"+cifnumero+"'  AND t0.ep_estudiotipo=1";
                         //string QueryString = "SELECT * FROM ep_estudio where codepinformaciongeneralcif='"+cifactual+"'  AND ep_estudiotipo=1;";
                         MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
                         DataTable ds4 = new DataTable();
                         myCommand.Fill(ds4);
                         GridViewEstudios.DataSource = ds4;
                         GridViewEstudios.DataBind();
-                    }
                 }
                 catch (Exception err)
                 {
                     Console.WriteLine(err.Message);
                 }
-            }
-            catch
-            {
-            }
         }
     }
 }

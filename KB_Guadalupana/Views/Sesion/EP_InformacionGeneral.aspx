@@ -184,7 +184,7 @@ body {
       <asp:DropDownList id="IGPAZona1" runat="server" class="tampe" AutoPostBack="true" ></asp:DropDownList>
       <input id="IGDireccion" runat="server" type="text"  placeholder="Direccion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
       <asp:DropDownList id="IGDoc1" runat="server" class="tampe" AutoPostBack="true" ></asp:DropDownList> 
-      <input id="IGNoDoc" runat="server" type="text" class="tam" style="width: 66%;"   placeholder="No. Documento Identificacion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+      <input id="IGNoDoc" runat="server" type="text" class="tam" style="width: 66%;"   placeholder="No. Documento Identificacion" maxlength="13" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
       <hr class="solid" style="margin-top: 5px;"/>
       <br/>
       <input type="button" name="next" style="background-color: #003563" class="next action-button" value="Siguiente >" />
@@ -1035,7 +1035,9 @@ body {
                        <input id="ACPlaca" runat="server" type="text" class="tam"  style="max-width:150px;"  placeholder="No. Placa" maxlength="100" disabled oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="ACCome" runat="server" type="text" class="tam"  style="max-width:150px;"  placeholder="Comentarios" maxlength="100" disabled oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="Text17" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion"  disabled maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                          
+                       <input id="Text27" runat="server" type="number" class="tam"  style="max-width: 236px; margin-left: 235px;" placeholder="Valor" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                         
+                        
                        <input id="Text25" runat="server" type="text" class="tam"  style="max-width: 236px; margin-left: 235px;" disabled placeholder="A nombre de quien se encuentra" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="Text26" runat="server" type="text" class="tam"  style="max-width:225px;"  placeholder="Motivo/comentario" disabled  maxlength="100"  oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         
@@ -1157,9 +1159,6 @@ body {
         <input id="ACMATMovilC" runat="server" type="number" class="tampes" style="margin-left: 16px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
         <input id="ACMATMovilV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
        <br /> <label for="start" class="tampes">Otros </label>&nbsp;&nbsp;&nbsp;
-        <input id="Number3" runat="server" type="number" class="tampes" style="margin-left: 75px;"  placeholder="Descripcion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-        <input id="Number4" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-            
         <br/>
         
         
@@ -1167,7 +1166,7 @@ body {
              <h2 class="fs-title"><b>Otros Activos (Cosechas,Ganados,etc)</b></h2>
         
         <label for="start" class="tampes">Otros </label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMAODes" runat="server" type="text" class="tampes" style="margin-left: 75px;"  placeholder="Descripcion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="ACMAODes" runat="server" type="text" class="tampes" style="margin-left: 75px;"  placeholder="Descripcion" />
         <input id="ACMACantidadO" runat="server" type="number" class="tampes"   placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
             
         <label for="start" class="tampes">Fondo de retiro FENAFORE</label>&nbsp;&nbsp;&nbsp;
@@ -3711,14 +3710,7 @@ body {
             this.value = val.replace(/\D|\-/, '');
         });
 
-        function el(el) {
-            return document.getElementById(el);
-        }
-
-        el('ACMAODes').addEventListener('input', function () {
-            var val = this.value;
-            this.value = val.replace(/\D|\-/, '');
-        });
+       
         function el(el) {
             return document.getElementById(el);
         }

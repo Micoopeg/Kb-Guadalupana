@@ -731,6 +731,132 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public MySqlDataReader consultarconcampoQ(string valor)
+        {
+            try
+            {
+                cn.conectar();
+                string consultaGraAsis = "SELECT sum(ep_cuentasmonto) as Total " +
+                    "FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                    "INNER JOIN ep_institucion c INNER JOIN ep_tipoestatuscuenta d " +
+                    "INNER JOIN ep_tipomoneda e inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                    "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                    "AND a.codeptipomoneda=e.codeptipomoneda AND a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                    "WHERE f.ep_informaciongeneralcif='"+valor+"' " +
+                    "AND e.ep_tipomonedanombre='Quetzales' " +
+                    "AND b.ep_tipocuentanombre='Cuentas monetarias'";
+                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                return mostrarResultados;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public MySqlDataReader consultarconcampoD(string valor)
+        {
+            try
+            {
+                cn.conectar();
+                string consultaGraAsis = "SELECT sum(ep_cuentasmonto) as Total " +
+                    "FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                    "INNER JOIN ep_institucion c INNER JOIN ep_tipoestatuscuenta d " +
+                    "INNER JOIN ep_tipomoneda e inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                    "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                    "AND a.codeptipomoneda=e.codeptipomoneda AND a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                    "WHERE f.ep_informaciongeneralcif='" + valor + "' " +
+                    "AND e.ep_tipomonedanombre='Dolares' " +
+                    "AND b.ep_tipocuentanombre='Cuentas monetarias'";
+                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                return mostrarResultados;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public MySqlDataReader consultarconcampoCD(string valor)
+        {
+            try
+            {
+                cn.conectar();
+                string consultaGraAsis = "SELECT sum(ep_cuentasmonto) as Total " +
+                    "FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                    "INNER JOIN ep_institucion c INNER JOIN ep_tipoestatuscuenta d " +
+                    "INNER JOIN ep_tipomoneda e inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                    "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                    "AND a.codeptipomoneda=e.codeptipomoneda AND a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                    "WHERE f.ep_informaciongeneralcif='" + valor + "' " +
+                    "AND e.ep_tipomonedanombre='Dolares' " +
+                    "AND b.ep_tipocuentanombre='Cuentas en cooperativas'";
+                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                return mostrarResultados;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public MySqlDataReader consultarconcampoCQ(string valor)
+        {
+            try
+            {
+                cn.conectar();
+                string consultaGraAsis = "SELECT sum(ep_cuentasmonto) as Total " +
+                    "FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                    "INNER JOIN ep_institucion c INNER JOIN ep_tipoestatuscuenta d " +
+                    "INNER JOIN ep_tipomoneda e inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                    "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                    "AND a.codeptipomoneda=e.codeptipomoneda AND a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                    "WHERE f.ep_informaciongeneralcif='" + valor + "' " +
+                    "AND e.ep_tipomonedanombre='Quetzales' " +
+                    "AND b.ep_tipocuentanombre='Cuentas en cooperativas'";
+                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                return mostrarResultados;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public MySqlDataReader consultarconcampoCP(string valor)
+        {
+            try
+            {
+                cn.conectar();
+                string consultaGraAsis = "SELECT sum(ep_cuentasmonto) as Total " +
+                    "FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                    "INNER JOIN ep_institucion c INNER JOIN ep_tipoestatuscuenta d " +
+                    "INNER JOIN ep_tipomoneda e inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                    "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                    "AND a.codeptipomoneda=e.codeptipomoneda AND a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                    "WHERE f.ep_informaciongeneralcif='" + valor + "' " +
+                    "AND e.ep_tipomonedanombre='Quetzales' " +
+                    "AND b.ep_tipocuentanombre='Cuentas por cobrar'";
+                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                return mostrarResultados;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+
         //-----------------------------------------------------------------------RESTRUCTURADOS--------------------------------------------------------------//
         public string[] validarcifantiguo(string usuario)
         {

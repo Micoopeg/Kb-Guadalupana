@@ -1158,7 +1158,7 @@ body {
         <label for="start" class="tampes">Telefono Movil</label>&nbsp;&nbsp;&nbsp;
         <input id="ACMATMovilC" runat="server" type="number" class="tampes" style="margin-left: 16px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
         <input id="ACMATMovilV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-       <br /> <label for="start" class="tampes">Otros </label>&nbsp;&nbsp;&nbsp;
+      
         <br/>
         
         

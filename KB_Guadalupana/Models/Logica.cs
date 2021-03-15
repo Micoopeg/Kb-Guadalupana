@@ -226,5 +226,30 @@ namespace KB_Guadalupana.Models
         {
             return sn.buscarCIF(cif);
         }
+
+        public MySqlDataReader consultarQ(string valor)
+        {
+            return sn.consultarconcampoQ(valor);
+        }
+
+        public MySqlDataReader consultarD(string valor)
+        {
+            return sn.consultarconcampoD(valor);
+        }
+
+        public MySqlDataReader consultarCD(string valor)
+        {
+            return sn.consultarconcampoCD(valor);
+        }
+
+        public MySqlDataReader consultarCQ(string valor)
+        {
+            return sn.consultarconcampoCQ(valor);
+        }
+
+        public MySqlDataReader consultarCP(string valor)
+        {
+            return sn.consultarconcampoCP(valor);
+        }
     }
 }

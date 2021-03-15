@@ -3545,7 +3545,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_prestamo", "codepprestamo");
-                    string[] valores1 = { sig, PTPrestamo1.SelectedValue, cifactual, PNEntidad1.SelectedValue, PNPNEntidadnombre1.SelectedValue, PMInicial.Value, PSActual.Value, Datedesembolso.Value, Datefinalizacion.Value, PFDestino.Value };
+                    string[] valores1 = { sig, PTPrestamo1.SelectedValue, cifactual,PNPNEntidadnombre1.SelectedValue ,PNEntidad1.SelectedValue, PMInicial.Value, PSActual.Value, Datedesembolso.Value, Datefinalizacion.Value, PFDestino.Value };
                     logic.insertartablas("ep_prestamo", valores1);
                 }
                 catch (Exception err)

@@ -190,9 +190,9 @@ namespace KBGuada.Controllers
             string coduseagenda = mav.consultaragenda(coduser);
             return coduseagenda;
         }
-        public DataSet consultarapps()
+        public DataSet consultarapps(string id)
         {
-            return mav.consultarapps();
+            return mav.consultarapps(id);
         }
         public string url(string app)
         {

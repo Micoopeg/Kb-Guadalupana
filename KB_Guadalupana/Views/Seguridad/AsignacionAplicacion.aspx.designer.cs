@@ -11,26 +11,8 @@ namespace KB_Guadalupana.Views.Seguridad
 {
 
 
-    public partial class Seguridad2
+    public partial class AsignacionAplicacion
     {
-
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
         /// inicio control.
@@ -42,13 +24,40 @@ namespace KB_Guadalupana.Views.Seguridad
         protected global::System.Web.UI.HtmlControls.HtmlAnchor inicio;
 
         /// <summary>
-        /// repetirapp control.
+        /// AAUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repetirapp;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText AAUsuario;
+
+        /// <summary>
+        /// AAplicacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AAplicacion;
+
+        /// <summary>
+        /// GridViewAplicaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewAplicaciones;
+
+        /// <summary>
+        /// AAsignar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AAsignar;
 
         /// <summary>
         /// btninicio control.

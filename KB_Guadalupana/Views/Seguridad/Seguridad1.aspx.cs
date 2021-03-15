@@ -15,6 +15,7 @@ namespace KB_Guadalupana.Views.Seguridad
         Conexion_seguridad cn = new Conexion_seguridad();
         Sentencia_seguridad sn = new Sentencia_seguridad();
         string estado = "";
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,33 +27,44 @@ namespace KB_Guadalupana.Views.Seguridad
 
         public void llenarcomboagencia()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string QueryString = "select * from gen_usuario";
-                MySqlConnection conect = cn.conectar();
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
-                DataSet ds = new DataSet();
-                myCommand.Fill(ds, "Usuario");
-                SUsuario.DataSource = ds;
-                SUsuario.DataTextField = "gen_usuarionombre";
-                SUsuario.DataValueField = "codgenusuario";
-                SUsuario.DataBind();
-                SUsuario.Items.Insert(0, new ListItem("[Usuario]", "0"));
+                try
+                {
+                    
+                    sqlCon.Open();
+                    string QueryString = "select * from gen_usuario";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Usuario");
+                    SUsuario.DataSource = ds;
+                    SUsuario.DataTextField = "gen_usuarionombre";
+                    SUsuario.DataValueField = "codgenusuario";
+                    SUsuario.DataBind();
+                    SUsuario.Items.Insert(0, new ListItem("[Usuario]", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
             }
-            catch { }
-            finally { try { cn.desconectar(); } catch { } }
+       
         }
-
+  
         protected void SUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["usuario_seguridad"] = SUsuario.SelectedItem.Text;
             estado = sn.obtenerestado(SUsuario.SelectedValue);
             if(estado == "True")
             {
                 SEstado.Value = "Activo";
+          
+                lblmensaje.Visible = false;
             }else if(estado == "False")
             {
                 SEstado.Value = "Inactivo";
+     
+                lblmensaje.Visible = true;
             }
+
+            
         }
 
         protected void SVerificar_Click(object sender, EventArgs e)

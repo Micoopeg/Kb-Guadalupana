@@ -1,27 +1,30 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SeguridadMod.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.SeguridadMod" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AsignacionAplicacion.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.AsignacionAplicacion" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-     <title>Seguridad</title>
+    <meta charset="UTF-8" />
+    <title>Asignacion Aplicacion</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../../AvDiseños/Botones.css" />
-      <link rel="stylesheet"  href="../../EXDiseños/EstilosDashboard.css" />
+       <link rel="stylesheet"  href="../../EXDiseños/EstilosDashboard.css" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="../../EXDiseños/stylebarra.css">
-</head>
 
-     <style>
+</head>
+    <style>
 
         form 
 {
   background: #003563;
-  width: 400px;
-  margin: 120px auto;
+  width: 700px;
+  margin: 130px auto;
   border-radius: 0.4em;
   border: 1px solid #191919;
   overflow: hidden;
@@ -137,7 +140,7 @@ input[type=submit] {
   font-weight: bold;
   cursor: pointer;
   font-size: 13px;
-    margin-left: 125px;
+  margin-left: 260px;
 }
 
 input[type=submit]:hover {
@@ -214,15 +217,35 @@ padding: 8px;
     color: #2C3E50;
     font-size: 13px;            
 }
-</style>
-<body>
+a.chosen-single{
+    height:42px;
+}
+  .tabla{
+            width:100%;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+        }
 
+  .diseño{
+      width:300px;
+  }
+  .prueba{
+      background-color:#0075DB;
+  }
+
+</style>
+
+
+<body>
     <div class="topnav">
             <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
-            <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Creacion Modulos KB-Guadalupana</b></span>
+            <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
-    <header class="encabezado" style="text-align:center;">
+    <div class="container-fluid">
+        <header class="encabezado" style="text-align:center;">
 	<div class="menu-bar">
 		<div class="three col">
 			<div class="hamburger" id="hamburger-pro">
@@ -284,65 +307,61 @@ padding: 8px;
 		</ul>
 	</nav>
 </header>
-   
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-
-           
-
-<br />
-               <h1 style="color:white">Crea Modulo</h1>
+        </div>
+    
+  <form runat="server">
+  <h1 style="color:white">Asignación Aplicación</h1>
   <div class="inset">
-      <div class="row">
-          
+<div class="row">
     <p class="col-md-6">
-        <label  style="color:white">Abreviatura Modulo</label>
-        <input style="color:black" type="text" id="abrmodulo" runat="server"/>
+        <label  style="color:white">Usuario</label>
+        <input style="color:black; height:35px" type="text" id="AAUsuario" runat="server" readonly="true"/>
     </p>
     <p class="col-md-6">
-        <label style="color:white">Nombre Modulo</label>
-        <input style="color:black" type="text"  id="nommodul" runat="server"/>
+        <label style="color:white">Aplicación</label>
+         <asp:DropDownList ID="AAplicacion" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
     </p>
 </div>
- <div class="row">
-     <p class="col-lg-12">
-         <label  style="color:white">URL</label>
-        <input style="color:black" type="text"  id="url1" runat="server" />
-
-     </p>
- </div>
-           
-  <p>
-    <label style="color:white">Estado</label>
-
-  
-    <select id="seleccion" runat="server" class="dis">
-            <option disabled selected>Estado</option>
-            <option  value="Activo">Activo</option>
-            <option  value="Inactivo">Inactivo</option>
-        </select>
-     
-  </p>
-  
   </div>
+
+      <div class="tabla">
+         <asp:GridView ID="GridViewAplicaciones" CssClass="mGrid" style="width: 600px;text-align:center" runat="server"  HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" BorderStyle="Solid">
+                    <Columns>
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Usuario">
+                           <ItemTemplate>
+                           <asp:Label ID="lblusuario" ForeColor="White" Width="300px" Text='<%# Eval("gen_usuarionombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Aplicación Asignada">
+                           <ItemTemplate>
+                           <asp:Label ID="lblapp" ForeColor="White" Width="300px" Text='<%# Eval("gen_nombreapp") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     </Columns>
+        <HeaderStyle CssClass="prueba" Width="300px" ForeColor="White"></HeaderStyle>
+        </asp:GridView>
+       </div>
+
+<br /><br />
   <p class="p-container">
-      
+     <asp:Button ID="AAsignar" runat="server" Text="Asignar" OnClick="AAsignar_Click"/>
   </p>
 
-     <center>
-   
-            <asp:Button ID="btninsert" runat="server"  Text="Guardar"  OnClick="btnguardar_Click"></asp:Button>
-     </center>
+    <script>
+        $('#<%=AAplicacion.ClientID%>').chosen();
+    </script>
 
-         <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+       <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
-    </form>
+</form>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="../../EXDiseños/scriptbarra.js"></script>
     <script src="../../EXDiseños/scriptdash.js"></script>
@@ -350,10 +369,10 @@ padding: 8px;
     
       <script type="text/javascript">
 
-        function redirigir() {
+          function redirigir() {
 
-            document.getElementById('btninicio').click();
-            
+              document.getElementById('btninicio').click();
+
           }
           function redirigir2() {
 

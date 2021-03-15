@@ -37,15 +37,15 @@ namespace Login_Web
                 //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Correo: " + Session["Correo"] + "');", true);
 
 
-                usuario = sn.verificacionUsuario(IdUser.Value);
+                //usuario = sn.verificacionUsuario(IdUser.Value);
 
-                if(usuario == "")
-                {
-                    string sig = lg.siguiente("gen_usuario", "codgenusuario");
-                    sn.crearUsuario(sig, "1", IdUser.Value, "@guadapulana.com.gt","1", "1");
-                }
+                //if(usuario == "")
+                //{
+                //    string sig = lg.siguiente("gen_usuario", "codgenusuario");
+                //    sn.crearUsuario(sig, "1", IdUser.Value, "@guadapulana.com.gt","1", "1");
+                //}
 
-                Response.Redirect("Views/Sesion/Inicio.aspx");
+                //Response.Redirect("Views/Sesion/Inicio.aspx");
 
             }
             else

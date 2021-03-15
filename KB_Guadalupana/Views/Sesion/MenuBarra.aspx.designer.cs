@@ -42,33 +42,6 @@ namespace Login_Web
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Button3;
 
         /// <summary>
-        /// Control ButtonAgenda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ButtonAgenda;
-
-        /// <summary>
-        /// Control Ul1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ul1;
-
-        /// <summary>
-        /// Control Ul2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ul2;
-
-        /// <summary>
         /// Control abreuser.
         /// </summary>
         /// <remarks>

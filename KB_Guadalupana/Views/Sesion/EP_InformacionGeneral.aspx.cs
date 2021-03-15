@@ -2932,7 +2932,7 @@ namespace KB_Guadalupana.Views.Sesion
                 IGPDepartamento1.SelectedIndex = id3;
 
                 int id4 = Convert.ToInt32(var1[10]);
-                IGMunicipio1.SelectedIndex = id4;
+                IGMunicipio1.SelectedValue = Convert.ToString(id4);
 
                 int id5 = Convert.ToInt32(var1[11]);
                 IGPAZona1.SelectedIndex = id5;

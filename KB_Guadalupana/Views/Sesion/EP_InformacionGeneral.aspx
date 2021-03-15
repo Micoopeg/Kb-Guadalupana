@@ -1040,6 +1040,7 @@ body {
                         
                        <input id="Text25" runat="server" type="text" class="tam"  style="max-width: 236px; margin-left: 235px;" disabled placeholder="A nombre de quien se encuentra" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                        <input id="Text26" runat="server" type="text" class="tam"  style="max-width:225px;"  placeholder="Motivo/comentario" disabled  maxlength="100"  oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+ 
                         
                         <%-- GRIDVIEW NUMEROS DE VEHICULOS --%>
                         <div id="divGridvehiculos" style="overflow: auto; height: 130px">
@@ -1094,6 +1095,11 @@ body {
                             <asp:TemplateField HeaderText="Motivo">
                            <ItemTemplate>
                             <asp:Label ID="lblmotivo" Text='<%# Eval("ep_vehiculomotivodeanombrede") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                <asp:TemplateField HeaderText="Monto">
+                           <ItemTemplate>
+                            <asp:Label ID="lblmonto" Text='<%# Eval("ep_vehiculomonto") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
                             <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarvehiculosgridview fa-check-circle" CommandName="Select" ItemStyle-Width="150" >

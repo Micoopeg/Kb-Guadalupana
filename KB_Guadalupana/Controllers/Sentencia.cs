@@ -1029,6 +1029,7 @@ namespace KB_Guadalupana.Controllers
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
                 return Campos;// devuelve un arrgeglo con los campos               
             }
+            
         }
 
         public string[] consultarArea(string usuario)

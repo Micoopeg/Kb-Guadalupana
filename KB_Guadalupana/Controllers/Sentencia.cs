@@ -185,12 +185,15 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public MySqlDataReader consultarconcampoIE(string tabla, string campo, string cif)
+        public string[] consultarconcampoIE(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT epec.ep_estadocivilnombre, " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT epec.ep_estadocivilnombre, " +
                     "epif.ep_infofamiliarnombreconyuge, " +
                     "epif.ep_infofamiliarocupacionconyuge, " +
                     "epif.ep_infofamiliarapellidocascada," +
@@ -202,39 +205,54 @@ namespace KB_Guadalupana.Controllers
                     "FROM ep_infofamiliar epif " +
                     "INNER JOIN ep_informaciongeneral epig ON epig.codepinformaciongeneralcif = epif.codepinformaciongeneralcif " +
                     "INNER JOIN ep_estadocivil epec ON epec.codepestadocivil = epig.codepestadocivil " +
-                    "WHERE epig.ep_informaciongeneralcif ='"+cif+"'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                    "WHERE epig.ep_informaciongeneralcif ='" + cif + "'"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampoIO(string tabla, string campo, string valor)
+        public string[] consultarconcampoIO(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT epes.ep_estudionombre," +
-                    " epes.ep_estudioduracion," +
-                    " epes.ep_estudioaño," +
-                    " epes.ep_estudioidioma," +
-                    " epes.ep_estudiolugar " +
-                    " FROM ep_estudio epes " +
-                    "INNER JOIN ep_informaciongeneral epig ON epes.codepinformaciongeneralcif = epig.codepinformaciongeneralcif  " +
-                    "  WHERE  epig.ep_informaciongeneralcif = '"+ valor + "' AND epes.ep_estudiotipo = 0 ;";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT epes.ep_estudionombre," +
+                   " epes.ep_estudioduracion," +
+                   " epes.ep_estudioaño," +
+                   " epes.ep_estudioidioma," +
+                   " epes.ep_estudiolugar " +
+                   " FROM ep_estudio epes " +
+                   "INNER JOIN ep_informaciongeneral epig ON epes.codepinformaciongeneralcif = epig.codepinformaciongeneralcif  " +
+                   "  WHERE  epig.ep_informaciongeneralcif = '" + cif + "' AND epes.ep_estudiotipo = 0 ;"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
@@ -255,443 +273,625 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public MySqlDataReader consultarconcampoCaja(string tabla, string campo, string valor)
+        public string[] consultarconcampoCaja(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_bactivoscaja " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_bactivoscaja " +
                     "from ep_bactivos t0 " +
                     "inner join ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
-                    "where t1.ep_informaciongeneralcif='" + valor + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                    "where t1.ep_informaciongeneralcif='" + cif + "'"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampoInv(string tabla, string campo, string valor)
+        public string[] consultarconcampoInv(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "select ep_inventarionombre,ep_inventariomonto " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "select ep_inventarionombre,ep_inventariomonto " +
                     "from ep_inventario t0 " +
                     "inner join  ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
-                    " where t1.ep_informaciongeneralcif='" + valor + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-
-        public MySqlDataReader consultarconcampomaq(string tabla, string campo, string valor)
-        {
-            try
-            {
-                cn.conectar();
-                string consultaGraAsis = "select ep_maquinarianombre,ep_maquinariadescripcion,ep_maquinariamonto" +
-                    " from ep_maquinaria t0 " +
-                    "INNER JOIN ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
-                    "where t1.ep_informaciongeneralcif='" + valor + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                    " where t1.ep_informaciongeneralcif='" + cif + "'"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaje(string tabla, string campo, string valor)
+        public string[] consultarconcampomaq(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallevalor " +
-                    "from ep_menajecasadetalle a " +
-                    "INNER JOIN ep_menajedecasaencabezado b " +
-                    "INNER JOIN ep_informaciongeneral c" +
-                    " ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
-                    "AND b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                    "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=1";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "select ep_maquinarianombre,ep_maquinariadescripcion,ep_maquinariamonto" +
+                   " from ep_maquinaria t0 " +
+                   "INNER JOIN ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
+                   "where t1.ep_informaciongeneralcif='" + cif + "'"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaje1(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaje(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallevalor " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallevalor " +
+                  "from ep_menajecasadetalle a " +
+                  "INNER JOIN ep_menajedecasaencabezado b " +
+                  "INNER JOIN ep_informaciongeneral c" +
+                  " ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
+                  "AND b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
+                  "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=1"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] consultarconcampomenaje1(string cif)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallevalor " +
                    "from ep_menajecasadetalle a " +
                    "INNER JOIN ep_menajedecasaencabezado b " +
                    "INNER JOIN ep_informaciongeneral c" +
                    " ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
                    "AND b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                   "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=2";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                   "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=2"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaje2(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaje2(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallevalor " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallevalor " +
                    "from ep_menajecasadetalle a " +
                    "INNER JOIN ep_menajedecasaencabezado b " +
                    "INNER JOIN ep_informaciongeneral c" +
                    " ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
                    "AND b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                   "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=3";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                   "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=3"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenajeTV(string tabla, string campo, string valor)
+        public string[] consultarconcampomenajeTV(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
                    "from ep_menajecasadetalle a " +
                    "INNER JOIN ep_menajedecasaencabezado b " +
                    "INNER JOIN ep_informaciongeneral c " +
                    "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
                    "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                   "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=4; ";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                   "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=4; "; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenajeES(string tabla, string campo, string valor)
+        public string[] consultarconcampomenajeES(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
                   "from ep_menajecasadetalle a " +
                   "INNER JOIN ep_menajedecasaencabezado b " +
                   "INNER JOIN ep_informaciongeneral c " +
                   "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
                   "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                  "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=5; "; comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-
-        public MySqlDataReader consultarconcampomenajeL(string tabla, string campo, string valor)
-        {
-            try
-            {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
-                   "from ep_menajecasadetalle a " +
-                   "INNER JOIN ep_menajedecasaencabezado b " +
-                   "INNER JOIN ep_informaciongeneral c " +
-                   "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
-                   "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                   "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=6; ";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                  "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=5; "; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaSec(string tabla, string campo, string valor)
+        public string[] consultarconcampomenajeL(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
                   "from ep_menajecasadetalle a " +
                   "INNER JOIN ep_menajedecasaencabezado b " +
                   "INNER JOIN ep_informaciongeneral c " +
                   "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
                   "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                  "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=7; ";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-
-        public MySqlDataReader consultarconcampomenaEST(string tabla, string campo, string valor)
-        {
-            try
-            {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
-                  "from ep_menajecasadetalle a " +
-                  "INNER JOIN ep_menajedecasaencabezado b " +
-                  "INNER JOIN ep_informaciongeneral c " +
-                  "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
-                  "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                  "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=8; ";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                  "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=6; "; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaRefri(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaSec(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
                  "from ep_menajecasadetalle a " +
                  "INNER JOIN ep_menajedecasaencabezado b " +
                  "INNER JOIN ep_informaciongeneral c " +
                  "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
                  "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                 "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=9; "; comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                 "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=7; "; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaTel(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaEST(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
                  "from ep_menajecasadetalle a " +
                  "INNER JOIN ep_menajedecasaencabezado b " +
                  "INNER JOIN ep_informaciongeneral c " +
                  "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
                  "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                 "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=10; ";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                 "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=8; "; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaOtros(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaRefri(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
                  "from ep_menajecasadetalle a " +
                  "INNER JOIN ep_menajedecasaencabezado b " +
                  "INNER JOIN ep_informaciongeneral c " +
                  "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
                  "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                 "WHERE c.ep_informaciongeneralcif='" + valor + "' AND a.codeptipobien=11; ";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-
-        public MySqlDataReader consultarconcampomenaOD(string tabla, string campo, string valor)
-        {
-            try
-            {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_deudasvariasdescripcion,ep_deudasvariasvalor " +
-                    "from ep_deudasvarias t0 " +
-                    "INNER JOIN ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
-                    "where t1.ep_informaciongeneralcif='" + valor + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                 "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=9; "; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaPC(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaTel(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "Select T0.ep_pasivocontigenombre,T0.ep_pasivocontigentedeudor," +
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
+                "from ep_menajecasadetalle a " +
+                "INNER JOIN ep_menajedecasaencabezado b " +
+                "INNER JOIN ep_informaciongeneral c " +
+                "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
+                "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
+                "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=10; "; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] consultarconcampomenaOtros(string cif)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor " +
+                 "from ep_menajecasadetalle a " +
+                 "INNER JOIN ep_menajedecasaencabezado b " +
+                 "INNER JOIN ep_informaciongeneral c " +
+                 "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
+                 "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
+                 "WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=11; "; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] consultarconcampomenaOD(string cif)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_deudasvariasdescripcion,ep_deudasvariasvalor " +
+                  "from ep_deudasvarias t0 " +
+                  "INNER JOIN ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
+                  "where t1.ep_informaciongeneralcif='" + cif + "'"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] consultarconcampomenaPC(string cif)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "Select T0.ep_pasivocontigenombre,T0.ep_pasivocontigentedeudor," +
                     "T0.ep_pasivocontigentecondeudor,T0.ep_pasivocontigentesaldo, " +
                     "DATE_FORMAT(T0.ep_pasivocontigentefechadesembolso, '%Y-%m-%d')" +
                     ",DATE_FORMAT(T0.ep_pasivocontigentefechafinalizacion, '%Y-%m-%d') " +
                     "FROM ep_pasivocontigente T0 INNER JOIN ep_informaciongeneral T1 " +
                     "ON T0.codepinformaciongeneralcif=T1.codepinformaciongeneralcif " +
-                    "where T1.ep_informaciongeneralcif='" + valor + "';";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
-            }
-        }
-
-        public MySqlDataReader consultarconcampomenaIng(string tabla, string campo, string valor)
-        {
-            try
-            {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_ingresosueldo,ep_ingresobonificacion,ep_ingresocomisiones " +
-                    "FROM ep_ingreso a INNER JOIN ep_controlingreso b " +
-                    "INNER JOIN ep_informaciongeneral c ON a.codepcontrolingreso=b.codepcontrolingreso " +
-                    "AND b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                    "WHERE c.ep_informaciongeneralcif='" + valor + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                    "where T1.ep_informaciongeneralcif='" + cif + "';";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaNeg(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaIng(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_negociotipo,ep_negocionombre,ep_negociopatente," +
-                    "ep_negocioempleados,ep_negocioobjeto,ep_negocioingresos," +
-                    "ep_negocioegresos,ep_negociodireccion FROM ep_negocio a " +
-                    "INNER JOIN ep_controlingreso b INNER JOIN ep_informaciongeneral c " +
-                    "ON a.codepcontrolingreso=b.codepcontrolingreso " +
-                    "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                    "WHERE c.ep_informaciongeneralcif='" + valor + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_ingresosueldo,ep_ingresobonificacion,ep_ingresocomisiones " +
+                   "FROM ep_ingreso a INNER JOIN ep_controlingreso b " +
+                   "INNER JOIN ep_informaciongeneral c ON a.codepcontrolingreso=b.codepcontrolingreso " +
+                   "AND b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
+                   "WHERE c.ep_informaciongeneralcif='" + cif + "'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaRem(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaNeg(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT ep_remesasnombre,ep_remesasrelacion," +
-                    "ep_remesasmonto,DATE_FORMAT(ep_remesasperiodo, '%Y-%m-%d') " +
-                    "FROM ep_remesas a INNER JOIN ep_controlingreso b " +
-                    "INNER JOIN ep_informaciongeneral c ON a.codepcontrolingreso=b.codepcontrolingreso " +
-                    "AND b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                    "WHERE c.ep_informaciongeneralcif='" + valor + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-                return null;
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_negociotipo,ep_negocionombre,ep_negociopatente," +
+                   "ep_negocioempleados,ep_negocioobjeto,ep_negocioingresos," +
+                   "ep_negocioegresos,ep_negociodireccion FROM ep_negocio a " +
+                   "INNER JOIN ep_controlingreso b INNER JOIN ep_informaciongeneral c " +
+                   "ON a.codepcontrolingreso=b.codepcontrolingreso " +
+                   "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
+                   "WHERE c.ep_informaciongeneralcif='" + cif + "'"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 
-        public MySqlDataReader consultarconcampomenaEgres(string tabla, string campo, string valor)
+        public string[] consultarconcampomenaRem(string cif)
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                cn.conectar();
-                string consultaGraAsis = "SELECT * from ep_egresos t0 " +
-                    "inner join ep_informaciongeneral t1 " +
-                    "ON t0.codinformaciongeneralcif=t1.codepinformaciongeneralcif " +
-                    "where t1.ep_informaciongeneralcif='" + valor + "'";
-                comm = new MySqlCommand(consultaGraAsis, cn.conectar());
-                MySqlDataReader mostrarResultados = comm.ExecuteReader();
-                return mostrarResultados;
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_remesasnombre,ep_remesasrelacion," +
+                   "ep_remesasmonto,DATE_FORMAT(ep_remesasperiodo, '%Y-%m-%d') " +
+                   "FROM ep_remesas a INNER JOIN ep_controlingreso b " +
+                   "INNER JOIN ep_informaciongeneral c ON a.codepcontrolingreso=b.codepcontrolingreso " +
+                   "AND b.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
+                   "WHERE c.ep_informaciongeneralcif='" + cif + "'"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
-            catch (Exception err)
+        }
+
+        public string[] consultarconcampomenaEgres(string cif)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                Console.WriteLine(err.Message);
-                return null;
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT * from ep_egresos t0 " +
+                   "inner join ep_informaciongeneral t1 " +
+                   "ON t0.codinformaciongeneralcif=t1.codepinformaciongeneralcif " +
+                   "where t1.ep_informaciongeneralcif='" + cif + "'"; 
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
 

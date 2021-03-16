@@ -2662,7 +2662,7 @@ namespace KB_Guadalupana.Views.Sesion
                         "INNER JOIN ep_tipoestatuscuenta d " +
                         "INNER JOIN ep_tipomoneda e ON a.codeptipocuenta=b.codeptipocuenta AND a.codepinstitucion=c.codepinstitucion " +
                         "AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta  AND a.codeptipomoneda=e.codeptipomoneda " +
-                        "WHERE codepinformaciongeneralcif='" + cifactual + "';";
+                        "WHERE codepinformaciongeneralcif='" + cifactual + "' AND a.codeptipocuenta!='3' AND a.codeptipocuenta!='4'  ;";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     myCommand.Fill(ds4);

@@ -13,6 +13,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 {
     public partial class ReporteAdmin2 : System.Web.UI.Page
     {
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         Conexion cn = new Conexion();
         Logica logic = new Logica();
         Sentencia sn = new Sentencia();
@@ -67,656 +68,530 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarCaja()
         {
-
             sesion = Session["IDReporte1"].ToString();
-            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Caja" + sesion + "');", true);
-           
-            try
+            string[] var1 = sn.consultarconcampoCaja(sesion);
+            for (int i = 0; i < var1.Length; i++)
             {
-                /*ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + cifnumero+ "');", true);*/
-                MySqlDataReader mostrar = logic.consultarCaja("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-                try
-                {
-                    if (mostrar.Read())
-                    {
-                        CajaA.Value = Convert.ToString(mostrar.GetString(0));
-                    }
-                }
-                catch (Exception err)
-                {
-                    Console.WriteLine(err.Message);
-                }
+                CajaA.Value = Convert.ToString(var1[0]);
             }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-            }
-
-
         }
 
         public void llenargridviewcuentasvarias()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                sesion = Session["IDReporte1"].ToString();
-                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-                
-                //Response.Write(cifnumero);
-                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + cifnumero + "');", true);
-                string QueryString = "SELECT codepcuentas,a.codeptipocuenta,a.codepinstitucion," +
-                            "a.codeptipoestatuscuenta,a.codeptipomoneda,b.ep_tipocuentanombre," +
-                            "c.ep_institucionnombre,d.ep_tipoestatuscuentanombre," +
-                            "e.ep_tipomonedanombre,ep_cuentasmonto,ep_cuentasorigen " +
-                            "FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
-                            "INNER JOIN ep_institucion c INNER JOIN ep_tipoestatuscuenta d " +
-                            "INNER JOIN ep_tipomoneda e " +
-                            "inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
-                            "AND a.codepinstitucion=c.codepinstitucion " +
-                            "AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
-                            "AND a.codeptipomoneda=e.codeptipomoneda and a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
-                            "WHERE f.ep_informaciongeneralcif='" + sesion + "'";
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
-                DataTable ds4 = new DataTable();
-                myCommand.Fill(ds4);
-                GridViewcuentasvarias.DataSource = ds4;
-                GridViewcuentasvarias.DataBind();
+                try
+                {
+                    sesion = Session["IDReporte1"].ToString();
+                    sqlCon.Open();
+                    string QueryString = "SELECT codepcuentas,a.codeptipocuenta,a.codepinstitucion," +
+                           "a.codeptipoestatuscuenta,a.codeptipomoneda,b.ep_tipocuentanombre," +
+                           "c.ep_institucionnombre,d.ep_tipoestatuscuentanombre," +
+                           "e.ep_tipomonedanombre,ep_cuentasmonto,ep_cuentasorigen " +
+                           "FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                           "INNER JOIN ep_institucion c INNER JOIN ep_tipoestatuscuenta d " +
+                           "INNER JOIN ep_tipomoneda e " +
+                           "inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                           "AND a.codepinstitucion=c.codepinstitucion " +
+                           "AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                           "AND a.codeptipomoneda=e.codeptipomoneda and a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                           "WHERE f.ep_informaciongeneralcif='" + sesion + "'";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridViewcuentasvarias.DataSource = ds4;
+                    GridViewcuentasvarias.DataBind();
 
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
             }
         }
 
         public void llenargridviewcuentasporcobrar()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                sesion = Session["IDReporte1"].ToString();
-                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-               
-                string QueryString = "SELECT codepcuentas,ep_cuentasnombre,ep_cuentasmonto,ep_cuentasorigen FROM ep_cuentas t0 " +
+                try
+                {
+                    sesion = Session["IDReporte1"].ToString();
+                    sqlCon.Open();
+                    string QueryString = "SELECT codepcuentas,ep_cuentasnombre,ep_cuentasmonto,ep_cuentasorigen FROM ep_cuentas t0 " +
                     "inner JOIN ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif" +
                     " where t1.ep_informaciongeneralcif='" + sesion + "' AND t0.codeptipocuenta=4";
-                //  string QueryString = "SELECT codepcuentas,ep_cuentasnombre,ep_cuentasmonto,ep_cuentasorigen FROM ep_cuentas where codepinformaciongeneralcif='"+cifactual+"';";
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
-                DataTable ds4 = new DataTable();
-                myCommand.Fill(ds4);
-                GridViewcuentasporcobrar.DataSource = ds4;
-                GridViewcuentasporcobrar.DataBind();
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridViewcuentasporcobrar.DataSource = ds4;
+                    GridViewcuentasporcobrar.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
             }
         }
 
         public void mostrarInventario()
         {
-
             sesion = Session["IDReporte1"].ToString();
-            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
 
-            MySqlDataReader mostrar = logic.consultarInv("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            string[] var1 = sn.consultarconcampoInv(sesion);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    NombreM.Value = Convert.ToString(mostrar.GetString(0));
-                    MontoM.Value = Convert.ToString(mostrar.GetString(1));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                NombreM.Value = Convert.ToString(var1[0]);
+                MontoM.Value = Convert.ToString(var1[1]);
             }
         }
 
         public void llenargridviewbienesinmuebles()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                sesion = Session["IDReporte1"].ToString();
-                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-             
-                string QueryString = "SELECT codepinmueble,b.ep_tipoinmueblenombre,a.codeptipoinmueble," +
+                try
+                {
+                    sesion = Session["IDReporte1"].ToString();
+                    sqlCon.Open();
+                    string QueryString = "SELECT codepinmueble,b.ep_tipoinmueblenombre,a.codeptipoinmueble," +
                     "ep_inmueblefolio,ep_inmueblelibro,ep_inmuebledireccion,ep_inmueblevalor," +
                     "ep_inmuebledescripcion FROM ep_inmueble a INNER JOIN ep_tipoinmueble b " +
                     "INNER join ep_informaciongeneral c ON a.codeptipoinmueble=b.codeptipoinmueble" +
                     " and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif" +
                     " WHERE c.ep_informaciongeneralcif='" + sesion + "'";
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
-                DataTable ds4 = new DataTable();
-                myCommand.Fill(ds4);
-                GridViewbienesinmuebles.DataSource = ds4;
-                GridViewbienesinmuebles.DataBind();
-
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridViewbienesinmuebles.DataSource = ds4;
+                    GridViewbienesinmuebles.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
             }
         }
 
         public void llenargridviewvehiculos()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                sesion = Session["IDReporte1"].ToString();
-                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-               
-
-                string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre," +
-                    "ep_vehiculomarca,ep_vehiculolinea," +
-                    "ep_vehiculomodelo,ep_vehiculoplaca " +
-                    "FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b " +
-                    "inner join ep_informaciongeneral c ON a.codeptipovehiculo = b.codeptipovehiculo " +
-                    "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + sesion + "'";
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
-                DataTable ds4 = new DataTable();
-                myCommand.Fill(ds4);
-                GridViewvehiculos.DataSource = ds4;
-                GridViewvehiculos.DataBind();
-
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                try
+                {
+                    sesion = Session["sesion_usuario"].ToString();
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
+                    string[] var10 = sn.consultarcif(sesion);
+                    string cifnumero = var10[0];
+                    sqlCon.Open();
+                    string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre," +
+                     "ep_vehiculomarca,ep_vehiculolinea," +
+                     "ep_vehiculomodelo,ep_vehiculoplaca " +
+                     "FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b " +
+                     "inner join ep_informaciongeneral c ON a.codeptipovehiculo = b.codeptipovehiculo " +
+                     "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridViewvehiculos.DataSource = ds4;
+                    GridViewvehiculos.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
             }
         }
 
         public void mostrarmaquinaria()
         {
 
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarmaquinaria("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomaq(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    TMaquinaria.Value = Convert.ToString(mostrar.GetString(0));
-                    TMaquinariaEs.Value = Convert.ToString(mostrar.GetString(1));
-                    TMaquinariaMonto.Value = Convert.ToString(mostrar.GetString(2));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                TMaquinaria.Value = Convert.ToString(var1[0]);
+                TMaquinariaEs.Value = Convert.ToString(var1[1]);
+                TMaquinariaMonto.Value = Convert.ToString(var1[2]);
             }
         }
 
         public void mostrarmenaje()
         {
-
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarmenaje("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaje(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    EComputo.Value = Convert.ToString(mostrar.GetString(0));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                EComputo.Value = Convert.ToString(var1[0]);
             }
         }
 
         public void mostrarmenaje1()
         {
 
-            sesion = Session["IDReporte1"].ToString();
-            MySqlDataReader mostrar = logic.consultarmenaje1("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaje1(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    AmuebladoS.Value = Convert.ToString(mostrar.GetString(0));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                AmuebladoS.Value = Convert.ToString(var1[0]);
             }
         }
 
         public void mostrarmenaje2()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarmenaje2("ep_informaciongeneral", "codepinformaciongeneralcif",sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaje2(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    AmuebladoCom.Value = Convert.ToString(mostrar.GetString(0));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                AmuebladoCom.Value = Convert.ToString(var1[0]);
             }
         }
 
         public void mostrarTV()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarTV("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenajeTV(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    TVC = Convert.ToInt32(mostrar.GetString(0));
-                    TVM = Convert.ToInt32(mostrar.GetString(1));
+                TVC = Convert.ToInt32(var1[0].Trim());
+                TVM = Convert.ToInt32(var1[1].Trim());
 
-                    TVT = TVC * TVM;
-                    TelevisorC.Value = TVC.ToString();
-                    TelevisorM.Value = TVM.ToString();
-                    TelevisorT.Value = TVT.ToString();
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                TVT = TVC * TVM;
+                TelevisorC.Value = TVC.ToString();
+                TelevisorM.Value = TVM.ToString();
+                TelevisorT.Value = TVT.ToString();
             }
         }
 
         public void mostrarES()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarES("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenajeES(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    ESC = Convert.ToInt32(mostrar.GetString(0));
-                    ESM = Convert.ToInt32(mostrar.GetString(1));
+                ESC = Convert.ToInt32(var1[0].Trim());
+                ESM = Convert.ToInt32(var1[1].Trim());
 
-                    EST = ESC * ESM;
-                    EquipoSC.Value = ESC.ToString();
-                    EquipoSM.Value = ESM.ToString();
-                    EquipoST.Value = EST.ToString();
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                EST = ESC * ESM;
+                EquipoSC.Value = ESC.ToString();
+                EquipoSM.Value = ESM.ToString();
+                EquipoST.Value = EST.ToString();
             }
         }
 
         public void mostrarL()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarL("ep_informaciongeneral", "codepinformaciongeneralcif",sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenajeL(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    LC = Convert.ToInt32(mostrar.GetString(0));
-                    LM = Convert.ToInt32(mostrar.GetString(1));
+                LC = Convert.ToInt32(var1[0].Trim());
+                LM = Convert.ToInt32(var1[1].Trim());
 
-                    LT = LC * LM;
-                    LavadoraC.Value = LC.ToString();
-                    LavadoraM.Value = LM.ToString();
-                    LavadoraT.Value = LT.ToString();
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                LT = LC * LM;
+                LavadoraC.Value = LC.ToString();
+                LavadoraM.Value = LM.ToString();
+                LavadoraT.Value = LT.ToString();
             }
         }
 
         public void llenargridviewcuentasporpagar()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                  sesion = Session["IDReporte1"].ToString();
-
-                string QueryString = "SELECT codepcuentasporpagar,a.codeptipocuentasporpagar,b.ep_tipocuentaspopagarnombre," +
-                    "ep_cuentasporpagardescripcion,ep_cuentasporpagarmonto FROM ep_cuentasporpagar a " +
-                    "INNER JOIN ep_tipocuentaspopagar b INNER JOIN ep_informaciongeneral c " +
-                    "ON a.codeptipocuentasporpagar=b.codeptipocuentaspopagar " +
-                    "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                    "WHERE c.ep_informaciongeneralcif='" + sesion + "'";
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
-                DataTable ds4 = new DataTable();
-                myCommand.Fill(ds4);
-                GridViewcuentasporpagar.DataSource = ds4;
-                GridViewcuentasporpagar.DataBind();
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                try
+                {
+                    sesion = Session["sesion_usuario"].ToString();
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
+                    string[] var10 = sn.consultarcif(sesion);
+                    string cifnumero = var10[0];
+                    sqlCon.Open();
+                    string QueryString = "SELECT codepcuentasporpagar,a.codeptipocuentasporpagar,b.ep_tipocuentaspopagarnombre," +
+                   "ep_cuentasporpagardescripcion,ep_cuentasporpagarmonto FROM ep_cuentasporpagar a " +
+                   "INNER JOIN ep_tipocuentaspopagar b INNER JOIN ep_informaciongeneral c " +
+                   "ON a.codeptipocuentasporpagar=b.codeptipocuentaspopagar " +
+                   "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
+                   "WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridViewcuentasporpagar.DataSource = ds4;
+                    GridViewcuentasporpagar.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
             }
         }
 
         public void llenargridviewpasivos()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                sesion = Session["IDReporte1"].ToString();
-
-                string QueryString = "SELECT codepprestamo,a.codeptipoprestamo,a.codepinstitucion,a.codeptipoinstitucion," +
-                    "b.ep_tipoprestamonombre,d.ep_tipoinstitucionnombre," +
-                    "c.ep_institucionnombre,ep_prestamomomentoinicial," +
-                    "ep_prestamosaldoactual,ep_prestamodestino,ep_prestamofechadesembolso," +
-                    "ep_prestamofechadefinalizacion FROM ep_prestamo a " +
-                    "INNER JOIN ep_tipoprestamo b INNER JOIN ep_institucion c " +
-                    "INNER JOIN ep_tipoinstitucion d " +
-                    "INNER JOIN ep_informaciongeneral e " +
-                    "ON a.codeptipoprestamo=b.codeptipoprestamo " +
-                    "AND a.codepinstitucion=c.codepinstitucion " +
-                    "AND a.codeptipoinstitucion=d.codeptipoinstitucion " +
-                    "AND a.codepinformaciongeneralcif=e.codepinformaciongeneralcif " +
-                    "WHERE e.ep_informaciongeneralcif='" + sesion + "'";
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
-                DataTable ds4 = new DataTable();
-                myCommand.Fill(ds4);
-                GridViewpasivos.DataSource = ds4;
-                GridViewpasivos.DataBind();
-
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                try
+                {
+                    sesion = Session["sesion_usuario"].ToString();
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
+                    string[] var10 = sn.consultarcif(sesion);
+                    string cifnumero = var10[0];
+                    sqlCon.Open();
+                    string QueryString = "SELECT codepprestamo,a.codeptipoprestamo,a.codepinstitucion,a.codeptipoinstitucion," +
+                     "b.ep_tipoprestamonombre,d.ep_tipoinstitucionnombre," +
+                     "c.ep_institucionnombre,ep_prestamomomentoinicial," +
+                     "ep_prestamosaldoactual,ep_prestamodestino,ep_prestamofechadesembolso," +
+                     "ep_prestamofechadefinalizacion FROM ep_prestamo a " +
+                     "INNER JOIN ep_tipoprestamo b INNER JOIN ep_institucion c " +
+                     "INNER JOIN ep_tipoinstitucion d " +
+                     "INNER JOIN ep_informaciongeneral e " +
+                     "ON a.codeptipoprestamo=b.codeptipoprestamo " +
+                     "AND a.codepinstitucion=c.codepinstitucion " +
+                     "AND a.codeptipoinstitucion=d.codeptipoinstitucion " +
+                     "AND a.codepinformaciongeneralcif=e.codepinformaciongeneralcif " +
+                     "WHERE e.ep_informaciongeneralcif='" + cifnumero + "'";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridViewpasivos.DataSource = ds4;
+                    GridViewpasivos.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
             }
         }
 
         public void llenargridviewtarjetas()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                sesion = Session["IDReporte1"].ToString();
-
-
-                string QueryString = "SELECT codeptrajetadecredito,b.codeptipoinstitucion,c.codepinstitucion, " +
-                    "b.ep_tipoinstitucionnombre, c.ep_institucionnombre,ep_tarjetadecreditomonedaqtz," +
-                    "ep_tarjetadecreditomonedausd,ep_tarjetadecreditosaldoactual FROM ep_tarjetadecredito a " +
-                    "INNER JOIN ep_tipoinstitucion b INNER JOIN ep_institucion c " +
-                    "INNER JOIN ep_informaciongeneral d ON a.codeptipoinstitucion=b.codeptipoinstitucion " +
-                    "AND a.codepinstitucion=c.codepinstitucion " +
-                    "AND a.codepinformaciongeneralcif=d.codepinformaciongeneralcif " +
-                    "WHERE d.ep_informaciongeneralcif='" + sesion + "'";
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, cn.conectar());
-                DataTable ds4 = new DataTable();
-                myCommand.Fill(ds4);
-                GridViewtarjetas.DataSource = ds4;
-                GridViewtarjetas.DataBind();
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                try
+                {
+                    sesion = Session["sesion_usuario"].ToString();
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
+                    string[] var10 = sn.consultarcif(sesion);
+                    string cifnumero = var10[0];
+                    sqlCon.Open();
+                    string QueryString = "SELECT codeptrajetadecredito,b.codeptipoinstitucion,c.codepinstitucion, " +
+                   "b.ep_tipoinstitucionnombre, c.ep_institucionnombre,ep_tarjetadecreditomonedaqtz," +
+                   "ep_tarjetadecreditomonedausd,ep_tarjetadecreditosaldoactual FROM ep_tarjetadecredito a " +
+                   "INNER JOIN ep_tipoinstitucion b INNER JOIN ep_institucion c " +
+                   "INNER JOIN ep_informaciongeneral d ON a.codeptipoinstitucion=b.codeptipoinstitucion " +
+                   "AND a.codepinstitucion=c.codepinstitucion " +
+                   "AND a.codepinformaciongeneralcif=d.codepinformaciongeneralcif " +
+                   "WHERE d.ep_informaciongeneralcif='" + cifnumero + "'";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridViewtarjetas.DataSource = ds4;
+                    GridViewtarjetas.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
             }
         }
 
         public void mostrarSec()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarSec("ep_informaciongeneral", "codepinformaciongeneralcif",sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaSec(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    SC = Convert.ToInt32(mostrar.GetString(0));
-                    SM = Convert.ToInt32(mostrar.GetString(1));
+                SC = Convert.ToInt32(var1[0].Trim());
+                SM = Convert.ToInt32(var1[1].Trim());
 
-                    ST = SC * SM;
-                    SecadoraC.Value = SC.ToString();
-                    SecadoraM.Value = SM.ToString();
-                    SecadoraT.Value = ST.ToString();
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                ST = SC * SM;
+                SecadoraC.Value = SC.ToString();
+                SecadoraM.Value = SM.ToString();
+                SecadoraT.Value = ST.ToString();
             }
         }
 
         public void mostrarEstufa()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarEst("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaEST(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    EC = Convert.ToInt32(mostrar.GetString(0));
-                    EM = Convert.ToInt32(mostrar.GetString(1));
+                EC = Convert.ToInt32(var1[0].Trim());
+                EM = Convert.ToInt32(var1[1].Trim());
 
-                    ET = EC * EM;
-                    EstufaC.Value = EC.ToString();
-                    EstufaM.Value = EM.ToString();
-                    EstufaT.Value = ET.ToString();
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                ET = EC * EM;
+                EstufaC.Value = EC.ToString();
+                EstufaM.Value = EM.ToString();
+                EstufaT.Value = ET.ToString();
             }
         }
 
         public void mostrarRefri()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarRefri("ep_informaciongeneral", "codepinformaciongeneralcif",sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaRefri(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    RC = Convert.ToInt32(mostrar.GetString(0));
-                    RM = Convert.ToInt32(mostrar.GetString(1));
+                RC = Convert.ToInt32(var1[0].Trim());
+                RM = Convert.ToInt32(var1[1].Trim());
 
-                    RT = RC * RM;
-                    RefriC.Value = RC.ToString();
-                    RefriM.Value = RM.ToString();
-                    RefriT.Value = RT.ToString();
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                RT = RC * RM;
+                RefriC.Value = RC.ToString();
+                RefriM.Value = RM.ToString();
+                RefriT.Value = RT.ToString();
             }
         }
 
         public void mostrarTel()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarTel("ep_informaciongeneral", "codepinformaciongeneralcif",sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaTel(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    CC = Convert.ToInt32(mostrar.GetString(0));
-                    CM = Convert.ToInt32(mostrar.GetString(1));
+                CC = Convert.ToInt32(var1[0].Trim());
+                CM = Convert.ToInt32(var1[1].Trim());
 
-                    CT = CC * CM;
-                    TMC.Value = CC.ToString();
-                    TMM.Value = CM.ToString();
-                    TMT.Value = CT.ToString();
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                CT = CC * CM;
+                TMC.Value = CC.ToString();
+                TMM.Value = CM.ToString();
+                TMT.Value = CT.ToString();
             }
         }
 
         public void mostrarOtros()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarOtros("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaOtros(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    OC = Convert.ToInt32(mostrar.GetString(0));
-                    OM = Convert.ToInt32(mostrar.GetString(1));
+                OC = Convert.ToInt32(var1[0].Trim());
+                OM = Convert.ToInt32(var1[1].Trim());
 
-                    OT = OC * OM;
-                    OtrosC.Value = OC.ToString();
-                    OtrosM.Value = OM.ToString();
-                    OtrosT.Value = OT.ToString();
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                OT = OC * OM;
+                OtrosC.Value = OC.ToString();
+                OtrosM.Value = OM.ToString();
+                OtrosT.Value = OT.ToString();
             }
         }
 
         public void mostrarOtrasDeudas()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarOD("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaOD(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    EspD.Value = Convert.ToString(mostrar.GetString(0));
-                    EspM.Value = Convert.ToString(mostrar.GetString(1));
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                EspD.Value = Convert.ToString(var1[0]);
+                EspM.Value = Convert.ToString(var1[1]);
             }
         }
 
         public void mostrarPasivoC()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarmostrarPC("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaPC(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    NombreEN.Value = Convert.ToString(mostrar.GetString(0));
-                    NombreD.Value = Convert.ToString(mostrar.GetString(1));
-                    RelacionD.Value = Convert.ToString(mostrar.GetString(2));
-                    SaldoD.Value = Convert.ToString(mostrar.GetString(3));
-                    FechaDD.Value = Convert.ToString(mostrar.GetString(4));
-                    FechaFina.Value = Convert.ToString(mostrar.GetString(5));
-
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                NombreEN.Value = Convert.ToString(var1[0]);
+                NombreD.Value = Convert.ToString(var1[1]);
+                RelacionD.Value = Convert.ToString(var1[2]);
+                SaldoD.Value = Convert.ToString(var1[3]);
+                FechaDD.Value = Convert.ToString(var1[4]);
+                FechaFina.Value = Convert.ToString(var1[5]);
             }
         }
 
         public void mostrarIngresos()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarmostrarIng("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaIng(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    SuelB.Value = Convert.ToString(mostrar.GetString(0));
-                    SBoni.Value = Convert.ToString(mostrar.GetString(1));
-                    CMensua.Value = Convert.ToString(mostrar.GetString(2));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                SuelB.Value = Convert.ToString(var1[0]);
+                SBoni.Value = Convert.ToString(var1[1]);
+                CMensua.Value = Convert.ToString(var1[2]);
             }
         }
 
         public void mostrarNegocio()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarmostrarNeg("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaNeg(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    TipoNeg.Value = Convert.ToString(mostrar.GetString(0));
-                    NombreNeg.Value = Convert.ToString(mostrar.GetString(1));
-                    NoNeg.Value = Convert.ToString(mostrar.GetString(2));
-                    EmpleNeg.Value = Convert.ToString(mostrar.GetString(3));
-                    ObjNeg.Value = Convert.ToString(mostrar.GetString(4));
-                    IngeNeg.Value = Convert.ToString(mostrar.GetString(5));
-                    EgrNeg.Value = Convert.ToString(mostrar.GetString(6));
-                    DireNeg.Value = Convert.ToString(mostrar.GetString(7));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                TipoNeg.Value = Convert.ToString(var1[0]);
+                NombreNeg.Value = Convert.ToString(var1[1]);
+                NoNeg.Value = Convert.ToString(var1[2]);
+                EmpleNeg.Value = Convert.ToString(var1[3]);
+                ObjNeg.Value = Convert.ToString(var1[4]);
+                IngeNeg.Value = Convert.ToString(var1[5]);
+                EgrNeg.Value = Convert.ToString(var1[6]);
+                DireNeg.Value = Convert.ToString(var1[7]);
             }
         }
 
         public void mostrarRemesas()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarmostrarRem("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaRem(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    NomRem.Value = Convert.ToString(mostrar.GetString(0));
-                    RelaRem.Value = Convert.ToString(mostrar.GetString(1));
-                    MontoRem.Value = Convert.ToString(mostrar.GetString(2));
-                    PeriRem.Value = Convert.ToString(mostrar.GetString(3));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                NomRem.Value = Convert.ToString(var1[0]);
+                RelaRem.Value = Convert.ToString(var1[1]);
+                MontoRem.Value = Convert.ToString(var1[2]);
+                PeriRem.Value = Convert.ToString(var1[3]);
             }
         }
 
         public void mostrarEgresos()
         {
-            sesion = Session["IDReporte1"].ToString();
-
-            MySqlDataReader mostrar = logic.consultarmostrarEgres("ep_informaciongeneral", "codepinformaciongeneralcif", sesion);
-            try
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaEgres(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    Alimen.Value = Convert.ToString(mostrar.GetString(2));
-                    Gas.Value = Convert.ToString(mostrar.GetString(3));
-                    PagoEstud.Value = Convert.ToString(mostrar.GetString(4));
-                    Presta.Value = Convert.ToString(mostrar.GetString(5));
-                    TarCre.Value = Convert.ToString(mostrar.GetString(6));
-                    Vestuar.Value = Convert.ToString(mostrar.GetString(7));
-                    Recrea.Value = Convert.ToString(mostrar.GetString(8));
-                    Otros.Value = Convert.ToString(mostrar.GetString(9));
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
+                Alimen.Value = Convert.ToString(var1[2]);
+                Gas.Value = Convert.ToString(var1[3]);
+                PagoEstud.Value = Convert.ToString(var1[5]);
+                Presta.Value = Convert.ToString(var1[5]);
+                TarCre.Value = Convert.ToString(var1[6]);
+                Vestuar.Value = Convert.ToString(var1[4]);
+                Recrea.Value = Convert.ToString(var1[8]);
+                Otros.Value = Convert.ToString(var1[9]);
             }
         }
     }

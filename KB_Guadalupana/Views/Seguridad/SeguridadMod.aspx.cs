@@ -92,10 +92,20 @@ namespace KB_Guadalupana.Views.Seguridad
 
             Response.Redirect("AsignacionAplicacion.aspx");
         }
+        protected void btnModapp_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("ModificarModulo.aspx");
+        }
         protected void btnmodulospermisos_Clicl(object sender, EventArgs e)
         {
 
             Response.Redirect("Seguridad2.aspx");
+        }
+        protected void btnestadouser_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("ModificarEstado.aspx");
         }
     }
 }

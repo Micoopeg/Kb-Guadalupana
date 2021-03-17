@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AsignacionAplicacion.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.AsignacionAplicacion" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarEstado.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.ModificarEstado" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
-    <title>Asignacion Aplicacion</title>
+    <title>Seguridad</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
@@ -13,18 +13,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-       <link rel="stylesheet"  href="../../EXDiseños/EstilosDashboard.css" />
+	   <link rel="stylesheet"  href="../../EXDiseños/EstilosDashboard.css" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="../../EXDiseños/stylebarra.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
 </head>
     <style>
 
         form 
 {
   background: #003563;
-  width: 700px;
-  margin: 130px auto;
+  width: 400px;
+  margin: 175px auto;
   border-radius: 0.4em;
   border: 1px solid #191919;
   overflow: hidden;
@@ -140,7 +139,7 @@ input[type=submit] {
   font-weight: bold;
   cursor: pointer;
   font-size: 13px;
-  margin-left: 260px;
+    margin-left: 125px;
 }
 
 input[type=submit]:hover {
@@ -211,30 +210,12 @@ padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 10px;
-    width: 101.5%;
+    width: 100%;
     box-sizing: border-box;
     font-family: montserrat;
     color: #2C3E50;
     font-size: 13px;            
 }
-a.chosen-single{
-    height:42px;
-}
-  .tabla{
-            width:100%;
-            display: flex;
-            align-items: center;
-            align-content: center;
-            justify-content: center;
-        }
-
-  .diseño{
-      width:300px;
-  }
-  .prueba{
-      background-color:#0075DB;
-  }
-
 </style>
 
 
@@ -244,8 +225,8 @@ a.chosen-single{
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
-    <div class="container-fluid">
-        <header class="encabezado" style="text-align:center;">
+    
+     <header class="encabezado" style="text-align:center;">
 	<div class="menu-bar">
 		<div class="three col">
 			<div class="hamburger" id="hamburger-pro">
@@ -303,7 +284,7 @@ a.chosen-single{
 					<span class="span fa fa-users"></span>Modulos y Usuarios
 				</a>
 			</li>
-			<li class="li">
+		<li class="li">
 				<a href="javascript:void(0);" onclick="redirigir7()" class="links">
 					<span class="span fa fa-users"></span>Estado de Usuarios
 				</a>
@@ -311,110 +292,83 @@ a.chosen-single{
 		</ul>
 	</nav>
 </header>
-        </div>
-    
-  <form runat="server">
-  <h1 style="color:white">Asignación Aplicación</h1>
+  <form  runat="server">
+  <h1 style="color:white">Estado Usuarios</h1>
   <div class="inset">
-<div class="row">
-    <p class="col-md-6">
-        <label  style="color:white">Usuario</label>
-        <input style="color:black; height:35px" type="text" id="AAUsuario" runat="server" readonly="true"/>
-    </p>
-    <p class="col-md-6">
-        <label style="color:white">Aplicación</label>
-         <asp:DropDownList ID="AAplicacion" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
-    </p>
-</div>
-  </div>
-
-      <div class="tabla">
-         <asp:GridView ID="GridViewAplicaciones" CssClass="mGrid" style="width: 600px;text-align:center" runat="server"  HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" BorderStyle="Solid">
-                    <Columns>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Usuario">
-                           <ItemTemplate>
-                           <asp:Label ID="lblusuario" ForeColor="White" Width="300px" Text='<%# Eval("gen_usuarionombre") %>' runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Aplicación Asignada">
-                           <ItemTemplate>
-                           <asp:Label ID="lblapp" ForeColor="White" Width="300px" Text='<%# Eval("gen_nombreapp") %>' runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Estado">
-                           <ItemTemplate>
-                           <asp:Label ID="lblappest" ForeColor="White" Width="300px" Text='<%# Eval("gen_mdiest") %>' runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                     </Columns>
-        <HeaderStyle CssClass="prueba" Width="300px" ForeColor="White"></HeaderStyle>
-        </asp:GridView>
-       </div>
-
-<br /><br />
-  <p class="p-container">
-     <asp:Button ID="AAsignar" runat="server" Text="Asignar" OnClick="AAsignar_Click"/>
-      <asp:Button ID="AAdesas" runat="server" Text="Desasignar" OnClick="AAdesasignar_Click"/>
+  <p>
+    <label style="color:white">Usuarios</label>
+       <asp:DropDownList ID="SUsuario" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
   </p>
+      <br /><br />
+  <p>
+    <label style="color:white">Estado</label>
+    <select id="seleccion" runat="server" placeholder="Estado" class="dis">
+            <option  value="1">Activo</option>
+            <option  value="0">Inactivo</option>
+        </select>
+  </p>
+  
+  </div>
+  <p class="p-container">
+      <asp:Button ID="MGuardar" runat="server" Text="Guardar" OnClick="MGuardar_Click"/>
+  </p>
+      <br />
+ <script>
+   $('#<%=SUsuario.ClientID%>').chosen();
+</script>
 
-    <script>
-        $('#<%=AAplicacion.ClientID%>').chosen();
-    </script>
-
-       <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+	       <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
-       <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>
+
 </form>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="../../EXDiseños/scriptbarra.js"></script>
+	  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="../../EXDiseños/scriptbarra.js"></script>
     <script src="../../EXDiseños/scriptdash.js"></script>
-   
-    
-      <script type="text/javascript">
 
-          function redirigir() {
+	 <script type="text/javascript">
 
-              document.getElementById('btninicio').click();
+         function redirigir() {
 
-          }
-          function redirigir2() {
+             document.getElementById('btninicio').click();
 
-              document.getElementById('LinkButton3').click();
+         }
+         function redirigir2() {
 
-          }
-          function redirigir3() {
+             document.getElementById('LinkButton3').click();
 
-              document.getElementById('LinkButton3').click();
+         }
+         function redirigir3() {
 
-          }
-          function redirigir4() {
+             document.getElementById('LinkButton3').click();
 
-              document.getElementById('LinkButton4').click();
+         }
+         function redirigir4() {
 
-          }
-          function redirigir5() {
+             document.getElementById('LinkButton4').click();
 
-              document.getElementById('LinkButton5').click();
+         }
+         function redirigir5() {
 
-          }
-          function redirigir6() {
+             document.getElementById('LinkButton5').click();
 
-              document.getElementById('LinkButton6').click();
+         }
+         function redirigir6() {
 
-          }
-          function redirigir7() {
+             document.getElementById('LinkButton6').click();
 
-              document.getElementById('LinkButton7').click();
+         }
+         function redirigir7() {
 
-          }
-      </script>
+             document.getElementById('LinkButton7').click();
+
+         }
+     </script>
 </body>
 </html>

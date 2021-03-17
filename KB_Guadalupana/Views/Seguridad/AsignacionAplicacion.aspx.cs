@@ -56,14 +56,37 @@ namespace KB_Guadalupana.Views.Seguridad
             }
             else
             {
-                String script = "alert('El usuario ya se encuentra asignado a la aplicación');";
-                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                sn.actualizarappuserestado1(app,idusuario);
            
             }
             //Response.Redirect("Seguridad2.aspx");
             llenargridviewaplicacion();
         }
+        protected void AAdesasignar_Click(object sender, EventArgs e)
+        {
+            idusuario = sn.obteneridusuario(AAUsuario.Value);
+            app = sn.obtenerapp(idusuario, AAplicacion.SelectedValue);
 
+            if (app == "")
+            {
+                String script = "alert('No se puede desasignar una aplicación que aún no ha sido asignada');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+            }
+            else
+            {
+
+                sn.actualizarappuserestado(app,idusuario);
+
+
+                String script = "alert('Cambios realizados');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                Response.Redirect("Seguridad2.aspx");
+
+            }
+            //Response.Redirect("Seguridad2.aspx");
+            llenargridviewaplicacion();
+        }
         public void llenarcomboaplicacion()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -109,10 +132,20 @@ namespace KB_Guadalupana.Views.Seguridad
 
             Response.Redirect("AsignacionAplicacion.aspx");
         }
+        protected void btnModapp_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("ModificarModulo.aspx");
+        }
         protected void btnmodulospermisos_Clicl(object sender, EventArgs e)
         {
 
             Response.Redirect("Seguridad2.aspx");
+        }
+        protected void btnestadouser_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("ModificarEstado.aspx");
         }
     }
 }

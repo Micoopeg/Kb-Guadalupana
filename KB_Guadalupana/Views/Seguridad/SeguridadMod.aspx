@@ -222,7 +222,9 @@ padding: 8px;
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Creacion Modulos KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
-    <header class="encabezado" style="text-align:center;">
+    <br /> <br />
+    <center>
+    <header class="encabezado" style="text-align:center; ">
 	<div class="menu-bar">
 		<div class="three col">
 			<div class="hamburger" id="hamburger-pro">
@@ -280,11 +282,15 @@ padding: 8px;
 					<span class="span fa fa-users"></span>Modulos y Usuarios
 				</a>
 			</li>
-		
+		<li class="li">
+				<a href="javascript:void(0);" onclick="redirigir7()" class="links">
+					<span class="span fa fa-users"></span>Estado de Usuarios
+				</a>
+			</li>
 		</ul>
 	</nav>
 </header>
-   
+ </center>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
@@ -338,10 +344,12 @@ padding: 8px;
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
-         <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
-    </form>
+    <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>
+
+        </form>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="../../EXDiseños/scriptbarra.js"></script>
@@ -357,7 +365,7 @@ padding: 8px;
           }
           function redirigir2() {
 
-              document.getElementById('btninicio').click();
+              document.getElementById('LinkButton3').click();
 
           }
           function redirigir3() {
@@ -367,7 +375,7 @@ padding: 8px;
           }
           function redirigir4() {
 
-              document.getElementById('btninicio').click();
+              document.getElementById('LinkButton4').click();
 
           }
           function redirigir5() {
@@ -378,6 +386,11 @@ padding: 8px;
           function redirigir6() {
 
               document.getElementById('LinkButton6').click();
+
+          }
+          function redirigir7() {
+
+              document.getElementById('LinkButton7').click();
 
           }
       </script>

@@ -140,6 +140,7 @@ body {
             <a class="active" style="border: black 2px solid;    background-color: #003563;" href="ReporteAdmin1.aspx">Informacion General</a>
             <%--<a class="active" style="border: black 2px solid;" href="../Inicio.aspx">Estado Patrimonial</a>--%>
             <a class="active" style="border: black 2px solid;" href="ReporteAdmin2.aspx">Declaracion de Bienes</a>
+            <a class="active" style="border: black 2px solid;" href="ReporteAdmin3.aspx">Estado Patrimonial</a>
         
             <a href="../CerrarSesion.aspx" style="right: 0%;position: absolute;border: black 2px solid;">Cerrar Sesion</a>
     </div>

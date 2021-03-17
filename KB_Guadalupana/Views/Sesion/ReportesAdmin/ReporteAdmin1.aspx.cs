@@ -90,7 +90,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 NombreCF.Value = Convert.ToString(var1[1]);
                 OcupacionCIF.Value = Convert.ToString(var1[2]);
                 ApellidoCIF.Value = Convert.ToString(var1[3]);
-                FechaBIF.Value = Convert.ToString(var1[3]);
+                FechaBIF.Value = Convert.ToString(var1[4]);
                 FechaCIF.Value = Convert.ToString(var1[5]);
                 NombreEC.Value = Convert.ToString(var1[6]);
                 NumeroEC.Value = Convert.ToString(var1[7]);
@@ -103,7 +103,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         {
             sesion = Session["IDReporte1"].ToString();
 
-            string[] var1 = sn.consultarconcampoIE(sesion);
+            string[] var1 = sn.consultarconcampoIO(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 CarreraEU.Value = Convert.ToString(var1[0]);

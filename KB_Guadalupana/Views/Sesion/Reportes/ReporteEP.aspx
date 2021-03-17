@@ -40,7 +40,6 @@
         win.document.write('<img src="' + screenshot + '"/>');
         win.document.write('</body>');
         win.document.write('</html>');
-
     }
 </script>
 <script>
@@ -63,7 +62,6 @@
                 onrendered: function (canvas) {
                     var image = canvas.toDataURL();
                     cb(image);
-
                 }
             });
     }
@@ -75,12 +73,10 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 .topnav {
   overflow: hidden;
   background-color: #333;
 }
-
 .topnav a {
   float: left;
   color: #f2f2f2;
@@ -89,12 +85,10 @@ body {
   text-decoration: none;
   font-size: 17px;
 }
-
 .topnav a:hover {
   background-color: #ddd;
   color: black;
 }
-
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
@@ -103,7 +97,6 @@ body {
   overflow: hidden;
   background-color: #003563;
 }
-
 .topnav a {
   float: left;
   color: #f2f2f2;
@@ -112,17 +105,14 @@ body {
   text-decoration: none;
   font-size: 17px;
 }
-
 .topnav a:hover {
   background-color: #B80416;;
   color: White;
 }
-
 .topnav a.active {
   background-color: #69a43c;
   color: white;
 }
-
  @media print 
  {
     @page 
@@ -136,13 +126,14 @@ body {
 
 <body>
   <form id="form1" runat="server">
-             <div class="topnav">
+          <div class="topnav">
             <a class="active" style="border: black 2px solid;"  href="../Inicio.aspx">Inicio</a>
             <a class="active" style="border: black 2px solid;" href="InformacionGeneralEP.aspx">Informacion General</a>
             <%--<a class="active" style="border: black 2px solid;" href="../Inicio.aspx">Estado Patrimonial</a>--%>
-            <a class="active" style="border: black 2px solid;background-color: #003563;" href="ReporteEP.aspx">Declaracion de Bienes</a>
+            <a class="active" style="border: black 2px solid;    background-color: #003563;" href="ReporteEP.aspx">Declaracion de Bienes</a>
+               <a class="active" style="border: black 2px solid;" href="ReporteT.aspx">Estado Patrimonial</a>
             <a href="../CerrarSesion.aspx" style="right: 0%;position: absolute;border: black 2px solid;">Cerrar Sesion</a>
-    </div>
+          </div>
     <br/>
  <div style="display: flex;justify-content: center;align-items: center;">
     <div class="col-md-3" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">

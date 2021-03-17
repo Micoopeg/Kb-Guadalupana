@@ -179,17 +179,14 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             {
                 try
                 {
-                    sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-                    string[] var10 = sn.consultarcif(sesion);
-                    string cifnumero = var10[0];
+                    sesion = Session["IDReporte1"].ToString();
                     sqlCon.Open();
                     string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre," +
                      "ep_vehiculomarca,ep_vehiculolinea," +
                      "ep_vehiculomodelo,ep_vehiculoplaca " +
                      "FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b " +
                      "inner join ep_informaciongeneral c ON a.codeptipovehiculo = b.codeptipovehiculo " +
-                     "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
+                     "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + sesion + "'";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     command.Fill(ds4);
@@ -206,10 +203,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         public void mostrarmaquinaria()
         {
 
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomaq(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomaq(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 TMaquinaria.Value = Convert.ToString(var1[0]);
@@ -220,10 +215,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarmenaje()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaje(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaje(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 EComputo.Value = Convert.ToString(var1[0]);
@@ -233,10 +226,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         public void mostrarmenaje1()
         {
 
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaje1(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaje1(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 AmuebladoS.Value = Convert.ToString(var1[0]);
@@ -245,10 +236,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarmenaje2()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaje2(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaje2(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 AmuebladoCom.Value = Convert.ToString(var1[0]);
@@ -257,10 +246,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarTV()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenajeTV(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenajeTV(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 TVC = Convert.ToInt32(var1[0].Trim());
@@ -275,10 +262,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarES()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenajeES(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenajeES(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 ESC = Convert.ToInt32(var1[0].Trim());
@@ -293,10 +278,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarL()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenajeL(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenajeL(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 LC = Convert.ToInt32(var1[0].Trim());
@@ -315,17 +298,14 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             {
                 try
                 {
-                    sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-                    string[] var10 = sn.consultarcif(sesion);
-                    string cifnumero = var10[0];
+                    sesion = Session["IDReporte1"].ToString();
                     sqlCon.Open();
                     string QueryString = "SELECT codepcuentasporpagar,a.codeptipocuentasporpagar,b.ep_tipocuentaspopagarnombre," +
                    "ep_cuentasporpagardescripcion,ep_cuentasporpagarmonto FROM ep_cuentasporpagar a " +
                    "INNER JOIN ep_tipocuentaspopagar b INNER JOIN ep_informaciongeneral c " +
                    "ON a.codeptipocuentasporpagar=b.codeptipocuentaspopagar " +
                    "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                   "WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
+                   "WHERE c.ep_informaciongeneralcif='" + sesion + "'";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     command.Fill(ds4);
@@ -345,10 +325,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             {
                 try
                 {
-                    sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-                    string[] var10 = sn.consultarcif(sesion);
-                    string cifnumero = var10[0];
+                    sesion = Session["IDReporte1"].ToString();
                     sqlCon.Open();
                     string QueryString = "SELECT codepprestamo,a.codeptipoprestamo,a.codepinstitucion,a.codeptipoinstitucion," +
                      "b.ep_tipoprestamonombre,d.ep_tipoinstitucionnombre," +
@@ -362,7 +339,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                      "AND a.codepinstitucion=c.codepinstitucion " +
                      "AND a.codeptipoinstitucion=d.codeptipoinstitucion " +
                      "AND a.codepinformaciongeneralcif=e.codepinformaciongeneralcif " +
-                     "WHERE e.ep_informaciongeneralcif='" + cifnumero + "'";
+                     "WHERE e.ep_informaciongeneralcif='" + sesion + "'";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     command.Fill(ds4);
@@ -382,10 +359,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             {
                 try
                 {
-                    sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-                    string[] var10 = sn.consultarcif(sesion);
-                    string cifnumero = var10[0];
+                    sesion = Session["IDReporte1"].ToString();
                     sqlCon.Open();
                     string QueryString = "SELECT codeptrajetadecredito,b.codeptipoinstitucion,c.codepinstitucion, " +
                    "b.ep_tipoinstitucionnombre, c.ep_institucionnombre,ep_tarjetadecreditomonedaqtz," +
@@ -394,7 +368,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                    "INNER JOIN ep_informaciongeneral d ON a.codeptipoinstitucion=b.codeptipoinstitucion " +
                    "AND a.codepinstitucion=c.codepinstitucion " +
                    "AND a.codepinformaciongeneralcif=d.codepinformaciongeneralcif " +
-                   "WHERE d.ep_informaciongeneralcif='" + cifnumero + "'";
+                   "WHERE d.ep_informaciongeneralcif='" + sesion + "'";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     command.Fill(ds4);
@@ -410,10 +384,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarSec()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaSec(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaSec(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 SC = Convert.ToInt32(var1[0].Trim());
@@ -428,10 +400,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarEstufa()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaEST(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaEST(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 EC = Convert.ToInt32(var1[0].Trim());
@@ -446,10 +416,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarRefri()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaRefri(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaRefri(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 RC = Convert.ToInt32(var1[0].Trim());
@@ -464,10 +432,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarTel()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaTel(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaTel(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 CC = Convert.ToInt32(var1[0].Trim());
@@ -482,10 +448,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarOtros()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaOtros(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaOtros(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 OC = Convert.ToInt32(var1[0].Trim());
@@ -500,10 +464,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarOtrasDeudas()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaOD(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaOD(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 EspD.Value = Convert.ToString(var1[0]);
@@ -513,10 +475,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarPasivoC()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaPC(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaPC(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 NombreEN.Value = Convert.ToString(var1[0]);
@@ -530,10 +490,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarIngresos()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaIng(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaIng(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 SuelB.Value = Convert.ToString(var1[0]);
@@ -544,10 +502,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarNegocio()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaNeg(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaNeg(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 TipoNeg.Value = Convert.ToString(var1[0]);
@@ -563,10 +519,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarRemesas()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaRem(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaRem(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 NomRem.Value = Convert.ToString(var1[0]);
@@ -578,10 +532,8 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarEgresos()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaEgres(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampomenaEgres(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 Alimen.Value = Convert.ToString(var1[2]);

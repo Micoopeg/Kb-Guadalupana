@@ -113,7 +113,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 
             string cifnumero = var10[0];
 
-            string[] var1 = sn.consultarconcampoIE(cifnumero);
+            string[] var1 = sn.consultarconcampoIO(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
                 CarreraEU.Value = Convert.ToString(var1[0]);

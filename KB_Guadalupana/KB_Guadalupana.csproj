@@ -430,8 +430,10 @@
     <Content Include="Views\Sesion\Reporte.aspx" />
     <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx" />
     <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin3.aspx" />
     <Content Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx" />
     <Content Include="Views\Sesion\Reportes\ReporteEP.aspx" />
+    <Content Include="Views\Sesion\Reportes\ReporteT.aspx" />
     <Content Include="Views\WebForm1.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -1009,6 +1011,13 @@
     <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx.designer.cs">
       <DependentUpon>ReporteAdmin2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin3.aspx.cs">
+      <DependentUpon>ReporteAdmin3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin3.aspx.designer.cs">
+      <DependentUpon>ReporteAdmin3.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sesion\Reportes\InformacionGeneralEP.aspx.cs">
       <DependentUpon>InformacionGeneralEP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1022,6 +1031,13 @@
     </Compile>
     <Compile Include="Views\Sesion\Reportes\ReporteEP.aspx.designer.cs">
       <DependentUpon>ReporteEP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\Reportes\ReporteT.aspx.cs">
+      <DependentUpon>ReporteT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\Reportes\ReporteT.aspx.designer.cs">
+      <DependentUpon>ReporteT.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

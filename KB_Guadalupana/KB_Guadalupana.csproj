@@ -390,10 +390,11 @@
     <Content Include="Views\MantenimientosControl\controlAgenda.aspx" />
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
+    <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
+    <Content Include="Views\Seguridad\ModificarEstado.aspx" />
+    <Content Include="Views\Seguridad\ModificarModulo.aspx" />
     <Content Include="Views\Seguridad\Seguridad1.aspx" />
     <Content Include="Views\Seguridad\Seguridad2.aspx" />
-    <Content Include="Views\Seguridad\Seguridad3.aspx" />
-    <Content Include="Views\Seguridad\Seguridad4.aspx" />
     <Content Include="Views\Seguridad\SeguridadMod.aspx" />
     <Content Include="Views\Sesion\AsignacionLotes.aspx" />
     <Content Include="Views\Sesion\AsignacionRolArea.aspx" />
@@ -738,6 +739,27 @@
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.designer.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.cs">
+      <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.designer.cs">
+      <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\ModificarEstado.aspx.cs">
+      <DependentUpon>ModificarEstado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\ModificarEstado.aspx.designer.cs">
+      <DependentUpon>ModificarEstado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\ModificarModulo.aspx.cs">
+      <DependentUpon>ModificarModulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\ModificarModulo.aspx.designer.cs">
+      <DependentUpon>ModificarModulo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Seguridad\Seguridad1.aspx.cs">
       <DependentUpon>Seguridad1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -751,20 +773,6 @@
     </Compile>
     <Compile Include="Views\Seguridad\Seguridad2.aspx.designer.cs">
       <DependentUpon>Seguridad2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Seguridad\Seguridad3.aspx.cs">
-      <DependentUpon>Seguridad3.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Seguridad\Seguridad3.aspx.designer.cs">
-      <DependentUpon>Seguridad3.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Seguridad\Seguridad4.aspx.cs">
-      <DependentUpon>Seguridad4.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Seguridad\Seguridad4.aspx.designer.cs">
-      <DependentUpon>Seguridad4.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\SeguridadMod.aspx.cs">
       <DependentUpon>SeguridadMod.aspx</DependentUpon>

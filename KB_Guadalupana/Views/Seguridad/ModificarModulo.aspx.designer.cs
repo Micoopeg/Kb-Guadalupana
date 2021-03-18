@@ -11,7 +11,7 @@ namespace KB_Guadalupana.Views.Seguridad
 {
 
 
-    public partial class SeguridadMod
+    public partial class ModificarModulo
     {
 
         /// <summary>
@@ -40,6 +40,24 @@ namespace KB_Guadalupana.Views.Seguridad
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
+        /// MModulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList MModulo;
+
+        /// <summary>
+        /// MBuscarModulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button MBuscarModulo;
 
         /// <summary>
         /// abrmodulo control.

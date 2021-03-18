@@ -106,7 +106,7 @@ namespace KBGuada.Models
 
 
         }
-        public DataSet consultarapps()
+        public DataSet consultarapps(string id)
         {
             DataSet ds1 = new DataSet();
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -116,7 +116,7 @@ namespace KBGuada.Models
                 {
                     //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT * FROM gen_aplicacion gapp WHERE gapp.gen_estadoapp = 1; ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gapp.codgenapp , gapp.gen_nombreapp FROM gen_mdimenu gmdi INNER JOIN gen_aplicacion gapp ON gmdi.codgenapp=gapp.codgenapp WHERE gmdi.codgenusuario = '" + id+ "' AND gapp.gen_estadoapp=1 AND gmdi.gen_mdiest = 1 ;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(ds1);

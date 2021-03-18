@@ -11,7 +11,7 @@ namespace KB_Guadalupana.Views.Seguridad
 {
 
 
-    public partial class SeguridadMod
+    public partial class ModificarEstado
     {
 
         /// <summary>
@@ -24,49 +24,13 @@ namespace KB_Guadalupana.Views.Seguridad
         protected global::System.Web.UI.HtmlControls.HtmlAnchor inicio;
 
         /// <summary>
-        /// form1 control.
+        /// SUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-
-        /// <summary>
-        /// abrmodulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText abrmodulo;
-
-        /// <summary>
-        /// nommodul control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText nommodul;
-
-        /// <summary>
-        /// url1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText url1;
+        protected global::System.Web.UI.WebControls.DropDownList SUsuario;
 
         /// <summary>
         /// seleccion control.
@@ -78,13 +42,13 @@ namespace KB_Guadalupana.Views.Seguridad
         protected global::System.Web.UI.HtmlControls.HtmlSelect seleccion;
 
         /// <summary>
-        /// btninsert control.
+        /// MGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btninsert;
+        protected global::System.Web.UI.WebControls.Button MGuardar;
 
         /// <summary>
         /// btninicio control.

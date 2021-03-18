@@ -11,7 +11,7 @@ namespace KB_Guadalupana.Views.Seguridad
 {
 
 
-    public partial class SeguridadMod
+    public partial class AsignacionAplicacion
     {
 
         /// <summary>
@@ -24,67 +24,49 @@ namespace KB_Guadalupana.Views.Seguridad
         protected global::System.Web.UI.HtmlControls.HtmlAnchor inicio;
 
         /// <summary>
-        /// form1 control.
+        /// AAUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText AAUsuario;
 
         /// <summary>
-        /// ScriptManager1 control.
+        /// AAplicacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.DropDownList AAplicacion;
 
         /// <summary>
-        /// abrmodulo control.
+        /// GridViewAplicaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText abrmodulo;
+        protected global::System.Web.UI.WebControls.GridView GridViewAplicaciones;
 
         /// <summary>
-        /// nommodul control.
+        /// AAsignar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText nommodul;
+        protected global::System.Web.UI.WebControls.Button AAsignar;
 
         /// <summary>
-        /// url1 control.
+        /// AAdesas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText url1;
-
-        /// <summary>
-        /// seleccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect seleccion;
-
-        /// <summary>
-        /// btninsert control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btninsert;
+        protected global::System.Web.UI.WebControls.Button AAdesas;
 
         /// <summary>
         /// btninicio control.

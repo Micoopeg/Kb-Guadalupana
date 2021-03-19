@@ -116,40 +116,48 @@ namespace Modulo_de_arqueos.Views
         }
         public void llenarcomboagencia()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string QueryString = "select * from sa_agencia";
-                MySqlConnection conect = conn.conectar();
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
-                DataSet ds = new DataSet();
-                myCommand.Fill(ds, "Agencia");
-                CCAgencia.DataSource = ds;
-                CCAgencia.DataTextField = "sa_nombreagencia";
-                CCAgencia.DataValueField = "idsa_agencia";
-                CCAgencia.DataBind();
-                CCAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select * from sa_agencia";
+                    //MySqlConnection conect = conn.conectar();
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Agencia");
+                    CCAgencia.DataSource = ds;
+                    CCAgencia.DataTextField = "sa_nombreagencia";
+                    CCAgencia.DataValueField = "idsa_agencia";
+                    CCAgencia.DataBind();
+                    CCAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                }
+                catch { }
+                finally { try { conn.desconectar(); } catch { } }
             }
-            catch { }
-            finally { try { conn.desconectar(); } catch { } }
         }
 
         public void llenarcombousuario()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string QueryString = "select * from gen_usuario";
-                MySqlConnection conect = conn.conectar();
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
-                DataSet ds = new DataSet();
-                myCommand.Fill(ds, "Usuario");
-                CAUsuario.DataSource = ds;
-                CAUsuario.DataTextField = "gen_usuarionombre";
-                CAUsuario.DataValueField = "codgenusuario";
-                CAUsuario.DataBind();
-                CAUsuario.Items.Insert(0, new ListItem("[Usuario]", "0"));
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select * from gen_usuario";
+                    //MySqlConnection conect = conn.conectar();
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Usuario");
+                    CAUsuario.DataSource = ds;
+                    CAUsuario.DataTextField = "gen_usuarionombre";
+                    CAUsuario.DataValueField = "codgenusuario";
+                    CAUsuario.DataBind();
+                    CAUsuario.Items.Insert(0, new ListItem("[Usuario]", "0"));
+                }
+                catch { }
+                finally { try { conn.desconectar(); } catch { } }
             }
-            catch { }
-            finally { try { conn.desconectar(); } catch { } }
         }
 
         public void llenarcomboarqueos()
@@ -263,6 +271,7 @@ namespace Modulo_de_arqueos.Views
                 NombreFirma2.InnerHtml = CCNombreencargado.Value;
                 PuestoFirma.InnerHtml = CCPuestooperador.Value;
                 PuestoFirma2.InnerHtml = CCPuestoencargado.Value;
+                guardar.Enabled = true;
             }
             catch (Exception err)
             {
@@ -335,6 +344,10 @@ namespace Modulo_de_arqueos.Views
                 string sig8 = logic.siguiente("sa_cuadrecajachica", "idsa_cuadrecajachica");
                 string[] valores8 = { sig8, "7", CACantidad7.Value, Convert.ToString(subtotalb7), Convert.ToString(totalbilletes), "8", "", "", Convert.ToString(totalmonedas), Convert.ToString(total), Convert.ToString(caja), CCCOmentario.Value, sig1 };
                 logic.insertartablas("sa_cuadrecajachica", valores8);
+
+                String script = "alert('Se han guardado exitosamente');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                guardar.Enabled = false;
             }
             catch (Exception err)
             {

@@ -19,7 +19,7 @@
          display:flex;
          flex-direction:row;
          width: 550px;
-         height: 550px;
+         height: 460px;
          flex-wrap:wrap;
          align-items:center;
          align-content:center;
@@ -102,21 +102,32 @@
         .logo{
             max-width:100px;
         }
+        .logoArqueos{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding-top:20px;
+        }
     </style>
 </head>
 <body>
     <div class="topnav">
-          
+           
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
             <a class="active" href="../Sesion/Inicio.aspx" runat="server" id="nombreuser">Inicio</a>    
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
     <form id="form1" runat="server">
+        <div class="logoArqueos">
+             <img src="../../Imagenes/Imagenes_arqueos/SA-Guadalupana-Azul.png" style="top: 0; max-width: 330px; margin:0px; margin-left:0px;" />
+        </div>
+       
         <div class="menu">
             <asp:Button runat="server" CssClass="boton" OnClick="Cajero_Click" Text="Arqueo Cajero"/>
             <asp:Button runat="server" CssClass="boton" OnClick="CajeroAutomatico_Click" Text="Arqueo Cajero Automático"/>
             <asp:Button runat="server" CssClass="boton" OnClick="Tesoreria_Click" Text="Arqueo Tesorería"/>
             <asp:Button runat="server" CssClass="boton" OnClick="CajaChica_Click" Text="Arqueo Caja Chica"/>
+          
         </div>
     </form>
 </body>

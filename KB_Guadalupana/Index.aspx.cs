@@ -31,32 +31,31 @@ namespace Login_Web
             if (AuthenticateUser(IdUser.Value, PSUser.Value))
             {
                 //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Si Se Autentifica el Usuario');", true);
-                Session["sesion_usuario"] = IdUser.Value;
-                Session["Nombre"] = nombre;
-                Session["Correo"] = correo;
+                //Session["sesion_usuario"] = IdUser.Value;
+                //Session["Nombre"] = nombre;
+                //Session["Correo"] = correo;
                 //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Correo: " + Session["Correo"] + "');", true);
 
 
-                usuario = sn.verificacionUsuario(IdUser.Value);
+                //usuario = sn.verificacionUsuario(IdUser.Value);
 
-                if(usuario == "")
-                {
-                    string sig = lg.siguiente("gen_usuario", "codgenusuario");
-                    sn.crearUsuario(sig, "1", IdUser.Value, "@guadapulana.com.gt","1", "1");
-                }
+                //if(usuario == "")
+                //{
+                //    string sig = lg.siguiente("gen_usuario", "codgenusuario");
+                //    sn.crearUsuario(sig, "1", IdUser.Value, "@guadapulana.com.gt","1", "1");
+                //}
 
-                Response.Redirect("Views/Sesion/Inicio.aspx");
+                //Response.Redirect("Views/Sesion/Inicio.aspx");
 
             }
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No se puede autenticar con las credenciales proporcionadas');", true);
             }
-          
-            //Session["sesion_usuario"] = "pgdgomez";
-            //Session["sesion_usuario"] = "pgdgomez";
-            //Session["Nombre"] = "Diego Jose Gomez Giron";
-            //Response.Redirect("Views/Sesion/Inicio.aspx");
+
+            Session["sesion_usuario"] = "pgdgomez";
+            Session["Nombre"] = "Diego Jose Gomez Giron";
+            Response.Redirect("Views/Sesion/Inicio.aspx");
         }
 
         private bool AuthenticateUser(string userName, string password)

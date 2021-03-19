@@ -2445,7 +2445,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre,ep_vehiculomarca,ep_vehiculolinea,ep_vehiculomodelo,ep_vehiculoplaca,ep_vehiculocomentario,ep_vehiculoanombrede,ep_vehiculomotivodeanombrede FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b ON a.codeptipovehiculo = b.codeptipovehiculo WHERE codepinformaciongeneralcif='"+cifactual+"';";
+                    string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre,ep_vehiculomarca,ep_vehiculolinea,ep_vehiculomodelo,ep_vehiculoplaca,ep_vehiculocomentario,ep_vehiculoanombrede,ep_vehiculomotivodeanombrede,ep_vehiculomonto FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b ON a.codeptipovehiculo = b.codeptipovehiculo WHERE codepinformaciongeneralcif='" + cifactual+"';";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     myCommand.Fill(ds4);
@@ -2473,6 +2473,7 @@ namespace KB_Guadalupana.Views.Sesion
             Text26.Value = (GridViewvehiculos.SelectedRow.FindControl("lblmotivo") as Label).Text;
             //codtelefono= (GridViewvehiculos.SelectedRow.FindControl("codeptipotelefono") as Label).Text;
             Text17.Value= (GridViewvehiculos.SelectedRow.FindControl("lblnumerodeinmueble") as Label).Text;
+            Text27.Value = (GridViewvehiculos.SelectedRow.FindControl("lblmonto") as Label).Text;
 
         }
         public void llenargridviewcuentasporpagar()
@@ -2661,7 +2662,7 @@ namespace KB_Guadalupana.Views.Sesion
                         "INNER JOIN ep_tipoestatuscuenta d " +
                         "INNER JOIN ep_tipomoneda e ON a.codeptipocuenta=b.codeptipocuenta AND a.codepinstitucion=c.codepinstitucion " +
                         "AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta  AND a.codeptipomoneda=e.codeptipomoneda " +
-                        "WHERE codepinformaciongeneralcif='" + cifactual + "';";
+                        "WHERE codepinformaciongeneralcif='" + cifactual + "' AND a.codeptipocuenta!='3' AND a.codeptipocuenta!='4'  ;";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     myCommand.Fill(ds4);
@@ -2745,7 +2746,7 @@ namespace KB_Guadalupana.Views.Sesion
                 string am7 = var3[centinela + 8];
                 string am8 = var3[centinela + 9];
 
-                string[] dato = { sig, am1, cifparaingreso, am2, am3, am4, am5, am6, am7, am8 }; //Arreglo que utiliza para guardar
+                string[] dato = { sig, am1, cifparaingreso, am2, am3, am4, am5, am6, am7, am8}; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_prestamo", dato);
                 centinela = centinela + 10;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
@@ -2861,11 +2862,12 @@ namespace KB_Guadalupana.Views.Sesion
                 string am6 = var3[centinela + 7];
                 string am7 = var3[centinela + 8];
                 string am8 = var3[centinela + 9];
+                string am9 = var3[centinela + 10];
 
 
-                string[] dato = { sig, am1, cifparaingreso, am2, am3, am4, am5,am6,am7,am8 }; //Arreglo que utiliza para guardar
+                string[] dato = { sig, am1, cifparaingreso, am2, am3, am4, am5,am6,am7,am8,am9 }; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_vehiculo", dato);
-                centinela = centinela + 10;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
+                centinela = centinela + 11;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
             }
                
@@ -2930,7 +2932,7 @@ namespace KB_Guadalupana.Views.Sesion
                 IGPDepartamento1.SelectedIndex = id3;
 
                 int id4 = Convert.ToInt32(var1[10]);
-                IGMunicipio1.SelectedIndex = id4;
+                IGMunicipio1.SelectedValue = Convert.ToString(id4);
 
                 int id5 = Convert.ToInt32(var1[11]);
                 IGPAZona1.SelectedIndex = id5;
@@ -3426,7 +3428,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_vehiculo", "codepvehiculo");
-                    string[] valores1 = { sig, ACTVehiculo1.SelectedValue, cifactual, ACMarca.Value, ACLinea.Value, ACModelo.Value, ACPlaca.Value,ACCome.Value,Text25.Value,Text26.Value };
+                    string[] valores1 = { sig, ACTVehiculo1.SelectedValue, cifactual, ACMarca.Value, ACLinea.Value, ACModelo.Value, ACPlaca.Value,ACCome.Value,Text25.Value,Text26.Value,Text27.Value};
                     logic.insertartablas("ep_vehiculo", valores1);
                 }
                 catch (Exception err)
@@ -3442,6 +3444,7 @@ namespace KB_Guadalupana.Views.Sesion
             ACCome.Value = "";
             Text25.Value = "";
             Text26.Value = "";
+            Text27.Value = "";
             llenargridviewvehiculos();
         }
 
@@ -3545,7 +3548,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_prestamo", "codepprestamo");
-                    string[] valores1 = { sig, PTPrestamo1.SelectedValue, cifactual, PNEntidad1.SelectedValue, PNPNEntidadnombre1.SelectedValue, PMInicial.Value, PSActual.Value, Datedesembolso.Value, Datefinalizacion.Value, PFDestino.Value };
+                    string[] valores1 = { sig, PTPrestamo1.SelectedValue, cifactual,PNPNEntidadnombre1.SelectedValue ,PNEntidad1.SelectedValue, PMInicial.Value, PSActual.Value, Datedesembolso.Value, Datefinalizacion.Value, PFDestino.Value };
                     logic.insertartablas("ep_prestamo", valores1);
                 }
                 catch (Exception err)
@@ -3852,8 +3855,8 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_vehiculo", "codepvehiculo");
-                    string[] campos = { "codepvehiculo", "codeptipovehiculo", "codepinformaciongeneralcif", "ep_vehiculomarca", "ep_vehiculolinea", "ep_vehiculomodelo", "ep_vehiculoplaca", "ep_vehiculocomentario", "ep_vehiculoanombrede", "ep_vehiculomotivodeanombrede" };
-                    string[] datos = { Text17.Value, ACTVehiculo1.SelectedValue, cifactual, ACMarca.Value, ACLinea.Value, ACModelo.Value, ACPlaca.Value,ACCome.Value,Text25.Value,Text26.Value };
+                    string[] campos = { "codepvehiculo", "codeptipovehiculo", "codepinformaciongeneralcif", "ep_vehiculomarca", "ep_vehiculolinea", "ep_vehiculomodelo", "ep_vehiculoplaca", "ep_vehiculocomentario", "ep_vehiculoanombrede", "ep_vehiculomotivodeanombrede", "ep_vehiculomonto" };
+                    string[] datos = { Text17.Value, ACTVehiculo1.SelectedValue, cifactual, ACMarca.Value, ACLinea.Value, ACModelo.Value, ACPlaca.Value,ACCome.Value,Text25.Value,Text26.Value,Text27.Value};
                     logic.modificartablas("ep_vehiculo", campos, datos);
                 }
                 catch (Exception err)
@@ -3869,6 +3872,7 @@ namespace KB_Guadalupana.Views.Sesion
             ACCome.Value = "";
             Text25.Value = "";
             Text26.Value = "";
+            Text27.Value = "";
             llenargridviewvehiculos();
         }
         protected void btnmodificarcuentasporpagar_Click(object sender, EventArgs e)
@@ -4150,7 +4154,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             if (ACTVehiculo1.SelectedValue == "0" || ACMarca.Value == "" || ACLinea.Value == "" || ACModelo.Value == "" || ACPlaca.Value == "")
             {
-                String script = "alert('Verificar que los campos de vehiculo no se encuentren vacios');";
+                String script = "alert('Verificar que los campos de vehiculo no se encuentren vacios o que este seleccionado si el vehiculo le pertenece o no');";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
@@ -4172,6 +4176,7 @@ namespace KB_Guadalupana.Views.Sesion
             ACCome.Value = "";
             Text25.Value = "";
             Text26.Value = "";
+            Text27.Value = "";
             llenargridviewvehiculos();
         }
 

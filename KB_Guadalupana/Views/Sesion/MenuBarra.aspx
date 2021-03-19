@@ -90,37 +90,29 @@
                     </a>
                 </li>
             </ul>
-
-           <%--<div class="seguridad">
-               <i id="icono" runat="server" class="fa fa-info fa-2x" style="color:white; margin-top:10px;"></i>
-                <asp:Button ID="Button3" OnClick="seguridad_Click" ForeColor="white" BorderWidth="0px" Height="34px" Width="170px" class="opc2" runat="server" Text="Seguridad"></asp:Button>
-           </div>--%>
-
            <ul id="Button3" runat="server" class ="opc1">
                <li>
                     <a href="MantenimientoAreas.aspx">
                        <i class="fa fa-info fa-2x"></i>
                         <span class="nav-text">
                             Seguridad
-                            <%--<asp:Button ID="prueba" OnClick="seguridad_Click" class="w3-bar-item w3-button" runat="server" Text="Seguridad"></asp:Button>--%>
                         </span>
                     </a>
                 </li>
             </ul>
 
-            <ul id="ButtonAgenda" runat="server" class ="opc1">
+<%--            <ul id="ButtonAgenda" runat="server" class ="opc1">
                <li>
                     <a href="../Agenda/AgendaPrin.aspx">
                        <i class="fa fa-book fa-2x"></i>
                         <span class="nav-text">
                             Agenda
-                            <%--<asp:Button ID="prueba" OnClick="seguridad_Click" class="w3-bar-item w3-button" runat="server" Text="Seguridad"></asp:Button>--%>
                         </span>
                     </a>
                 </li>
-            </ul>
+            </ul>--%>
 
-              <ul id="Ul1" runat="server" class ="opc1">
+<%--              <ul id="Ul1" runat="server" class ="opc1">
                <li>
                     <a href="../Arqueos/MenuArqueos.aspx">
                        <i class="fa fa-files-o fa-2x"></i>
@@ -129,24 +121,14 @@
                         </span>
                     </a>
                 </li>
-            </ul>
+            </ul>--%>
 
-             <ul id="Ul2" runat="server" class ="opc1">
+<%--             <ul id="Ul2" runat="server" class ="opc1">
                <li>
                     <a href="../Seguridad/Seguridad1.aspx">
                        <i class="fa fa-lock fa-2x"></i>
                         <span class="nav-text">
                             Seguridad
-                        </span>
-                    </a>
-                </li>
-            </ul>
-       <%-- <ul class ="opc1">
-              <li class="has-subnav">
-                    <a href="#">
-                        <i class="fa fa-address-card-o fa-2x"></i>
-                        <span class="nav-text">
-                           Opcion #3
                         </span>
                     </a>
                 </li>

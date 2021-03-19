@@ -45,35 +45,7 @@ namespace Login_Web
                         string mayus = resultado.ToUpper();
                         abreuser.InnerText = mayus;
                         Button3.Visible = false;
-                        //icono.Visible = false;
-
-                        string[] var2 = sn.consultarRol(abre);
-                        for (int i = 0; i < var2.Length; i++)
-                        {
-                            rol = Convert.ToInt32(var2[0]);
-                        }
-                        string[] var3 = sn.consultarArea(abre);
-                        for (int i = 0; i < var3.Length; i++)
-                        {
-                            area = Convert.ToInt32(var3[0]);
-                        }
-
-
-                        if (rol == 2 && area == 2)
-                            {
-                                Button2.Visible = false;
-                                
-                                if(area == 1)
-                                {
-                                    Button3.Visible = true;
-                                    //icono.Visible = true;
-                                }
-                        }
-                            else if (rol == 1 || area == 2)
-                            {
-                                Button2.Visible = true;
-                            }
-                       
+                        //icono.Visible = false;                       
                     }
                     catch (Exception err)
                     {

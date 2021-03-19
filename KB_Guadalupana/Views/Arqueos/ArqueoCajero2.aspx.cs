@@ -31,7 +31,7 @@ namespace Modulo_de_arqueos.Views
             {
                 mostrardetalle();
             }
-            
+            operar.Enabled = true;
         }
 
         protected void anterior_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace Modulo_de_arqueos.Views
                 logic.insertartablas("sa_chequescajero", valores2);
 
                 string sig2 = logic.siguiente("sa_chequescajero", "idsa_chequescajero");
-                string[] valores3 = { sig2, "1", "2", CPCantidadDo.Value, CPMontoDo.Value, Convert.ToString(totaldolares), Convert.ToString(totaldolares), CBUtilizadas.Value, CBReservadas.Value, CBAnuladas.Value, idencabezado.ToString() };
+                string[] valores3 = { sig2, "1", "2", CPCantidadDo.Value, CPMontoDo.Value, Convert.ToString(totaldolares), Convert.ToString(totalquetzales), CBUtilizadas.Value, CBReservadas.Value, CBAnuladas.Value, idencabezado.ToString() };
                 logic.insertartablas("sa_chequescajero", valores3);
 
                 string sig3 = logic.siguiente("sa_chequescajero", "idsa_chequescajero");
@@ -70,10 +70,17 @@ namespace Modulo_de_arqueos.Views
                 logic.insertartablas("sa_chequescajero", valores4);
 
                 string sig4 = logic.siguiente("sa_chequescajero", "idsa_chequescajero");
-                string[] valores5 = { sig4, "2", "2", CACantidadDo.Value, CAMontoDo.Value, Convert.ToString(totaldolares), Convert.ToString(totaldolares), CBUtilizadas.Value, CBReservadas.Value, CBAnuladas.Value, idencabezado.ToString() };
+                string[] valores5 = { sig4, "2", "2", CACantidadDo.Value, CAMontoDo.Value, Convert.ToString(totaldolares), Convert.ToString(totalquetzales), CBUtilizadas.Value, CBReservadas.Value, CBAnuladas.Value, idencabezado.ToString() };
                 logic.insertartablas("sa_chequescajero", valores5);
 
                 NombreFirma.InnerHtml = Session["Nombre"] as string;
+                Nombrefirma2.InnerHtml = Session["nombreoperador"] as string;
+                puesto2.InnerHtml = Session["puestooperador"] as string;
+                puesto.InnerHtml = puesto.InnerHtml = Session["puesto"] as string;
+
+                String script = "alert('Se han guardado exitosamente');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                operar.Enabled = false;
             }
 
             catch (Exception err)
@@ -97,6 +104,7 @@ namespace Modulo_de_arqueos.Views
             puesto.InnerHtml = Session["puesto"] as string;
             usuarioDescripcion.InnerHtml = Session["nombreoperador"] as string;
             operadorDescripción.InnerHtml = Session["operador"] as string;
+            operar.Visible = false;
         }
 
         public void mostrardetalle1()

@@ -1872,7 +1872,7 @@
 
             nombre = document.getElementById('TDPuestoencargado').innerHTML;
             nombre = valor1.toString();
-            document.getElementById('puesto2').innerHTML = nombre.toString();
+            document.getElementById('puesto3').innerHTML = nombre.toString();
         }
     </script>
 </html>

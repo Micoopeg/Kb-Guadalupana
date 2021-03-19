@@ -239,8 +239,11 @@ padding: 8px;
   
   </div>
   <p class="p-container">
+
       <asp:Button ID="SVerificar" runat="server" Text="Verificar" OnClick="SVerificar_Click"/>
+ 
   </p>
+      <asp:Label ID="lblmensaje" Visible="false" runat="server" Text="Debe habiliar el usuario para ver las aplicaciones" BackColor="Red"></asp:Label>
       <br />
  <script>
    $('#<%=SUsuario.ClientID%>').chosen();

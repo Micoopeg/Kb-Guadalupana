@@ -22,6 +22,7 @@ namespace Modulo_de_arqueos.Views
         char delimitador = ':';
         string concat = "T";
         string fechatotal1, siguiente;
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,6 +39,10 @@ namespace Modulo_de_arqueos.Views
                 TDPuestooperador.Value = Session["puestooperador"] as string;
                 TDNombreencargado.Value = Session["nombreencargado"] as string;
                 TDPuestoencargado.Value = Session["puestoencargado"] as string;
+                operar.Enabled = true;
+                NombreFirma2.InnerHtml = Session["nombreop"] as string;
+                puesto2.InnerHtml = Session["puestooperador"] as string;
+                puesto3.InnerHtml = Session["puestoencargado"] as string;
 
 
                 llenarcomboagencia();
@@ -59,21 +64,25 @@ namespace Modulo_de_arqueos.Views
         }
         public void llenarcomboagencia()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string QueryString = "select * from sa_agencia";
-                MySqlConnection conect = cn.conectar();
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
-                DataSet ds = new DataSet();
-                myCommand.Fill(ds, "Agencia");
-                TDAgencia.DataSource = ds;
-                TDAgencia.DataTextField = "sa_nombreagencia";
-                TDAgencia.DataValueField = "idsa_agencia";
-                TDAgencia.DataBind();
-                TDAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select * from sa_agencia";
+                    MySqlConnection conect = cn.conectar();
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Agencia");
+                    TDAgencia.DataSource = ds;
+                    TDAgencia.DataTextField = "sa_nombreagencia";
+                    TDAgencia.DataValueField = "idsa_agencia";
+                    TDAgencia.DataBind();
+                    TDAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                }
+                catch { }
+                finally { try { cn.desconectar(); } catch { } }
             }
-            catch { }
-            finally { try { cn.desconectar(); } catch { } }
         }
         protected void atras_Click(object sender, EventArgs e)
         {
@@ -187,6 +196,10 @@ namespace Modulo_de_arqueos.Views
                 string[] valores9 = { sig9, "2", "2", TDChequesa.Value, TDMontoa.Value, Convert.ToString(cantidad), Convert.ToString(monto), id };
                 logic.insertartablas("sa_chequestesoreria", valores9);
 
+                String script = "alert('Se han guardado exitosamente');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                operar.Enabled = false;
+
                 //NombreFirma.InnerHtml = Session["Nombre"] as string;
                 //NombreFirma2.InnerHtml = TDNombreencargado.Value;
                 //puesto2.InnerHtml = TDPuestoencargado.Value;
@@ -221,8 +234,8 @@ namespace Modulo_de_arqueos.Views
                 fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horai[0] + ":" + horai[1];
                 TDFechayhora.Attributes.Add("value", fechatotal1);
 
-                NombreFirma.InnerHtml = TDNombreop.Value;
-                NombreFirma2.InnerHtml = TDNombreencargado.Value;
+                NombreFirma2.InnerHtml = TDNombreop.Value;
+                NombreFirma.InnerHtml = TDNombreencargado.Value;
                 puesto2.InnerHtml = TDPuestooperador.Value;
                 puesto3.InnerHtml = TDPuestoencargado.Value;
             }

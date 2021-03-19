@@ -77,9 +77,9 @@ namespace SA_Arqueos.Models
         {
             return sn.estadodeprocesocif(cif);
         }
-        public MySqlDataReader insertartablas(string tabla, string[] datos)
+        public void insertartablas(string tabla, string[] datos)
         {
-            return sn.insertartablas(tabla, datos);
+            sn.insertartablas(tabla, datos);
         }
         public MySqlDataReader modificartablas(string tabla, string[] campos, string[] datos)
         {

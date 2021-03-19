@@ -13,6 +13,7 @@ namespace KB_Guadalupana.Views.Sesion
 {
     public partial class Reporte : System.Web.UI.Page
     {
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         Logica logic = new Logica();
         Conexion conn = new Conexion();
         Sentencia sn = new Sentencia();
@@ -26,28 +27,31 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewreporte()
         {
-            try
+
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string QueryString = "SELECT ep_control.codepinformaciongeneralcif, gen_usuario.gen_usuarionombre, ep_informaciongeneral.ep_informaciongeneralcif  FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif ORDER BY ep_control.codepcontrol";
-                // "ON a.codeptipotelefono=b.codeptipotelefono WHERE codepinformaciongeneralcif='"+cifactual+"';";
-                MySqlConnection conect = conn.conectar();
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
-                DataTable ds3 = new DataTable();
-                myCommand.Fill(ds3);
-                GridViewReporte.DataSource = ds3;
-                GridViewReporte.DataBind();
-                conn.desconexion(conect);
+                try
+                {
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
+                    sqlCon.Open();
+                    string QueryString = "SELECT ep_control.codepinformaciongeneralcif, gen_usuario.gen_usuarionombre, ep_informaciongeneral.ep_informaciongeneralcif  FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif ORDER BY ep_control.codepcontrol";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    GridViewReporte.DataSource = ds3;
+                    GridViewReporte.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
             }
-            catch
-            {
-            }
-            finally { conn.desconectar(); }
         }
 
         protected void iniciarsesion_Click(object sender, EventArgs e)
         {
             Session["IDReporte"] = RCif.Value;
-
             string nombre;
             string id;
             nombre = Session["IDReporte"].ToString();

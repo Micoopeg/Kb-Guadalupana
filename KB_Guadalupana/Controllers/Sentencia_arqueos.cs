@@ -237,8 +237,9 @@ namespace SA_Arqueos.Controllers
             finally { cn.desconectar(); }
         }
 
-        public MySqlDataReader insertartablas(string tabla, string[] datos)
+        public void insertartablas(string tabla, string[] datos)
         {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 string query = "";
                 for (int i = 0; i < datos.Length; i++)
@@ -252,17 +253,15 @@ namespace SA_Arqueos.Controllers
                 }
                 try
                 {
-                    cn.conectar();
+                    sqlCon.Open();
                     string consulta = "insert into " + tabla + " values(" + query + ");";
                     Console.WriteLine(consulta);
-                    comm = new MySqlCommand(consulta, cn.conectar());
+                    comm = new MySqlCommand(consulta, sqlCon);
                     MySqlDataReader mostrar = comm.ExecuteReader();
-                    return mostrar;
                 }
                 catch (Exception err)
                 {
                     Console.WriteLine(err.Message);
-                    return null;
                 }
                 finally { cn.desconectar(); }
             }
@@ -431,67 +430,79 @@ namespace SA_Arqueos.Controllers
         public string obtenerfinal(string tabla, string campo)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT MAX(" + campo + "+1) FROM " + tabla + ";"; //SELECT MAX(idFuncion) FROM `funciones`     
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-                //Console.WriteLine("El resultado es: " + camporesultante);
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(" + campo + "+1) FROM " + tabla + ";"; //SELECT MAX(idFuncion) FROM `funciones`     
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
                 if (String.IsNullOrEmpty(camporesultante))
                     camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         public string obtenerid(string tabla, string campo)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT MAX(" + campo + "+1) FROM " + tabla + ";"; //SELECT MAX(idFuncion) FROM `funciones`     
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-                //Console.WriteLine("El resultado es: " + camporesultante);
-                if (String.IsNullOrEmpty(camporesultante))
-                    camporesultante = "1";
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(" + campo + "+1) FROM " + tabla + ";"; //SELECT MAX(idFuncion) FROM `funciones`     
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         public string ultimoid(string tabla, string campo)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT MAX(" + campo + ") FROM " + tabla + ";"; //SELECT MAX(idFuncion) FROM `funciones`     
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-                //Console.WriteLine("El resultado es: " + camporesultante);
-                if (String.IsNullOrEmpty(camporesultante))
-                    camporesultante = "1";
-            }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(" + campo + ") FROM " + tabla + ";"; //SELECT MAX(idFuncion) FROM `funciones`     
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
+                }
         }
 
         public MySqlDataReader consultarconcampo(string tabla, string campo, string valor)
@@ -533,77 +544,93 @@ namespace SA_Arqueos.Controllers
         public string consultararqueoC(string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT idsa_encabezadocajero FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') AND DATE_FORMAT(sa_fechayhora,  '%m') = DATE_FORMAT(CURRENT_DATE, '%m') AND DATE_FORMAT(sa_fechayhora,  '%d') = DATE_FORMAT(CURRENT_DATE, '%d') AND idsa_usuario = '"+id+"'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT idsa_encabezadocajero FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') AND DATE_FORMAT(sa_fechayhora,  '%m') = DATE_FORMAT(CURRENT_DATE, '%m') AND DATE_FORMAT(sa_fechayhora,  '%d') = DATE_FORMAT(CURRENT_DATE, '%d') AND idsa_usuario = '"+id+"'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
         }
+    }
 
         public string consultararqueoCC(string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT idsa_encabezadocajachica FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha,  '%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') AND DATE_FORMAT(sa_fecha,  '%m') = DATE_FORMAT(CURRENT_DATE, '%m') AND DATE_FORMAT(sa_fecha,  '%d') = DATE_FORMAT(CURRENT_DATE, '%d') AND idsa_usuario = '" + id + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT idsa_encabezadocajachica FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha,  '%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') AND DATE_FORMAT(sa_fecha,  '%m') = DATE_FORMAT(CURRENT_DATE, '%m') AND DATE_FORMAT(sa_fecha,  '%d') = DATE_FORMAT(CURRENT_DATE, '%d') AND idsa_usuario = '" + id + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
+                }
         }
 
         public string consultararqueoCA(string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT idsa_encabezadocajeroaut FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') AND DATE_FORMAT(sa_fechayhora,  '%m') = DATE_FORMAT(CURRENT_DATE, '%m') AND DATE_FORMAT(sa_fechayhora,  '%d') = DATE_FORMAT(CURRENT_DATE, '%d') AND idsa_usuario = '" + id + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT idsa_encabezadocajeroaut FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') AND DATE_FORMAT(sa_fechayhora,  '%m') = DATE_FORMAT(CURRENT_DATE, '%m') AND DATE_FORMAT(sa_fechayhora,  '%d') = DATE_FORMAT(CURRENT_DATE, '%d') AND idsa_usuario = '" + id + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
+                }
         }
 
         public string consultararqueoT(string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT idsa_encabezadotesoreria FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') AND DATE_FORMAT(sa_fechayhora,  '%m') = DATE_FORMAT(CURRENT_DATE, '%m') AND DATE_FORMAT(sa_fechayhora,  '%d') = DATE_FORMAT(CURRENT_DATE, '%d') AND idsa_usuario = '" + id + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT idsa_encabezadotesoreria FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') AND DATE_FORMAT(sa_fechayhora,  '%m') = DATE_FORMAT(CURRENT_DATE, '%m') AND DATE_FORMAT(sa_fechayhora,  '%d') = DATE_FORMAT(CURRENT_DATE, '%d') AND idsa_usuario = '" + id + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         public DataTable llenarGridView(string id)
@@ -611,7 +638,6 @@ namespace SA_Arqueos.Controllers
             DataTable dt = new DataTable();
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-
                 try
                 {
                     sqlCon.Open();
@@ -619,8 +645,6 @@ namespace SA_Arqueos.Controllers
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
-
-
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
 
@@ -632,148 +656,176 @@ namespace SA_Arqueos.Controllers
         public string numarqueoCA(string año, string mes, string dia, string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '"+ mes +"' AND DATE_FORMAT(sa_fechayhora,  '%d') = '"+ dia +"' AND idsa_usuario = '" + id + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-                //Console.WriteLine("El resultado es: " + camporesultante);
-                if (String.IsNullOrEmpty(camporesultante))
-                    camporesultante = "1";
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajeroaut WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '"+ mes +"' AND DATE_FORMAT(sa_fechayhora,  '%d') = '"+ dia +"' AND idsa_usuario = '" + id + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         public string numarqueoCC(string año, string mes, string dia, string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fecha,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fecha,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-                //Console.WriteLine("El resultado es: " + camporesultante);
-                if (String.IsNullOrEmpty(camporesultante))
-                    camporesultante = "1";
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajachica WHERE DATE_FORMAT(sa_fecha,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fecha,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fecha,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         public string numarqueoC(string año, string mes, string dia, string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-                //Console.WriteLine("El resultado es: " + camporesultante);
-                if (String.IsNullOrEmpty(camporesultante))
-                    camporesultante = "1";
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadocajero WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         public string numarqueoT(string año, string mes, string dia, string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
-                //Console.WriteLine("El resultado es: " + camporesultante);
-                if (String.IsNullOrEmpty(camporesultante))
-                    camporesultante = "1";
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(sa_numarqueo + 1) FROM sa_encabezadotesoreria WHERE DATE_FORMAT(sa_fechayhora,  '%Y') = '" + año + "' AND DATE_FORMAT(sa_fechayhora,  '%m') = '" + mes + "' AND DATE_FORMAT(sa_fechayhora,  '%d') = '" + dia + "' AND idsa_usuario = '" + id + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         //MOSTRAR PUESTO
         public string obtenerpuesto(string usuario)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT gen_puesto FROM gen_usuario where gen_usuarionombre = '" + usuario + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT cod_puesto FROM sa_control_ingreso where cod_genusuario = '" + usuario + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception) 
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception) 
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         public string obteneridusuario(string usuario)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT codgenusuario FROM gen_usuario WHERE gen_usuarionombre = '"+ usuario +"'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT codgenusuario FROM gen_usuario WHERE gen_usuarionombre = '"+ usuario +"'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         //OBTENER TOTAL HABER
         public string totalhaber(string id)
         {
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT SUM(sa_haber) FROM sa_detallecajachica WHERE idsa_encabezadocajachica= '"+id+"'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT SUM(sa_haber) FROM sa_detallecajachica WHERE idsa_encabezadocajachica= '"+id+"'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                finally { cn.desconectar(); }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         //MOSTRAR ENCABEZADO

@@ -7,6 +7,8 @@
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Seguridad</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+    <link rel="stylesheet"  href="../../EXDiseños/EstilosDashboard.css" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="../../EXDiseños/stylebarra.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
 </head>
     <style>
@@ -186,7 +188,7 @@ box-sizing: border-box;
   padding: 8px 100px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: inherit;
   font-size: 16px;
   margin: 4px -50px;
   transition-duration: 0.4s;
@@ -280,28 +282,153 @@ box-sizing: border-box;
 
      <form id="form1" runat="server">
          <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+             
+
     <div class="topnav">
               <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Modulos KB-Guadalupana</b></span>
              <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
-         
+         <header class="encabezado" style="text-align:center;">
+	<div class="menu-bar">
+		<div class="three col">
+			<div class="hamburger" id="hamburger-pro">
+				<span class="line"></span>
+				<span class="line"></span>
+				<span class="line"></span>
+			</div>
+		</div>
+
+		<a href="javascript:void(0);" class="links" class="bt-menu">
+			<span class="span fa fa-list"></span>
+		</a>
+	</div>  
+
+	<nav class="nav">
+		<ul class="ul">
+			<li class="li">
+				<a id="inicio" runat="server" href="javascript:void(0);" onclick="redirigir()"  class="links">
+					<span class="span fa fa-home" ></span>Usuario
+				</a>
+			</li>
+
+			<li class="li">
+				<a href="javascript:void(0);" class="links" onclick="redirigir2()">
+					<span class="span fa fa-suitcase"></span> Modulos
+                    <span class="span fa fa-arrow-down"></span>
+				</a>
+
+                <ul class="children">
+					<li class="li">
+						<a href="javascript:void(0);" onclick="redirigir3()" class="links">Agregar Modulo
+							<span class="span fa fa-play"></span>
+						</a>
+					</li>  
+					<li class="li">
+						<a href="javascript:void(0);" onclick="redirigir4()" class="links">Modificar Modulos
+							<span class="span fa fa-play"></span>
+						</a>
+					</li>  
+					
+				</ul>
+			</li>
+
+			<li class="li submenu">
+				<a href="javascript:void(0);" onclick="redirigir5()" class="links">
+					<span class="span fa fa-rocket"></span>Modulos y permisos
+					
+				</a>
+
+				
+			</li>
+
+			<li class="li">
+				<a href="javascript:void(0);" onclick="redirigir6()" class="links">
+					<span class="span fa fa-users"></span>Modulos y Usuarios
+				</a>
+			</li>
+            	<li class="li">
+				<a href="javascript:void(0);" onclick="redirigir7()" class="links">
+					<span class="span fa fa-users"></span>Estado de Usuarios
+				</a>
+			</li>
+		
+		</ul>
+	</nav>
+</header>
+
 <br>
 <br>
 <br>
+
+         <div class="container-fluid" style="margin-top:60px;">
     <asp:Repeater ID="repetirapp" runat="server">
         <ItemTemplate>
    <div class="item">
      
         <div class="botones" >
             <asp:Label ID="idapp" runat="server" Text='<%# Eval("codgenapp") %>' Visible="false" ></asp:Label>
-            <asp:LinkButton ID="btn1seg" runat="server" CssClass="button button1 detalle_cita" style="padding: 10px 35%; min-width:63% ;" OnClick="btnmantenimiento_Click" ><%# Eval("gen_nombreapp") %></asp:LinkButton>
+            <asp:LinkButton ID="btn1seg" runat="server" CssClass="button button1 detalle_cita" style="padding: 10px 90px; min-width:90px ;" OnClick="btnmantenimiento_Click" ><%# Eval("gen_nombreapp") %></asp:LinkButton>
         </div> 
    </div>
     </ItemTemplate>
   </asp:Repeater>
-         </form>
+             </div>
+
+           <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
+          <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>
+    
+     </form>
+
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="../../EXDiseños/scriptbarra.js"></script>
+    <script src="../../EXDiseños/scriptdash.js"></script>
+   
+    
+      <script type="text/javascript">
+
+        function redirigir() {
+
+            document.getElementById('btninicio').click();
+            
+          }
+          function redirigir2() {
+
+              document.getElementById('LinkButton3').click();
+
+          }
+          function redirigir3() {
+
+              document.getElementById('LinkButton3').click();
+
+          }
+          function redirigir4() {
+
+              document.getElementById('LinkButton4').click();
+
+          }
+          function redirigir5() {
+
+              document.getElementById('LinkButton5').click();
+
+          }
+          function redirigir6() {
+
+              document.getElementById('LinkButton6').click();
+
+          }
+          function redirigir7() {
+
+              document.getElementById('LinkButton7').click();
+
+          }
+      </script>
 </body>
 </html>

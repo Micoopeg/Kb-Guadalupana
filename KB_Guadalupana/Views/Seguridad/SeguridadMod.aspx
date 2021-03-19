@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../AvDiseños/Botones.css" />
+      <link rel="stylesheet"  href="../../EXDiseños/EstilosDashboard.css" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="../../EXDiseños/stylebarra.css">
 </head>
 
      <style>
@@ -220,25 +222,98 @@ padding: 8px;
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Creacion Modulos KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
+    <br /> <br />
+    <center>
+    <header class="encabezado" style="text-align:center; ">
+	<div class="menu-bar">
+		<div class="three col">
+			<div class="hamburger" id="hamburger-pro">
+				<span class="line"></span>
+				<span class="line"></span>
+				<span class="line"></span>
+			</div>
+		</div>
+
+		<a href="javascript:void(0);" class="links" class="bt-menu">
+			<span class="span fa fa-list"></span>
+		</a>
+	</div>  
+
+	<nav class="nav">
+		<ul class="ul">
+			<li class="li">
+				<a id="inicio" runat="server" href="javascript:void(0);" onclick="redirigir()"  class="links">
+					<span class="span fa fa-home" ></span>Usuario
+				</a>
+			</li>
+
+			<li class="li">
+				<a href="javascript:void(0);" class="links" onclick="redirigir2()">
+					<span class="span fa fa-suitcase"></span> Modulos
+                    <span class="span fa fa-arrow-down"></span>
+				</a>
+
+                <ul class="children">
+					<li class="li">
+						<a href="javascript:void(0);" onclick="redirigir3()" class="links">Agregar Modulo
+							<span class="span fa fa-play"></span>
+						</a>
+					</li>  
+					<li class="li">
+						<a href="javascript:void(0);" onclick="redirigir4()" class="links">Modificar Modulos
+							<span class="span fa fa-play"></span>
+						</a>
+					</li>  
+					
+				</ul>
+			</li>
+
+			<li class="li submenu">
+				<a href="javascript:void(0);" onclick="redirigir5()" class="links">
+					<span class="span fa fa-rocket"></span>Modulos y permisos
+					
+				</a>
+
+				
+			</li>
+
+			<li class="li">
+				<a href="javascript:void(0);" onclick="redirigir6()" class="links">
+					<span class="span fa fa-users"></span>Modulos y Usuarios
+				</a>
+			</li>
+		<li class="li">
+				<a href="javascript:void(0);" onclick="redirigir7()" class="links">
+					<span class="span fa fa-users"></span>Estado de Usuarios
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+ </center>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+           
+
+<br />
                <h1 style="color:white">Crea Modulo</h1>
   <div class="inset">
       <div class="row">
           
     <p class="col-md-6">
         <label  style="color:white">Abreviatura Modulo</label>
-        <input style="color:white" type="text" id="abrmodulo" runat="server"/>
+        <input style="color:black" type="text" id="abrmodulo" runat="server"/>
     </p>
     <p class="col-md-6">
         <label style="color:white">Nombre Modulo</label>
-        <input style="color:white" type="text"  id="nommodul" runat="server"/>
+        <input style="color:black" type="text"  id="nommodul" runat="server"/>
     </p>
 </div>
  <div class="row">
      <p class="col-lg-12">
          <label  style="color:white">URL</label>
-        <input style="color:white" type="text"  id="url1" runat="server" />
+        <input style="color:black" type="text"  id="url1" runat="server" />
 
      </p>
  </div>
@@ -249,8 +324,8 @@ padding: 8px;
   
     <select id="seleccion" runat="server" class="dis">
             <option disabled selected>Estado</option>
-            <option  value="">Activo</option>
-            <option  value="">Inactivo</option>
+            <option  value="Activo">Activo</option>
+            <option  value="Inactivo">Inactivo</option>
         </select>
      
   </p>
@@ -264,6 +339,60 @@ padding: 8px;
    
             <asp:Button ID="btninsert" runat="server"  Text="Guardar"  OnClick="btnguardar_Click"></asp:Button>
      </center>
-    </form>
+
+         <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
+    <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>
+
+        </form>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="../../EXDiseños/scriptbarra.js"></script>
+    <script src="../../EXDiseños/scriptdash.js"></script>
+   
+    
+      <script type="text/javascript">
+
+        function redirigir() {
+
+            document.getElementById('btninicio').click();
+            
+          }
+          function redirigir2() {
+
+              document.getElementById('LinkButton3').click();
+
+          }
+          function redirigir3() {
+
+              document.getElementById('LinkButton3').click();
+
+          }
+          function redirigir4() {
+
+              document.getElementById('LinkButton4').click();
+
+          }
+          function redirigir5() {
+
+              document.getElementById('LinkButton5').click();
+
+          }
+          function redirigir6() {
+
+              document.getElementById('LinkButton6').click();
+
+          }
+          function redirigir7() {
+
+              document.getElementById('LinkButton7').click();
+
+          }
+      </script>
 </body>
 </html>

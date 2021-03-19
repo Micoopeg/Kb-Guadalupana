@@ -133,13 +133,14 @@ body {
 
 <body>
     <form id="form1" runat="server">
-           <div class="topnav">
+        <div class="topnav">
             <a class="active" style="border: black 2px solid;"  href="../Inicio.aspx">Inicio</a>
             <a class="active" style="border: black 2px solid;    background-color: #003563;" href="InformacionGeneralEP.aspx">Informacion General</a>
             <%--<a class="active" style="border: black 2px solid;" href="../Inicio.aspx">Estado Patrimonial</a>--%>
             <a class="active" style="border: black 2px solid;" href="ReporteEP.aspx">Declaracion de Bienes</a>
-        
+               <a class="active" style="border: black 2px solid;" href="ReporteT.aspx">Estado Patrimonial</a>
             <a href="../CerrarSesion.aspx" style="right: 0%;position: absolute;border: black 2px solid;">Cerrar Sesion</a>
+          </div>
     </div>
     <br/>
  <div style="display: flex;justify-content: center;align-items: center;">

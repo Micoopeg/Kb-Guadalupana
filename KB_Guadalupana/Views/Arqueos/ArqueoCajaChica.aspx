@@ -459,7 +459,7 @@ import { write } from "@popperjs/core";
             <div id="agregarRegistro" runat="server" style ="display:flex; flex-direction:row; width:100%; padding:10px;">
                 <div class ="datos">
                     <div style ="display:flex; flex-direction:row; width:100%">
-                        <input type="date" id="CCFecha" runat="server" class="etiquetas"/>
+                        <input type="date" id="CCFecha" runat="server" class="etiquetas" required/>
                         <input type="text" id="CCNumdocumento" maxlength="11" min="0" placeholder="No. documento" runat="server" class="etiquetas"/>
                         <input type="text" id="CCProveedor" maxlength="50" placeholder="Proveedor" runat="server" class="etiquetas"/>
                     </div>

@@ -18,7 +18,6 @@ namespace Modulo_de_arqueos.Views
         Logica_arqueos logic = new Logica_arqueos();
         Sentencia_arqueos sn = new Sentencia_arqueos();
         Logica lg = new Logica();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         string fecha;
         string id;
         int cont = 0;
@@ -29,6 +28,7 @@ namespace Modulo_de_arqueos.Views
         char concat2 = 'T';
         string numarqueo;
         string fechamin, horamin, fechahora, fechatotal1, año, mes, dia, dia2, usuario, puesto, idusuario, idusuario2;
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,7 +39,7 @@ namespace Modulo_de_arqueos.Views
                 NombreFirma.InnerHtml = Session["Nombre"] as string;
                 llenarcomboagencia();
                 llenarcombousuario();
- 
+
                 EBuscar.Visible = false;
                 arqueo.Visible = false;
                 now();
@@ -50,40 +50,48 @@ namespace Modulo_de_arqueos.Views
 
         public void llenarcomboagencia()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string QueryString = "select * from sa_agencia";
-                MySqlConnection conect = cn.conectar();
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
-                DataSet ds = new DataSet();
-                myCommand.Fill(ds, "Agencia");
-                CAAgencia.DataSource = ds;
-                CAAgencia.DataTextField = "sa_nombreagencia";
-                CAAgencia.DataValueField = "idsa_agencia";
-                CAAgencia.DataBind();
-                CAAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select * from sa_agencia";
+                    //MySqlConnection conect = cn.conectar();
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Agencia");
+                    CAAgencia.DataSource = ds;
+                    CAAgencia.DataTextField = "sa_nombreagencia";
+                    CAAgencia.DataValueField = "idsa_agencia";
+                    CAAgencia.DataBind();
+                    CAAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                }
+                catch { }
+                finally { try { cn.desconectar(); } catch { } }
             }
-            catch { }
-            finally { try { cn.desconectar(); } catch { } }
         }
 
         public void llenarcombousuario()
         {
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string QueryString = "select * from gen_usuario";
-                MySqlConnection conect = cn.conectar();
-                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, conect);
-                DataSet ds = new DataSet();
-                myCommand.Fill(ds, "Usuario");
-                CAUsuario.DataSource = ds;
-                CAUsuario.DataTextField = "gen_usuarionombre";
-                CAUsuario.DataValueField = "codgenusuario";
-                CAUsuario.DataBind();
-                CAUsuario.Items.Insert(0, new ListItem("[Usuario]", "0"));
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select * from gen_usuario";
+                    //MySqlConnection conect = cn.conectar();
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Usuario");
+                    CAUsuario.DataSource = ds;
+                    CAUsuario.DataTextField = "gen_usuarionombre";
+                    CAUsuario.DataValueField = "codgenusuario";
+                    CAUsuario.DataBind();
+                    CAUsuario.Items.Insert(0, new ListItem("[Usuario]", "0"));
+                }
+                catch { }
+                finally { try { cn.desconectar(); } catch { } }
             }
-            catch { }
-            finally { try { cn.desconectar(); } catch { } }
         }
 
         public void llenarcomboarqueos()
@@ -124,6 +132,7 @@ namespace Modulo_de_arqueos.Views
                     DropNumarqueo.Items.Insert(0, new ListItem("[Numero de arqueo]", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
+                finally { try { cn.desconectar(); } catch { } }
             }
         }
 
@@ -239,6 +248,15 @@ namespace Modulo_de_arqueos.Views
                 string sig8 = logic.siguiente("sa_detallecajeroaut", "idsa_detallecajeroaut");
                 string[] valores8 = { sig8, "7", CACantidad7.Value, Convert.ToString(subtotalb7), Convert.ToString(totalb), "8", "", "", Convert.ToString(totalm), Convert.ToString(totalefectivo), CAEfectivoreporte.Value, Convert.ToString(diferencia), CAComentario.Value, sig };
                 logic.insertartablas("sa_detallecajeroaut", valores8);
+
+                NombreFirma2.InnerHtml = CAOperador.Value;
+                puesto2.InnerHtml = CAPuestooperador.Value;
+                puesto3.InnerHtml = CAPuestoencargado.Value;
+
+                String script = "alert('Se han guardado exitosamente');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                operar.Enabled = false;
+                
             }
             catch (Exception err)
             {
@@ -479,6 +497,7 @@ namespace Modulo_de_arqueos.Views
             imprimir.Visible = true;
             CANombreencargado.Value = Session["Nombre"] as string;
             NombreFirma.InnerHtml = Session["Nombre"] as string;
+            operar.Enabled = true;
 
             //if (consulta == "")
             //{
@@ -499,7 +518,7 @@ namespace Modulo_de_arqueos.Views
             //    visualizar.Visible = false;
             //    imprimir.Visible = false;
             //}
-                
+
         }
 
         protected void buscararqueo_Click(object sender, EventArgs e)

@@ -11,6 +11,7 @@ namespace Modulo_de_arqueos.Views
     {
         Sentencia_arqueos sn = new Sentencia_arqueos();
         string usuario;
+        string idusuario;
         protected void Page_Load(object sender, EventArgs e)
         {
             string abre;
@@ -23,7 +24,8 @@ namespace Modulo_de_arqueos.Views
                 usuario = Session["sesion_usuario"] as string;
                 //Session["Nombre"] = "Aida Jimena Ortiz Delgado";
                 NombreUsuario.InnerHtml = Session["Nombre"] as string;
-                Session["puesto_usuario"] = sn.obtenerpuesto(usuario);
+                idusuario = sn.obteneridusuario(usuario);
+                Session["puesto_usuario"] = sn.obtenerpuesto(idusuario);
             }
             catch
             {
@@ -50,5 +52,7 @@ namespace Modulo_de_arqueos.Views
         {
             Response.Redirect("ArqueoCajaChica.aspx");
         }
+
+        
     }
 }

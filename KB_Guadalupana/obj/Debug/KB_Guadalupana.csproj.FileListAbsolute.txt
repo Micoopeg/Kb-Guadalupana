@@ -5698,3 +5698,30 @@ C:\Users\pggteo\Desktop\Kb-Guadalupana-main\KB_Guadalupana\obj\Debug\KB_Guadalup
 C:\Users\pggteo\Desktop\Kb-Guadalupana-main\KB_Guadalupana\obj\Debug\KB_Guadalupana.csproj.CopyComplete
 C:\Users\pggteo\Desktop\Kb-Guadalupana-main\KB_Guadalupana\obj\Debug\KB_Guadalupana.dll
 C:\Users\pggteo\Desktop\Kb-Guadalupana-main\KB_Guadalupana\obj\Debug\KB_Guadalupana.pdb
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itextsharp.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itextsharp.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\Common.Logging.Core.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\Common.Logging.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.barcodes.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.forms.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.io.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.kernel.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.layout.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.pdfa.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.sign.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.styledxmlparser.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.svg.dll
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\BouncyCastle.Crypto.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\Common.Logging.pdb
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\Common.Logging.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\Common.Logging.Core.pdb
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\Common.Logging.Core.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.barcodes.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.forms.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.io.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.kernel.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.layout.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.pdfa.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.sign.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.styledxmlparser.xml
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\itext.svg.xml

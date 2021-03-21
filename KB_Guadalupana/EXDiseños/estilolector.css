@@ -1,0 +1,39 @@
+﻿#barcodevideo, #barcodecanvas, #barcodecanvasg {
+
+height:650px;
+
+}
+
+#barcodecanvasg {
+position:relative;
+top:0px;
+left:0px;
+
+}
+
+#result {
+position: absolute;
+font-family: Verdana;
+font-size: 1.8em;
+top:68px;
+left:354px;
+color:red;
+}
+
+#barcode {
+
+    position:relative;
+    width: 100vh;
+    height: 100%;
+    margin: 0 auto;
+    justify-content:center;
+    align-items:center;
+    top:100px;
+
+}
+
+#barcodecanvas {
+
+    display:none;
+
+}

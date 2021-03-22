@@ -146,6 +146,28 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
+        public string mostrarareaapp(string codigo)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string Campos = "";
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT codgenarea FROM gen_areaapp WHERE codegenapp = '" + codigo + "'";
+
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    Campos = reader.GetValue(0).ToString();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
         public void actualizarestado(string usuario, string estado)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -172,6 +194,24 @@ namespace KB_Guadalupana.Controllers
                 {
                     sqlCon.Open();
                     string query = "UPDATE gen_aplicacion SET gen_literalapp = '" + literal + "', gen_nombreapp = '" + nombre + "', gen_urlcontrol = '" + url + "', gen_estadoapp = '" + estado + "' WHERE codgenapp = '" + codigo + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public void actualizararea(string area, string app)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE gen_areaapp SET codgenarea = '" + area + "' WHERE codegenapp = '" + app + "'";
                     MySqlCommand command = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                 }

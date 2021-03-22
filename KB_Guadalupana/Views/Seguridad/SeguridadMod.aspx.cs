@@ -17,11 +17,15 @@ namespace KB_Guadalupana.Views.Seguridad
         ControladorAV cav = new ControladorAV();
 
         string NOMAPP, URL, ABRAPP, OP, op2;
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                llenarcomboarea();
+            }
         }
 
         public void ingresar()
@@ -41,6 +45,10 @@ namespace KB_Guadalupana.Views.Seguridad
                     string sql = "INSERT INTO gen_aplicacion  VALUES('" + sig + "', '" + ABRAPP + "', '" + NOMAPP + "', '" + URL + "', '" + op2 + "');";
                     cav.Insertar(sql);
 
+                    string sig1 = cav.siguiente("gen_areaapp", "");
+                    string sql1 = "INSERT INTO gen_areaapp VALUES ('" + sig1 + "', '" + SArea.SelectedValue + "', '" + sig + "')";
+                    cav.Insertar(sql1);
+
                     break;
                 case "Inactivo":
 
@@ -55,6 +63,30 @@ namespace KB_Guadalupana.Views.Seguridad
             }
 
         }
+
+        public void llenarcomboarea()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+
+                    sqlCon.Open();
+                    string QueryString = "select * from gen_area";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Área");
+                    SArea.DataSource = ds;
+                    SArea.DataTextField = "gen_areanombre";
+                    SArea.DataValueField = "codgenarea";
+                    SArea.DataBind();
+                    SArea.Items.Insert(0, new ListItem("[Área]", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+
+        }
+
         protected void btnguardar_Click(object sender, EventArgs e)
         {
 

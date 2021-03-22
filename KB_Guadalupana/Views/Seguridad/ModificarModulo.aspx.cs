@@ -19,7 +19,31 @@ namespace KB_Guadalupana.Views.Seguridad
             if (!IsPostBack)
             {
                 llenarcomboaplicacion();
+                llenarcomboarea();
             }
+        }
+
+        public void llenarcomboarea()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+
+                    sqlCon.Open();
+                    string QueryString = "select * from gen_area";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Área");
+                    SArea.DataSource = ds;
+                    SArea.DataTextField = "gen_areanombre";
+                    SArea.DataValueField = "codgenarea";
+                    SArea.DataBind();
+                    SArea.Items.Insert(0, new ListItem("[Área]", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+
         }
 
         protected void btnguardar_Click(object sender, EventArgs e)
@@ -32,11 +56,13 @@ namespace KB_Guadalupana.Views.Seguridad
             else
             {
                 sn.actualizarmodulo(MModulo.SelectedValue, abrmodulo.Value, nommodul.Value, url1.Value, seleccion.Value);
+                sn.actualizararea(SArea.SelectedValue, MModulo.SelectedValue);
                 MModulo.SelectedIndex = 0;
                 abrmodulo.Value = "";
                 nommodul.Value = "";
                 url1.Value = "";
                 seleccion.Value = "Estado";
+                SArea.SelectedIndex = 0;
                 String script = "alert('Cambios realizados');";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                
@@ -85,6 +111,10 @@ namespace KB_Guadalupana.Views.Seguridad
                     seleccion.Value = "0";
                 }
             }
+
+            string area;
+            area = sn.mostrarareaapp(MModulo.SelectedValue);
+            SArea.SelectedValue = area;
         }
 
 

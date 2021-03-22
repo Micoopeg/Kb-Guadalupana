@@ -68,28 +68,7 @@
                     </a>
                 </li>
             </ul>
-        <ul class ="opc1"  runat="server"  onclick="ticket()" style="cursor:pointer;">
-                <li class="has-subnav">
-                    <a href="#">
-                       <i class="fa fa-gear fa-2x"></i>
-                        <span class="nav-text">
-                            Cumplimiento
-                            <div class="w3-dropdown-hover">
-                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 75px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                  <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;">
-                                    <a href="EP_InformacionGeneral.aspx" class="w3-bar-item w3-button">Estado Patrimonial</a>
-                                     <%--<asp:Button ID="Button1" class="w3-bar-item w3-button" runat="server" Text="Estado Patrimonial"></asp:Button>--%>
-                                    <a href="Reportes/InformacionGeneralEP.aspx" class="w3-bar-item w3-button">Imprimir Estado Patrimonial</a>
-                                     <asp:Button ID="Button2" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Área Administrativa"></asp:Button>
-                                      <a href="Reporte.aspx" class="w3-bar-item w3-button">Reporte EP</a>
-                                </div>
-                            </div> 
-                        </span>
-                    </a>
-                </li>
-            </ul>
+   
            <ul id="Button3" runat="server" class ="opc1">
                <li>
                     <a href="MantenimientoAreas.aspx">
@@ -101,38 +80,70 @@
                 </li>
             </ul>
 
-<%--            <ul id="ButtonAgenda" runat="server" class ="opc1">
+             <ul class ="opc1"  runat="server"  onclick="ticket()" style="cursor:pointer;">
+                <li class="has-subnav">
+                    <a href="#">
+                       <i class="fa fa-gear fa-2x"></i>
+                        <span class="nav-text">
+                            Cumplimiento
+                            <div class="w3-dropdown-hover">
+                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 75px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                 <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;margin-left: 193px;margin-top: -55px;">
+                                     <a> </a>
+                                     <asp:Button ID="Button2" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #1"></asp:Button>
+                                     <asp:Button ID="Button1" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #2"></asp:Button>
+                                </div>
+                            </div> 
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul id="opc2" runat="server" class ="opc1">
                <li>
                     <a href="../Agenda/AgendaPrin.aspx">
                        <i class="fa fa-book fa-2x"></i>
                         <span class="nav-text">
-                            Agenda
+                           Negocios
+                            <div class="w3-dropdown-hover">
+                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 75px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                 <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;margin-left: 193px;margin-top: -55px;">
+                                     <a> </a>
+                                     <asp:Button ID="Button4" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #1"></asp:Button>
+                                     <asp:Button ID="Button5" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #2"></asp:Button>
+                                </div>
+                            </div> 
                         </span>
                     </a>
                 </li>
-            </ul>--%>
+            </ul>
 
-<%--              <ul id="Ul1" runat="server" class ="opc1">
+              <ul id="opc3" runat="server" class ="opc1">
                <li>
                     <a href="../Arqueos/MenuArqueos.aspx">
                        <i class="fa fa-files-o fa-2x"></i>
                         <span class="nav-text">
-                            Arqueos
+                            Auditoria
+                            <div class="w3-dropdown-hover">
+                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 75px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                 <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;margin-left: 193px;margin-top: -55px;">
+                                     <a> </a>
+                                     <asp:Button ID="Button6" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #1"></asp:Button>
+                                     <asp:Button ID="Button7" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #2"></asp:Button>
+                                </div>
+                            </div> 
                         </span>
                     </a>
                 </li>
-            </ul>--%>
+            </ul>
 
-<%--             <ul id="Ul2" runat="server" class ="opc1">
-               <li>
-                    <a href="../Seguridad/Seguridad1.aspx">
-                       <i class="fa fa-lock fa-2x"></i>
-                        <span class="nav-text">
-                            Seguridad
-                        </span>
-                    </a>
-                </li>
-            </ul>--%>
+
         <ul class="Usuario">
                 <li>
                    <a href="#">

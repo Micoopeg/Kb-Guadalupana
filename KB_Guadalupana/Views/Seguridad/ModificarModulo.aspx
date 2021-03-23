@@ -12,6 +12,9 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../AvDiseños/Botones.css" />
        <link rel="stylesheet"  href="../../EXDiseños/EstilosDashboard.css" />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="../../EXDiseños/stylebarra.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
 </head>
@@ -265,7 +268,7 @@ padding: 8px;
 <body>
 
     <div class="topnav">
-            <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
+            <a class="active" href="../Sesion/MenuBarra.aspx">Inicio</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Creacion Modulos KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
@@ -377,6 +380,24 @@ padding: 8px;
         </select>
      
   </p>
+
+      <br />
+
+   <p>
+    <label style="color:white">Área</label>
+
+   <asp:DropDownList ID="SArea" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
+     
+  </p>
+      <br />
+
+  <div class="row">
+     <p class="col-lg-12">
+         <label  style="color:white">URL del Módulo</label>
+        <input type="text"  id="Urlmodulo" runat="server" />
+
+     </p>
+ </div>
   
   </div>
   <%--<p class="p-container">
@@ -388,7 +409,7 @@ padding: 8px;
             <asp:Button ID="btninsert" runat="server" CssClass="MGuardar" Text="Guardar"  OnClick="btnguardar_Click"></asp:Button>
      </center>
         <br /><br />
-        <br />
+        <br /><br />
            <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
@@ -397,6 +418,10 @@ padding: 8px;
          <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>
+    
+      <script>
+          $('#<%=SArea.ClientID%>').chosen();
+      </script>
     </form>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="../../EXDiseños/scriptbarra.js"></script>

@@ -18,6 +18,11 @@
       <title>Panel de Control</title>
      <link rel="stylesheet" href="../../Diseño/style.css" />
     <style>
+             .responsive 
+        {
+            max-width: 100%;
+            height: auto;
+        }
         .seguridad{
             flex-direction: row;
             display: flex;
@@ -47,7 +52,9 @@
 <body>
    <form id="form1" runat="server">
     <div class="area"></div>
-      
+       <div class="menu"></div>
+         <img src="../../Imagenes/F1.png" alt="Nature" class="responsive"  style="width: 255px; position: absolute; top: 40%;left: 46%; margin-top: -75px; margin-left: -75px;" />
+   
        <nav class="main-menu">
          <header class="main-header">
             <a href="#" class="logo" style="background-color: #0061B5;">   
@@ -60,7 +67,7 @@
         <br />
             <ul class ="opc1" runat="server"  onclick="inicio()" style="cursor:pointer;">
                 <li>
-                    <a href="Inicio.aspx" >
+                    <a href="MenuBarra.aspx" >
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Inicio
@@ -68,28 +75,7 @@
                     </a>
                 </li>
             </ul>
-        <ul class ="opc1"  runat="server"  onclick="ticket()" style="cursor:pointer;">
-                <li class="has-subnav">
-                    <a href="#">
-                       <i class="fa fa-gear fa-2x"></i>
-                        <span class="nav-text">
-                            Cumplimiento
-                            <div class="w3-dropdown-hover">
-                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 75px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                  <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;">
-                                    <a href="EP_InformacionGeneral.aspx" class="w3-bar-item w3-button">Estado Patrimonial</a>
-                                     <%--<asp:Button ID="Button1" class="w3-bar-item w3-button" runat="server" Text="Estado Patrimonial"></asp:Button>--%>
-                                    <a href="Reportes/InformacionGeneralEP.aspx" class="w3-bar-item w3-button">Imprimir Estado Patrimonial</a>
-                                     <asp:Button ID="Button2" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Área Administrativa"></asp:Button>
-                                      <a href="Reporte.aspx" class="w3-bar-item w3-button">Reporte EP</a>
-                                </div>
-                            </div> 
-                        </span>
-                    </a>
-                </li>
-            </ul>
+         
            <ul id="Button3" runat="server" class ="opc1">
                <li>
                     <a href="MantenimientoAreas.aspx">
@@ -100,39 +86,44 @@
                     </a>
                 </li>
             </ul>
-
-<%--            <ul id="ButtonAgenda" runat="server" class ="opc1">
-               <li>
-                    <a href="../Agenda/AgendaPrin.aspx">
-                       <i class="fa fa-book fa-2x"></i>
+  <asp:Repeater ID="RepetirAreas" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
+      <ItemTemplate>
+        <ul class ="opc1"  runat="server"  disable style="cursor:pointer;">
+                <li class="has-subnav">
+                    <a >
+                       <i class="fa fa-check"></i>
                         <span class="nav-text">
-                            Agenda
+                          <asp:Label ID="lblarea" runat="server" Visible="false" Text='<%# Eval("gen_areanombre") %>'></asp:Label>
+                           <%# Eval("gen_areanombre") %>
+                            <div class="w3-dropdown-hover">
+                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 126px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                 <div class="w3-dropdown-content w3-bar-block"  style="color: white; background-color: #69a43c; min-width: 230px;margin-left: 193px;margin-top: -55px;">
+                                 
+
+                                     <asp:Repeater ID="repetirapp" runat="server" >
+                                         <ItemTemplate>
+                                              <asp:Label ID="idapp" runat="server" Visible="false" Text='<%# Eval("codegenapp") %>'></asp:Label>
+                                     <asp:LinkButton ID="btnOpciones" OnClick="btnredirigir_Click" class="w3-bar-item w3-button" runat="server" Text='<%# Eval("gen_nombreapp") %>'></asp:LinkButton>
+                                  
+                                         </ItemTemplate>
+                                     </asp:Repeater>
+                                     
+                                </div>
+                            </div> 
                         </span>
                     </a>
                 </li>
-            </ul>--%>
+            </ul>
 
-<%--              <ul id="Ul1" runat="server" class ="opc1">
-               <li>
-                    <a href="../Arqueos/MenuArqueos.aspx">
-                       <i class="fa fa-files-o fa-2x"></i>
-                        <span class="nav-text">
-                            Arqueos
-                        </span>
-                    </a>
-                </li>
-            </ul>--%>
+          </ItemTemplate>
+  </asp:Repeater>
+           
 
-<%--             <ul id="Ul2" runat="server" class ="opc1">
-               <li>
-                    <a href="../Seguridad/Seguridad1.aspx">
-                       <i class="fa fa-lock fa-2x"></i>
-                        <span class="nav-text">
-                            Seguridad
-                        </span>
-                    </a>
-                </li>
-            </ul>--%>
+     
+
+
         <ul class="Usuario">
                 <li>
                    <a href="#">

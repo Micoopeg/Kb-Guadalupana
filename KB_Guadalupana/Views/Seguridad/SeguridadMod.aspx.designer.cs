@@ -78,6 +78,24 @@ namespace KB_Guadalupana.Views.Seguridad
         protected global::System.Web.UI.HtmlControls.HtmlSelect seleccion;
 
         /// <summary>
+        /// SArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList SArea;
+
+        /// <summary>
+        /// Urlmodulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Urlmodulo;
+
+        /// <summary>
         /// btninsert control.
         /// </summary>
         /// <remarks>

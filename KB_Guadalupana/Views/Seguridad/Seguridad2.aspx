@@ -285,7 +285,7 @@ box-sizing: border-box;
              
 
     <div class="topnav">
-              <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
+              <a class="active" href="../Sesion/MenuBarra.aspx">Inicio</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad Modulos KB-Guadalupana</b></span>
              <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>

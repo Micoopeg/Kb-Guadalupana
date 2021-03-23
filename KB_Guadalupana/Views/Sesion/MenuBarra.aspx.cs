@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.DirectoryServices;
 
+
 namespace Login_Web
 {
     public partial class Control : System.Web.UI.Page
@@ -17,13 +18,13 @@ namespace Login_Web
         Conexion conn = new Conexion();
         Sentencia sn = new Sentencia();
         Logica lg = new Logica();
+        Sentencia_seguridad sns = new Sentencia_seguridad();
         string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
-
+        string abre;
         protected void Page_Load(object sender, EventArgs e)
         {
-            int rol=0;
-            int area=0;
-            string abre;
+           
+            
             try
             {
                 if (Session.IsNewSession)
@@ -45,7 +46,12 @@ namespace Login_Web
                         string mayus = resultado.ToUpper();
                         abreuser.InnerText = mayus;
                         Button3.Visible = false;
-                        //icono.Visible = false;                       
+                        //icono.Visible = false;    
+                        DataSet ds1 = sns.conultaareaapp(sns.obteneridusuario(abre));
+                        RepetirAreas.DataSource = ds1;
+                        RepetirAreas.DataBind();
+                        
+
                     }
                     catch (Exception err)
                     {
@@ -65,7 +71,32 @@ namespace Login_Web
         {
             throw new NotImplementedException();
         }
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            //string area;
+            
+            Repeater r = e.Item.FindControl("repetirapp") as Repeater;
+            Label area = (Label)e.Item.FindControl("lblarea");
+            DataSet ds2 = sns.consultaappnombre(sns.obteneridusuario(abre), area.Text);
+            if (r != null)
+            {
+                r.DataSource= ds2;
+                r.DataBind();
+            }
+        }
 
+        protected void btnredirigir_Click(object sender, EventArgs e)
+        {
+            string idc;
+            LinkButton btn = (LinkButton)sender;
+            RepeaterItem item = (RepeaterItem)btn.NamingContainer;
+
+            idc = ((Label)item.FindControl("idapp")).Text;
+
+            string url = sns.url(idc);
+
+            Response.Redirect(url);
+        }
         protected void cerrarsession_Click(object sender, EventArgs e)
         {
             if (Session.IsNewSession)

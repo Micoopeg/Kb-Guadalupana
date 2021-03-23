@@ -24,16 +24,22 @@ namespace KBGuada.Views
 
         string rol;
         int area;
+        string entrie;
         protected void Page_Load(object sender, EventArgs e)
         {
 
             usernombre = Convert.ToString( Session["sesion_usuario"] );
             nombrepersona = Convert.ToString( Session["Nombre"]);
             NombreUsuario.InnerText = Session["Nombre"].ToString();
+            entrie = cav.obtenercoduser(usernombre);
+            if (entrie == "" || entrie == null) {
 
-            permisos(cav.obtenercoduser(usernombre));
+                String script = "alert('Favor soliitar acceso a su agenda')";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
-           
+                Response.Redirect("../Sesion/Inicio.aspx");
+            }
+            else { permisos(cav.obtenercoduser(usernombre)); }
 
 
         }

@@ -68,7 +68,7 @@
                     </a>
                 </li>
             </ul>
-   
+         
            <ul id="Button3" runat="server" class ="opc1">
                <li>
                     <a href="MantenimientoAreas.aspx">
@@ -79,21 +79,30 @@
                     </a>
                 </li>
             </ul>
-
-             <ul class ="opc1"  runat="server"  onclick="ticket()" style="cursor:pointer;">
+  <asp:Repeater ID="RepetirAreas" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
+      <ItemTemplate>
+        <ul class ="opc1"  runat="server"  onclick="ticket()" style="cursor:pointer;">
                 <li class="has-subnav">
                     <a href="#">
-                       <i class="fa fa-gear fa-2x"></i>
+                       <i class="fa fa-check"></i>
                         <span class="nav-text">
-                            Cumplimiento
+                          <asp:Label ID="lblarea" runat="server" Visible="false" Text='<%# Eval("gen_areanombre") %>'></asp:Label>
+                           <%# Eval("gen_areanombre") %>
                             <div class="w3-dropdown-hover">
-                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 75px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
+                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 126px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
                                     <i class="fa fa-caret-down"></i>
                                 </button>
-                                 <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;margin-left: 193px;margin-top: -55px;">
+                                 <div class="w3-dropdown-content w3-bar-block"  style="color: white; background-color: #69a43c; min-width: 230px;margin-left: 193px;margin-top: -55px;">
                                      <a> </a>
-                                     <asp:Button ID="Button2" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #1"></asp:Button>
-                                     <asp:Button ID="Button1" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #2"></asp:Button>
+
+                                     <asp:Repeater ID="repetirapp" runat="server" >
+                                         <ItemTemplate>
+                                              <asp:Label ID="idapp" runat="server" Visible="false" Text='<%# Eval("codegenapp") %>'></asp:Label>
+                                     <asp:LinkButton ID="btnOpciones" OnClick="btnredirigir_Click" class="w3-bar-item w3-button" runat="server" Text='<%# Eval("gen_nombreapp") %>'></asp:LinkButton>
+                                  
+                                         </ItemTemplate>
+                                     </asp:Repeater>
+                                     
                                 </div>
                             </div> 
                         </span>
@@ -101,47 +110,11 @@
                 </li>
             </ul>
 
-            <ul id="opc2" runat="server" class ="opc1">
-               <li>
-                    <a href="../Agenda/AgendaPrin.aspx">
-                       <i class="fa fa-book fa-2x"></i>
-                        <span class="nav-text">
-                           Negocios
-                            <div class="w3-dropdown-hover">
-                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 75px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                 <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;margin-left: 193px;margin-top: -55px;">
-                                     <a> </a>
-                                     <asp:Button ID="Button4" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #1"></asp:Button>
-                                     <asp:Button ID="Button5" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #2"></asp:Button>
-                                </div>
-                            </div> 
-                        </span>
-                    </a>
-                </li>
-            </ul>
+          </ItemTemplate>
+  </asp:Repeater>
+           
 
-              <ul id="opc3" runat="server" class ="opc1">
-               <li>
-                    <a href="../Arqueos/MenuArqueos.aspx">
-                       <i class="fa fa-files-o fa-2x"></i>
-                        <span class="nav-text">
-                            Auditoria
-                            <div class="w3-dropdown-hover">
-                                <button class="" style="background: transparent;padding: 0px 86px;margin-top: -60px;margin-left: 75px;border: none;display: inline-block;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit;text-align: center;cursor: pointer;white-space: nowrap;">
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                 <div class="w3-dropdown-content w3-bar-block"  style="color: white;background-color: #69a43c;min-width: 230px;margin-left: 193px;margin-top: -55px;">
-                                     <a> </a>
-                                     <asp:Button ID="Button6" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #1"></asp:Button>
-                                     <asp:Button ID="Button7" OnClick="areaAdministrativa_Click" class="w3-bar-item w3-button" runat="server" Text="Opcion #2"></asp:Button>
-                                </div>
-                            </div> 
-                        </span>
-                    </a>
-                </li>
-            </ul>
+     
 
 
         <ul class="Usuario">

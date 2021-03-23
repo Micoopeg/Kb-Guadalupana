@@ -55,7 +55,7 @@ namespace Login_Web
 
             //Session["sesion_usuario"] = "pgecasasola";
             //Session["Nombre"] = "Diego Jose Gomez Giron";
-            //Response.Redirect("Views/Sesion/Inicio.aspx");
+            //Response.Redirect("Views/Sesion/MenuBarra.aspx");
         }
 
         private bool AuthenticateUser(string userName, string password)

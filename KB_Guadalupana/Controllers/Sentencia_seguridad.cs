@@ -286,7 +286,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string query = "INSERT INTO gen_mdimenu VALUES ('" + id + "', '" + app + "', '" + usuario + "')";
+                    string query = "INSERT INTO gen_mdimenu VALUES ('" + id + "', '" + app + "', '" + usuario + "', 1)";
                     MySqlCommand command = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                 }

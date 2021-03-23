@@ -18,6 +18,11 @@
       <title>Panel de Control</title>
      <link rel="stylesheet" href="../../Diseño/style.css" />
     <style>
+             .responsive 
+        {
+            max-width: 100%;
+            height: auto;
+        }
         .seguridad{
             flex-direction: row;
             display: flex;
@@ -47,7 +52,9 @@
 <body>
    <form id="form1" runat="server">
     <div class="area"></div>
-      
+       <div class="menu"></div>
+         <img src="../../Imagenes/F1.png" alt="Nature" class="responsive"  style="width: 255px; position: absolute; top: 40%;left: 46%; margin-top: -75px; margin-left: -75px;" />
+   
        <nav class="main-menu">
          <header class="main-header">
             <a href="#" class="logo" style="background-color: #0061B5;">   
@@ -60,7 +67,7 @@
         <br />
             <ul class ="opc1" runat="server"  onclick="inicio()" style="cursor:pointer;">
                 <li>
-                    <a href="Inicio.aspx" >
+                    <a href="MenuBarra.aspx" >
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Inicio
@@ -81,9 +88,9 @@
             </ul>
   <asp:Repeater ID="RepetirAreas" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
       <ItemTemplate>
-        <ul class ="opc1"  runat="server"  onclick="ticket()" style="cursor:pointer;">
+        <ul class ="opc1"  runat="server"  disable style="cursor:pointer;">
                 <li class="has-subnav">
-                    <a href="#">
+                    <a >
                        <i class="fa fa-check"></i>
                         <span class="nav-text">
                           <asp:Label ID="lblarea" runat="server" Visible="false" Text='<%# Eval("gen_areanombre") %>'></asp:Label>
@@ -93,7 +100,7 @@
                                     <i class="fa fa-caret-down"></i>
                                 </button>
                                  <div class="w3-dropdown-content w3-bar-block"  style="color: white; background-color: #69a43c; min-width: 230px;margin-left: 193px;margin-top: -55px;">
-                                     <a> </a>
+                                 
 
                                      <asp:Repeater ID="repetirapp" runat="server" >
                                          <ItemTemplate>

@@ -326,7 +326,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT gar.gen_urlareaapps  FROM gen_areaapp gar WHERE  gar.codegenapp  = '" + app + "' ;";
+                    string sql = "SELECT gar.gen_urlareaapp  FROM gen_areaapp gar WHERE  gar.codegenapp  = '" + app + "' ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();

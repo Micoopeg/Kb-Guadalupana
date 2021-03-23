@@ -17,11 +17,15 @@ namespace KB_Guadalupana.Views.Seguridad
         ControladorAV cav = new ControladorAV();
 
         string NOMAPP, URL, ABRAPP, OP, op2;
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                llenarcomboarea();
+            }
         }
 
         public void ingresar()
@@ -35,26 +39,59 @@ namespace KB_Guadalupana.Views.Seguridad
 
                 case "Activo":
                 
-                    op2 = "Activo";
+                    op2 = "1";
                     string sig = cav.siguiente("gen_aplicacion", "codgenapp");
 
                     string sql = "INSERT INTO gen_aplicacion  VALUES('" + sig + "', '" + ABRAPP + "', '" + NOMAPP + "', '" + URL + "', '" + op2 + "');";
                     cav.Insertar(sql);
 
+                    string sig1 = cav.siguiente("gen_areaapp", "codeareaapp");
+                    string sql1 = "INSERT INTO gen_areaapp VALUES ('" + sig1 + "', '" + SArea.SelectedValue + "', '" + sig + "', '" + Urlmodulo.Value + "')";
+                    cav.Insertar(sql1);
+
                     break;
                 case "Inactivo":
 
                  
-                    op2 = "Inactivo";
+                    op2 = "0";
                     string sig2 = cav.siguiente("gen_aplicacion", "codgenapp");
 
                     string sql2 = "INSERT INTO gen_aplicacion  VALUES('" + sig2 + "', '" + ABRAPP + "', '" + NOMAPP + "', '" + URL + "', '" + op2 + "');";
                     cav.Insertar(sql2);
+
+                    string sig3 = cav.siguiente("gen_areaapp", "codeareaapp");
+                    string sql3 = "INSERT INTO gen_areaapp VALUES ('" + sig3 + "', '" + SArea.SelectedValue + "', '" + sig2 + "', '" + Urlmodulo.Value + "')";
+                    cav.Insertar(sql3);
+
                     break;
 
             }
 
         }
+
+        public void llenarcomboarea()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+
+                    sqlCon.Open();
+                    string QueryString = "select * from gen_area";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Área");
+                    SArea.DataSource = ds;
+                    SArea.DataTextField = "gen_areanombre";
+                    SArea.DataValueField = "codgenarea";
+                    SArea.DataBind();
+                    SArea.Items.Insert(0, new ListItem("[Área]", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+
+        }
+
         protected void btnguardar_Click(object sender, EventArgs e)
         {
 

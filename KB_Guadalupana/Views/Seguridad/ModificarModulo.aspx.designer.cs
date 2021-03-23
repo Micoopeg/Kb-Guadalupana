@@ -105,6 +105,15 @@ namespace KB_Guadalupana.Views.Seguridad
         protected global::System.Web.UI.WebControls.DropDownList SArea;
 
         /// <summary>
+        /// Control Urlmodulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Urlmodulo;
+
+        /// <summary>
         /// Control btninsert.
         /// </summary>
         /// <remarks>

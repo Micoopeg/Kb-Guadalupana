@@ -56,13 +56,14 @@ namespace KB_Guadalupana.Views.Seguridad
             else
             {
                 sn.actualizarmodulo(MModulo.SelectedValue, abrmodulo.Value, nommodul.Value, url1.Value, seleccion.Value);
-                sn.actualizararea(SArea.SelectedValue, MModulo.SelectedValue);
+                sn.actualizararea(SArea.SelectedValue, Urlmodulo.Value, MModulo.SelectedValue);
                 MModulo.SelectedIndex = 0;
                 abrmodulo.Value = "";
                 nommodul.Value = "";
                 url1.Value = "";
                 seleccion.Value = "Estado";
                 SArea.SelectedIndex = 0;
+                Urlmodulo.Value = "";
                 String script = "alert('Cambios realizados');";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                
@@ -112,9 +113,11 @@ namespace KB_Guadalupana.Views.Seguridad
                 }
             }
 
-            string area;
+            string area, url;
             area = sn.mostrarareaapp(MModulo.SelectedValue);
+            url = sn.mostrarurlapp(MModulo.SelectedValue);
             SArea.SelectedValue = area;
+            Urlmodulo.Value = url;
         }
 
 

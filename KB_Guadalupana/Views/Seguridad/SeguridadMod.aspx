@@ -339,6 +339,12 @@ padding: 8px;
    <asp:DropDownList ID="SArea" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
      
   </p>
+
+     <p>
+         <label  style="color:white">URL del Módulo</label>
+        <input type="text"  id="Urlmodulo" runat="server" class="dis"/>
+
+     </p>
   
   </div>
 

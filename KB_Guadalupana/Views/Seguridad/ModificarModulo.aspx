@@ -390,6 +390,14 @@ padding: 8px;
      
   </p>
       <br />
+
+  <div class="row">
+     <p class="col-lg-12">
+         <label  style="color:white">URL del Módulo</label>
+        <input type="text"  id="Urlmodulo" runat="server" />
+
+     </p>
+ </div>
   
   </div>
   <%--<p class="p-container">

@@ -39,25 +39,30 @@ namespace KB_Guadalupana.Views.Seguridad
 
                 case "Activo":
                 
-                    op2 = "Activo";
+                    op2 = "1";
                     string sig = cav.siguiente("gen_aplicacion", "codgenapp");
 
                     string sql = "INSERT INTO gen_aplicacion  VALUES('" + sig + "', '" + ABRAPP + "', '" + NOMAPP + "', '" + URL + "', '" + op2 + "');";
                     cav.Insertar(sql);
 
-                    string sig1 = cav.siguiente("gen_areaapp", "");
-                    string sql1 = "INSERT INTO gen_areaapp VALUES ('" + sig1 + "', '" + SArea.SelectedValue + "', '" + sig + "')";
+                    string sig1 = cav.siguiente("gen_areaapp", "codeareaapp");
+                    string sql1 = "INSERT INTO gen_areaapp VALUES ('" + sig1 + "', '" + SArea.SelectedValue + "', '" + sig + "', '" + Urlmodulo.Value + "')";
                     cav.Insertar(sql1);
 
                     break;
                 case "Inactivo":
 
                  
-                    op2 = "Inactivo";
+                    op2 = "0";
                     string sig2 = cav.siguiente("gen_aplicacion", "codgenapp");
 
                     string sql2 = "INSERT INTO gen_aplicacion  VALUES('" + sig2 + "', '" + ABRAPP + "', '" + NOMAPP + "', '" + URL + "', '" + op2 + "');";
                     cav.Insertar(sql2);
+
+                    string sig3 = cav.siguiente("gen_areaapp", "codeareaapp");
+                    string sql3 = "INSERT INTO gen_areaapp VALUES ('" + sig3 + "', '" + SArea.SelectedValue + "', '" + sig2 + "', '" + Urlmodulo.Value + "')";
+                    cav.Insertar(sql3);
+
                     break;
 
             }

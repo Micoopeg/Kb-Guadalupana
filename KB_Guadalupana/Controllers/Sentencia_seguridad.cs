@@ -14,31 +14,27 @@ namespace KB_Guadalupana.Controllers
 
         public string obtenerestado(string usuario)
         {
-            String camporesultante = "";
-            String campo = "";
-            try
-            {
-                string sql = "SELECT gen_usuarioest FROM gen_usuario where codgenusuario = '" + usuario + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
+           
 
-                //if(camporesultante == "0")
-                //{
-                //    campo = "Activo";
-                //}
-                //else if(camporesultante == "1")
-                //{
-                //    campo = "Inactivo";
-                //}
-            }
-            catch (Exception)
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                Console.WriteLine(camporesultante);
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT gen_usuarioest FROM gen_usuario where codgenusuario = '" + usuario + "';";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
             }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
 
         public string obtenerusuario(string id)
@@ -80,21 +76,27 @@ namespace KB_Guadalupana.Controllers
 
         public string obteneridusuario(string usuario)
         {
+           
+
             String camporesultante = "";
-            try
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                string sql = "SELECT codgenusuario FROM gen_usuario WHERE gen_usuarionombre = '" + usuario + "'";
-                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                camporesultante = reader.GetValue(0).ToString();
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT codgenusuario FROM gen_usuario WHERE gen_usuarionombre = '" + usuario + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
             }
-            catch (Exception)
-            {
-                Console.WriteLine(camporesultante);
-            }
-            finally { cn.desconectar(); }
-            return camporesultante;
         }
         public string obtenerapp(string usuario, string aplicacion)
         {
@@ -146,6 +148,49 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
+        public string mostrarareaapp(string codigo)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string Campos = "";
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT codgenarea FROM gen_areaapp WHERE codegenapp = '" + codigo + "'";
+
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    Campos = reader.GetValue(0).ToString();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string mostrarurlapp(string codigo)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string Campos = "";
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT gen_urlareaapp FROM gen_areaapp WHERE codegenapp = '" + codigo + "'";
+
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    Campos = reader.GetValue(0).ToString();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
         public void actualizarestado(string usuario, string estado)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -172,6 +217,24 @@ namespace KB_Guadalupana.Controllers
                 {
                     sqlCon.Open();
                     string query = "UPDATE gen_aplicacion SET gen_literalapp = '" + literal + "', gen_nombreapp = '" + nombre + "', gen_urlcontrol = '" + url + "', gen_estadoapp = '" + estado + "' WHERE codgenapp = '" + codigo + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public void actualizararea(string area, string url, string app)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE gen_areaapp SET codgenarea = '" + area + "', gen_urlareaapp = '" + url + "' WHERE codegenapp = '" + app + "'";
                     MySqlCommand command = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                 }
@@ -223,7 +286,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string query = "INSERT INTO gen_mdimenu VALUES ('" + id + "', '" + app + "', '" + usuario + "')";
+                    string query = "INSERT INTO gen_mdimenu VALUES ('" + id + "', '" + app + "', '" + usuario + "', 1)";
                     MySqlCommand command = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                 }
@@ -255,7 +318,31 @@ namespace KB_Guadalupana.Controllers
                 return dt;
             }
         }
+        public string url(string app)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT gar.gen_urlareaapp  FROM gen_areaapp gar WHERE  gar.codegenapp  = '" + app + "' ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
 
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+
+
+        }
         public string[] datetime()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -278,6 +365,50 @@ namespace KB_Guadalupana.Controllers
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
                 return Campos;// devuelve un arrgeglo con los campos               
+            }
+
+        }
+        public DataSet conultaareaapp(string user)
+        {
+            DataSet ds1 = new DataSet();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(" SELECT DISTINCT ga.gen_areanombre FROM gen_mdimenu gmdi INNER JOIN gen_areaapp gapp ON gmdi.codgenapp = gapp.codegenapp INNER JOIN gen_aplicacion gapl ON gapl.codgenapp=gmdi.codgenapp INNER JOIN gen_area ga ON ga.codgenarea = gapp.codgenarea WHERE gmdi.codgenusuario= '"+user+"' AND gmdi.gen_mdiest = 1 AND gapl.gen_estadoapp = 1", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
+            }
+
+        }
+        public DataSet consultaappnombre(string user, string area)
+        {
+            DataSet ds1 = new DataSet();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(" SELECT gapl.gen_nombreapp, ga.gen_areanombre, gapp.codegenapp FROM gen_mdimenu gmdi INNER JOIN gen_areaapp gapp ON gmdi.codgenapp = gapp.codegenapp INNER JOIN gen_aplicacion gapl ON gapl.codgenapp=gmdi.codgenapp INNER JOIN gen_area ga ON ga.codgenarea = gapp.codgenarea WHERE gmdi.codgenusuario= '" + user+ "' AND gmdi.gen_mdiest = 1 AND gapl.gen_estadoapp = 1 AND ga.gen_areanombre = '"+area+"'  ", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
             }
 
         }

@@ -37,6 +37,29 @@ namespace KB_Guadalupana.Controllers
 
         }
 
+        public string Agencia(string coduser)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT exca.ex_nombrea FROM ex_controlingreso exc INNER JOIN ex_controlarea exca ON exc.ex_controlarea = exca.codexcontrolarea WHERE exc.ex_controlusuario = '"+coduser+"' ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
 
 
     }

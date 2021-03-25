@@ -12,10 +12,17 @@ namespace KB_Guadalupana.Views.ControlEX
     public partial class Ex_Principal : System.Web.UI.Page
     {
         ModeloEX mex = new ModeloEX();
+        ControladorEX exc = new ControladorEX();
         string fechamin, horamin, fechahora;
         char delimitador2 = ' ';
+        string usernombre, nombrepersona;
         protected void Page_Load(object sender, EventArgs e)
         {
+            usernombre = Convert.ToString(Session["sesion_usuario"] = "pgecasasola");
+            nombrepersona = Convert.ToString(Session["Nombre"] = "Edgar Casasola");
+
+            NombreAgencia.InnerText = Convert.ToString( Session["Nombre"] = exc.agencia(usernombre));
+            
             now();
         }
 
@@ -49,7 +56,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
         protected void btnInicio_Click(object sender ,  EventArgs e) {
 
-            Response.Redirect("../Sesion/Inicio.aspx");
+            Response.Redirect("../Sesion/MenuBarra.aspx");
         
         }
 

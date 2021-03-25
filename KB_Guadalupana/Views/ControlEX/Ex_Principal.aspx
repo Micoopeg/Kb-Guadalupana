@@ -7,7 +7,9 @@
  
     <title></title>
     <link rel="stylesheet"  href="../../EXDiseños/EstilosDashboard.css" />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="../../EXDiseños/stylebarra.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'/><link rel="stylesheet" href="../../EXDiseños/stylebarra.css"/>
+   
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -90,7 +92,7 @@
 
     <section class="overview">
         <div class="wrapper">
-			
+			<h2 id="NombreAgencia" runat="server" >Area no cargada</h2>
 			<h2 id="Date" runat="server" >sin fecha error</h2>
             <h2>Expedientes del día</h2>
 			
@@ -101,7 +103,7 @@
                 <p class="card-small-icon">
                      <span class="fa fa-folder-open"></span>
                 </p>
-                <p class="card-small-number">10</p>
+                <p id="expgen" runat="server" class="card-small-number">10</p>
                 
             </div>
             <div class="card-small">
@@ -109,7 +111,7 @@
                 <p class="card-small-icon">
                     <span class="span fa fa-suitcase"></span>
                 </p>
-                <p class="card-small-number">6</p>
+                <p id="expenv" runat="server" class="card-small-number">6</p>
                
             </div>
             <div class="card-small">
@@ -117,7 +119,7 @@
                 <p class="card-small-icon">
                      <span class="fa fa-location-arrow"></span>
                 </p>
-                <p class="card-small-number">4</p>
+                <p id="exppenv" runat="server" class="card-small-number">4</p>
                
             </div>
             <div class="card-small">
@@ -125,11 +127,12 @@
                 <p class="card-small-icon">
                      <span class="fa fa-eye"></span>
                 </p>
-                <p class="card-small-number">3</p>
+                <p id="exphall" runat="server" class="card-small-number">3</p>
               
             </div>
             
         </div>
+            </div>
     </section>
          <asp:LinkButton ID="btninicio" runat="server" OnClick="btnInicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>

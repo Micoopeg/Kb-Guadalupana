@@ -254,9 +254,12 @@
     <Content Include="EXDiseños\barcode.wav" />
     <Content Include="EXDiseños\estilolector.css" />
     <Content Include="EXDiseños\EstilosDashboard.css" />
+    <Content Include="EXDiseños\EstilosGenExp.css" />
+    <Content Include="EXDiseños\EstilosGenExpmenu.css" />
     <Content Include="EXDiseños\jquery.js" />
     <Content Include="EXDiseños\scriptbarra.js" />
     <Content Include="EXDiseños\scriptdash.js" />
+    <Content Include="EXDiseños\ScriptGenerarEXP.js" />
     <Content Include="EXDiseños\scriptpaginas.js" />
     <Content Include="EXDiseños\stylebarra.css" />
     <Content Include="EXDiseños\stylepaginas.css" />
@@ -429,6 +432,11 @@
     <Content Include="Views\ControlEX\Ex_LeerBC.aspx" />
     <Content Include="Views\ControlEX\Ex_GenExpedientes.aspx" />
     <Content Include="Views\ControlEX\Ex_Principal.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaArchivo.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaJuridico.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaMensajeria.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaMesaQA.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaNegocios.aspx" />
     <Content Include="Views\ControlEX\Tracking.aspx" />
     <Content Include="Views\MantenimientosControl\controlAgenda.aspx" />
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
@@ -776,6 +784,41 @@
     </Compile>
     <Compile Include="Views\ControlEX\Ex_Principal.aspx.designer.cs">
       <DependentUpon>Ex_Principal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaArchivo.aspx.cs">
+      <DependentUpon>Ex_VistaArchivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaArchivo.aspx.designer.cs">
+      <DependentUpon>Ex_VistaArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaJuridico.aspx.cs">
+      <DependentUpon>Ex_VistaJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaJuridico.aspx.designer.cs">
+      <DependentUpon>Ex_VistaJuridico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaMensajeria.aspx.cs">
+      <DependentUpon>Ex_VistaMensajeria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaMensajeria.aspx.designer.cs">
+      <DependentUpon>Ex_VistaMensajeria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaMesaQA.aspx.cs">
+      <DependentUpon>Ex_VistaMesaQA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaMesaQA.aspx.designer.cs">
+      <DependentUpon>Ex_VistaMesaQA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaNegocios.aspx.cs">
+      <DependentUpon>Ex_VistaNegocios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaNegocios.aspx.designer.cs">
+      <DependentUpon>Ex_VistaNegocios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ControlEX\Tracking.aspx.cs">
       <DependentUpon>Tracking.aspx</DependentUpon>

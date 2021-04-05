@@ -149,7 +149,7 @@ body {
     <div class="menu"></div>
     <form id="form1" runat="server">
           <div class="topnav">
-            <a class="active" href="Inicio.aspx">Inicio</a>
+            <a class="active" href="ReportesAdmin/ReporteAdmin.aspx">Regresar</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Reporte Estado Patrimonial Usuarios</b></span>
             <a href="CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
@@ -159,17 +159,18 @@ body {
              <div style="display:flex; align-content:center;align-items:center; justify-content:center; flex-direction:row">
                 <input type="number" runat="server"  id="RBuscarcif" style="font-size: 20px;width: 10%;border:0;" placeholder="Ingrese CIF" class="etiquetas"/>
                 <asp:Button ID="RBuscar" runat="server" CssClass="button button1" OnClick="buscar_Click" Text="Buscar" />
-                  <asp:Button ID="VerTodos" runat="server" CssClass="button button1" OnClick="VerTodos_Click" Text="Ver todos" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="VerTodos" runat="server" CssClass="button button1" OnClick="VerTodos_Click" Text="Ver todos" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                 <input type="number" runat="server"  id="RCif" style="font-size: 20px;width: 10%;border:0;" placeholder="CIF" class="etiquetas" readonly="readonly"/>
                 <asp:Button ID="Buscar" runat="server" CssClass="button button1" OnClick="iniciarsesion_Click" Text="Generar Reporte" />
-                  <input id="Text6" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                <input id="Text6" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
             </div><br />
             
               <div class="tabla">
      <asp:GridView ID="GridViewReporte" CssClass="mGrid" style="width: 950px;text-align:center;text-decoration: none;Color: black;" runat="server"  HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte" BorderStyle="Solid">
                      <Columns>
+                     
                             <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="ID">
                            <ItemTemplate>
                            <asp:Label ID="lblcif" Text='<%# Eval("codepinformaciongeneralcif") %>' runat="server" />
@@ -180,17 +181,27 @@ body {
                            <asp:Label ID="lblnombre" Text='<%# Eval("gen_usuarionombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="CIF">
+                        
+                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="CIF">
                            <ItemTemplate>
                            <asp:Label ID="lblnumcif" Text='<%# Eval("ep_informaciongeneralcif") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:ButtonField ItemStyle-Font-Underline="false" ItemStyle-CssClass="fa-check-circle"  Text="Seleccionar" CommandName="Select" ItemStyle-Width="150" >
+                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado">
+                           <ItemTemplate>
+                           <asp:Label ID="Estado" Text='<%# Eval("Tipo") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                        <asp:ButtonField ItemStyle-Font-Underline="false" ItemStyle-CssClass="fa-check-circle"  Text="Seleccionar" CommandName="Select" ItemStyle-Width="150" >
                             <ItemStyle Width="120px"></ItemStyle>
                          </asp:ButtonField>
                      </Columns>
      <HeaderStyle CssClass="prueba"  ForeColor="White"></HeaderStyle>
         </asp:GridView>
+
+                  <center><h2 style="font-size: 30px;color: black;margin-top: 100px;" id="Texto" runat="server" visible="false">Usuario no Encontrado en No Iniciados, Favor buscar en Iniciados o Terminados.</h2></center>
+                  <center><h2 style="font-size: 30px;color: black;margin-top: 100px;" id="Texto1" runat="server" visible="false">Usuario no Encontrado en Iniciados, Favor buscar en No Iniciados o Terminados.</h2></center>
+                  <center><h2 style="font-size: 30px;color: black;margin-top: 100px;" id="Texto2" runat="server" visible="false">Usuario no Encontrado en Terminados, Favor buscar en No Iniciados o Iniciado.</h2></center>
             </div>
         </div>
     </form>

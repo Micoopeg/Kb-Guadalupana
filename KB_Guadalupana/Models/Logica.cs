@@ -117,5 +117,10 @@ namespace KB_Guadalupana.Models
         {
             return sn.buscarCIF(cif);
         }
+
+        public DataTable buscarCIF(string cif, string valor)
+        {
+            return sn.buscarCIF(cif, valor);
+        }
     }
 }

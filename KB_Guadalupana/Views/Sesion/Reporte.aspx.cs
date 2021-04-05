@@ -14,6 +14,7 @@ namespace KB_Guadalupana.Views.Sesion
     public partial class Reporte : System.Web.UI.Page
     {
         string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        string valor1;
         Logica logic = new Logica();
         Conexion conn = new Conexion();
         Sentencia sn = new Sentencia();
@@ -27,14 +28,22 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewreporte()
         {
-
+            valor1 = Session["Valor"].ToString();
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
                     //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     sqlCon.Open();
-                    string QueryString = "SELECT ep_control.codepinformaciongeneralcif, gen_usuario.gen_usuarionombre, ep_informaciongeneral.ep_informaciongeneralcif  FROM ep_control INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif ORDER BY ep_control.codepcontrol";
+                    string QueryString = "SELECT ep_control.codepinformaciongeneralcif, gen_usuario.gen_usuarionombre, " +
+                        "ep_informaciongeneral.ep_informaciongeneralcif, " +
+                        "CASE when ep_informaciongeneral.codeptipoestado = '1' " +
+                        "THEN 'Nuevo' when ep_informaciongeneral.codeptipoestado = '2' " +
+                        "THEN 'En Proceso' when ep_informaciongeneral.codeptipoestado = '3' " +
+                        "THEN 'Terminado' END AS 'Tipo' FROM ep_control INNER JOIN gen_usuario " +
+                        "ON gen_usuario.codgenusuario = ep_control.codgenusuario INNER JOIN ep_informaciongeneral " +
+                        "ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif " +
+                        "WHERE ep_informaciongeneral.codeptipoestado='" + valor1 + "' ORDER BY ep_control.codepcontrol";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);
@@ -56,24 +65,13 @@ namespace KB_Guadalupana.Views.Sesion
             string id;
             nombre = Session["IDReporte"].ToString();
 
-            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('"+nombre+"');", true);
-            MySqlDataReader mostrar = logic.consultarCif(nombre);
-            try
+            string[] var1 = sn.consultarCIF(nombre);
+            for (int i = 0; i < var1.Length; i++)
             {
-                if (mostrar.Read())
-                {
-                    id = Convert.ToString(mostrar.GetString(0));
-                    Session["IDReporte1"] = id;
-
-                    Response.Redirect("ReportesAdmin/ReporteAdmin1.aspx");
-                }
+                id = Convert.ToString(var1[0]);
+                Session["IDReporte1"] = id;
+                Response.Redirect("ReportesAdmin/ReporteAdmin1.aspx");
             }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-            }
-
-            //
         }
 
         protected void OnSelectedIndexChangedReporte(object sender, EventArgs e)
@@ -86,10 +84,46 @@ namespace KB_Guadalupana.Views.Sesion
 
         protected void buscar_Click(object sender, EventArgs e)
         {
+            valor1 = Session["Valor"].ToString();
+
+            int valor = Convert.ToInt32(valor1);
+            string prueba;
             DataTable dt1 = new DataTable();
-            dt1 = logic.buscarCIF(RBuscarcif.Value);
-            GridViewReporte.DataSource = dt1;
-            GridViewReporte.DataBind();
+            dt1 = logic.buscarCIF(RBuscarcif.Value, valor1);
+
+            string[] var1 = sn.consultarCIF1(RBuscarcif.Value, valor1);
+            prueba = Convert.ToString(var1[0]);
+
+            if (prueba == null)
+            {
+                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Entra If: "+valor+"');", true);
+                switch (valor)
+                {
+                    case 1:
+                        Texto.Visible = true;
+                        GridViewReporte.DataSource = dt1;
+                        GridViewReporte.DataBind();
+                        break;
+                    case 2:
+                        Texto1.Visible = true;
+                        GridViewReporte.DataSource = dt1;
+                        GridViewReporte.DataBind();
+                        break;
+                    case 3:
+                        Texto2.Visible = true;
+                        GridViewReporte.DataSource = dt1;
+                        GridViewReporte.DataBind();
+                        break;
+                }
+            }
+            else
+            {
+                Texto.Visible = false;
+                Texto1.Visible = false;
+                Texto2.Visible = false;
+                GridViewReporte.DataSource = dt1;
+                GridViewReporte.DataBind();
+            }
             //try
             //{
             //    string QueryString = "SELECT gen_usuarionombre, codepinformaciongeneralcif FROM gen_usuario INNER JOIN ep_control ON gen_usuario.codgenusuario = ep_control.codgenusuario WHERE codepinformaciongeneralcif='" + RBuscarcif.Value + "'";
@@ -104,6 +138,9 @@ namespace KB_Guadalupana.Views.Sesion
 
         protected void VerTodos_Click(object sender, EventArgs e)
         {
+            Texto.Visible = false;
+            Texto1.Visible = false;
+            Texto2.Visible = false;
             llenargridviewreporte();
         }
     }

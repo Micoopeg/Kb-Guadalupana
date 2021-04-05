@@ -42,6 +42,42 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.WebControls.GridView GridViewcuentasvarias;
 
         /// <summary>
+        /// Control GridView1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+
+        /// <summary>
+        /// Control Text3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text3;
+
+        /// <summary>
+        /// Control GridViewcuentascooperativa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewcuentascooperativa;
+
+        /// <summary>
+        /// Control Text4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text4;
+
+        /// <summary>
         /// Control GridViewcuentasporcobrar.
         /// </summary>
         /// <remarks>
@@ -49,6 +85,15 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewcuentasporcobrar;
+
+        /// <summary>
+        /// Control Text5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text5;
 
         /// <summary>
         /// Control NombreM.
@@ -78,6 +123,15 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.WebControls.GridView GridViewbienesinmuebles;
 
         /// <summary>
+        /// Control Text7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text7;
+
+        /// <summary>
         /// Control GridViewvehiculos.
         /// </summary>
         /// <remarks>
@@ -85,6 +139,15 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewvehiculos;
+
+        /// <summary>
+        /// Control Text6.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text6;
 
         /// <summary>
         /// Control TMaquinaria.
@@ -375,6 +438,15 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.WebControls.GridView GridViewpasivos;
 
         /// <summary>
+        /// Control Text8.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text8;
+
+        /// <summary>
         /// Control GridViewtarjetas.
         /// </summary>
         /// <remarks>
@@ -382,6 +454,15 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewtarjetas;
+
+        /// <summary>
+        /// Control Text9.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text9;
 
         /// <summary>
         /// Control EspD.
@@ -661,5 +742,23 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText Otros;
+
+        /// <summary>
+        /// Control Text2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
+
+        /// <summary>
+        /// Control Text1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
     }
 }

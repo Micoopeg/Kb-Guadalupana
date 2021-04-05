@@ -139,7 +139,7 @@ body {
 
   <form id="form1" runat="server">
              <div class="topnav">
-           <a class="active" style="border: black 2px solid;"  href="../Reporte.aspx">Inicio</a>
+           <a class="active" style="border: black 2px solid;"  href="ReporteAdmin.aspx">Regresar</a>
             <a class="active" style="border: black 2px solid;" href="ReporteAdmin1.aspx">Informacion General</a>
             <%--<a class="active" style="border: black 2px solid;" href="../Inicio.aspx">Estado Patrimonial</a>--%>
             <a class="active" style="border: black 2px solid;background-color: #003563;" href="ReporteAdmin2.aspx">Declaracion de Bienes</a>
@@ -175,7 +175,7 @@ body {
                <img src="../../../Imagenes/Logotipo.png" alt="Guadalupana" style="width: 724px;height: 100px;margin-left: -24px;margin-top: -14px;">
             </div>
            <div class="encabezado1">
-                <h2>ESTADO PATRIMONIAL DIRIGENTES Y EMPLEADOS</h2>
+                <h2>ESTADO PATRIMONIAL EMPLEADOS</h2>
             </div> 
             <div class="encabezado2">
                 <h2 style="font-size: 20px;color: white;">En cumplimiento al  articulo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
@@ -191,7 +191,7 @@ body {
                 </div>
                 <br/>
             <div class="encabezado3">
-                <h2 style="font-size: 25px;color: white;">Cuentas:</h2>
+                <h2 style="font-size: 25px;color: white;">Cuentas Bancarias:</h2>
             </div>
                 <br />
 
@@ -215,14 +215,14 @@ body {
                             <asp:Label ID="lbltipoinstitucionvarias" Text='<%# Eval("codepinstitucion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>                  
-                          <asp:TemplateField HeaderText="Número tipo estatus">
+                          <asp:TemplateField HeaderText="Estatus">
                            <ItemTemplate>
-                            <asp:Label ID="lblnumeroestatusvarias" Text='<%# Eval("codeptipoestatuscuenta") %>' runat="server" />
+                            <asp:Label ID="lblnumeroestatusvarias" Text='<%# Eval("ep_tipoestatuscuentanombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Número tipo moneda">
+                           <asp:TemplateField HeaderText="Tipo moneda">
                            <ItemTemplate>
-                            <asp:Label ID="lblnumeromonedavarias" Text='<%# Eval("codeptipomoneda") %>' runat="server" />
+                            <asp:Label ID="lblnumeromonedavarias" Text='<%# Eval("ep_tipomonedanombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
                          <asp:TemplateField HeaderText="Tipo de Cuenta">
@@ -250,7 +250,7 @@ body {
                             <asp:Label ID="lblmontovarias" Text='<%# Eval("ep_cuentasmonto") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Origen de fondo">
+                         <asp:TemplateField HeaderText="Origen">
                            <ItemTemplate>
                             <asp:Label ID="lblorigendefondovarias" Text='<%# Eval("ep_cuentasorigen") %>' runat="server" />
                         </ItemTemplate>
@@ -258,13 +258,79 @@ body {
                      </Columns>
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
+                <br />
+                <!-- Grid Activos Cuentas-->
+   <asp:GridView ID="GridView1" CssClass="mGrid" style="margin-left:auto;margin-right:auto" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" BorderStyle="Solid">
+                     <Columns>
+                         <asp:TemplateField HeaderText="Número cuenta" Visible="False">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumerocuentasvarias" Text='<%# Eval("codepcuentas") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                                  <asp:TemplateField HeaderText="Número  tipocuenta" Visible="False">
+                           <ItemTemplate>
+                            <asp:Label ID="lbltipocuentasvarias" Text='<%# Eval("codeptipocuenta") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>   
+                         <asp:TemplateField HeaderText="Numero  institucion" Visible="False">
+                           <ItemTemplate>
+                            <asp:Label ID="lbltipoinstitucionvarias" Text='<%# Eval("codepinstitucion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>                  
+                          <asp:TemplateField HeaderText="Estatus">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumeroestatusvarias" Text='<%# Eval("ep_tipoestatuscuentanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                           <asp:TemplateField HeaderText="Tipo moneda">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumeromonedavarias" Text='<%# Eval("ep_tipomonedanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                         <asp:TemplateField HeaderText="Tipo de Cuenta">
+                           <ItemTemplate>
+                            <asp:Label ID="lblcuentavarias" Text='<%# Eval("ep_tipocuentanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Institución">
+                           <ItemTemplate>
+                            <asp:Label ID="lblinstitucionvarias" Text='<%# Eval("ep_institucionnombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Estatus">
+                           <ItemTemplate>
+                            <asp:Label ID="lblestatusvarias" Text='<%# Eval("ep_tipoestatuscuentanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Moneda">
+                           <ItemTemplate>
+                            <asp:Label ID="lblmonedavarias" Text='<%# Eval("ep_tipomonedanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Monto">
+                           <ItemTemplate>
+                            <asp:Label ID="lblmontovarias" Text='<%# Eval("ep_cuentasmonto") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Origen">
+                           <ItemTemplate>
+                            <asp:Label ID="lblorigendefondovarias" Text='<%# Eval("ep_cuentasorigen") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     </Columns>
+<HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
+        </asp:GridView>
+                <br />
+                 <center><label class="col-sm-10" style="text-align: right;" for="apellido">Total:</label></center>
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text3" disabled/>
  <!-- Grid Fin Activos Cuentas-->
                 <br/>
-         <%--   <div class="encabezado3">
+            <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Cuentas En Cooperativas:</h2>
             </div>
-                <br />--%>
- <%--<!-- Grid Activos Cuentas Cooperativas-->
+                <br />
+ <!-- Grid Activos Cuentas Cooperativas-->
     <asp:GridView ID="GridViewcuentascooperativa" CssClass="mGrid" style="margin-left:auto;margin-right:auto"  runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" BorderStyle="Solid">
                      <Columns>
@@ -316,8 +382,11 @@ body {
                      </Columns>
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
+                <br />
+                   <center><label class="col-sm-10" style="text-align: right;" for="apellido">Total:</label></center>
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text4" disabled/>
  <!-- Grid Fin Activos Cuentas Cooperativas-->  
-                <br/>--%>
+                <br/>
             <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Cuentas Por Cobrar:</h2>
             </div>
@@ -349,6 +418,9 @@ body {
                      </Columns>
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
+                 <br />
+                   <center><label class="col-sm-10" style="text-align: right;" for="apellido">Total:</label></center>
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text5" disabled/>
  <!-- Grid Fin Activos Cuentas Por Cobrar-->  
                 <br>
              <div class="encabezado3">
@@ -357,7 +429,7 @@ body {
                 <br />
                   <div class="campo" style="margin-left:80px;" >
                         <center><label class="col-sm-3" for="apellido">Tipo Mercaderia:</label></center>
-                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NombreM" disabled/>
+                        <input style="border: 0" class="col-sm-4" type="text" runat="server" id="NombreM" disabled/>
                         <center><label class="col-sm-3" for="apellido">Monto:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="MontoM" disabled/>  
                     </div>
@@ -415,6 +487,9 @@ body {
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
                 <br />
+                  <center><label class="col-sm-10" style="text-align: right;" for="apellido">Total:</label></center>
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text7" disabled/>
+                <br />
  <!-- Fin Grid Activos Inmuebles--> 
     <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Vehiculos:</h2>
@@ -454,14 +529,22 @@ body {
                             <asp:Label ID="lblmodelo" Text='<%# Eval("ep_vehiculomodelo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                             <asp:TemplateField HeaderText="Número de placa">
+                      <asp:TemplateField HeaderText="Número de placa">
                            <ItemTemplate>
                             <asp:Label ID="lblplaca" Text='<%# Eval("ep_vehiculoplaca") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                      <asp:TemplateField HeaderText="Valor">
+                           <ItemTemplate>
+                            <asp:Label ID="lblplaca" Text='<%# Eval("ep_vehiculomonto") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
                      </Columns>
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
+                  <br />
+                   <center><label class="col-sm-10" style="text-align: right;" for="apellido">Total:</label></center>
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text6" disabled/>
                 <br />
  <!-- Fin Grid Activos Vehiculos-->
             <div class="encabezado3">
@@ -655,6 +738,9 @@ body {
                      </Columns>
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
+                <br />
+                 <center><label class="col-sm-10" style="text-align: right;" for="apellido">Total:</label></center>
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text8" disabled/>
  <!-- Fin Grid Pasivo Prestamos-->
                 <br/>
             <div class="encabezado3">
@@ -708,6 +794,8 @@ body {
                      </Columns>
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
+                      <center><label class="col-sm-10" style="text-align: right;" for="apellido">Total:</label></center>
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text9" disabled/>
                 <br />
  <!-- Fin Grid Pasivo Prestamos-->
             <div class="encabezado3">
@@ -755,6 +843,7 @@ body {
                         <center><label class="col-sm-2" for="apellido" style="margin-top: -8px;">Comisiones Mensuales:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="CMensua"  runat="server" disabled/>
                    </div>
+
                 <br>
             <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Negocio Propio:</h2>
@@ -835,6 +924,18 @@ body {
                 <br>
           
                 <br/>
+                  <br>
+                <hr style="border-color:#003563;">
+                 <div class="encabezado2">
+                <h2 style="font-size: 20px;color: white;">Declaro bajo juramento que los datos consignados en el presente documento, son verdaderos y ciertos y me someto  a lo establecido en las leyes del país, en caso de perjurio.</h2>
+            </div>
+                 <div class="campo" style="margin-left:25px;" >
+                        <center><label class="col-sm-8" for="apellido">Usuario:</label></center>
+                         <input   style="border: 0;margin-left: -122px;background-color: white;font-weight: bold;font-size: 20px;margin-top: -16px;"  class="col-sm-4" type="text"  runat="server" id="Text2" disabled/>
+                         <input  style="border: 0;margin-left: 461px; margin-top: -5px; background-color: white;font-weight: bold;"  class="col-sm-4" type="text"  runat="server" id="Text1" disabled/>
+                 </div>
+                <br />
+                <br />
             </div>
         </div>
     </div>

@@ -429,6 +429,7 @@
     <Content Include="Views\Sesion\MenuBarra.aspx" />
     <Content Include="Views\Sesion\MenuBarraMantenimientos.aspx" />
     <Content Include="Views\Sesion\Reporte.aspx" />
+    <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin.aspx" />
     <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx" />
     <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin2.aspx" />
     <Content Include="Views\Sesion\ReportesAdmin\ReporteAdmin3.aspx" />
@@ -1004,6 +1005,13 @@
     </Compile>
     <Compile Include="Views\Sesion\Reporte.aspx.designer.cs">
       <DependentUpon>Reporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin.aspx.cs">
+      <DependentUpon>ReporteAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin.aspx.designer.cs">
+      <DependentUpon>ReporteAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\ReportesAdmin\ReporteAdmin1.aspx.cs">
       <DependentUpon>ReporteAdmin1.aspx</DependentUpon>

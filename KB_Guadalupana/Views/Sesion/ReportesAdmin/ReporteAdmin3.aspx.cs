@@ -24,6 +24,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         int caja1, cuentasQ1, CooperativasQ1, CP1, IN1, Inmuebles1, vehiculo1, maquinaria1, computo1, TotalQ1, salas1, comedor1, tele, Es1, L1, S1, Est1, Ref1, Mov1, otr1;
         int cuentasD1, CooperativasD1, TotalD1;
         int pp1, TotalQ2, patrimonio1, pres1, tc1, OD1, pas1;
+        string completo, nombre1, nombre2, apellido1, apellido2;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -58,6 +59,40 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             quetzalessa();
             quetzalessp();
             patrimonio();
+            mostrarUser();
+            mostrarIG();
+
+        }
+
+        public void mostrarUser()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampoUser(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                Text2.Value = Convert.ToString(var1[0]);
+            }
+        }
+
+        public void mostrarIG()
+        {
+            sesion = Session["IDReporte1"].ToString();
+
+            //Response.Write(cifnumero);
+
+            string[] valores1 = new string[35];
+            string[] var3 = sn.consultarinformaciong(sesion);
+
+            for (int i = 0; i < var3.Length; i++)
+            {
+
+                nombre1 = Convert.ToString(var3[8]);
+                apellido1 = Convert.ToString(var3[9]);
+                apellido2 = Convert.ToString(var3[10]);
+                nombre2 = Convert.ToString(var3[23]);
+                completo = nombre1 + " " + nombre2 + " " + apellido1 + " " + apellido2;
+                Text3.Value = completo;
+            }
         }
 
         public void dolaresa()

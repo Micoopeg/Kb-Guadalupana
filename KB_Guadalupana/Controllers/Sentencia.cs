@@ -2277,6 +2277,97 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
+        public string[] consultarCIF(string cif)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "select ep_informaciongeneralcif from ep_informaciongeneral where codepinformaciongeneralcif='" + cif + "'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] consultarCIF1(string cif, string valor)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT ep_control.codepinformaciongeneralcif," +
+                        " gen_usuario.gen_usuarionombre, ep_informaciongeneral.ep_informaciongeneralcif," +
+                        " CASE when ep_informaciongeneral.codeptipoestado = '1' " +
+                        "THEN 'Nuevo' when ep_informaciongeneral.codeptipoestado = '2' " +
+                        "THEN 'En Proceso' when ep_informaciongeneral.codeptipoestado = '3' " +
+                        "THEN 'Terminado' END AS 'Tipo' FROM ep_control " +
+                        "INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario " +
+                        "INNER JOIN ep_informaciongeneral " +
+                        "ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif " +
+                        "WHERE ep_informaciongeneral.ep_informaciongeneralcif = '" + cif + "' and ep_informaciongeneral.codeptipoestado='" + valor + "'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public DataTable buscarCIF(string cif, string valor)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT ep_control.codepinformaciongeneralcif," +
+                        " gen_usuario.gen_usuarionombre, ep_informaciongeneral.ep_informaciongeneralcif," +
+                        " CASE when ep_informaciongeneral.codeptipoestado = '1' " +
+                        "THEN 'Nuevo' when ep_informaciongeneral.codeptipoestado = '2' " +
+                        "THEN 'En Proceso' when ep_informaciongeneral.codeptipoestado = '3' " +
+                        "THEN 'Terminado' END AS 'Tipo' FROM ep_control " +
+                        "INNER JOIN gen_usuario ON gen_usuario.codgenusuario = ep_control.codgenusuario " +
+                        "INNER JOIN ep_informaciongeneral " +
+                        "ON ep_control.codepinformaciongeneralcif = ep_informaciongeneral.codepinformaciongeneralcif " +
+                        "WHERE ep_informaciongeneral.ep_informaciongeneralcif = '" + cif + "' and ep_informaciongeneral.codeptipoestado='" + valor + "'", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
         //public string eliminarregistro(string tabla, string campo,string dato)
         //{
         //    String camporesultante = "";

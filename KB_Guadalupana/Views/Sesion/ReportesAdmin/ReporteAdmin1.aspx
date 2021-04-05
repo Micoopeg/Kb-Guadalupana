@@ -173,7 +173,7 @@ body {
                <img src="../../../Imagenes/Logotipo.png" alt="Guadalupana" style="width: 724px;height: 100px;margin-left: -24px;margin-top: -14px;">
             </div>
            <div class="encabezado1">
-                <h2>ESTADO PATRIMONIAL DIRIGENTES Y EMPLEADOS</h2>
+                <h2>ESTADO PATRIMONIAL EMPLEADOS</h2>
             </div> 
             <div class="encabezado2">
                 <h2 style="font-size: 20px;color: white;">En cumplimiento al  articulo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
@@ -197,11 +197,11 @@ body {
             </div>
                 <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido">Agencia:</label></center>
-                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="AgenciaIG" disabled/>
-                        <center><label class="col-sm-2" for="apellido">Area:</label></center> 
+                        <input style="border: 0" class="col-sm-3" type="text" runat="server" id="AgenciaIG" disabled/>
+                        <center><label class="col-sm-1" for="apellido">Area:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="AreaIG" disabled/> 
-                        <center><label class="col-sm-2" for="apellido">Puesto:</label></center> 
-                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="PuestoIG" disabled/>
+                        <center><label class="col-sm-1" for="apellido">Puesto:</label></center> 
+                        <input style="border: 0" class="col-sm-3" type="text" runat="server" id="PuestoIG" disabled/>
                     </div>
                 
                 <div class="campo" style="margin-left: -5px;" >
@@ -307,7 +307,7 @@ body {
                 <div class="campo" style="margin-left:80px;" >
                     <br>
                        <center><label class="col-sm-3" for="apellido">Nombre Conyuge:</label></center>
-                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NombreCF" disabled/>
+                        <input style="border: 0" class="col-sm-3" type="text" runat="server" id="NombreCF" disabled/>
                         <center><label class="col-sm-3" for="apellido" style="margin-top: -7px;">Ocupacion Conyuge</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="OcupacionCIF" disabled/> 
                    </div>
@@ -361,8 +361,8 @@ body {
             </div>
                   <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido">Nombre:</label></center>
-                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NombreEC" disabled/>
-                        <center><label class="col-sm-2" for="apellido">Telefono:</label></center> 
+                        <input style="border: 0" class="col-sm-3" type="text" runat="server" id="NombreEC" disabled/>
+                        <center><label class="col-sm-1" for="apellido">Telefono:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NumeroEC" disabled/> 
                         <center><label class="col-sm-2" for="apellido">Parentesco:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="ParentescoEC" disabled/>
@@ -383,9 +383,9 @@ body {
                     <br/>
                         <center><label class="col-sm-2" for="apellido">Universidad:</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" id="UniverEU" disabled/>
-                        <center><label class="col-sm-3" for="apellido">Idioma:</label></center> 
-                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="IdiomaEU" disabled/>  
+                    
                     </div> 
+                <br>
                 <br>
             <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Otros Estudios:</h2>
@@ -433,7 +433,19 @@ body {
                      </Columns>
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
-<!-- Fin Grid Informacion Otros Estudios-->  
+<!-- Fin Grid Informacion Otros Estudios--> 
+                 <br>
+                <hr style="border-color:#003563;">
+                 <div class="encabezado2">
+                <h2 style="font-size: 20px;color: white;">Declaro bajo juramento que los datos consignados en el presente documento, son verdaderos y ciertos y me someto  a lo establecido en las leyes del país, en caso de perjurio.</h2>
+            </div>
+                 <div class="campo" style="margin-left:25px;" >
+                        <center><label class="col-sm-8" for="apellido">Usuario:</label></center>
+                         <input  style="border: 0;margin-left: -122px;background-color: white;font-weight: bold;font-size: 20px;margin-top: -16px;"  class="col-sm-4" type="text"  runat="server" id="Text2" disabled/>
+                         <input  style="border: 0;margin-left: 461px; margin-top: -5px; background-color: white;font-weight: bold;"  class="col-sm-4" type="text"  runat="server" id="Text1" disabled/>
+                 </div>
+                <br />
+                <br />
                 </div>
             </div>
         </div>

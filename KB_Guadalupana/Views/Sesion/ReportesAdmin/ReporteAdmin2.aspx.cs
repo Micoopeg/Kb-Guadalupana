@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,6 +32,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         string firma;
         string Nombre, usuario;
         string cifnom;
+        string completo, nombre1, nombre2, apellido1, apellido2;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -60,10 +62,164 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             mostrarIngresos();
             mostrarNegocio();
             mostrarRemesas();
+            mostrarUser();
             mostrarEgresos();
+            mostrarIG();
+            totalCC();
+            totalCC1();
+            totalCC2();
+            totalCC3();
+            totalCC4();
+            totalCC5();
+            totalCC6();
+            llenargridviewcuentascope();
+            llenargridviewcuentasvarias1();
 
             //Nombre = Session["nombre"].ToString();
             //usuario = Session["sesion_usuario"].ToString();
+        }
+
+        public void totalCC()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            int total1;
+
+            //FRmE1.Value = Session["sesion_usuario"].ToString();
+
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Cif: " + sesion + "');", true);
+            string[] var1 = sn.consultarconcampoTotalCC(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                total1 = Convert.ToInt32(var1[0]);
+                Text3.Value = total1.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void totalCC1()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            int total1;
+
+            //FRmE1.Value = Session["sesion_usuario"].ToString();
+
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Cif: " + sesion + "');", true);
+            string[] var1 = sn.consultarconcampoTotalCC1(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                total1 = Convert.ToInt32(var1[0]);
+                Text4.Value = total1.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void totalCC2()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            int total1;
+
+            //FRmE1.Value = Session["sesion_usuario"].ToString();
+
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Cif: " + sesion + "');", true);
+            string[] var1 = sn.consultarconcampoTotalCC2(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                total1 = Convert.ToInt32(var1[0]);
+                Text5.Value = total1.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void totalCC3()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            int total1;
+
+            //FRmE1.Value = Session["sesion_usuario"].ToString();
+
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Cif: " + sesion + "');", true);
+            string[] var1 = sn.consultarconcampoTotalCC3(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                total1 = Convert.ToInt32(var1[0]);
+                Text6.Value = total1.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void totalCC4()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            int total1;
+
+            //FRmE1.Value = Session["sesion_usuario"].ToString();
+
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Cif: " + sesion + "');", true);
+            string[] var1 = sn.consultarconcampoTotalCC4(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                total1 = Convert.ToInt32(var1[0]);
+                Text7.Value = total1.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void totalCC5()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            Double total1;
+
+            //FRmE1.Value = Session["sesion_usuario"].ToString();
+
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Cif: " + sesion + "');", true);
+            string[] var1 = sn.consultarconcampoTotalCC5(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                total1 = Convert.ToDouble(var1[0]);
+                Text8.Value = total1.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void totalCC6()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            int total1;
+
+            //FRmE1.Value = Session["sesion_usuario"].ToString();
+
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Cif: " + sesion + "');", true);
+            string[] var1 = sn.consultarconcampoTotalCC6(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                total1 = Convert.ToInt32(var1[0]);
+                Text9.Value = total1.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void mostrarUser()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampoUser(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                Text2.Value = Convert.ToString(var1[0]);
+            }
+        }
+
+        public void mostrarIG()
+        {
+            sesion = Session["IDReporte1"].ToString();
+
+            //Response.Write(cifnumero);
+
+            string[] valores1 = new string[35];
+            string[] var3 = sn.consultarinformaciong(sesion);
+
+            for (int i = 0; i < var3.Length; i++)
+            {
+
+                nombre1 = Convert.ToString(var3[8]);
+                apellido1 = Convert.ToString(var3[9]);
+                apellido2 = Convert.ToString(var3[10]);
+                nombre2 = Convert.ToString(var3[23]);
+                completo = nombre1 + " " + nombre2 + " " + apellido1 + " " + apellido2;
+                Text1.Value = completo;
+            }
         }
 
         public void mostrarCaja()
@@ -85,22 +241,84 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                     sesion = Session["IDReporte1"].ToString();
                     sqlCon.Open();
                     string QueryString = "SELECT codepcuentas,a.codeptipocuenta,a.codepinstitucion," +
-                           "a.codeptipoestatuscuenta,a.codeptipomoneda,b.ep_tipocuentanombre," +
-                           "c.ep_institucionnombre,d.ep_tipoestatuscuentanombre," +
-                           "e.ep_tipomonedanombre,ep_cuentasmonto,ep_cuentasorigen " +
-                           "FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
-                           "INNER JOIN ep_institucion c INNER JOIN ep_tipoestatuscuenta d " +
-                           "INNER JOIN ep_tipomoneda e " +
-                           "inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
-                           "AND a.codepinstitucion=c.codepinstitucion " +
-                           "AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
-                           "AND a.codeptipomoneda=e.codeptipomoneda and a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
-                           "WHERE f.ep_informaciongeneralcif='" + sesion + "'";
+                        " d.ep_tipoestatuscuentanombre,e.ep_tipomonedanombre,b.ep_tipocuentanombre, c.ep_institucionnombre," +
+                        "d.ep_tipoestatuscuentanombre, e.ep_tipomonedanombre,ep_cuentasmonto,ep_cuentasorigen, " +
+                        "f.ep_informaciongeneralcif FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                        "INNER JOIN ep_institucion c " +
+                        "INNER JOIN ep_tipoestatuscuenta d INNER JOIN ep_tipomoneda e " +
+                        "inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                        "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                        "AND a.codeptipomoneda=e.codeptipomoneda and a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                        "WHERE (f.ep_informaciongeneralcif='" + sesion + "' and b.codeptipocuenta='2' ) ";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     command.Fill(ds4);
                     GridViewcuentasvarias.DataSource = ds4;
                     GridViewcuentasvarias.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+            }
+        }
+
+        public void llenargridviewcuentasvarias1()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sesion = Session["IDReporte1"].ToString();
+                    sqlCon.Open();
+                    string QueryString = "SELECT codepcuentas,a.codeptipocuenta,a.codepinstitucion," +
+                        "d.ep_tipoestatuscuentanombre,e.ep_tipomonedanombre,b.ep_tipocuentanombre, c.ep_institucionnombre," +
+                        "d.ep_tipoestatuscuentanombre, e.ep_tipomonedanombre,ep_cuentasmonto,ep_cuentasorigen, " +
+                        "f.ep_informaciongeneralcif FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                        "INNER JOIN ep_institucion c " +
+                        "INNER JOIN ep_tipoestatuscuenta d INNER JOIN ep_tipomoneda e " +
+                        "inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                        "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                        "AND a.codeptipomoneda=e.codeptipomoneda and a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                        "WHERE (f.ep_informaciongeneralcif='" + sesion + "' and b.codeptipocuenta='1' ) ";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridView1.DataSource = ds4;
+                    GridView1.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+            }
+        }
+
+        public void llenargridviewcuentascope()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sesion = Session["IDReporte1"].ToString();
+                    sqlCon.Open();
+                    string QueryString = "SELECT codepcuentas,a.codeptipocuenta,a.codepinstitucion," +
+                        " a.codeptipoestatuscuenta,a.codeptipomoneda,b.ep_tipocuentanombre, c.ep_institucionnombre," +
+                        "d.ep_tipoestatuscuentanombre, e.ep_tipomonedanombre,ep_cuentasmonto,ep_cuentasorigen, " +
+                        "f.ep_informaciongeneralcif FROM ep_cuentas a INNER JOIN ep_tipocuenta b " +
+                        "INNER JOIN ep_institucion c " +
+                        "INNER JOIN ep_tipoestatuscuenta d INNER JOIN ep_tipomoneda e " +
+                        "inner join ep_informaciongeneral f ON a.codeptipocuenta=b.codeptipocuenta " +
+                        "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta " +
+                        "AND a.codeptipomoneda=e.codeptipomoneda and a.codepinformaciongeneralcif=f.codepinformaciongeneralcif " +
+                        "WHERE (f.ep_informaciongeneralcif='" + sesion + "' and b.codeptipocuenta='3' ) ";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    GridViewcuentascooperativa.DataSource = ds4;
+                    GridViewcuentascooperativa.DataBind();
 
                 }
                 catch (Exception ex)
@@ -181,12 +399,12 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 {
                     sesion = Session["IDReporte1"].ToString();
                     sqlCon.Open();
-                    string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre," +
-                     "ep_vehiculomarca,ep_vehiculolinea," +
-                     "ep_vehiculomodelo,ep_vehiculoplaca " +
-                     "FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b " +
-                     "inner join ep_informaciongeneral c ON a.codeptipovehiculo = b.codeptipovehiculo " +
-                     "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + sesion + "'";
+                    string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre, " +
+                        "ep_vehiculomarca,ep_vehiculolinea, ep_vehiculomodelo,ep_vehiculoplaca,a.ep_vehiculomonto " +
+                        "FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b " +
+                        "inner join ep_informaciongeneral c ON a.codeptipovehiculo = b.codeptipovehiculo " +
+                        "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif" +
+                        " WHERE c.ep_informaciongeneralcif='" + sesion + "'";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     command.Fill(ds4);

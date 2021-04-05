@@ -60,6 +60,35 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             mostrarNegocio();
             mostrarRemesas();
             mostrarEgresos();
+            mostrarUser();
+        }
+
+        //Confirmar EP
+        public void confirmarep_Click(object sender, EventArgs e)
+        {
+            string nombre;
+            sesion = "";
+            sesion = Session["sesion_usuario"].ToString();
+            nombre = Session["Nombre"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero1 = var10[0];
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Sesion: " + cifnumero1 + "');", true);
+            //string[] campos = { "codepinformaciongeneralcif", "codeptipoestado" };
+            //string[] datos = { cifnumero1, "3" };
+            sn.updateestadofinal(cifnumero1);
+
+            string mensaje = "alert('Gracias " + nombre + ",tus datos han sido confirmados. '); window.location.href= '../CerrarSesion.aspx';";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", mensaje, true);
+        }
+
+        public void mostrarUser()
+        {
+            string sesion1, sesion2;
+
+            sesion1 = Session["sesion_usuario"].ToString();
+            sesion2 = Session["Nombre"].ToString();
+            Text2.Value = sesion1;
+            Text1.Value = sesion2;
         }
 
         public void mostrarCaja()
@@ -118,19 +147,31 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 try
                 {
+                    string vacio1 = null;
                     sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     string[] var10 = sn.consultarcif(sesion);
                     string cifnumero = var10[0];
-                    sqlCon.Open();
-                    string QueryString = "SELECT codepcuentas,ep_cuentasnombre,ep_cuentasmonto,ep_cuentasorigen FROM ep_cuentas t0 " +
-                    "inner JOIN ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif" +
-                    " where t1.ep_informaciongeneralcif='" + cifnumero + "' AND t0.codeptipocuenta=4";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    command.Fill(ds4);
-                    GridViewcuentasporcobrar.DataSource = ds4;
-                    GridViewcuentasporcobrar.DataBind();
+                    string[] var1 = sn.consultarvacioCP(cifnumero);
+                    vacio1 = Convert.ToString(var1[1]);
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Valor: " + vacio1 + "');", true);
+
+                    if ((vacio1 != "") && (vacio1 != null))
+                    {
+                        sqlCon.Open();
+                        string QueryString = "SELECT codepcuentas,ep_cuentasnombre,ep_cuentasmonto,ep_cuentasorigen FROM ep_cuentas t0 " +
+                        "inner JOIN ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif" +
+                        " where t1.ep_informaciongeneralcif='" + cifnumero + "' AND t0.codeptipocuenta=4";
+                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                        DataTable ds4 = new DataTable();
+                        command.Fill(ds4);
+                        GridViewcuentasporcobrar.DataSource = ds4;
+                        GridViewcuentasporcobrar.DataBind();
+                    }
+                    else
+                    {
+                        titulo.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -159,22 +200,34 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 try
                 {
+                    string vacio1 = null;
                     sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     string[] var10 = sn.consultarcif(sesion);
                     string cifnumero = var10[0];
-                    sqlCon.Open();
-                    string QueryString = "SELECT codepinmueble,b.ep_tipoinmueblenombre,a.codeptipoinmueble," +
-                    "ep_inmueblefolio,ep_inmueblelibro,ep_inmuebledireccion,ep_inmueblevalor," +
-                    "ep_inmuebledescripcion FROM ep_inmueble a INNER JOIN ep_tipoinmueble b " +
-                    "INNER join ep_informaciongeneral c ON a.codeptipoinmueble=b.codeptipoinmueble" +
-                    " and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif" +
-                    " WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    command.Fill(ds4);
-                    GridViewbienesinmuebles.DataSource = ds4;
-                    GridViewbienesinmuebles.DataBind();
+                    string[] var1 = sn.consultarvacioIN(cifnumero);
+                    vacio1 = Convert.ToString(var1[1]);
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Valor: " + vacio1 + "');", true);
+
+                    if ((vacio1 != "") && (vacio1 != null))
+                    {
+                        sqlCon.Open();
+                        string QueryString = "SELECT codepinmueble,b.ep_tipoinmueblenombre,a.codeptipoinmueble," +
+                        "ep_inmueblefolio,ep_inmueblelibro,ep_inmuebledireccion,ep_inmueblevalor," +
+                        "ep_inmuebledescripcion FROM ep_inmueble a INNER JOIN ep_tipoinmueble b " +
+                        "INNER join ep_informaciongeneral c ON a.codeptipoinmueble=b.codeptipoinmueble" +
+                        " and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif" +
+                        " WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
+                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                        DataTable ds4 = new DataTable();
+                        command.Fill(ds4);
+                        GridViewbienesinmuebles.DataSource = ds4;
+                        GridViewbienesinmuebles.DataBind();
+                    }
+                    else
+                    {
+                        titulo1.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -189,22 +242,34 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 try
                 {
+                    string vacio1 = null;
                     sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     string[] var10 = sn.consultarcif(sesion);
                     string cifnumero = var10[0];
-                    sqlCon.Open();
-                    string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre," +
-                     "ep_vehiculomarca,ep_vehiculolinea," +
-                     "ep_vehiculomodelo,ep_vehiculoplaca " +
-                     "FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b " +
-                     "inner join ep_informaciongeneral c ON a.codeptipovehiculo = b.codeptipovehiculo " +
-                     "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    command.Fill(ds4);
-                    GridViewvehiculos.DataSource = ds4;
-                    GridViewvehiculos.DataBind();
+                    string[] var1 = sn.consultarvacioVE(cifnumero);
+                    vacio1 = Convert.ToString(var1[1]);
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Valor: " + vacio1 + "');", true);
+
+                    if ((vacio1 != "") && (vacio1 != null))
+                    {
+                        sqlCon.Open();
+                        string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre," +
+                         "ep_vehiculomarca,ep_vehiculolinea," +
+                         "ep_vehiculomodelo,ep_vehiculoplaca,a.ep_vehiculomonto " +
+                         "FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b " +
+                         "inner join ep_informaciongeneral c ON a.codeptipovehiculo = b.codeptipovehiculo " +
+                         "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
+                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                        DataTable ds4 = new DataTable();
+                        command.Fill(ds4);
+                        GridViewvehiculos.DataSource = ds4;
+                        GridViewvehiculos.DataBind();
+                    }
+                    else
+                    {
+                        H1.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -220,11 +285,18 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomaq(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+
+
+            if ((valor != "") && (valor != null))
             {
-                TMaquinaria.Value = Convert.ToString(var1[0]);
-                TMaquinariaEs.Value = Convert.ToString(var1[1]);
-                TMaquinariaMonto.Value = Convert.ToString(var1[2]);
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    TMaquinaria.Value = Convert.ToString(var1[0]);
+                    TMaquinariaEs.Value = Convert.ToString(var1[1]);
+                    TMaquinariaMonto.Value = Convert.ToString(var1[2]);
+                }
             }
         }
 
@@ -234,9 +306,16 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenaje(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+
+
+            if ((valor != "") && (valor != null))
             {
-                EComputo.Value = Convert.ToString(var1[0]);
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    EComputo.Value = Convert.ToString(var1[0]);
+                }
             }
         }
 
@@ -247,9 +326,16 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenaje1(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+
+
+            if ((valor != "") && (valor != null))
             {
-                AmuebladoS.Value = Convert.ToString(var1[0]);
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    AmuebladoS.Value = Convert.ToString(var1[0]);
+                }
             }
         }
 
@@ -259,9 +345,16 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenaje2(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+
+
+            if ((valor != "") && (valor != null))
             {
-                AmuebladoCom.Value = Convert.ToString(var1[0]);
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    AmuebladoCom.Value = Convert.ToString(var1[0]);
+                }
             }
         }
 
@@ -271,15 +364,22 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenajeTV(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
-            {
-                TVC = Convert.ToInt32(var1[0].Trim());
-                TVM = Convert.ToInt32(var1[1].Trim());
+            string valor;
+            valor = Convert.ToString(var1[1]);
 
-                TVT = TVC * TVM;
-                TelevisorC.Value = TVC.ToString();
-                TelevisorM.Value = TVM.ToString();
-                TelevisorT.Value = TVT.ToString();
+
+            if ((valor != "") && (valor != null))
+            {
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    TVC = Convert.ToInt32(var1[0].Trim());
+                    TVM = Convert.ToInt32(var1[1].Trim());
+
+                    TVT = TVC * TVM;
+                    TelevisorC.Value = TVC.ToString();
+                    TelevisorM.Value = TVM.ToString();
+                    TelevisorT.Value = TVT.ToString();
+                }
             }
         }
 
@@ -289,15 +389,20 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenajeES(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+            if ((valor != "") && (valor != null))
             {
-                ESC = Convert.ToInt32(var1[0].Trim());
-                ESM = Convert.ToInt32(var1[1].Trim());
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    ESC = Convert.ToInt32(var1[0].Trim());
+                    ESM = Convert.ToInt32(var1[1].Trim());
 
-                EST = ESC * ESM;
-                EquipoSC.Value = ESC.ToString();
-                EquipoSM.Value = ESM.ToString();
-                EquipoST.Value = EST.ToString();
+                    EST = ESC * ESM;
+                    EquipoSC.Value = ESC.ToString();
+                    EquipoSM.Value = ESM.ToString();
+                    EquipoST.Value = EST.ToString();
+                }
             }
         }
 
@@ -307,15 +412,20 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenajeL(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+            if ((valor != "") && (valor != null))
             {
-                LC = Convert.ToInt32(var1[0].Trim());
-                LM = Convert.ToInt32(var1[1].Trim());
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    LC = Convert.ToInt32(var1[0].Trim());
+                    LM = Convert.ToInt32(var1[1].Trim());
 
-                LT = LC * LM;
-                LavadoraC.Value = LC.ToString();
-                LavadoraM.Value = LM.ToString();
-                LavadoraT.Value = LT.ToString();
+                    LT = LC * LM;
+                    LavadoraC.Value = LC.ToString();
+                    LavadoraM.Value = LM.ToString();
+                    LavadoraT.Value = LT.ToString();
+                }
             }
         }
 
@@ -325,22 +435,34 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 try
                 {
+                    string vacio1 = null;
                     sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     string[] var10 = sn.consultarcif(sesion);
                     string cifnumero = var10[0];
-                    sqlCon.Open();
-                    string QueryString = "SELECT codepcuentasporpagar,a.codeptipocuentasporpagar,b.ep_tipocuentaspopagarnombre," +
-                   "ep_cuentasporpagardescripcion,ep_cuentasporpagarmonto FROM ep_cuentasporpagar a " +
-                   "INNER JOIN ep_tipocuentaspopagar b INNER JOIN ep_informaciongeneral c " +
-                   "ON a.codeptipocuentasporpagar=b.codeptipocuentaspopagar " +
-                   "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
-                   "WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    command.Fill(ds4);
-                    GridViewcuentasporpagar.DataSource = ds4;
-                    GridViewcuentasporpagar.DataBind();
+                    string[] var1 = sn.consultarvacioCP1(cifnumero);
+                    vacio1 = Convert.ToString(var1[1]);
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Valor: " + vacio1 + "');", true);
+
+                    if ((vacio1 != "") && (vacio1 != null))
+                    {
+                        sqlCon.Open();
+                        string QueryString = "SELECT codepcuentasporpagar,a.codeptipocuentasporpagar,b.ep_tipocuentaspopagarnombre," +
+                       "ep_cuentasporpagardescripcion,ep_cuentasporpagarmonto FROM ep_cuentasporpagar a " +
+                       "INNER JOIN ep_tipocuentaspopagar b INNER JOIN ep_informaciongeneral c " +
+                       "ON a.codeptipocuentasporpagar=b.codeptipocuentaspopagar " +
+                       "and a.codepinformaciongeneralcif=c.codepinformaciongeneralcif " +
+                       "WHERE c.ep_informaciongeneralcif='" + cifnumero + "'";
+                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                        DataTable ds4 = new DataTable();
+                        command.Fill(ds4);
+                        GridViewcuentasporpagar.DataSource = ds4;
+                        GridViewcuentasporpagar.DataBind();
+                    }
+                    else
+                    {
+                        H2.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -355,29 +477,41 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 try
                 {
+                    string vacio1 = null;
                     sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     string[] var10 = sn.consultarcif(sesion);
                     string cifnumero = var10[0];
-                    sqlCon.Open();
-                    string QueryString = "SELECT codepprestamo,a.codeptipoprestamo,a.codepinstitucion,a.codeptipoinstitucion," +
-                     "b.ep_tipoprestamonombre,d.ep_tipoinstitucionnombre," +
-                     "c.ep_institucionnombre,ep_prestamomomentoinicial," +
-                     "ep_prestamosaldoactual,ep_prestamodestino,ep_prestamofechadesembolso," +
-                     "ep_prestamofechadefinalizacion FROM ep_prestamo a " +
-                     "INNER JOIN ep_tipoprestamo b INNER JOIN ep_institucion c " +
-                     "INNER JOIN ep_tipoinstitucion d " +
-                     "INNER JOIN ep_informaciongeneral e " +
-                     "ON a.codeptipoprestamo=b.codeptipoprestamo " +
-                     "AND a.codepinstitucion=c.codepinstitucion " +
-                     "AND a.codeptipoinstitucion=d.codeptipoinstitucion " +
-                     "AND a.codepinformaciongeneralcif=e.codepinformaciongeneralcif " +
-                     "WHERE e.ep_informaciongeneralcif='" + cifnumero + "'";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    command.Fill(ds4);
-                    GridViewpasivos.DataSource = ds4;
-                    GridViewpasivos.DataBind();
+                    string[] var1 = sn.consultarvaciopres(cifnumero);
+                    vacio1 = Convert.ToString(var1[1]);
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Valor: " + vacio1 + "');", true);
+
+                    if ((vacio1 != "") && (vacio1 != null))
+                    {
+                        sqlCon.Open();
+                        string QueryString = "SELECT codepprestamo,a.codeptipoprestamo,a.codepinstitucion,a.codeptipoinstitucion," +
+                         "b.ep_tipoprestamonombre,d.ep_tipoinstitucionnombre," +
+                         "c.ep_institucionnombre,ep_prestamomomentoinicial," +
+                         "ep_prestamosaldoactual,ep_prestamodestino,ep_prestamofechadesembolso," +
+                         "ep_prestamofechadefinalizacion FROM ep_prestamo a " +
+                         "INNER JOIN ep_tipoprestamo b INNER JOIN ep_institucion c " +
+                         "INNER JOIN ep_tipoinstitucion d " +
+                         "INNER JOIN ep_informaciongeneral e " +
+                         "ON a.codeptipoprestamo=b.codeptipoprestamo " +
+                         "AND a.codepinstitucion=c.codepinstitucion " +
+                         "AND a.codeptipoinstitucion=d.codeptipoinstitucion " +
+                         "AND a.codepinformaciongeneralcif=e.codepinformaciongeneralcif " +
+                         "WHERE e.ep_informaciongeneralcif='" + cifnumero + "'";
+                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                        DataTable ds4 = new DataTable();
+                        command.Fill(ds4);
+                        GridViewpasivos.DataSource = ds4;
+                        GridViewpasivos.DataBind();
+                    }
+                    else
+                    {
+                        H3.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -392,24 +526,36 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 try
                 {
+                    string vacio1 = null;
                     sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     string[] var10 = sn.consultarcif(sesion);
                     string cifnumero = var10[0];
-                    sqlCon.Open();
-                    string QueryString = "SELECT codeptrajetadecredito,b.codeptipoinstitucion,c.codepinstitucion, " +
-                   "b.ep_tipoinstitucionnombre, c.ep_institucionnombre,ep_tarjetadecreditomonedaqtz," +
-                   "ep_tarjetadecreditomonedausd,ep_tarjetadecreditosaldoactual FROM ep_tarjetadecredito a " +
-                   "INNER JOIN ep_tipoinstitucion b INNER JOIN ep_institucion c " +
-                   "INNER JOIN ep_informaciongeneral d ON a.codeptipoinstitucion=b.codeptipoinstitucion " +
-                   "AND a.codepinstitucion=c.codepinstitucion " +
-                   "AND a.codepinformaciongeneralcif=d.codepinformaciongeneralcif " +
-                   "WHERE d.ep_informaciongeneralcif='" + cifnumero + "'";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    command.Fill(ds4);
-                    GridViewtarjetas.DataSource = ds4;
-                    GridViewtarjetas.DataBind();
+                    string[] var1 = sn.consultarvaciopretar(cifnumero);
+                    vacio1 = Convert.ToString(var1[1]);
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Valor: " + vacio1 + "');", true);
+
+                    if ((vacio1 != "") && (vacio1 != null))
+                    {
+                        sqlCon.Open();
+                        string QueryString = "SELECT codeptrajetadecredito,b.codeptipoinstitucion,c.codepinstitucion, " +
+                       "b.ep_tipoinstitucionnombre, c.ep_institucionnombre,ep_tarjetadecreditomonedaqtz," +
+                       "ep_tarjetadecreditomonedausd,ep_tarjetadecreditosaldoactual FROM ep_tarjetadecredito a " +
+                       "INNER JOIN ep_tipoinstitucion b INNER JOIN ep_institucion c " +
+                       "INNER JOIN ep_informaciongeneral d ON a.codeptipoinstitucion=b.codeptipoinstitucion " +
+                       "AND a.codepinstitucion=c.codepinstitucion " +
+                       "AND a.codepinformaciongeneralcif=d.codepinformaciongeneralcif " +
+                       "WHERE d.ep_informaciongeneralcif='" + cifnumero + "'";
+                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                        DataTable ds4 = new DataTable();
+                        command.Fill(ds4);
+                        GridViewtarjetas.DataSource = ds4;
+                        GridViewtarjetas.DataBind();
+                    }
+                    else
+                    {
+                        H4.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -424,15 +570,20 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenaSec(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+            if ((valor != "") && (valor != null))
             {
-                SC = Convert.ToInt32(var1[0].Trim());
-                SM = Convert.ToInt32(var1[1].Trim());
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    SC = Convert.ToInt32(var1[0].Trim());
+                    SM = Convert.ToInt32(var1[1].Trim());
 
-                ST = SC * SM;
-                SecadoraC.Value = SC.ToString();
-                SecadoraM.Value = SM.ToString();
-                SecadoraT.Value = ST.ToString();
+                    ST = SC * SM;
+                    SecadoraC.Value = SC.ToString();
+                    SecadoraM.Value = SM.ToString();
+                    SecadoraT.Value = ST.ToString();
+                }
             }
         }
 
@@ -442,15 +593,20 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenaEST(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+            if ((valor != "") && (valor != null))
             {
-                EC = Convert.ToInt32(var1[0].Trim());
-                EM = Convert.ToInt32(var1[1].Trim());
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    EC = Convert.ToInt32(var1[0].Trim());
+                    EM = Convert.ToInt32(var1[1].Trim());
 
-                ET = EC * EM;
-                EstufaC.Value = EC.ToString();
-                EstufaM.Value = EM.ToString();
-                EstufaT.Value = ET.ToString();
+                    ET = EC * EM;
+                    EstufaC.Value = EC.ToString();
+                    EstufaM.Value = EM.ToString();
+                    EstufaT.Value = ET.ToString();
+                }
             }
         }
 
@@ -460,15 +616,20 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenaRefri(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+            if ((valor != "") && (valor != null))
             {
-                RC = Convert.ToInt32(var1[0].Trim());
-                RM = Convert.ToInt32(var1[1].Trim());
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    RC = Convert.ToInt32(var1[0].Trim());
+                    RM = Convert.ToInt32(var1[1].Trim());
 
-                RT = RC * RM;
-                RefriC.Value = RC.ToString();
-                RefriM.Value = RM.ToString();
-                RefriT.Value = RT.ToString();
+                    RT = RC * RM;
+                    RefriC.Value = RC.ToString();
+                    RefriM.Value = RM.ToString();
+                    RefriT.Value = RT.ToString();
+                }
             }
         }
 
@@ -478,15 +639,20 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenaTel(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+            if ((valor != "") && (valor != null))
             {
-                CC = Convert.ToInt32(var1[0].Trim());
-                CM = Convert.ToInt32(var1[1].Trim());
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    CC = Convert.ToInt32(var1[0].Trim());
+                    CM = Convert.ToInt32(var1[1].Trim());
 
-                CT = CC * CM;
-                TMC.Value = CC.ToString();
-                TMM.Value = CM.ToString();
-                TMT.Value = CT.ToString();
+                    CT = CC * CM;
+                    TMC.Value = CC.ToString();
+                    TMM.Value = CM.ToString();
+                    TMT.Value = CT.ToString();
+                }
             }
         }
 
@@ -496,15 +662,20 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
             string[] var1 = sn.consultarconcampomenaOtros(cifnumero);
-            for (int i = 0; i < var1.Length; i++)
+            string valor;
+            valor = Convert.ToString(var1[1]);
+            if ((valor != "") && (valor != null))
             {
-                OC = Convert.ToInt32(var1[0].Trim());
-                OM = Convert.ToInt32(var1[1].Trim());
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    OC = Convert.ToInt32(var1[0].Trim());
+                    OM = Convert.ToInt32(var1[1].Trim());
 
-                OT = OC * OM;
-                OtrosC.Value = OC.ToString();
-                OtrosM.Value = OM.ToString();
-                OtrosT.Value = OT.ToString();
+                    OT = OC * OM;
+                    OtrosC.Value = OC.ToString();
+                    OtrosM.Value = OM.ToString();
+                    OtrosT.Value = OT.ToString();
+                }
             }
         }
 

@@ -160,6 +160,14 @@ body {
 					</span>
 				</a>
 			</div>
+     <div class="col-md-3" style="display: flex;justify-content: center;align-items: center;">
+         <a  style="cursor:pointer;" class="fancy-button medium wisteria bounce bell infinite ">
+             <asp:Button ID="confirmar" runat="server" style="background-color: #69a43c;border-color: #69a43c;margin-top: -10px;    margin-top: -11px;margin-left: -2px;" CssClass="fancy-button medium wisteria bounce bell infinite " OnClick="confirmarep_Click" Text="Confirmar" />
+					<span class="icon" style="margin-top: -33px;position: absolute; right: 29px;">
+							<i class="fa fa-check"></i>
+					</span>
+				</a>
+         </div>
     </div>
 
    <div i class="menu"></div>
@@ -320,6 +328,8 @@ body {
             </div>
                 <br />
     <!-- Grid Informacion Familiar Hijos-->
+                <center><h4 id="titulo" runat="server" visible="false"><b>N/A</b></h4></center>
+
      <asp:GridView ID="GridViewhijos" CssClass="mGrid" style="margin-left:auto;margin-right:auto"  runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" BorderStyle="Solid">
                      <Columns>
@@ -353,7 +363,6 @@ body {
         </asp:GridView>
 <!-- Fin Grid Informacion Famliar Hijos-->    
                 <br/>
-                <br/>
         <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">En caso de emergencia llamar a:</h2>
             </div>
@@ -372,17 +381,17 @@ body {
                 <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido">Carrera:</label></center>
                         <input style="border: 0" class="col-sm-3" type="text" runat="server" id="CarreraEU" disabled/>
-                        <center><label class="col-sm-2" for="apellido" style="margin-top: -11px;">Semestre Cursado:</label></center> 
-                        <input style="border: 0" class="col-sm-1" type="text" runat="server" id="SemestreEU" disabled/> 
-                        <center><label class="col-sm-2" for="apellido">Año Cursado:</label></center> 
-                        <input style="border: 0" class="col-sm-1" type="text" runat="server" id="AñoEU" disabled/>
+                        <center><label class="col-sm-3" for="apellido" style="">Semestre Cursado:</label></center> 
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="SemestreEU" disabled/> 
+                       
                    </div>
                  <div class="campo" style="margin-left:80px;" >
                     <br/>
+                      <center><label class="col-sm-3" for="apellido">Año Cursado:</label></center> 
+                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="AñoEU" disabled/>
                         <center><label class="col-sm-2" for="apellido">Universidad:</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" id="UniverEU" disabled/>
-                        <center><label class="col-sm-3" for="apellido">Idioma:</label></center> 
-                        <input style="border: 0" class="col-sm-2" type="text" runat="server" id="IdiomaEU" disabled/>  
+                     
                     </div> 
                 <br>
             <div class="encabezado3">
@@ -390,6 +399,7 @@ body {
             </div>
  <!-- Grid Informacion Otros Estudios-->
                 <br />
+                <center><h4 id="Titulo1" runat="server" visible="false"><b>N/A</b></h4></center>
       <asp:GridView ID="GridViewEstudios" CssClass="mGrid" style="margin-left:auto;margin-right:auto" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False"  BorderStyle="Solid">
                      <Columns>
@@ -432,6 +442,17 @@ body {
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
 <!-- Fin Grid Informacion Otros Estudios-->  
+                <hr style="border-color:#003563;">
+                 <div class="encabezado2">
+                <h2 style="font-size: 20px;color: white;">Declaro bajo juramento que los datos consignados en el presente documento, son verdaderos y ciertos y me someto  a lo establecido en las leyes del país, en caso de perjurio.</h2>
+            </div>
+                 <div class="campo" style="margin-left:25px;" >
+                        <center><label class="col-sm-8" for="apellido">Usuario:</label></center>
+                         <input  style="border: 0;margin-left: -122px;background-color: white;font-weight: bold;font-size: 20px;margin-top: -16px;"  class="col-sm-4" type="text"  runat="server" id="Text2" disabled/>
+                         <input  style="border: 0;margin-left: 461px; margin-top: -5px; background-color: white;font-weight: bold;"  class="col-sm-4" type="text"  runat="server" id="Text1" disabled/>
+                 </div>
+                <br />
+                <br />
                 </div>
             </div>
         </div>

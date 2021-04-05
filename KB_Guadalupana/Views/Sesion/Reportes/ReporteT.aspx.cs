@@ -20,9 +20,9 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 
         string sesion;
 
-        int caja1, cuentasQ1, CooperativasQ1, CP1, IN1, Inmuebles1, vehiculo1, maquinaria1, computo1, TotalQ1,salas1, comedor1,tele, Es1,L1,S1, Est1,Ref1,Mov1,otr1;
+        int caja1, cuentasQ1, CooperativasQ1, CP1, IN1, Inmuebles1, vehiculo1, maquinaria1, computo1, TotalQ1, salas1, comedor1, tele, Es1, L1, S1, Est1, Ref1, Mov1, otr1;
         int cuentasD1, CooperativasD1, TotalD1;
-        int pp1,TotalQ2,patrimonio1,pres1,tc1,OD1,pas1;
+        int pp1, TotalQ2, patrimonio1, pres1, tc1, OD1, pas1;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             mostrarComedor();
             mostrarComputo();
             mostrarTV();
-            mostrarES(); 
+            mostrarES();
             mostrarL();
             mostrarSec();
             mostrarEst();
@@ -57,6 +57,19 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             quetzalessa();
             quetzalessp();
             patrimonio();
+            mostrarUser();
+        }
+
+
+        public void mostrarUser()
+        {
+            string sesion1, sesion2;
+
+            sesion1 = Session["sesion_usuario"].ToString();
+            sesion2 = Session["Nombre"].ToString();
+            Text2.Value = sesion1;
+            Text1.Value = sesion2;
+
         }
 
         public void dolaresa()
@@ -87,7 +100,6 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         {
             sesion = Session["sesion_usuario"].ToString();
 
-            FRmE1.Value = Session["sesion_usuario"].ToString();
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
 
@@ -95,7 +107,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             for (int i = 0; i < var1.Length; i++)
             {
                 caja1 = Convert.ToInt32(var1[0]);
-                EfectivoCaja.Value = caja1.ToString("N1",CultureInfo.CurrentCulture);
+                EfectivoCaja.Value = caja1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
 
@@ -109,7 +121,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             for (int i = 0; i < var1.Length; i++)
             {
                 cuentasQ1 = Convert.ToInt32(var1[0]);
-                CuentasBancos.Value = cuentasQ1.ToString("N1", CultureInfo.CurrentCulture); 
+                CuentasBancos.Value = cuentasQ1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
 
@@ -280,7 +292,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                 TV.Value = tele.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
-        
+
         public void mostrarES()
         {
             sesion = Session["sesion_usuario"].ToString();
@@ -293,8 +305,8 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                 Es1 = Convert.ToInt32(var1[0]);
                 EquipoS.Value = Es1.ToString("N1", CultureInfo.CurrentCulture);
             }
-        } 
-        
+        }
+
         public void mostrarL()
         {
             sesion = Session["sesion_usuario"].ToString();
@@ -308,7 +320,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                 lava.Value = L1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
-        
+
         public void mostrarSec()
         {
             sesion = Session["sesion_usuario"].ToString();
@@ -406,8 +418,8 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                 pres1 = Convert.ToInt32(var1[0]);
                 Pres.Value = pres1.ToString("N1", CultureInfo.CurrentCulture);
             }
-        } 
-        
+        }
+
         public void mostrarTarjeta()
         {
             sesion = Session["sesion_usuario"].ToString();
@@ -421,7 +433,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                 TC.Value = tc1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
-        
+
         public void mostrarOD()
         {
             sesion = Session["sesion_usuario"].ToString();
@@ -448,6 +460,25 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                 pas1 = Convert.ToInt32(var1[0]);
                 pasc.Value = pas1.ToString("N1", CultureInfo.CurrentCulture);
             }
+        }
+
+        //Confirmar EP
+        public void confirmarep_Click(object sender, EventArgs e)
+        {
+            string nombre;
+            sesion = "";
+            sesion = Session["sesion_usuario"].ToString();
+            nombre = Session["Nombre"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero1 = var10[0];
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Sesion: " + cifnumero1 + "');", true);
+            //string[] campos = { "codepinformaciongeneralcif", "codeptipoestado" };
+            //string[] datos = { cifnumero1, "3" };
+            sn.updateestadofinal(cifnumero1);
+
+            string mensaje = "alert('Gracias " + nombre + ",tus datos han sido confirmados. '); window.location.href= '../CerrarSesion.aspx';";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", mensaje, true);
+
         }
 
     }

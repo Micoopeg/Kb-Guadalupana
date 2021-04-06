@@ -159,6 +159,14 @@ body {
 					</span>
 				</a>
 			</div>
+      <div class="col-md-3" style="display: flex;justify-content: center;align-items: center;">
+         <a  style="cursor:pointer;" class="fancy-button medium wisteria bounce bell infinite ">
+             <asp:Button ID="confirmar" runat="server" style="background-color: #69a43c;border-color: #69a43c;margin-top: -10px;    margin-top: -11px;margin-left: -2px;" CssClass="fancy-button medium wisteria bounce bell infinite " OnClick="confirmarep_Click" Text="Confirmar" />
+					<span class="icon" style="margin-top: -33px;position: absolute; right: 29px;">
+							<i class="fa fa-check"></i>
+					</span>
+				</a>
+         </div>
     </div>
 
     <div id="area" class="container">
@@ -353,27 +361,18 @@ body {
                   <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-5" for="apellido" style="margin-left: -20px;color: #69a43c;    font-size: 22px;">Patrimonio (Activo - Pasivo):</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="pat" disabled/>
-                    </div><br>
+                    </div>
+                <br>
                 <hr style="border-color:#003563;">
                  <div class="encabezado2">
                 <h2 style="font-size: 20px;color: white;">Declaro bajo juramento que los datos consignados en el presente documento, son verdaderos y ciertos y me someto  a lo establecido en las leyes del país, en caso de perjurio.</h2>
             </div>
                  <div class="campo" style="margin-left:25px;" >
-                        <center><label class="col-sm-8" for="apellido">Firma del Empleado:</label></center>
-                        <input  class="col-sm-2" type="text" id="FRmE" style="margin-left: -90px;max-width: 83px;border: 0" runat="server" disabled/>
-                        <input style="border: 0" class="col-sm-3" type="text" id="FRmE1"  runat="server" disabled/>
+                        <center><label class="col-sm-8" for="apellido">Usuario:</label></center>
+                         <input  style="border: 0;margin-left: -122px;background-color: white;font-weight: bold;font-size: 20px;margin-top: -16px;"  class="col-sm-4" type="text"  runat="server" id="Text2" disabled/>
+                         <input  style="border: 0;margin-left: 461px; margin-top: -5px; background-color: white;font-weight: bold;"  class="col-sm-4" type="text"  runat="server" id="Text1" disabled/>
                  </div>
-                <br/>
-                <%-- <div class="campo" style="margin-left:25px;" >
-                        <center><label class="col-sm-8" for="apellido">Fecha de Elaboracion:</label></center>
-                        <input style="border: 0;margin-left: -90px;" class="col-sm-4" type="text" id="apellido" disabled/>
-                 </div>--%>
-<!--
-                    <asp:TemplateField HeaderText="Ocupación"  hidden>
-                         <center><label hidden>Año Cursado:</label></center> 
-                        <input  class="col-sm-1"   id="AñoEU" disabled/> 
-                    </asp:TemplateField>
--->
+                <br />
                 <br>
                 </div>
             </div>

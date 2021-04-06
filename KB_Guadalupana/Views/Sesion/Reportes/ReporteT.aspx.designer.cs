@@ -24,6 +24,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control confirmar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button confirmar;
+
+        /// <summary>
         /// Control EfectivoCaja.
         /// </summary>
         /// <remarks>
@@ -294,21 +303,21 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlInputText pat;
 
         /// <summary>
-        /// Control FRmE.
+        /// Control Text2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText FRmE;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
 
         /// <summary>
-        /// Control FRmE1.
+        /// Control Text1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText FRmE1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
     }
 }

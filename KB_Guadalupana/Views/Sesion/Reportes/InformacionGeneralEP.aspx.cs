@@ -18,7 +18,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         Logica logic = new Logica();
         Sentencia sn = new Sentencia();
 
-        string completo,nombre1, nombre2, apellido1, apellido2;
+        string completo, nombre1, nombre2, apellido1, apellido2;
         string sesion;
 
 
@@ -30,13 +30,14 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             llenargridviewcelulares();
             llenargridviewhijos();
             llenargridviewestudios();
+            mostrarUser();
 
             //CIF.Value = Session["cif"].ToString();
             //Response.Write(subcadena+" "+ subcadena1+" "+ subcadena3);
         }
 
         //InformacionGeneral
-        public void mostrarIG() 
+        public void mostrarIG()
         {
             sesion = Session["sesion_usuario"].ToString();
             string[] var10 = sn.consultarcif(sesion);
@@ -119,7 +120,6 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                 CarreraEU.Value = Convert.ToString(var1[0]);
                 SemestreEU.Value = Convert.ToString(var1[1]);
                 AñoEU.Value = Convert.ToString(var1[2]);
-                IdiomaEU.Value = Convert.ToString(var1[3]);
                 UniverEU.Value = Convert.ToString(var1[4]);
             }
         }
@@ -163,24 +163,34 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 try
                 {
-
+                    string vacio;
                     sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     string[] var10 = sn.consultarcif(sesion);
                     string cifnumero = var10[0];
-                    sqlCon.Open();
-                    string QueryString = "select t1.codepinfofamiliar,t1.ep_infofamiliarnombrehijos,t1.ep_infofamiliarocupacionhijos," +
-                               " t1.ep_infofamiliarcomentario, t1.ep_infofamiliarfechanacimientohijo " +
-                               "from ep_informaciongeneral t0 " +
-                               "inner join ep_infofamiliar t1 " +
-                               "on t0.codepinformaciongeneralcif = t1.codepinformaciongeneralcif " +
-                               "where t0.ep_informaciongeneralcif='" + cifnumero + "'";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    command.Fill(ds4);
-                    GridViewhijos.DataSource = ds4;
-                    GridViewhijos.DataBind();
+                    string[] var1 = sn.consultarvacioH(cifnumero);
+                    vacio = Convert.ToString(var1[1]);
 
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Sesion: " + vacio + "');", true);
+
+                    if (vacio != "")
+                    {
+                        sqlCon.Open();
+                        string QueryString = "select t1.codepinfofamiliar,t1.ep_infofamiliarnombrehijos,t1.ep_infofamiliarocupacionhijos," +
+                                   " t1.ep_infofamiliarcomentario, t1.ep_infofamiliarfechanacimientohijo " +
+                                   "from ep_informaciongeneral t0 " +
+                                   "inner join ep_infofamiliar t1 " +
+                                   "on t0.codepinformaciongeneralcif = t1.codepinformaciongeneralcif " +
+                                   "where t0.ep_informaciongeneralcif='" + cifnumero + "'  AND t1.ep_infofamiliarfechanacimientohijo !='2020-04-08' ";
+                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                        DataTable ds4 = new DataTable();
+                        command.Fill(ds4);
+                        GridViewhijos.DataSource = ds4;
+                        GridViewhijos.DataBind();
+                    }
+                    else
+                    {
+                        titulo.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -196,24 +206,67 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             {
                 try
                 {
+                    string vacio1 = null;
                     sesion = Session["sesion_usuario"].ToString();
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     string[] var10 = sn.consultarcif(sesion);
                     string cifnumero = var10[0];
-                    sqlCon.Open();
-                    string QueryString = "SELECT * FROM ep_estudio t0 inner join ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
-                            "where t1.ep_informaciongeneralcif='" + cifnumero + "'  AND t0.ep_estudiotipo=1";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds4 = new DataTable();
-                    command.Fill(ds4);
-                    GridViewEstudios.DataSource = ds4;
-                    GridViewEstudios.DataBind();
+                    string[] var1 = sn.consultarvacioE(cifnumero);
+                    vacio1 = Convert.ToString(var1[1]);
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Valor: " + vacio1 + "');", true);
+
+                    if ((vacio1 != "") && (vacio1 != null))
+                    {
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Entra If');", true);
+                        sqlCon.Open();
+                        string QueryString = "SELECT * FROM ep_estudio t0 inner join ep_informaciongeneral t1 on t0.codepinformaciongeneralcif=t1.codepinformaciongeneralcif " +
+                                "where t1.ep_informaciongeneralcif='" + cifnumero + "'  AND t0.ep_estudiotipo=1";
+                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                        DataTable ds4 = new DataTable();
+                        command.Fill(ds4);
+                        GridViewEstudios.DataSource = ds4;
+                        GridViewEstudios.DataBind();
+                    }
+                    else
+                    {
+                        Titulo1.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
                 }
             }
+        }
+
+        //Confirmar EP
+        public void confirmarep_Click(object sender, EventArgs e)
+        {
+            string nombre;
+            sesion = "";
+            sesion = Session["sesion_usuario"].ToString();
+            nombre = Session["Nombre"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero1 = var10[0];
+            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Sesion: " + cifnumero1 + "');", true);
+            //string[] campos = { "codepinformaciongeneralcif", "codeptipoestado" };
+            //string[] datos = { cifnumero1, "3" };
+            sn.updateestadofinal(cifnumero1);
+
+            string mensaje = "alert('Gracias " + nombre + ",tus datos han sido confirmados. '); window.location.href= '../CerrarSesion.aspx';";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", mensaje, true);
+
+        }
+
+        public void mostrarUser()
+        {
+            string sesion1, sesion2;
+
+            sesion1 = Session["sesion_usuario"].ToString();
+            sesion2 = Session["Nombre"].ToString();
+            Text2.Value = sesion1;
+            Text1.Value = sesion2;
+
         }
     }
 }

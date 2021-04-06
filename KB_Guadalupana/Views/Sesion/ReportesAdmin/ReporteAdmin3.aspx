@@ -132,9 +132,10 @@ body {
 </style>
 
 <body>
+      <center><img class="sobre" src="../../../Imagenes/barra.png"/></center>
     <form id="form1" runat="server">
            <div class="topnav">
-            <a class="active" style="border: black 2px solid;"  href="../Inicio.aspx">Inicio</a>
+            <a class="active" style="border: black 2px solid;"  href="ReporteAdmin.aspx">Regresar</a>
             <a class="active" style="border: black 2px solid;  " href="ReporteAdmin1.aspx">Informacion General</a>
             <a class="active" style="border: black 2px solid;" href="ReporteAdmin2.aspx">Declaracion de Bienes</a>
             <a class="active" style="border: black 2px solid;   background-color: #003563; " href="ReporteAdmin3.aspx">Estado Patrimonial</a>
@@ -169,7 +170,7 @@ body {
                <img src="../../../Imagenes/Logotipo.png" alt="Guadalupana" style="width: 724px;height: 100px;margin-left: -24px;margin-top: -14px;">
             </div>
            <div class="encabezado1">
-                <h2>ESTADO PATRIMONIAL DIRIGENTES Y EMPLEADOS</h2>
+                <h2>ESTADO PATRIMONIAL EMPLEADOS</h2>
             </div> 
             <div class="encabezado2">
                 <h2 style="font-size: 20px;color: white;">En cumplimiento al  articulo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
@@ -230,11 +231,23 @@ body {
                     </div>
                   <br/>
                     <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Maquinaria:</label></center>
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Maquinaria y Equipo:</label></center>
                         <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Maquinaria" disabled/>
                     </div>
                 <br/>
+                 <div class="campo" style="margin-left: -5px;" >
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Inversiones:</label></center>
+                        <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
+                        <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Text1" disabled/>
+                    </div>
+                <br />
+                <div class="campo" style="margin-left: -5px;" >
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Fondo FENAFORE:</label></center>
+                        <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
+                        <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Text4" disabled/>
+                    </div>
+                <br/>  
                 <br/>  
             <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Mobiliario y Equipo</h2>
@@ -300,7 +313,7 @@ body {
                     </div>
                 <br/>
                  <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Otros:</label></center>
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Otros Activos:</label></center>
                         <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="otross" disabled/>
                     </div>
@@ -355,18 +368,18 @@ body {
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="pat" disabled/>
                     </div>
                  <br /><hr style="border-color:#003563;">
-                <br/>
-                <%-- <div class="campo" style="margin-left:25px;" >
-                        <center><label class="col-sm-8" for="apellido">Fecha de Elaboracion:</label></center>
-                        <input style="border: 0;margin-left: -90px;" class="col-sm-4" type="text" id="apellido" disabled/>
-                 </div>--%>
-<!--
-                    <asp:TemplateField HeaderText="Ocupación"  hidden>
-                         <center><label hidden>Año Cursado:</label></center> 
-                        <input  class="col-sm-1"   id="AñoEU" disabled/> 
-                    </asp:TemplateField>
--->
-                <br>
+           
+                <hr style="border-color:#003563;">
+                 <div class="encabezado2">
+                <h2 style="font-size: 20px;color: white;">Declaro bajo juramento que los datos consignados en el presente documento, son verdaderos y ciertos y me someto  a lo establecido en las leyes del país, en caso de perjurio.</h2>
+            </div>
+                 <div class="campo" style="margin-left:25px;" >
+                        <center><label class="col-sm-8" for="apellido">Usuario:</label></center>
+                         <input   style="border: 0;margin-left: -122px;background-color: white;font-weight: bold;font-size: 20px;margin-top: -16px;"  class="col-sm-4" type="text"  runat="server" id="Text2" disabled/>
+                         <input  style="border: 0;margin-left: 461px; margin-top: -5px; background-color: white;font-weight: bold;"  class="col-sm-4" type="text"  runat="server" id="Text3" disabled/>
+                 </div>
+                <br />
+                <br />
                 </div>
             </div>
         </div>

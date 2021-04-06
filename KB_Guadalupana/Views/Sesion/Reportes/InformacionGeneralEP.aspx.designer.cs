@@ -24,6 +24,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control confirmar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button confirmar;
+
+        /// <summary>
         /// Control id.
         /// </summary>
         /// <remarks>
@@ -303,6 +312,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlInputText FechaCIF;
 
         /// <summary>
+        /// Control titulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl titulo;
+
+        /// <summary>
         /// Control GridViewhijos.
         /// </summary>
         /// <remarks>
@@ -375,13 +393,13 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlInputText UniverEU;
 
         /// <summary>
-        /// Control IdiomaEU.
+        /// Control Titulo1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText IdiomaEU;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Titulo1;
 
         /// <summary>
         /// Control GridViewEstudios.
@@ -391,5 +409,23 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewEstudios;
+
+        /// <summary>
+        /// Control Text2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
+
+        /// <summary>
+        /// Control Text1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
     }
 }

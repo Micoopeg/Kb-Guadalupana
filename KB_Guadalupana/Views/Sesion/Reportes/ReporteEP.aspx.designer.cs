@@ -24,6 +24,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control confirmar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button confirmar;
+
+        /// <summary>
         /// Control CajaA.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewcuentasvarias;
+
+        /// <summary>
+        /// Control titulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl titulo;
 
         /// <summary>
         /// Control GridViewcuentasporcobrar.
@@ -69,6 +87,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlInputText MontoM;
 
         /// <summary>
+        /// Control titulo1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl titulo1;
+
+        /// <summary>
         /// Control GridViewbienesinmuebles.
         /// </summary>
         /// <remarks>
@@ -76,6 +103,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewbienesinmuebles;
+
+        /// <summary>
+        /// Control H1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
 
         /// <summary>
         /// Control GridViewvehiculos.
@@ -357,6 +393,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlInputText OtrosT;
 
         /// <summary>
+        /// Control H2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H2;
+
+        /// <summary>
         /// Control GridViewcuentasporpagar.
         /// </summary>
         /// <remarks>
@@ -366,6 +411,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         protected global::System.Web.UI.WebControls.GridView GridViewcuentasporpagar;
 
         /// <summary>
+        /// Control H3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H3;
+
+        /// <summary>
         /// Control GridViewpasivos.
         /// </summary>
         /// <remarks>
@@ -373,6 +427,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewpasivos;
+
+        /// <summary>
+        /// Control H4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H4;
 
         /// <summary>
         /// Control GridViewtarjetas.
@@ -661,5 +724,23 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText Otros;
+
+        /// <summary>
+        /// Control Text2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
+
+        /// <summary>
+        /// Control Text1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
     }
 }

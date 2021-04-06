@@ -152,6 +152,14 @@ body {
 					</span>
 				</a>
 			</div>
+     <div class="col-md-3" style="display: flex;justify-content: center;align-items: center;">
+         <a  style="cursor:pointer;" class="fancy-button medium wisteria bounce bell infinite ">
+             <asp:Button ID="confirmar" runat="server" style="background-color: #69a43c;border-color: #69a43c;margin-top: -10px;    margin-top: -11px;margin-left: -2px;" CssClass="fancy-button medium wisteria bounce bell infinite " OnClick="confirmarep_Click" Text="Confirmar" />
+					<span class="icon" style="margin-top: -33px;position: absolute; right: 29px;">
+							<i class="fa fa-check"></i>
+					</span>
+				</a>
+         </div>
     </div>
 
     <div i class="menu"></div>
@@ -310,6 +318,7 @@ body {
                 <h2 style="font-size: 25px;color: white;">Cuentas Por Cobrar:</h2>
             </div>
                 <br />
+                 <center><h4 id="titulo" runat="server" visible="false"><b>N/A</b></h4></center>
  <!-- Grid Activos Cuentas Por Cobrar-->
            <asp:GridView ID="GridViewcuentasporcobrar" style="margin-left:auto;margin-right:auto" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False"  BorderStyle="Solid">
@@ -355,6 +364,7 @@ body {
                 <h2 style="font-size: 25px;color: white;">Inmuebles:</h2>
             </div>
                 <br/>
+                <center><h4 id="titulo1" runat="server" visible="false"><b>N/A</b></h4></center>
  <!-- Grid Activos Inmuebles-->
     <asp:GridView ID="GridViewbienesinmuebles" style="margin-left:auto;margin-right:auto" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False"  BorderStyle="Solid">
@@ -408,8 +418,9 @@ body {
                 <h2 style="font-size: 25px;color: white;">Vehiculos:</h2>
             </div>
                 <br/>
+                   <center><h4 id="H1" runat="server" visible="false"><b>N/A</b></h4></center>
  <!-- Grid Activos Vehiculos-->
-       <asp:GridView ID="GridViewvehiculos" style="margin-left:auto;margin-right:auto" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+        <asp:GridView ID="GridViewvehiculos" style="margin-left:auto;margin-right:auto" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" BorderStyle="Solid">
                      <Columns>
                          <asp:TemplateField HeaderText="Numero de Vehículo" Visible="False">
@@ -442,9 +453,14 @@ body {
                             <asp:Label ID="lblmodelo" Text='<%# Eval("ep_vehiculomodelo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                             <asp:TemplateField HeaderText="Número de placa">
+                      <asp:TemplateField HeaderText="Número de placa">
                            <ItemTemplate>
                             <asp:Label ID="lblplaca" Text='<%# Eval("ep_vehiculoplaca") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                      <asp:TemplateField HeaderText="Valor">
+                           <ItemTemplate>
+                            <asp:Label ID="lblplaca" Text='<%# Eval("ep_vehiculomonto") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
                      </Columns>
@@ -538,6 +554,7 @@ body {
                 <h2 style="font-size: 25px;color: white;">Cuentas por Pagar:</h2>
             </div>
                 <br />
+                  <center><h4 id="H2" runat="server" visible="false"><b>N/A</b></h4></center>
  <!-- Grid Pasivo Cuentas por Pagar-->
       <asp:GridView ID="GridViewcuentasporpagar" style="margin-left:auto;margin-right:auto" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" BorderStyle="Solid">
@@ -576,6 +593,7 @@ body {
                 <h2 style="font-size: 25px;color: white;">Prestamos:</h2>
             </div>
                 <br />
+                <center><h4 id="H3" runat="server" visible="false"><b>N/A</b></h4></center>
  <!-- Grid Pasivo Prestamos-->
     <asp:GridView ID="GridViewpasivos"  CssClass="mGrid" style="margin-left:auto;margin-right:auto" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False"  BorderStyle="Solid">
@@ -650,6 +668,7 @@ body {
             </div>
                 <br />
  <!-- Grid Pasivo Tarjetas-->
+                 <center><h4 id="H4" runat="server" visible="false"><b>N/A</b></h4></center>
        <asp:GridView ID="GridViewtarjetas" CssClass="mGrid" style="margin-left:auto;margin-right:auto" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False"  BorderStyle="Solid">
                      <Columns>
@@ -821,7 +840,16 @@ body {
                         <input style="border: 0" class="col-sm-2" type="text" id="Otros"  runat="server" disabled/>  
                     </div>
                 <br>
-          
+            <hr style="border-color:#003563;">
+                 <div class="encabezado2">
+                <h2 style="font-size: 20px;color: white;">Declaro bajo juramento que los datos consignados en el presente documento, son verdaderos y ciertos y me someto  a lo establecido en las leyes del país, en caso de perjurio.</h2>
+            </div>
+                 <div class="campo" style="margin-left:25px;" >
+                        <center><label class="col-sm-8" for="apellido">Usuario:</label></center>
+                         <input  style="border: 0;margin-left: -122px;background-color: white;font-weight: bold;font-size: 20px;margin-top: -16px;"  class="col-sm-4" type="text"  runat="server" id="Text2" disabled/>
+                         <input  style="border: 0;margin-left: 461px; margin-top: -5px; background-color: white;font-weight: bold;"  class="col-sm-4" type="text"  runat="server" id="Text1" disabled/>
+                 </div>
+                <br/>
                 <br/>
             </div>
         </div>

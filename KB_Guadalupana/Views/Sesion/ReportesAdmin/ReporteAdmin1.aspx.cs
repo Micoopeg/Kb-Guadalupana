@@ -30,6 +30,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             llenargridviewcelulares();
             llenargridviewhijos();
             llenargridviewestudios();
+            mostrarUser();
 
             //CIF.Value = Session["cif"].ToString();
             //Response.Write(subcadena+" "+ subcadena1+" "+ subcadena3);
@@ -76,6 +77,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 SApellidoIG.Value = apellido2;
                 completo = nombre1 + " " + nombre2 + " " + apellido1 + " " + apellido2;
                 NombreC.Value = completo;
+                Text1.Value = completo;
             }
         }
 
@@ -98,6 +100,16 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             }
         }
 
+        public void mostrarUser()
+        {
+            sesion = Session["IDReporte1"].ToString();
+            string[] var1 = sn.consultarconcampoUser(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                Text2.Value = Convert.ToString(var1[0]);
+            }
+        }
+
         ////Estudios Universitarios
         public void mostrarIO()
         {
@@ -109,7 +121,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 CarreraEU.Value = Convert.ToString(var1[0]);
                 SemestreEU.Value = Convert.ToString(var1[1]);
                 AñoEU.Value = Convert.ToString(var1[2]);
-                IdiomaEU.Value = Convert.ToString(var1[3]);
+                //IdiomaEU.Value = Convert.ToString(var1[3]);
                 UniverEU.Value = Convert.ToString(var1[4]);
             }
         }
@@ -124,7 +136,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
                     sesion = Session["IDReporte1"].ToString();
                     //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-                   
+
                     sqlCon.Open();
                     string QueryString = "SELECT a.codeptelefono,a.codeptipotelefono,b.ep_tipotelefononombre,a.ep_telefononumero " +
                            "FROM ep_telefono a " +
@@ -156,12 +168,10 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                     sesion = Session["IDReporte1"].ToString();
                     //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     sqlCon.Open();
-                    string QueryString = "select t1.codepinfofamiliar,t1.ep_infofamiliarnombrehijos,t1.ep_infofamiliarocupacionhijos," +
-                               " t1.ep_infofamiliarcomentario, t1.ep_infofamiliarfechanacimientohijo " +
-                               "from ep_informaciongeneral t0 " +
-                               "inner join ep_infofamiliar t1 " +
-                               "on t0.codepinformaciongeneralcif = t1.codepinformaciongeneralcif " +
-                               "where t0.ep_informaciongeneralcif='" + sesion + "'";
+                    string QueryString = "select t1.codepinfofamiliar,t1.ep_infofamiliarnombrehijos,t1.ep_infofamiliarocupacionhijos, " +
+                        "t1.ep_infofamiliarcomentario, t1.ep_infofamiliarfechanacimientohijo from ep_informaciongeneral t0 " +
+                        "inner join ep_infofamiliar t1 on t0.codepinformaciongeneralcif = t1.codepinformaciongeneralcif" +
+                        " where t0.ep_informaciongeneralcif='" + sesion + "' and t1.ep_infofamiliarnombrehijos!=''";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     command.Fill(ds4);

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
-    <title></title>
+    <title>Estado Patrimonial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" href="../../DiseñoForms/style.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -17,6 +17,8 @@
     <link  rel="stylesheet" href="../../DiseñoCss/EstilosCss.css" type="text/css" />
     <link rel="stylesheet" href="../../DiseñosGrid/Grids.css" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
 
 
     <style>
@@ -131,6 +133,19 @@ body {
   background-color: #69a43c;
   color: white;
 }
+
+.content
+{
+    position: absolute;
+    margin-left: -253px;
+    margin-top: -75px;
+    width: 25%;
+    height: 106px;
+    padding: 10px;
+    background-color: #003563;
+    color: white;
+}
+
 </style>
 </head>
 
@@ -190,6 +205,7 @@ body {
       <input type="button" name="next" style="background-color: #003563" class="next action-button" value="Siguiente >" />
   </fieldset>
     <fieldset id="segundof" style="box-shadow: 0 0 15px 1px rgb(0 53 99);" runat="server">
+ 
     <h2 class="fs-title"><b>Informacion General</b></h2>
                 <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
       <br />
@@ -223,6 +239,11 @@ body {
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
        </div>
+    <div class="row">
+        <div id="content" class="col-lg-12">
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+        </div>
+    </div>
         <%-- GRIDVIEW NUMEROS DE TELEFONO --%>
         <div id="divGridcelular" style="overflow: auto; height: 130px">
      <asp:GridView ID="GridViewcelular" CssClass="mGrid" style="width: 692px;text-align:center" runat="server"  HeaderStyle-ForeColor="White"
@@ -304,6 +325,11 @@ body {
    <label for="start" style="margin-left: 175px;">Fecha Nacimiento Hijo</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
    <input class="tam" id="Date1" runat="server" style="margin-left: 66px;max-width: 270px;"  type="date"  value="2020-04-25" min="1950-01-01" max="2021-12-31" />
        <%-- GRIDVIEW NUMEROS DE HIJOS --%>
+        <div class="row">
+        <div id="content" class="col-lg-12">
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+        </div>
+    </div>
         <div id="divGridhijos" style="overflow: auto; height: 130px">
      <asp:GridView ID="GridViewhijos" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedhijos" BorderStyle="Solid">
@@ -380,6 +406,11 @@ body {
     <input id="EUniversidad" runat="server" type="text" class="tam"  style="max-width: 250px" placeholder="Universidad" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
      <input visible="false" id="Text22" runat="server" type="text" class="tam"  style="max-width: 250px" placeholder="Universidad" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
   <%-- GRIDVIEW NUMEROS DE ESTUDIOS Univesitarios --%>
+     <div class="row">
+        <div id="content1" class="col-lg-12">
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+        </div>
+    </div>
          <div id="divGridestudiosU" style="overflow: auto; height: 130px">
     <asp:GridView ID="GridestudiosU" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedestudiosu" BorderStyle="Solid">
@@ -492,6 +523,11 @@ body {
         </asp:GridView>
              </div>
       <br/>
+     <div class="row">
+        <div style="" class="col-lg-12">
+            <div class="content" style="text-align: justify;background-color:#69a43c"><b>Usuario:</b> Debes dar en Guardar para que que tus datos se almacenen en el sistema. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
+        </div>
+    </div>
       <input type="button" runat="server" name="next" class="next action-button" value="Guardar" onclick="guardarinformaciongeneral()"
              id="btnepigfinal" /> 
       <input type="button" name="previous" class="previous action-button" style="background-color: #003563" value="< Anterior"  />
@@ -539,6 +575,11 @@ body {
              </a>
        </div>
         </div>
+         <div class="row">
+        <div id="content3" class="col-lg-12">
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+        </div>
+    </div>
            <%-- GRIDVIEW NUMEROS DE CUENTAS --%>
         <div id="divGridcuentasvarias" style="overflow: auto; height: 130px">
                  <asp:GridView ID="GridViewcuentasvarias" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
@@ -656,6 +697,11 @@ body {
                 </div>
                 <div class="MostrarCooperativas">
                 </div> 
+   <div class="row">
+        <div id="content4" class="col-lg-12">
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+        </div>
+    </div>
                   <%-- GRIDVIEW NUMEROS DE CUENTAS POR COBRAR --%>
               <div id="divGridcuentacooperativa" style="overflow: auto; height: 130px">
                  <asp:GridView ID="GridViewcuentascooperativa" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
@@ -1128,7 +1174,8 @@ body {
              <input id="ACComentarios" runat="server" type="text"    placeholder="Especifique" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
             <hr class="solid" style="margin-top: 5px;"/>
              <h2 class="fs-title"><b>Menaje (Bienes en su casa)</b></h2>
-         <label for="start">Equipo de Computo</label>&nbsp;&nbsp;&nbsp;
+        <label for="start">Equipo de Computo</label>&nbsp;&nbsp;&nbsp;
+        <label>Q</label>
         <input id="ACMEComputo" runat="server" type="number" class="tam"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br />
         <label for="start">Amueblado Sala</label>&nbsp;&nbsp;&nbsp;
@@ -1137,33 +1184,44 @@ body {
         <label for="start">Amueblado Comedor</label>&nbsp;&nbsp;&nbsp;
         <input id="ACMAComedor" runat="server" type="number" class="tam"  style="margin-left: -7px;" placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
+
+        <b style="margin-left: 91px;">Cantidad</b>
+        <b style="margin-left: 110px;">Valor</b>
+        <br />
         <label for="start" class="tampes">Televisor </label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMATelevisorC" runat="server" type="number" class="tampes"  style="margin-left: 47px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-        <input id="ACMATelevisorV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="ACMATelevisorC"  runat="server" type="number" class="tampes"  style="margin-left: 47px;width:20.5%"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <label >Q</label>
+        <input id="ACMATelevisorV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
         <label for="start" class="tampes">Equipo de Sonido</label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMASonidoC" runat="server" type="number" class="tampes"  style="margin-left: -10px;" placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-        <input id="ACMASonidoV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /> 
+        <input id="ACMASonidoC"  runat="server" type="number" class="tampes"  style="margin-left: -10px;width:20.5%" placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+        <label >Q</label>
+        <input id="ACMASonidoV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /> 
         <br/>
         <label for="start" class="tampes">Lavadora</label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMALavadoraC" runat="server" type="number" class="tampes" style="margin-left: 47px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-        <input id="ACMALavadoraV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="ACMALavadoraC"  runat="server" type="number" class="tampes" style="margin-left: 47px;width:20.5%"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <label >Q</label>
+        <input id="ACMALavadoraV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
         <label for="start" class="tampes">Secadora</label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMASecadoraC" runat="server" type="number" class="tampes"  style="margin-left: 47px;" placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-        <input id="ACMASecadoraV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="ACMASecadoraC"  runat="server" type="number" class="tampes"  style="margin-left: 47px;width:20.5%" placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <label >Q</label>
+        <input id="ACMASecadoraV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
         <label for="start" class="tampes">Estufa</label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMAEstufaC" runat="server" type="number" class="tampes" style="margin-left: 68px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-        <input id="ACMAEstufaV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <input id="ACMAEstufaC" runat="server" type="number" class="tampes" style="margin-left: 68px;width:20.5%"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <label >Q</label>
+        <input id="ACMAEstufaV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
         <label for="start" class="tampes">Refrigeradora</label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMARefrigeradoraC" runat="server" type="number" class="tampes" style="margin-left: 20px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-        <input id="ACMARefrigeradoraV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+        <input id="ACMARefrigeradoraC"  runat="server" type="number" class="tampes" style="margin-left: 20px;width:20.5%"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <label >Q</label>
+        <input id="ACMARefrigeradoraV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
         <br/>
         <label for="start" class="tampes">Telefono Movil</label>&nbsp;&nbsp;&nbsp;
-        <input id="ACMATMovilC" runat="server" type="number" class="tampes" style="margin-left: 16px;"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-        <input id="ACMATMovilV" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+        <input id="ACMATMovilC"  runat="server" type="number" class="tampes" style="margin-left: 16px;width:20.5%"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+        <label >Q</label>
+        <input id="ACMATMovilV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
        <%--<br /> <label for="start" class="tampes">Otros </label>&nbsp;&nbsp;&nbsp;--%>
         <br/>
         
@@ -1181,7 +1239,12 @@ body {
            
         <hr class="solid" style="margin-top: 5px;"/>
             <br/>
-            <input runat="server" type="button" name="guardar" class="next action-button" value="Guardar" id="btnfinalactivo" onclick="btnguardaractivo()" /> 
+    <div class="row">
+        <div style="" class="col-lg-12">
+            <div class="content" style="text-align: justify;background-color:#69a43c"><b>Usuario:</b> Debes dar en Guardar para que que tus datos se almacenen en el sistema. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
+        </div>
+    </div>
+        <input runat="server" type="button" name="guardar" class="next action-button" value="Guardar" id="btnfinalactivo" onclick="btnguardaractivo()" /> 
         <input type="button" name="previous" class="previous action-button" style="background-color: #0070D1" value="< Anterior" />
         <input type="button" name="next" class="next action-button" style="background-color: #0070D1" value="Siguiente >" />
     </fieldset>
@@ -1478,7 +1541,12 @@ body {
                 </div> 
     </div>
     <br/>
-              <input type="button" runat="server" name="guardar" class="next action-button" value="Guardar" onclick="guardarepfinalpasivos()" id="btnguardarpasivo"/>
+         <div class="row">
+        <div style="" class="col-lg-12">
+            <div class="content" style="text-align: justify;background-color:#69a43c"><b>Usuario:</b> Debes dar en Guardar para que que tus datos se almacenen en el sistema. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
+        </div>
+    </div>
+        <input type="button" runat="server" name="guardar" class="next action-button" value="Guardar" onclick="guardarepfinalpasivos()" id="btnguardarpasivo"/>
         <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
         <input type="button" name="next" class="next action-button" style="background-color: #00AFEB" value="Siguiente >" />
     </fieldset>
@@ -1611,6 +1679,11 @@ body {
         <br/>
               <hr class="solid" style="margin-top: 5px;"/>
     <br/>
+        <div class="row">
+        <div style="" class="col-lg-12">
+            <div class="content" style="text-align: justify;background-color:orangered"><b>Usuario:</b>Al dar click en Terminar,tus datos se guardaran y ya no se podran Modificar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
+        </div>
+    </div>
         <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
         <input type="button" runat="server" name="guardar" class="next action-button" value="Terminar" onclick="guardarepfinalyenviado()" id="btnguardaringreso" />
     </fieldset>
@@ -3716,7 +3789,7 @@ body {
             this.value = val.replace(/\D|\-/, '');
         });
 
-       
+
         function el(el) {
             return document.getElementById(el);
         }

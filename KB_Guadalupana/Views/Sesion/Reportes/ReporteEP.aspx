@@ -171,10 +171,10 @@ body {
                <img src="../../../Imagenes/Logotipo.png" alt="Guadalupana" style="width: 724px;height: 100px;margin-left: -24px;margin-top: -14px;">
             </div>
            <div class="encabezado1">
-                <h2>ESTADO PATRIMONIAL DIRIGENTES Y EMPLEADOS</h2>
+                <h2>ESTADO PATRIMONIAL EMPLEADOS</h2>
             </div> 
             <div class="encabezado2">
-                <h2 style="font-size: 20px;color: white;">En cumplimiento al  articulo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
+                <h2 style="font-size: 20px;color: white;">En cumplimiento al  artículo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
             </div>
             <div class="formulario" style="margin-left: 75px;margin-top: 15px;">
                
@@ -353,7 +353,7 @@ body {
             </div>
                 <br />
                   <div class="campo" style="margin-left:80px;" >
-                        <center><label class="col-sm-3" for="apellido">Tipo Mercaderia:</label></center>
+                        <center><label class="col-sm-3" for="apellido">Tipo Mercadería:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NombreM" disabled/>
                         <center><label class="col-sm-3" for="apellido">Monto:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="MontoM" disabled/>  
@@ -413,9 +413,75 @@ body {
 <HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
                 <br />
+
+            <div class="encabezado3">
+                <h2 style="font-size: 25px;color: white;">Inversiones:</h2>
+            </div>
+
+                 <asp:GridView ID="gridviewinversiones" style="margin-left:auto;margin-right:auto" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" BorderStyle="Solid">
+                     <Columns>
+                         <asp:TemplateField HeaderText="Numero inversion" Visible="false">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumeroinversion" Text='<%# Eval("codepinversiones") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Numero tipo  institucion" Visible="false">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumerotipoinstitucioninversion" Text='<%# Eval("codeptipoinstitucion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                          <asp:TemplateField HeaderText="Numero institucion" Visible="false">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumeroinstitucioninversion" Text='<%# Eval("codepinstitucion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Numero tipo moneda" Visible="False">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumeromonedainversion" Text='<%# Eval("codeptipomoneda") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Nombre tipo  Institución">
+                           <ItemTemplate>
+                            <asp:Label ID="lbltipoinstitucionnombre" Text='<%# Eval("ep_tipoinstitucionnombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>    
+                         <asp:TemplateField HeaderText="Nombre institucion">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnombreinstitucion" Text='<%# Eval("ep_institucionnombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                         <asp:TemplateField HeaderText="Moneda">
+                           <ItemTemplate>
+                            <asp:Label ID="lbltipomonedanombre" Text='<%# Eval("ep_tipomonedanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                         <asp:TemplateField HeaderText="Plazo">
+                           <ItemTemplate>
+                            <asp:Label ID="lblplazoinversion" Text='<%# Eval("ep_inversionesplazo") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                           <asp:TemplateField HeaderText="Monto">
+                           <ItemTemplate>
+                            <asp:Label ID="lblmontoinversion" Text='<%# Eval("ep_inversionesmonto") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                         <asp:TemplateField HeaderText="Origen de la inversión">
+                           <ItemTemplate>
+                            <asp:Label ID="lblorigeninversion" Text='<%# Eval("ep_inversionesorigen") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Numero de cuenta">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumerodecuenta" Text='<%# Eval("ep_inversionesnumerocuenta") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     </Columns>
+<HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
+        </asp:GridView>
  <!-- Fin Grid Activos Inmuebles--> 
     <div class="encabezado3">
-                <h2 style="font-size: 25px;color: white;">Vehiculos:</h2>
+                <h2 style="font-size: 25px;color: white;">Vehículos:</h2>
             </div>
                 <br/>
                    <center><h4 id="H1" runat="server" visible="false"><b>N/A</b></h4></center>
@@ -443,7 +509,7 @@ body {
                             <asp:Label ID="lblmarca" Text='<%# Eval("ep_vehiculomarca") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Linea">
+                           <asp:TemplateField HeaderText="Línea">
                            <ItemTemplate>
                             <asp:Label ID="lbllineavehiculo" Text='<%# Eval("ep_vehiculolinea") %>' runat="server" />
                         </ItemTemplate>
@@ -476,12 +542,12 @@ body {
                         <input style="border: 0" class="col-sm-2" type="text" id="TMaquinaria" runat="server" disabled/>
                         <center><label class="col-sm-2" for="apellido">Monto:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="TMaquinariaMonto" runat="server" disabled/> 
-                        <center><label class="col-sm-2" for="apellido">Especificacion:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Especificación:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="TMaquinariaEs" runat="server" disabled/>
                    </div>
                 <br>
                 <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-2" for="apellido">Equipo Computo:</label></center>
+                        <center><label class="col-sm-2" for="apellido">Equipo Cómputo:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" id="EComputo" runat="server" disabled/>
                         <center><label class="col-sm-2" for="apellido">Amueblado Sala:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="AmuebladoS" runat="server" disabled/> 
@@ -491,62 +557,80 @@ body {
                 <div class="campo"  >
                     <br>
                     <br>
+                    <b style="margin-left: 469px;">Cantidad</b>
+                    <b style="margin-left: 66px;">Valor</b>
                         <center><label style="    " class="col-sm-8" for="apellido">Televisor:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="TelevisorC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="TelevisorM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TelevisorT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="TelevisorM" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TelevisorT" runat="server" disabled/>--%>
                     </div>
                 <div class="campo"  >
                     <br>
                         <center><label style="    " class="col-sm-8" for="apellido">Equipo de Sonido:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="EquipoSC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="EquipoSM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="EquipoST" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="EquipoSM" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="EquipoST" runat="server" disabled/>--%>
                 </div>
                 <div class="campo"  >
                     <br>
                         <center><label style="    " class="col-sm-8" for="apellido">Lavadora:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="LavadoraC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="LavadoraM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="LavadoraT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="LavadoraM" runat="server" disabled/>
+                      <%--  <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="LavadoraT" runat="server" disabled/>--%>
                 </div>
                  <div class="campo"  >
                     <br/>
                         <center><label style="    " class="col-sm-8" for="apellido">Secadora:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="SecadoraC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="SecadoraM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="SecadoraT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="SecadoraM" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="SecadoraT" runat="server" disabled/>--%>
                 </div> 
                 <div class="campo"  >
                     <br/>
                         <center><label style="    " class="col-sm-8" for="apellido">Estufa:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="EstufaC" runat="server"  disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="EstufaM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="EstufaT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="EstufaM" runat="server" disabled/>
+                      <%--  <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="EstufaT" runat="server" disabled/>--%>
                 </div>  
                 <div class="campo"  >
                     <br>
                         <center><label style="    " class="col-sm-8" for="apellido">Refrigeradora:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="RefriC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="RefriM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="RefriT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="RefriM" runat="server" disabled/>
+                        <%--<input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="RefriT" runat="server" disabled/>--%>
                 </div>
                 <div class="campo"  >
                     <br/>
-                        <center><label style="    " class="col-sm-8" for="apellido">Telefono Movil:</label></center>
+                        <center><label style="    " class="col-sm-8" for="apellido">Teléfono Móvil:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="TMC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="TMM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TMT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="TMM" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TMT" runat="server" disabled/>--%>
                 </div>
+                <br />
+                 <div class="encabezado3">
+                <h2 style="font-size: 25px;color: white;">Otros Activos:</h2>
+            </div>
                 <div class="campo"  >
                     <br/>
-                        <center><label style="    " class="col-sm-8" for="apellido">Otros:</label></center>
-                        <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="OtrosC" runat="server" disabled/> 
+                        <label class="col-sm-5" for="apellido">Descripción:</label>
+                        <input style="border: 0;  margin-left: -120px" class="col-sm-5" type="text" id="OtrosC" runat="server" disabled/> 
+                        <label class="col-sm-2" for="apellido">Valor:</label>
                         <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="OtrosM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="OtrosT"  runat="server" disabled/>
                 </div>
                 <br/>
-                <br/>
+                <br />
+                 <div class="encabezado3">
+                <h2 style="font-size: 25px;color: white;">Fondo Fenafore:</h2>
+            </div>
+                <div class="campo"  >
+                    <br/>
+                        <%--<center><label style="    " class="col-sm-5" for="apellido">Descripcion:</label></center>
+                        <input style="border: 0;  margin-left: -120px;" class="col-sm-4" type="text" id="Fena1" runat="server" disabled/> --%>
+                         <center><label style="    margin-left: 350px;" class="col-sm-2" for="apellido">Valor:</label></center>
+                         <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="Fena2" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TMT" runat="server" disabled/>--%>
+                </div>
+                <br />
             <div class="encabezado2">
                 <h2 style="font-size: 25px;color: white;">Pasivos</h2>
             </div>
@@ -590,7 +674,7 @@ body {
  <!-- Fin Grid Pasivo Cuentas por Pagar-->
                 <br/>
              <div class="encabezado3">
-                <h2 style="font-size: 25px;color: white;">Prestamos:</h2>
+                <h2 style="font-size: 25px;color: white;">Préstamos:</h2>
             </div>
                 <br />
                 <center><h4 id="H3" runat="server" visible="false"><b>N/A</b></h4></center>
@@ -598,12 +682,12 @@ body {
     <asp:GridView ID="GridViewpasivos"  CssClass="mGrid" style="margin-left:auto;margin-right:auto" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False"  BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField HeaderText="Número prestamo" Visible="False">
+                         <asp:TemplateField HeaderText="Número préstamo" Visible="False">
                            <ItemTemplate>
                             <asp:Label ID="lblnumeroprestamo" Text='<%# Eval("codepprestamo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Número Tipo prestamo" Visible="False">
+                         <asp:TemplateField HeaderText="Número Tipo préstamo" Visible="False">
                            <ItemTemplate>
                             <asp:Label ID="lblnumerotipoprestamo" Text='<%# Eval("codeptipoprestamo") %>' runat="server" />
                         </ItemTemplate>
@@ -618,12 +702,12 @@ body {
                             <asp:Label ID="lblnumtipodeinstitucion" Text='<%# Eval("codeptipoinstitucion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Tipo de prestamo">
+                           <asp:TemplateField HeaderText="Tipo de préstamo">
                            <ItemTemplate>
                             <asp:Label ID="lbltipoprestamo" Text='<%# Eval("ep_tipoprestamonombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                           <asp:TemplateField HeaderText="Tipo de institucion">
+                           <asp:TemplateField HeaderText="Tipo de institución">
                            <ItemTemplate>
                             <asp:Label ID="lbltipoinstitucion" Text='<%# Eval("ep_tipoinstitucionnombre") %>' runat="server" />
                         </ItemTemplate>
@@ -664,7 +748,7 @@ body {
  <!-- Fin Grid Pasivo Prestamos-->
                 <br/>
             <div class="encabezado3">
-                <h2 style="font-size: 25px;color: white;">Tarjetas de Credito:</h2>
+                <h2 style="font-size: 25px;color: white;">Tarjetas de Crédito:</h2>
             </div>
                 <br />
  <!-- Grid Pasivo Tarjetas-->
@@ -721,21 +805,21 @@ body {
                 <h2 style="font-size: 25px;color: white;">Otras Deudas:</h2>
             </div>
                   <div class="campo" style="margin-left:80px;" >
-                        <center><label class="col-sm-2" for="apellido">Especificacion:</label></center>
+                        <center><label class="col-sm-2" for="apellido">Especificación:</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" id="EspD"  runat="server" disabled/>
                         <center><label class="col-sm-3" for="apellido">Monto:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="EspM"  runat="server" disabled/>  
                     </div>
                 <br/>
             <div class="encabezado3">
-                <h2 style="font-size: 25px;color: white;">Pasivo Contigente:</h2>
+                <h2 style="font-size: 25px;color: white;">Pasivo Contingente:</h2>
             </div>
                 <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido">Nombre Entidad:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" id="NombreEN"  runat="server" disabled/>
                         <center><label class="col-sm-2" for="apellido">Nombre Deudor:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="NombreD"  runat="server" disabled/> 
-                        <center><label class="col-sm-2" for="apellido">Relacion Deudor:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Relación Deudor:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="RelacionD"  runat="server" disabled/>
                    </div>
                 <br/>
@@ -744,10 +828,11 @@ body {
                         <input style="border: 0" class="col-sm-2" type="text" id="SaldoD"  runat="server" disabled/>
                         <center><label class="col-sm-2" for="apellido" style="margin-top: -10px;">Fecha Desembolso:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="FechaDD"  runat="server" disabled/> 
-                        <center><label class="col-sm-2" for="apellido" style="margin-top: -10px;">Fecha Finalizacion:</label></center> 
+                        <center><label class="col-sm-2" for="apellido" style="margin-top: -10px;">Fecha Finalización:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="FechaFina"  runat="server" disabled/>
                    </div>
                 <br>
+              
              <div class="encabezado2">
                 <h2 style="font-size: 25px;color: white;">Ingresos</h2>
             </div>
@@ -767,18 +852,18 @@ body {
                 <h2 style="font-size: 25px;color: white;">Negocio Propio:</h2>
             </div>
                 <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-2" for="apellido">Tipo Negocio:</label></center>
-                        <input style="border: 0" class="col-sm-2" type="text"  id="TipoNeg"  runat="server" disabled/>
-                        <center><label class="col-sm-2" for="apellido">Nombre Negocio:</label></center> 
-                        <input style="border: 0" class="col-sm-2" type="text"  id="NombreNeg"  runat="server" disabled/> 
-                        <center><label class="col-sm-2" for="apellido">No. Patente:</label></center> 
-                        <input style="border: 0" class="col-sm-2" type="text"  id="NoNeg"  runat="server" disabled/>
+                       <%-- <center><label class="col-sm-2" for="apellido">Tipo Negocio:</label></center>
+                        <input style="border: 0" class="col-sm-2" type="text"  id="TipoNeg"  runat="server" disabled/>--%>
+                        <center><label class="col-sm-3" for="apellido">Nombre Negocio:</label></center> 
+                        <input style="border: 0" class="col-sm-3" type="text"  id="NombreNeg"  runat="server" disabled/> 
+                        <center><label class="col-sm-3" for="apellido">No. Patente:</label></center> 
+                        <input style="border: 0" class="col-sm-3" type="text"  id="NoNeg"  runat="server" disabled/>
                    </div>
                 <br/>
                 <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido">No Empleados:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text"  id="EmpleNeg"  runat="server" disabled/>
-                        <center><label class="col-sm-2" for="apellido">Obj del Negocio:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Obj. del Negocio:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text"  id="ObjNeg"  runat="server" disabled/> 
                         <center><label class="col-sm-2" for="apellido">Ingresos Mensuales:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="IngeNeg"  runat="server" disabled/>
@@ -787,7 +872,7 @@ body {
                 <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido" style="margin-top: -10px;">Egresos Mensuales:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text"  id="EgrNeg"  runat="server" disabled/>
-                        <center><label class="col-sm-2" for="apellido">Direccion:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Dirección:</label></center> 
                         <input style="border: 0" class="col-sm-6" type="text"  id="DireNeg"  runat="server" disabled/>
                    </div>
                 <br/>
@@ -797,17 +882,16 @@ body {
                <div class="campo" style="margin-left:80px;" >
                         <center><label class="col-sm-3" for="apellido" style="margin-top: -10px;">Nombre Remitente:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" id="NomRem"  runat="server" disabled/>
-                        <center><label class="col-sm-3" for="apellido"  style="margin-top: -10px;">Relacion Remitente:</label></center> 
+                        <center><label class="col-sm-3" for="apellido"  style="margin-top: -10px;">Relación Remitente:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="RelaRem"  runat="server" disabled/>  
                     </div> 
                 <div class="campo" style="margin-left:80px;" >
                     <br>
-                        <center><label class="col-sm-3" for="apellido">Monto:</label></center>
+                        <center><label style="    margin-left: 200px;" class="col-sm-3" for="apellido">Monto:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" id="MontoRem"  runat="server" disabled/>
-                        <center><label class="col-sm-3" for="apellido">Periodo Recepcion:</label></center> 
-                        <input style="border: 0" class="col-sm-2" type="text" id="PeriRem"  runat="server" disabled/>  
+                        <%--<center><label class="col-sm-3" for="apellido">Periodo Recepción:</label></center> 
+                        <input style="border: 0" class="col-sm-2" type="text" id="PeriRem"  runat="server" disabled/>--%>  
                     </div> 
-                <br>
                 <br>
              <div class="encabezado2">
                 <h2 style="font-size: 25px;color: white;">Egresos</h2>
@@ -820,7 +904,7 @@ body {
                     </div>
                 <br>
                  <div class="campo" style="margin-left:80px;" >
-                        <center><label class="col-sm-3" for="apellido">Prestamos:</label></center>
+                        <center><label class="col-sm-3" for="apellido">Préstamos:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" id="Presta"  runat="server" disabled/>
                         <center><label class="col-sm-5" for="apellido">Pago Estudios:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="PagoEstud"  runat="server" disabled/>  
@@ -829,12 +913,12 @@ body {
                  <div class="campo" style="margin-left:80px;" >
                         <center><label class="col-sm-3" for="apellido">Vestuario:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" id="Vestuar"  runat="server" disabled/>
-                        <center><label class="col-sm-5" for="apellido">Tarjeta de Credito:</label></center> 
+                        <center><label class="col-sm-5" for="apellido">Tarjeta de Crédito:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="TarCre"  runat="server" disabled/>  
                     </div>
                   <br>
                  <div class="campo" style="margin-left:80px;" >
-                        <center><label class="col-sm-3" for="apellido">Recreacion:</label></center>
+                        <center><label class="col-sm-3" for="apellido">Recreación:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" id="Recrea"  runat="server" disabled/>
                         <center><label class="col-sm-5" for="apellido">Otros Egresos:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="Otros"  runat="server" disabled/>  

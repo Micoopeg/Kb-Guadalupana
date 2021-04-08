@@ -62,6 +62,10 @@ namespace KB_Guadalupana.Views.Sesion
         Sentencia sn = new Sentencia();
         protected void Page_Load(object sender, EventArgs e)
         {
+            boton1.Visible = false;
+            buton2.Visible = false;
+            buton3.Visible = false;
+
             obtencioncampos();
             if (!IsPostBack)
             {
@@ -79,14 +83,14 @@ namespace KB_Guadalupana.Views.Sesion
                                 switch (num)
                                 {
                                     case 0:
-                                         Response.Write("ERROR TECNICO CONSULTAR CON EL DEPARTAMENTO DE INFORMATICA +ESTADO INCORRECTO+");
+                                        Response.Write("ERROR TECNICO CONSULTAR CON EL DEPARTAMENTO DE INFORMATICA +ESTADO INCORRECTO+");
                                         break;
                                     case 1:
                                         Response.Write("ERROR TECNICO CONSULTAR CON EL DEPARTAMENTO DE INFORMATICA +ESTADO INCORRECTO no.2+");
                                         break;
                                     case 2:
                                         //Response.Write("EN PROCESO DE MODIFICCION" + cifactual);
-                                       
+
                                         cargardatosaformulario();
                                         IGCIF.Disabled = true;
                                         llenargridviewcelulares();
@@ -104,7 +108,7 @@ namespace KB_Guadalupana.Views.Sesion
                                         llenargridviewhijos();
                                         break;
                                     case 3:
-                                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El Estado Patrimonial asociado al cif: "+cifactual+" se registro y envio correctamente.);", true);
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El Estado Patrimonial asociado al cif: " + cifactual + " se registro y envio correctamente.);", true);
                                         cargardatosaformulario();
                                         llenargridviewcelulares();
                                         llenargridviewcuentasvarias();
@@ -160,35 +164,35 @@ namespace KB_Guadalupana.Views.Sesion
                                     logic.insertartablas("ep_menajedecasaencabezado", valores8);
 
                                     string sig9 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores9 = { sig9, sig8, "1", "", "" };
+                                    string[] valores9 = { sig9, sig8, "1", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores9);
 
                                     string sig10 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores10 = { sig10, sig8, "2", "", "" };
+                                    string[] valores10 = { sig10, sig8, "2", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores10);
 
                                     string sig11 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores11 = { sig11, sig8, "3", "", "" };
+                                    string[] valores11 = { sig11, sig8, "3", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores11);
 
                                     string sig12 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores12 = { sig12, sig8, "4", "", "" };
+                                    string[] valores12 = { sig12, sig8, "4", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores12);
 
                                     string sig13 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores13 = { sig13, sig8, "5", "", "" };
+                                    string[] valores13 = { sig13, sig8, "5", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores13);
 
                                     string sig14 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores14 = { sig14, sig8, "6", "", "" };
+                                    string[] valores14 = { sig14, sig8, "6", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores14);
 
                                     string sig15 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores15 = { sig15, sig8, "7", "", "" };
+                                    string[] valores15 = { sig15, sig8, "7", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores15);
 
                                     string sig16 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores16 = { sig16, sig8, "8", "", "" };
+                                    string[] valores16 = { sig16, sig8, "8", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores16);
 
                                     string sig17 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
@@ -196,12 +200,16 @@ namespace KB_Guadalupana.Views.Sesion
                                     logic.insertartablas("ep_menajecasadetalle", valores17);
 
                                     string sig18 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores18 = { sig18, sig8, "10", "", "" };
+                                    string[] valores18 = { sig18, sig8, "10", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores18);
 
                                     string sig19 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores19 = { sig19, sig8, "11", "", "" };
+                                    string[] valores19 = { sig19, sig8, "11", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores19);
+
+                                    string sig199 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
+                                    string[] valores199 = { sig199, sig8, "12", "", "", "" };
+                                    logic.insertartablas("ep_menajecasadetalle", valores199);
 
                                     string sig20 = logic.siguiente("ep_deudasvarias ", "codepdeudasvarias");
                                     string[] valores20 = { sig20, sig, "", "" };
@@ -244,7 +252,7 @@ namespace KB_Guadalupana.Views.Sesion
                                     logic.insertartablas("ep_personapep", valores29);
 
                                     string sig30 = logic.siguiente("ep_contratistaproveedor ", "codepcontratistaproveedor");
-                                    string[] valores30 = { sig29, sig, "2"};
+                                    string[] valores30 = { sig29, sig, "2" };
                                     logic.insertartablas("codepcontratistaproveedor", valores30);
 
 
@@ -316,48 +324,52 @@ namespace KB_Guadalupana.Views.Sesion
                                     logic.insertartablas("ep_menajedecasaencabezado", valores8);
 
                                     string sig9 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores9 = { sig9, sig8, "1", "", "" };
+                                    string[] valores9 = { sig9, sig8, "1", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores9);
 
                                     string sig10 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores10 = { sig10, sig8, "2", "", "" };
+                                    string[] valores10 = { sig10, sig8, "2", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores10);
 
                                     string sig11 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores11 = { sig11, sig8, "3", "", "" };
+                                    string[] valores11 = { sig11, sig8, "3", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores11);
 
                                     string sig12 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores12 = { sig12, sig8, "4", "", "" };
+                                    string[] valores12 = { sig12, sig8, "4", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores12);
 
                                     string sig13 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores13 = { sig13, sig8, "5", "", "" };
+                                    string[] valores13 = { sig13, sig8, "5", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores13);
 
                                     string sig14 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores14 = { sig14, sig8, "6", "", "" };
+                                    string[] valores14 = { sig14, sig8, "6", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores14);
 
                                     string sig15 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores15 = { sig15, sig8, "7", "", "" };
+                                    string[] valores15 = { sig15, sig8, "7", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores15);
 
                                     string sig16 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores16 = { sig16, sig8, "8", "", "" };
+                                    string[] valores16 = { sig16, sig8, "8", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores16);
 
                                     string sig17 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores17 = { sig17, sig8, "9", "", "" };
+                                    string[] valores17 = { sig17, sig8, "9", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores17);
 
                                     string sig18 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores18 = { sig18, sig8, "10", "", "" };
+                                    string[] valores18 = { sig18, sig8, "10", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores18);
 
                                     string sig19 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
-                                    string[] valores19 = { sig19, sig8, "11", "", "" };
+                                    string[] valores19 = { sig19, sig8, "11", "", "", "" };
                                     logic.insertartablas("ep_menajecasadetalle", valores19);
+
+                                    string sig199 = logic.siguiente("ep_menajecasadetalle ", "codepmenajecasadetalle");
+                                    string[] valores199 = { sig199, sig8, "12", "", "", "" };
+                                    logic.insertartablas("ep_menajecasadetalle", valores199);
 
                                     string sig20 = logic.siguiente("ep_deudasvarias ", "codepdeudasvarias");
                                     string[] valores20 = { sig20, sig, "", "" };
@@ -410,7 +422,7 @@ namespace KB_Guadalupana.Views.Sesion
                                     string[] datos = { codigousuario, codigoloteactual, sig };
                                     logic.modificartablasdoscampos("ep_control", campos, datos);
 
-                                   
+
                                 }
                             }
                         }
@@ -428,7 +440,7 @@ namespace KB_Guadalupana.Views.Sesion
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
             }
-       }
+        }
         public void bloquearcamposparalectura()
         {
             IGCIF.Disabled = true;
@@ -471,9 +483,9 @@ namespace KB_Guadalupana.Views.Sesion
             IFFecha.Disabled = true;
 
             //btns grid
-            AgregarIF.Visible = false;
-            GuardarIF.Visible = false;
-            EliminarIF.Visible = false;
+            AgregarIF.Visible = true;
+            GuardarIF.Visible = true;
+            EliminarIF.Visible = true;
 
             Text1.Disabled = true;
             Text2.Disabled = true;
@@ -557,7 +569,7 @@ namespace KB_Guadalupana.Views.Sesion
             GuardarV1.Visible = false;
             EliminarV1.Visible = false;
             ACTVehiculo1.Enabled = false;
-            
+
             ACMarca.Disabled = true;
             ACLinea.Disabled = true;
             ACModelo.Disabled = true;
@@ -706,6 +718,7 @@ namespace KB_Guadalupana.Views.Sesion
             mostrarmenaje9();
             mostrarmenaje10();
             mostrarmenaje11();
+            mostrarmenaje12();
             mostrardeudas();
             mostrarpasivocontigente();
             mostraringresos();
@@ -722,7 +735,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             llenarcombotipoinstitucioninversion();
             llenarcombosucursal();
-        
+
             llenarcombodepartamento();
             llenarcombomunicipio();
             llenarcombozona();
@@ -753,16 +766,24 @@ namespace KB_Guadalupana.Views.Sesion
         public void obtencioncampos()
         {
             //Usuario Sesion
-            Nombresesion = Session["sesion_usuario"].ToString();
-            NombreUsuario.InnerText = Session["nombre"].ToString();
-            cifactual = cifai.Value;
-            Session["cif"] = "31";
+            try
+            {
+                Nombresesion = Session["sesion_usuario"].ToString();
+                NombreUsuario.InnerText = Session["nombre"].ToString();
+                cifactual = cifai.Value;
+                Session["cif"] = "31";
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Por tiempo de Inactividad se Cerro la Sesion');", true);
+                Response.Redirect("../Index.aspx");
+            }
         }
 
 
         //Funciones de carga combobox
-       
-       
+
+
 
         public void llenarcombopuesto()
         {
@@ -803,7 +824,7 @@ namespace KB_Guadalupana.Views.Sesion
                     IGPDepartamento1.Items.Insert(0, new ListItem("[Departamento]", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
-            }               
+            }
         }
         public void llenarcombomunicipio()
         {
@@ -873,7 +894,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     string QueryString = "select * from ep_estadocivil;";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString,sqlCon);
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "estadocivil");
                     id_categoriaestadocivil.DataSource = ds;
@@ -914,7 +935,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     string QueryString = "select * from ep_tipomoneda;";
-                    MySqlDataAdapter myCommand1 = new MySqlDataAdapter(QueryString,sqlCon);
+                    MySqlDataAdapter myCommand1 = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds1 = new DataSet();
                     myCommand1.Fill(ds1, "tipomoneda1");
                 }
@@ -930,7 +951,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     string QueryString = "select * from ep_tipomoneda;";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString,sqlCon);
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "tipomoneda");
                     ACCTMoneda1.DataSource = ds;
@@ -1054,7 +1075,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     string QueryString = "select * from ep_tipovehiculo;";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString,sqlCon);
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "tipovehiculo");
                     ACTVehiculo1.DataSource = ds;
@@ -1217,7 +1238,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "select * from gen_area where codgensucursal='"+codtiposucursal+"';";
+                    string QueryString = "select * from gen_area where codgensucursal='" + codtiposucursal + "';";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "area");
@@ -1341,7 +1362,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     string QueryString = "select * from ep_institucion where codeptipoinstitucion='" + codtipoinstitucion + "' ;";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString,sqlCon);
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "institucion1");
                     PTTNombre1.DataSource = ds;
@@ -1362,7 +1383,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     string QueryString = "select * from ep_tipoparentesco;";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString,sqlCon);
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "tipoparentesco");
                     Modalidad1.DataSource = ds;
@@ -1422,7 +1443,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     string QueryString = "select * from ep_tiponacionalidad;";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString,sqlCon);
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "tiponacionalidad2");
                     EParentesco2.DataSource = ds;
@@ -1579,15 +1600,15 @@ namespace KB_Guadalupana.Views.Sesion
 
             }
             return false;
-            
-      }
+
+        }
         public bool validarcif()
         {
             string[] var2 = sn.busquedacif(Nombresesion, codigoloteactual);
             string codigocif1 = Convert.ToString(var2[0]);
             if (codigocif1 == null || codigocif1 == "0")
             {
-               
+
                 return false;
             }
             else
@@ -1596,7 +1617,7 @@ namespace KB_Guadalupana.Views.Sesion
                 cifai.Value = cifactual;
                 return true;
             }
-       
+
         }
         public void estadodeprocesocif()
         {
@@ -1643,7 +1664,7 @@ namespace KB_Guadalupana.Views.Sesion
             "ep_informaciongeneralsegundonombre","ep_informaciongeneralprimerapellido","ep_informaciongeneralsegundoapellido","ep_informaciongeneralnombreadicional",
             "ep_informaciongeneralfechanacimiento","ep_informaciongeneralnit","ep_informaciongeneralnumeroidentificacion","ep_informaciongeneralnacionalidad",
                 "ep_informaciongeneraldireccion","ep_informaciongeneralestatura","ep_informaciongeneralpeso","ep_informaciongeneralreligion","ep_informaciongeneralcorreo",
-            "ep_informaciongeneralpuesto","ep_informaciongeneralfechaboda","ep_informaciongeneralcif"};
+            "codgenpuesto","ep_informaciongeneralfechaboda","ep_informaciongeneralcif"};
                 string[] valores = {cifactual , IGAgencia1.SelectedValue, id_categoriaestadocivil.SelectedValue, IGDoc1.SelectedValue, IGPDepartamento1 .SelectedValue,
             IGMunicipio1.SelectedValue,IGPAZona1.SelectedValue,IGADepa1.SelectedValue,"3",IGPNombre.Value,IGSNombre.Value,IGPApellido.Value,
             IGSApellido.Value,IGONombre.Value,IGFNacimiento.Value,IGNits.Value,IGNoDoc.Value,IGNacionalidad.Value,IGDireccion.Value,IGEstatura.Value,IGPeso.Value,IGReligion.Value,
@@ -1652,20 +1673,24 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     logic.modificartablas("ep_informaciongeneral", campos, valores);
                 }
-                catch { }
+                catch
+                {
+                }
                 finally { try { cn.desconectar(); } catch { } }
             }
-            String script = "alert('EL ESTADO PATRIMONIAL HA SIDO ENVIADO'); window.location.href= '../../Index.aspx';";
+            String script = "alert('EL ESTADO PATRIMONIAL HA SIDO ENVIADO'); window.location.href= 'MenuBarra.aspx';";
             ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
         }
 
         protected void btnepguardarinfogeneral_Click(object sender, EventArgs e)
         {
+            boton1.Visible = true;
             guardarinicio();
             guardarfam();
         }
         protected void btnguardaractivo_Click(object sender, EventArgs e)
         {
+            buton2.Visible = true;
             guardaractivos();
             guardarinventarios();
             guardarmaquinaria();
@@ -1680,12 +1705,14 @@ namespace KB_Guadalupana.Views.Sesion
             guardarmenaje9();
             guardarmenaje10();
             guardarmenaje11();
+            guardarmenaje12();
         }
         protected void guardarepfinalpasivos1_Click(object sender, EventArgs e)
         {
+            buton3.Visible = true;
             guardarotrasdeudas();
             guardarpasivocontigente();
-         
+
         }
 
         public void guardarinicio()
@@ -1748,7 +1775,7 @@ namespace KB_Guadalupana.Views.Sesion
             if (cifactual != null)
             {
                 string[] campos = { "codepinformaciongeneralcif", "ep_contratistaproveedor_si_no" };
-                string[] valores = { cifactual, Dropdownlist23.SelectedValue};
+                string[] valores = { cifactual, Dropdownlist23.SelectedValue };
                 try
                 {
                     logic.modificartablas("ep_contratistaproveedor", campos, valores);
@@ -1786,7 +1813,6 @@ namespace KB_Guadalupana.Views.Sesion
                 finally { try { cn.desconectar(); } catch { } }
             }
         }
-       
         public void guardarmaquinaria()
         {
             if (cifactual != null)
@@ -1986,8 +2012,26 @@ namespace KB_Guadalupana.Views.Sesion
 
             if (cifactual != null)
             {
-                string[] campos = { "codmenajedecasaencabezado", "codeptipobien", "ep_menajecasadetallecantidad", "ep_menajecasadetallevalor" };
+                string[] campos = { "codmenajedecasaencabezado", "codeptipobien", "ep_menajedescripcion", "ep_menajecasadetallevalor" };
                 string[] valores = { encabezado, "11", ACMAODes.Value, ACMACantidadO.Value };
+                try
+                {
+                    logic.modificartablasdoscampos("ep_menajecasadetalle", campos, valores);
+                }
+                catch { }
+                finally { try { cn.desconectar(); } catch { } }
+            }
+        }
+        public void guardarmenaje12()
+        {
+            string encabezado = "";
+            string[] var3 = sn.consultarconcampo("ep_menajedecasaencabezado", "codepinformaciongeneralcif", cifactual);
+            encabezado = var3[0];
+
+            if (cifactual != null)
+            {
+                string[] campos = { "codmenajedecasaencabezado", "codeptipobien", "ep_menajecasadetallecantidad", "ep_menajecasadetallevalor" };
+                string[] valores = { encabezado, "12", "0", FenaVal.Value };
                 try
                 {
                     logic.modificartablasdoscampos("ep_menajecasadetalle", campos, valores);
@@ -2053,10 +2097,12 @@ namespace KB_Guadalupana.Views.Sesion
             encabezado = var3[0];
             if (cifactual != null)
             {
-                string[] campos = { "codepcontrolingreso", "ep_negociotipo", "ep_negocionombre", "ep_negociopatente", "ep_negocioempleados",
-                    "ep_negocioobjeto", "ep_negocioingresos", "ep_negocioegresos","ep_negociodireccion" };
-                string[] valores = { encabezado,/* ITNegocio.Value,*/ ITNNegocio.Value, ITpatente.Value, ITNEmpleados.Value, ITONegocio.Value, ITIMensuales.Value,
-                ITEMensuales.Value,ITDireccion.Value};
+                //string[] campos = { "codepcontrolingreso", "ep_negociotipo", "ep_negocionombre", "ep_negociopatente", "ep_negocioempleados",
+                //    "ep_negocioobjeto", "ep_negocioingresos", "ep_negocioegresos","ep_negociodireccion" };
+                //string[] valores = { encabezado,/* ITNegocio.Value,*/ITNegocio.Value, ITNNegocio.Value, ITpatente.Value, ITNEmpleados.Value, ITONegocio.Value, ITIMensuales.Value,
+                //ITEMensuales.Value,ITDireccion.Value};
+                string[] campos = { "codepcontrolingreso", "ep_negocionombre", "ep_negociopatente", "ep_negocioempleados", "ep_negocioobjeto", "ep_negocioingresos", "ep_negocioegresos", "ep_negociodireccion" };
+                string[] valores = { encabezado, ITNNegocio.Value, ITpatente.Value, ITNEmpleados.Value, ITONegocio.Value, ITIMensuales.Value, ITEMensuales.Value, ITDireccion.Value };
                 try
                 {
                     logic.modificartablas("ep_negocio", campos, valores);
@@ -2141,11 +2187,11 @@ namespace KB_Guadalupana.Views.Sesion
 
                 }
             }
-           
+
         }
         public void guardarasociadopep()
         {
-            if (rdbsiasociadopep.Checked==true)
+            if (rdbsiasociadopep.Checked == true)
             {
                 if (EParentesco2.SelectedValue != "0" | Modalidad2.SelectedValue != "0")
                 {
@@ -2169,7 +2215,7 @@ namespace KB_Guadalupana.Views.Sesion
                 }
 
             }
-          
+
         }
         ///////////////////////////////////////////////GRIDVIEWS///////////////////////////////////////////
         ///
@@ -2180,14 +2226,18 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "SELECT d.codepinversiones,d.codeptipoinstitucion,d.codepinstitucion,d.codeptipomoneda,a.ep_tipoinstitucionnombre,b.ep_institucionnombre,c.ep_tipomonedanombre,d.ep_inversionesnombre,d.ep_inversionesplazo,d.ep_inversionesmonto,d.ep_inversionesorigen,d.ep_inversionesnumerocuenta FROM ep_inversiones d INNER JOIN ep_tipoinstitucion a INNER JOIN ep_institucion b INNER JOIN ep_tipomoneda c ON d.codeptipoinstitucion=a.codeptipoinstitucion AND d.codepinstitucion=b.codepinstitucion AND d.codeptipomoneda=c.codeptipomoneda WHERE codepinformaciongeneralcif='"+cifactual+"';";
+                    string QueryString = "SELECT d.codepinversiones,d.codeptipoinstitucion,d.codepinstitucion," +
+                        "d.codeptipomoneda,a.ep_tipoinstitucionnombre,b.ep_institucionnombre," +
+                        "c.ep_tipomonedanombre,d.ep_inversionesnombre,d.ep_inversionesplazo,d.ep_inversionesmonto," +
+                        "d.ep_inversionesorigen,d.ep_inversionesnumerocuenta FROM ep_inversiones d INNER JOIN ep_tipoinstitucion a " +
+                        "INNER JOIN ep_institucion b INNER JOIN ep_tipomoneda c ON d.codeptipoinstitucion=a.codeptipoinstitucion " +
+                        "AND d.codepinstitucion=b.codepinstitucion AND d.codeptipomoneda=c.codeptipomoneda " +
+                        "WHERE codepinformaciongeneralcif='" + cifactual + "';";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);
                     gridviewinversiones.DataSource = ds3;
                     gridviewinversiones.DataBind();
- 
-
 
                 }
                 catch (Exception ex)
@@ -2207,7 +2257,7 @@ namespace KB_Guadalupana.Views.Sesion
             llenarcomboinstitucioninversion(codigotipoentidad);
             DropDownList3.SelectedValue = Convert.ToString((gridviewinversiones.SelectedRow.FindControl("lblnumeroinstitucioninversion") as Label).Text);
             ACIMoneda1.SelectedValue = Convert.ToString((gridviewinversiones.SelectedRow.FindControl("lblnumeromonedainversion") as Label).Text);
-            ACIPlazo.Value = (gridviewinversiones.SelectedRow.FindControl("lblplazoinversion") as Label).Text;        
+            ACIPlazo.Value = (gridviewinversiones.SelectedRow.FindControl("lblplazoinversion") as Label).Text;
             ACIMonto.Value = Convert.ToString((gridviewinversiones.SelectedRow.FindControl("lblmontoinversion") as Label).Text);
             ACIOrigeninv.Value = Convert.ToString((gridviewinversiones.SelectedRow.FindControl("lblorigeninversion") as Label).Text);
             Text24.Value = Convert.ToString((gridviewinversiones.SelectedRow.FindControl("lblnumerodecuenta") as Label).Text);
@@ -2217,7 +2267,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewestudiosuniversitarios()
         {
-         
+
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
@@ -2288,14 +2338,15 @@ namespace KB_Guadalupana.Views.Sesion
             //IGCelular.Value = (GridViewcelular.SelectedRow.FindControl("lblnombretelefono") as Label).Text;
             IGTCel1.SelectedValue = Convert.ToString((GridViewcelular.SelectedRow.FindControl("lbltipotelefono") as Label).Text);
             Text6.Value = Convert.ToString((GridViewcelular.SelectedRow.FindControl("lblcodeptelefono") as Label).Text);
-       
+
         }
 
         public void llenargridviewhijos()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
-                try {
+                try
+                {
                     //{
                     //sqlCon.Open();
                     //string QueryString = "SELECT codepinfofamiliar,ep_infofamiliarnombrehijos WHERE codepinformaciongeneralcif=1;";
@@ -2306,7 +2357,7 @@ namespace KB_Guadalupana.Views.Sesion
                     //GridViewhijos.DataBind();
 
                     sqlCon.Open();
-                    string QueryString = "select codepinfofamiliar, ep_infofamiliarnombrehijos,ep_infofamiliarocupacionhijos,ep_infofamiliarcomentario,ep_infofamiliarfechanacimientohijo from ep_infofamiliar where codepinformaciongeneralcif='"+cifactual+ "' AND ep_infofamiliarnombrehijos!=''";
+                    string QueryString = "select codepinfofamiliar, ep_infofamiliarnombrehijos,ep_infofamiliarocupacionhijos,ep_infofamiliarcomentario,ep_infofamiliarfechanacimientohijo from ep_infofamiliar where codepinformaciongeneralcif='" + cifactual + "' AND ep_infofamiliarnombrehijos!=''";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);
@@ -2350,7 +2401,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                 }
             }
-              
+
         }
         protected void OnSelectedIndexChangedestudios(object sender, EventArgs e)
         {
@@ -2374,7 +2425,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     sqlCon.Open();
                     string QueryString = "SELECT codepcuentas,ep_cuentasnombre,ep_cuentasmonto,ep_cuentasorigen FROM ep_cuentas where codepinformaciongeneralcif='" + cifactual + "' AND codeptipocuenta=4;";
-                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     myCommand.Fill(ds4);
                     GridViewcuentasporcobrar.DataSource = ds4;
@@ -2445,7 +2496,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre,ep_vehiculomarca,ep_vehiculolinea,ep_vehiculomodelo,ep_vehiculoplaca,ep_vehiculocomentario,ep_vehiculoanombrede,ep_vehiculomotivodeanombrede,ep_vehiculomonto FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b ON a.codeptipovehiculo = b.codeptipovehiculo WHERE codepinformaciongeneralcif='" + cifactual+"';";
+                    string QueryString = "SELECT codepvehiculo,a.codeptipovehiculo,b.ep_tipovehiculonombre,ep_vehiculomarca,ep_vehiculolinea,ep_vehiculomodelo,ep_vehiculoplaca,ep_vehiculocomentario,ep_vehiculoanombrede,ep_vehiculomotivodeanombrede,ep_vehiculomonto FROM ep_vehiculo a INNER JOIN ep_tipovehiculo b ON a.codeptipovehiculo = b.codeptipovehiculo WHERE codepinformaciongeneralcif='" + cifactual + "';";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     myCommand.Fill(ds4);
@@ -2472,7 +2523,7 @@ namespace KB_Guadalupana.Views.Sesion
             Text25.Value = (GridViewvehiculos.SelectedRow.FindControl("lblaquienesta") as Label).Text;
             Text26.Value = (GridViewvehiculos.SelectedRow.FindControl("lblmotivo") as Label).Text;
             //codtelefono= (GridViewvehiculos.SelectedRow.FindControl("codeptipotelefono") as Label).Text;
-            Text17.Value= (GridViewvehiculos.SelectedRow.FindControl("lblnumerodeinmueble") as Label).Text;
+            Text17.Value = (GridViewvehiculos.SelectedRow.FindControl("lblnumerodeinmueble") as Label).Text;
             Text27.Value = (GridViewvehiculos.SelectedRow.FindControl("lblmonto") as Label).Text;
 
         }
@@ -2536,7 +2587,7 @@ namespace KB_Guadalupana.Views.Sesion
                 }
             }
 
-               
+
         }
         protected void OnSelectedIndexChangedpasivos(object sender, EventArgs e)
         {
@@ -2552,7 +2603,7 @@ namespace KB_Guadalupana.Views.Sesion
             PMInicial.Value = (GridViewpasivos.SelectedRow.FindControl("lblmontoinicial") as Label).Text;
             PSActual.Value = (GridViewpasivos.SelectedRow.FindControl("lblsaldoactual") as Label).Text;
             PFDestino.Value = (GridViewpasivos.SelectedRow.FindControl("lbldestinoprestamo") as Label).Text;
-           
+
             string fechadesembolso = string.Format("{0:yyyy-MM-dd}", (GridViewpasivos.SelectedRow.FindControl("lblfechadesembolso") as Label).Text);
             Datedesembolso.Value = fechadesembolso.Trim();
             string fechafinalizacion = string.Format("{0:yyyy-MM-dd}", (GridViewpasivos.SelectedRow.FindControl("lblfechafinalizacion") as Label).Text);
@@ -2619,7 +2670,7 @@ namespace KB_Guadalupana.Views.Sesion
                         "INNER JOIN ep_tipocuentacooperativa e " +
                         "ON a.codepinstitucion=b.codepinstitucion " +
                         "AND a.codeptipomoneda=c.codeptipomoneda AND a.codeptipoestatuscuenta=d.codeptipoestatuscuenta AND a.codeptipocuentacooperativa=e.codeptipocuentacooperativa " +
-                        "WHERE a.codeptipocuenta=3 AND a.codepinformaciongeneralcif='"+cifactual+"';";
+                        "WHERE a.codeptipocuenta=3 AND a.codepinformaciongeneralcif='" + cifactual + "';";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds4 = new DataTable();
                     myCommand.Fill(ds4);
@@ -2673,7 +2724,7 @@ namespace KB_Guadalupana.Views.Sesion
                 catch
                 {
                 }
-            }      
+            }
         }
         protected void OnSelectedIndexChangedcuentasvarias(object sender, EventArgs e)
         {
@@ -2690,7 +2741,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
 
         public void guardarcelulares(string busquedacif)
-        {        
+        {
             string[] var3 = sn.consultarconcampo("ep_telefono", "codepinformaciongeneralcif", cifactual);
             int centinela = 0;
             for (int i = 0; i < var3.Length;)
@@ -2704,7 +2755,7 @@ namespace KB_Guadalupana.Views.Sesion
                 logic.insertartablas("ep_telefono", dato);
                 centinela = centinela + 4;                          //El centinela debe sumarle la cantidad de columnas de la tabla
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
-            }           
+            }
         }
         public void guardarcuentasvarias(string busquedacif)
         {
@@ -2723,7 +2774,7 @@ namespace KB_Guadalupana.Views.Sesion
                 string am7 = var3[centinela + 8];
                 string am8 = var3[centinela + 9];
 
-                string[] dato = { sig, cifparaingreso,am1, am2, am3, am4, am5, am6, am7,am8}; //Arreglo que utiliza para guardar
+                string[] dato = { sig, cifparaingreso, am1, am2, am3, am4, am5, am6, am7, am8 }; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_cuentas", dato);
                 centinela = centinela + 10;                          //El centinela debe sumarle la cantidad de columnas de la tabla
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
@@ -2746,11 +2797,11 @@ namespace KB_Guadalupana.Views.Sesion
                 string am7 = var3[centinela + 8];
                 string am8 = var3[centinela + 9];
 
-                string[] dato = { sig, am1, cifparaingreso, am2, am3, am4, am5, am6, am7, am8}; //Arreglo que utiliza para guardar
+                string[] dato = { sig, am1, cifparaingreso, am2, am3, am4, am5, am6, am7, am8 }; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_prestamo", dato);
                 centinela = centinela + 10;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
-            }         
+            }
         }
         public void guardartarjetas(string busquedacif)
         {
@@ -2766,11 +2817,11 @@ namespace KB_Guadalupana.Views.Sesion
                 string am4 = var3[centinela + 4];
                 string am5 = var3[centinela + 5];
 
-                string[] dato = { sig, am1, am2,cifparaingreso, am3, am4, am5}; //Arreglo que utiliza para guardar
+                string[] dato = { sig, am1, am2, cifparaingreso, am3, am4, am5 }; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_tarjetadecredito", dato);
                 centinela = centinela + 7;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
-            }         
+            }
         }
         public void guardarestudios(string busquedacif)
         {
@@ -2789,7 +2840,7 @@ namespace KB_Guadalupana.Views.Sesion
                 string am7 = var3[centinela + 8];
 
 
-                string[] dato = { sig, cifparaingreso,am1, am2, am3, am4, am5, am6, am7 }; //Arreglo que utiliza para guardar
+                string[] dato = { sig, cifparaingreso, am1, am2, am3, am4, am5, am6, am7 }; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_estudio", dato);
                 centinela = centinela + 9;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
@@ -2815,7 +2866,7 @@ namespace KB_Guadalupana.Views.Sesion
                 string fm6 = var3[centinela + 8];
                 string fm7 = var3[centinela + 9];
 
-                string[] dato = { sig, cifparaingreso,am, fm1, fm2, fm3, fm4, fm5, fm6,fm7 }; //Arreglo que utiliza para guardar
+                string[] dato = { sig, cifparaingreso, am, fm1, fm2, fm3, fm4, fm5, fm6, fm7 }; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_inversiones", dato);
                 centinela = centinela + 10;                          //El centinela debe sumarle la cantidad de columnas de la tabla
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
@@ -2844,7 +2895,7 @@ namespace KB_Guadalupana.Views.Sesion
                 logic.insertartablas("ep_inmueble", dato);
                 centinela = centinela + 8;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
-            }   
+            }
         }
         public void guardarvehiculos(string busquedacif)
         {
@@ -2865,12 +2916,12 @@ namespace KB_Guadalupana.Views.Sesion
                 string am9 = var3[centinela + 10];
 
 
-                string[] dato = { sig, am1, cifparaingreso, am2, am3, am4, am5,am6,am7,am8,am9 }; //Arreglo que utiliza para guardar
+                string[] dato = { sig, am1, cifparaingreso, am2, am3, am4, am5, am6, am7, am8, am9 }; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_vehiculo", dato);
                 centinela = centinela + 11;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
             }
-               
+
         }
         public void guardarhijos(string busquedacif)
         {
@@ -2894,13 +2945,13 @@ namespace KB_Guadalupana.Views.Sesion
                 string am11 = var3[centinela + 12];
 
 
-                string[] dato = { sig, cifparaingreso,am1, am2, am3, am4, am5, am6, am7, am8, am9, am10, am11 }; //Arreglo que utiliza para guardar
+                string[] dato = { sig, cifparaingreso, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10, am11 }; //Arreglo que utiliza para guardar
                 logic.insertartablas("ep_infofamiliar", dato);
                 centinela = centinela + 13;                          //El centinela debe sumarle la cantidad de columnas de la tabla desde la 0
                 i = centinela;                                          //el i es un autoincrementable que siempre se igula al centinela
             }
-           
-               
+
+
         }
 
         public void mostrarcamposgeneral()
@@ -2977,9 +3028,9 @@ namespace KB_Guadalupana.Views.Sesion
                 IFNombreCo.Value = Convert.ToString(var1[6]);
                 IFtel.Value = Convert.ToString(var1[7]);
                 IFparenteso.Value = Convert.ToString(var1[8]);
-            }           
+            }
         }
-        
+
         public void mostrarcaja()
         {
             string[] var1 = sn.mostrarcaja(cifactual);
@@ -2987,7 +3038,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 ACCaja.Value = Convert.ToString(var1[0]);
             }
-               
+
         }
         public void mostrarinventario()
         {
@@ -2996,7 +3047,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 Text5.Value = Convert.ToString(var1[0]);
                 Number1.Value = Convert.ToString(var1[1]);
-            }          
+            }
         }
 
         public void mostrarmaquinaria()
@@ -3007,7 +3058,7 @@ namespace KB_Guadalupana.Views.Sesion
                 ACTMAquinaria.Value = Convert.ToString(var1[0]);
                 ACComentarios.Value = Convert.ToString(var1[1]);
                 Number2.Value = Convert.ToString(var1[2]);
-            }           
+            }
         }
 
         public void mostrarmenaje1()
@@ -3024,7 +3075,7 @@ namespace KB_Guadalupana.Views.Sesion
             for (int i = 0; i < var1.Length; i++)
             {
                 ACMASala.Value = Convert.ToString(var1[0]);
-            }         
+            }
         }
         public void mostrarmenaje3()
         {
@@ -3041,7 +3092,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 ACMATelevisorC.Value = Convert.ToString(var1[0]);
                 ACMATelevisorV.Value = Convert.ToString(var1[1]);
-            }           
+            }
         }
         public void mostrarmenaje5()
         {
@@ -3050,7 +3101,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 ACMASonidoC.Value = Convert.ToString(var1[0]);
                 ACMASonidoV.Value = Convert.ToString(var1[1]);
-            }           
+            }
         }
         public void mostrarmenaje6()
         {
@@ -3077,7 +3128,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 ACMAEstufaC.Value = Convert.ToString(var1[0]);
                 ACMAEstufaV.Value = Convert.ToString(var1[1]);
-            }          
+            }
         }
         public void mostrarmenaje9()
         {
@@ -3086,7 +3137,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 ACMARefrigeradoraC.Value = Convert.ToString(var1[0]);
                 ACMARefrigeradoraV.Value = Convert.ToString(var1[1]);
-            }           
+            }
         }
         public void mostrarmenaje10()
         {
@@ -3105,24 +3156,30 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 ACMAODes.Value = Convert.ToString(var1[0]);
                 ACMACantidadO.Value = Convert.ToString(var1[1]);
-            }          
+            }
+        }
+        public void mostrarmenaje12()
+        {
+            string[] var1 = sn.mostrarmenaje12(cifactual);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                //FenaDes.Value = Convert.ToString(var1[0]);
+                FenaVal.Value = Convert.ToString(var1[1]);
+            }
         }
         public void mostrardeudas()
         {
             string[] var1 = sn.mostrardeudas(cifactual);
-            for (int i = 0; i < var1.Length; i++)
-            {
-                PODeudas.Value = Convert.ToString(var1[0]);
-                POMonto.Value = Convert.ToString(var1[1]);
-            }
+
+            PODeudas.Value = Convert.ToString(var1[0]);
+            POMonto.Value = Convert.ToString(var1[1]);
+
         }
         public void mostrarpasivocontigente()
         {
             string[] var1 = sn.mostrarpasivocontigente(cifactual);
             for (int i = 0; i < var1.Length; i++)
             {
-                PODeudas.Value = Convert.ToString(var1[0]);
-                POMonto.Value = Convert.ToString(var1[1]);
 
                 PTNEntidad.Value = Convert.ToString(var1[0]);
                 PTNDeudor.Value = Convert.ToString(var1[1]);
@@ -3137,7 +3194,7 @@ namespace KB_Guadalupana.Views.Sesion
                 string fecha3 = fecha2.ToString("yyyy-MM-dd");
                 fechafinalizacion.Value = fecha3;
             }
-    
+
         }
         public void mostraringresos()
         {
@@ -3163,7 +3220,7 @@ namespace KB_Guadalupana.Views.Sesion
                 ITIMensuales.Value = Convert.ToString(var1[5]);
                 ITEMensuales.Value = Convert.ToString(var1[6]);
                 ITDireccion.Value = Convert.ToString(var1[7]);
-            }           
+            }
         }
 
         public void mostrarremesas()
@@ -3174,9 +3231,9 @@ namespace KB_Guadalupana.Views.Sesion
                 ISRNombre.Value = Convert.ToString(var1[0]);
                 ISRRelacion.Value = Convert.ToString(var1[1]);
                 ISRMonto.Value = Convert.ToString(var1[2]);
-               
+
                 ISRPeriodo.SelectedValue = Convert.ToString(var1[3]);
-            }           
+            }
         }
 
         public void mostraregresos()
@@ -3192,7 +3249,7 @@ namespace KB_Guadalupana.Views.Sesion
                 ITVestuario.Value = Convert.ToString(var1[7]);
                 ITRecreacion.Value = Convert.ToString(var1[8]);
                 ITOtros.Value = Convert.ToString(var1[9]);
-            }          
+            }
         }
 
         public void mostrarexpuestapep()
@@ -3203,7 +3260,7 @@ namespace KB_Guadalupana.Views.Sesion
                 ENIns.Value = Convert.ToString(var1[0]);
                 EPuesto.Value = Convert.ToString(var1[1]);
                 EPais.Value = Convert.ToString(var1[2]);
-            }          
+            }
         }
         public void mostrarparentescopep()
         {
@@ -3216,7 +3273,7 @@ namespace KB_Guadalupana.Views.Sesion
                 Text9.Value = Convert.ToString(var1[3]);
                 Text10.Value = Convert.ToString(var1[4]);
                 Text11.Value = Convert.ToString(var1[5]);
-            }          
+            }
         }
         public void mostrarasociadocopep()
         {
@@ -3322,7 +3379,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_cuentas", "codepcuentas");
-                    string[] valores1 = { sig, cifactual, DropDownList1.Value, ACTMoneda1.SelectedValue, ACEstatus1.SelectedValue, ACNBanco1.SelectedValue, "1","nulo", ACMonto.Value, ACOFondos.Value };
+                    string[] valores1 = { sig, cifactual, DropDownList1.Value, ACTMoneda1.SelectedValue, ACEstatus1.SelectedValue, ACNBanco1.SelectedValue, "1", "nulo", ACMonto.Value, ACOFondos.Value };
                     logic.insertartablas("ep_cuentas", valores1);
                 }
                 catch (Exception err)
@@ -3335,7 +3392,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         protected void btnguardarcuentascoope_Click(object sender, EventArgs e)
         {
-            if (ACCTMoneda1.SelectedValue == "0" || ACCEstatus1.SelectedValue == "0" || ACCNBanco1.SelectedValue == "0" || ACCOFondos.Value == "0" || ACCMonto.Value == "0"||Select1.Value == "0" )
+            if (ACCTMoneda1.SelectedValue == "0" || ACCEstatus1.SelectedValue == "0" || ACCNBanco1.SelectedValue == "0" || ACCOFondos.Value == "0" || ACCMonto.Value == "0" || Select1.Value == "0")
             {
                 String script = "alert('Verificar que los campos de de las cuentas en cooperativas no se encuentren vacios');";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
@@ -3371,7 +3428,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_cuentas", "codepcuentas");
-                    string[] valores1 = { sig, cifactual, "4", "1", "1", "1","1", ACPNombre.Value, ACPMonto.Value, ACPMotivo.Value };
+                    string[] valores1 = { sig, cifactual, "4", "1", "1", "1", "1", ACPNombre.Value, ACPMonto.Value, ACPMotivo.Value };
                     logic.insertartablas("ep_cuentas", valores1);
                 }
                 catch (Exception err)
@@ -3396,7 +3453,7 @@ namespace KB_Guadalupana.Views.Sesion
                     try
                     {
                         string sig = logic.siguiente("ep_inmueble", "codepinmueble");
-                        string[] valores1 = { sig, ACTInmueble1.SelectedValue, cifactual, ACFolio.Value, ACLibro.Value, ACDireccion.Value, ACVActual.Value, ACDes.Value, ACcomentarioinmueble.Value,ACFinca.Value };
+                        string[] valores1 = { sig, ACTInmueble1.SelectedValue, cifactual, ACFolio.Value, ACLibro.Value, ACDireccion.Value, ACVActual.Value, ACDes.Value, ACcomentarioinmueble.Value, ACFinca.Value };
                         logic.insertartablas("ep_inmueble", valores1);
                     }
                     catch (Exception err)
@@ -3406,15 +3463,15 @@ namespace KB_Guadalupana.Views.Sesion
                     finally { try { cn.desconectar(); } catch { } }
                 }
             }
-                ACFolio.Value = "";
-                ACLibro.Value = "";
-                ACDireccion.Value = "";
+            ACFolio.Value = "";
+            ACLibro.Value = "";
+            ACDireccion.Value = "";
             ACFinca.Value = "";
-                ACVActual.Value = "";
-                ACDes.Value = "";
+            ACVActual.Value = "";
+            ACDes.Value = "";
             ACcomentarioinmueble.Value = "";
-                llenargridviewbienesinmuebles();
-            
+            llenargridviewbienesinmuebles();
+
         }
         protected void btnguardarvehiculos_Click(object sender, EventArgs e)
         {
@@ -3428,7 +3485,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_vehiculo", "codepvehiculo");
-                    string[] valores1 = { sig, ACTVehiculo1.SelectedValue, cifactual, ACMarca.Value, ACLinea.Value, ACModelo.Value, ACPlaca.Value,ACCome.Value,Text25.Value,Text26.Value,Text27.Value};
+                    string[] valores1 = { sig, ACTVehiculo1.SelectedValue, cifactual, ACMarca.Value, ACLinea.Value, ACModelo.Value, ACPlaca.Value, ACCome.Value, Text25.Value, Text26.Value, Text27.Value };
                     logic.insertartablas("ep_vehiculo", valores1);
                 }
                 catch (Exception err)
@@ -3461,7 +3518,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     string sig = logic.siguiente("ep_inversiones", "codepinversiones");
 
-                    string[] valores1 = { sig ,cifactual, DropDownList2.SelectedValue, DropDownList3.SelectedValue, ACIMoneda1.SelectedValue, "sinnombre",ACIPlazo.Value, ACIMonto.Value, ACIOrigeninv.Value,Text24.Value };
+                    string[] valores1 = { sig, cifactual, DropDownList2.SelectedValue, DropDownList3.SelectedValue, ACIMoneda1.SelectedValue, "sinnombre", ACIPlazo.Value, ACIMonto.Value, ACIOrigeninv.Value, Text24.Value };
 
                     logic.insertartablas("ep_inversiones", valores1);
                 }
@@ -3480,7 +3537,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         protected void btnguardarestudiosuni_Click(object sender, EventArgs e)
         {
-            if (ENombreCarrera.Value=="" || ESemestre.Value == "" || EUniversidad.Value == "")
+            if (ENombreCarrera.Value == "" || ESemestre.Value == "" || EUniversidad.Value == "")
             {
                 String script = "alert('Verificar que los campos de estudios universitarios no se encuentren vacios');";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
@@ -3491,7 +3548,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     string sig = logic.siguiente("ep_estudio", "codepestudio");
 
-                    string[] valores1 = { sig, cifactual, ENombreCarrera.Value, EAño.Value, ESemestre.Value, EUniversidad.Value,"sinidioma","0","sinmodalidad"};
+                    string[] valores1 = { sig, cifactual, ENombreCarrera.Value, EAño.Value, ESemestre.Value, EUniversidad.Value, "sinidioma", "0", "sinmodalidad" };
 
                     logic.insertartablas("ep_estudio", valores1);
                 }
@@ -3548,7 +3605,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_prestamo", "codepprestamo");
-                    string[] valores1 = { sig, PTPrestamo1.SelectedValue, cifactual,PNPNEntidadnombre1.SelectedValue ,PNEntidad1.SelectedValue, PMInicial.Value, PSActual.Value, Datedesembolso.Value, Datefinalizacion.Value, PFDestino.Value };
+                    string[] valores1 = { sig, PTPrestamo1.SelectedValue, cifactual, PNPNEntidadnombre1.SelectedValue, PNEntidad1.SelectedValue, PMInicial.Value, PSActual.Value, Datedesembolso.Value, Datefinalizacion.Value, PFDestino.Value };
                     logic.insertartablas("ep_prestamo", valores1);
                 }
                 catch (Exception err)
@@ -3590,7 +3647,7 @@ namespace KB_Guadalupana.Views.Sesion
             PTTSaldo.Value = "";
             llenargridviewtarjetas();
         }
-       protected void btnmodificarcelular_Click(object sender, EventArgs e)
+        protected void btnmodificarcelular_Click(object sender, EventArgs e)
         {
             if (IGTCel1.SelectedValue == "0" || IGCelular.Value == "")
             {
@@ -3603,7 +3660,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     string sig = logic.siguiente("ep_telefono", "codeptelefono");
                     string[] campos = { "codeptelefono", "codeptipotelefono", "codepinformaciongeneralcif", "ep_telefononumero" };
-                    string[] datos = { Text6.Value,IGTCel1.SelectedValue, cifactual, IGCelular.Value };
+                    string[] datos = { Text6.Value, IGTCel1.SelectedValue, cifactual, IGCelular.Value };
 
                     logic.modificartablas("ep_telefono", campos, datos);
 
@@ -3631,7 +3688,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     string sig = logic.siguiente("ep_inversiones", "codepinversiones");
                     string[] campos = { "codepinversiones", "codepinformaciongeneralcif", "codeptipoinstitucion", "codepinstitucion", "codeptipomoneda", "ep_inversionesnombre", "ep_inversionesplazo", "ep_inversionesmonto", "ep_inversionesorigen", "ep_inversionesnumerocuenta" };
-                    string[] datos = { Text21.Value, cifactual, DropDownList2.SelectedValue, DropDownList3.SelectedValue, ACIMoneda1.SelectedValue, "sinnombre", ACIPlazo.Value, ACIMonto.Value, ACIOrigeninv.Value,Text24.Value };
+                    string[] datos = { Text21.Value, cifactual, DropDownList2.SelectedValue, DropDownList3.SelectedValue, ACIMoneda1.SelectedValue, "sinnombre", ACIPlazo.Value, ACIMonto.Value, ACIOrigeninv.Value, Text24.Value };
 
                     logic.modificartablas("ep_inversiones", campos, datos);
 
@@ -3681,7 +3738,7 @@ namespace KB_Guadalupana.Views.Sesion
             llenargridviewestudiosuniversitarios();
         }
 
-   
+
         protected void btnmodificarhijos_Click(object sender, EventArgs e)
         {
             if (Text1.Value == "" || Text2.Value == "")
@@ -3694,8 +3751,8 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_infofamiliar", "codepinfofamiliar");
-                    string[] campos = { "codepinfofamiliar", "codepinformaciongeneralcif", "ep_infofamiliarnombrehijos", "ep_infofamiliarocupacionhijos", "ep_infofamiliarfechanacimientohijo" , "ep_infofamiliarcomentario" };
-                    string[] datos = { Text7.Value,cifactual, Text1.Value, Text2.Value, Date1.Value, Text3.Value };
+                    string[] campos = { "codepinfofamiliar", "codepinformaciongeneralcif", "ep_infofamiliarnombrehijos", "ep_infofamiliarocupacionhijos", "ep_infofamiliarfechanacimientohijo", "ep_infofamiliarcomentario" };
+                    string[] datos = { Text7.Value, cifactual, Text1.Value, Text2.Value, Date1.Value, Text3.Value };
 
                     logic.modificartablas("ep_infofamiliar", campos, datos);
 
@@ -3751,7 +3808,7 @@ namespace KB_Guadalupana.Views.Sesion
                     string sig = logic.siguiente("ep_cuentas", "codepcuentas");
                     string[] campos = { "codepcuentas", "codepinformaciongeneralcif", "codeptipocuenta", "codeptipomoneda", "codeptipoestatuscuenta", "codepinstitucion", "ep_cuentasmonto", "ep_cuentasorigen" };
                     string[] datos = { Text13.Value, cifactual, DropDownList1.Value, ACTMoneda1.SelectedValue, ACEstatus1.SelectedValue, ACNBanco1.SelectedValue, ACMonto.Value, ACOFondos.Value };
-                    logic.modificartablas("ep_cuentas",campos, datos);
+                    logic.modificartablas("ep_cuentas", campos, datos);
                 }
                 catch (Exception err)
                 {
@@ -3774,7 +3831,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     string sig = logic.siguiente("ep_cuentas", "codepcuentas");
                     string[] campos = { "codepcuentas", "codepinformaciongeneralcif", "codeptipomoneda", "codeptipoestatuscuenta", "codepinstitucion", "codeptipocuentacooperativa", "ep_cuentasmonto", "ep_cuentasorigen" };
-                    string[] datos = { Text14.Value, cifactual, ACCTMoneda1.SelectedValue, ACCEstatus1.SelectedValue, ACCNBanco1.SelectedValue,Select1.Value ,ACCMonto.Value, ACCOFondos.Value };
+                    string[] datos = { Text14.Value, cifactual, ACCTMoneda1.SelectedValue, ACCEstatus1.SelectedValue, ACCNBanco1.SelectedValue, Select1.Value, ACCMonto.Value, ACCOFondos.Value };
                     logic.modificartablas("ep_cuentas", campos, datos);
                 }
                 catch (Exception err)
@@ -3825,7 +3882,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     string sig = logic.siguiente("ep_inmueble", "codepinmueble");
                     string[] campos = { "codepinmueble", "codeptipoinmueble", "codepinformaciongeneralcif", "ep_inmueblefolio", "ep_inmueblelibro", "ep_inmuebledireccion", "ep_inmueblevalor", "ep_inmuebledescripcion", "ep_inmueblecomentario", "ep_inmueblefinca" };
-                    string[] datos = { Text16.Value, ACTInmueble1.SelectedValue, cifactual, ACFolio.Value, ACLibro.Value, ACDireccion.Value, ACVActual.Value, ACDes.Value, ACcomentarioinmueble.Value,ACFinca.Value };
+                    string[] datos = { Text16.Value, ACTInmueble1.SelectedValue, cifactual, ACFolio.Value, ACLibro.Value, ACDireccion.Value, ACVActual.Value, ACDes.Value, ACcomentarioinmueble.Value, ACFinca.Value };
                     logic.modificartablas("ep_inmueble", campos, datos);
                 }
                 catch (Exception err)
@@ -3856,7 +3913,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     string sig = logic.siguiente("ep_vehiculo", "codepvehiculo");
                     string[] campos = { "codepvehiculo", "codeptipovehiculo", "codepinformaciongeneralcif", "ep_vehiculomarca", "ep_vehiculolinea", "ep_vehiculomodelo", "ep_vehiculoplaca", "ep_vehiculocomentario", "ep_vehiculoanombrede", "ep_vehiculomotivodeanombrede", "ep_vehiculomonto" };
-                    string[] datos = { Text17.Value, ACTVehiculo1.SelectedValue, cifactual, ACMarca.Value, ACLinea.Value, ACModelo.Value, ACPlaca.Value,ACCome.Value,Text25.Value,Text26.Value,Text27.Value};
+                    string[] datos = { Text17.Value, ACTVehiculo1.SelectedValue, cifactual, ACMarca.Value, ACLinea.Value, ACModelo.Value, ACPlaca.Value, ACCome.Value, Text25.Value, Text26.Value, Text27.Value };
                     logic.modificartablas("ep_vehiculo", campos, datos);
                 }
                 catch (Exception err)
@@ -3969,7 +4026,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 try
                 {
-                    logic.eliminarregistro("ep_telefono", "codeptelefono", Text6.Value );
+                    logic.eliminarregistro("ep_telefono", "codeptelefono", Text6.Value);
                 }
                 catch (Exception err)
                 {
@@ -4076,7 +4133,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         protected void btneliminarcuentascoope_Click(object sender, EventArgs e)
         {
-            if (ACCTMoneda1.SelectedValue == "0" || ACCEstatus1.SelectedValue == "0" || ACCNBanco1.SelectedValue == "0" || ACCOFondos.Value == "0" || ACCMonto.Value == "0" || Select1.Value=="0")
+            if (ACCTMoneda1.SelectedValue == "0" || ACCEstatus1.SelectedValue == "0" || ACCNBanco1.SelectedValue == "0" || ACCOFondos.Value == "0" || ACCMonto.Value == "0" || Select1.Value == "0")
             {
                 String script = "alert('Verificar que los campos de de las cuentas en cooperativas no se encuentren vacios');";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);

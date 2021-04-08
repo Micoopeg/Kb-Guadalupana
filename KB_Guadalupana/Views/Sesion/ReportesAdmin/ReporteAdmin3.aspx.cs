@@ -23,7 +23,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         int caja1, cuentasQ1, CooperativasQ1, CP1, IN1, Inmuebles1, vehiculo1, maquinaria1, computo1, TotalQ1, salas1, comedor1, tele, Es1, L1, S1, Est1, Ref1, Mov1, otr1;
         int cuentasD1, CooperativasD1, TotalD1;
-        int pp1, TotalQ2, patrimonio1, pres1, tc1, OD1, pas1;
+        int pp1, TotalQ2, patrimonio1, pres1, tc1, OD1, pas1, pass2, pass3;
         string completo, nombre1, nombre2, apellido1, apellido2;
 
 
@@ -52,8 +52,10 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             mostrarOtros();
             mostrarPP();
             mostrarPrestamos();
+            mostrarpasivfenainver();
             mostrarTarjeta();
             mostrarOD();
+            mostrarpasivfena();
             mostrarpasivcon();
             dolaresa();
             quetzalessa();
@@ -103,7 +105,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void quetzalessa()
         {
-            TotalQ1 = caja1 + cuentasQ1 + CooperativasQ1 + CP1 + IN1 + Inmuebles1 + vehiculo1 + maquinaria1 + computo1 + salas1 + comedor1 + tele + Es1 + L1 + S1 + Est1 + Ref1 + Mov1 + otr1;
+            TotalQ1 = caja1 + cuentasQ1 + CooperativasQ1 + CP1 + IN1 + Inmuebles1 + vehiculo1 + maquinaria1 + computo1 + salas1 + comedor1 + tele + Es1 + L1 + S1 + Est1 + Ref1 + Mov1 + otr1 + pass2 + pass3;
             Text14.Value = TotalQ1.ToString("N1", CultureInfo.CurrentCulture);
         }
 
@@ -434,5 +436,28 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             }
         }
 
+        public void mostrarpasivfena()
+        {
+            sesion = Session["IDReporte1"].ToString();
+
+            string[] var1 = sn.consultarconcampoCuentaFena(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                pass2 = Convert.ToInt32(var1[0]);
+                Text4.Value = pass2.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void mostrarpasivfenainver()
+        {
+            sesion = Session["IDReporte1"].ToString();
+
+            string[] var1 = sn.consultarconcampoCuentaFenaINver(sesion);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                pass3 = Convert.ToInt32(var1[0]);
+                Text1.Value = pass3.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
     }
 }

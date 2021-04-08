@@ -177,10 +177,10 @@ body {
                <img src="../../../Imagenes/Logotipo.png" alt="Guadalupana" style="width: 724px;height: 100px;margin-left: -24px;margin-top: -14px;">
             </div>
            <div class="encabezado1">
-                <h2>ESTADO PATRIMONIAL DIRIGENTES Y EMPLEADOS</h2>
+                <h2>ESTADO PATRIMONIAL EMPLEADOS</h2>
             </div> 
             <div class="encabezado2">
-                <h2 style="font-size: 20px;color: white;">En cumplimiento al  articulo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
+                <h2 style="font-size: 20px;color: white;">En cumplimiento al  artículo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
             </div>
             <div class="formulario" style="margin-left: 75px;margin-top: 15px;">
                 
@@ -232,7 +232,7 @@ body {
                     </div>
                   <br/>
                     <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Vehiculos:</label></center>
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Vehículos:</label></center>
                         <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Vehiculo" disabled/>
                     </div>
@@ -242,13 +242,25 @@ body {
                         <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Maquinaria" disabled/>
                     </div>
+                <br />
+                 <div class="campo" style="margin-left: -5px;" >
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Inversiones:</label></center>
+                        <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
+                        <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Text3" disabled/>
+                    </div>
+                <br />
+                <div class="campo" style="margin-left: -5px;" >
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Fondo FENAFORE:</label></center>
+                        <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
+                        <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Text4" disabled/>
+                    </div>
                 <br/>
                 <br/>  
             <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Mobiliario y Equipo</h2>
             </div>
                  <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Equipo Computo:</label></center>
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Equipo Cómputo:</label></center>
                         <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Computo" disabled/>
                     </div>
@@ -302,13 +314,13 @@ body {
                     </div>
                 <br/>
                  <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Telefono Movil:</label></center>
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Teléfono Móvil:</label></center>
                         <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Movil" disabled/>
                     </div>
                 <br/>
                  <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Otros:</label></center>
+                        <center><label class="col-sm-4" for="apellido" style="margin-left: -20px;">Otros Activos:</label></center>
                         <center><label class="col-sm-1" for="apellido" style="text-align: right">Q</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="otross" disabled/>
                     </div>
@@ -332,12 +344,12 @@ body {
                     </div>
                   <br/>
                 <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-5" for="apellido" style="">Prestamos:</label></center>
+                        <center><label class="col-sm-5" for="apellido" style="">Préstamos:</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="Pres" disabled/>
                     </div>
                   <br/>
                <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-5" for="apellido">Tarjetas de Credito:</label></center>
+                        <center><label class="col-sm-5" for="apellido">Tarjetas de Crédito:</label></center>
                         <input style="border: 0;" class="col-sm-4" type="text" placeholder="0" runat="server" id="TC" disabled/>
                     </div>
                   <br/>
@@ -346,11 +358,10 @@ body {
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0" id="ode" disabled/>
                     </div>
                  <br/>
-                <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-5" for="apellido" style="">Pasivo Contigente:</label></center>
+               <%-- <div class="campo" style="margin-left: -5px;" >
+                        <center><label class="col-sm-5" for="apellido" style="">Pasivo Contingente:</label></center>
                         <input style="border: 0" class="col-sm-4" type="text" runat="server" placeholder="0"  id="pasc" disabled/>
-                    </div>
-               <br/>
+                    </div>--%>
                   <hr style="border-color:#003563;">
                   <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-5" for="apellido" style="margin-left: -20px;color: #69a43c;    font-size: 22px;">Total Pasivo:</label></center>

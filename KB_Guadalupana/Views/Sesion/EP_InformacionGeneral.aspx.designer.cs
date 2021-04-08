@@ -681,6 +681,15 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnepigfinal;
 
         /// <summary>
+        /// Control boton1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton boton1;
+
+        /// <summary>
         /// Control ACCaja.
         /// </summary>
         /// <remarks>
@@ -1572,22 +1581,13 @@ namespace KB_Guadalupana.Views.Sesion
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl ACMACantidadO;
 
         /// <summary>
-        /// Control Text23.
+        /// Control FenaVal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text23;
-
-        /// <summary>
-        /// Control Number5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Number5;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl FenaVal;
 
         /// <summary>
         /// Control btnfinalactivo.
@@ -1597,6 +1597,15 @@ namespace KB_Guadalupana.Views.Sesion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnfinalactivo;
+
+        /// <summary>
+        /// Control buton2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton buton2;
 
         /// <summary>
         /// Control TipoCuenta.
@@ -1957,6 +1966,15 @@ namespace KB_Guadalupana.Views.Sesion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnguardarpasivo;
+
+        /// <summary>
+        /// Control buton3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton buton3;
 
         /// <summary>
         /// Control ISBase.

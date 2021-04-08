@@ -22,7 +22,8 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 
         int caja1, cuentasQ1, CooperativasQ1, CP1, IN1, Inmuebles1, vehiculo1, maquinaria1, computo1, TotalQ1, salas1, comedor1, tele, Es1, L1, S1, Est1, Ref1, Mov1, otr1;
         int cuentasD1, CooperativasD1, TotalD1;
-        int pp1, TotalQ2, patrimonio1, pres1, tc1, OD1, pas1;
+        int pp1, TotalQ2, patrimonio1, pres1, tc1, OD1, pas1, pass2, pass3;
+        double pass1;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -47,17 +48,20 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             mostrarEst();
             mostrarRefri();
             mostrarTel();
+            mostrarpasivfenainver();
             mostrarOtros();
             mostrarPP();
             mostrarPrestamos();
             mostrarTarjeta();
             mostrarOD();
             mostrarpasivcon();
+            mostrarpasivfena();
             dolaresa();
             quetzalessa();
             quetzalessp();
             patrimonio();
             mostrarUser();
+
         }
 
 
@@ -80,12 +84,15 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 
         public void quetzalessa()
         {
-            TotalQ1 = caja1 + cuentasQ1 + CooperativasQ1 + CP1 + IN1 + Inmuebles1 + vehiculo1 + maquinaria1 + computo1 + salas1 + comedor1 + tele + Es1 + L1 + S1 + Est1 + Ref1 + Mov1 + otr1;
+            TotalQ1 = caja1 + cuentasQ1 + CooperativasQ1 + CP1 + IN1 + Inmuebles1 + vehiculo1 + maquinaria1 + computo1 + salas1 + comedor1 + tele + Es1 + L1 + S1 + Est1 + Ref1 + Mov1 + otr1 + pass2 + pass3;
             Text14.Value = TotalQ1.ToString("N1", CultureInfo.CurrentCulture);
         }
 
         public void quetzalessp()
         {
+
+            pas1 = Convert.ToInt32(pass1);
+
             TotalQ2 = pp1 + pres1 + tc1 + OD1 + pas1;
             TotalPasivo.Value = TotalQ2.ToString("N1", CultureInfo.CurrentCulture);
         }
@@ -415,8 +422,8 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCuentaspp(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                pres1 = Convert.ToInt32(var1[0]);
-                Pres.Value = pres1.ToString("N1", CultureInfo.CurrentCulture);
+                pass1 = Convert.ToDouble(var1[0]);
+                Pres.Value = pass1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
 
@@ -450,15 +457,43 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 
         public void mostrarpasivcon()
         {
+            //sesion = Session["sesion_usuario"].ToString();
+            //string[] var10 = sn.consultarcif(sesion);
+            //string cifnumero = var10[0];
+
+            //string[] var1 = sn.consultarconcampoCuentapasc(cifnumero);
+            //for (int i = 0; i < var1.Length; i++)
+            //{
+            //    pas1 = Convert.ToInt32(var1[0]);
+            //    pasc.Value = pas1.ToString("N1", CultureInfo.CurrentCulture);
+            //}
+        }
+
+        public void mostrarpasivfena()
+        {
             sesion = Session["sesion_usuario"].ToString();
             string[] var10 = sn.consultarcif(sesion);
             string cifnumero = var10[0];
 
-            string[] var1 = sn.consultarconcampoCuentapasc(cifnumero);
+            string[] var1 = sn.consultarconcampoCuentaFena(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                pas1 = Convert.ToInt32(var1[0]);
-                pasc.Value = pas1.ToString("N1", CultureInfo.CurrentCulture);
+                pass2 = Convert.ToInt32(var1[0]);
+                Text4.Value = pass2.ToString("N1", CultureInfo.CurrentCulture);
+            }
+        }
+
+        public void mostrarpasivfenainver()
+        {
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+
+            string[] var1 = sn.consultarconcampoCuentaFenaINver(cifnumero);
+            for (int i = 0; i < var1.Length; i++)
+            {
+                pass3 = Convert.ToInt32(var1[0]);
+                Text3.Value = pass3.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
 

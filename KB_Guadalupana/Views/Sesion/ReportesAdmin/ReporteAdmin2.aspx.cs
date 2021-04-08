@@ -48,10 +48,12 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             mostrarmenaje2();
             mostrarTV();
             mostrarES();
+            mostrarTel1();
             mostrarL();
             llenargridviewcuentasporpagar();
             llenargridviewpasivos();
             llenargridviewtarjetas();
+            llenargridviewinversiones();
             mostrarSec();
             mostrarEstufa();
             mostrarRefri();
@@ -418,6 +420,38 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             }
         }
 
+        public void llenargridviewinversiones()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sesion = Session["IDReporte1"].ToString();
+
+                    sqlCon.Open();
+                    string QueryString = "SELECT d.codepinversiones,d.codeptipoinstitucion,d.codepinstitucion," +
+                        " d.codeptipomoneda,a.ep_tipoinstitucionnombre,b.ep_institucionnombre," +
+                        " c.ep_tipomonedanombre,d.ep_inversionesnombre,d.ep_inversionesplazo,d.ep_inversionesmonto, " +
+                        "d.ep_inversionesorigen,d.ep_inversionesnumerocuenta FROM ep_inversiones d " +
+                        "Inner Join ep_informaciongeneral e on d.codepinformaciongeneralcif=e.codepinformaciongeneralcif " +
+                        "INNER JOIN ep_tipoinstitucion a INNER JOIN ep_institucion b " +
+                        "INNER JOIN ep_tipomoneda c ON d.codeptipoinstitucion=a.codeptipoinstitucion " +
+                        "AND d.codepinstitucion=b.codepinstitucion AND d.codeptipomoneda=c.codeptipomoneda " +
+                        "WHERE e.ep_informaciongeneralcif='" + sesion + "'";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds4 = new DataTable();
+                    command.Fill(ds4);
+                    gridviewinversiones.DataSource = ds4;
+                    gridviewinversiones.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+            }
+        }
+
         public void mostrarmaquinaria()
         {
 
@@ -474,7 +508,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 TVT = TVC * TVM;
                 TelevisorC.Value = TVC.ToString();
                 TelevisorM.Value = TVM.ToString();
-                TelevisorT.Value = TVT.ToString();
             }
         }
 
@@ -490,7 +523,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 EST = ESC * ESM;
                 EquipoSC.Value = ESC.ToString();
                 EquipoSM.Value = ESM.ToString();
-                EquipoST.Value = EST.ToString();
             }
         }
 
@@ -506,7 +538,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 LT = LC * LM;
                 LavadoraC.Value = LC.ToString();
                 LavadoraM.Value = LM.ToString();
-                LavadoraT.Value = LT.ToString();
             }
         }
 
@@ -612,7 +643,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 ST = SC * SM;
                 SecadoraC.Value = SC.ToString();
                 SecadoraM.Value = SM.ToString();
-                SecadoraT.Value = ST.ToString();
             }
         }
 
@@ -628,7 +658,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 ET = EC * EM;
                 EstufaC.Value = EC.ToString();
                 EstufaM.Value = EM.ToString();
-                EstufaT.Value = ET.ToString();
             }
         }
 
@@ -644,7 +673,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 RT = RC * RM;
                 RefriC.Value = RC.ToString();
                 RefriM.Value = RM.ToString();
-                RefriT.Value = RT.ToString();
             }
         }
 
@@ -660,7 +688,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
                 CT = CC * CM;
                 TMC.Value = CC.ToString();
                 TMM.Value = CM.ToString();
-                TMT.Value = CT.ToString();
             }
         }
 
@@ -670,13 +697,11 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             string[] var1 = sn.consultarconcampomenaOtros(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
-                OC = Convert.ToInt32(var1[0].Trim());
+                OtrosC.Value = Convert.ToString(var1[0]);
                 OM = Convert.ToInt32(var1[1].Trim());
 
                 OT = OC * OM;
-                OtrosC.Value = OC.ToString();
                 OtrosM.Value = OM.ToString();
-                OtrosT.Value = OT.ToString();
             }
         }
 
@@ -754,14 +779,34 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
             string[] var1 = sn.consultarconcampomenaEgres(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
+
                 Alimen.Value = Convert.ToString(var1[2]);
                 Gas.Value = Convert.ToString(var1[3]);
-                PagoEstud.Value = Convert.ToString(var1[5]);
+                PagoEstud.Value = Convert.ToString(var1[4]);
                 Presta.Value = Convert.ToString(var1[5]);
                 TarCre.Value = Convert.ToString(var1[6]);
-                Vestuar.Value = Convert.ToString(var1[4]);
+                Vestuar.Value = Convert.ToString(var1[7]);
                 Recrea.Value = Convert.ToString(var1[8]);
                 Otros.Value = Convert.ToString(var1[9]);
+            }
+        }
+
+        public void mostrarTel1()
+        {
+            sesion = Session["sesion_usuario"].ToString();
+            string[] var10 = sn.consultarcif(sesion);
+            string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaFena(cifnumero);
+            string valor;
+            string valor1, valor2;
+            valor = Convert.ToString(var1[1]);
+            if ((valor != "") && (valor != null))
+            {
+                for (int i = 0; i < var1.Length; i++)
+                {
+                    //Fena1.Value = Convert.ToString(var1[0]);
+                    Fena2.Value = Convert.ToString(var1[1]);
+                }
             }
         }
     }

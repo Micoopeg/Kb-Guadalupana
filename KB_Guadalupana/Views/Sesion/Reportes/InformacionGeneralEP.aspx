@@ -179,10 +179,10 @@ body {
                <img src="../../../Imagenes/Logotipo.png" alt="Guadalupana" style="width: 724px;height: 100px;margin-left: -24px;margin-top: -14px;">
             </div>
            <div class="encabezado1">
-                <h2>ESTADO PATRIMONIAL DIRIGENTES Y EMPLEADOS</h2>
+                <h2>ESTADO PATRIMONIAL EMPLEADOS</h2>
             </div> 
             <div class="encabezado2">
-                <h2 style="font-size: 20px;color: white;">En cumplimiento al  articulo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
+                <h2 style="font-size: 20px;color: white;">En cumplimiento al  artículo 19,  de la Ley contra el Lavado de Dinero u Otros Activos y 10 de su Reglamento declaro:</h2>
             </div>
             <div class="formulario" style="margin-left: 75px;margin-top: 15px;">
                     <div class="campo" style="margin-left: 120px;">
@@ -199,12 +199,12 @@ body {
                     </div>
                <br/>
             <div class="encabezado2">
-                <h2 style="font-size: 25px;color: white;">Informacion General</h2>
+                <h2 style="font-size: 25px;color: white;">Información General</h2>
             </div>
                 <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido">Agencia:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="AgenciaIG" disabled/>
-                        <center><label class="col-sm-2" for="apellido">Area:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Área:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="AreaIG" disabled/> 
                         <center><label class="col-sm-2" for="apellido">Puesto:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="PuestoIG" disabled/>
@@ -220,7 +220,7 @@ body {
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="ZonaIG" disabled/>
                     <br>
                     <br>
-                        <center><label class="col-sm-2" for="apellido">Direccion:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Dirección:</label></center> 
                         <input style="border: 0" class="col-sm-10" type="text" runat="server" id="DireccIG" disabled/>
                     </div>
                 <div class="campo" style="margin-left:80px;" >
@@ -243,7 +243,7 @@ body {
                     <br/>
                         <center><label class="col-sm-3" for="apellido">Tipo Documento:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="TipoIdeIG" disabled/>
-                        <center><label class="col-sm-3" for="apellido" style="margin-top: -7px;">No Documento Identificacion:</label></center> 
+                        <center><label class="col-sm-3" for="apellido" style="margin-top: -7px;">No. Documento Identificación:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NoDocIG" disabled/> 
                     </div> 
                 <div class="campo" style="margin-left:80px;" >
@@ -259,7 +259,7 @@ body {
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Nit2IG" disabled/>
                         <center><label class="col-sm-2" for="apellido">Nacionalidad:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NacionalidadIG" disabled/> 
-                        <center><label class="col-sm-2" for="apellido">Religion:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Religión:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="ReligionIG" disabled/>
                     </div>  
                 <div class="campo" style="margin-left: -5px;" >
@@ -284,12 +284,12 @@ body {
                                 <asp:Label ID="lbltipotelefono" Text='<%# Eval("codeptipotelefono") %>' runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Tipo de telefono">
+                        <asp:TemplateField HeaderText="Tipo de teléfono">
                             <ItemTemplate>
                                 <asp:Label ID="lblnombretelefono" Text='<%# Eval("ep_tipotelefononombre") %>' runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Numero de telefono">
+                        <asp:TemplateField HeaderText="Número de teléfono">
                             <ItemTemplate>
                                 <asp:Label ID="lblnumerotelefono" Text='<%# Eval("ep_telefononumero") %>' runat="server" />
                             </ItemTemplate>
@@ -300,7 +300,7 @@ body {
 <!--  Fin Grid Informacion General Telefono          -->
                 <br />
            <div class="encabezado2">
-                <h2 style="font-size: 25px;color: white;">Informacion Familiar</h2>
+                <h2 style="font-size: 25px;color: white;">Información Familiar</h2>
             </div>
                 <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido">Estado Civil:</label></center>
@@ -312,14 +312,14 @@ body {
                    </div>
                 <div class="campo" style="margin-left:80px;" >
                     <br>
-                       <center><label class="col-sm-3" for="apellido">Nombre Conyuge:</label></center>
+                       <center><label class="col-sm-3" for="apellido">Nombre Cónyuge:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NombreCF" disabled/>
-                        <center><label class="col-sm-3" for="apellido" style="margin-top: -7px;">Ocupacion Conyuge</label></center> 
+                        <center><label class="col-sm-3" for="apellido" style="margin-top: -7px;">Ocupacion Cónyuge</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="OcupacionCIF" disabled/> 
                    </div>
                    <div class="campo" style="margin-left:80px;" >
                     <br>
-                       <center><label class="col-sm-5" for="apellido" style="margin-top: -7px;">Fecha Nacimiento Conyuge</label></center> 
+                       <center><label class="col-sm-5" for="apellido" style="margin-top: -7px;">Fecha Nacimiento Cónyuge</label></center> 
                         <input style="border: 0" class="col-sm-3" type="text" runat="server" id="FechaCIF" disabled/> 
                    </div>
                 <br />
@@ -369,7 +369,7 @@ body {
                   <div class="campo" style="margin-left: -5px;" >
                         <center><label class="col-sm-2" for="apellido">Nombre:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NombreEC" disabled/>
-                        <center><label class="col-sm-2" for="apellido">Telefono:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Teléfono:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="NumeroEC" disabled/> 
                         <center><label class="col-sm-2" for="apellido">Parentesco:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="ParentescoEC" disabled/>

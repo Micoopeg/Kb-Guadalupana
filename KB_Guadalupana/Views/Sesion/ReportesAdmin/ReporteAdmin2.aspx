@@ -490,6 +490,72 @@ body {
                   <center><label class="col-sm-10" style="text-align: right;" for="apellido">Total:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text7" disabled/>
                 <br />
+                 <div class="encabezado3">
+                <h2 style="font-size: 25px;color: white;">Inversiones:</h2>
+            </div>
+
+                 <asp:GridView ID="gridviewinversiones" style="margin-left:auto;margin-right:auto" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" BorderStyle="Solid">
+                     <Columns>
+                         <asp:TemplateField HeaderText="Numero inversion" Visible="false">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumeroinversion" Text='<%# Eval("codepinversiones") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Numero tipo  institucion" Visible="false">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumerotipoinstitucioninversion" Text='<%# Eval("codeptipoinstitucion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                          <asp:TemplateField HeaderText="Numero institucion" Visible="false">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumeroinstitucioninversion" Text='<%# Eval("codepinstitucion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Numero tipo moneda" Visible="False">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumeromonedainversion" Text='<%# Eval("codeptipomoneda") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Nombre tipo  Institución">
+                           <ItemTemplate>
+                            <asp:Label ID="lbltipoinstitucionnombre" Text='<%# Eval("ep_tipoinstitucionnombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>    
+                         <asp:TemplateField HeaderText="Nombre institucion">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnombreinstitucion" Text='<%# Eval("ep_institucionnombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                         <asp:TemplateField HeaderText="Moneda">
+                           <ItemTemplate>
+                            <asp:Label ID="lbltipomonedanombre" Text='<%# Eval("ep_tipomonedanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                         <asp:TemplateField HeaderText="Plazo">
+                           <ItemTemplate>
+                            <asp:Label ID="lblplazoinversion" Text='<%# Eval("ep_inversionesplazo") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                           <asp:TemplateField HeaderText="Monto">
+                           <ItemTemplate>
+                            <asp:Label ID="lblmontoinversion" Text='<%# Eval("ep_inversionesmonto") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                         <asp:TemplateField HeaderText="Origen de la inversión">
+                           <ItemTemplate>
+                            <asp:Label ID="lblorigeninversion" Text='<%# Eval("ep_inversionesorigen") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Numero de cuenta">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnumerodecuenta" Text='<%# Eval("ep_inversionesnumerocuenta") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     </Columns>
+<HeaderStyle BackColor="#3AC0F2" CssClass="prueba" ForeColor="White"></HeaderStyle>
+        </asp:GridView>
+
  <!-- Fin Grid Activos Inmuebles--> 
     <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Vehiculos:</h2>
@@ -547,7 +613,7 @@ body {
                         <input style="border: 0" class="col-sm-2" type="text" runat="server" id="Text6" disabled/>
                 <br />
  <!-- Fin Grid Activos Vehiculos-->
-            <div class="encabezado3">
+              <div class="encabezado3">
                 <h2 style="font-size: 25px;color: white;">Maquinaria y Equipo:</h2>
             </div>
                   <div class="campo" style="margin-left: -5px;" >
@@ -555,12 +621,12 @@ body {
                         <input style="border: 0" class="col-sm-2" type="text" id="TMaquinaria" runat="server" disabled/>
                         <center><label class="col-sm-2" for="apellido">Monto:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="TMaquinariaMonto" runat="server" disabled/> 
-                        <center><label class="col-sm-2" for="apellido">Especificacion:</label></center> 
+                        <center><label class="col-sm-2" for="apellido">Especificación:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="TMaquinariaEs" runat="server" disabled/>
                    </div>
                 <br>
                 <div class="campo" style="margin-left: -5px;" >
-                        <center><label class="col-sm-2" for="apellido">Equipo Computo:</label></center>
+                        <center><label class="col-sm-2" for="apellido">Equipo Cómputo:</label></center>
                         <input style="border: 0" class="col-sm-2" type="text" id="EComputo" runat="server" disabled/>
                         <center><label class="col-sm-2" for="apellido">Amueblado Sala:</label></center> 
                         <input style="border: 0" class="col-sm-2" type="text" id="AmuebladoS" runat="server" disabled/> 
@@ -570,61 +636,80 @@ body {
                 <div class="campo"  >
                     <br>
                     <br>
+                    <b style="margin-left: 469px;">Cantidad</b>
+                    <b style="margin-left: 66px;">Valor</b>
                         <center><label style="    " class="col-sm-8" for="apellido">Televisor:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="TelevisorC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="TelevisorM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TelevisorT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="TelevisorM" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TelevisorT" runat="server" disabled/>--%>
                     </div>
                 <div class="campo"  >
                     <br>
                         <center><label style="    " class="col-sm-8" for="apellido">Equipo de Sonido:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="EquipoSC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="EquipoSM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="EquipoST" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="EquipoSM" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="EquipoST" runat="server" disabled/>--%>
                 </div>
                 <div class="campo"  >
                     <br>
                         <center><label style="    " class="col-sm-8" for="apellido">Lavadora:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="LavadoraC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="LavadoraM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="LavadoraT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="LavadoraM" runat="server" disabled/>
+                      <%--  <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="LavadoraT" runat="server" disabled/>--%>
                 </div>
                  <div class="campo"  >
                     <br/>
                         <center><label style="    " class="col-sm-8" for="apellido">Secadora:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="SecadoraC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="SecadoraM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="SecadoraT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="SecadoraM" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="SecadoraT" runat="server" disabled/>--%>
                 </div> 
                 <div class="campo"  >
                     <br/>
                         <center><label style="    " class="col-sm-8" for="apellido">Estufa:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="EstufaC" runat="server"  disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="EstufaM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="EstufaT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="EstufaM" runat="server" disabled/>
+                      <%--  <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="EstufaT" runat="server" disabled/>--%>
                 </div>  
                 <div class="campo"  >
                     <br>
                         <center><label style="    " class="col-sm-8" for="apellido">Refrigeradora:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="RefriC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="RefriM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="RefriT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="RefriM" runat="server" disabled/>
+                        <%--<input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="RefriT" runat="server" disabled/>--%>
                 </div>
                 <div class="campo"  >
                     <br/>
-                        <center><label style="    " class="col-sm-8" for="apellido">Telefono Movil:</label></center>
+                        <center><label style="    " class="col-sm-8" for="apellido">Teléfono Móvil:</label></center>
                         <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="TMC" runat="server" disabled/> 
-                        <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="TMM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TMT" runat="server" disabled/>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="TMM" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TMT" runat="server" disabled/>--%>
                 </div>
+                <br />
+                 <div class="encabezado3">
+                <h2 style="font-size: 25px;color: white;">Otros Activos:</h2>
+            </div>
                 <div class="campo"  >
                     <br/>
-                        <center><label style="    " class="col-sm-8" for="apellido">Otros:</label></center>
-                        <input style="border: 0;  margin-left: -120px;max-width: 35px;" class="col-sm-2" type="text" id="OtrosC" runat="server" disabled/> 
+                        <label class="col-sm-5" for="apellido">Descripción:</label>
+                        <input style="border: 0;  margin-left: -120px" class="col-sm-5" type="text" id="OtrosC" runat="server" disabled/> 
+                        <label class="col-sm-2" for="apellido">Valor:</label>
                         <input style="border: 0;  margin-left: -76px;max-width: 85px;" class="col-sm-2" type="text" id="OtrosM" runat="server" disabled/>
-                        <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="OtrosT"  runat="server" disabled/>
                 </div>
                 <br/>
+                <br />
+                 <div class="encabezado3">
+                <h2 style="font-size: 25px;color: white;">Fondo Fenafore:</h2>
+            </div>
+                <div class="campo"  >
+                    <br/>
+                        <%--<center><label style="    " class="col-sm-5" for="apellido">Descripcion:</label></center>
+                        <input style="border: 0;  margin-left: -120px;" class="col-sm-4" type="text" id="Fena1" runat="server" disabled/> --%>
+                         <center><label style="    margin-left: 350px;" class="col-sm-2" for="apellido">Valor:</label></center>
+                        <input style="border: 0;  margin-left: -12px;max-width: 85px;" class="col-sm-2" type="text" id="Fena2" runat="server" disabled/>
+                       <%-- <input style="border: 0;  margin-left: 8px;max-width: 85px;" class="col-sm-2" type="text" id="TMT" runat="server" disabled/>--%>
+                </div>
+                <br />
                 <br/>
             <div class="encabezado2">
                 <h2 style="font-size: 25px;color: white;">Pasivos</h2>

@@ -132,6 +132,15 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text7;
 
         /// <summary>
+        /// Control gridviewinversiones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridviewinversiones;
+
+        /// <summary>
         /// Control GridViewvehiculos.
         /// </summary>
         /// <remarks>
@@ -222,15 +231,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.HtmlControls.HtmlInputText TelevisorM;
 
         /// <summary>
-        /// Control TelevisorT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText TelevisorT;
-
-        /// <summary>
         /// Control EquipoSC.
         /// </summary>
         /// <remarks>
@@ -247,15 +247,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText EquipoSM;
-
-        /// <summary>
-        /// Control EquipoST.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText EquipoST;
 
         /// <summary>
         /// Control LavadoraC.
@@ -276,15 +267,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.HtmlControls.HtmlInputText LavadoraM;
 
         /// <summary>
-        /// Control LavadoraT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText LavadoraT;
-
-        /// <summary>
         /// Control SecadoraC.
         /// </summary>
         /// <remarks>
@@ -301,15 +283,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText SecadoraM;
-
-        /// <summary>
-        /// Control SecadoraT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText SecadoraT;
 
         /// <summary>
         /// Control EstufaC.
@@ -330,15 +303,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.HtmlControls.HtmlInputText EstufaM;
 
         /// <summary>
-        /// Control EstufaT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText EstufaT;
-
-        /// <summary>
         /// Control RefriC.
         /// </summary>
         /// <remarks>
@@ -355,15 +319,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText RefriM;
-
-        /// <summary>
-        /// Control RefriT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText RefriT;
 
         /// <summary>
         /// Control TMC.
@@ -384,15 +339,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.HtmlControls.HtmlInputText TMM;
 
         /// <summary>
-        /// Control TMT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText TMT;
-
-        /// <summary>
         /// Control OtrosC.
         /// </summary>
         /// <remarks>
@@ -411,13 +357,13 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         protected global::System.Web.UI.HtmlControls.HtmlInputText OtrosM;
 
         /// <summary>
-        /// Control OtrosT.
+        /// Control Fena2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText OtrosT;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Fena2;
 
         /// <summary>
         /// Control GridViewcuentasporpagar.

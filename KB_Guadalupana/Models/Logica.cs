@@ -32,17 +32,17 @@ namespace KB_Guadalupana.Models
 
         public void insertartablas(string tabla, string[] datos)
         {
-          sn.insertartablas(tabla, datos);
+            sn.insertartablas(tabla, datos);
         }
 
         public void modificartablas(string tabla, string[] campos, string[] datos)
         {
-             sn.modificartablas(tabla, campos, datos);
+            sn.modificartablas(tabla, campos, datos);
         }
 
         public void modificartablasdoscampos(string tabla, string[] campos, string[] datos)
         {
-             sn.modificartablasdoscampos(tabla, campos, datos);
+            sn.modificartablasdoscampos(tabla, campos, datos);
         }
 
         //FUNCIONES PARA CONSULTAR ESTADO PATRIMONIAL YA INGRESADO
@@ -97,7 +97,7 @@ namespace KB_Guadalupana.Models
             }
 
         }
-        
+
         public MySqlDataReader consultarcif(string valor)
         {
             return sn.consultarconcampoIOs(valor);
@@ -106,16 +106,6 @@ namespace KB_Guadalupana.Models
         public void eliminarregistro(string tabla, string campo, string dato)
         {
             sn.eliminarregistro(tabla, campo, dato);
-        }
-
-        public MySqlDataReader consultarCif(string cif)
-        {
-            return sn.consultarconcampoCif(cif);
-        }
-
-        public DataTable buscarCIF(string cif)
-        {
-            return sn.buscarCIF(cif);
         }
 
         public DataTable buscarCIF(string cif, string valor)

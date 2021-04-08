@@ -95,7 +95,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
                 NombreCF.Value = Convert.ToString(var1[1]);
                 OcupacionCIF.Value = Convert.ToString(var1[2]);
                 ApellidoCIF.Value = Convert.ToString(var1[3]);
-                FechaBIF.Value = Convert.ToString(var1[3]);
+                FechaBIF.Value = Convert.ToString(var1[4]);
                 FechaCIF.Value = Convert.ToString(var1[5]);
                 NombreEC.Value = Convert.ToString(var1[6]);
                 NumeroEC.Value = Convert.ToString(var1[7]);

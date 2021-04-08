@@ -18,9 +18,7 @@
     <link rel="stylesheet" href="../../DiseñosGrid/Grids.css" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
 body {
   margin: 0;
@@ -175,7 +173,7 @@ body {
   </ul>
 <!--  Area Informacion General y sus 4 Secciones    -->
     <fieldset style="margin-top: -18px;box-shadow: 0 0 15px 1px rgb(0 53 99);" id="primerof" >
-    <h2 class="fs-title"><b>Informacion General</b></h2>
+    <h2 class="fs-title"><b>Información General</b></h2>
           <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
       <br/>
      
@@ -206,7 +204,7 @@ body {
   </fieldset>
     <fieldset id="segundof" style="box-shadow: 0 0 15px 1px rgb(0 53 99);" runat="server">
  
-    <h2 class="fs-title"><b>Informacion General</b></h2>
+    <h2 class="fs-title"><b>Información General</b></h2>
                 <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
       <br />
       <label for="start">Fecha Nacimiento</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <input id="IGFNacimiento" runat="server" class="tam" type="date"  name="trip-start"
@@ -226,12 +224,12 @@ body {
       <input id="IGCelular" runat="server" type="number" class="tampe"   placeholder="Numero" required minlength="8" maxlength="8"  oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
       <div id="AgregarIG" runat="server" style="position: absolute;margin-top: -64px; margin-left: 50px;">
              <a href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarcelular()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="GuardarIG" runat="server" style="position: absolute;margin-top: -45px; margin-left: 50px;">
              <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarcelular()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="EliminarIG" runat="server" style="position: absolute;margin-top: -26px; margin-left: 50px;">
@@ -241,7 +239,7 @@ body {
        </div>
     <div class="row">
         <div id="content" class="col-lg-12">
-            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opción Guardar/Agregar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
         </div>
     </div>
         <%-- GRIDVIEW NUMEROS DE TELEFONO --%>
@@ -249,22 +247,22 @@ body {
      <asp:GridView ID="GridViewcelular" CssClass="mGrid" style="width: 692px;text-align:center" runat="server"  HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedcelular" BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="tipo de telefono" Visible="False">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="tipo de teléfono" Visible="False">
                            <ItemTemplate>
                            <asp:Label ID="lblcodeptelefono" Text='<%# Eval("codeptelefono") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="tipo de telefono" Visible="False">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="tipo de teléfono" Visible="False">
                            <ItemTemplate>
                            <asp:Label ID="lbltipotelefono" Text='<%# Eval("codeptipotelefono") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Tipo de telefono">
+                         <asp:TemplateField HeaderText="Tipo de teléfono">
                            <ItemTemplate>
                             <asp:Label ID="lblnombretelefono" Text='<%# Eval("ep_tipotelefononombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField HeaderText="Número de telefono">
+                          <asp:TemplateField HeaderText="Número de teléfono">
                            <ItemTemplate>
                             <asp:Label ID="lblnumerotelefono" Text='<%# Eval("ep_telefononumero") %>' runat="server" />
                         </ItemTemplate>
@@ -283,7 +281,7 @@ body {
       <input type="button" name="next" class="next action-button" style="background-color: #003563" value="Siguiente >"  />
   </fieldset>
     <fieldset id="tercerof" style="box-shadow: 0 0 15px 1px rgb(0 53 99);">
-    <h2 class="fs-title"><b>Informacion Familiar</b></h2>
+    <h2 class="fs-title"><b>Información Familiar</b></h2>
       <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
      <br/>
   
@@ -297,21 +295,21 @@ body {
           <input type="text" id="id_input5" style="margin-left: 5px;" runat="server" class="tampe"   placeholder="Apellido Casada" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  />&nbsp;&nbsp;&nbsp; 
           <label for="start" style="margin-left: 56px;">Fecha Boda</label>&nbsp;&nbsp; 
           <input id="id_input6" class="tampe" style="margin-left: 69px;" runat="server"  type="date"  name="trip-start" value="2020-04-24" min="1950-01-01" max="2021-12-31" />
-          <label for="start" style="margin-left: 68px;">Fecha Nacimiento Conyuge</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+          <label for="start" style="margin-left: 68px;">Fecha Nacimiento Cónyuge</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
           <input class="tam" id="IFFecha" runat="server" style="margin-left: 69px;"  type="date"  value="2020-04-24" min="1950-01-01" max="2021-12-31" />
           <input id="Text7" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
        
-        <div id="AgregarIF" runat="server" style="position: absolute;margin-top: 40px; margin-left: 50px;">
+        <div id="AgregarIF" runat="server" style="position: absolute;margin-top: 40px; margin-left: 30px;">
              <a id="btnAgregarIF" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarhijos()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
-        <div id="GuardarIF" runat="server"  style="position: absolute;margin-top: 63px; margin-left: 50px;">
+        <div id="GuardarIF" runat="server"  style="position: absolute;margin-top: 63px; margin-left: 30px;">
              <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarhijos()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
-        <div  id="EliminarIF" runat="server"  style="position: absolute;margin-top: 85px; margin-left: 50px;">
+        <div  id="EliminarIF" runat="server"  style="position: absolute;margin-top: 85px; margin-left: 30px;">
              <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarhijos()">
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
@@ -320,14 +318,14 @@ body {
           <hr class="solid" style="margin-top: 5px;"/>
 
    <input  type="text" class="tam"  id="Text1" runat="server" style="margin-left: 163px;"  placeholder="Nombre Completo Hijo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0,  this.maxLength);"  />
-   <input  type="text" class="tam" style="max-width: 177px;"  id="Text2" runat="server" placeholder="Ocupacion Hijo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"   />
+   <input  type="text" class="tam" style="max-width: 177px;"  id="Text2" runat="server" placeholder="Ocupación Hijo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"   />
    <input  type="text" id="Text3" runat="server" style="max-width: 525px;margin-left: 163px;" placeholder="Comentarios" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"   />
    <label for="start" style="margin-left: 175px;">Fecha Nacimiento Hijo</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
    <input class="tam" id="Date1" runat="server" style="margin-left: 66px;max-width: 270px;"  type="date"  value="2020-04-25" min="1950-01-01" max="2021-12-31" />
        <%-- GRIDVIEW NUMEROS DE HIJOS --%>
         <div class="row">
         <div id="content" class="col-lg-12">
-            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opción Guardar/Agregar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
         </div>
     </div>
         <div id="divGridhijos" style="overflow: auto; height: 130px">
@@ -385,12 +383,12 @@ body {
 
      <div id="Div1" runat="server" style="position: absolute;margin-top: 8px; margin-left: 50px;">
              <a href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarestudiosuni()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="Div2"  runat="server" style="position: absolute;margin-top: 32px; margin-left: 50px;">
              <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarestudiosuni()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="Div3" runat="server" style="position: absolute;margin-top: 56px; margin-left: 50px;">
@@ -408,19 +406,19 @@ body {
   <%-- GRIDVIEW NUMEROS DE ESTUDIOS Univesitarios --%>
      <div class="row">
         <div id="content1" class="col-lg-12">
-            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opción Guardar/Agregar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
         </div>
     </div>
          <div id="divGridestudiosU" style="overflow: auto; height: 130px">
     <asp:GridView ID="GridestudiosU" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedestudiosu" BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField HeaderText="Numero universidad" Visible="False" >
+                         <asp:TemplateField HeaderText="Numero Universidad" Visible="False" >
                            <ItemTemplate>
                             <asp:Label ID="lblnumerouniversidad" Text='<%# Eval("codepestudio") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Nombre de la universidad">
+                         <asp:TemplateField HeaderText="Nombre de la Universidad">
                            <ItemTemplate>
                             <asp:Label ID="lblnombreuniversidad" Text='<%# Eval("ep_estudionombre") %>' runat="server" />
                         </ItemTemplate>
@@ -459,15 +457,15 @@ body {
      <input type="text"  id="Text4" style="max-width: 500px;margin-left: 185px;" runat="server" placeholder="Idioma" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
      <input id="Text12" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
          <hr class="solid" style="margin-top: 5px;"/>
-
+    
          <div id="AgregarEU" runat="server" style="position: absolute;margin-top: -150px; margin-left: 50px;">
              <a href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarestudios()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="GuardarEU"  runat="server" style="position: absolute;margin-top: -125px; margin-left: 50px;">
              <a href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarestudios()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="EliminarIEU" runat="server" style="position: absolute;margin-top: -100px; margin-left: 50px;">
@@ -475,6 +473,8 @@ body {
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
        </div>
+  
+
          <%-- GRIDVIEW NUMEROS DE ESTUDIOS --%>
          <div id="divGridestudio" style="overflow: auto; height: 130px">
     <asp:GridView ID="GridViewEstudios" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
@@ -525,19 +525,20 @@ body {
       <br/>
      <div class="row">
         <div style="" class="col-lg-12">
-            <div class="content" style="text-align: justify;background-color:#69a43c"><b>Usuario:</b> Debes dar en Guardar para que que tus datos se almacenen en el sistema. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
+            <div class="content" style="text-align: justify;background-color:#69a43c;height: 125px;width: 30%;    margin-top: -98px;    margin-left: -268px;"><b>Usuario:</b> Debes dar en Guardar para que tus datos se almacenen en el sistema y poder pasar a la siguiente seccion. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
         </div>
     </div>
       <input type="button" runat="server" name="next" class="next action-button" value="Guardar" onclick="guardarinformaciongeneral()"
              id="btnepigfinal" /> 
-      <input type="button" name="previous" class="previous action-button" style="background-color: #003563" value="< Anterior"  />
-      <input type="button" name="next" class="next action-button" style="background-color: #003563" value="Siguiente >"  />
+      <input type="button" name="previous" class="previous action-button " style="background-color: #003563" value="< Anterior"  />
+      <input type="button" runat="server" name="next" id="boton1" class="next action-button sig1" style="background-color: #003563" value="Siguiente>" />
             </fieldset>
 <!--  Fin Area de Formulario Informacion General y sus 4 Secciones   -->
 <!--  Area Formulario Activos y sus 4 Secciones    -->
     <fieldset id="quintof" style="box-shadow: 0 0 15px 1px rgb(0 112 209);">
             <h2 class="fs-title"><b>Activos</b></h2>
             <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
+        <label>Caja: </label>
         <input id="ACCaja" runat="server" type="number" class="tam"   placeholder="Caja" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
          <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;"/>
      <h3 class="fs-title" style="margin-top:-10px"><b>Cuentas Bancarias</b></h3>
@@ -559,17 +560,17 @@ body {
                <input id="Text13" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
               <br />
 
-        <div id="AgregarAC" style="position: absolute;margin-top: -90px; margin-left: 34px;">
+        <div id="AgregarAC" style="position: absolute;margin-top: -90px; margin-left: 10px;">
              <a id="AgregarAC1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarcuenta()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
-        <div id="GuardarAC" style="position: absolute;margin-top: -65px; margin-left: 34px;">
+        <div id="GuardarAC" style="position: absolute;margin-top: -65px; margin-left: 10px;">
              <a id="GuardarAC1" runat="server" href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarcuenta()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
-        <div  id="EliminarAC" style="position: absolute;margin-top: -40px; margin-left: 34px;">
+        <div  id="EliminarAC" style="position: absolute;margin-top: -40px; margin-left: 10px;">
              <a id="EliminarAC1" runat="server" href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarcuenta()">
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
@@ -577,7 +578,7 @@ body {
         </div>
          <div class="row">
         <div id="content3" class="col-lg-12">
-            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opción Guardar/Agregar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
         </div>
     </div>
            <%-- GRIDVIEW NUMEROS DE CUENTAS --%>
@@ -663,12 +664,12 @@ body {
           <div class="col-12">
              <div id="AgregarACC" style="position: absolute;margin-top: 5px; margin-left: 50px;">
              <a id="AgregarACC1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarcuentascoope()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="GuardarACC" style="position: absolute;margin-top: 28px; margin-left: 50px;">
              <a id="GuardarACC1" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarcuentascoope()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="EliminarACC" style="position: absolute;margin-top: 50px; margin-left: 50px;">
@@ -699,7 +700,7 @@ body {
                 </div> 
    <div class="row">
         <div id="content4" class="col-lg-12">
-            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opcion agregar fila. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opción Guardar/Agregar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
         </div>
     </div>
                   <%-- GRIDVIEW NUMEROS DE CUENTAS POR COBRAR --%>
@@ -776,12 +777,12 @@ body {
           <div class="col-12">
               <div id="AgregarAP" style="position: absolute;margin-top: 5px; margin-left: 50px;">
              <a id="AgregarAP1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarcuentasporcobrar()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="GuardarAP" style="position: absolute;margin-top: 28px; margin-left: 50px;">
              <a id="GuardarAP1" runat="server" href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarcuentasporcobrar()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="EliminarAP" style="position: absolute;margin-top: 50px; margin-left: 50px;">
@@ -790,6 +791,7 @@ body {
              </a>
        </div>
                 <br/>
+
                 <div style="overflow-x:auto;margin-top: -25px;" >
                     <div class="card-body">
                        <input id="ACPNombre" runat="server" type="text" class="tam" style="max-width:250px;margin-left: 212px;"  placeholder="Nombre persona o entidad" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -797,6 +799,7 @@ body {
                        <input id="ACPMotivo" runat="server" type="text" style="max-width: 403px;margin-left: 214px;"  placeholder="Motivo" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                          <input id="Text15" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                                          <%-- GRIDVIEW NUMEROS DE CUENTAS POR COBRAR --%>
+
                         <div id="divGridcuentasporcobrar" style="overflow: auto; height: 130px">
                  <asp:GridView ID="GridViewcuentasporcobrar" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedcuentasporcobrar" BorderStyle="Solid">
@@ -846,17 +849,17 @@ body {
     <fieldset id="septimof" style="box-shadow: 0 0 15px 1px rgb(0 112 209);">
            <h2 class="fs-title"><b>Inversiones</b></h2>
            <div class="col-12">
-             <div id="AgregarBI11" style="position: absolute;margin-top: 2px; margin-left: 50px;">
+             <div id="AgregarBI11" style="position: absolute;margin-top: 2px; margin-left: 15px;">
              <a id="A1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarinversion()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
-        <div id="GuardarBI11" style="position: absolute;margin-top: 25px; margin-left: 50px;">
+        <div id="GuardarBI11" style="position: absolute;margin-top: 25px; margin-left: 15px;">
              <a id="A2" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarinversion()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
-        <div  id="EliminarBI11" style="position: absolute;margin-top: 48px; margin-left: 50px;">
+        <div  id="EliminarBI11" style="position: absolute;margin-top: 48px; margin-left: 15px;">
              <a id="A3" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarinversiones()">
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
@@ -876,7 +879,11 @@ body {
         <input id="Text24" runat="server" type="text" class="tampe"  style="max-width: 150px;" placeholder="No. Cuenta" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>  
         <label for="start" style="margin-left: 175px;">Fecha de Apertura</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
         <input class="tam" id="Date2" runat="server" style="margin-left: 66px;max-width: 270px;"  type="date"  value="2020-04-25" min="1950-01-01" max="2021-12-31" />   
-         
+          <div class="row">
+        <div id="content4" class="col-lg-12">
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opción Guardar/Agregar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+        </div>
+    </div>
          <%-- GRIDVIEW Inversiones--%>
               <div id="divGridInversiones" style="overflow: auto; height: 130px" runat="server">
                  <asp:GridView ID="gridviewinversiones" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
@@ -952,12 +959,12 @@ body {
        <div class="col-12">
              <div id="AgregarBI" style="position: absolute;margin-top: 25px; margin-left: 50px;">
              <a id="AgregarBI1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarbienesinmuebles()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="GuardarBI" style="position: absolute;margin-top: 48px; margin-left: 50px;">
              <a id="GuardarBI1" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarbienesinmuebles()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="EliminarBI" style="position: absolute;margin-top: 72px; margin-left: 50px;">
@@ -1054,12 +1061,12 @@ body {
        <div class="col-12">
              <div id="AgregarV" style="position: absolute;margin-top: 67px; margin-left: 50px;">
              <a id="AgregarV1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarvehiculos()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="GuardarV" style="position: absolute;margin-top: 95px; margin-left: 50px;">
              <a id="GuardarV1" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarvehiculos()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="EliminarV" style="position: absolute;margin-top: 122px; margin-left: 50px;">
@@ -1068,6 +1075,7 @@ body {
              </a>
        </div>
                 <br/>
+       
                 <div style="overflow-x:auto;margin-top: -16px;">
                     <div class="card-body">
                            <label for="start">El vehículo se encuentra a su nombre:</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
@@ -1113,7 +1121,7 @@ body {
                             <asp:Label ID="lblmarca" Text='<%# Eval("ep_vehiculomarca") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Linea">
+                           <asp:TemplateField HeaderText="Línea">
                            <ItemTemplate>
                             <asp:Label ID="lbllineavehiculo" Text='<%# Eval("ep_vehiculolinea") %>' runat="server" />
                         </ItemTemplate>
@@ -1133,7 +1141,7 @@ body {
                             <asp:Label ID="lblcomentario" Text='<%# Eval("ep_vehiculocomentario") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="A quién esta">
+                            <asp:TemplateField HeaderText="A quien esta">
                            <ItemTemplate>
                             <asp:Label ID="lblaquienesta" Text='<%# Eval("ep_vehiculoanombrede") %>' runat="server" />
                         </ItemTemplate>
@@ -1174,7 +1182,7 @@ body {
              <input id="ACComentarios" runat="server" type="text"    placeholder="Especifique" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
             <hr class="solid" style="margin-top: 5px;"/>
              <h2 class="fs-title"><b>Menaje (Bienes en su casa)</b></h2>
-        <label for="start">Equipo de Computo</label>&nbsp;&nbsp;&nbsp;
+        <label for="start">Equipo de Cómputo</label>&nbsp;&nbsp;&nbsp;
         <label>Q</label>
         <input id="ACMEComputo" runat="server" type="number" class="tam"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br />
@@ -1218,7 +1226,7 @@ body {
         <label >Q</label>
         <input id="ACMARefrigeradoraV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
         <br/>
-        <label for="start" class="tampes">Telefono Movil</label>&nbsp;&nbsp;&nbsp;
+        <label for="start" class="tampes">Teléfono Móvil</label>&nbsp;&nbsp;&nbsp;
         <input id="ACMATMovilC"  runat="server" type="number" class="tampes" style="margin-left: 16px;width:20.5%"  placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
         <label >Q</label>
         <input id="ACMATMovilV" style="width:20.5%" runat="server" type="number" class="tampes"   placeholder="Valor Actual en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
@@ -1234,19 +1242,19 @@ body {
         <input id="ACMACantidadO" runat="server" type="number" class="tampes"   placeholder="Cantidad" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
             
         <label for="start" class="tampes">Fondo de retiro FENAFORE</label>&nbsp;&nbsp;&nbsp;
-        <input id="Text23" runat="server" type="text" class="tampes" style="margin-left: 0px;"  placeholder="Inversión fondo de retiro FENAFORE" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-        <input id="Number5" runat="server" type="number" class="tampes"   placeholder="Saldo en Q y/o $" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        <%--<input id="FenaDes" runat="server" type="text" class="tampes" style="margin-left: 0px;"  placeholder="Inversión fondo de retiro FENAFORE" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+        --%><input id="FenaVal" runat="server" type="number" class="tampes"   placeholder="Saldo en Q y/o $" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
            
         <hr class="solid" style="margin-top: 5px;"/>
             <br/>
     <div class="row">
         <div style="" class="col-lg-12">
-            <div class="content" style="text-align: justify;background-color:#69a43c"><b>Usuario:</b> Debes dar en Guardar para que que tus datos se almacenen en el sistema. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
-        </div>
+             <div class="content" style="text-align: justify;background-color:#69a43c;height: 125px;width: 30%;    margin-top: -98px;    margin-left: -268px;"><b>Usuario:</b> Debes dar en Guardar para que tus datos se almacenen en el sistema y poder pasar a la siguiente seccion. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
+         </div>
     </div>
         <input runat="server" type="button" name="guardar" class="next action-button" value="Guardar" id="btnfinalactivo" onclick="btnguardaractivo()" /> 
         <input type="button" name="previous" class="previous action-button" style="background-color: #0070D1" value="< Anterior" />
-        <input type="button" name="next" class="next action-button" style="background-color: #0070D1" value="Siguiente >" />
+        <input type="button" name="next" runat="server" id="buton2" class="next action-button" style="background-color: #0070D1" value="Siguiente >" />
     </fieldset>
 <!--  Fin Area de Formulario de Activos y sus 4 Secciones  -->
 <!--  Area Pasivo y sus 2 Secciones    -->
@@ -1261,22 +1269,27 @@ body {
         <input id="PCPDes1" runat="server" type="text" class="tampes"   placeholder="Descripcion" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <input id="PCPMonto1" runat="server" type="number" class="tampes"   placeholder="Monto en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <input id="Text18" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />   
-        <div id="AgregarPC" style="position: absolute;margin-top: -64px; margin-left: 50px;">
+        <div id="AgregarPC" style="position: absolute;margin-top: -64px; margin-left: 10px;">
         <a id="AgregarPC1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarcuentasporpagar()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
-        <div id="GuardarPC" style="position: absolute;margin-top: -45px; margin-left: 50px;">
+        <div id="GuardarPC" style="position: absolute;margin-top: -45px; margin-left: 10px;">
              <a id="GuardarPC1" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarcuentasporpagar()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
-        <div  id="EliminarPC" style="position: absolute;margin-top: -26px; margin-left: 50px;">
+        <div  id="EliminarPC" style="position: absolute;margin-top: -26px; margin-left: 10px;">
              <a id="EliminarPC1" runat="server"   href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="eliminarcuentasporpagar()">
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
        </div>
         <br/>
+   <div class="row">
+        <div id="content4" class="col-lg-12">
+            <div class="content"style="text-align: justify"><b>Usuario:</b> para poder guardar tus datos debes dar click en la la opción Guardar/Agregar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+        </div>
+    </div>
              <%-- GRIDVIEW NUMEROS DE CUENTAS POR PAGAR --%>
         <div id="divGridcuentasporpagar" style="overflow: auto; height: 130px">
                  <asp:GridView ID="GridViewcuentasporpagar" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
@@ -1316,17 +1329,17 @@ body {
             </div>
       <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;"/>
      <hr class="solid" style="margin-top: 5px;"/>
-             <h3 class="fs-title" style="margin-top:-10px"><b>Prestamos</b></h3>
+             <h3 class="fs-title" style="margin-top:-10px"><b>Préstamos</b></h3>
         <br/>
           <div class="col-12">
                <div id="AgregarPP" style="position: absolute;margin-top: 0px; margin-left: 50px;">
              <a id="AgregarPP1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregarprestamos()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="GuardarPP" style="position: absolute;margin-top: 23px; margin-left: 50px;">
              <a id="GuardarPP1" runat="server"  href="javascript:void(0);"  class="Inmuebles" title="Add field" onclick="modificarprestamos()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="EliminarPP" style="position: absolute;margin-top: 45px; margin-left: 50px;">
@@ -1346,21 +1359,21 @@ body {
            <input id="PFDestino" runat="server" type="text" style="max-width: 150px;" class="tampe"   placeholder="Destino" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
             <input id="Text19" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />   
 
-                <label for="start" style="margin-left: -18px;">Fecha Desenbolso</label>
+                <label for="start" style="margin-left: -18px;">Fecha Desembolso</label>
                 <input id="Datedesembolso" runat="server" class="tam" type="date" style=" max-width: 144px;" name="trip-start" value="2018-07-22" min="1950-01-01" max="2021-12-31" />
-          &nbsp;&nbsp; <label for="start">Fecha Finalizacion</label>
+          &nbsp;&nbsp; <label for="start">Fecha Finalización</label>
                <input id="Datefinalizacion" runat="server" class="tam" style=" max-width: 144px;" type="date"  name="trip-start" value="2018-07-22" min="1950-01-01" max="2021-12-31" />
              <%-- GRIDVIEW NUMEROS DE PRESTAMOS --%>
                         <div id="divGridprestamos" style="overflow: auto; height: 130px">
                  <asp:GridView ID="GridViewpasivos"  CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedpasivos" BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField HeaderText="Número prestamo" Visible="False">
+                         <asp:TemplateField HeaderText="Número préstamo" Visible="False">
                            <ItemTemplate>
                             <asp:Label ID="lblnumeroprestamo" Text='<%# Eval("codepprestamo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Número Tipo prestamo" Visible="False">
+                         <asp:TemplateField HeaderText="Número Tipo préstamo" Visible="False">
                            <ItemTemplate>
                             <asp:Label ID="lblnumerotipoprestamo" Text='<%# Eval("codeptipoprestamo") %>' runat="server" />
                         </ItemTemplate>
@@ -1375,12 +1388,12 @@ body {
                             <asp:Label ID="lblnumtipodeinstitucion" Text='<%# Eval("codeptipoinstitucion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Tipo de prestamo">
+                           <asp:TemplateField HeaderText="Tipo de préstamo">
                            <ItemTemplate>
                             <asp:Label ID="lbltipoprestamo" Text='<%# Eval("ep_tipoprestamonombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField> 
-                           <asp:TemplateField HeaderText="Tipo de institucion">
+                           <asp:TemplateField HeaderText="Tipo de institución">
                            <ItemTemplate>
                             <asp:Label ID="lbltipoinstitucion" Text='<%# Eval("ep_tipoinstitucionnombre") %>' runat="server" />
                         </ItemTemplate>
@@ -1433,18 +1446,20 @@ body {
         <input type="button" name="next" class="next action-button" style="background-color: #00AFEB" value="Siguiente >" />
     </fieldset>
     <fieldset id="decimof"  style="box-shadow: 0 0 15px 1px rgb(0 175 235);">
-        <h2 class="fs-title"><b>Tarjeta de Credito</b></h2>
+        <h2 class="fs-title"><b>Tarjeta de Crédito</b></h2>
            <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
         <br/>
+
+     
           <div class="col-12">
                <div id="AgregarTC" style="position: absolute;margin-top: 0px; margin-left: 50px;">
              <a id="AgregarTC1" runat="server" href="javascript:void(0);" class="Inmuebles" title="Add field" onclick="agregartarjetacredito()">
-                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar/Agregar
              </a>
        </div>
         <div id="GuardarTC" style="position: absolute;margin-top: 25px; margin-left: 50px;">
              <a id="GuardarTC1" runat="server" href="javascript:void(0);"  class="Inmuebles" title="Add field"  onclick="modificartarjetacredito()">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Guardar
+                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Actualizar
              </a>
        </div>
         <div  id="EliminarTC" style="position: absolute;margin-top: 50px; margin-left: 50px;">
@@ -1452,6 +1467,7 @@ body {
                  <i class="fa fa-close" aria-hidden="true"></i>&nbsp;Eliminar
              </a>
        </div>
+
                 <br/>
                 <div style="overflow-x:auto;    margin-top: -28px;">
                     <div class="card-body">
@@ -1462,6 +1478,8 @@ body {
                    <input id="PTTLimite2" runat="server" style="max-width:150px;" type="number" class="tampe"   placeholder="Limite en $" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                    <input id="PTTSaldo" runat="server" style="max-width:150px;" type="number" class="tampe"   placeholder="Saldo Actual" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                    <input id="Text20" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                      
+    
                         <%-- GRIDVIEW NUMEROS DE TARJETAS --%>
                       <div id="divGridtarjetas" style="overflow: auto; height: 130px">
                  <asp:GridView ID="GridViewtarjetas" CssClass="mGrid" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
@@ -1517,11 +1535,11 @@ body {
                             </div>
                     <hr class="solid" style="margin-top: 5px;"/>
                            <h2 class="fs-title"><b>Otras Deudas</b></h2>
-                           <input id="PODeudas" runat="server"  type="text" class="tam"   placeholder="Especifique" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                           <input id="POMonto" runat="server" type="number" class="tampe"   placeholder="Monto" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                           <input id="PODeudas" runat="server"  type="text" class="tam"   placeholder="Especifique" maxlength="200"  />
+                           <input id="POMonto" runat="server" type="number" class="tampe"   placeholder="Monto" maxlength="20" />
                 
                     <hr class="solid" style="margin-top: 5px;" />
-                           <h2 class="fs-title"><b>Pasivo Contigente</b></h2>
+                           <h2 class="fs-title"><b>Pasivo Contingente</b></h2>
                            <input id="PTNEntidad" runat="server"  type="text" class="tam"   placeholder="Nombre Entidad" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                            <input id="PTNDeudor" runat="server"   type="text" class="tam"   placeholder="Nombre Deudor" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                            <input id="PTRelacion" runat="server"  type="text" class="tam"   placeholder="Relacion con Deudor" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -1533,7 +1551,7 @@ body {
                     </div>
                         <label for="start" style="margin-left: -18px;">Fecha Desembolso</label>&nbsp;&nbsp;                    
                        <input id="fechadembolso" runat="server"  class="tampe" style="max-width:150px;"  type="date"  name="trip-start" value="2020-04-24" min="1950-01-01" max="2021-12-31" />
-                        &nbsp; &nbsp; <label for="start">Fecha Finalizacion</label>&nbsp;&nbsp;                        
+                        &nbsp; &nbsp; <label for="start">Fecha Finalización</label>&nbsp;&nbsp;                        
                         <input id="fechafinalizacion" runat="server" class="tampe" style="max-width:150px;" type="date"  name="trip-start" value="2020-04-24" min="1950-01-01" max="2021-12-31" />
                  <hr class="solid" style="margin-top: 5px;"/>
                 </div>
@@ -1543,12 +1561,12 @@ body {
     <br/>
          <div class="row">
         <div style="" class="col-lg-12">
-            <div class="content" style="text-align: justify;background-color:#69a43c"><b>Usuario:</b> Debes dar en Guardar para que que tus datos se almacenen en el sistema. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
-        </div>
+           <div class="content" style="text-align: justify;background-color:#69a43c;height: 125px;width: 30%;    margin-top: -98px;    margin-left: -268px;"><b>Usuario:</b> Debes dar en Guardar para que tus datos se almacenen en el sistema y poder pasar a la siguiente seccion. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
+         </div>
     </div>
         <input type="button" runat="server" name="guardar" class="next action-button" value="Guardar" onclick="guardarepfinalpasivos()" id="btnguardarpasivo"/>
         <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
-        <input type="button" name="next" class="next action-button" style="background-color: #00AFEB" value="Siguiente >" />
+        <input type="button" name="next" runat="server" id="buton3" class="next action-button" style="background-color: #00AFEB" value="Siguiente >" />
     </fieldset>
 <!--  Fin Area Pasivos y sus 2 Secciones  -->
 <!--  Area Ingresos y Egresos y sus 2 Secciones    -->
@@ -1564,8 +1582,8 @@ body {
                  <input id="ICMensuales" runat="server" type="number" class="tampe"   placeholder="Comisiones Mensuales" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
            <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;"/>
           <label for="start">Tiene negocio propio:</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
-	<b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar()" id="rdbsinegociopropio" runat="server" />
-	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar()" id="rdbnonegociopropio" runat="server" />
+	<b>Si</b><input name="intereses1" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar()" id="rdbsinegociopropio" runat="server" />
+	<b>No</b><input name="intereses1" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar()" id="rdbnonegociopropio" runat="server" checked />
 
 
             <select class="tampe" id="ITNegocio" runat="server" >
@@ -1584,7 +1602,7 @@ body {
   <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;" />
           <label for="start">Remesas:</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
 	<b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar1()" id="rdbsiRemesas" runat="server" />
-	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar1()" id="rdbnoRemesas" runat="server" />
+	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar1()" id="rdbnoRemesas" runat="server" checked />
             <br/>
     <input id="ISRNombre" runat="server" type="text" class="tam"   placeholder="Nombre Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <input id="ISRRelacion" runat="server" type="text" class="tam"   placeholder="Relacion Remitente" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -1608,7 +1626,7 @@ body {
         <h2 class="fs-title"><b>Egresos</b></h2>
            <img src="../../Imagenes/Logotipo-Guadalupana1.png" style="position: absolute; top: 0; right: 8px;max-width: 118px" />
         <br/>
-          <label for="start">Alimentacion</label>&nbsp;&nbsp;&nbsp;
+          <label for="start">Alimentación</label>&nbsp;&nbsp;&nbsp;
         <input id="ITAlimen" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
          <label for="start" style="margin-left: -57px;">Transporte o Gasolina</label>&nbsp;&nbsp;&nbsp;
@@ -1617,16 +1635,16 @@ body {
         <label for="start">Pago Estudios</label>&nbsp;&nbsp;&nbsp;
         <input id="ITPago" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
-        <label for="start" style="margin-left: 26px;">Prestamos</label>&nbsp;&nbsp;&nbsp;
+        <label for="start" style="margin-left: 26px;">Préstamos</label>&nbsp;&nbsp;&nbsp;
         <input id="ITPrestamos" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/> 
-        <label for="start" style="margin-left: -20px;">Tarjeta de Credito</label>&nbsp;&nbsp;&nbsp;
+        <label for="start" style="margin-left: -20px;">Tarjeta de Crédito</label>&nbsp;&nbsp;&nbsp;
         <input id="ITTarjeta" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
         <label for="start" style="margin-left: 35px;">Vestuario</label>&nbsp;&nbsp;&nbsp;
         <input id="ITVestuario" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
-        <label for="start" style="margin-left: 23px;">Recreacion</label>&nbsp;&nbsp;&nbsp;
+        <label for="start" style="margin-left: 23px;">Recreación</label>&nbsp;&nbsp;&nbsp;
         <input id="ITRecreacion" runat="server" type="number" class="tampe"  style="margin-left: -7px;" placeholder="Valor en Q" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
         <br/>
         <label for="start" style="margin-left: 2px;">Otros Egresos</label>&nbsp;&nbsp;&nbsp;
@@ -1636,8 +1654,8 @@ body {
   <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;"/>
           <label for="start">Es usted una Persona Expuesta Políticamente (PEP):</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
         <br/>
-	<b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar11()" id="rdbsiinteres" runat="server" />
-	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar11()" id="rdbnointeres" runat="server" />
+	<b>Si</b><input name="intereses2" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar11()" id="rdbsiinteres" runat="server" />
+	<b>No</b><input name="intereses2" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar11()" id="rdbnointeres" runat="server" checked />
             <br/>
     <input id="ENIns" runat="server" type="text" class="tampe"   placeholder="Nombre Institucion" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
     <input id="EPuesto" runat="server" type="text" class="tampe"   placeholder="Puesto" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -1645,8 +1663,8 @@ body {
         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;"/>
          
     <label for="start">Tiene usted algún parentesco con una Persona Expuesta Políticamente (PEP):</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
-	<br /><b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar111()" id="rdbsipep" runat="server" />
-	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar111()" id="rdbnopep" runat="server" />
+	<br /><b>Si</b><input name="intereses4" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar111()" id="rdbsipep" runat="server" />
+	<b>No</b><input name="intereses4" type="radio" class="tampe" value="rblocal" checked style="margin-left: -63px;" onclick="Desactivar111()" id="rdbnopep" runat="server" />
        <br /> 
         <asp:DropDownList id="EParentesco1" runat="server" class="tampe"  AutoPostBack="true" onchange="javascript:cmbnacionalidad1();" ></asp:DropDownList>
         <asp:DropDownList id="Modalidad1" runat="server" class="tampe" AutoPostBack="true" onchange="javascript:cmbparentesco1();"  ></asp:DropDownList>
@@ -1657,8 +1675,8 @@ body {
         
         <hr class="solid" style="margin-top: 5px;border-top: 2px solid #69a43c;"/>
         <label for="start">Es usted asociado cercano de una Persona Expuesta Políticamente (PEP):</label>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
-	<br /><b>Si</b><input name="intereses" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar1111()" id="rdbsiasociadopep" runat="server" />
-	<b>No</b><input name="intereses" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar1111()"  id="rdbnoasociadopep" runat="server"/>
+	<br /><b>Si</b><input name="intereses3" type="radio" class="tampe" value="rbforaneo" style="margin-left: -63px;" onclick="Activar1111()" id="rdbsiasociadopep" runat="server" />
+	<b>No</b><input name="intereses3" type="radio" class="tampe" value="rblocal" style="margin-left: -63px;" onclick="Desactivar1111()"  id="rdbnoasociadopep" runat="server" checked/>
         <br/>
         <asp:DropDownList id="EParentesco2" runat="server" class="tampe" AutoPostBack="true" onchange="javascript:cmbnacionalidad2();"></asp:DropDownList>
         <asp:DropDownList id="Modalidad2" runat="server" class="tampe" AutoPostBack="true"  onchange="javascript:cmbparentesco2();" ></asp:DropDownList>
@@ -1681,7 +1699,7 @@ body {
     <br/>
         <div class="row">
         <div style="" class="col-lg-12">
-            <div class="content" style="text-align: justify;background-color:orangered"><b>Usuario:</b>Al dar click en Terminar,tus datos se guardaran y ya no se podran Modificar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
+            <div class="content" style="text-align: justify;background-color:orangered"><b>Usuario:</b>Al dar click en Terminar,tus datos se guardarán y ya no se podran Modificar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:#003563"></i></div>
         </div>
     </div>
         <input type="button" name="previous" class="previous action-button" style="background-color: #00AFEB" value="< Anterior" />
@@ -3250,6 +3268,7 @@ body {
         function guardarinformaciongeneral() {
             document.getElementById('btnguardainfogeneral').click();
             sessionStorage.setItem('bandera', '10');
+           
         }
         function cmbtipomoneda1() {
             document.getElementById('combotipomoneda1').click();

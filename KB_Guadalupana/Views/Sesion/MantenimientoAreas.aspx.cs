@@ -15,7 +15,7 @@ namespace KB_Guadalupana.Views.Sesion
     {
         Logica logic = new Logica();
         Conexion conn = new Conexion();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,7 +32,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 if (e.CommandName.Equals("AddNew"))
                 {
-                    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                     {
                         sqlCon.Open();
                         string query = "INSERT INTO gen_area (codgenarea,codgensucursal,gen_areanombre) VALUES (@FirstName,@Contact,@Contact2)";
@@ -93,7 +93,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "UPDATE gen_area SET codgenarea=@FirstName,codgensucursal=@Contact,gen_areanombre=@Contact2 WHERE codgenarea = @id";
@@ -120,7 +120,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "DELETE FROM gen_area WHERE codgenarea = @id";

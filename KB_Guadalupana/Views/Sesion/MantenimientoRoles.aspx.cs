@@ -15,7 +15,8 @@ namespace KB_Guadalupana.Views.Sesion
     {
         Logica logic = new Logica();
         Conexion conn = new Conexion();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,7 +33,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 if (e.CommandName.Equals("AddNew"))
                 {
-                    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                     {
                         sqlCon.Open();
                         string query = "INSERT INTO gen_roles (codgenroles,gen_rolesnombre) VALUES (@FirstName,@Contact)";
@@ -93,7 +94,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "UPDATE gen_roles SET codgenroles=@FirstName,gen_rolesnombre=@Contact WHERE codgenroles = @id";
@@ -119,7 +120,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "DELETE FROM gen_roles WHERE codgenroles = @id";

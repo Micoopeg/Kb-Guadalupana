@@ -9,7 +9,7 @@ namespace KB_Guadalupana.Controllers
 {
     public class Sentencia
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         Conexion cn = new Conexion();
         MySqlCommand comm;
 
@@ -25,7 +25,7 @@ namespace KB_Guadalupana.Controllers
         {
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (MySqlConnection conn = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     conn.Open();
                     string consultaGraAsis = " select * from " + tabla + ";";
@@ -187,7 +187,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoIE(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -224,7 +224,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoIO(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -274,7 +274,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCaja(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -303,7 +303,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoInv(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -332,7 +332,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomaq(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -361,7 +361,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaje(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -393,7 +393,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaje1(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -425,7 +425,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaje2(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -457,7 +457,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenajeTV(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -489,7 +489,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenajeES(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -521,7 +521,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenajeL(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -553,7 +553,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaSec(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -585,7 +585,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaEST(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -617,7 +617,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaRefri(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -649,7 +649,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaTel(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -681,7 +681,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaOtros(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -713,7 +713,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaOD(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -742,7 +742,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaPC(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -774,7 +774,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaIng(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -804,7 +804,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaNeg(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -836,7 +836,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaRem(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -867,7 +867,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaEgres(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -896,7 +896,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCajas(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -925,7 +925,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoQ(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -959,7 +959,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoD(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -993,7 +993,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCD(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1027,7 +1027,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCQ(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1061,7 +1061,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCP(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1095,7 +1095,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoIN(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1124,7 +1124,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoInmueble(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1153,7 +1153,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoVehiculo(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1182,7 +1182,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoMaquinaria(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1210,7 +1210,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoComputo(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1240,7 +1240,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoSala(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1270,7 +1270,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoComedor(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1300,7 +1300,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTV(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1330,7 +1330,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoES(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1360,7 +1360,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoL(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1390,7 +1390,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoSec(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1420,7 +1420,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoEst(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1450,7 +1450,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoRefri(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1480,7 +1480,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTel(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1510,7 +1510,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoOtros(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1540,7 +1540,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCP1(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1569,7 +1569,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCuentaspp(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1600,7 +1600,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCuentaTarjeta(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1630,7 +1630,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCuentaOD(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1659,7 +1659,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCuentapasc(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1690,7 +1690,7 @@ namespace KB_Guadalupana.Controllers
         //Nuevo
         public string[] consultarTotal1()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1716,7 +1716,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarTotal2()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1742,7 +1742,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarTotal3()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1768,7 +1768,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoUser(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1796,7 +1796,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTotalCC(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1828,7 +1828,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTotalCC1(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1860,7 +1860,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTotalCC2(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1888,7 +1888,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTotalCC3(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1917,7 +1917,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTotalCC4(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1945,7 +1945,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTotalCC5(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1976,7 +1976,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoTotalCC6(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2006,7 +2006,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] updateestadofinal(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2032,7 +2032,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarvacioH(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2061,7 +2061,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarvacioE(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2090,7 +2090,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarvacioCP(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2118,7 +2118,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarvacioIN(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2148,7 +2148,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarvacioVE(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2179,7 +2179,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarvacioCP1(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2209,7 +2209,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarvaciopres(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2247,7 +2247,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarvaciopretar(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2282,7 +2282,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaFena(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2312,7 +2312,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCuentaFena(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2341,7 +2341,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCuentaFenaINver(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2369,7 +2369,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampoCuentaFenaINver1(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2397,7 +2397,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampomenaje11(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2448,7 +2448,7 @@ namespace KB_Guadalupana.Controllers
 
         public void eliminarregistro(string tabla, string campo, string dato)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2469,7 +2469,7 @@ namespace KB_Guadalupana.Controllers
         {
             string[] Campos = new string[30];
             int i = 0;
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -2499,7 +2499,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarconcampo(string tabla, string campo, string dato)//metodo que obtiene la lista de los campos que requiere una tabla
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[3000];
                 int i = 0;
@@ -2527,7 +2527,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarcif(string nombre1, string nombre2, string apellido1)//metodo que obtiene la lista de los campos que requiere una tabla
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[300];
                 int i = 0;
@@ -2556,7 +2556,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarinformaciong(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[300];
                 int i = 0;
@@ -2597,7 +2597,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] fechaactual()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2623,7 +2623,7 @@ namespace KB_Guadalupana.Controllers
         public string[] validarfechadeingreso_ep()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[3000];
                 int i = 0;
@@ -2656,7 +2656,7 @@ namespace KB_Guadalupana.Controllers
         {
             string[] Campos = new string[30];
             int i = 0;
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -2684,7 +2684,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] estadodeprocesocif(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2710,7 +2710,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarcif(string nombre1)//metodo que obtiene la lista de los campos que requiere una tabla
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[300];
                 int i = 0;
@@ -2740,7 +2740,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] consultarRol(string usuario)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[300];
                 int i = 0;
@@ -2768,7 +2768,7 @@ namespace KB_Guadalupana.Controllers
         public string[] consultarArea(string usuario)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[300];
                 int i = 0;
@@ -2793,7 +2793,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarcamposgeneral(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2820,7 +2820,7 @@ namespace KB_Guadalupana.Controllers
         public string[] mostrarcamposgeneralfam(string cif)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2846,7 +2846,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarestudios(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2871,7 +2871,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarcaja(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2896,7 +2896,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarinventario(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2922,7 +2922,7 @@ namespace KB_Guadalupana.Controllers
         public string[] mostrarmaquinaria(string cif)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2948,7 +2948,7 @@ namespace KB_Guadalupana.Controllers
         public string[] mostrarcontratistaproveedor(string cif)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2973,7 +2973,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarinversion(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2998,7 +2998,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje1(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3023,7 +3023,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje2(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3048,7 +3048,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje3(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3073,7 +3073,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje4(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3098,7 +3098,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje5(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3123,7 +3123,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje6(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3148,7 +3148,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje7(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3174,7 +3174,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje8(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3199,7 +3199,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje9(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3224,7 +3224,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje10(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3249,7 +3249,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje11(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3274,7 +3274,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarmenaje12(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3299,7 +3299,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrardeudas(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3324,7 +3324,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarpasivocontigente(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3349,7 +3349,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostraringresos(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3374,7 +3374,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarnegocios(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3399,7 +3399,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarremesas(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3424,7 +3424,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostraregresos(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3449,7 +3449,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarexpuestapep(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3474,7 +3474,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] mostrarparentescopep(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3500,7 +3500,7 @@ namespace KB_Guadalupana.Controllers
         public string[] mostrarasociadocopep(string cif)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3526,7 +3526,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerfinal(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -3551,7 +3551,7 @@ namespace KB_Guadalupana.Controllers
         }
         public void insertartablas(string tabla, string[] datos)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string query = "";
                 for (int i = 0; i < datos.Length; i++)
@@ -3580,7 +3580,7 @@ namespace KB_Guadalupana.Controllers
         }
         public void modificartablas(string tabla, string[] campos, string[] datos)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string query = "";
                 int n = 1;
@@ -3612,7 +3612,7 @@ namespace KB_Guadalupana.Controllers
         }
         public void modificartablasdoscampos(string tabla, string[] campos, string[] datos)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string query = "";
                 int n = 2;
@@ -3647,7 +3647,7 @@ namespace KB_Guadalupana.Controllers
         {
             string[] Campos = new string[30];
             int i = 0;
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -3674,7 +3674,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarCIF(string cif)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3700,7 +3700,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] consultarCIF1(string cif, string valor)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -3736,7 +3736,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable buscarCIF(string cif, string valor)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -3818,7 +3818,7 @@ namespace KB_Guadalupana.Controllers
 
         public void crearUsuario(string id, string equipo, string usuario, string correo, string area, string rol)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

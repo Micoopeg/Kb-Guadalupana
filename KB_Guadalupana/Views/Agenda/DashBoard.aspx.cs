@@ -19,7 +19,7 @@ namespace KBGuada.Views.session
         string BCIF,DAREA, FECHAI, FECHAF, DESTADO ;
         string nombreuser, user;
         string rol;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         ControladorAV cav = new ControladorAV();
         ModeloAV mav = new ModeloAV();
         Conexion cn = new Conexion();
@@ -85,7 +85,7 @@ namespace KBGuada.Views.session
         
       
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -108,7 +108,7 @@ namespace KBGuada.Views.session
             
      
           
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

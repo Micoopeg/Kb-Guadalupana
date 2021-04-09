@@ -13,7 +13,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 {
     public partial class InformacionGeneralEP : System.Web.UI.Page
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         Conexion cn = new Conexion();
         Logica logic = new Logica();
         Sentencia sn = new Sentencia();
@@ -127,7 +127,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         //Celulares
         public void llenargridviewcelulares()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -159,7 +159,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         //////Hijos
         public void llenargridviewhijos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -202,7 +202,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         //////Otros Estudios
         public void llenargridviewestudios()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

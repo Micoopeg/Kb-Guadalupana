@@ -13,7 +13,7 @@ namespace KB_Guadalupana.Views.Seguridad
     public partial class ModificarModulo : System.Web.UI.Page
     {
         Sentencia_seguridad sn = new Sentencia_seguridad();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,7 +25,7 @@ namespace KB_Guadalupana.Views.Seguridad
 
         public void llenarcomboarea()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -73,7 +73,7 @@ namespace KB_Guadalupana.Views.Seguridad
 
         public void llenarcomboaplicacion()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

@@ -13,7 +13,7 @@ namespace KB_Guadalupana.Views.Sesion
 {
     public partial class Reporte : System.Web.UI.Page
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         string valor1;
         Logica logic = new Logica();
         Conexion conn = new Conexion();
@@ -29,7 +29,7 @@ namespace KB_Guadalupana.Views.Sesion
         public void llenargridviewreporte()
         {
             valor1 = Session["Valor"].ToString();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

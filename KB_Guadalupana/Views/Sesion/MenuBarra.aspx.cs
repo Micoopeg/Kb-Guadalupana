@@ -19,7 +19,7 @@ namespace Login_Web
         Sentencia sn = new Sentencia();
         Logica lg = new Logica();
         Sentencia_seguridad sns = new Sentencia_seguridad();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        
         string abre;
         protected void Page_Load(object sender, EventArgs e)
         {

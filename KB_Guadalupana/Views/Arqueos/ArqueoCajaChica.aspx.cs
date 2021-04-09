@@ -15,6 +15,7 @@ namespace Modulo_de_arqueos.Views
 {
     public partial class ArqueoCajaChica : System.Web.UI.Page
     {
+        Conexion conexiongeneral = new Conexion();
         Logica_arqueos logic = new Logica_arqueos();
         Logica lg = new Logica();
         Conexion_arqueos conn = new Conexion_arqueos();
@@ -36,7 +37,7 @@ namespace Modulo_de_arqueos.Views
         string numarqueo;
         string fechamin, horamin, fechahora, usuario, idusuario, totalhaber, puesto, año, mes, dia, dia3, fechatotal1, fechamin2, año2, mes2, dia2, idusuario2;
         int cont;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -116,7 +117,7 @@ namespace Modulo_de_arqueos.Views
         }
         public void llenarcomboagencia()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -139,7 +140,7 @@ namespace Modulo_de_arqueos.Views
 
         public void llenarcombousuario()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -162,7 +163,7 @@ namespace Modulo_de_arqueos.Views
 
         public void llenarcomboarqueos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

@@ -15,9 +15,10 @@ namespace KB_Guadalupana.Views.Seguridad
     public partial class SeguridadMod : System.Web.UI.Page
     {
         ControladorAV cav = new ControladorAV();
+        Conexion conexiongeneral = new Conexion();
 
         string NOMAPP, URL, ABRAPP, OP, op2;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -71,7 +72,7 @@ namespace KB_Guadalupana.Views.Seguridad
 
         public void llenarcomboarea()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

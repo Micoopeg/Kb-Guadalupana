@@ -14,7 +14,7 @@ namespace KB_Guadalupana.Views.Sesion
 
     public partial class EP_InformacionGeneral : System.Web.UI.Page
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+       
         string IGCIfc, IGPuestoc, IGAgenciac, IGAreac, IGPApellidoc, IGSApellidoc, IGPNombrec, IGSNombrec, IGDepartac, IGSMunicipioc, IGZonac, IGDireccc, IGDocc, IGNoDocc, IGPNombreadicionalc, IGPesoc;
         string IGFechac, IGNitc, IGNacioc, IGCelc, IGTelc, IGCorrc, IGEsc, IGPesc, IGRelc, tipotelefono;
         string IFCivilc, IFNombrec, IFOcupc, IFFechac, IFCasadac, IFBodac, IFcompletoc, IFParentescoc, IFTelc;
@@ -57,6 +57,7 @@ namespace KB_Guadalupana.Views.Sesion
         string tipomaquinaria, descmaquinaria, montomaquinaria;
         string var; // estado del field
         string cifantiguo; //para ver si la persona tiene un cif antiguo
+        Conexion conexiongeneral = new Conexion();
         Conexion cn = new Conexion();
         Logica logic = new Logica();
         Sentencia sn = new Sentencia();
@@ -787,7 +788,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombopuesto()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -808,7 +809,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombodepartamento()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -828,7 +829,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombomunicipio()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -848,7 +849,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombozona()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -868,7 +869,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombotipodoc()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -888,7 +889,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcomboestadocivil()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -908,7 +909,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombotipomonedacuentas()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -929,7 +930,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombotipomoneda1()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -945,7 +946,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombotipomonedacuentascooperativa()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -966,7 +967,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombotipomoneda3()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -987,7 +988,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcomboestatuscuentas()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1007,7 +1008,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcomboestatuscuentascooperativa()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1027,7 +1028,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombotipoinmueble()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1048,7 +1049,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombotipotelefono()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1069,7 +1070,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombotipovehiculo()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1090,7 +1091,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombotipocuentaporpagar()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1111,7 +1112,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombotipoprestamos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1131,7 +1132,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombotipoinstitucion()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1151,7 +1152,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcomboinstitucion(long codtipoinstitucion)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1172,7 +1173,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombotipoinstitucioninversion()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1192,7 +1193,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcomboinstitucioninversion(long codtipoinstitucion)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1213,7 +1214,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombosucursal()  //SUCURSAL AHORA SERA GERENCIAS
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1233,7 +1234,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcomboarea(long codtiposucursal)   //AREA SERA DEPARTAMENTO
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1253,7 +1254,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombopuesto(long codtipodepartamento)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1274,7 +1275,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcombocooperativas()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1296,7 +1297,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         //public void llenarcombocuentas()
         //{
-        //    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+        //    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
         //    {
         //        try
         //        {
@@ -1316,7 +1317,7 @@ namespace KB_Guadalupana.Views.Sesion
         //}
         public void llenarcomboinstitucionescuenta()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1336,7 +1337,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombotipoinstituciontarjeta()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1356,7 +1357,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcomboinstituciontarjeta(long codtipoinstitucion)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1377,7 +1378,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenarcomboparentesco1()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1397,7 +1398,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcomboparentesco2()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1417,7 +1418,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombonacionalidad1()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1437,7 +1438,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenarcombonacionalidad2()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2221,7 +2222,7 @@ namespace KB_Guadalupana.Views.Sesion
         ///
         public void llenargridviewinversiones()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2268,7 +2269,7 @@ namespace KB_Guadalupana.Views.Sesion
         public void llenargridviewestudiosuniversitarios()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2304,7 +2305,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewcelulares()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2343,7 +2344,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewhijos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2385,7 +2386,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewestudios()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2419,7 +2420,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenargridviewcuentasporcobrar()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2450,7 +2451,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewbienesinmuebles()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2491,7 +2492,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewvehiculos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2529,7 +2530,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenargridviewcuentasporpagar()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2563,7 +2564,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         public void llenargridviewpasivos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2614,7 +2615,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewtarjetas()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2656,7 +2657,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewcuentasencoperativa()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -2700,7 +2701,7 @@ namespace KB_Guadalupana.Views.Sesion
 
         public void llenargridviewcuentasvarias()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -3441,7 +3442,7 @@ namespace KB_Guadalupana.Views.Sesion
         }
         protected void btnguardarbienesinmuebles_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 if (ACTInmueble1.SelectedValue == "0" || ACFolio.Value == "" || ACLibro.Value == "" || ACDireccion.Value == "" || ACVActual.Value == "" || ACDes.Value == "")
                 {

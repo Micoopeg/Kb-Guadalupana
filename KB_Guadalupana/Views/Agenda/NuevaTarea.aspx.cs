@@ -18,7 +18,7 @@ namespace KBGuada.Views.session
         //variables
         ControladorAV cav = new ControladorAV();
         ModeloAV mav = new ModeloAV();
-        Conexion cn = new Conexion();
+        Conexion conexiongeneral = new Conexion();
         string AVTITULON;
         string AVNOMBRE;
         string AVAPELLIDO;
@@ -36,7 +36,7 @@ namespace KBGuada.Views.session
         char delimitador2 = ' ';
         string Nombreuser, user;
         string rol;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -93,7 +93,7 @@ namespace KBGuada.Views.session
            
            
            
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -114,7 +114,7 @@ namespace KBGuada.Views.session
         public void llenarcomboprioridad()
         {
            
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -135,7 +135,7 @@ namespace KBGuada.Views.session
         public void llenarcomboestado() 
         {
     
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -157,7 +157,7 @@ namespace KBGuada.Views.session
         public void llenarcomboacceso()
         {
             
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

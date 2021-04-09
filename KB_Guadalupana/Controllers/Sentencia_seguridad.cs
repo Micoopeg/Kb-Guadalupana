@@ -9,7 +9,8 @@ namespace KB_Guadalupana.Controllers
 {
     public class Sentencia_seguridad
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
+       
         Conexion_seguridad cn = new Conexion_seguridad();
 
         public string obtenerestado(string usuario)
@@ -17,7 +18,7 @@ namespace KB_Guadalupana.Controllers
            
 
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -58,7 +59,7 @@ namespace KB_Guadalupana.Controllers
 
         public void actualizarArqueos(string puesto, string usuario)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -79,7 +80,7 @@ namespace KB_Guadalupana.Controllers
            
 
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -101,7 +102,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerapp(string usuario, string aplicacion)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -124,7 +125,7 @@ namespace KB_Guadalupana.Controllers
 
         public string[] mostraraplicacion(string codigo)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[20];
                 int i = 0;
@@ -151,7 +152,7 @@ namespace KB_Guadalupana.Controllers
 
         public string mostrarareaapp(string codigo)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string Campos = "";
                 int i = 0;
@@ -172,7 +173,7 @@ namespace KB_Guadalupana.Controllers
 
         public string mostrarurlapp(string codigo)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string Campos = "";
                 int i = 0;
@@ -193,7 +194,7 @@ namespace KB_Guadalupana.Controllers
 
         public void actualizarestado(string usuario, string estado)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -211,7 +212,7 @@ namespace KB_Guadalupana.Controllers
 
         public void actualizarmodulo(string codigo, string literal, string nombre, string url, string estado)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -229,7 +230,7 @@ namespace KB_Guadalupana.Controllers
 
         public void actualizararea(string area, string url, string app)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -247,7 +248,7 @@ namespace KB_Guadalupana.Controllers
 
         public void actualizarappuserestado( string codapp, string usuario)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -264,7 +265,7 @@ namespace KB_Guadalupana.Controllers
         }
         public void actualizarappuserestado1(string codapp, string usuario)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -281,7 +282,7 @@ namespace KB_Guadalupana.Controllers
         }
         public void asignarAplicacion(string id, string app, string usuario)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -300,7 +301,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarGridViewAplicaciones(string id)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -321,7 +322,7 @@ namespace KB_Guadalupana.Controllers
         public string url(string app)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -345,7 +346,7 @@ namespace KB_Guadalupana.Controllers
         }
         public string[] datetime()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -372,7 +373,7 @@ namespace KB_Guadalupana.Controllers
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -394,7 +395,7 @@ namespace KB_Guadalupana.Controllers
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

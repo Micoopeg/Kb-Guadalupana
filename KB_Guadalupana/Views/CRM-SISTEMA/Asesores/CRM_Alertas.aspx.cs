@@ -48,7 +48,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
 
         protected void btncerrasesion_Click(object sender, EventArgs e)
         {
-            String script = "alert('Se encuentra saliendo del programa'); window.location.href= '../../Index.aspx';";
+            String script = "alert('Se encuentra saliendo del programa'); window.location.href= '../Asesores/CRM_Asesores.aspx';";
             ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
         }
 

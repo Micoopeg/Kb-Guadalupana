@@ -13,7 +13,6 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 {
     public partial class ReporteAdmin : System.Web.UI.Page
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         int valor1, valor2, valor3, total;
         Conexion cn = new Conexion();
         Logica logic = new Logica();

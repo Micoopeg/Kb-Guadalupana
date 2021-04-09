@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Conjuntodedatosdataset" targetNamespace="http://tempuri.org/Conjuntodedatosdataset.xsd" xmlns:mstns="http://tempuri.org/Conjuntodedatosdataset.xsd" xmlns="http://tempuri.org/Conjuntodedatosdataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="mydbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="mydbConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.mydbConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_reporteTableAdapter" GeneratorDataComponentClassName="vw_reporteTableAdapter" Name="vw_reporte" UserDataComponentName="vw_reporteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="mydbConnectionString (Web.config)" DbObjectName="mydb.vw_reporte" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `crminfogeneral_prospectodpi`, `crminfogeneral_prospectonombrecompleto`, `crminfo_prospectotelefono`, `crminfo_prospectoemail`, `crminfo_prospectoingresos`, `crminfo_prospectoegresos`, `crminfo_prospectomonto`, `crminfo_prospectoañoslaborados`, `crminfo_prospectodescripciontrabajoactual`, `crminfo_prospectofechaprimerllamada`, `crminfo_prospectofechaultimallamada`, `crminfo_prospectoañosdomicilio`, `crminfo_contactadopor`, `crminfo_prospectoreferenciado`, `crmtipo_servicionombre`, `crmcontacto_llamadasnombre`, `crmsemaforo_estadodescripcion`, `crmestado_descripcionnombre`, `crm_finalidaddescripcion`, `crmtipo_domicilionombre`, `crmcontrol_ingresosucursal`, `crmcontrol_ingresousuario` FROM `mydb`.`vw_reporte`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="crminfogeneral_prospectodpi" DataSetColumn="crminfogeneral_prospectodpi" />
+              <Mapping SourceColumn="crminfogeneral_prospectonombrecompleto" DataSetColumn="crminfogeneral_prospectonombrecompleto" />
+              <Mapping SourceColumn="crminfo_prospectotelefono" DataSetColumn="crminfo_prospectotelefono" />
+              <Mapping SourceColumn="crminfo_prospectoemail" DataSetColumn="crminfo_prospectoemail" />
+              <Mapping SourceColumn="crminfo_prospectoingresos" DataSetColumn="crminfo_prospectoingresos" />
+              <Mapping SourceColumn="crminfo_prospectoegresos" DataSetColumn="crminfo_prospectoegresos" />
+              <Mapping SourceColumn="crminfo_prospectomonto" DataSetColumn="crminfo_prospectomonto" />
+              <Mapping SourceColumn="crminfo_prospectoañoslaborados" DataSetColumn="crminfo_prospectoañoslaborados" />
+              <Mapping SourceColumn="crminfo_prospectodescripciontrabajoactual" DataSetColumn="crminfo_prospectodescripciontrabajoactual" />
+              <Mapping SourceColumn="crminfo_prospectofechaprimerllamada" DataSetColumn="crminfo_prospectofechaprimerllamada" />
+              <Mapping SourceColumn="crminfo_prospectofechaultimallamada" DataSetColumn="crminfo_prospectofechaultimallamada" />
+              <Mapping SourceColumn="crminfo_prospectoañosdomicilio" DataSetColumn="crminfo_prospectoañosdomicilio" />
+              <Mapping SourceColumn="crminfo_contactadopor" DataSetColumn="crminfo_contactadopor" />
+              <Mapping SourceColumn="crminfo_prospectoreferenciado" DataSetColumn="crminfo_prospectoreferenciado" />
+              <Mapping SourceColumn="crmtipo_servicionombre" DataSetColumn="crmtipo_servicionombre" />
+              <Mapping SourceColumn="crmcontacto_llamadasnombre" DataSetColumn="crmcontacto_llamadasnombre" />
+              <Mapping SourceColumn="crmsemaforo_estadodescripcion" DataSetColumn="crmsemaforo_estadodescripcion" />
+              <Mapping SourceColumn="crmestado_descripcionnombre" DataSetColumn="crmestado_descripcionnombre" />
+              <Mapping SourceColumn="crm_finalidaddescripcion" DataSetColumn="crm_finalidaddescripcion" />
+              <Mapping SourceColumn="crmtipo_domicilionombre" DataSetColumn="crmtipo_domicilionombre" />
+              <Mapping SourceColumn="crmcontrol_ingresosucursal" DataSetColumn="crmcontrol_ingresosucursal" />
+              <Mapping SourceColumn="crmcontrol_ingresousuario" DataSetColumn="crmcontrol_ingresousuario" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Conjuntodedatosdataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Conjuntodedatosdataset" msprop:Generator_UserDSName="Conjuntodedatosdataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_reporte" msprop:Generator_TableClassName="vw_reporteDataTable" msprop:Generator_TableVarName="tablevw_reporte" msprop:Generator_TablePropName="vw_reporte" msprop:Generator_RowDeletingName="vw_reporteRowDeleting" msprop:Generator_RowChangingName="vw_reporteRowChanging" msprop:Generator_RowEvHandlerName="vw_reporteRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_reporteRowDeleted" msprop:Generator_UserTableName="vw_reporte" msprop:Generator_RowChangedName="vw_reporteRowChanged" msprop:Generator_RowEvArgName="vw_reporteRowChangeEvent" msprop:Generator_RowClassName="vw_reporteRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="crminfogeneral_prospectodpi" msprop:Generator_ColumnVarNameInTable="columncrminfogeneral_prospectodpi" msprop:Generator_ColumnPropNameInRow="crminfogeneral_prospectodpi" msprop:Generator_ColumnPropNameInTable="crminfogeneral_prospectodpiColumn" msprop:Generator_UserColumnName="crminfogeneral_prospectodpi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crminfogeneral_prospectonombrecompleto" msprop:Generator_ColumnVarNameInTable="columncrminfogeneral_prospectonombrecompleto" msprop:Generator_ColumnPropNameInRow="crminfogeneral_prospectonombrecompleto" msprop:Generator_ColumnPropNameInTable="crminfogeneral_prospectonombrecompletoColumn" msprop:Generator_UserColumnName="crminfogeneral_prospectonombrecompleto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crminfo_prospectotelefono" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectotelefono" msprop:Generator_ColumnPropNameInRow="crminfo_prospectotelefono" msprop:Generator_ColumnPropNameInTable="crminfo_prospectotelefonoColumn" msprop:Generator_UserColumnName="crminfo_prospectotelefono" type="xs:int" minOccurs="0" />
+              <xs:element name="crminfo_prospectoemail" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectoemail" msprop:Generator_ColumnPropNameInRow="crminfo_prospectoemail" msprop:Generator_ColumnPropNameInTable="crminfo_prospectoemailColumn" msprop:Generator_UserColumnName="crminfo_prospectoemail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crminfo_prospectoingresos" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectoingresos" msprop:Generator_ColumnPropNameInRow="crminfo_prospectoingresos" msprop:Generator_ColumnPropNameInTable="crminfo_prospectoingresosColumn" msprop:Generator_UserColumnName="crminfo_prospectoingresos" type="xs:double" minOccurs="0" />
+              <xs:element name="crminfo_prospectoegresos" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectoegresos" msprop:Generator_ColumnPropNameInRow="crminfo_prospectoegresos" msprop:Generator_ColumnPropNameInTable="crminfo_prospectoegresosColumn" msprop:Generator_UserColumnName="crminfo_prospectoegresos" type="xs:double" minOccurs="0" />
+              <xs:element name="crminfo_prospectomonto" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectomonto" msprop:Generator_ColumnPropNameInRow="crminfo_prospectomonto" msprop:Generator_ColumnPropNameInTable="crminfo_prospectomontoColumn" msprop:Generator_UserColumnName="crminfo_prospectomonto" type="xs:double" minOccurs="0" />
+              <xs:element name="crminfo_prospectoañoslaborados" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectoañoslaborados" msprop:Generator_ColumnPropNameInRow="crminfo_prospectoañoslaborados" msprop:Generator_ColumnPropNameInTable="crminfo_prospectoañoslaboradosColumn" msprop:Generator_UserColumnName="crminfo_prospectoañoslaborados" type="xs:double" minOccurs="0" />
+              <xs:element name="crminfo_prospectodescripciontrabajoactual" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectodescripciontrabajoactual" msprop:Generator_ColumnPropNameInRow="crminfo_prospectodescripciontrabajoactual" msprop:Generator_ColumnPropNameInTable="crminfo_prospectodescripciontrabajoactualColumn" msprop:Generator_UserColumnName="crminfo_prospectodescripciontrabajoactual" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crminfo_prospectofechaprimerllamada" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectofechaprimerllamada" msprop:Generator_ColumnPropNameInRow="crminfo_prospectofechaprimerllamada" msprop:Generator_ColumnPropNameInTable="crminfo_prospectofechaprimerllamadaColumn" msprop:Generator_UserColumnName="crminfo_prospectofechaprimerllamada" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="crminfo_prospectofechaultimallamada" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectofechaultimallamada" msprop:Generator_ColumnPropNameInRow="crminfo_prospectofechaultimallamada" msprop:Generator_ColumnPropNameInTable="crminfo_prospectofechaultimallamadaColumn" msprop:Generator_UserColumnName="crminfo_prospectofechaultimallamada" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="crminfo_prospectoañosdomicilio" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectoañosdomicilio" msprop:Generator_ColumnPropNameInRow="crminfo_prospectoañosdomicilio" msprop:Generator_ColumnPropNameInTable="crminfo_prospectoañosdomicilioColumn" msprop:Generator_UserColumnName="crminfo_prospectoañosdomicilio" type="xs:double" minOccurs="0" />
+              <xs:element name="crminfo_contactadopor" msprop:Generator_ColumnVarNameInTable="columncrminfo_contactadopor" msprop:Generator_ColumnPropNameInRow="crminfo_contactadopor" msprop:Generator_ColumnPropNameInTable="crminfo_contactadoporColumn" msprop:Generator_UserColumnName="crminfo_contactadopor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crminfo_prospectoreferenciado" msprop:Generator_ColumnVarNameInTable="columncrminfo_prospectoreferenciado" msprop:Generator_ColumnPropNameInRow="crminfo_prospectoreferenciado" msprop:Generator_ColumnPropNameInTable="crminfo_prospectoreferenciadoColumn" msprop:Generator_UserColumnName="crminfo_prospectoreferenciado" type="xs:int" minOccurs="0" />
+              <xs:element name="crmtipo_servicionombre" msprop:Generator_ColumnVarNameInTable="columncrmtipo_servicionombre" msprop:Generator_ColumnPropNameInRow="crmtipo_servicionombre" msprop:Generator_ColumnPropNameInTable="crmtipo_servicionombreColumn" msprop:Generator_UserColumnName="crmtipo_servicionombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crmcontacto_llamadasnombre" msprop:Generator_ColumnVarNameInTable="columncrmcontacto_llamadasnombre" msprop:Generator_ColumnPropNameInRow="crmcontacto_llamadasnombre" msprop:Generator_ColumnPropNameInTable="crmcontacto_llamadasnombreColumn" msprop:Generator_UserColumnName="crmcontacto_llamadasnombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crmsemaforo_estadodescripcion" msprop:Generator_ColumnVarNameInTable="columncrmsemaforo_estadodescripcion" msprop:Generator_ColumnPropNameInRow="crmsemaforo_estadodescripcion" msprop:Generator_ColumnPropNameInTable="crmsemaforo_estadodescripcionColumn" msprop:Generator_UserColumnName="crmsemaforo_estadodescripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crmestado_descripcionnombre" msprop:Generator_ColumnVarNameInTable="columncrmestado_descripcionnombre" msprop:Generator_ColumnPropNameInRow="crmestado_descripcionnombre" msprop:Generator_ColumnPropNameInTable="crmestado_descripcionnombreColumn" msprop:Generator_UserColumnName="crmestado_descripcionnombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="80" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crm_finalidaddescripcion" msprop:Generator_ColumnVarNameInTable="columncrm_finalidaddescripcion" msprop:Generator_ColumnPropNameInRow="crm_finalidaddescripcion" msprop:Generator_ColumnPropNameInTable="crm_finalidaddescripcionColumn" msprop:Generator_UserColumnName="crm_finalidaddescripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crmtipo_domicilionombre" msprop:Generator_ColumnVarNameInTable="columncrmtipo_domicilionombre" msprop:Generator_ColumnPropNameInRow="crmtipo_domicilionombre" msprop:Generator_ColumnPropNameInTable="crmtipo_domicilionombreColumn" msprop:Generator_UserColumnName="crmtipo_domicilionombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crmcontrol_ingresosucursal" msprop:Generator_ColumnVarNameInTable="columncrmcontrol_ingresosucursal" msprop:Generator_ColumnPropNameInRow="crmcontrol_ingresosucursal" msprop:Generator_ColumnPropNameInTable="crmcontrol_ingresosucursalColumn" msprop:Generator_UserColumnName="crmcontrol_ingresosucursal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="crmcontrol_ingresousuario" msprop:Generator_ColumnVarNameInTable="columncrmcontrol_ingresousuario" msprop:Generator_ColumnPropNameInRow="crmcontrol_ingresousuario" msprop:Generator_ColumnPropNameInTable="crmcontrol_ingresousuarioColumn" msprop:Generator_UserColumnName="crmcontrol_ingresousuario" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

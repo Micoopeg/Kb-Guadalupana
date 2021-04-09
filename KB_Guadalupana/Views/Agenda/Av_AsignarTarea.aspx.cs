@@ -14,6 +14,7 @@ namespace KBGuada.Views.session
 {
     public partial class Av_AsignarTarea : System.Web.UI.Page
     {
+        Conexion conexiongeneral = new Conexion();
         ControladorAV cav = new ControladorAV();
         Conexion cn = new Conexion();
         ModeloAV mav = new ModeloAV();
@@ -36,7 +37,7 @@ namespace KBGuada.Views.session
         char delimitador = ':';
         char delimitador2 = ' ';
         string Nombreuser, user;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -63,7 +64,7 @@ namespace KBGuada.Views.session
 
 
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -84,7 +85,7 @@ namespace KBGuada.Views.session
         public void llenarcomboprioridad()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -105,7 +106,7 @@ namespace KBGuada.Views.session
         public void llenarcomboestado()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -127,7 +128,7 @@ namespace KBGuada.Views.session
         public void llenarcomboacceso()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

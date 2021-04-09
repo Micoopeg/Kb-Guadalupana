@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using KB_Guadalupana.Controllers;
 
 namespace Modulo_de_arqueos.Views
 {
@@ -29,7 +30,7 @@ namespace Modulo_de_arqueos.Views
         string fechamin, horamin, fechahora, fechatotal1, año, mes, dia, dia2, usuario, puesto, idusuario, idusuario2, numarqueo;
         string op;
         int cont = 0;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             //CFecha.Value = Convert.ToString(fecha.Date);
@@ -80,7 +81,7 @@ namespace Modulo_de_arqueos.Views
 
         public void llenarcomboagencia()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -103,7 +104,7 @@ namespace Modulo_de_arqueos.Views
 
         public void llenarcombousuario()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -126,7 +127,7 @@ namespace Modulo_de_arqueos.Views
 
         public void llenarcomboarqueos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

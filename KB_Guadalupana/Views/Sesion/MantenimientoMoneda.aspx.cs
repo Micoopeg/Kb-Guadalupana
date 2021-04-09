@@ -15,7 +15,7 @@ namespace KB_Guadalupana.Views.Sesion
     {
         Logica logic = new Logica();
         Conexion conn = new Conexion();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,7 +32,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 if (e.CommandName.Equals("AddNew"))
                 {
-                    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                     {
                         sqlCon.Open();
                         string query = "INSERT INTO ep_tipomoneda (codeptipomoneda,ep_tipomonedanombre,ep_signomoneda,ep_codigointernacional) VALUES (@FirstName,@Contact,@Contact2,@Contact3)";
@@ -89,7 +89,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "UPDATE ep_tipomoneda SET codeptipomoneda=@FirstName,ep_tipomonedanombre=@Contact,ep_signomoneda=@Contact2, ep_codigointernacional=@Contact3  WHERE codeptipomoneda = @id";
@@ -117,7 +117,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "DELETE FROM ep_tipomoneda WHERE codeptipomoneda = @id";

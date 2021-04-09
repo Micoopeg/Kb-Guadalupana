@@ -15,7 +15,7 @@ namespace KB_Guadalupana.Views.Seguridad
         Conexion_seguridad cn = new Conexion_seguridad();
         Sentencia_seguridad sn = new Sentencia_seguridad();
         string estado;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,7 +26,7 @@ namespace KB_Guadalupana.Views.Seguridad
 
         public void llenarcombousuario()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

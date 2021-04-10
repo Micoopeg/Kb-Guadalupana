@@ -19,11 +19,14 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
         string codigodeleed = "";//ESTE CODIGO PERMITE MOSTAT EL DETALLE DEL PROSPECTO SELECCIONADO.
         string nombreusuario;
         string sucurusalcrm;
+        int rolgeneral;
         protected void Page_Load(object sender, EventArgs e)
         {
             nombreusuario = Convert.ToString(Session["usuariodelcrm"]);
             int rolusuario = Convert.ToInt32(Session["roldelcrm"]);
              sucurusalcrm = Convert.ToString(Session["sucurusalcrm"]);
+            rolgeneral = rolusuario;
+  
             if (rolusuario == 2 || rolusuario == 5 || rolusuario == 6 || rolusuario == 7)
             {
 
@@ -65,7 +68,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
                     gridview5.Visible = false;
                     break;
                 case 7:
-                    llenargridviewparacoordinadoragencia(txtnombrecompleto.Value);
+                    llenargridviewparacoordinadoragencia(txtnombrecompleto.Value,comboagencia.SelectedValue);
                     gridview1.Visible = false;
                     gridview2.Visible = false;
                     gridview3.Visible = false;
@@ -76,6 +79,10 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
                     String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Index.aspx';";
                     ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                     break;
+            }
+            if (!IsPostBack)
+            {
+                llenaragencias();
             }
 
         }
@@ -135,9 +142,19 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
 
         protected void btnbuscar_Click(object sender, EventArgs e)
         {
-            string busqueda = txtnombrecompleto.Value;
-            llenargridview(busqueda);
-            gridviewprospectos.Visible = true;
+
+            if (rolgeneral == 7)
+            {
+                string busqueda = txtnombrecompleto.Value;
+                gridviewprospectos.Visible = true;
+                llenargridviewparacoordinadoragencia(busqueda,comboagencia.SelectedValue);
+            }
+            else
+            {
+                string busqueda = txtnombrecompleto.Value;
+                llenargridview(busqueda);
+                gridviewprospectos.Visible = true;
+            }
         }
 
        public void llenargridview1(string codigo)
@@ -273,15 +290,34 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
             }
 
         }
-
-        public void llenargridviewparacoordinadoragencia(string busqueda)
+        public void llenaragencias()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
             {
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "select a.codcrminfoprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE a.codcrmsemaforoestado=2 AND d.crmcontrol_ingresosucursal!='TELEMERCADEO' AND crminfogeneral_prospectonombrecompleto LIKE '%" + busqueda + "%';";
+                    string QueryString = "select * from crm_genagencias;";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "Agencias");
+                    comboagencia.DataSource = ds;
+                    comboagencia.DataTextField = "crm_genagenciasnombre";
+                    comboagencia.DataValueField = "crm_genagenciasnombre";
+                    comboagencia.DataBind();
+                    comboagencia.Items.Insert(0, new ListItem("[Agencia", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+        }
+        public void llenargridviewparacoordinadoragencia(string busqueda,string agencia)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select a.codcrminfoprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE a.codcrmsemaforoestado=2 AND crminfogeneral_prospectonombrecompleto LIKE '%" + busqueda + "%' AND d.crmcontrol_ingresosucursal='"+agencia+"';";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);

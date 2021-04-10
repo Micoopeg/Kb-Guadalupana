@@ -60,6 +60,15 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtnombrecompleto;
 
         /// <summary>
+        /// Control comboagencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList comboagencia;
+
+        /// <summary>
         /// Control btnbuscar.
         /// </summary>
         /// <remarks>

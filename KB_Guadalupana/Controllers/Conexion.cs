@@ -16,7 +16,7 @@ namespace KB_Guadalupana.Controllers
 
         public string cadenadeconexiongeneral()
         {
-            string connectionString = @"Server=10.60.81.5;Database=bdkbguadalupana;Uid=User4pDes@rrollo;Pwd=BDK0ntr@PG1;";
+            string connectionString = @"Server=10.60.81.5;Database=bdkbguadalupana;Uid=User4pDes@rrollo;Pwd=BDK0ntr@PG1;";           
             return connectionString;
         }
 

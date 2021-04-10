@@ -20,7 +20,7 @@
         }
     </style>
 </head>
-<body style="background-color:#000B1C">
+<body style="background-color:#2c3e50">
     <form id="form1" runat="server">
         <header style="background-color:#69a43c">
   <div class="row">
@@ -44,6 +44,8 @@
                 <%-- GRIDVIEW NUMEROS DE TELEFONO --%>
             <asp:Label ID="lblcriterio" style="color:white" runat="server" Text="Buscar:"></asp:Label>
             <input id="txtnombrecompleto"  style="margin-left:2%;" placeholder="Criterio de busqueda" runat="server" type="text" tabindex="1" autofocus/>
+            <asp:DropDownList TabIndex="2" ID="comboagencia" style="height:25px" runat="server" name="agencia" placeholder="[AGENCIA]" required="required">
+            </asp:DropDownList>
             <asp:LinkButton ID="btnbuscar" style="color:white" runat="server" OnClick="btnbuscar_Click">Buscar</asp:LinkButton>
             <br />
             <br />

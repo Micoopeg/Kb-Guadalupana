@@ -20,10 +20,10 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 
         string sesion;
 
-        int caja1, cuentasQ1, CooperativasQ1, CP1, IN1, Inmuebles1, vehiculo1, maquinaria1, computo1, TotalQ1, salas1, comedor1, tele, Es1, L1, S1, Est1, Ref1, Mov1, otr1;
-        int cuentasD1, CooperativasD1, TotalD1;
-        int pp1, TotalQ2, patrimonio1, pres1, tc1, OD1, pas1, pass2, pass3;
-        double pass1;
+        double caja1, cuentasQ1, CooperativasQ1, CP1, IN1, Inmuebles1, vehiculo1, maquinaria1, computo1, TotalQ1, salas1, comedor1, tele, Es1, L1, S1, Est1, Ref1, Mov1, otr1;
+        double cuentasD1, CooperativasD1, TotalD1;
+        double pp1, TotalQ2, patrimonio1, pres1, tc1, OD1, pas1, pass22, pass3;
+        double pass1, pass2;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -64,7 +64,6 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
 
         }
 
-
         public void mostrarUser()
         {
             string sesion1, sesion2;
@@ -91,9 +90,9 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
         public void quetzalessp()
         {
 
-            pas1 = Convert.ToInt32(pass1);
+            //pas1 = Convert.ToInt32(pass1);
 
-            TotalQ2 = pp1 + pres1 + tc1 + OD1 + pas1;
+            TotalQ2 = pp1 + pres1 + tc1 + OD1 + pass1;
             TotalPasivo.Value = TotalQ2.ToString("N1", CultureInfo.CurrentCulture);
         }
 
@@ -113,7 +112,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCajas(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                caja1 = Convert.ToInt32(var1[0]);
+                caja1 = Convert.ToDouble(var1[0]);
                 EfectivoCaja.Value = caja1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -127,7 +126,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoQ(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                cuentasQ1 = Convert.ToInt32(var1[0]);
+                cuentasQ1 = Convert.ToDouble(var1[0]);
                 CuentasBancos.Value = cuentasQ1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -141,7 +140,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoD(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                cuentasD1 = Convert.ToInt32(var1[0]);
+                cuentasD1 = Convert.ToDouble(var1[0]);
                 CuentasBancos1.Value = cuentasD1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -155,7 +154,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCD(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                CooperativasD1 = Convert.ToInt32(var1[0]);
+                CooperativasD1 = Convert.ToDouble(var1[0]);
                 CuentasCope1.Value = CooperativasD1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -169,7 +168,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCQ(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                CooperativasQ1 = Convert.ToInt32(var1[0]);
+                CooperativasQ1 = Convert.ToDouble(var1[0]);
                 CuentasCope.Value = CooperativasQ1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -183,7 +182,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCP(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                CP1 = Convert.ToInt32(var1[0]);
+                CP1 = Convert.ToDouble(var1[0]);
                 CuentasPC.Value = CP1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -197,7 +196,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoIN(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                IN1 = Convert.ToInt32(var1[0]);
+                IN1 = Convert.ToDouble(var1[0]);
                 Inventario.Value = IN1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -211,7 +210,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoInmueble(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                Inmuebles1 = Convert.ToInt32(var1[0]);
+                Inmuebles1 = Convert.ToDouble(var1[0]);
                 Inmueble.Value = Inmuebles1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -225,7 +224,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoVehiculo(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                vehiculo1 = Convert.ToInt32(var1[0]);
+                vehiculo1 = Convert.ToDouble(var1[0]);
                 Vehiculo.Value = vehiculo1.ToString("N1", CultureInfo.CurrentCulture); ;
             }
         }
@@ -239,7 +238,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoMaquinaria(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                maquinaria1 = Convert.ToInt32(var1[0]);
+                maquinaria1 = Convert.ToDouble(var1[0]);
                 Maquinaria.Value = maquinaria1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -253,7 +252,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoComputo(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                computo1 = Convert.ToInt32(var1[0]);
+                computo1 = Convert.ToDouble(var1[0]);
                 Computo.Value = computo1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -267,7 +266,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoSala(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                salas1 = Convert.ToInt32(var1[0]);
+                salas1 = Convert.ToDouble(var1[0]);
                 sala.Value = salas1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -281,7 +280,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoComedor(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                comedor1 = Convert.ToInt32(var1[0]);
+                comedor1 = Convert.ToDouble(var1[0]);
                 comedor.Value = comedor1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -295,7 +294,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoTV(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                tele = Convert.ToInt32(var1[0]);
+                tele = Convert.ToDouble(var1[0]);
                 TV.Value = tele.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -309,7 +308,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoES(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                Es1 = Convert.ToInt32(var1[0]);
+                Es1 = Convert.ToDouble(var1[0]);
                 EquipoS.Value = Es1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -323,7 +322,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoL(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                L1 = Convert.ToInt32(var1[0]);
+                L1 = Convert.ToDouble(var1[0]);
                 lava.Value = L1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -337,7 +336,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoSec(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                S1 = Convert.ToInt32(var1[0]);
+                S1 = Convert.ToDouble(var1[0]);
                 SECA.Value = S1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -351,7 +350,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoEst(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                Est1 = Convert.ToInt32(var1[0]);
+                Est1 = Convert.ToDouble(var1[0]);
                 Estufa.Value = Est1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -365,7 +364,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoRefri(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                Ref1 = Convert.ToInt32(var1[0]);
+                Ref1 = Convert.ToDouble(var1[0]);
                 Refri.Value = Ref1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -379,7 +378,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoTel(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                Mov1 = Convert.ToInt32(var1[0]);
+                Mov1 = Convert.ToDouble(var1[0]);
                 Movil.Value = Mov1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -393,7 +392,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoOtros(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                otr1 = Convert.ToInt32(var1[0]);
+                otr1 = Convert.ToDouble(var1[0]);
                 otross.Value = otr1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -408,7 +407,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCP1(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                pp1 = Convert.ToInt32(var1[0]);
+                pp1 = Convert.ToDouble(var1[0]);
                 CuentaPP.Value = pp1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -436,7 +435,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCuentaTarjeta(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                tc1 = Convert.ToInt32(var1[0]);
+                tc1 = Convert.ToDouble(var1[0]);
                 TC.Value = tc1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -450,7 +449,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCuentaOD(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                OD1 = Convert.ToInt32(var1[0]);
+                OD1 = Convert.ToDouble(var1[0]);
                 ode.Value = OD1.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -478,7 +477,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCuentaFena(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                pass2 = Convert.ToInt32(var1[0]);
+                pass2 = Convert.ToDouble(var1[0]);
                 Text4.Value = pass2.ToString("N1", CultureInfo.CurrentCulture);
             }
         }
@@ -492,7 +491,7 @@ namespace KB_Guadalupana.Views.Sesion.Reportes
             string[] var1 = sn.consultarconcampoCuentaFenaINver(cifnumero);
             for (int i = 0; i < var1.Length; i++)
             {
-                pass3 = Convert.ToInt32(var1[0]);
+                pass3 = Convert.ToDouble(var1[0]);
                 Text3.Value = pass3.ToString("N1", CultureInfo.CurrentCulture);
             }
         }

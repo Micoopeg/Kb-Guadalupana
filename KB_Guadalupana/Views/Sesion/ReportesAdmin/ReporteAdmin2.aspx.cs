@@ -694,14 +694,12 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         public void mostrarOtros()
         {
             sesion = Session["IDReporte1"].ToString();
-            string[] var1 = sn.consultarconcampomenaOtros(sesion);
+
+            string[] var1 = sn.consultarconcampomenaje11(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 OtrosC.Value = Convert.ToString(var1[0]);
-                OM = Convert.ToInt32(var1[1].Trim());
-
-                OT = OC * OM;
-                OtrosM.Value = OM.ToString();
+                OtrosM.Value = Convert.ToString(var1[1]);
             }
         }
 

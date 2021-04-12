@@ -8,7 +8,7 @@
     <title>CRM - GUADALUPANA</title>
 	 <link rel="shortcut icon" href="../../../Imagenes/logo.jpeg"/>
 	 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'/>
-	<link rel="stylesheet" href="../../../CRM-Estilos/Estilos.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../../../CRM-Estilos/Estilos.css" />
 
     <style type="text/css">
         .img-fluid {

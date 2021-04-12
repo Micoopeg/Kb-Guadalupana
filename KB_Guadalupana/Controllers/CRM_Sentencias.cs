@@ -628,6 +628,26 @@ namespace CRM_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos               
             }
         }
+
+        public DataSet consultarsubestadosproceso()
+        {
+            DataSet ds1 = new DataSet();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT b.crmestado_descripcionnombre, COUNT(a.codcrmestadodescripcion) as totalestado FROM crminfo_prospecto a INNER JOIN crmestado_descripcion b ON a.codcrmestadodescripcion=b.codcrmestadodescripcion WHERE a.codcrmsemaforoestado=2 GROUP BY a.codcrmestadodescripcion;", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
+            }
+
+        }
     }
 }
        

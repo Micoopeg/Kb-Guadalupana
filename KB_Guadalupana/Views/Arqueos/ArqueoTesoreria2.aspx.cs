@@ -8,11 +8,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using KB_Guadalupana.Controllers;
 
 namespace Modulo_de_arqueos.Views
 {
     public partial class ArqueoTesoreria2 : System.Web.UI.Page
     {
+        Conexion conexiongeneral = new Conexion();
         Conexion_arqueos cn = new Conexion_arqueos();
         Logica_arqueos logic = new Logica_arqueos();
         Logica_arqueos logic2 = new Logica_arqueos();
@@ -22,7 +24,7 @@ namespace Modulo_de_arqueos.Views
         char delimitador = ':';
         string concat = "T";
         string fechatotal1, siguiente;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -64,7 +66,7 @@ namespace Modulo_de_arqueos.Views
         }
         public void llenarcomboagencia()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

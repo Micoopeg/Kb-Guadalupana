@@ -15,7 +15,7 @@ namespace KB_Guadalupana.Views.Sesion
     {
         Logica logic = new Logica();
         Conexion conn = new Conexion();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,7 +32,7 @@ namespace KB_Guadalupana.Views.Sesion
             {
                 if (e.CommandName.Equals("AddNew"))
                 {
-                    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                     {
                         sqlCon.Open();
                         string query = "INSERT INTO ep_tipoestado (codeptipoestado,ep_tipoestadonombre) VALUES (@FirstName,@Contact)";
@@ -87,7 +87,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "UPDATE ep_tipoestado SET codeptipoestado=@FirstName,ep_tipoestadonombre=@Contact WHERE codeptipoestado = @id";
@@ -113,7 +113,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "DELETE FROM ep_tipoestado WHERE codeptipoestado = @id";

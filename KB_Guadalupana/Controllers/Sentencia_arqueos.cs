@@ -11,7 +11,7 @@ namespace SA_Arqueos.Controllers
 {
     public class Sentencia_arqueos
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         Conexion_arqueos cn = new Conexion_arqueos();
         MySqlCommand comm;
 
@@ -27,7 +27,7 @@ namespace SA_Arqueos.Controllers
         {
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (MySqlConnection conn = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     conn.Open();
                     string consultaGraAsis = " select * from " + tabla + ";";
@@ -130,7 +130,7 @@ namespace SA_Arqueos.Controllers
         {
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (MySqlConnection conn = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     conn.Open();
                     string consulta = "SELECT gen_usuarionombre,ep_administracionlotefechainicio,ep_administracionfechafin,a.codepadministracionlote,ep_administracionloteestado " +
@@ -173,7 +173,7 @@ namespace SA_Arqueos.Controllers
         public string[] fechaactual2()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -239,7 +239,7 @@ namespace SA_Arqueos.Controllers
 
         public void insertartablas(string tabla, string[] datos)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string query = "";
                 for (int i = 0; i < datos.Length; i++)
@@ -339,7 +339,7 @@ namespace SA_Arqueos.Controllers
         public string[] datetime()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -367,7 +367,7 @@ namespace SA_Arqueos.Controllers
         //MODIFICAR ENCABEZADO
         public void modificarencabezado(string dolares, string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 //string[] Campos = new string[30];
                 //int i = 0;
@@ -398,7 +398,7 @@ namespace SA_Arqueos.Controllers
 
         public void modificarRegistros( string id, string fecha, string documento, string proveedor, string descripcion, string debe, string haber)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 //string[] Campos = new string[30];
                 //int i = 0;
@@ -430,7 +430,7 @@ namespace SA_Arqueos.Controllers
         public string obtenerfinal(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -456,7 +456,7 @@ namespace SA_Arqueos.Controllers
         public string obtenerid(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -482,7 +482,7 @@ namespace SA_Arqueos.Controllers
         public string ultimoid(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -544,7 +544,7 @@ namespace SA_Arqueos.Controllers
         public string consultararqueoC(string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -567,7 +567,7 @@ namespace SA_Arqueos.Controllers
         public string consultararqueoCC(string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -590,7 +590,7 @@ namespace SA_Arqueos.Controllers
         public string consultararqueoCA(string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -613,7 +613,7 @@ namespace SA_Arqueos.Controllers
         public string consultararqueoT(string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -636,7 +636,7 @@ namespace SA_Arqueos.Controllers
         public DataTable llenarGridView(string id)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -656,7 +656,7 @@ namespace SA_Arqueos.Controllers
         public string numarqueoCA(string año, string mes, string dia, string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -682,7 +682,7 @@ namespace SA_Arqueos.Controllers
         public string numarqueoCC(string año, string mes, string dia, string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -708,7 +708,7 @@ namespace SA_Arqueos.Controllers
         public string numarqueoC(string año, string mes, string dia, string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -734,7 +734,7 @@ namespace SA_Arqueos.Controllers
         public string numarqueoT(string año, string mes, string dia, string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -761,7 +761,7 @@ namespace SA_Arqueos.Controllers
         public string obtenerpuesto(string usuario)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -784,7 +784,7 @@ namespace SA_Arqueos.Controllers
         public string obteneridusuario(string usuario)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -808,7 +808,7 @@ namespace SA_Arqueos.Controllers
         public string totalhaber(string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -831,7 +831,7 @@ namespace SA_Arqueos.Controllers
         //MOSTRAR ENCABEZADO
         public string[] mostrarencabezadoCA(string año, string mes, string dia, string usuario, string numarqueo)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -858,7 +858,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarencabezadoC(string año, string mes, string dia, string usuario, string numarqueo)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -885,7 +885,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarencabezadoT(string año, string mes, string dia, string usuario, string numarqueo)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -912,7 +912,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarencabezadoT2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -939,7 +939,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarencabezadoCC(string año, string mes, string dia, string usuario, string numarqueo)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -967,7 +967,7 @@ namespace SA_Arqueos.Controllers
         //MOSTRAR DETALLE CAJERO AUTOMATICO
         public string[] mostrardetalleCA1(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -994,7 +994,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCA2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1021,7 +1021,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCA3(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1048,7 +1048,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCA4(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1075,7 +1075,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCA5(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1102,7 +1102,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCA6(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1128,7 +1128,7 @@ namespace SA_Arqueos.Controllers
         }
         public string[] mostrardetalleCA7(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1158,7 +1158,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCC1(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1185,7 +1185,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCC2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1212,7 +1212,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCC3(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1239,7 +1239,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCC4(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1266,7 +1266,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCC5(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1293,7 +1293,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCC6(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1320,7 +1320,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleCC7(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1348,7 +1348,7 @@ namespace SA_Arqueos.Controllers
         //MOSTRAR DETALLE CAJERO
         public string[] mostrardetalleC1(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1375,7 +1375,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleC2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1402,7 +1402,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleC3(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1429,7 +1429,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleC4(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1456,7 +1456,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleC5(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1483,7 +1483,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleC6(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1510,7 +1510,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleC7(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1538,7 +1538,7 @@ namespace SA_Arqueos.Controllers
         //MOSTRAR CHEQUES CAJERO
         public string[] mostrarchequeC1(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1565,7 +1565,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarchequeC2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1592,7 +1592,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarchequeC3(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1619,7 +1619,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarchequeC4(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1648,7 +1648,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleT1(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1675,7 +1675,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleT2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1702,7 +1702,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleT3(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1729,7 +1729,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleT4(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1756,7 +1756,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleT5(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1783,7 +1783,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleT6(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1810,7 +1810,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleT7(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1838,7 +1838,7 @@ namespace SA_Arqueos.Controllers
         //MOSTRAR CHEQUES TESORERIA QUETZALES
         public string[] mostrarchequesTQ1(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1865,7 +1865,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarchequesTQ2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1894,7 +1894,7 @@ namespace SA_Arqueos.Controllers
         //MOSTRAR DETALLE TESORERIA DOLARES
         public string[] mostrardetalleTD1(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1921,7 +1921,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleTD2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1948,7 +1948,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleTD3(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -1975,7 +1975,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleTD4(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2002,7 +2002,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleTD5(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2029,7 +2029,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleTD6(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2056,7 +2056,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrardetalleTD7(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2086,7 +2086,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarchequesTD1(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2113,7 +2113,7 @@ namespace SA_Arqueos.Controllers
 
         public string[] mostrarchequesTD2(string id)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -2142,7 +2142,7 @@ namespace SA_Arqueos.Controllers
 
         public void eliminarregistro(string tabla, string campo, string dato)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

@@ -11,13 +11,13 @@ namespace KBGuada.Models
     {
         Conexion cn = new Conexion();
         MySqlCommand comm;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         //funciones de llenado y consultas
         public DataSet consultarAc(string numero)
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             { 
                 try
             {
@@ -39,7 +39,7 @@ namespace KBGuada.Models
         {
 
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -63,7 +63,7 @@ namespace KBGuada.Models
 
             DataTable dt = new DataTable();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -84,7 +84,7 @@ namespace KBGuada.Models
         public string url(string app)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -109,7 +109,7 @@ namespace KBGuada.Models
         public DataSet consultarapps(string id)
         {
             DataSet ds1 = new DataSet();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -134,7 +134,7 @@ namespace KBGuada.Models
         {
 
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -157,7 +157,7 @@ namespace KBGuada.Models
         {
 
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -180,7 +180,7 @@ namespace KBGuada.Models
         {
 
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -203,7 +203,7 @@ namespace KBGuada.Models
         {
 
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -228,7 +228,7 @@ namespace KBGuada.Models
             DataTable dt = new DataTable();
 
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -253,7 +253,7 @@ namespace KBGuada.Models
             DataTable dt = new DataTable();
 
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -277,7 +277,7 @@ namespace KBGuada.Models
             DataSet ds1 = new DataSet();
            
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -301,7 +301,7 @@ namespace KBGuada.Models
         public DataSet consultar(string usertarea)
         {
             DataSet ds1 = new DataSet();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -325,7 +325,7 @@ namespace KBGuada.Models
         public string consultaragenda(string coduser)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -352,7 +352,7 @@ namespace KBGuada.Models
 
         public string[] estadopermisotarea(string tarea) {
           
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -380,7 +380,7 @@ namespace KBGuada.Models
         public string[] permisotarea(string tarea)
         {
          
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -410,7 +410,7 @@ namespace KBGuada.Models
             DataSet ds1 = new DataSet();
 
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -431,7 +431,7 @@ namespace KBGuada.Models
         }
         public string[] datetime() {
            
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -459,7 +459,7 @@ namespace KBGuada.Models
 
            
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -492,7 +492,7 @@ namespace KBGuada.Models
        
 
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -520,7 +520,7 @@ namespace KBGuada.Models
         public string consultarRol(string usuario)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -545,7 +545,7 @@ namespace KBGuada.Models
         public string consultarArea(string usuario)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -567,7 +567,7 @@ namespace KBGuada.Models
         public string consultartareauserexistente(string user)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -590,7 +590,7 @@ namespace KBGuada.Models
         public string buscarusercif(string cif)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -615,7 +615,7 @@ namespace KBGuada.Models
         public string areauser(string usuario)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -641,7 +641,7 @@ namespace KBGuada.Models
         public string tipotarea(string tarea)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -669,7 +669,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -692,7 +692,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -715,7 +715,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
          
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -738,7 +738,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
            
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -761,7 +761,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
           
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -784,7 +784,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -809,7 +809,7 @@ namespace KBGuada.Models
             DataSet ds1 = new DataSet();
 
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -831,7 +831,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -854,7 +854,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -877,7 +877,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -900,7 +900,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -923,7 +923,7 @@ namespace KBGuada.Models
         {
             DataSet ds1 = new DataSet();
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -945,7 +945,7 @@ namespace KBGuada.Models
         public string obtenerfinal(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -972,7 +972,7 @@ namespace KBGuada.Models
         {
 
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -998,7 +998,7 @@ namespace KBGuada.Models
         public string obtenercif(string coduser)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1025,7 +1025,7 @@ namespace KBGuada.Models
         public string obtenerconteo(string tarea)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

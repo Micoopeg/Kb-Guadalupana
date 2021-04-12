@@ -18,7 +18,7 @@ namespace KB_Guadalupana.Views.Sesion
         Conexion conn = new Conexion();
         string fecha, año, mes, dia, fecha2, fechafin, fechafin2, año2, mes2, dia2, año3, mes3, dia3, fecha3, año4, mes4, dia4, fecha4;
         char delimitador3 = '/';
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -75,7 +75,7 @@ namespace KB_Guadalupana.Views.Sesion
                 {
                     if (e.CommandName.Equals("AddNew"))
                     {
-                        using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                        using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                         {
                             fecha = (gvPhoneBook.FooterRow.FindControl("txtContactFooter") as TextBox).Text.Trim();
                             string[] fechasep2 = fecha.Split(delimitador3);
@@ -176,7 +176,7 @@ namespace KB_Guadalupana.Views.Sesion
                 }
                 else
                 {
-                    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                     {
                         string estado3 = (gvPhoneBook.Rows[e.RowIndex].FindControl("txtFirstName") as TextBox).Text.Trim();
 
@@ -235,7 +235,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     string query = "DELETE FROM ep_administracionlote WHERE codepadministracionlote = @id";

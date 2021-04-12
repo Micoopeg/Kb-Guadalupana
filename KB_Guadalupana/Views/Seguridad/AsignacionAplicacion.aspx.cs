@@ -16,7 +16,7 @@ namespace KB_Guadalupana.Views.Seguridad
         Conexion_seguridad cn = new Conexion_seguridad();
         Sentencia_seguridad sn = new Sentencia_seguridad();
         Logica lg = new Logica();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         string app, idusuario, user;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -89,7 +89,7 @@ namespace KB_Guadalupana.Views.Seguridad
         }
         public void llenarcomboaplicacion()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

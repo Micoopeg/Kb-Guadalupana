@@ -14,8 +14,8 @@ namespace KBGuada.Views.session
 {
     public partial class Av_ModTarea : System.Web.UI.Page
     {
+        Conexion conexiongeneral = new Conexion();
         ControladorAV cav = new ControladorAV();
-        Conexion cn = new Conexion();
         ModeloAV mav = new ModeloAV();
         string tarea;
         string AVTITULON;
@@ -28,7 +28,7 @@ namespace KBGuada.Views.session
         string AVTIPOTAREA, AVESTADO, AVPRIORIDAD, AVACCESOS, fechatotal1, fechatotal2;
         string Nombreuser, user;
        string rol;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        
         char delimitador2 = ' ';
         char delimitador3 = ':';
         string concat = "T";
@@ -120,7 +120,7 @@ namespace KBGuada.Views.session
 
 
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -141,7 +141,7 @@ namespace KBGuada.Views.session
         public void llenarcomboprioridad()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -162,7 +162,7 @@ namespace KBGuada.Views.session
         public void llenarcomboestado()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -184,7 +184,7 @@ namespace KBGuada.Views.session
         public void llenarcomboacceso()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

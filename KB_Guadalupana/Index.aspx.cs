@@ -45,7 +45,8 @@ namespace Login_Web
                 //    sn.crearUsuario(sig, "1", IdUser.Value, "@guadapulana.com.gt", "1", "1");
                 //}
 
-                //Response.Redirect("Views/Sesion/Inicio.aspx");
+               // Response.Redirect("Views/Sesion/Inicio.aspx");
+                //Response.Redirect("Views/Sesion/MenuBarra.aspx");
 
             }
             else
@@ -53,7 +54,7 @@ namespace Login_Web
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No se puede autenticar con las credenciales proporcionadas');", true);
             }
 
-            Session["sesion_usuario"] = "pgdgomez";
+            Session["sesion_usuario"] = "pggteo";
             Session["Nombre"] = "Diego Jose Gomez Giron";
             Response.Redirect("Views/Sesion/MenuBarra.aspx");
         }

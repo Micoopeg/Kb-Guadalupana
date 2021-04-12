@@ -116,7 +116,11 @@
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DataVisualization.Design" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -211,6 +215,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="CRM-Estilos\EstiloGridClientes.css" />
+    <Content Include="CRM-Estilos\Estiloparagraficas.css" />
+    <Content Include="CRM-Estilos\estiloparamantenimientos.css" />
+    <Content Include="CRM-Estilos\EstiloReportes.css" />
+    <Content Include="CRM-Estilos\Estilos.css" />
+    <Content Include="CRM-Estilos\Estilosalertas.css" />
+    <Content Include="CRM-Estilos\Estiloscombos.css" />
+    <Content Include="CRM-Estilos\Estilo_botones.css" />
+    <Content Include="CRM-Script\Script.js" />
     <Content Include="DiseñoCss\estilosav.css" />
     <Content Include="DiseñoCss\EstilosavSub.css" />
     <Content Include="DiseñosGrid\Grids.css" />
@@ -231,6 +244,76 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Imagenes\addnew.png" />
+    <Content Include="Imagenes\barra.png" />
+    <Content Include="Imagenes\cancel.png" />
+    <Content Include="Imagenes\delete.png" />
+    <Content Include="Imagenes\edit.png" />
+    <Content Include="Imagenes\EP-Guadalupana.png" />
+    <Content Include="Imagenes\F1.png" />
+    <Content Include="Imagenes\F2.png" />
+    <Content Include="Imagenes\Fondo.png" />
+    <Content Include="Imagenes\f_logo.png" />
+    <Content Include="Imagenes\f_logo.svg" />
+    <Content Include="Imagenes\Imagenes\AsignarLote1.PNG" />
+    <Content Include="Imagenes\Imagenes\AsignarLote2.PNG" />
+    <Content Include="Imagenes\Imagenes\AsignarLote3.PNG" />
+    <Content Include="Imagenes\Imagenes\CrearLote1.PNG" />
+    <Content Include="Imagenes\Imagenes\CrearLote2.PNG" />
+    <Content Include="Imagenes\Imagenes\CrearLote3.PNG" />
+    <Content Include="Imagenes\Imagenes\KB.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoCuentas1.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoCuentas2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoCuentas3.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoEstado.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoEstado1.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoEstado2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoEstatus.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoEstatus1.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoEstatus2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoInmuebles1.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoInmuebles2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoInmuebles3.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoMonedas.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoMonedas2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoMonedas3.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoPep.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoPep1.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoPep2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoPrestamos.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoPrestamos1.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoPrestamos2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoTelefono.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoTelefono1.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoTelefono2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoVehiculos1.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoVehiculos2.PNG" />
+    <Content Include="Imagenes\Imagenes\MantenimientoVehiculos3.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Buscar_arqueo.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Cheques_Cajero.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Cheques_tesoreria.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Detalle_CajaChica.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Detalle_Cajero.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Detalle_CajeroAut.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Detalle_tesoreria.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Detalle_tesoreriaDol.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Encabezado_CajaChica.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Encabezado_Cajero.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Encabezado_CajeroAut.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Encabezado_Tesoreria.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\guardar.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Guardar_siguiente.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\imprimir.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Opciones_arqueos.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\Registro_CajaChica.PNG" />
+    <Content Include="Imagenes\Imagenes_arqueos\SA-Guadalupana-Azul.png" />
+    <Content Include="Imagenes\Imagenes_arqueos\SA-Guadalupana1-Blanco.png" />
+    <Content Include="Imagenes\logo.jpeg" />
+    <Content Include="Imagenes\Logo.png" />
+    <Content Include="Imagenes\Logo2.png" />
+    <Content Include="Imagenes\Logotipo-Guadalupana1.png" />
+    <Content Include="Imagenes\Logotipo.png" />
+    <Content Include="Imagenes\save.png" />
     <Content Include="montodatos.xsc">
       <DependentUpon>montodatos.xsd</DependentUpon>
     </Content>
@@ -258,6 +341,17 @@
     </Content>
     <Content Include="DataMontos.xsc">
       <DependentUpon>DataMontos.xsd</DependentUpon>
+    </Content>
+    <Content Include="Conjuntodedatosdataset.xsc">
+      <DependentUpon>Conjuntodedatosdataset.xsd</DependentUpon>
+    </Content>
+    <None Include="Conjuntodedatosdataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Conjuntodedatosdataset.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Conjuntodedatosdataset.xss">
+      <DependentUpon>Conjuntodedatosdataset.xsd</DependentUpon>
     </Content>
     <None Include="DataMontos.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -318,6 +412,17 @@
     </None>
     <Content Include="MontoResul.xss">
       <DependentUpon>MontoResul.xsd</DependentUpon>
+    </Content>
+    <Content Include="mydbDataSet.xsc">
+      <DependentUpon>mydbDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="mydbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mydbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="mydbDataSet.xss">
+      <DependentUpon>mydbDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="ReportesAv\ReporteUsuarios.aspx" />
@@ -387,8 +492,39 @@
     <Content Include="Views\Arqueos\MenuArqueos.aspx" />
     <Content Include="Views\ControlEX\Ex_Principal.aspx" />
     <Content Include="Views\ControlEX\Tracking.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Controldedespidos\Trasalado_por_despido.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Finalidaddeservicio.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantcontactollamadas.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantdescripcionestado.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantfrasesdeldia.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantprospecto.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Manttipodomicilio.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Manttiposervicio.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Administracion\Reasignaciones\Reasignar_prospecto.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Agenda\CRM_Agenda.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Asesores\CrearAlerta.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Alertas.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Asesores.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Crearreferido.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Prospectosfinalizados.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Catalogo_clientes\Prospectoenprocesos.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Catalogo_clientes\ProspectosFinalizados.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Catalogo_clientes\Prospectosrechazados.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Dashboard\CRM_Dashboard.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Dashboard\CRM_SubestadoProceso.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Ingresodata\CRM_Ingresodedatos.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx" />
+    <Content Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx" />
+    <Content Include="Views\Imagenes\barra.png" />
+    <Content Include="Views\Imagenes\F1.png" />
+    <Content Include="Views\Imagenes\F2.png" />
+    <Content Include="Views\Imagenes\Fondo.png" />
+    <Content Include="Views\Imagenes\Logo.png" />
+    <Content Include="Views\Imagenes\Logotipo-Guadalupana1.png" />
     <Content Include="Views\MantenimientosControl\controlAgenda.aspx" />
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
+    <Content Include="Views\MantenimientosControl\controlCRM.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
@@ -455,9 +591,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>chart.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Conjuntodedatosdataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Conjuntodedatosdataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Conexion.cs" />
     <Compile Include="Controllers\Conexion_arqueos.cs" />
     <Compile Include="Controllers\Conexion_seguridad.cs" />
+    <Compile Include="Controllers\CRM_Conexion.cs" />
+    <Compile Include="Controllers\CRM_Sentencias.cs" />
     <Compile Include="Controllers\ModeloAV.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
     <Compile Include="Controllers\Sentencia_arqueos.cs" />
@@ -476,6 +619,7 @@
       <DependentUpon>graficmonto.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\ControladorAV.cs" />
+    <Compile Include="Models\CRM_Logica.cs" />
     <Compile Include="Models\Logica.cs" />
     <Compile Include="Models\Logica_arqueos.cs" />
     <Compile Include="montodatos.Designer.cs">
@@ -497,6 +641,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MontoResul.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="mydbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mydbDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportesAv\ReporteUsuarios.aspx.cs">
@@ -719,6 +868,174 @@
     <Compile Include="Views\ControlEX\Tracking.aspx.designer.cs">
       <DependentUpon>Tracking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Controldedespidos\Trasalado_por_despido.aspx.cs">
+      <DependentUpon>Trasalado_por_despido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Controldedespidos\Trasalado_por_despido.aspx.designer.cs">
+      <DependentUpon>Trasalado_por_despido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Finalidaddeservicio.aspx.cs">
+      <DependentUpon>CRM_Finalidaddeservicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Finalidaddeservicio.aspx.designer.cs">
+      <DependentUpon>CRM_Finalidaddeservicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantcontactollamadas.aspx.cs">
+      <DependentUpon>CRM_Mantcontactollamadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantcontactollamadas.aspx.designer.cs">
+      <DependentUpon>CRM_Mantcontactollamadas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantdescripcionestado.aspx.cs">
+      <DependentUpon>CRM_Mantdescripcionestado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantdescripcionestado.aspx.designer.cs">
+      <DependentUpon>CRM_Mantdescripcionestado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantfrasesdeldia.aspx.cs">
+      <DependentUpon>CRM_Mantfrasesdeldia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantfrasesdeldia.aspx.designer.cs">
+      <DependentUpon>CRM_Mantfrasesdeldia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantprospecto.aspx.cs">
+      <DependentUpon>CRM_Mantprospecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Mantprospecto.aspx.designer.cs">
+      <DependentUpon>CRM_Mantprospecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Manttipodomicilio.aspx.cs">
+      <DependentUpon>CRM_Manttipodomicilio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Manttipodomicilio.aspx.designer.cs">
+      <DependentUpon>CRM_Manttipodomicilio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Manttiposervicio.aspx.cs">
+      <DependentUpon>CRM_Manttiposervicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Manttiposervicio.aspx.designer.cs">
+      <DependentUpon>CRM_Manttiposervicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Reasignaciones\Reasignar_prospecto.aspx.cs">
+      <DependentUpon>Reasignar_prospecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Administracion\Reasignaciones\Reasignar_prospecto.aspx.designer.cs">
+      <DependentUpon>Reasignar_prospecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Agenda\CRM_Agenda.aspx.cs">
+      <DependentUpon>CRM_Agenda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Agenda\CRM_Agenda.aspx.designer.cs">
+      <DependentUpon>CRM_Agenda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CrearAlerta.aspx.cs">
+      <DependentUpon>CrearAlerta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CrearAlerta.aspx.designer.cs">
+      <DependentUpon>CrearAlerta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Alertas.aspx.cs">
+      <DependentUpon>CRM_Alertas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Alertas.aspx.designer.cs">
+      <DependentUpon>CRM_Alertas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Asesores.aspx.cs">
+      <DependentUpon>CRM_Asesores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Asesores.aspx.designer.cs">
+      <DependentUpon>CRM_Asesores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Crearreferido.aspx.cs">
+      <DependentUpon>CRM_Crearreferido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Crearreferido.aspx.designer.cs">
+      <DependentUpon>CRM_Crearreferido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Prospectosfinalizados.aspx.cs">
+      <DependentUpon>CRM_Prospectosfinalizados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Prospectosfinalizados.aspx.designer.cs">
+      <DependentUpon>CRM_Prospectosfinalizados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Catalogo_clientes\Prospectoenprocesos.aspx.cs">
+      <DependentUpon>Prospectoenprocesos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Catalogo_clientes\Prospectoenprocesos.aspx.designer.cs">
+      <DependentUpon>Prospectoenprocesos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Catalogo_clientes\ProspectosFinalizados.aspx.cs">
+      <DependentUpon>ProspectosFinalizados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Catalogo_clientes\ProspectosFinalizados.aspx.designer.cs">
+      <DependentUpon>ProspectosFinalizados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Catalogo_clientes\Prospectosrechazados.aspx.cs">
+      <DependentUpon>Prospectosrechazados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Catalogo_clientes\Prospectosrechazados.aspx.designer.cs">
+      <DependentUpon>Prospectosrechazados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Dashboard\CRM_Dashboard.aspx.cs">
+      <DependentUpon>CRM_Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Dashboard\CRM_Dashboard.aspx.designer.cs">
+      <DependentUpon>CRM_Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Dashboard\CRM_SubestadoProceso.aspx.cs">
+      <DependentUpon>CRM_SubestadoProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Dashboard\CRM_SubestadoProceso.aspx.designer.cs">
+      <DependentUpon>CRM_SubestadoProceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Ingresodata\CRM_Ingresodedatos.aspx.cs">
+      <DependentUpon>CRM_Ingresodedatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Ingresodata\CRM_Ingresodedatos.aspx.designer.cs">
+      <DependentUpon>CRM_Ingresodedatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx.cs">
+      <DependentUpon>Ingresodedatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx.designer.cs">
+      <DependentUpon>Ingresodedatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx.cs">
+      <DependentUpon>CRM_MenuPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx.designer.cs">
+      <DependentUpon>CRM_MenuPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx.cs">
+      <DependentUpon>CRM_Reporteria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx.designer.cs">
+      <DependentUpon>CRM_Reporteria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\MantenimientosControl\controlAgenda.aspx.cs">
       <DependentUpon>controlAgenda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -732,6 +1049,13 @@
     </Compile>
     <Compile Include="Views\MantenimientosControl\controlArqueos.aspx.designer.cs">
       <DependentUpon>controlArqueos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\controlCRM.aspx.cs">
+      <DependentUpon>controlCRM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\controlCRM.aspx.designer.cs">
+      <DependentUpon>controlCRM.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
@@ -1136,6 +1460,8 @@
     <Content Include="UsuarioTiitulo.xss">
       <DependentUpon>UsuarioTiitulo.xsd</DependentUpon>
     </Content>
+    <Content Include="Views\CRM-SISTEMA\Asesores\Archivos\06.01.21 Leads Tele Mercadeo delimitado.csv" />
+    <Content Include="Views\CRM-SISTEMA\Ingresodata\Archivos\1802201 prueba delimitada.csv" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1146,6 +1472,7 @@
   <ItemGroup>
     <EmbeddedResource Include="ReportesAv\Report1.rdlc" />
     <EmbeddedResource Include="ReportesAv\ReporteMontos.rdlc" />
+    <EmbeddedResource Include="Views\CRM-SISTEMA\Reporteria\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

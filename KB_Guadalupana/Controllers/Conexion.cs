@@ -13,10 +13,17 @@ namespace KB_Guadalupana.Controllers
         protected MySqlDataAdapter AdaptadorDatos;
         protected MySqlDataReader reader;
         protected DataSet data;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+
+        public string cadenadeconexiongeneral()
+        {
+            string connectionString = @"Server=10.60.81.5;Database=bdkbguadalupana;Uid=User4pDes@rrollo;Pwd=BDK0ntr@PG1;";           
+            //string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+            return connectionString;
+        }
+
         public void conectar(string query)
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -41,7 +48,7 @@ namespace KB_Guadalupana.Controllers
         {
 
 
-            MySqlConnection conn = new MySqlConnection(connectionString);
+            MySqlConnection conn = new MySqlConnection(cadenadeconexiongeneral());
             try
             {
                 conn.Open();
@@ -64,7 +71,7 @@ namespace KB_Guadalupana.Controllers
 
         public void conectar2()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -100,7 +107,7 @@ namespace KB_Guadalupana.Controllers
 
         public MySqlConnection desconectar()
         {
-            MySqlConnection conn = new MySqlConnection(connectionString);
+            MySqlConnection conn = new MySqlConnection(cadenadeconexiongeneral());
             try
             {             
                 conn.Close();                               
@@ -127,7 +134,7 @@ namespace KB_Guadalupana.Controllers
             string strSQL = "show processlist";
             System.Collections.ArrayList m_ProcessesToKill = new ArrayList();
 
-            MySqlConnection myConn = new MySqlConnection(connectionString);
+            MySqlConnection myConn = new MySqlConnection(cadenadeconexiongeneral());
             MySqlCommand myCmd = new MySqlCommand(strSQL, myConn);
             MySqlDataReader MyReader = null;
 

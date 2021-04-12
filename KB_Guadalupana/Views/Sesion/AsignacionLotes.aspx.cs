@@ -17,7 +17,7 @@ namespace KB_Guadalupana.Views.Sesion
         Logica logic = new Logica();
         Conexion conn = new Conexion();
         Sentencia sn = new Sentencia();
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -140,7 +140,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     sqlCon.Open();
                     //string query = "UPDATE ep_control SET codepadministracionlote=@FirstName WHERE codepcontrol = @id";
@@ -211,7 +211,7 @@ namespace KB_Guadalupana.Views.Sesion
         {
             try
             {
-                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
                 {
                     string sig = logic.siguiente("ep_control", "codepcontrol");
                     string codusuario = (GridView3.Rows[e.RowIndex].FindControl("txtContact") as TextBox).Text.Trim();

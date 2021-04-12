@@ -40,22 +40,22 @@
             <div class="ui-widget">
   <h1 class="ui-value">
       <asp:Label ID="lblaprobados" runat="server" Text="Label"></asp:Label></h1>
-  <span class="ui-label">Aprobados</span>
+  <span class="ui-label"><a href="">Aprobados</a></span>
 </div>
 
-<div class="ui-widget">
+            <div class="ui-widget">
   <h1 class="ui-value"><asp:Label ID="lblenproceso" runat="server" Text="Label"></asp:Label></h1>
-  <span class="ui-label">En proceso</span>
+  <span class="ui-label"><a href="CRM_SubestadoProceso.aspx">En proceso</a></span>
 </div>
 
-<div class="ui-widget">
+            <div class="ui-widget">
   <h1 class="ui-value"><asp:Label ID="lblnocontestada" runat="server" Text="Label"></asp:Label></h1>
-  <span class="ui-label">No contesta</span>
+  <span class="ui-label"><a href="">No contesta</a></span>
 </div>
 
-<div class="ui-widget">
+            <div class="ui-widget">
   <h1 class="ui-value"><asp:Label ID="lblnoaplica" runat="server" Text="Label"></asp:Label></h1>
-  <span class="ui-label">No aplican</span>
+  <span class="ui-label"><a href="">No aplica</a></span>
 </div>
 
         </div>

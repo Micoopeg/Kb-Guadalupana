@@ -511,6 +511,7 @@
     <Content Include="Views\CRM-SISTEMA\Catalogo_clientes\ProspectosFinalizados.aspx" />
     <Content Include="Views\CRM-SISTEMA\Catalogo_clientes\Prospectosrechazados.aspx" />
     <Content Include="Views\CRM-SISTEMA\Dashboard\CRM_Dashboard.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Dashboard\CRM_SubestadoProceso.aspx" />
     <Content Include="Views\CRM-SISTEMA\Ingresodata\CRM_Ingresodedatos.aspx" />
     <Content Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx" />
     <Content Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx" />
@@ -999,6 +1000,13 @@
     </Compile>
     <Compile Include="Views\CRM-SISTEMA\Dashboard\CRM_Dashboard.aspx.designer.cs">
       <DependentUpon>CRM_Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Dashboard\CRM_SubestadoProceso.aspx.cs">
+      <DependentUpon>CRM_SubestadoProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Dashboard\CRM_SubestadoProceso.aspx.designer.cs">
+      <DependentUpon>CRM_SubestadoProceso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\CRM-SISTEMA\Ingresodata\CRM_Ingresodedatos.aspx.cs">
       <DependentUpon>CRM_Ingresodedatos.aspx</DependentUpon>

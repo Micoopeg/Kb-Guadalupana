@@ -131,8 +131,9 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
 
         protected void btncerrarsesion_ServerClick(object sender, EventArgs e)
         {
-            Response.Redirect("../../Sesion/MenuBarra.aspx");
             logic.bitacoraingreso(Nombresesion, "CRM", "Egreso");
+            Response.Redirect("../../Sesion/MenuBarra.aspx");
+            
         }
     }
 }

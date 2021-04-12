@@ -10,7 +10,7 @@
     <title>Reporteria</title>
      <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg"/>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-   <link rel="stylesheet" type="text/css" href="../../../../CRM-Estilos/estiloparamantenimientos.css" />
+   <link rel="stylesheet" type="text/css" href="../../../CRM-Estilos/estiloparamantenimientos.css"/>
     <link rel="stylesheet" type="text/css" href="../../../CRM-Estilos/EstiloReportes.css"/>
     
 </head>

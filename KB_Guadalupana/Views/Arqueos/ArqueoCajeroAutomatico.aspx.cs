@@ -247,7 +247,7 @@ namespace Modulo_de_arqueos.Views
                 string[] valores7 = { sig7, "6", CACantidad6.Value, Convert.ToString(subtotalb6), Convert.ToString(totalb), "6", CACantidadm6.Value, Convert.ToString(subtotalm5), Convert.ToString(totalm), Convert.ToString(totalefectivo), CAEfectivoreporte.Value, Convert.ToString(diferencia), CAComentario.Value, sig };
                 logic.insertartablas("sa_detallecajeroaut", valores7);
                 string sig8 = logic.siguiente("sa_detallecajeroaut", "idsa_detallecajeroaut");
-                string[] valores8 = { sig8, "7", CACantidad7.Value, Convert.ToString(subtotalb7), Convert.ToString(totalb), "8", "", "", Convert.ToString(totalm), Convert.ToString(totalefectivo), CAEfectivoreporte.Value, Convert.ToString(diferencia), CAComentario.Value, sig };
+                string[] valores8 = { sig8, "7", CACantidad7.Value, Convert.ToString(subtotalb7), Convert.ToString(totalb), "8", "0", "0", Convert.ToString(totalm), Convert.ToString(totalefectivo), CAEfectivoreporte.Value, Convert.ToString(diferencia), CAComentario.Value, sig };
                 logic.insertartablas("sa_detallecajeroaut", valores8);
 
                 NombreFirma2.InnerHtml = CAOperador.Value;

@@ -243,7 +243,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
             string sig = logic.siguiente("crminfo_prospecto", "codcrminfoprospecto");
             string[] valores1 = { sig, dpiguardar, combotiposervicio.SelectedValue, "1", "1",
                         "1","1","1",txttelefono.Value,txtemail.Value,txtingreso.Value,txtegresos.Value,txtmonto.Value,txtañoslaborados.Value,combotienetrabajo.SelectedValue,txttabajoactual.Value,txtfechainicio.Value,txtfechafin.Value,exampleFormControlTextarea1.Value,combosucursalmascerca.SelectedValue,
-                        combocuentaigss.SelectedValue,txtañodomicilio.Value,comboposeecuentacoope.SelectedValue,"Referenciado",""};
+                        combocuentaigss.SelectedValue,txtañodomicilio.Value,comboposeecuentacoope.SelectedValue,"Referenciado",txtdpidereferido.Value};
             logic.insertartablas("crminfo_prospecto", valores1);
             logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Aplicación Asesores", "Creación del referido - Correlativo: '"+txtnumerodpi.Value+"'");
             string sig3 = logic.siguiente("crmcontrol_prospecto_agente", "codcrmcontrolprospectoagente");

@@ -14,7 +14,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 {
     public partial class ReporteAdmin2 : System.Web.UI.Page
     {
-        Conexion conexiongeneral = new Conexion();
+        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
         Conexion cn = new Conexion();
         Logica logic = new Logica();
         Sentencia sn = new Sentencia();
@@ -236,7 +236,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewcuentasvarias()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -268,7 +268,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewcuentasvarias1()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -300,7 +300,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewcuentascope()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -332,7 +332,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewcuentasporcobrar()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -368,7 +368,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewbienesinmuebles()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -395,7 +395,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewvehiculos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -422,7 +422,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewinversiones()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -543,7 +543,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewcuentasporpagar()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -570,7 +570,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewpasivos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -604,7 +604,7 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void llenargridviewtarjetas()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -694,14 +694,12 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
         public void mostrarOtros()
         {
             sesion = Session["IDReporte1"].ToString();
-            string[] var1 = sn.consultarconcampomenaOtros(sesion);
+
+            string[] var1 = sn.consultarconcampomenaje11(sesion);
             for (int i = 0; i < var1.Length; i++)
             {
                 OtrosC.Value = Convert.ToString(var1[0]);
-                OM = Convert.ToInt32(var1[1].Trim());
-
-                OT = OC * OM;
-                OtrosM.Value = OM.ToString();
+                OtrosM.Value = Convert.ToString(var1[1]);
             }
         }
 

@@ -196,7 +196,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             {
                 Ingresaryasignarprospectos();
                 logic.eliminadoderegistrosprotegida("crmtamporal_cargadedatos");
-                String script = "alert('Los datos han sido procesados correctamente'); window.location.href= '../../Index.aspx';";
+                String script = "alert('Los datos han sido procesados correctamente'); window.location.href='../MenuPrincipal/CRM_MenuPrincipal.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                 logic.bitacoraingresoprocedimientos(usuarioglobal, "CRM", "ingreso de datos", "Alimentación de CRM - Excel importado: '"+FileUpload1.FileName+"' ");
             }
@@ -475,7 +475,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                 string zona = tablatemporal[centinelatabla+8];
                 string tiposervicio = tablatemporal[centinelatabla+9];
                 string contactadopor = tablatemporal[centinelatabla+10];
-                if (No=="No." && fecha == "Fecha" && nombre == "Nombre" && telefono == "Tel&#233;fono" && correo == "Correo" && dpi == "DPI" && cantidad == "Cantidad"
+                if (fecha == "Fecha" && nombre == "Nombre" && telefono == "Tel&#233;fono" && correo == "Correo" && dpi == "DPI" && cantidad == "Cantidad"
                     && zona == "Zona" && finalidad == "Finalidad" && tiposervicio == "Tipo de servicio" && contactadopor == "Contacto")
                 {
 
@@ -546,9 +546,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     //tiposervicio + contactadopor + cantidad + cantidaddecimal + "<br>");
 
                     string sig = logic.siguiente("crminfo_prospecto", "codcrminfoprospecto");
-                    string[] valores1 = { sig, dpiguardar, tiposervicio, "1", "1",
-                        "1","1","1",telefono,correo,"","",Convert.ToString(cantidaddecimal),"0","0","","2020-01-01","2020-01-01","","",
-                        "0","","0",contactadopor,""};
+                    string[] valores1 = { sig, dpiguardar, tiposervicio, "1", "2","2","1","1",telefono,correo,"0","0",Convert.ToString(cantidaddecimal),"0","0","0","2020-01-01","2020-01-01","0","0",
+                        "0","0","0",contactadopor,"0"};
                     logic.insertartablas("crminfo_prospecto", valores1);
 
                     string sig3 = logic.siguiente("crmcontrol_prospecto_agente", "codcrmcontrolprospectoagente");
@@ -558,7 +557,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     logic.insertartablas("crmcontrol_prospecto_agente", valores3);
 
                 }
-                centinelatabla = centinelatabla + 12;                          //El centinela debe sumarle la cantidad de columnas de la tabla
+                centinelatabla = centinelatabla + 11;                          //El centinela debe sumarle la cantidad de columnas de la tabla
                 i = centinelatabla;                                          //el i es un autoincrementable que siempre se igula al centinela
             }//cierre dle registro
 

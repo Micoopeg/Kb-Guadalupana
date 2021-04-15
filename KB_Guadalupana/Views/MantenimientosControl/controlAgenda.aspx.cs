@@ -14,7 +14,8 @@ namespace KB_Guadalupana.Views.MantenimientosControl
    
         Sentencia_seguridad SNS = new Sentencia_seguridad();
         string user, id;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             mantarea.Visible = false;
@@ -34,7 +35,7 @@ namespace KB_Guadalupana.Views.MantenimientosControl
 
         public void llenarcomboaplicacion()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -55,7 +56,7 @@ namespace KB_Guadalupana.Views.MantenimientosControl
        
         public void llenarcomborol()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -75,7 +76,7 @@ namespace KB_Guadalupana.Views.MantenimientosControl
         }
         public void llenarcomboarea()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -95,7 +96,7 @@ namespace KB_Guadalupana.Views.MantenimientosControl
         }
         public void llenarcombotipositio()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

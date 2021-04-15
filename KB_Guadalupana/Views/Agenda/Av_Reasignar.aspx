@@ -192,7 +192,7 @@
                 <ul class="list-group">
                        <asp:Repeater ID="repetidoruser" runat="server" >
                     <ItemTemplate>
-  <li class="list-group-item "> <b>Usuario </b> <%# Eval("gen_usuarionombre") %>    <b>CIF:</b> <%# Eval("avcifgeneral") %>  </li>
+  <li class="list-group-item "> <b>Usuario </b> <%# Eval("av_controlusuario") %>    <b>CIF:</b> <%# Eval("avcifgeneral") %>  </li>
 
                           
                     </ItemTemplate>

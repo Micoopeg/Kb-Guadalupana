@@ -30,7 +30,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
             Session["controlingreso"] = controlingresocrm;
             Session["usuariodelcrm"] = usuariodelcrm;
             Session["sucurusalcrm"] = sucurusalcrm;
-            Session["roldelcrm"] = roldelcrm;                    
+            Session["roldelcrm"] = roldelcrm;
             int rolusuario = Convert.ToInt32(Session["roldelcrm"]);
             switch (rolusuario)
             {
@@ -122,11 +122,21 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
         }
         protected void obtenciondeinformacion()
         {
-            string[] var1 = sn.consultarconcampo("crmcontrol_ingreso", "crmcontrol_ingresousuario", Nombresesion);
-            controlingresocrm = var1[0];
-            sucurusalcrm = var1[1];
-            usuariodelcrm = var1[2];
-            roldelcrm = var1[3];
+            
+            string[] var1 = sn.consultarconcampoingresocrm("crmcontrol_ingreso", "crmcontrol_ingresousuario", Nombresesion);
+            if (var1[0]=="0")
+            {
+                String script = "alert('El usuario no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+            }
+            else
+            {
+                controlingresocrm = var1[0];
+                sucurusalcrm = var1[1];
+                usuariodelcrm = var1[2];
+                roldelcrm = var1[3];
+            }
         }
 
         protected void btncerrarsesion_ServerClick(object sender, EventArgs e)

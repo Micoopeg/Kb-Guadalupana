@@ -29,7 +29,7 @@
          <span>Correlativo: </span> <input id="txtcodigo" disabled="disabled" runat="server" class="form-control" type="text" name="codigo" placeholder="Correlativo" required="required" />
             </div>
         <div class="form-group">
-         <span>Nombre: </span> <input  id="txtnombre" runat="server"  class="form-control" type="text" name="nombre" placeholder="Nombre" required="required" />
+         <span>Nombre: </span> <input  id="txtnombre" onkeypress="return soloLetras(event);" runat="server"  class="form-control" type="text" name="nombre" placeholder="Nombre" required="required" />
         </div>
           <div>
               <asp:LinkButton ID="btnmodificar" Width="100%" runat="server" class="btn btn-primary form-control" type="submit" OnClick="btnmodificar_Click"> Modificar</asp:LinkButton>

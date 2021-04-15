@@ -91,7 +91,10 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
             Response.Redirect("../MenuPrincipal/CRM_MenuPrincipal.aspx");
         }
 
-
+        protected void btnmenucerrar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../../Sesion/MenuBarra.aspx");
+        }
 
         public void llenargridviewagencia(string sucursal)
         {

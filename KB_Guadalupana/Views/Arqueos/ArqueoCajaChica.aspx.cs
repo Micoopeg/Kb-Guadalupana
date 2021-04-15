@@ -343,7 +343,7 @@ namespace Modulo_de_arqueos.Views
                 string[] valores7 = { sig7, "6", CACantidad6.Value, Convert.ToString(subtotalb6), Convert.ToString(totalbilletes), "6", CACantidadm6.Value, Convert.ToString(subtotalm6), Convert.ToString(totalmonedas), Convert.ToString(total), Convert.ToString(caja), CCCOmentario.Value, sig1 };
                 logic.insertartablas("sa_cuadrecajachica", valores7);
                 string sig8 = logic.siguiente("sa_cuadrecajachica", "idsa_cuadrecajachica");
-                string[] valores8 = { sig8, "7", CACantidad7.Value, Convert.ToString(subtotalb7), Convert.ToString(totalbilletes), "8", "", "", Convert.ToString(totalmonedas), Convert.ToString(total), Convert.ToString(caja), CCCOmentario.Value, sig1 };
+                string[] valores8 = { sig8, "7", CACantidad7.Value, Convert.ToString(subtotalb7), Convert.ToString(totalbilletes), "8", "0", "0", Convert.ToString(totalmonedas), Convert.ToString(total), Convert.ToString(caja), CCCOmentario.Value, sig1 };
                 logic.insertartablas("sa_cuadrecajachica", valores8);
 
                 String script = "alert('Se han guardado exitosamente');";

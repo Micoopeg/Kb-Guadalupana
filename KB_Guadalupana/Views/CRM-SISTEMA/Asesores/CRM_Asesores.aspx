@@ -153,7 +153,7 @@
       <input id="txtnumerodpi" disabled="disabled" onkeypress="return numeros(event);" style="margin-left:1%;" placeholder="DPI" runat="server" type="text" tabindex="1" class="inputscortos"  autofocus="autofocus" />
 
       <input id="txtnombrecompleto" onkeypress="return soloLetras(event)" style="margin-left:2%;" placeholder="Nombre Completo" runat="server" type="text" tabindex="2" class="inputslargos"   autofocus="autofocus"/>
-      <input id="txttelefono"  onkeypress="return numeros(event);" style="margin-left:2%;" placeholder="Teléfono" runat="server" type="text" tabindex="3" class="inputscortos"   autofocus="autofocus"/>
+      <input id="txttelefono"  onkeypress="return numeros(event);" style="margin-left:2%;" placeholder="Teléfono" runat="server" type="text" tabindex="3" class="inputscortos" maxlength="8"   autofocus="autofocus"/>
      <input id="txtemail" style="margin-left:2%;" placeholder="Correo electrónico" runat="server" type="text" tabindex="4" class="inputslargos"   autofocus="autofocus"/>
      <div style="border: 1px #e8e8e8 solid; width: 30%; float: left; margin: 10px 0px 10px 0px">
          <%-- AREA DE INGRESOS --%>           

@@ -301,7 +301,7 @@ namespace Modulo_de_arqueos.Views
                 string[] valores7 = { sig7, "6", CCantidad6.Value, Convert.ToString(sumab6), "6", CMCantidad6.Value, Convert.ToString(sumam6), Convert.ToString(sumatotal), CTotalrecibido.Value, CTotalentregado.Value, sig };
                 logic.insertartablas("sa_detallecajero", valores7);
                 string sig8 = logic.siguiente("sa_detallecajero", "idsa_detallecajero");
-                string[] valores8 = { sig8, "7", CCantidad7.Value, Convert.ToString(sumab7), "8", "", "", Convert.ToString(sumatotal), CTotalrecibido.Value, CTotalentregado.Value, sig };
+                string[] valores8 = { sig8, "7", CCantidad7.Value, Convert.ToString(sumab7), "8", "0", "0", Convert.ToString(sumatotal), CTotalrecibido.Value, CTotalentregado.Value, sig };
                 logic.insertartablas("sa_detallecajero", valores8);
 
                 siguiente.Enabled = true;

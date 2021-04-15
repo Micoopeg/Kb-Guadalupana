@@ -77,6 +77,19 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             }
         }
 
+        bool verificararchivoconmismonombre(string fileName)
+        {
+            string ext = Path.GetFileName(fileName);
+            if (File.Exists(MapPath("Archivos/" + ext)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private DataTable CrearTabla(String fila)
         {
             int cantidadColumnas;
@@ -149,12 +162,22 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             {
                 if (ChecarExtension(FileUpload1.FileName))
                 {
-                    FileUpload1.SaveAs(MapPath("Archivos/" + FileUpload1.FileName));
-
-
-                    Label1.Text = FileUpload1.FileName + " cargado exitosamente";
-
-                    lblOculto.Text = MapPath("Archivos/" + FileUpload1.FileName);
+                    if (verificararchivoconmismonombre(FileUpload1.FileName) == false)
+                    {
+                        FileUpload1.SaveAs(MapPath("Archivos/" + FileUpload1.FileName));
+                        Label1.Text = FileUpload1.FileName + " cargado exitosamente";
+                        lblOculto.Text = MapPath("Archivos/" + FileUpload1.FileName);
+                    }
+                    else
+                    {
+                        Label1.Visible = true;
+                        Label1.Text = "Ya se encuentra un archivo con el mismo nombre";
+                        btngridview.Visible = false;
+                    }
+                }
+                else
+                {
+                    Label1.Text = "Error al subir el archivo o no es el tipo .CSV";
                 }
             }
             else
@@ -168,7 +191,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 
         }
 
-      
+
 
         protected void btnmostrardatos_Click(object sender, EventArgs e)
         {
@@ -546,8 +569,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     //tiposervicio + contactadopor + cantidad + cantidaddecimal + "<br>");
 
                     string sig = logic.siguiente("crminfo_prospecto", "codcrminfoprospecto");
-                    string[] valores1 = { sig, dpiguardar, tiposervicio, "1", "2","2","1","1",telefono,correo,"0","0",Convert.ToString(cantidaddecimal),"0","0","0","2020-01-01","2020-01-01","0","0",
-                        "0","0","0",contactadopor,"0"};
+                    string[] valores1 = { sig, dpiguardar, tiposervicio, "1", "2","2","1","1",telefono,correo,"0","0",Convert.ToString(cantidaddecimal),"0","0","0","2020-01-01","2020-01-01","","0",
+                        "0","0","0",contactadopor,""};
                     logic.insertartablas("crminfo_prospecto", valores1);
 
                     string sig3 = logic.siguiente("crmcontrol_prospecto_agente", "codcrmcontrolprospectoagente");

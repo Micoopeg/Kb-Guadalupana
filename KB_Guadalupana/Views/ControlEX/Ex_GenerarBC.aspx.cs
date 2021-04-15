@@ -36,7 +36,7 @@ namespace KB_Guadalupana.Views.ControlEX
         public void generar2()
         {
 
-            Document doc = new Document(new iTextSharp.text.Rectangle(24, 12), 5, 5, 1, 1);
+            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 0, 0, 0, 0);
 
             try
             {
@@ -63,9 +63,9 @@ namespace KB_Guadalupana.Views.ControlEX
                     PdfContentByte cb1 = writer.DirectContent;
                     BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_BOLDITALIC, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
 
-                    cb1.SetFontAndSize(bf, 2.0f);
+                    cb1.SetFontAndSize(bf, 35.0f);
                     cb1.BeginText();
-                    cb1.SetTextMatrix(1.2f, 9.5f);
+                    cb1.SetTextMatrix(195.5f, 400.500f);
                     cb1.ShowText("Expediente");
                     cb1.EndText();
 
@@ -82,10 +82,11 @@ namespace KB_Guadalupana.Views.ControlEX
                     iTextSharp.text.Image img = bc.CreateImageWithBarcode(cb,
                       iTextSharp.text.BaseColor.BLACK, iTextSharp.text.BaseColor.BLACK);
 
-                    cb.SetTextMatrix(1.5f, 3.0f);
-                    img.ScaleToFit(60, 5);
-                    img.SetAbsolutePosition(1.5f, 1);
-                    cb.AddImage(img);
+                  
+                    cb.SetTextMatrix(50f, 600.0f);
+                                 img.ScaleToFit(200, 200);
+                                  img.SetAbsolutePosition(190.5f,300);
+                                  cb.AddImage(img);
                 }
 
                 ////////////////////***********************************//////////////////////

@@ -77,13 +77,83 @@ namespace KB_Guadalupana.Controllers
                 }
             }
         }
+        public string[] datosusuarioav(string codavuser)
+        {
 
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT * FROM av_controlingreso WHERE codavcontroling = '" + codavuser + "' ;";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+
+        }
         public string obteneridusuario(string usuario)
         {
             String camporesultante = "";
             try
             {
                 string sql = "SELECT codgenusuario FROM gen_usuario WHERE gen_usuarionombre = '" + usuario + "'";
+                MySqlCommand command = new MySqlCommand(sql, cn.conectar());
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                camporesultante = reader.GetValue(0).ToString();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(camporesultante);
+            }
+            finally { cn.desconectar(); }
+            return camporesultante;
+        }
+        public string obtenerfinal(string tabla, string campo)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(" + campo + "+1) FROM " + tabla + ";"; //SELECT MAX(idFuncion) FROM `funciones`     
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+
+        }
+        public string obteneridusuarioav(string usuario)
+        {
+            String camporesultante = "";
+            try
+            {
+                string sql = "SELECT codavcontroling FROM av_controlingreso WHERE av_controlusuario = '" + usuario + "'";
                 MySqlCommand command = new MySqlCommand(sql, cn.conectar());
                 MySqlDataReader reader = command.ExecuteReader();
                 reader.Read();
@@ -279,6 +349,26 @@ namespace KB_Guadalupana.Controllers
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
                 return Campos;// devuelve un arrgeglo con los campos               
             }
+
+        }
+        public void Insertar(string sql)
+        {
+
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+            }
+
 
         }
     }

@@ -15,7 +15,7 @@ namespace KB_Guadalupana.Views.ControlEX
         ControladorEX exc = new ControladorEX();
         string fechamin, horamin, fechahora;
         char delimitador2 = ' ';
-        string usernombre, nombrepersona;
+        string usernombre, nombrepersona, coduser;
         protected void Page_Load(object sender, EventArgs e)
         {
             usernombre = Convert.ToString(Session["sesion_usuario"] = "pgecasasola");
@@ -24,6 +24,12 @@ namespace KB_Guadalupana.Views.ControlEX
             NombreAgencia.InnerText = Convert.ToString( Session["Nombre"] = exc.agencia(usernombre));
             
             now();
+
+            coduser = exc.obtenercoduser(usernombre);
+            expenv.InnerText = exc.contenv(coduser);
+            exppenv.InnerText = exc.contpen(coduser);
+            exphall.InnerText = exc.contret(coduser);
+            expgen.InnerText = exc.contexis(coduser);
         }
 
         public void now()
@@ -53,6 +59,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
 
         }
+       
 
         protected void btnInicio_Click(object sender ,  EventArgs e) {
 
@@ -64,6 +71,12 @@ namespace KB_Guadalupana.Views.ControlEX
         {
 
             Response.Redirect("Ex_Principal.aspx");
+
+        }
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("Ex_GenExpedientes.aspx");
 
         }
     }

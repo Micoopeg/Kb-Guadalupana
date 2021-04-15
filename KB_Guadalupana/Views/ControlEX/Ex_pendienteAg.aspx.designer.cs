@@ -11,7 +11,7 @@ namespace KB_Guadalupana.Views.ControlEX
 {
 
 
-    public partial class Ex_GenExpedientes
+    public partial class Ex_pendienteAg
     {
 
         /// <summary>
@@ -33,22 +33,94 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlAnchor inicio;
 
         /// <summary>
-        /// NOEXP control.
+        /// labeldatos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText NOEXP;
+        protected global::System.Web.UI.WebControls.Label labeldatos;
 
         /// <summary>
-        /// PNOMBRE control.
+        /// correcto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText PNOMBRE;
+        protected global::System.Web.UI.WebControls.Label correcto;
+
+        /// <summary>
+        /// modificado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label modificado;
+
+        /// <summary>
+        /// CODEX control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText CODEX;
+
+        /// <summary>
+        /// NOCRED control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText NOCRED;
+
+        /// <summary>
+        /// CIF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText CIF;
+
+        /// <summary>
+        /// MONTODES control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText MONTODES;
+
+        /// <summary>
+        /// MONTO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText MONTO;
+
+        /// <summary>
+        /// PNOM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText PNOM;
+
+        /// <summary>
+        /// SNOM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText SNOM;
 
         /// <summary>
         /// PAPELL control.
@@ -60,15 +132,6 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlInputText PAPELL;
 
         /// <summary>
-        /// SNOMBRE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText SNOMBRE;
-
-        /// <summary>
         /// SAPELL control.
         /// </summary>
         /// <remarks>
@@ -78,58 +141,67 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlInputText SAPELL;
 
         /// <summary>
-        /// CIFN control.
+        /// tipocredito control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CIFN;
+        protected global::System.Web.UI.WebControls.DropDownList tipocredito;
 
         /// <summary>
-        /// DropDownTipocredito control.
+        /// check control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTipocredito;
+        protected global::System.Web.UI.WebControls.CheckBox check;
 
         /// <summary>
-        /// MONTO control.
+        /// barrascodigo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl MONTO;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText barrascodigo;
 
         /// <summary>
-        /// NCRED control.
+        /// btnverificar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl NCRED;
+        protected global::System.Web.UI.WebControls.LinkButton btnverificar;
 
         /// <summary>
-        /// DESCRIP control.
+        /// btnmodificar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea DESCRIP;
+        protected global::System.Web.UI.WebControls.LinkButton btnmodificar;
 
         /// <summary>
-        /// btninsert control.
+        /// btnguardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btninsert;
+        protected global::System.Web.UI.WebControls.LinkButton btnguardar;
+
+        /// <summary>
+        /// DGRVWPEN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView DGRVWPEN;
 
         /// <summary>
         /// btninicio control.
@@ -159,12 +231,12 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
 
         /// <summary>
-        /// LinkButton5 control.
+        /// result control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
+        protected global::System.Web.UI.WebControls.Label result;
     }
 }

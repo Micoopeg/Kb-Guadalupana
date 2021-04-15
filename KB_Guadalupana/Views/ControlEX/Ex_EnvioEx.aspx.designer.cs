@@ -11,7 +11,7 @@ namespace KB_Guadalupana.Views.ControlEX
 {
 
 
-    public partial class Ex_Principal
+    public partial class Ex_EnvioEx
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-
-        /// <summary>
         /// inicio control.
         /// </summary>
         /// <remarks>
@@ -42,58 +33,58 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlAnchor inicio;
 
         /// <summary>
-        /// NombreAgencia control.
+        /// NOEXP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NombreAgencia;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText NOEXP;
 
         /// <summary>
-        /// Date control.
+        /// PNOMBRE control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Date;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText PNOMBRE;
 
         /// <summary>
-        /// expgen control.
+        /// monto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl expgen;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl monto;
 
         /// <summary>
-        /// expenv control.
+        /// desmonto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl expenv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl desmonto;
 
         /// <summary>
-        /// exppenv control.
+        /// NCRED control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exppenv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl NCRED;
 
         /// <summary>
-        /// exphall control.
+        /// btninsert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exphall;
+        protected global::System.Web.UI.WebControls.Button btninsert;
 
         /// <summary>
         /// btninicio control.

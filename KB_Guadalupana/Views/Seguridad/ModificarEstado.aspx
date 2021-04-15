@@ -249,7 +249,7 @@ padding: 8px;
 				</a>
 			</li>
 
-			<li class="li">
+			<li class="li submenu">
 				<a href="javascript:void(0);" class="links" onclick="redirigir2()">
 					<span class="span fa fa-suitcase"></span> Modulos
                     <span class="span fa fa-arrow-down"></span>
@@ -270,7 +270,7 @@ padding: 8px;
 				</ul>
 			</li>
 
-			<li class="li submenu">
+			<li class="li">
 				<a href="javascript:void(0);" onclick="redirigir5()" class="links">
 					<span class="span fa fa-rocket"></span>Modulos y permisos
 					

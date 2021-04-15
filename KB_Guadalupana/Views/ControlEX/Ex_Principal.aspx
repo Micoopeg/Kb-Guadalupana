@@ -42,7 +42,7 @@
 
 			</li>
 
-			<li class="li">
+			<li class="li submenu">
 				<a href="javascript:void(0);" class="links">
 					<span class="span fa fa-suitcase"></span>Expedientes
                     <span class="span fa fa-arrow-down"></span>
@@ -54,7 +54,7 @@
 						</a>
 					</li>  
 					<li class="li">
-						<a href="javascript:void(0);" class="links" >Generar nuevo
+						<a href="javascript:void(0);" class="links" onclick="redirigir3()"   >Generar nuevo
 							<span class="span fa fa-play"></span>
 						</a>
 					</li>  
@@ -67,7 +67,7 @@
 				</ul>
 			</li>
 
-			<li class="li submenu">
+			<li class="li ">
 				<a href="javascript:void(0);" class="links">
 					<span class="span fa fa-eye"></span>Expedientes con Hallazgos
 					
@@ -136,12 +136,12 @@
     </section>
          <asp:LinkButton ID="btninicio" runat="server" OnClick="btnInicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>
-         <%--<asp:LinkButton ID="LinkButton2" runat="server" OnClick="btninicio_Click" ClientIDMode="Static"></asp:LinkButton>
-         <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
-         <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
-         <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
-         <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
-       <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>--%>
+        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnNuevo_Click" ClientIDMode="Static"></asp:LinkButton>
+       <%--   <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
+         <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
+       <asp:LinkButton ID="LinkButton8" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>--%>
 
 		
 

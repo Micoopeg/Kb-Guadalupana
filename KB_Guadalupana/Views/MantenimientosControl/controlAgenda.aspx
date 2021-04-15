@@ -302,7 +302,7 @@ padding: 8px;
     <p class="col-md-6">
         <label  style="color:white">Usuario</label>
         
-        <asp:DropDownList ID="DDUSER" runat="server" CssClass="dis" AutoPostBack="false" OnSelectedIndexChanged="DDUSER_SelectedIndexChanged"  ></asp:DropDownList>
+        <asp:DropDownList ID="DDUSER" runat="server" CssClass="dis" AutoPostBack="true" OnSelectedIndexChanged="DDUSER_SelectedIndexChanged"  ></asp:DropDownList>
      
         <label  style="margin-left: 16px;color:white;padding-bottom: 0px;margin-bottom: -17px;margin-top: 10px;">Nuevo usuario</label>
         <asp:CheckBox ID="chk" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" />

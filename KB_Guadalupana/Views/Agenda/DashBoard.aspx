@@ -25,7 +25,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
              <div id="navegador" class="topnav ">
-       <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
+       <a class="active" href="../Sesion/MenuBarra.aspx">Inicio</a>
                   <a href="AgendaPrin.aspx"> Agenda</a>
           <a href="NuevaTarea.aspx" > Nueva Tarea</a>
              <a id="ASIGHOME" runat="server" href="Av_AsignarTarea.aspx" > Asignar Tareas A</a>

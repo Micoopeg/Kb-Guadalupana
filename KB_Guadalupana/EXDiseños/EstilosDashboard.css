@@ -190,6 +190,7 @@ h1 {
 
 h2 {
     color: var(--gray);
+    text-align:center;
 }
 
 /* CARD SMALL BOTTOM - tarjetas chicas parte baja*/

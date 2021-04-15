@@ -24,7 +24,7 @@ namespace KB_Guadalupana.Views.MantenimientosControl
             llenargridviewmantenimiento();
             if (!IsPostBack)
             {
-                string varinc = sn.obtenerfinal("crm_finalidadservicio", "codcrmfinalidadservicio");
+                string varinc = sn.obtenerfinal("crmcontrol_ingreso", "codcrmcontrolingreso");
                 txtcodigo.Value = varinc;
                 btnmodificar.Visible = false;
                 btnnuevoingreso.Visible = false;

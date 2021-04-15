@@ -56,7 +56,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             }
             else
             {
-                String script = "alert('El usuario "+usuarioglobal+" no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Index.aspx';";
+                String script = "alert('El usuario "+usuarioglobal+" no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }

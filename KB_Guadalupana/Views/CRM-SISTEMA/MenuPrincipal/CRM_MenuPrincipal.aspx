@@ -40,9 +40,9 @@
 			<a href="~/Views/CRM-SISTEMA/Dashboard/CRM_Dashboard.aspx" title="Dashboard" id="btndashboards" runat="server"><i class="icon-dashboard"></i><span>Dashboard</span></a>		
 
 			<a href="~/Views/CRM-SISTEMA/Ingresodata/CRM_Ingresodedatos.aspx" title="ingresodedatos" id="btningresodedatos" runat="server"><i class="icon-bullhorn"></i><span> Ingreso de datos</span></a>			
-			<a href="../Asesores/CRM_Asesores.aspx" title="catalogodeprospectos" id="btncarteraasociados" runat="server"><i class="icon-file-alt"></i><span> Catalogo de prospectos</span></a>
+			<a href="../Asesores/CRM_Asesores.aspx" title="catalogodeprospectos" id="btncarteraasociados" runat="server"><i class="icon-file-alt"></i><span> Catálogo de prospectos</span></a>
 			<a href="" title="Catalogodeclientes" class="submenu" name="media-sub" id="btncatalogodeclientes" runat="server"><i class="icon-eye-open"></i><span>  
-			Catalogo de clientes</span></a>
+			Catálogo de clientes</span></a>
 			<!-- Media Sub Menu -->
 				<div id="media-sub" style="display: none;">
 					<a href="../Catalogo_clientes/ProspectosFinalizados.aspx" title="Procespectos Finalizados"><i class="icon-user"></i><span>  
@@ -65,7 +65,7 @@
 					<a href="../Administracion/Mantenimientos/CRM_Manttipodomicilio.aspx" title="Mail Lists"><i class="icon-book"></i><span>  
 					Tipos de domicilio</span></a>
 					<a href="../Administracion/Mantenimientos/CRM_Mantdescripcionestado.aspx" title="Forms"><i class="icon-book"></i><span>  
-					Descripcion por estado</span></a>
+					Descripción por estado</span></a>
 					<a href="../Administracion/Mantenimientos/CRM_Mantcontactollamadas.aspx" title="Mail Lists"><i class="icon-book"></i><span>  
 					Contacto llamada</span></a>
 					<a href="../Administracion/Mantenimientos/CRM_Finalidaddeservicio.aspx" title="Mail Lists"><i class="icon-book"></i><span>  

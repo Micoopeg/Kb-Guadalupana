@@ -19,7 +19,7 @@
                
                     <div class="row">
                         <div class="col" style=" text-align:left;height:43px">
-                                <asp:Button ID="btnmenuprincipal" style="text-align:left" Height="100%" Width="100%" BackColor="#69a43c" runat="server" Text="  Menu principal" BorderStyle="None" OnClick="btnmenuprincipal_Click" />                            
+                                <asp:Button ID="btnmenuprincipal" style="text-align:left" Height="100%" Width="100%" BackColor="#69a43c" runat="server" Text="  Menú principal" BorderStyle="None" OnClick="btnmenuprincipal_Click" />                            
                         </div>
                         <div class="col">
                             

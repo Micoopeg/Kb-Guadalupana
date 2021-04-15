@@ -15,14 +15,14 @@
         <header>
             <center>
             <div id="menup">
-                <asp:LinkButton ID="btnmenuprincipal" runat="server" class="btn btnmenuprincipal" OnClick="btnmenuprincipal_Click" >Menuprincipal</asp:LinkButton>
+                <asp:LinkButton ID="btnmenuprincipal" runat="server" class="btn btnmenuprincipal" OnClick="btnmenuprincipal_Click" >Menú principal</asp:LinkButton>
             </div>
                 </center>
         </header>
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <h3>Tipos de servicios</h3>
+      <h3>Frases del día</h3>
       <form id="datos" action="">
           <asp:LinkButton ID="btnnuevoingreso" Width="100%" runat="server" class="btn btn-primary form-control" type="submit" style="background-color:#69a43c; color:white;" OnClick="btnnuevoingreso_Click"><span>*</span>Nuevo Ingreso</asp:LinkButton>
         <div class="form-group">

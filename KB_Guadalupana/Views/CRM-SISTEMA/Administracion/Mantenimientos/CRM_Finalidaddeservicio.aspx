@@ -15,7 +15,7 @@
         <header>
             <center>
             <div id="menup">
-                <asp:LinkButton ID="btnmenuprincipal" runat="server" class="btn btnmenuprincipal" OnClick="btnmenuprincipal_Click" >Menuprincipal</asp:LinkButton>
+                <asp:LinkButton ID="btnmenuprincipal" runat="server" class="btn btnmenuprincipal" OnClick="btnmenuprincipal_Click" >Menú principal</asp:LinkButton>
             </div>
                 </center>
         </header>
@@ -35,7 +35,7 @@
                </asp:DropDownList>
             </div>
         <div class="form-group">
-         <span>Finalidad: </span> <input  id="txtnombre"  tabindex="3" runat="server"  class="form-control" type="text" name="nombre" placeholder="Nombre" required="required" />
+         <span>Finalidad: </span> <input  id="txtnombre" onkeypress="return soloLetras(event);"  tabindex="3" runat="server"  class="form-control" type="text" name="nombre" placeholder="Nombre" required="required" />
         </div>
           <div>
               <asp:LinkButton ID="btnmodificar" Width="100%" runat="server" class="btn btn-primary form-control" type="submit" OnClick="btnmodificar_Click"> Modificar</asp:LinkButton>

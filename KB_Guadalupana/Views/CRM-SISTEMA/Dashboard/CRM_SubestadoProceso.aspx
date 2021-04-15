@@ -21,7 +21,7 @@
     <div class="container">   
         <div class="row">
                         <div class="col" style=" text-align:center;height:43px">
-                                <asp:Button ID="btnmenuprincipal" style="text-align:center;color:white;" Width="100%" Height="100%" BackColor="#69a43c" runat="server" Text="  Menu principal" BorderStyle="None" OnClick="btnmenuprincipal_Click" />                            
+                                <asp:Button ID="btnmenuprincipal" style="text-align:center;color:white;" Width="100%" Height="100%" BackColor="#69a43c" runat="server" Text="Regresar" BorderStyle="None" OnClick="btnmenuprincipal_Click" />                            
                         </div>
                         <div class="col" style="width:940px">                            
                         </div>

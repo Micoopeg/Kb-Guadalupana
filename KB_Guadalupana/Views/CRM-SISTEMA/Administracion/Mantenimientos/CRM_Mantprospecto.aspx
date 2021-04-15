@@ -15,14 +15,14 @@
         <header>
             <center>
             <div id="menup">
-                <asp:LinkButton ID="btnmenuprincipal" runat="server" class="btn btnmenuprincipal" OnClick="btnmenuprincipal_Click" >Menuprincipal</asp:LinkButton>
+                <asp:LinkButton ID="btnmenuprincipal" runat="server" class="btn btnmenuprincipal" OnClick="btnmenuprincipal_Click" >Menú principal</asp:LinkButton>
             </div>
                 </center>
         </header>
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <h3>Tipos de servicios</h3>
+      <h3>Clientes</h3>
       <form id="datos" action="">
           <asp:LinkButton ID="btnnuevoingreso" Width="100%" runat="server" class="btn btn-primary form-control" type="submit" style="background-color:#69a43c; color:white;" OnClick="btnnuevoingreso_Click"><span>*</span>Nuevo Ingreso</asp:LinkButton>
         <div class="form-group">
@@ -32,13 +32,13 @@
          <span>Numero de DPI: </span> <input id="txtdpi" tabindex="1" onkeypress="return numeros(event);" runat="server" class="form-control" type="text" name="DPI" placeholder="DPI" maxlength="13" required="required" /><span style="text-align:center; color:orangered;" id="lbleror" runat="server"></span>
             </div>
         <div class="form-group">
-         <span>Nombres: </span> <input  id="txtnombre" runat="server" tabindex="2"  class="form-control" type="text" name="nombres" placeholder="Nombres" required="required" />
+         <span>Nombres: </span> <input  id="txtnombre" onkeypress="return soloLetras(event);" runat="server" tabindex="2"  class="form-control" type="text" name="nombres" placeholder="Nombres" required="required" />
         </div>
          <div class="form-group">
-         <span>Apellidos: </span> <input  id="txtapellido" runat="server" tabindex="3" class="form-control" type="text" name="apellidos" placeholder="Apellidos" required="required" />
+         <span>Apellidos: </span> <input  id="txtapellido" onkeypress="return soloLetras(event);" runat="server" tabindex="3" class="form-control" type="text" name="apellidos" placeholder="Apellidos" required="required" />
         </div>
        <div class="form-group">
-         <span>Nombre completo: </span> <input  id="txtnombrecompleto" tabindex="4" runat="server"  class="form-control" type="text" name="nombre completo" placeholder="Nombre Completo" required="required" />
+         <span>Nombre completo: </span> <input  id="txtnombrecompleto" onkeypress="return soloLetras(event);" tabindex="4" runat="server"  class="form-control" type="text" name="nombre completo" placeholder="Nombre Completo" required="required" />
         </div>
        <div class="form-group">
          <input  id="txtlistanegra" visible="false" runat="server"  class="form-control" type="text" name="nombre" placeholder="Nombre" required="required" />

@@ -10,7 +10,7 @@
     <title>Reporteria</title>
      <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg"/>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-   <link rel="stylesheet" type="text/css" href="../../../../CRM-Estilos/estiloparamantenimientos.css" />
+   <link rel="stylesheet" type="text/css" href="../../../CRM-Estilos/estiloparamantenimientos.css"/>
     <link rel="stylesheet" type="text/css" href="../../../CRM-Estilos/EstiloReportes.css"/>
     
 </head>
@@ -21,7 +21,7 @@
     <header>
             <center>
             <div id="menup">
-                <asp:LinkButton ID="btnmenuprincipal" runat="server" class="btn btnmenuprincipal" OnClick="btnmenuprincipal_Click" >Menuprincipal</asp:LinkButton>
+                <asp:LinkButton ID="btnmenuprincipal" runat="server" class="btn btnmenuprincipal" OnClick="btnmenuprincipal_Click" >Menú principal</asp:LinkButton>
             </div>
                 </center>
         </header>
@@ -38,10 +38,10 @@
         <asp:CheckBox ID="chktiposervicio" style="color:black;" OnCheckedChanged="chktiposervicio_CheckedChanged" runat="server" AutoPostBack="true" Text="Tipo de servicio" />
     </div>  
                         <div class="col-sm-3" style="border:double; color:black" >
-        <asp:CheckBox ID="chkestadosemaforo" style="color:black;" runat="server" AutoPostBack="true" Text="Estado semaforo" OnCheckedChanged="chkestadosemaforo_CheckedChanged" />
+        <asp:CheckBox ID="chkestadosemaforo" style="color:black;" runat="server" AutoPostBack="true" Text="Estado semáforo" OnCheckedChanged="chkestadosemaforo_CheckedChanged" />
     </div>  
                         <div class="col-sm-3" style="border:double; color:black" >
-        <asp:CheckBox ID="chkdescripcionsemaforo" style="color:black;" runat="server" AutoPostBack="true" Text="Descripción del semaforo" OnCheckedChanged="chkdescripcionsemaforo_CheckedChanged" />
+        <asp:CheckBox ID="chkdescripcionsemaforo" style="color:black;" runat="server" AutoPostBack="true" Text="Descripción del semáforo" OnCheckedChanged="chkdescripcionsemaforo_CheckedChanged" />
     </div>  
                         <div class="col-sm-3" style="border:double; color:black" >
         <asp:CheckBox ID="chktipodomicilio" style="color:black;" runat="server" AutoPostBack="true" Text="Tipo domicilio" OnCheckedChanged="chktipodomicilio_CheckedChanged" />

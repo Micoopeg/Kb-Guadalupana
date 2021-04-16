@@ -56,7 +56,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             }
             else
             {
-                String script = "alert('El usuario "+usuarioglobal+" no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Index.aspx';";
+                String script = "alert('El usuario "+usuarioglobal+" no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }
@@ -74,6 +74,19 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     return true;
                 default:
                     return false;
+            }
+        }
+
+        bool verificararchivoconmismonombre(string fileName)
+        {
+            string ext = Path.GetFileName(fileName);
+            if (File.Exists(MapPath("Archivos/" + ext)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -149,12 +162,22 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             {
                 if (ChecarExtension(FileUpload1.FileName))
                 {
-                    FileUpload1.SaveAs(MapPath("Archivos/" + FileUpload1.FileName));
-
-
-                    Label1.Text = FileUpload1.FileName + " cargado exitosamente";
-
-                    lblOculto.Text = MapPath("Archivos/" + FileUpload1.FileName);
+                    if (verificararchivoconmismonombre(FileUpload1.FileName) == false)
+                    {
+                        FileUpload1.SaveAs(MapPath("Archivos/" + FileUpload1.FileName));
+                        Label1.Text = FileUpload1.FileName + " cargado exitosamente";
+                        lblOculto.Text = MapPath("Archivos/" + FileUpload1.FileName);
+                    }
+                    else
+                    {
+                        Label1.Visible = true;
+                        Label1.Text = "Ya se encuentra un archivo con el mismo nombre";
+                        btngridview.Visible = false;
+                    }
+                }
+                else
+                {
+                    Label1.Text = "Error al subir el archivo o no es el tipo .CSV";
                 }
             }
             else
@@ -168,7 +191,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 
         }
 
-      
+
 
         protected void btnmostrardatos_Click(object sender, EventArgs e)
         {
@@ -196,7 +219,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             {
                 Ingresaryasignarprospectos();
                 logic.eliminadoderegistrosprotegida("crmtamporal_cargadedatos");
-                String script = "alert('Los datos han sido procesados correctamente'); window.location.href= '../../Index.aspx';";
+                String script = "alert('Los datos han sido procesados correctamente'); window.location.href='../MenuPrincipal/CRM_MenuPrincipal.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                 logic.bitacoraingresoprocedimientos(usuarioglobal, "CRM", "ingreso de datos", "Alimentación de CRM - Excel importado: '"+FileUpload1.FileName+"' ");
             }
@@ -475,7 +498,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                 string zona = tablatemporal[centinelatabla+8];
                 string tiposervicio = tablatemporal[centinelatabla+9];
                 string contactadopor = tablatemporal[centinelatabla+10];
-                if (No=="No." && fecha == "Fecha" && nombre == "Nombre" && telefono == "Tel&#233;fono" && correo == "Correo" && dpi == "DPI" && cantidad == "Cantidad"
+                if (fecha == "Fecha" && nombre == "Nombre" && telefono == "Tel&#233;fono" && correo == "Correo" && dpi == "DPI" && cantidad == "Cantidad"
                     && zona == "Zona" && finalidad == "Finalidad" && tiposervicio == "Tipo de servicio" && contactadopor == "Contacto")
                 {
 
@@ -546,9 +569,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     //tiposervicio + contactadopor + cantidad + cantidaddecimal + "<br>");
 
                     string sig = logic.siguiente("crminfo_prospecto", "codcrminfoprospecto");
-                    string[] valores1 = { sig, dpiguardar, tiposervicio, "1", "1",
-                        "1","1","1",telefono,correo,"","",Convert.ToString(cantidaddecimal),"0","0","","2020-01-01","2020-01-01","","",
-                        "0","","0",contactadopor,""};
+                    string[] valores1 = { sig, dpiguardar, tiposervicio, "1", "2","2","1","1",telefono,correo,"0","0",Convert.ToString(cantidaddecimal),"0","0","0","2020-01-01","2020-01-01","","0",
+                        "0","0","0",contactadopor,""};
                     logic.insertartablas("crminfo_prospecto", valores1);
 
                     string sig3 = logic.siguiente("crmcontrol_prospecto_agente", "codcrmcontrolprospectoagente");
@@ -558,7 +580,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     logic.insertartablas("crmcontrol_prospecto_agente", valores3);
 
                 }
-                centinelatabla = centinelatabla + 12;                          //El centinela debe sumarle la cantidad de columnas de la tabla
+                centinelatabla = centinelatabla + 11;                          //El centinela debe sumarle la cantidad de columnas de la tabla
                 i = centinelatabla;                                          //el i es un autoincrementable que siempre se igula al centinela
             }//cierre dle registro
 

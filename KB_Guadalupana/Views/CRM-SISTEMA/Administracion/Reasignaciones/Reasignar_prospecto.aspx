@@ -27,7 +27,7 @@
     <div class="container">   
         <div class="row">
                         <div class="col" style=" text-align:left;height:43px">
-                                <asp:Button ID="btnmenuprincipal" style="text-align:left;color:white;" Height="100%" Width="100%" BackColor="#69a43c" runat="server" Text="  Menu principal" BorderStyle="None" OnClick="btnmenuprincipal_Click" />                            
+                                <asp:Button ID="btnmenuprincipal" style="text-align:left;color:white;" Height="100%" Width="100%" BackColor="#69a43c" runat="server" Text="  Menú principal" BorderStyle="None" OnClick="btnmenuprincipal_Click" />                            
                         </div>
                         <div class="col" style="width:940px">                            
                         </div>
@@ -52,13 +52,13 @@
         <div style="color:black;background-color:white;width:45%;border-radius:11px;text-align:center;height:300px">
       <asp:Label ID="lblerror" runat="server" Text="Error" Visible="false"></asp:Label>
             <asp:DropDownList ID="comboagenciadar" runat="server" CssClass="custom-dropdown big">
-            <asp:ListItem Value="0">Agencia Fuente</asp:ListItem>
+            <asp:ListItem Value="0">Agencia fuente</asp:ListItem>
             <asp:ListItem Value="central">Central</asp:ListItem>
         </asp:DropDownList>
             <br />
             <br />
           <asp:DropDownList  ID="comboagenciarecibir" runat="server" CssClass="custom-dropdown big" >
-            <asp:ListItem Value="0">Agencia Destino</asp:ListItem>
+            <asp:ListItem Value="0">Agencia destino</asp:ListItem>
             <asp:ListItem Value="central">Central</asp:ListItem>
         </asp:DropDownList>
         <br />
@@ -67,7 +67,7 @@
             <asp:ListItem Value="central">Central</asp:ListItem>
         </asp:DropDownList>
         <asp:DropDownList ID="comboagentedar"  runat="server" CssClass="custom-dropdown big">
-            <asp:ListItem Value="0">Seleccione una agente</asp:ListItem>
+            <asp:ListItem Value="0">Seleccione un agente</asp:ListItem>
             <asp:ListItem Value="4">pggteo3</asp:ListItem>
         </asp:DropDownList>
            <asp:DropDownList ID="comboagenciaegenterecibir" AutoPostBack="true" OnSelectedIndexChanged="comboagenciagenterecibir_SelectedIndexChanged" runat="server" CssClass="custom-dropdown big">

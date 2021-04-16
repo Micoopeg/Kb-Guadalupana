@@ -114,7 +114,7 @@
     <div class="topnav">
            
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
-            <a class="active" href="../Sesion/Inicio.aspx" runat="server" id="nombreuser">Inicio</a>    
+            <a class="active" href="../Sesion/MenuBarra.aspx" runat="server" id="nombreuser">Inicio</a>    
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
     <form id="form1" runat="server">

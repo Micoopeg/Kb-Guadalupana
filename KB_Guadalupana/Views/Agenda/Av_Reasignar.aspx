@@ -135,7 +135,7 @@
 
         
      <div class="topnav">
-          <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
+          <a class="active" href="../Sesion/MenuBarra.aspx">Inicio</a>
           <a href="AgendaPrin.aspx"> Agenda</a>
            <a href="DashBoard.aspx" > Busqueda</a>
             <a href="NuevaTarea.aspx" > Nueva Tarea</a>
@@ -192,7 +192,7 @@
                 <ul class="list-group">
                        <asp:Repeater ID="repetidoruser" runat="server" >
                     <ItemTemplate>
-  <li class="list-group-item "> <b>Usuario </b> <%# Eval("gen_usuarionombre") %>    <b>CIF:</b> <%# Eval("avcifgeneral") %>  </li>
+  <li class="list-group-item "> <b>Usuario </b> <%# Eval("av_controlusuario") %>    <b>CIF:</b> <%# Eval("avcifgeneral") %>  </li>
 
                           
                     </ItemTemplate>

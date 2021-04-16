@@ -98,17 +98,17 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
         protected void btnguardar_Click(object sender, EventArgs e)
         {
 
-            if (txtcodigo.Value == ""|| txtnombrecompleto.Value == "" || txtdpi.Value == "")
+            if (txtcodigo.Value == "" || txtnombrecompleto.Value == "" || txtdpi.Value == "")
             {
                 String script = "alert('Verifique que todos los campos se encuentren llenos');";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
-                string[] valores = { txtcodigo.Value, txtdpi.Value, txtnombre.Value, txtapellido.Value, txtnombrecompleto.Value, txtlistanegra.Value };
+                string[] valores = { txtcodigo.Value, txtdpi.Value, txtnombre.Value, txtapellido.Value, txtnombrecompleto.Value,"0"};
                 try
                 {
-                    if (validardpi(txtdpi.Value) ==true)
+                    if (validardpi(txtdpi.Value) == true)
                     {
                         logic.insertartablas("crminfogeneral_prospecto", valores);
                         txtdpi.Value = "";
@@ -121,14 +121,14 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
                         txtcodigo.Value = varinc;
                         llenargridviewmantenimiento();
                         logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Mantenimiento Prospecto", "Registro guardado");
+                        String script = "alert('Los datos se han ingresado correctamente');";
+                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                     }
                     else
                     {
-                        lbleror.InnerText ="*ERROR - DPI INVALIDO*";                        
-                       
-                    }
+                        lbleror.InnerText = "*ERROR - DPI INVALIDO*";
 
-                   
+                    }                   
                 }
                 catch
                 {
@@ -219,7 +219,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
             }
             int residuo = subtotal % 11;
             int total = 11 - residuo;
-            if ((Convert.ToInt32(cadenaComoCaracteres[9]) - 48) == total)
+            int varvalidadora = (Convert.ToChar(cadenaComoCaracteres[8])-48);
+            if (varvalidadora == total)
             {
                 return true;
             }

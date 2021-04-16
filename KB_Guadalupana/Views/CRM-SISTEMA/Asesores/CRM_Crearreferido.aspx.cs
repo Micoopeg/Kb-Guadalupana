@@ -224,34 +224,48 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
 
         protected void LinkButton2_Click(object sender, EventArgs e)
         {
-            if (comprobardpiexistente(txtnumerodpi.Value))  //DPI EXISTENTE 
+            if (txtnumerodpi.Value == "" || txtnombrecompleto.Value == "" || txttelefono.Value == "" ||
+                   txtemail.Value == "" || txtingreso.Value == "" || txtegresos.Value == "" || txtañoslaborados.Value == "" || combotienetrabajo.SelectedValue == "0" ||
+                   txttelefono.Value == "" || combotiposervicio.SelectedValue == "0" || txtmonto.Value == "" || combofinalidaddeservicio.Value == "0" || combocontactollamadas.SelectedValue == "0" ||
+                   txtfechainicio.Value == "" || txtfechafin.Value == "" || combosemaforoestado.SelectedValue == "0" || combosemaforodescripcion.SelectedValue == "0" ||
+                   combocuentaigss.SelectedValue == "0" || combotipodomicilio.SelectedValue == "0" || txtañodomicilio.Value == "" || comboposeecuentacoope.SelectedValue == "0" ||
+                   combosucursalmascerca.SelectedValue == "0")
             {
-                // Response.Write("el nuevo" + registrodpiremplazable);
-                string[] regdpiguardado = sn.consultarconcampo("crminfogeneral_prospecto", "crminfogeneral_prospectodpi", registrodpiremplazable);
-                dpiguardar = regdpiguardado[0];
+                String script = "alert('Verifique que todos los campos se encuentren llenos');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
-                string sig1 = logic.siguiente("crminfogeneral_prospecto", "codcrminfogeneralprospecto");
-                string[] valores2 = { sig1, txtnumerodpi.Value, "", "", txtnombrecompleto.Value, "0" };
-                logic.insertartablas("crminfogeneral_prospecto", valores2);
-                dpiguardar = sig1;
+                if (comprobardpiexistente(txtnumerodpi.Value))  //DPI EXISTENTE 
+                {
+                    // Response.Write("el nuevo" + registrodpiremplazable);
+                    string[] regdpiguardado = sn.consultarconcampo("crminfogeneral_prospecto", "crminfogeneral_prospectodpi", registrodpiremplazable);
+                    dpiguardar = regdpiguardado[0];
+                }
+                else
+                {
+                    string sig1 = logic.siguiente("crminfogeneral_prospecto", "codcrminfogeneralprospecto");
+                    string[] valores2 = { sig1, txtnumerodpi.Value, "", "", txtnombrecompleto.Value, "0" };
+                    logic.insertartablas("crminfogeneral_prospecto", valores2);
+                    dpiguardar = sig1;
 
 
-            }
-            //INSERTAR DATOS
-            string sig = logic.siguiente("crminfo_prospecto", "codcrminfoprospecto");
-            string[] valores1 = { sig, dpiguardar, combotiposervicio.SelectedValue, "1", "1",
+                }
+                //INSERTAR DATOS
+                string sig = logic.siguiente("crminfo_prospecto", "codcrminfoprospecto");
+                string[] valores1 = { sig, dpiguardar, combotiposervicio.SelectedValue, "1", "1",
                         "1","1","1",txttelefono.Value,txtemail.Value,txtingreso.Value,txtegresos.Value,txtmonto.Value,txtañoslaborados.Value,combotienetrabajo.SelectedValue,txttabajoactual.Value,txtfechainicio.Value,txtfechafin.Value,exampleFormControlTextarea1.Value,combosucursalmascerca.SelectedValue,
-                        combocuentaigss.SelectedValue,txtañodomicilio.Value,comboposeecuentacoope.SelectedValue,"Referenciado",""};
-            logic.insertartablas("crminfo_prospecto", valores1);
-            logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Aplicación Asesores", "Creación del referido - Correlativo: '"+txtnumerodpi.Value+"'");
-            string sig3 = logic.siguiente("crmcontrol_prospecto_agente", "codcrmcontrolprospectoagente");
-            string[] var4 = sn.fechaactual();
-           DateTime fechaactual = Convert.ToDateTime(var4[0]);
-           string[] agenteacargo = sn.consultarcontrolingreso(nombreusuario);
-            string[] valores3 = { sig3, sig, agenteacargo[0], string.Format("{0: yyyy-MM-dd}", fechaactual) };
-            logic.insertartablas("crmcontrol_prospecto_agente", valores3);
+                        combocuentaigss.SelectedValue,txtañodomicilio.Value,comboposeecuentacoope.SelectedValue,"Referenciado",txtdpidereferido.Value};
+                logic.insertartablas("crminfo_prospecto", valores1);
+                logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Aplicación Asesores", "Creación del referido - Correlativo: '" + txtnumerodpi.Value + "'");
+                string sig3 = logic.siguiente("crmcontrol_prospecto_agente", "codcrmcontrolprospectoagente");
+                string[] var4 = sn.fechaactual();
+                DateTime fechaactual = Convert.ToDateTime(var4[0]);
+                string[] agenteacargo = sn.consultarcontrolingreso(nombreusuario);
+                string[] valores3 = { sig3, sig, agenteacargo[0], string.Format("{0: yyyy-MM-dd}", fechaactual) };
+                logic.insertartablas("crmcontrol_prospecto_agente", valores3);
+            }
+           
         }
         public bool comprobardpiexistente(string dpiacomprobar)
         {

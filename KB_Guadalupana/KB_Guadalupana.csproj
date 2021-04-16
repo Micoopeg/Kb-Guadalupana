@@ -43,11 +43,47 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.11.4\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=7.1.14.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.14\lib\net40\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
@@ -227,10 +263,21 @@
     <Content Include="DiseñoCss\estilosav.css" />
     <Content Include="DiseñoCss\EstilosavSub.css" />
     <Content Include="DiseñosGrid\Grids.css" />
+    <Content Include="EXDiseños\barcode.js" />
+    <Content Include="EXDiseños\barcode.wav" />
+    <Content Include="EXDiseños\estilolector.css" />
     <Content Include="EXDiseños\EstilosDashboard.css" />
+    <Content Include="EXDiseños\EstilosGenExp.css" />
+    <Content Include="EXDiseños\EstilosGenExpmenu.css" />
+    <Content Include="EXDiseños\EstiloTablas.css" />
+    <Content Include="EXDiseños\ExtiloExEnvio.css" />
+    <Content Include="EXDiseños\jquery.js" />
     <Content Include="EXDiseños\scriptbarra.js" />
     <Content Include="EXDiseños\scriptdash.js" />
+    <Content Include="EXDiseños\ScriptGenerarEXP.js" />
     <Content Include="EXDiseños\scriptpaginas.js" />
+    <Content Include="EXDiseños\ScriptTablas.js" />
+    <Content Include="EXDiseños\scriptvalidar.js" />
     <Content Include="EXDiseños\stylebarra.css" />
     <Content Include="EXDiseños\stylepaginas.css" />
     <Content Include="favicon.ico" />
@@ -490,7 +537,17 @@
     <Content Include="Views\Arqueos\Manual\ManualCajeroAutomatico.aspx" />
     <Content Include="Views\Arqueos\Manual\ManualTesoreria.aspx" />
     <Content Include="Views\Arqueos\MenuArqueos.aspx" />
+    <Content Include="Views\ControlEX\Ex_EnvioEx.aspx" />
+    <Content Include="Views\ControlEX\Ex_GenerarBC.aspx" />
+    <Content Include="Views\ControlEX\Ex_LeerBC.aspx" />
+    <Content Include="Views\ControlEX\Ex_GenExpedientes.aspx" />
+    <Content Include="Views\ControlEX\Ex_pendienteAg.aspx" />
     <Content Include="Views\ControlEX\Ex_Principal.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaArchivo.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaJuridico.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaMensajeria.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaMesaQA.aspx" />
+    <Content Include="Views\ControlEX\Ex_VistaNegocios.aspx" />
     <Content Include="Views\ControlEX\Tracking.aspx" />
     <Content Include="Views\CRM-SISTEMA\Administracion\Controldedespidos\Trasalado_por_despido.aspx" />
     <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Finalidaddeservicio.aspx" />
@@ -602,6 +659,7 @@
     <Compile Include="Controllers\CRM_Conexion.cs" />
     <Compile Include="Controllers\CRM_Sentencias.cs" />
     <Compile Include="Controllers\ModeloAV.cs" />
+    <Compile Include="Controllers\ModeloEX.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
     <Compile Include="Controllers\Sentencia_arqueos.cs" />
     <Compile Include="Controllers\Sentencia_seguridad.cs" />
@@ -620,6 +678,7 @@
     </Compile>
     <Compile Include="Models\ControladorAV.cs" />
     <Compile Include="Models\CRM_Logica.cs" />
+    <Compile Include="Models\ControladorEX.cs" />
     <Compile Include="Models\Logica.cs" />
     <Compile Include="Models\Logica_arqueos.cs" />
     <Compile Include="montodatos.Designer.cs">
@@ -854,12 +913,82 @@
     <Compile Include="Views\Arqueos\MenuArqueos.aspx.designer.cs">
       <DependentUpon>MenuArqueos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ControlEX\Ex_EnvioEx.aspx.cs">
+      <DependentUpon>Ex_EnvioEx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_EnvioEx.aspx.designer.cs">
+      <DependentUpon>Ex_EnvioEx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_GenerarBC.aspx.cs">
+      <DependentUpon>Ex_GenerarBC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_GenerarBC.aspx.designer.cs">
+      <DependentUpon>Ex_GenerarBC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_LeerBC.aspx.cs">
+      <DependentUpon>Ex_LeerBC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_LeerBC.aspx.designer.cs">
+      <DependentUpon>Ex_LeerBC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_GenExpedientes.aspx.cs">
+      <DependentUpon>Ex_GenExpedientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_GenExpedientes.aspx.designer.cs">
+      <DependentUpon>Ex_GenExpedientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_pendienteAg.aspx.cs">
+      <DependentUpon>Ex_pendienteAg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_pendienteAg.aspx.designer.cs">
+      <DependentUpon>Ex_pendienteAg.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ControlEX\Ex_Principal.aspx.cs">
       <DependentUpon>Ex_Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\ControlEX\Ex_Principal.aspx.designer.cs">
       <DependentUpon>Ex_Principal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaArchivo.aspx.cs">
+      <DependentUpon>Ex_VistaArchivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaArchivo.aspx.designer.cs">
+      <DependentUpon>Ex_VistaArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaJuridico.aspx.cs">
+      <DependentUpon>Ex_VistaJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaJuridico.aspx.designer.cs">
+      <DependentUpon>Ex_VistaJuridico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaMensajeria.aspx.cs">
+      <DependentUpon>Ex_VistaMensajeria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaMensajeria.aspx.designer.cs">
+      <DependentUpon>Ex_VistaMensajeria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaMesaQA.aspx.cs">
+      <DependentUpon>Ex_VistaMesaQA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaMesaQA.aspx.designer.cs">
+      <DependentUpon>Ex_VistaMesaQA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaNegocios.aspx.cs">
+      <DependentUpon>Ex_VistaNegocios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_VistaNegocios.aspx.designer.cs">
+      <DependentUpon>Ex_VistaNegocios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ControlEX\Tracking.aspx.cs">
       <DependentUpon>Tracking.aspx</DependentUpon>

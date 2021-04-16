@@ -275,31 +275,31 @@ namespace Modulo_de_arqueos.Views
 
                 string sig = logic.siguiente("sa_encabezadotesoreria", "idsa_encabezadotesoreria");
                 Session["idtesoreria"] = sig.ToString();
-                string[] valores = { sig, numeroarqueo, idusuario, TFecha.Value, TAgencia.SelectedValue, TNombreoperador.Value, TOperador.Value, TPuestooperador.Value, TNombreencargado.Value, TPuestoencargado.Value, TTesoreria.Value, "" };
+                string[] valores = { sig, numeroarqueo, idusuario, TFecha.Value, TAgencia.SelectedValue, TNombreoperador.Value, TOperador.Value, TPuestooperador.Value, TNombreencargado.Value, TPuestoencargado.Value, TTesoreria.Value, "0" };
                 logic.insertartablas("sa_encabezadotesoreria", valores);
                 lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Ingreso de datos", "Creación de arqueo Cajero Tesorería");
 
                 //INSERTAR DETALLE
                 string sig1 = logic.siguiente("sa_detalletesoreria", "idsa_detalletesoreria");
-                string[] valores1 = { sig1, "1", "1", TCantidadb1.Value, Convert.ToString(subtotal1), Convert.ToString(totalbilletes), "1", TCantidadm1.Value, Convert.ToString(subtotalm1), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "", "", sig };
+                string[] valores1 = { sig1, "1", "1", TCantidadb1.Value, Convert.ToString(subtotal1), Convert.ToString(totalbilletes), "1", TCantidadm1.Value, Convert.ToString(subtotalm1), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "0", "0", sig };
                 logic.insertartablas("sa_detalletesoreria", valores1);
                 string sig2 = logic.siguiente("sa_detalletesoreria", "idsa_detalletesoreria");
-                string[] valores2 = { sig2, "1", "2", TCantidadb2.Value, Convert.ToString(subtotal2), Convert.ToString(totalbilletes), "2", TCantidadm2.Value, Convert.ToString(subtotalm2), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "", "", sig };
+                string[] valores2 = { sig2, "1", "2", TCantidadb2.Value, Convert.ToString(subtotal2), Convert.ToString(totalbilletes), "2", TCantidadm2.Value, Convert.ToString(subtotalm2), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "0", "0", sig };
                 logic.insertartablas("sa_detalletesoreria", valores2);
                 string sig3 = logic.siguiente("sa_detalletesoreria", "idsa_detalletesoreria");
-                string[] valores3 = { sig3, "1", "3", TCantidadb3.Value, Convert.ToString(subtotal3), Convert.ToString(totalbilletes), "3", TCantidadm3.Value, Convert.ToString(subtotalm3), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "", "", sig };
+                string[] valores3 = { sig3, "1", "3", TCantidadb3.Value, Convert.ToString(subtotal3), Convert.ToString(totalbilletes), "3", TCantidadm3.Value, Convert.ToString(subtotalm3), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "0", "0", sig };
                 logic.insertartablas("sa_detalletesoreria", valores3);
                 string sig4 = logic.siguiente("sa_detalletesoreria", "idsa_detalletesoreria");
-                string[] valores4 = { sig4, "1", "4", TCantidadb4.Value, Convert.ToString(subtotal4), Convert.ToString(totalbilletes), "4", TCantidadm4.Value, Convert.ToString(subtotalm4), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "", "", sig };
+                string[] valores4 = { sig4, "1", "4", TCantidadb4.Value, Convert.ToString(subtotal4), Convert.ToString(totalbilletes), "4", TCantidadm4.Value, Convert.ToString(subtotalm4), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "0", "0", sig };
                 logic.insertartablas("sa_detalletesoreria", valores4);
                 string sig5 = logic.siguiente("sa_detalletesoreria", "idsa_detalletesoreria");
-                string[] valores5 = { sig5, "1", "5", TCantidadb5.Value, Convert.ToString(subtotal5), Convert.ToString(totalbilletes), "5", TCantidadm5.Value, Convert.ToString(subtotalm5), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "", "", sig };
+                string[] valores5 = { sig5, "1", "5", TCantidadb5.Value, Convert.ToString(subtotal5), Convert.ToString(totalbilletes), "5", TCantidadm5.Value, Convert.ToString(subtotalm5), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "0", "0", sig };
                 logic.insertartablas("sa_detalletesoreria", valores5);
                 string sig6 = logic.siguiente("sa_detalletesoreria", "idsa_detalletesoreria");
-                string[] valores6 = { sig6, "1", "6", TCantidadb6.Value, Convert.ToString(subtotal6), Convert.ToString(totalbilletes), "6", TCantidadm6.Value, Convert.ToString(subtotalm6), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "", "", sig };
+                string[] valores6 = { sig6, "1", "6", TCantidadb6.Value, Convert.ToString(subtotal6), Convert.ToString(totalbilletes), "6", TCantidadm6.Value, Convert.ToString(subtotalm6), Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "0", "0", sig };
                 logic.insertartablas("sa_detalletesoreria", valores6);
                 string sig7 = logic.siguiente("sa_detalletesoreria", "idsa_detalletesoreria");
-                string[] valores7 = { sig7, "1", "7", TCantidadb7.Value, Convert.ToString(subtotal7), Convert.ToString(totalbilletes), "8", "", "", Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "", "", sig };
+                string[] valores7 = { sig7, "1", "7", TCantidadb7.Value, Convert.ToString(subtotal7), Convert.ToString(totalbilletes), "8", "0", "0", Convert.ToString(totalmonedas), Convert.ToString(totalefectivo), TSolicitud.Value, TEfectivoentregado.Value, Convert.ToString(fondo), "0", "0", sig };
                 logic.insertartablas("sa_detalletesoreria", valores7);
 
                 //INSERTAR CHEQUE

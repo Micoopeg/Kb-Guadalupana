@@ -250,6 +250,8 @@ namespace KBGuada.Views.session
 
             actualizartareapadre(actual);
 
+            Response.Redirect("Av_Subtareas.aspx");
+
         }
 
         protected void insertarcomentario_Click(object sender, EventArgs e)

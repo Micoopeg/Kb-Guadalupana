@@ -67,6 +67,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
                     gridview5.Visible = false;
                     break;
                 case 7:
+                    comboagencia.Visible = true;
                     llenargridviewparacoordinadoragencia(txtnombrecompleto.Value,comboagencia.SelectedValue);
                     gridview1.Visible = false;
                     gridview2.Visible = false;
@@ -82,6 +83,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
             if (!IsPostBack)
             {
                 llenaragencias();
+                comboagencia.Visible = false;
             }
 
         }

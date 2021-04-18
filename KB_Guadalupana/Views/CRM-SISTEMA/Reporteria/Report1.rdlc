@@ -263,7 +263,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Telefono</Value>
+                                  <Value>Teléfono</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -293,7 +293,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Correo</Value>
+                                  <Value>Correo electrónico</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -312,6 +312,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

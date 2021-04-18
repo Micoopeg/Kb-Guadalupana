@@ -238,8 +238,44 @@ namespace KBGuada.Views.session
         }
         protected void modificar_Click(object sender, EventArgs e)
         {
+            if (rol == "1") {
+                if (AVTITULO.Value == "" || AVFECHAINI.Value == "" || AVFECHAFIN.Value == "" || DropDownAcceso.SelectedIndex == 0 || DropDownEstado.SelectedIndex == 0 || DropDownPrioridad.SelectedIndex == 0 || DropDownTipoTarea.SelectedIndex == 0)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' La tarea debe contener al menos un Titulo, fechas, Prioridad, Tipo, Estado y Acceso ')", true);
+                }
+                else
+                {
+                    if (DropDownTipoTarea.SelectedIndex == 1)
+                    {
+                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "" || Monto.Value == "")
+                        {
 
-            if (rol == "2")
+                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO, TELEFONO Y MONTO ')";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+                        }
+                        else
+                        {
+
+                            btnmodi.Enabled = false;
+                            modificarTarea(tarea);
+                            Response.Redirect("AgendaPrin.aspx");
+
+                        }
+                    }
+                    else
+                    {
+                        btnmodi.Enabled = false;
+                        modificarTarea(tarea);
+                        Response.Redirect("AgendaPrin.aspx");
+                    }
+                }
+
+
+
+
+            }
+            else if (rol == "2")
             {
                 DropDownAcceso.SelectedIndex = 1;
                 DropDownEstado.SelectedIndex = 1;
@@ -251,10 +287,10 @@ namespace KBGuada.Views.session
                 {
                     if (DropDownTipoTarea.SelectedIndex == 1)
                     {
-                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "")
+                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "" || Monto.Value == "")
                         {
 
-                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO Y TELEFONO ')";
+                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO, TELEFONO Y MONTO ')";
                             ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
                         }
@@ -273,7 +309,7 @@ namespace KBGuada.Views.session
                         modificarTarea(tarea);
                         Response.Redirect("AgendaPrin.aspx");
 
-                       
+
                     }
                 }
             }
@@ -287,10 +323,10 @@ namespace KBGuada.Views.session
                 {
                     if (DropDownTipoTarea.SelectedIndex == 1)
                     {
-                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "")
+                        if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "" || Monto.Value == "")
                         {
 
-                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO Y TELEFONO ')";
+                            String script = "alert('LLene los campos Correspondientes NOMBRE, APELLIDO, TELEFONO Y MONTO ')";
                             ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
                         }
@@ -311,7 +347,7 @@ namespace KBGuada.Views.session
                     }
                 }
             }
-
+            
        
 
 

@@ -82,7 +82,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
 
         protected void btnmenuprincipal_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../MenuPrincipal/CRM_MenuPrincipal.aspx");
+            Response.Redirect("CRM_Asesores.aspx");
         }
 
 
@@ -276,7 +276,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
 
         protected void LinkButton3_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("../MenuPrincipal/CRM_MenuPrincipal.aspx");
         }
     }
 }

@@ -365,7 +365,7 @@ namespace KBGuada.Views.session
 
                 if (DropDownTipoTarea.SelectedIndex == 1)
                 {
-                    if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == " ")
+                    if (AVPAPELLIDO.Value == "" || AVPNOMBRE.Value == "" || AVTEL.Value == "" || MONTO.Value == "")
                     {
                         ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' LLene los campos Correspondientes NOMBRE, APELLIDO Y TELEFONO ')", true);
 

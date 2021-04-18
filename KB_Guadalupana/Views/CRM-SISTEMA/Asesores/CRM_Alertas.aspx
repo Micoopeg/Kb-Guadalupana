@@ -19,7 +19,7 @@
 		<header style="background-color:#69a43c;height:50px;margin-top:-16px">
                
                         <div class="col" style=" text-align:left;height:43px">
-                                <asp:Button ID="btnmenuprincipal" style="text-align:center;font-size:20px;margin-left:-12px;" Height="100%" Width="100%" BackColor="#69a43c" runat="server" Text="Catalogo de prospecto" BorderStyle="None" OnClick="btnmenuprincipal_Click" />                            
+                                <asp:Button ID="btnmenuprincipal" style="text-align:center;font-size:20px;margin-left:-12px;" Height="100%" Width="100%" BackColor="#69a43c" runat="server" Text="Catálogo de prospecto" BorderStyle="None" OnClick="btnmenuprincipal_Click" />                            
                         </div>
 
                         <div class="col">

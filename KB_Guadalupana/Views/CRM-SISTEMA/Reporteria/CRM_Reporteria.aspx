@@ -85,7 +85,7 @@
                 <asp:ListItem Value="0">Tipo de servicio</asp:ListItem>
             </asp:DropDownList>
             <asp:DropDownList ID="comboestadosemaforo" AutoPostBack="true" OnSelectedIndexChanged="seleccionsemaforo_SelectedIndexChanged" runat="server">
-                <asp:ListItem Value="0">Estado de semaforo</asp:ListItem>
+                <asp:ListItem Value="0">Estado de semáforo</asp:ListItem>
             </asp:DropDownList>
             <asp:DropDownList ID="combodescripcionestado" runat="server">
                 <asp:ListItem Value="">Descripciòn del estado</asp:ListItem>

@@ -39,7 +39,6 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
                 llenartipodomicilio();
                 llenarcomboagencia();
                 llenarcomboagente();
-
             }
         }
 
@@ -49,12 +48,12 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
         }
         private DataTable obtenermontos()
         {
-                DataTable dt2 = new DataTable();
-                dt2 = sn.reportetable(fechainicio.Value, fechafin.Value, combotiposervicio.SelectedValue, comboestadosemaforo.SelectedValue,
-                    combodescripcionestado.SelectedValue, combotipodomicilio.SelectedValue, combofinalidadservicio.SelectedValue, txtingresos.Text,
-                    txtmonto.Text, combotrabajoactual.SelectedValue, combocuentaigss.SelectedValue, combocuentacooperativa.SelectedValue,
-                    txtañodomicilios.Text, txttipodecontacto.Text, comboagencia.SelectedValue, combousuario.SelectedValue);
-                return dt2;       
+            DataTable dt2 = new DataTable();
+            dt2 = sn.reportetable(fechainicio.Value, fechafin.Value, combotiposervicio.SelectedValue, comboestadosemaforo.SelectedValue,
+                combodescripcionestado.SelectedValue, combotipodomicilio.SelectedValue, combofinalidadservicio.SelectedValue, txtingresos.Text,
+                txtmonto.Text, combotrabajoactual.SelectedValue, combocuentaigss.SelectedValue, combocuentacooperativa.SelectedValue,
+                txtañodomicilios.Text, txttipodecontacto.Text, comboagencia.SelectedValue, combousuario.SelectedValue);
+            return dt2;
         }
 
         public void refrescarreporte()
@@ -83,7 +82,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
             {
                 combotiposervicio.ClearSelection();
                 combotiposervicio.Visible = false;
-               
+
 
             }
         }
@@ -413,8 +412,13 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
 
         protected void seleccionsemaforo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             llenarcombosemaforodescripcion(long.Parse(comboestadosemaforo.SelectedValue));
         }
+
+
+      
+
+        
     }
-}
+    }

@@ -263,9 +263,6 @@
     <Content Include="DiseñoCss\estilosav.css" />
     <Content Include="DiseñoCss\EstilosavSub.css" />
     <Content Include="DiseñosGrid\Grids.css" />
-    <Content Include="ErrorPages\403.aspx" />
-    <Content Include="ErrorPages\404.aspx" />
-    <Content Include="ErrorPages\Oops.aspx" />
     <Content Include="EXDiseños\barcode.js" />
     <Content Include="EXDiseños\barcode.wav" />
     <Content Include="EXDiseños\estilolector.css" />
@@ -670,27 +667,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataMontos.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorPages\403.aspx.cs">
-      <DependentUpon>403.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ErrorPages\403.aspx.designer.cs">
-      <DependentUpon>403.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorPages\404.aspx.cs">
-      <DependentUpon>404.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ErrorPages\404.aspx.designer.cs">
-      <DependentUpon>404.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorPages\Oops.aspx.cs">
-      <DependentUpon>Oops.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ErrorPages\Oops.aspx.designer.cs">
-      <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

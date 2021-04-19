@@ -267,7 +267,7 @@ namespace Modulo_de_arqueos.Views
 
                 usuario = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario);
-                numeroarqueo = sn.numarqueoCC(año, mes, dia, idusuario);
+                numeroarqueo = sn.numarqueoCC(dia4, mes, año, idusuario);
                 sig1 = logic.siguiente("sa_encabezadocajachica", "idsa_encabezadocajachica");
                 string[] valores1 = { sig1, numeroarqueo, idusuario, CCAgencia.SelectedValue, fechayhora2, CCNombre.Value, CCOperador.Value, CCPuestooperador.Value, CCNombreencargado.Value, CCPuestoencargado.Value, SaldoInicial2.Value };
                 logic.insertartablas("sa_encabezadocajachica", valores1);

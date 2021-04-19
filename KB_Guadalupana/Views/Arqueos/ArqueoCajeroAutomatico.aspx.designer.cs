@@ -132,6 +132,15 @@ namespace Modulo_de_arqueos.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl arqueo;
 
         /// <summary>
+        /// Control panelPDF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelPDF;
+
+        /// <summary>
         /// Control area.
         /// </summary>
         /// <remarks>
@@ -147,7 +156,7 @@ namespace Modulo_de_arqueos.Views
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CAFecha;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText CAFecha;
 
         /// <summary>
         /// Control CAAgencia.

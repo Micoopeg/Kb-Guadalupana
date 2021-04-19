@@ -128,10 +128,10 @@ namespace Modulo_de_arqueos.Views
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "Agencia");
                     CCAgencia.DataSource = ds;
-                    CCAgencia.DataTextField = "sa_nombreagencia";
+                    CCAgencia.DataTextField = "idsa_agencia";
                     CCAgencia.DataValueField = "idsa_agencia";
                     CCAgencia.DataBind();
-                    CCAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                    CCAgencia.Items.Insert(0, new ListItem("[Código Agencia]", "0"));
                 }
                 catch { }
                 finally { try { conn.desconectar(); } catch { } }
@@ -204,7 +204,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void CCAgencia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CCNumagencia.Value = CCAgencia.SelectedValue;
+            CCNumagencia.Value = sn.nombreagencia(CCAgencia.SelectedValue);
         }
 
         protected void CAUsuario_SelectedIndexChanged(object sender, EventArgs e)
@@ -254,11 +254,22 @@ namespace Modulo_de_arqueos.Views
                 dia = fechadia[0];
                 puesto = Session["puesto_usuario"] as string;
 
+
+                string[] fechadia2 = dia3.Split(delimitador2);
+                string dia4 = fechadia2[0];
+                string hora = fechadia2[1];
+
+                string[] horayfecha = hora.Split(delimitador);
+                string hora1 = horayfecha[0];
+                string minutos = horayfecha[1];
+
+                string fechayhora2 = dia4 + '-' + mes + '-' + año + ' ' + hora1 + ':' + minutos;
+
                 usuario = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario);
                 numeroarqueo = sn.numarqueoCC(año, mes, dia, idusuario);
                 sig1 = logic.siguiente("sa_encabezadocajachica", "idsa_encabezadocajachica");
-                string[] valores1 = { sig1, numeroarqueo, idusuario, CCNumagencia.Value, CCFechaencabezado.Value, CCNombre.Value, CCOperador.Value, CCPuestooperador.Value, CCNombreencargado.Value, CCPuestoencargado.Value, SaldoInicial2.Value };
+                string[] valores1 = { sig1, numeroarqueo, idusuario, CCAgencia.SelectedValue, fechayhora2, CCNombre.Value, CCOperador.Value, CCPuestooperador.Value, CCNombreencargado.Value, CCPuestoencargado.Value, SaldoInicial2.Value };
                 logic.insertartablas("sa_encabezadocajachica", valores1);
                 Session["idcajachica"] = sig1.ToString();
                 id = Session["idcajachica"] as string;
@@ -460,7 +471,7 @@ namespace Modulo_de_arqueos.Views
                     id = Convert.ToString(var[0]);
                     //Session["idcajachica"] = "2";
                     CCAgencia.SelectedValue = Convert.ToString(var[1]);
-                    CCNumagencia.Value = Convert.ToString(var[1]);
+                    CCNumagencia.Value = Convert.ToString(sn.nombreagencia(var[1]));
                     string fechaenc = Convert.ToString(var[2]);
                     CCNombre.Value = Convert.ToString(var[3]);
                     NombreFirma.InnerHtml = Convert.ToString(var[3]);
@@ -479,7 +490,7 @@ namespace Modulo_de_arqueos.Views
 
                     string[] fechasep = fechaenc.Split(delimitador2);
                     string[] horai = fechasep[3].Split(delimitador);
-                    fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horai[0] + ":" + horai[1];
+                    fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + ' ' + horai[0] + ":" + horai[1];
                     CCFechaencabezado.Attributes.Add("value", fechatotal1);
                    
                 }
@@ -750,7 +761,7 @@ namespace Modulo_de_arqueos.Views
                     string[] valores2 = fechamin.Split(delimitador2);
                     horamin = Convert.ToString(fecha.GetValue(1));
                     string[] horas = horamin.Split(delimitador);
-                    fechahora = valores2[0] + "-" + valores2[1] + "-" + valores2[2] + concat + horas[0] + ":" + horas[1];
+                    fechahora = valores2[2] + "-" + valores2[1] + "-" + valores2[0] + ' ' + horas[0] + ":" + horas[1];
 
                     CCFechaencabezado.Attributes.Add("value", fechahora);
                 }

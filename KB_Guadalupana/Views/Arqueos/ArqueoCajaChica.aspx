@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script>
-import { write } from "@popperjs/core";
+//import { write } from "@popperjs/core";
 
         function obtenerimagen() {
             takeScreenshot(function (screenshot) {
@@ -348,24 +348,24 @@ import { write } from "@popperjs/core";
         .nombre:hover{
             color: white;
         }
-         .ayuda 
+        .ayuda 
         {
           background-color: #69a43c; 
           border: none;
           color: white;
-          padding: 0px 0px;
+          padding: 5px;
           text-align: center;
           text-decoration: none;
           display: flex;
-          font-size: 16px;
+          font-size: 10px;
           margin: 4px 2px;
           transition-duration: 0.4s;
           align-items: center;
           justify-content:center;
           align-content:center;
           cursor: pointer;
-          width:30px;
-          height:30px;
+          width:70px;
+          height:40px;
         }
         .ayuda:hover
         {
@@ -380,7 +380,7 @@ import { write } from "@popperjs/core";
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
-    <a class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajaChica.aspx" ><i class="fa fa-question"></i></a>
+   <a class="ayuda" style="right: 3%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajaChica.aspx" ><i class="fa fa-question" style='font-size:15px'></i>  Consultar Guía</a>
          <div style="display: flex;justify-content: center;align-items: center;">
     <div  id="visualizar" runat="server" class="boton2" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">
 				<a style="cursor:pointer;" class="nombre">
@@ -423,26 +423,43 @@ import { write } from "@popperjs/core";
             <div class="solid" style="margin-top: 5px;"></div><br />
 
             <div style="display:flex; align-content:center;align-items:center; justify-content:center; flex-direction:column">
+                <div style="display:flex; flex-direction: row; width:40%; align-items:flex-end;align-content:center;justify-content:center;">
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start"><b> Código de agencia</b></label>
+                    <label style="width:32%; font-size:12px; display:flex; justify-content:flex-start; margin-left:15%"><b>Nombre de la agencia</b></label>
+                </div>
             <div style="display:flex; align-content:center;align-items:center; justify-content:center; flex-direction:row">
                 <asp:DropDownList id="CCAgencia" OnSelectedIndexChanged="CCAgencia_SelectedIndexChanged" runat="server" style="width:45%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-                 <input id="CCNumagencia" readonly="true" runat="server" type="text" placeholder="No. de agencia" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:30%" required/>
+                 <input id="CCNumagencia" readonly="true" runat="server" type="text" placeholder="Nombre de agencia" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:35%" required/>
             </div>
            
             <div class="datosGenerales2">
                  <label style="width:10%; display:flex; justify-content:flex-end"><b>Fecha</b></label>&nbsp;&nbsp;
-                <input id="CCFechaencabezado" disabled="disabled" runat="server"  type="datetime-local" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:70%" />
+              <%--  <input id="CCFechaencabezado" disabled="disabled" runat="server"  type="datetime-local" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:70%" />--%>
+                  <input id="CCFechaencabezado" disabled="disabled" runat="server" type="Text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:70%" />
             </div>
-             <label style="width:60%; display:flex; justify-content:flex-start"><b>Persona a quien se dirige el arqueo</b></label>
+             <label style="width:60%; display:flex; justify-content:flex-start;margin-top:5px;"><b>Persona a quien se dirige el arqueo</b></label>
+                <div style="display:flex; flex-direction: row; width:60%; align-items:flex-end; margin-top:3px;">
+                    <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start"><b>Nombre</b></label>
+                     <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:14%"><b>Operador</b></label>
+                     <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:13%"><b>Puesto</b></label>
+                </div>
                  <div style="flex-direction:row; display:flex; width:60%">
-                     <input id="CCNombre" runat="server" maxlength="50"  type="text" placeholder="Nombre" class="etiquetas"  onchange="agregar(this.value);" required/>
+                     <input id="CCNombre" runat="server" onkeypress="return sololetras(event);" maxlength="50"  type="text" placeholder="Nombre" class="etiquetas"  onchange="agregar(this.value);" required/>
                      <input id="CCOperador" runat="server" maxlength="11" type="text" placeholder="Operador" class="etiquetas" required/>
-                     <input id="CCPuestooperador" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
+                     <input id="CCPuestooperador" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
                  </div>
-                 <label style="width:60%; display:flex; justify-content:flex-start"><b>Persona que realiza el arqueo</b></label>
+                 <label style="width:60%; display:flex; justify-content:flex-start;margin-top:5px;"><b>Persona que realiza el arqueo</b></label>
+                <div style="display:flex; flex-direction: row; width:60%; align-items:flex-end; margin-top:3px;">
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start"><b>Nombre</b></label>
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start; margin-left:22%"><b>Puesto</b></label>
+                </div>
                  <div style="display:flex; flex-direction: row; width:60%; align-items:center">
-                     <input id="CCNombreencargado" runat="server" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
-                     <input id="CCPuestoencargado" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value);" required/>
+                     <input id="CCNombreencargado" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
+                     <input id="CCPuestoencargado" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value);" required/>
                  </div>
+                <div style="display:flex; flex-direction: row; width:18%; align-items:flex-end; margin-top:3px;">
+                    <label style="width:40%; font-size:12px; display:flex; justify-content:flex-start"><b>Saldo inicial</b></label>
+                </div>
                 <div style="display:flex; width:60%; flex-direction: row; align-items:center; justify-content:center">
                      <label style="width:10px;" class="etiquetas2">Q </label>
                    <input id="SaldoInicial2" runat="server" min="0" maxlength="11" type="text" placeholder="Saldo inicial" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 5px;padding: 5px;width:30%" />
@@ -725,6 +742,15 @@ import { write } from "@popperjs/core";
                     document.getElementById('btnArqueos').click();
                 }
             </script>
+        <script type="text/javascript">
+            function sololetras(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return true;
+
+                return false;
+            }
+        </script>
     <script>
         var texto1 = document.querySelector('#CCNumagencia');
         var texto21 = document.querySelector('#CCOperador');

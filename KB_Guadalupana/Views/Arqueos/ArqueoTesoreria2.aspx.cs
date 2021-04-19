@@ -62,7 +62,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void TDAgencia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TDCodigoagencia.Value = TDAgencia.SelectedValue;
+            TDCodigoagencia.Value = sn.nombreagencia(TDAgencia.SelectedValue);
         }
         public void llenarcomboagencia()
         {
@@ -77,10 +77,10 @@ namespace Modulo_de_arqueos.Views
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "Agencia");
                     TDAgencia.DataSource = ds;
-                    TDAgencia.DataTextField = "sa_nombreagencia";
+                    TDAgencia.DataTextField = "idsa_agencia";
                     TDAgencia.DataValueField = "idsa_agencia";
                     TDAgencia.DataBind();
-                    TDAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                    TDAgencia.Items.Insert(0, new ListItem("[Código Agencia]", "0"));
                 }
                 catch { }
                 finally { try { cn.desconectar(); } catch { } }
@@ -221,7 +221,7 @@ namespace Modulo_de_arqueos.Views
                 id = Convert.ToString(var[0]);
                 string fechaenc = Convert.ToString(var[1]);
                 TDAgencia.SelectedValue = Convert.ToString(var[2]);
-                TDCodigoagencia.Value = Convert.ToString(var[2]);
+                TDCodigoagencia.Value = Convert.ToString(sn.nombreagencia(var[2]));
                 TDNombreop.Value = Convert.ToString(var[3]);
                 TDNumoperador.Value = Convert.ToString(var[4]);
                 TDPuestooperador.Value = Convert.ToString(var[5]);
@@ -233,7 +233,7 @@ namespace Modulo_de_arqueos.Views
 
                 string[] fechasep = fechaenc.Split(delimitador2);
                 string[] horai = fechasep[3].Split(delimitador);
-                fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horai[0] + ":" + horai[1];
+                fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + ' ' + horai[0] + ":" + horai[1];
                 TDFechayhora.Attributes.Add("value", fechatotal1);
 
                 NombreFirma2.InnerHtml = TDNombreop.Value;

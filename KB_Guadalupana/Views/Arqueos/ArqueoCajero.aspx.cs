@@ -255,7 +255,7 @@ namespace Modulo_de_arqueos.Views
                 string usuario2;
                 usuario2 = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario2);
-                numeroarqueo = sn.numarqueoC(año, mes, dia, idusuario);
+                numeroarqueo = sn.numarqueoC(dia3, mes, año, idusuario);
 
                 string sig = logic.siguiente("sa_encabezadocajero", "idsa_encabezadocajero");
                     Session["id"] = sig.ToString();

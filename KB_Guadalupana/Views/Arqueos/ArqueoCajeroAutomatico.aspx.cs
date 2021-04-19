@@ -234,7 +234,7 @@ namespace Modulo_de_arqueos.Views
 
                 usuario = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario);
-                numeroarqueo = sn.numarqueoCA(año, mes, dia, idusuario);
+                numeroarqueo = sn.numarqueoCA(dia3, mes, año, idusuario);
 
                 string sig = logic.siguiente("sa_encabezadocajeroaut", "idsa_encabezadocajeroaut");
                 string[] valores1 = { sig, numeroarqueo, idusuario, fechayhora2, CAAgencia.SelectedValue, CAOperador.Value, CANumperador.Value, CAPuestooperador.Value, CANombreencargado.Value, CAPuestoencargado.Value, CAAtm.Value };

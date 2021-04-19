@@ -549,35 +549,36 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                 catch {
                     Console.WriteLine("dejo de funcionar");
                 }
-            }
-            llenargridviewprospecto(nombreusuario);
-            txtnumerogeneral.Value = "";
+                llenargridviewprospecto(nombreusuario);
+                txtnumerogeneral.Value = "";
                 txtnumeroderegistro.Value = ""; combotiposervicio.SelectedValue = "0";
-            combocontactollamadas.SelectedValue = "0";
-            combosemaforoestado.SelectedValue = "0";
-            combosemaforodescripcion.SelectedValue = "0";
-            combotipodomicilio.SelectedValue = "0";
-            combofinalidaddeservicio.Value = "0";
-            txttelefono.Value = ""; txtemail.Value = "";
-            txtingreso.Value = "";
-            txtegresos.Value = "";
-            txtmonto.Value = "";
-            txtañoslaborados.Value = "";
-            combotienetrabajo.SelectedValue = "0";
-            txttabajoactual.Value = "0";
-            txtfechainicio.Value = ""; txtfechafin.Value = "";
-            exampleFormControlTextarea1.Value = "0";
-            combosucursalmascerca.SelectedValue = "0";
-            combocuentaigss.SelectedValue = "0";
-            combotipodomicilio.SelectedValue = "0";
-            comboposeecuentacoope.SelectedValue = "0";
-            txtnumeroderegistro.Value = "";
-            txtnumerodpi.Value = "";
-            txtnombrecompleto.Value = "";
-            txtañodomicilio.Value = "";
-            exampleFormControlTextarea1.Value = "";
-            txtcontactadopor.Value = "";
-            txtdpireferencia.Value = "";
+                combocontactollamadas.SelectedValue = "0";
+                combosemaforoestado.SelectedValue = "0";
+                combosemaforodescripcion.SelectedValue = "0";
+                combotipodomicilio.SelectedValue = "0";
+                combofinalidaddeservicio.Value = "0";
+                txttelefono.Value = ""; txtemail.Value = "";
+                txtingreso.Value = "";
+                txtegresos.Value = "";
+                txtmonto.Value = "";
+                txtañoslaborados.Value = "";
+                combotienetrabajo.SelectedValue = "0";
+                txttabajoactual.Value = "0";
+                txtfechainicio.Value = ""; txtfechafin.Value = "";
+                exampleFormControlTextarea1.Value = "0";
+                combosucursalmascerca.SelectedValue = "0";
+                combocuentaigss.SelectedValue = "0";
+                combotipodomicilio.SelectedValue = "0";
+                comboposeecuentacoope.SelectedValue = "0";
+                txtnumeroderegistro.Value = "";
+                txtnumerodpi.Value = "";
+                txtnombrecompleto.Value = "";
+                txtañodomicilio.Value = "";
+                exampleFormControlTextarea1.Value = "";
+                txtcontactadopor.Value = "";
+                txtdpireferencia.Value = "";
+            }
+
         }
 
 

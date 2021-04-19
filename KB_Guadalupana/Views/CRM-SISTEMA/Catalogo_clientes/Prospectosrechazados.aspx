@@ -99,12 +99,12 @@
                            <asp:Label ID="lblcodeptelefono" Text='<%# Eval("crmcontacto_llamadasnombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado de semaforo" Visible="True">
+                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado de semáforo" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lblcodeptelefono" Text='<%# Eval("crmsemaforo_estadodescripcion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Descripcion de estado" Visible="True">
+                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Descripción de estado" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lblcodeptelefono" Text='<%# Eval("crmestado_descripcionnombre") %>' runat="server" />
                         </ItemTemplate>
@@ -131,12 +131,12 @@
                            <asp:Label ID="lbltipotelefono2" Text='<%# Eval("crminfo_prospectoañosdomicilio") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Número de telefono">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Número de teléfono">
                            <ItemTemplate>
                             <asp:Label ID="lblnombretelefono3" Text='<%# Eval("crminfo_prospectotelefono") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Correo electronico">
+                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Correo electrónico">
                            <ItemTemplate>
                             <asp:Label ID="lblnumerotelefono4" Text='<%# Eval("crminfo_prospectoemail") %>' runat="server" />
                         </ItemTemplate>

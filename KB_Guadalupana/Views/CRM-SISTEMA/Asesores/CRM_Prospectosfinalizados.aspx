@@ -25,7 +25,7 @@
         <header style="background-color:#69a43c">
   <div class="row">
     <div class="col-sm-4" >
-        <asp:LinkButton ID="LinkButton1" class="btn btn-success" style=" background-color:#003561; border-radius:0px; border-color:#003561; text-decoration:none; width:100%" value="Menu Principal" type="button" runat="server" tabindex="25" name="Guardar" title="Guardar" OnClick="btnmenuprincipal_Click" >Menu Principal</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton1" class="btn btn-success" style=" background-color:#003561; border-radius:0px; border-color:#003561; text-decoration:none; width:100%" value="Menu Principal" type="button" runat="server" tabindex="25" name="Guardar" title="Guardar" OnClick="btnmenuprincipal_Click" >Regresar</asp:LinkButton>
     </div>
     <div class="col-sm-4">
         <center>
@@ -33,7 +33,7 @@
         </center>
     </div>
          <div class="col-sm-4">
-             <asp:LinkButton ID="LinkButton3" class="btn btn-success" style="background-color:#003561; text-decoration:none; border-color:#003561; border-radius:0px; width:100%" value="Cerrar sesion" type="button" runat="server" tabindex="25" name="Guardar" title="Cerrar sesion" OnClick="LinkButton3_Click"  >Cerrar Sesion</asp:LinkButton>
+             <asp:LinkButton ID="LinkButton3" class="btn btn-success" style="background-color:#003561; text-decoration:none; border-color:#003561; border-radius:0px; width:100%" value="Cerrar sesion" type="button" runat="server" tabindex="25" name="Guardar" title="Cerrar sesion" OnClick="LinkButton3_Click"  >Cerrar Sesión</asp:LinkButton>
     </div>
   </div>
         </header>
@@ -43,7 +43,7 @@
             <%-- Inicio de los textbox --%>
                 <%-- GRIDVIEW NUMEROS DE TELEFONO --%>
             <asp:Label ID="lblcriterio" style="color:white" runat="server" Text="Buscar:"></asp:Label>
-            <input id="txtnombrecompleto"  style="margin-left:2%;" placeholder="Criterio de busqueda" runat="server" type="text" tabindex="1" autofocus/>
+            <input id="txtnombrecompleto"  style="margin-left:2%;" placeholder="Criterio de búsqueda" runat="server" type="text" tabindex="1" autofocus/>
             <asp:LinkButton ID="btnbuscar" style="color:white" runat="server" OnClick="btnbuscar_Click">Buscar</asp:LinkButton>
             <br />
             <br />
@@ -96,12 +96,12 @@
                            <asp:Label ID="lblcodeptelefono" Text='<%# Eval("crmcontacto_llamadasnombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado de semaforo" Visible="True">
+                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado de semáforo" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lblcodeptelefono" Text='<%# Eval("crmsemaforo_estadodescripcion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Descripcion de estado" Visible="True">
+                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Descripción de estado" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lblcodeptelefono" Text='<%# Eval("crmestado_descripcionnombre") %>' runat="server" />
                         </ItemTemplate>
@@ -128,12 +128,12 @@
                            <asp:Label ID="lbltipotelefono2" Text='<%# Eval("crminfo_prospectoañosdomicilio") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Número de telefono">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Número de teléfono">
                            <ItemTemplate>
                             <asp:Label ID="lblnombretelefono3" Text='<%# Eval("crminfo_prospectotelefono") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Correo electronico">
+                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Correo electrónico">
                            <ItemTemplate>
                             <asp:Label ID="lblnumerotelefono4" Text='<%# Eval("crminfo_prospectoemail") %>' runat="server" />
                         </ItemTemplate>

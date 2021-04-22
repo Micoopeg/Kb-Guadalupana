@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
 
 <script>
     function obtenerimagen() {
@@ -324,24 +327,24 @@
         .nombre:hover{
             color: white;
         }
-       .ayuda 
+        .ayuda 
         {
           background-color: #69a43c; 
           border: none;
           color: white;
-          padding: 0px 0px;
+          padding: 5px;
           text-align: center;
           text-decoration: none;
           display: flex;
-          font-size: 16px;
+          font-size: 10px;
           margin: 4px 2px;
           transition-duration: 0.4s;
           align-items: center;
           justify-content:center;
           align-content:center;
           cursor: pointer;
-          width:30px;
-          height:30px;
+          width:70px;
+          height:40px;
         }
         .ayuda:hover
         {
@@ -357,7 +360,7 @@
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
 
-      <a id="ayuda" runat="server" class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualTesoreria.aspx" ><i class="fa fa-question"></i></a>
+       <a id="ayuda" runat="server" class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualTesoreria.aspx" ><i class="fa fa-question" style='font-size:15px'></i>  Consultar Guía</a>
      <div style="display: flex;justify-content: center;align-items: center;">
     <div id="visualizar" runat="server" class="boton2" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">
 				<a style="cursor:pointer;" class="nombre">
@@ -380,12 +383,19 @@
         <div style="flex-direction:column; display:flex; width:100%; margin-top:50px;">
             <asp:Button ID="Creararqueo" OnClick="creararqueo_Click" runat="server" CssClass="boton" Text="Crear nuevo arqueo" />
              <asp:Button ID="Buscararqueo" OnClick="buscararqueo_Click" runat="server" CssClass="boton" Text="Buscar arqueo" />
-            </div>
-        <div id="EBuscar" runat="server" class="datosGenerales2">
-            <input id="CABuscarfecha" runat="server" onchange="traerArqueos();" type="date" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:35%" required/>
-            <asp:DropDownList id="CAUsuario" OnSelectedIndexChanged="CAUsuario_SelectedIndexChanged" runat="server" Width="35%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-            <asp:DropDownList id="DropNumarqueo" runat="server" Width="35%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-            <asp:LinkButton ID="btnArqueos" runat="server" OnClick="btnArqueos_Click" ClientIDMode="Static"></asp:LinkButton>
+            </div><br />
+
+        <div id="EBuscar" style="flex-direction:column; width:500px" runat="server" class="datosGenerales2">
+            <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Fecha de realización</b></label>
+            <input id="CABuscarfecha" runat="server" onchange="traerArqueos();" type="date" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:33%" /><br />
+
+               <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Usuario que lo realizó</b></label>
+            <asp:DropDownList id="CAUsuario" OnSelectedIndexChanged="CAUsuario_SelectedIndexChanged" runat="server" Width="33%" class="etiquetas" AutoPostBack="true"></asp:DropDownList><br />
+
+             <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Número de arqueo</b></label>
+            <asp:DropDownList id="DropNumarqueo" runat="server" Width="33%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
+            <asp:LinkButton ID="btnArqueos" runat="server" OnClick="btnArqueos_Click" ClientIDMode="Static"></asp:LinkButton><br />
+
             <asp:Button ID="Buscar" OnClick="buscar_Click" Width="30%" runat="server" CssClass="boton" Text="Buscar" />
         </div>
         <div id="arqueo" runat="server" class="arqueo">
@@ -402,24 +412,38 @@
             <br />
             <div class="datosGenerales2">
                  <label style="width:25%; display:flex; justify-content:flex-end"><b>Fecha y hora</b></label>&nbsp;&nbsp;
-                <input id="TFecha" runat="server" disabled="disabled" type="datetime-local" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" required/>
+               <%-- <input id="TFecha" runat="server" disabled="disabled" type="datetime-local" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" required/>--%>
+                 <input id="TFecha" runat="server" disabled="disabled" type="Text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" required/>
             </div>
 
              <div class="datosGenerales">
+                 <div style="display:flex; flex-direction: row; width:100%; align-items:flex-end">
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start"><b> Código de agencia</b></label>
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start; margin-left:22%"><b>Nombre de la agencia</b></label>
+                </div>
                   <div style="display:flex; flex-direction: row; width:100%">
                      <asp:DropDownList id="TAgencia" OnSelectedIndexChanged="TAgencia_SelectedIndexChanged" runat="server" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-                      <input id="TCodigoagencia" runat="server" readonly="true" type="text" placeholder="Código de agencia" class="etiquetas" required/>
+                      <input id="TCodigoagencia" runat="server" readonly="true" type="text" placeholder="Nombre de agencia" class="etiquetas" required/>
                   </div>
-                 <label style="width:100%; display:flex; justify-content:flex-start"><b>Persona a quien se dirige el arqueo</b></label>
-                 <div style="display:flex; flex-direction: row; width:100%; align-items:center">
-                     <input id="TNombreoperador" maxlength="50" runat="server" type="text" placeholder="Nombres y apellidos (operador)" class="etiquetas" onchange="agregar(this.value);" required/>
-                     <input id="TOperador" maxlength="11" min="0" runat="server" type="text" placeholder="No. operador" class="etiquetas" required/>
-                     <input id="TPuestooperador" maxlength="50" runat="server" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
+                 <label style="width:100%; display:flex; justify-content:flex-start;margin-top:5px;"><b>Persona a quien se dirige el arqueo</b></label>
+                 <div style="display:flex; flex-direction: row; width:100%; align-items:flex-end; margin-top:3px;">
+                    <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start"><b>Nombre</b></label>
+                     <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:14%"><b>Operador</b></label>
+                     <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:13%"><b>Puesto</b></label>
                 </div>
-                  <label style="width:100%; display:flex; justify-content:flex-start"><b>Persona que realiza el arqueo</b></label>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
-                     <input id="TNombreencargado" maxlength="50" runat="server" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
-                     <input id="TPuestoencargado" maxlength="50" runat="server" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value);" required/>
+                     <input id="TNombreoperador" maxlength="50" runat="server" onkeypress="return sololetras(event);" type="text" placeholder="Nombres y apellidos (operador)" class="etiquetas" onchange="agregar(this.value);" required/>
+                     <input id="TOperador" maxlength="11" min="0" runat="server" type="text" placeholder="No. operador" class="etiquetas" required/>
+                     <input id="TPuestooperador" maxlength="50" runat="server" onkeypress="return sololetras(event);" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
+                </div>
+                  <label style="width:100%; display:flex; justify-content:flex-start;margin-top:5px;"><b>Persona que realiza el arqueo</b></label>
+                  <div style="display:flex; flex-direction: row; width:100%; align-items:flex-end; margin-top:3px;">
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start"><b>Nombre</b></label>
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start; margin-left:22%"><b>Puesto</b></label>
+                </div>
+                 <div style="display:flex; flex-direction: row; width:100%; align-items:center">
+                     <input id="TNombreencargado" maxlength="50" runat="server" onkeypress="return sololetras(event);" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
+                     <input id="TPuestoencargado" maxlength="50" runat="server" onkeypress="return sololetras(event);" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value);" required/>
                 </div>
 
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
@@ -623,6 +647,9 @@
             </div>
 
         </div>
+          <script>
+              $('#<%=CAUsuario.ClientID%>').chosen();
+          </script>
     </form>
     
 </body>
@@ -632,6 +659,15 @@
               document.getElementById('btnArqueos').click();
           }
       </script>
+        <script type="text/javascript">
+            function sololetras(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return true;
+
+                return false;
+            }
+        </script>
     <script>
         var texto1 = document.querySelector('#TCodigoagencia');
         var texto2 = document.querySelector('#TOperador');

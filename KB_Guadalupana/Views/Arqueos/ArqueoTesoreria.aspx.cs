@@ -339,27 +339,36 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
-            numarqueo = DropNumarqueo.SelectedValue;
-            Session["siguiente2"] = "1";
-            Session["op"] = "1";
-            mostrartesoreria();
-            if (cont == 1)
+            if(CABuscarfecha.Value == "")
             {
-                arqueo.Visible = false;
-                EBuscar.Visible = false;
+                String script = "alert('Debe ingresar la fecha');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
-                mostrardetalle();
-                mostrarcheques();
-                arqueo.Visible = true;
-                Creararqueo.Visible = false;
-                Buscararqueo.Visible = false;
-                visualizar.Visible = true;
-                imprimir.Visible = true;
-                operar.Visible = false;
-                EBuscar.Visible = false;
+                numarqueo = DropNumarqueo.SelectedValue;
+                Session["siguiente2"] = "1";
+                Session["op"] = "1";
+                mostrartesoreria();
+                if (cont == 1)
+                {
+                    arqueo.Visible = false;
+                    EBuscar.Visible = false;
+                }
+                else
+                {
+                    mostrardetalle();
+                    mostrarcheques();
+                    arqueo.Visible = true;
+                    Creararqueo.Visible = false;
+                    Buscararqueo.Visible = false;
+                    visualizar.Visible = true;
+                    imprimir.Visible = true;
+                    operar.Visible = false;
+                    EBuscar.Visible = false;
+                }
             }
+           
             //NombreFirma.InnerHtml = Session["Nombre"] as string;
             //Nombrefirma2.InnerHtml = TNombreencargado.Value;
             //puesto2.InnerHtml = TPuestoencargado.Value;
@@ -605,6 +614,7 @@ namespace Modulo_de_arqueos.Views
             imprimir.Visible = true;
             TNombreencargado.Value = Session["Nombre"] as string;
             operar.Enabled = true;
+            EBuscar.Visible = false;
 
             //if (consulta == "")
             //{

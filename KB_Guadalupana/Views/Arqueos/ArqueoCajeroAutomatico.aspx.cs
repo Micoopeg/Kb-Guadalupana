@@ -283,25 +283,32 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
-            numarqueo = DropNumarqueo.SelectedValue;
-            mostrarcajeroauto();
-            if(cont == 1)
+            if(CABuscarfecha.Value == "")
             {
-                arqueo.Visible = false;
-                EBuscar.Visible = false;
+                String script = "alert('Debe ingresar la fecha');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
-                mostrardetalle();
-                arqueo.Visible = true;
-                Creararqueo.Visible = false;
-                Buscararqueo.Visible = false;
-                visualizar.Visible = true;
-                imprimir.Visible = true;
-                operar.Visible = false;
-                EBuscar.Visible = false;
+                numarqueo = DropNumarqueo.SelectedValue;
+                mostrarcajeroauto();
+                if (cont == 1)
+                {
+                    arqueo.Visible = false;
+                    EBuscar.Visible = false;
+                }
+                else
+                {
+                    mostrardetalle();
+                    arqueo.Visible = true;
+                    Creararqueo.Visible = false;
+                    Buscararqueo.Visible = false;
+                    visualizar.Visible = true;
+                    imprimir.Visible = true;
+                    operar.Visible = false;
+                    EBuscar.Visible = false;
+                }
             }
-            
         }
 
         public void mostrarcajeroauto()
@@ -567,6 +574,7 @@ namespace Modulo_de_arqueos.Views
             CANombreencargado.Value = Session["Nombre"] as string;
             NombreFirma.InnerHtml = Session["Nombre"] as string;
             operar.Enabled = true;
+            EBuscar.Visible = false;
 
 
 

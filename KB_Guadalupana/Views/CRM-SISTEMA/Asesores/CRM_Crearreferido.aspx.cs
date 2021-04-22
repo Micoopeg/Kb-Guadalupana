@@ -70,7 +70,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                         }
                         //INSERTAR DATOS
                         string sig = logic.siguiente("crminfo_prospecto", "codcrminfoprospecto");
-                        string[] valores1 = { sig, dpiguardar, "0", "1", "2",
+                        string[] valores1 = { sig, dpiguardar, "1", "1", "2",
                         "1","1","1","0",txtemail.Value,"0","0","0","0","0","","2021-04-17","2021-04-17",exampleFormControlTextarea1.Value,"0",
                         "0","0","0","Referenciado",txtdpidereferido.Value};
                         logic.insertartablas("crminfo_prospecto", valores1);
@@ -87,6 +87,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                         txtnumerodpi.Value = "";
                         txttelefono.Value = "";
                         exampleFormControlTextarea1.Value = "";
+                        String script = "alert('Los datos se han ingresado correctamente');";
+                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                     }
                     else
                     {

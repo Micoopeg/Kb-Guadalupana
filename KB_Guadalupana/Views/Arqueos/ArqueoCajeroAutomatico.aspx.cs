@@ -10,6 +10,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KB_Guadalupana.Controllers;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace Modulo_de_arqueos.Views
 {
@@ -62,10 +66,10 @@ namespace Modulo_de_arqueos.Views
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "Agencia");
                     CAAgencia.DataSource = ds;
-                    CAAgencia.DataTextField = "sa_nombreagencia";
+                    CAAgencia.DataTextField = "idsa_agencia";
                     CAAgencia.DataValueField = "idsa_agencia";
                     CAAgencia.DataBind();
-                    CAAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                    CAAgencia.Items.Insert(0, new System.Web.UI.WebControls.ListItem("[Código Agencia]", "0"));
                 }
                 catch { }
                 finally { try { cn.desconectar(); } catch { } }
@@ -88,7 +92,7 @@ namespace Modulo_de_arqueos.Views
                     CAUsuario.DataTextField = "gen_usuarionombre";
                     CAUsuario.DataValueField = "codgenusuario";
                     CAUsuario.DataBind();
-                    CAUsuario.Items.Insert(0, new ListItem("[Usuario]", "0"));
+                    CAUsuario.Items.Insert(0, new System.Web.UI.WebControls.ListItem("[Usuario]", "0"));
                 }
                 catch { }
                 finally { try { cn.desconectar(); } catch { } }
@@ -130,7 +134,7 @@ namespace Modulo_de_arqueos.Views
                     DropNumarqueo.DataTextField = "sa_numarqueo";
                     DropNumarqueo.DataValueField = "sa_numarqueo";
                     DropNumarqueo.DataBind();
-                    DropNumarqueo.Items.Insert(0, new ListItem("[Numero de arqueo]", "0"));
+                    DropNumarqueo.Items.Insert(0, new System.Web.UI.WebControls.ListItem("[Numero de arqueo]", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
                 finally { try { cn.desconectar(); } catch { } }
@@ -139,7 +143,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void CAAgencia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CACodigoagencia.Value = CAAgencia.SelectedValue;
+            CACodigoagencia.Value = sn.nombreagencia(CAAgencia.SelectedValue);
         }
 
         protected void CAUsuario_SelectedIndexChanged(object sender, EventArgs e)
@@ -218,12 +222,22 @@ namespace Modulo_de_arqueos.Views
                 dia = fechadia[0];
                 puesto = Session["puesto_usuario"] as string;
 
+                string[] fechadia2 = dia2.Split(delimitador2);
+                string dia3 = fechadia2[0];
+                string hora = fechadia2[1];
+
+                string[] horayfecha = hora.Split(delimitador);
+                string hora1 = horayfecha[0];
+                string minutos = horayfecha[1];
+
+                string fechayhora2 = dia3 + '-' + mes + '-' + año + ' ' + hora1 + ':' + minutos;
+
                 usuario = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario);
-                numeroarqueo = sn.numarqueoCA(año, mes, dia, idusuario);
+                numeroarqueo = sn.numarqueoCA(dia3, mes, año, idusuario);
 
                 string sig = logic.siguiente("sa_encabezadocajeroaut", "idsa_encabezadocajeroaut");
-                string[] valores1 = { sig, numeroarqueo, idusuario, CAFecha.Value, CACodigoagencia.Value, CAOperador.Value, CANumperador.Value, CAPuestooperador.Value, CANombreencargado.Value, CAPuestoencargado.Value, CAAtm.Value };
+                string[] valores1 = { sig, numeroarqueo, idusuario, fechayhora2, CAAgencia.SelectedValue, CAOperador.Value, CANumperador.Value, CAPuestooperador.Value, CANombreencargado.Value, CAPuestoencargado.Value, CAAtm.Value };
                 logic.insertartablas("sa_encabezadocajeroaut", valores1);
                 lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Ingreso de datos", "Creación de arqueo Cajero Automático");
 
@@ -329,7 +343,7 @@ namespace Modulo_de_arqueos.Views
                     string fechaenc = Convert.ToString(var[1]);
                     //CAFecha.Value = Convert.ToString(var[1]);
                     CAAgencia.SelectedValue = Convert.ToString(var[2]);
-                    CACodigoagencia.Value = Convert.ToString(var[2]);
+                    CACodigoagencia.Value = Convert.ToString(sn.nombreagencia(var[2]));
                     CAOperador.Value = Convert.ToString(var[3]);
                     CANumperador.Value = Convert.ToString(var[4]);
                     CAPuestooperador.Value = Convert.ToString(var[5]);
@@ -343,7 +357,7 @@ namespace Modulo_de_arqueos.Views
 
                     string[] fechasep = fechaenc.Split(delimitador2);
                     string[] horai = fechasep[3].Split(delimitador);
-                    fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horai[0] + ":" + horai[1];
+                    fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + ' ' + horai[0] + ":" + horai[1];
                     CAFecha.Attributes.Add("value", fechatotal1);
                 }
             }
@@ -359,6 +373,60 @@ namespace Modulo_de_arqueos.Views
             mostrardetalle6();
             mostrardetalle7();
         }
+
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+            String script = "alert('FUNCIONA');";
+            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("content-disposition", "attachment;filename=print.pdf");
+            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            //StringWriter sw = new StringWriter();
+            //HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            //panelPDF.RenderControl(hw);
+            //StringReader sr = new StringReader(sw.ToString());
+            //Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 10f);
+            //HTMLWorker htmlParser = new HTMLWorker(pdfDoc);
+            //PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+
+            //pdfDoc.Open();
+            //htmlParser.Parse(sr);
+            //pdfDoc.Close();
+
+            //Response.Write(pdfDoc);
+            //Response.End();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            return;
+        }
+
+        //protected void prueba_Click(object sender, EventArgs e)
+        //{
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("content-disposition", "attachment;filename=print.pdf");
+        //    Response.ClearContent();
+        //    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+        //    StringWriter sw = new StringWriter();
+        //    HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+        //    panelPDF.RenderControl(hw);
+        //    StringReader sr = new StringReader(sw.ToString());
+        //    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 10f);
+        //    HTMLWorker htmlParser = new HTMLWorker(pdfDoc);
+        //    PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+
+        //    pdfDoc.Open();
+        //    htmlParser.Parse(sr);
+        //    pdfDoc.Close();
+
+        //    Response.Write(pdfDoc);
+        //    Response.End();
+        //}
 
         public void mostrardetalle1()
         {
@@ -500,6 +568,10 @@ namespace Modulo_de_arqueos.Views
             NombreFirma.InnerHtml = Session["Nombre"] as string;
             operar.Enabled = true;
 
+
+
+
+
             //if (consulta == "")
             //{
             //    arqueo.Visible = true;
@@ -529,13 +601,16 @@ namespace Modulo_de_arqueos.Views
             visualizar.Visible = false;
             imprimir.Visible = false;
 
-            if(puesto == "1")
+            if (puesto == "1")
             {
                 CAUsuario.Visible = false;
-            }else if(puesto == "2")
+            }
+            else if (puesto == "2")
             {
                 CAUsuario.Visible = true;
             }
+
+
         }
 
 
@@ -557,7 +632,7 @@ namespace Modulo_de_arqueos.Views
                     string[] valores2 = fechamin.Split(delimitador2);
                     horamin = Convert.ToString(fecha.GetValue(1));
                     string[] horas = horamin.Split(delimitador);
-                    fechahora = valores2[0] + "-" + valores2[1] + "-" + valores2[2] + concat + horas[0] + ":" + horas[1];
+                    fechahora = valores2[2] + "-" + valores2[1] + "-" + valores2[0] + delimitador2 + horas[0] + ":" + horas[1];
 
                     CAFecha.Attributes.Add("value", fechahora);
                 }

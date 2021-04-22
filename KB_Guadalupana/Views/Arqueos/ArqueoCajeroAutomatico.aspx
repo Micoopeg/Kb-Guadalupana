@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArqueoCajeroAutomatico.aspx.cs" Inherits="Modulo_de_arqueos.Views.ArqueoCajeroAutomatico" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  EnableEventValidation = "false" CodeBehind="ArqueoCajeroAutomatico.aspx.cs" Inherits="Modulo_de_arqueos.Views.ArqueoCajeroAutomatico" %>
 
 <!DOCTYPE html>
 
@@ -332,24 +332,24 @@
             display:flex;
             align-items:center;
         }
-                .ayuda 
+       .ayuda 
         {
           background-color: #69a43c; 
           border: none;
           color: white;
-          padding: 0px 0px;
+          padding: 5px;
           text-align: center;
           text-decoration: none;
           display: flex;
-          font-size: 16px;
+          font-size: 10px;
           margin: 4px 2px;
           transition-duration: 0.4s;
           align-items: center;
           justify-content:center;
           align-content:center;
           cursor: pointer;
-          width:30px;
-          height:30px;
+          width:70px;
+          height:40px;
         }
         .ayuda:hover
         {
@@ -365,7 +365,7 @@
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
 
-     <a class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajeroAutomatico.aspx" ><i class="fa fa-question"></i></a>
+   <a class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajeroAutomatico.aspx" ><i class="fa fa-question" style='font-size:15px'></i>  Consultar Guía</a>
     <div style="display: flex;justify-content: center;align-items: center; flex-direction:row; width:500px;">
     <div id="visualizar" runat="server" class="boton2" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">
 				<a style="cursor:pointer;" class="nombre">
@@ -383,6 +383,30 @@
 					</span>
 				</a>
 			</div>
+
+        <%--PRUEBA 2--%>
+       <%-- <asp:Panel ID="panelPDF" runat="server">
+            <h1>PRUEBA 2 DEL ARCHIVO PDF</h1>
+        </asp:Panel>--%>
+    <%--    <br /><br />
+        <asp:Button ID="btnPrint" runat="server" Text="Print" OnClick="btnPrint_Click"/>
+         <asp:Button ID="btnPrint" OnClick="btnPrint_Click" runat="server" CssClass="boton" Text="Print" />--%>
+
+
+      <%--  PRUEBA 1--%>
+       <%-- <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+        <button id="btnPdf" class="btn btn-primary">GENERATE PDF</button>
+        <div id="pdfContainer">
+            <h1>ESTO ES UN PDF</h1>
+        </div>
+
+        <script type="text/javascript">
+            $("btnPdf").click(function () {
+                var sHtml = $("#pdfContainer").html();
+                sHtml = sHtml.replace(/</g, "StrTag").replace(/>/g, "EndTag");
+                window.open('../../Controllers/GeneratePdf?html=' + sHtml, '_blank');
+            })
+        </script>--%>
     </div>
     <form id="form1" runat="server">
         <div style="flex-direction:column; display:flex; width:100%; margin-top:50px;">
@@ -396,7 +420,9 @@
               <asp:LinkButton ID="btnArqueos" runat="server" OnClick="btnArqueos_Click" ClientIDMode="Static"></asp:LinkButton>
             <asp:Button ID="Buscar" OnClick="buscar_Click" Width="30%" runat="server" CssClass="boton" Text="Buscar" />
             </div>
+        
         <div id="arqueo" runat="server" class="arqueo">
+            <asp:Panel ID="panelPDF" runat="server">
         <div id="area" runat="server">
             <div class="encabezado">
                 <img src="../../Imagenes/Logo2.png" style="top: 0; max-width: 170px; margin:30px; margin-left:20px;" />
@@ -410,24 +436,38 @@
             <br />
             <div class="datosGenerales2">
                  <label style="width:28%; display:flex; justify-content:flex-end"><b>Fecha y hora</b></label>&nbsp;&nbsp;
-                <input id="CAFecha" runat="server" disabled="disabled" type="datetime-local" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" required/>
+               <%-- <input id="CAFecha" runat="server" disabled="disabled" type="datetime-local" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" required/>--%>
+                 <input id="CAFecha" runat="server" disabled="disabled" type="Text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%"/>
             </div>
 
              <div class="datosGenerales">
+                <div style="display:flex; flex-direction: row; width:100%; align-items:flex-end">
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start"><b> Código de agencia</b></label>
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start; margin-left:22%"><b>Nombre de la agencia</b></label>
+                </div>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
                      <asp:DropDownList id="CAAgencia" OnSelectedIndexChanged="CAAgencia_SelectedIndexChanged" runat="server" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-                    <input id="CACodigoagencia" runat="server" type="text" readonly="true" placeholder="Código agencia" class="etiquetas" />
+                    <input id="CACodigoagencia" runat="server" type="text" readonly="true" placeholder="Nombre de agencia" class="etiquetas" />
                 </div>
-                   <label style="width:100%; display:flex; justify-content:flex-start"><b>Persona a quien se dirige el arqueo</b></label>
+                   <label style="width:100%; display:flex; justify-content:flex-start;margin-top:5px;"><b>Persona a quien se dirige el arqueo</b></label>
+                 <div style="display:flex; flex-direction: row; width:100%; align-items:flex-end; margin-top:3px;">
+                    <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start"><b>Nombre</b></label>
+                     <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:14%"><b>Operador</b></label>
+                     <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:13%"><b>Puesto</b></label>
+                </div>
                   <div style="display:flex; flex-direction: row; width:100%">
-                     <input id="CAOperador" runat="server" type="text" maxlength="50" placeholder="Nombres y apellidos (operador)" class="etiquetas" onchange="agregar(this.value);" required/>
+                     <input id="CAOperador" runat="server" type="text" onkeypress="return sololetras(event);" maxlength="50" placeholder="Nombres y apellidos (operador)" class="etiquetas" onchange="agregar(this.value);" required/>
                      <input id="CANumperador" min="0" runat="server" type="text" maxlength="11" placeholder="No. operador" class="etiquetas" pattern="[0-9]*" required/>
-                      <input id="CAPuestooperador" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
+                      <input id="CAPuestooperador" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
                   </div>
-                 <label style="width:100%; display:flex; justify-content:flex-start"><b>Persona que realiza el arqueo</b></label>
+                 <label style="width:100%; display:flex; justify-content:flex-start;margin-top:5px;"><b>Persona que realiza el arqueo</b></label>
+                <div style="display:flex; flex-direction: row; width:100%; align-items:flex-end; margin-top:3px;">
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start"><b>Nombre</b></label>
+                    <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start; margin-left:22%"><b>Puesto</b></label>
+                </div>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
-                     <input id="CANombreencargado" runat="server" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
-                     <input id="CAPuestoencargado" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value);" required/>
+                     <input id="CANombreencargado" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" required/>
+                     <input id="CAPuestoencargado" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar3(this.value);" required/>
                 </div>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
                     <label class="etiquetas2"><b>Fondo: </b></label>
@@ -579,7 +619,7 @@
                 </div>
             </div>
 
-            <b>Observaciones: </b><input id="CAComentario" runat="server" type="text" style="height:10px" class="etiquetas2"/>
+            <b>Observaciones: </b><input id="CAComentario" runat="server" onkeypress="return sololetras(event);" type="text" style="height:10px" class="etiquetas2"/>
 
             <br /><br /><br />
              <div class="datosGenerales2">
@@ -597,8 +637,11 @@
                  <b><span id="puesto3" runat="server" style="width:300px; display:flex; justify-content:center"><b></b></span></b>&nbsp;&nbsp;
             </div><br />
             </div>
+                </asp:Panel>
             <div class="datosGenerales2">
                 <asp:Button ID="operar" OnClick="operar_Click" runat="server" CssClass="boton" Text="Guardar" />
+              <%--  <br />
+                <asp:Button ID="prueba" OnClick="prueba_Click" runat="server" CssClass="boton" Text="Imprimir" />--%>
              
             </div>
         </div>
@@ -611,7 +654,15 @@
             document.getElementById('btnArqueos').click();
         }
     </script>
-    
+      <script type="text/javascript">
+          function sololetras(evt) {
+              var charCode = (evt.which) ? evt.which : event.keyCode
+              if (charCode > 31 && (charCode < 48 || charCode > 57))
+                  return true;
+
+              return false;
+          }
+      </script>
 <script>
     var texto1 = document.querySelector('#CANumperador');
     var texto2 = document.querySelector('#CACodigoagencia');

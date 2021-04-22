@@ -409,28 +409,37 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
-            lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Consulta de datos", "Búsqueda de arqueo Caja Chica");
-            numarqueo = DropNumarqueo.SelectedValue;
-            mostrarcajachica();
-            if (cont == 1)
+            if (CABuscarfecha.Value == "")
             {
-                arqueo.Visible = false;
-                EBuscar.Visible = false;
+                String script = "alert('Debe ingresar la fecha');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
-                arqueo.Visible = true;
-                Creararqueo.Visible = false;
-                Buscararqueo.Visible = false;
-                visualizar.Visible = true;
-                imprimir.Visible = true;
-                GuardarEncabezado.Visible = false;
-                EBuscar.Visible = false;
-                agregarRegistro.Visible = false;
-                guardar.Visible = false;
-                mostrargridviewcajachica();
-                mostrardetalle();
+                lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Consulta de datos", "Búsqueda de arqueo Caja Chica");
+                numarqueo = DropNumarqueo.SelectedValue;
+                mostrarcajachica();
+                if (cont == 1)
+                {
+                    arqueo.Visible = false;
+                    EBuscar.Visible = false;
+                }
+                else
+                {
+                    arqueo.Visible = true;
+                    Creararqueo.Visible = false;
+                    Buscararqueo.Visible = false;
+                    visualizar.Visible = true;
+                    imprimir.Visible = true;
+                    GuardarEncabezado.Visible = false;
+                    EBuscar.Visible = false;
+                    agregarRegistro.Visible = false;
+                    guardar.Visible = false;
+                    mostrargridviewcajachica();
+                    mostrardetalle();
+                }
             }
+          
         }
 
      
@@ -701,6 +710,7 @@ namespace Modulo_de_arqueos.Views
             CCNombreencargado.Value = Session["Nombre"] as string;
             parte2.Visible = false;
             guardar.Visible = false;
+            EBuscar.Visible = false;
             mostrargridviewcajachica();
 
             //if (consulta == "")
@@ -729,19 +739,20 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscararqueo_Click(object sender, EventArgs e)
         {
-            puesto = Session["puesto_usuario"] as string;
-            EBuscar.Visible = true;
-            visualizar.Visible = false;
-            imprimir.Visible = false;
+                puesto = Session["puesto_usuario"] as string;
+                EBuscar.Visible = true;
+                visualizar.Visible = false;
+                imprimir.Visible = false;
 
-            if (puesto == "1")
-            {
-                CAUsuario.Visible = false;
-            }
-            else if (puesto == "2")
-            {
-                CAUsuario.Visible = true;
-            }
+                if (puesto == "1")
+                {
+                    CAUsuario.Visible = false;
+                }
+                else if (puesto == "2")
+                {
+                    CAUsuario.Visible = true;
+                }
+           
         }
 
         protected void btnArqueos_Click(object sender, EventArgs e)

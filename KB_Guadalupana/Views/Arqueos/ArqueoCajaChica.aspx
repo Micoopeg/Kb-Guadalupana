@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
     <script>
 //import { write } from "@popperjs/core";
 
@@ -403,13 +406,19 @@
         <div style="flex-direction:column; display:flex; width:100%; margin-top:50px;">
             <asp:Button ID="Creararqueo" Width="100%" OnClick="creararqueo_Click" runat="server" CssClass="boton4" Text="Crear nuevo arqueo" />
              <asp:Button ID="Buscararqueo"  Width="100%" OnClick="buscararqueo_Click" runat="server" CssClass="boton4" Text="Buscar arqueo" />
-            </div>
-        <div id="EBuscar" runat="server" class="datosGenerales2">
-            <input id="CABuscarfecha" runat="server" onchange="traerArqueos();" Width="40%" type="date" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" required/>
-            <asp:DropDownList id="CAUsuario" runat="server" OnSelectedIndexChanged="CAUsuario_SelectedIndexChanged" Width="40%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-              <asp:DropDownList id="DropNumarqueo" runat="server" Width="35%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
-             <asp:LinkButton ID="btnArqueos" runat="server" OnClick="btnArqueos_Click" ClientIDMode="Static"></asp:LinkButton>
-            <asp:Button ID="Buscar" OnClick="buscar_Click" runat="server" Width="20%" CssClass="boton" Text="Buscar" />
+            </div><br />
+        <div id="EBuscar" style="flex-direction:column; width:500px" runat="server" class="datosGenerales2">
+            <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Fecha de realización</b></label>
+            <input id="CABuscarfecha" runat="server" onchange="traerArqueos();" Width="40%" type="date" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" /><br />
+
+            <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Usuario que lo realizó</b></label>
+            <asp:DropDownList id="CAUsuario" runat="server" OnSelectedIndexChanged="CAUsuario_SelectedIndexChanged" Width="33%" class="etiquetas" AutoPostBack="true"></asp:DropDownList><br />
+
+            <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Número de arqueo</b></label>
+              <asp:DropDownList id="DropNumarqueo" runat="server" Width="33%" class="etiquetas" AutoPostBack="true"></asp:DropDownList>
+             <asp:LinkButton ID="btnArqueos" runat="server" OnClick="btnArqueos_Click" ClientIDMode="Static"></asp:LinkButton><br />
+
+            <asp:Button ID="Buscar" OnClick="buscar_Click" runat="server" Width="33%" CssClass="boton" Text="Buscar" />
             </div>
         <div id="arqueo" runat="server" class="arqueo">
         <div id="area" runat="server">
@@ -734,6 +743,9 @@
             </div>
 
         </div>
+         <script>
+             $('#<%=CAUsuario.ClientID%>').chosen();
+         </script>
     </form>
 </body>
             <script type="text/javascript"> 

@@ -586,6 +586,11 @@
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\MantenimientosControl\controlCRM.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
+    <Content Include="Views\ProcesosJudiciales\AsignarProceso.aspx" />
+    <Content Include="Views\ProcesosJudiciales\Dashboard.aspx" />
+    <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
     <Content Include="Views\Seguridad\ModificarModulo.aspx" />
@@ -665,6 +670,7 @@
     <Compile Include="Controllers\ModeloEX.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
     <Compile Include="Controllers\Sentencia_arqueos.cs" />
+    <Compile Include="Controllers\Sentencia_juridico.cs" />
     <Compile Include="Controllers\Sentencia_seguridad.cs" />
     <Compile Include="DataMontos.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1195,6 +1201,41 @@
     </Compile>
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.designer.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\AsignarProceso.aspx.cs">
+      <DependentUpon>AsignarProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\AsignarProceso.aspx.designer.cs">
+      <DependentUpon>AsignarProceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.cs">
+      <DependentUpon>MenuPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.designer.cs">
+      <DependentUpon>MenuPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx.cs">
+      <DependentUpon>ProcesoJudicial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx.designer.cs">
+      <DependentUpon>ProcesoJudicial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx.cs">
+      <DependentUpon>ProcesosAsignadosJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx.designer.cs">
+      <DependentUpon>ProcesosAsignadosJuridico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.cs">
       <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>

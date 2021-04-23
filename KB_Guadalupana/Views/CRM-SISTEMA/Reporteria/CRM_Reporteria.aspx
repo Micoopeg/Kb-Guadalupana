@@ -30,8 +30,8 @@
                 <div class="container">
                     <center>
                     <span>Fecha:</span>
-<input type="date" id="fechainicio" runat="server" name="fecha-inicio" value="2018-07-22" min="2018-01-01"/>
-<input type="date" id="fechafin" runat="server" name="fecha-fin" value="2018-07-22" min="2018-01-01" />                        
+            <input type="date" id="fechainicio" runat="server" name="fecha-inicio" />
+            <input type="date" id="fechafin" runat="server" name="fecha-fin" />                        
                     </center>
                     <br /><br />
                         <div class="col-sm-3" style="border:double; color:black" >
@@ -85,7 +85,7 @@
                 <asp:ListItem Value="0">Tipo de servicio</asp:ListItem>
             </asp:DropDownList>
             <asp:DropDownList ID="comboestadosemaforo" AutoPostBack="true" OnSelectedIndexChanged="seleccionsemaforo_SelectedIndexChanged" runat="server">
-                <asp:ListItem Value="0">Estado de semaforo</asp:ListItem>
+                <asp:ListItem Value="0">Estado de semáforo</asp:ListItem>
             </asp:DropDownList>
             <asp:DropDownList ID="combodescripcionestado" runat="server">
                 <asp:ListItem Value="">Descripciòn del estado</asp:ListItem>

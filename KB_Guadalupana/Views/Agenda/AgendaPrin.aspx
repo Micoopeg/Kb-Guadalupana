@@ -44,7 +44,7 @@
   
 
            <div id="navegador" class="topnav">
-         <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
+         <a class="active" href="../Sesion/MenuBarra.aspx">Inicio</a>
          <a href="DashBoard.aspx" > Busqueda</a>
           <a  href="NuevaTarea.aspx" > Nueva Tarea</a>
           <a id="asignhome" runat="server" href="Av_AsignarTarea.aspx" > Asignar Tareas A</a>

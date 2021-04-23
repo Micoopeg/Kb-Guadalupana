@@ -140,7 +140,7 @@
 
 
      <div class="topnav">
-          <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
+          <a class="active" href="../Sesion/MenuBarra.aspx">Inicio</a>
           <a href="AgendaPrin.aspx"> Agenda</a>
            <a href="DashBoard.aspx" > Busqueda</a>
           <a href="NuevaTarea.aspx" > Nueva Tarea</a>

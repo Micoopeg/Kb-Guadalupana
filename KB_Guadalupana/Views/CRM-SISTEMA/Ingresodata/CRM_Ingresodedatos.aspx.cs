@@ -56,7 +56,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             }
             else
             {
-                String script = "alert('El usuario "+usuarioglobal+" no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Index.aspx';";
+                String script = "alert('El usuario "+usuarioglobal+" no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }
@@ -569,7 +569,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     //tiposervicio + contactadopor + cantidad + cantidaddecimal + "<br>");
 
                     string sig = logic.siguiente("crminfo_prospecto", "codcrminfoprospecto");
-                    string[] valores1 = { sig, dpiguardar, tiposervicio, "1", "2","2","1","1",telefono,correo,"0","0",Convert.ToString(cantidaddecimal),"0","0","0","2020-01-01","2020-01-01","","0",
+                    string[] valores1 = { sig, dpiguardar, tiposervicio, "1", "2","2","2","1",telefono,correo,"0","0",Convert.ToString(cantidaddecimal),"0","0","0","2020-01-01","2020-01-01","","0",
                         "0","0","0",contactadopor,""};
                     logic.insertartablas("crminfo_prospecto", valores1);
 

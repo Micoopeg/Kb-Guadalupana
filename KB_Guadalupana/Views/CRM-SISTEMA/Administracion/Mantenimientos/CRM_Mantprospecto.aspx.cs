@@ -108,27 +108,35 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
                 string[] valores = { txtcodigo.Value, txtdpi.Value, txtnombre.Value, txtapellido.Value, txtnombrecompleto.Value,"0"};
                 try
                 {
-                    if (validardpi(txtdpi.Value) == true)
+                    if (txtdpi.Value.Length == 13)
                     {
-                        logic.insertartablas("crminfogeneral_prospecto", valores);
-                        txtdpi.Value = "";
-                        txtnombre.Value = "";
-                        txtapellido.Value = "";
-                        txtnombrecompleto.Value = "";
-                        txtlistanegra.Value = "";
-                        lbleror.InnerText = "";
-                        string varinc = sn.obtenerfinal("crminfogeneral_prospecto", "codcrminfogeneralprospecto");
-                        txtcodigo.Value = varinc;
-                        llenargridviewmantenimiento();
-                        logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Mantenimiento Prospecto", "Registro guardado");
-                        String script = "alert('Los datos se han ingresado correctamente');";
-                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                        if (validardpi(txtdpi.Value) == true)
+                        {
+                            logic.insertartablas("crminfogeneral_prospecto", valores);
+                            txtdpi.Value = "";
+                            txtnombre.Value = "";
+                            txtapellido.Value = "";
+                            txtnombrecompleto.Value = "";
+                            txtlistanegra.Value = "";
+                            lbleror.InnerText = "";
+                            string varinc = sn.obtenerfinal("crminfogeneral_prospecto", "codcrminfogeneralprospecto");
+                            txtcodigo.Value = varinc;
+                            llenargridviewmantenimiento();
+                            logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Mantenimiento Prospecto", "Registro guardado");
+                            String script = "alert('Los datos se han ingresado correctamente');";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                        }
+                        else
+                        {
+                            lbleror.InnerText = "*ERROR - DPI INVALIDO*";
+
+                        }
                     }
                     else
                     {
-                        lbleror.InnerText = "*ERROR - DPI INVALIDO*";
-
-                    }                   
+                        String script = "alert('Verifique la cantidad de caracteres del número de DPI');";
+                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                    }                  
                 }
                 catch
                 {

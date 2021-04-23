@@ -648,6 +648,42 @@ namespace CRM_Guadalupana.Controllers
             }
 
         }
+
+        public string[] consultarconcampoingresocrm(string tabla, string campo, string dato)//metodo que obtiene la lista de los campos que requiere una tabla
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM " + tabla + " where " + campo + "='" + dato + "'", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();                
+                        if (reader.Read())
+                        {                       
+                            for (int p = 0; p < reader.FieldCount; p++)
+                            {
+                                miLista.Add(reader.GetString(p));
+                                i++;
+                            }
+                    }
+                    else
+                    {
+                        miLista.Add("0");
+                        Campos = miLista.ToArray();
+                        return Campos;// devuelve un arrgeglo con los campos   
+                    }
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -" + tabla); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
     }
 }
        

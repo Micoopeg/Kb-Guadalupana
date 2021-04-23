@@ -54,11 +54,6 @@
 						</a>
 					</li>  
 					<li class="li">
-						<a href="javascript:void(0);" class="links" onclick="redirigir3()"   >Generar nuevo
-							<span class="span fa fa-play"></span>
-						</a>
-					</li>  
-					<li class="li">
 						<a href="javascript:void(0);" class="links">Enviar Expediente
 							<span class="span fa fa-play"></span>
 						</a>
@@ -77,7 +72,7 @@
 			</li>
 
 			<li class="li">
-				<a href="javascript:void(0);" class="links">
+				<a href="javascript:void(0);" onclick="redirigir4()" class="links">
 					<span class="span fa fa-location-arrow"></span>Pendientes de envío
 				</a>
 			</li>
@@ -99,7 +94,7 @@
 			<br />
             <div class="grid">
             <div class="card-small">
-                <p class="card-small-views">Expedientes Generados</p>
+                <p class="card-small-views">Mensajería</p>
                 <p class="card-small-icon">
                      <span class="fa fa-folder-open"></span>
                 </p>
@@ -107,7 +102,7 @@
                 
             </div>
             <div class="card-small">
-                <p class="card-small-views">Expedientes Enviados</p>
+                <p class="card-small-views">En transito</p>
                 <p class="card-small-icon">
                     <span class="span fa fa-suitcase"></span>
                 </p>
@@ -115,7 +110,7 @@
                
             </div>
             <div class="card-small">
-                <p class="card-small-views">Expedientes por enviar</p>
+                <p class="card-small-views">Agencia</p>
                 <p class="card-small-icon">
                      <span class="fa fa-location-arrow"></span>
                 </p>
@@ -123,11 +118,35 @@
                
             </div>
             <div class="card-small">
-                <p class="card-small-views">Expedientes con hallazgos</p>
+                <p class="card-small-views">Mesa de control</p>
                 <p class="card-small-icon">
                      <span class="fa fa-eye"></span>
                 </p>
                 <p id="exphall" runat="server" class="card-small-number">3</p>
+              
+            </div>
+                 <div class="card-small">
+                <p class="card-small-views">Juridico</p>
+                <p class="card-small-icon">
+                     <span class="fa fa-eye"></span>
+                </p>
+                <p id="P1" runat="server" class="card-small-number">3</p>
+              
+            </div>
+                 <div class="card-small">
+                <p class="card-small-views">Archivo</p>
+                <p class="card-small-icon">
+                     <span class="fa fa-eye"></span>
+                </p>
+                <p id="P2" runat="server" class="card-small-number">3</p>
+              
+            </div>
+                 <div class="card-small">
+                <p class="card-small-views">Retenidos</p>
+                <p class="card-small-icon">
+                     <span class="fa fa-eye"></span>
+                </p>
+                <p id="P3" runat="server" class="card-small-number">3</p>
               
             </div>
             
@@ -137,8 +156,9 @@
          <asp:LinkButton ID="btninicio" runat="server" OnClick="btnInicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>
         <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnNuevo_Click" ClientIDMode="Static"></asp:LinkButton>
-       <%--   <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
-         <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
+       <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnpendiente" ClientIDMode="Static"></asp:LinkButton>
+
+       <%--  <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
        <asp:LinkButton ID="LinkButton8" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>--%>

@@ -10,6 +10,8 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
    <link rel="stylesheet" type="text/css" href="../../EXDiseños/ExtiloExEnvio.css" />
      <link type="text/css" rel="stylesheet" href="../../EXDiseños/estilolector.css" />
+      
+
     <title>Pendientes de envío</title>
 </head>
 <body>
@@ -53,23 +55,14 @@
 						<a href="javascript:void(0);" onclick="redirigir2()" class="links" style="padding:10px">Expedientes General
 							<span class="span fa fa-play"></span>
 						</a>
-					</li>  
-					<li class="li">
-						<a href="javascript:void(0);" class="links" onclick="redirigir3()" style="padding:10px" >Generar nuevo
-							<span class="span fa fa-play"></span>
-						</a>
-					</li>  
-					
+					</li> 					
 				</ul>
 			</li>
 
 			<li class="li">
 				<a href="javascript:void(0);" class="links">
 					<span class="span fa fa-eye"></span>Expedientes con Hallazgos
-					
 				</a>
-
-				
 			</li>
 
 			<li class="li">
@@ -86,150 +79,146 @@
 	</nav>
 </header>
       
-        <br /> <br />
+        
 
+         <center>
          
-
-
-
-       <center>
          
-            <h3 style=" margin-left: 20%; margin-right: 20%;">Pendiente de envío</h3>
+           <div >
+         <div class="row">
+             <div class="col-md-9">
+                  <center>
+
+             <h3 style=" margin-left: 30%; margin-right: 30%;">Pendiente de envío</h3>
+         </center>
+             </div>
+           <div class="col-md-2">
+
+           <div class="form-group"> 
+
+           <span id="span" runat="server" style="font-size:15px">Cod Mensajero: </span> <input id="txtcodigo" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Codigo Mensajero" required="required" tabindex="1" autofocus="autofocus"  />        
+           
+           </div>
+               </div>
+             </div>
+
+             <div class="row">
+           <div class="col-md-9"></div>
+           <div class="col-md-2">
+           <div class="form-group"> 
+               <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btnorden_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Generar Orden" /> </asp:LinkButton>
           
-      </center>
+           </div>
+               </div>
+             </div>
+               </div>
+                 
+       </center>
+       
+        
+
+
+
+    
         <br />
  
-
+       
 
         <div class="container">
 
   <div class="row">
-    <div class="col-md-4">
-
-      <h3>INFORMACIÓN DEL EXPEDIENTE</h3>
-      <form id="datos" action="">
-  
-        <asp:Label ID="labeldatos" runat="server" Width="100%" runat="server" type="submit" style="background-color:#69a43c; color:white;"   class="btn btn-primary form-control"  ><span>*</span>Compruebe los datos </asp:Label>
-          <asp:Label ID="correcto"  runat="server" Visible="false" ForeColor="Red"> Datos Incompletos </asp:Label>
-           <asp:Label ID="modificado"  runat="server" Visible="false" ForeColor="Green"> Datos modificados </asp:Label>
-          <div class="form-group">
-            <div class="row">
-
-               <div class="col-sm-6" >
-                    <span>No. Expediente: </span> <input id="CODEX" onkeypress="return numeros(event);" disabled="disabled" runat="server" class="form-control" type="text" name="codigo" placeholder="No Exp" required="required" tabindex="1" autofocus="autofocus"  /> 
-
-                </div>
-                      <div class="col-sm-6" >
-                    <span>No. Crédito: </span> <input id="NOCRED" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="No Credito" required="required" tabindex="2" autofocus="autofocus"  /> 
-
-                </div>
-            </div>
-               
-            </div>
-           <div class="form-group">
-               <div class="row" >
-                   <div class="col-sm-6" > 
-                        <span>CIF: </span> 
-        <input id="CIF" onkeypress="return numeros(event);" disabled="disabled" runat="server" class="form-control" type="text" name="codigo" placeholder="CIF" required="required" tabindex="3" autofocus="autofocus"  /> 
-             <span>Desembolso: </span> 
-        <input id="MONTODES" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Monto" required="required" tabindex="4" autofocus="autofocus"  /> 
-                
-                       
-                       <%--  <asp:DropDownList TabIndex="2" ID="combotiposervicio" runat="server" class="form-control" name="tiposervicio" placeholder="Tipo de servicio" required="required">
-                   <asp:ListItem>Servicio 1</asp:ListItem>
-               </asp:DropDownList>--%>
-                   </div>
-
-                   <div class="col-sm-6" >
-                                    <span>Monto: </span> 
-        <input id="MONTO" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Monto" required="required" tabindex="4" autofocus="autofocus"  /> 
-               
-                   </div>
-
-               </div>
-        
-            </div>
-        <div class="form-group">
-
-           <div class="row" >
-               <div class="col-sm-6">
-                    <span>Primer Nombre: </span> <input  id="PNOM" tabindex="5" runat="server"  class="form-control" type="text" name="nombre" placeholder="Nombre" required="required" />
-
-               </div>
-                <div class="col-sm-6">
-                     <span>Segundo Nombre: </span> <input  id="SNOM" tabindex="6" runat="server"  class="form-control" type="text" name="nombre" placeholder="Nombre" required="required" />
-               </div>
-
-                <div class="col-sm-6">
-                     <span>Primer Apellido: </span> <input  id="PAPELL" tabindex="7" runat="server"  class="form-control" type="text" name="nombre" placeholder="Apellido" required="required" />
-                    </div>
-               <div class="col-sm-6">
-                     <span>Segundo Apellido: </span> <input  id="SAPELL" tabindex="8" runat="server"  class="form-control" type="text" name="nombre" placeholder="Apellido" required="required" />
-                    </div>
-           </div>
-        
-        </div>
-            <div class="form-group">
-                <div class="row" >
-                    <div class="col-sm-6">
-                         <span>Tipo de crédito: </span> 
-                            <asp:DropDownList TabIndex="10" ID="tipocredito" runat="server" class="form-control" name="tiposervicio" placeholder="Tipo de servicio" required="required" >
-               </asp:DropDownList>
-                    </div>
-                       <div class="col-sm-6">
-                           <asp:CheckBox ID="check" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" />
-                           <span>Codigo de barras: </span>  <input id="barrascodigo" onkeypress="return numeros(event);"  runat="server" disabled="disabled" class="form-control" type="text" name="codigo" placeholder="1000000000001 " required="required" tabindex="11" autofocus="autofocus"  /> 
-                        
-                    </div>
-                </div>
+        <h3>Selección de Expedientes</h3>
+    <div class="col-md-12" style="overflow-x: auto;" >
       
-        </div>
-         
-          <div>
-               <asp:LinkButton ID="btnverificar" Width="100%" runat="server" class="btn btn-primary form-control" type="submit" OnClick="btnverificar_Click" > Verificar</asp:LinkButton>
-              <asp:LinkButton ID="btnmodificar" Width="100%" runat="server" class="btn btn-primary form-control" type="submit" OnClick="btnmodificar_Click"  > Modificar</asp:LinkButton>
-              <asp:LinkButton ID="btnguardar" Width="100%" runat="server" class="btn btn-primary form-control" type="submit" OnClick="btnguardar_Click" Visible="false" > Enviar</asp:LinkButton>
-          </div>          
-      </form>
-    </div>      
-    <div class="col-md-8" style="overflow-x: auto;" >
-      <h3>DATOS</h3>
           <asp:GridView ID="DGRVWPEN" CssClass="table table-striped" style="width: 400px;text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" BorderStyle="Solid" OnSelectedIndexChanged="DGRVWPEN_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="DGRVWPEN_PageIndexChanging" >
                     <Columns>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No">
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Fecha/Hora Desembolso">
                            <ItemTemplate>
-                           <asp:Label ID="lblcodex"  Width="30px" Text='<%# Eval("codexp") %>' runat="server" />
+                           <asp:Label ID="lblfecha"  Width="150px" Text='<%# Eval("gen_fechaprestamo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Fecha/Hora">
+                        <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="CIF">
                            <ItemTemplate>
-                           <asp:Label ID="lblfecha"  Width="150px" Text='<%# Eval("ex_fechaev") %>' runat="server" />
+                           <asp:Label ID="lblcif"  Width="80px" Text='<%# Eval("cifgeneral") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                        <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Credito">
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Prestamo">
                            <ItemTemplate>
-                           <asp:Label ID="lblnumcred"  Width="150px" Text='<%# Eval("ex_numcredito") %>' runat="server" />
+                           <asp:Label ID="lblnumcred"  Width="90px" Text='<%# Eval("gen_numcredito") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Tipo">
+                        <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Asociado">
                            <ItemTemplate>
-                           <asp:Label ID="lblnomtipo"  Width="150px" Text='<%# Eval("ex_nomtipo") %>' runat="server" />
+                           <asp:Label ID="lblaso"  Width="250px" Text='<%# Eval("nombrecompleto")%>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <%-- <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Monto">
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Monto">
                            <ItemTemplate>
-                           <asp:Label ID="lblmonto"  Width="150px" Text='<%# Eval("ex_monto") %>' runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>--%>
-                           <%-- <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="CIF">
-                           <ItemTemplate>
-                           <asp:Label ID="lblcif"  Width="150px" Text='<%# Eval("ex_cif") %>' runat="server" />
+                           <asp:Label ID="lblmonto"  Width="90px" Text='<%# Eval("gen_monto") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                        --%>
+                           <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Tipo">
+                           <ItemTemplate>
+                           <asp:Label ID="lbltipo"  Width="100px" Text='<%# Eval("ex_nomtipo") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     
 
-                        <asp:ButtonField Text="Consultar" CommandName="Select" ItemStyle-Width="150" ItemStyle-CssClass="seleccionarregistrogridview">
+                        <asp:ButtonField Text="Seleccionar" CommandName="Select" ItemStyle-Width="150" ItemStyle-CssClass="seleccionarregistrogridview">
+                            <ItemStyle Width="150px" >  </ItemStyle>
+
+                            </asp:ButtonField>
+                   
+
+                     </Columns>
+        <HeaderStyle CssClass="prueba" Width="300px" ForeColor="White"></HeaderStyle>
+        </asp:GridView>
+
+    </div>
+        
+  </div>
+
+            <div class="row">
+        <h3>Expedientes a enviar</h3>
+    <div class="col-md-12" style="overflow-x: auto;" >
+      
+         <asp:GridView ID="GDVTEMP" CssClass="table table-striped" style="width: 400px;text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" BorderStyle="Solid" OnSelectedIndexChanged="GDVTEMP_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="DGRVWPEN_PageIndexChanging" >
+                    <Columns>
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Fecha/Hora Desembolso">
+                           <ItemTemplate>
+                           <asp:Label ID="lblfecha"  Width="150px" Text='<%# Eval("gen_fechaprestamo") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                        <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="CIF">
+                           <ItemTemplate>
+                           <asp:Label ID="lblcif"  Width="80px" Text='<%# Eval("cifgeneral") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Prestamo">
+                           <ItemTemplate>
+                           <asp:Label ID="lblnumcred"  Width="90px" Text='<%# Eval("gen_numcredito") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                        <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Asociado">
+                           <ItemTemplate>
+                           <asp:Label ID="lblaso"  Width="250px" Text='<%# Eval("nombrecompleto")%>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Monto">
+                           <ItemTemplate>
+                           <asp:Label ID="lblmonto"  Width="90px" Text='<%# Eval("gen_monto") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                           <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Tipo">
+                           <ItemTemplate>
+                           <asp:Label ID="lbltipo"  Width="100px" Text='<%# Eval("ex_nomtipo") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     
+
+                        <asp:ButtonField Text="Eliminar" CommandName="Select" ItemStyle-Width="150" ItemStyle-CssClass="seleccionarregistrogridview">
                             <ItemStyle Width="150px" >  </ItemStyle>
 
                             </asp:ButtonField>
@@ -244,7 +233,8 @@
   </div>
 
 </div>
-       
+        <br />
+          
        
           <asp:LinkButton ID="btninicio" runat="server" OnClick="btnInicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>

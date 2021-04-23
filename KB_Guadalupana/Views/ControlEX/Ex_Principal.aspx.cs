@@ -21,8 +21,8 @@ namespace KB_Guadalupana.Views.ControlEX
             usernombre = Convert.ToString(Session["sesion_usuario"] = "pgecasasola");
             nombrepersona = Convert.ToString(Session["Nombre"] = "Edgar Casasola");
 
-            NombreAgencia.InnerText = Convert.ToString( Session["Nombre"] = exc.agencia(usernombre));
-            
+            NombreAgencia.InnerText = Convert.ToString(Session["Nombre"] = exc.agencia(usernombre));
+
             now();
 
             coduser = exc.obtenercoduser(usernombre);
@@ -59,12 +59,12 @@ namespace KB_Guadalupana.Views.ControlEX
 
 
         }
-       
 
-        protected void btnInicio_Click(object sender ,  EventArgs e) {
+
+        protected void btnInicio_Click(object sender, EventArgs e) {
 
             Response.Redirect("../Sesion/MenuBarra.aspx");
-        
+
         }
 
         protected void btnEXGEN_Click(object sender, EventArgs e)
@@ -78,6 +78,11 @@ namespace KB_Guadalupana.Views.ControlEX
 
             Response.Redirect("Ex_GenExpedientes.aspx");
 
+        }
+        protected void btnpendiente(object sender, EventArgs e)
+        {
+
+            Response.Redirect("Ex_pendienteAg.aspx");
         }
     }
 }

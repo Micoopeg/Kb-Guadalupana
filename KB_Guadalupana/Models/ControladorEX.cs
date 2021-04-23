@@ -24,6 +24,12 @@ namespace KB_Guadalupana.Models
 
         //conteo expedientes
 
+        public string contpdf(string usuario)
+        {
+
+            string datos = mex.contpdf(usuario);
+            return datos;
+        }
         public string contenv(string usuario)
         {
 
@@ -57,11 +63,11 @@ namespace KB_Guadalupana.Models
             return ean13;
         }
 
-        public string obtenercodcred(string codexp)
+        public string obtenerrol(string user)
         {
 
-            string cod = mex.obtenercodcred(codexp);
-            return cod;
+            string rol = mex.obtenerrol(user);
+            return rol;
         }
         public string obtenercodncred(string ncred)
         {

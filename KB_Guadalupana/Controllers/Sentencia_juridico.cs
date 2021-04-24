@@ -9,11 +9,11 @@ namespace KB_Guadalupana.Controllers
 {
     public class Sentencia_juridico
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
 
         public void guardarcobros(string sig, string numproceso, string usuario, string numcredito, string cif, string nombre, string fechades, string plazo, string tasa, string montodes, string saldo, string valor)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -26,7 +26,7 @@ namespace KB_Guadalupana.Controllers
 
         public void agregardemandado(string id, string nombres, string apellidos)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 sqlCon.Open();
                 string query = "INSERT INTO pj_demandados VALUES('" + id + "', '" + nombres + "', '" + apellidos + "')";
@@ -38,7 +38,7 @@ namespace KB_Guadalupana.Controllers
         public string siguiente(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -62,7 +62,7 @@ namespace KB_Guadalupana.Controllers
 
         public void guardardocumentoexp(string id, string tipodoc, string archivo, string nombredoc, string credito)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -81,7 +81,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerrutadocumento(string id)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -99,14 +99,14 @@ namespace KB_Guadalupana.Controllers
 
         public string[] obtenerinforcredito(string numcredito)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[40];
                 int i = 0;
 
                 try
                 {
-                    string consultaGraAsis = "SELECT * FROM gen_credito WHERE gen_numprestamo = '" + numcredito + "'";
+                    string consultaGraAsis = "SELECT * FROM gen_credito2 WHERE gen_numprestamo = '" + numcredito + "'";
 
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
@@ -127,7 +127,7 @@ namespace KB_Guadalupana.Controllers
 
         public void asignarcreditojuridico(string id, string numcredito, string fecha, string estado)
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -146,7 +146,7 @@ namespace KB_Guadalupana.Controllers
         public string datetime()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string camporesultante = "";
                 try

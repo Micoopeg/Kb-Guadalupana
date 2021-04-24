@@ -11,6 +11,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
     public partial class AsignarProceso : System.Web.UI.Page
     {
         Sentencia_juridico sn = new Sentencia_juridico();
+        Conexion conexiongeneral = new Conexion();
 
         protected void Page_Load(object sender, EventArgs e)
         {

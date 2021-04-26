@@ -42,6 +42,15 @@ namespace KB_Guadalupana.Views.Hallazgos
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl B1;
 
         /// <summary>
+        /// Control GridViewEjemplo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewEjemplo;
+
+        /// <summary>
         /// Control GridViewReporteH.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,24 @@ namespace KB_Guadalupana.Views.Hallazgos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewReporteH;
+
+        /// <summary>
+        /// Control btnExcel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExcel;
+
+        /// <summary>
+        /// Control Button1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
         /// Control GridView1.

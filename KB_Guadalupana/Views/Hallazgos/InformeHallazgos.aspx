@@ -25,7 +25,9 @@
      }
     table th{
            background-color:#69a43c;
-           color: white;
+            color: white;
+            font-weight: bold;
+            text-align: center;
            padding: 2px;
            font-size:15px;
            justify-content: center;
@@ -131,28 +133,23 @@ body {
   color: white;
 }
 
+
+
 .button {
+  background-color: #69a43c; /* Green */
   border: none;
   color: white;
-  padding: 4px 32px;
+  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
   cursor: pointer;
+  float: left;
 }
 
-.button1 {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #69a43c;
-}
-
-.button1:hover {
-  background-color: #69a43c;
-  color: white;
+.button:hover {
+  background-color: #003563;
 }
 
  .fa-check-circle::before 
@@ -163,6 +160,11 @@ body {
   color: #003563;
   text-decoration: none;
 }
+
+ .prueba
+ {
+     background-color: #003563;
+ }
 
 
 </style>
@@ -188,11 +190,17 @@ body {
                 <asp:Button ID="Buscar" runat="server" CssClass="button button1" OnClick="iniciarsesion_Click" Text="Generar Reporte" />
                 <input id="Text6" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
             </div><br />--%>
+            <asp:GridView ID="GridViewEjemplo" runat="server"></asp:GridView>
+
             
+        </div>
+
+
               <div class="tabla">
-     <asp:GridView ID="GridViewReporteH" CssClass="mGrid" style="width: 100%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="White"
+     <asp:GridView ID="GridViewReporteH" CssClass="mGrid" style="width: 97%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="black"
     AutoGenerateColumns="False" BorderStyle="Solid"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte">
-                     <Columns>
+        
+         <Columns>
                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No.">
                         <ItemTemplate>
                            <asp:Label ID="idhallazgo" Text='<%# Eval("id_shhallazgo") %>' runat="server" />
@@ -238,16 +246,19 @@ body {
                            <asp:Label ID="Estado7" Text='<%# Eval("Comen") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estatus">
-                           <ItemTemplate>
+                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estatus" >
+                           <ItemTemplate >
                            <asp:Label ID="Estado7" Text='<%# Eval("sh_nombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                      </Columns>
-     <HeaderStyle CssClass="prueba"  ForeColor="White"></HeaderStyle>
+     <HeaderStyle CssClass="prueba"  ForeColor="white" BackColor="#003563" ></HeaderStyle>
         </asp:GridView>
 
-                    <asp:GridView ID="GridView1" CssClass="mGrid" style="width: 100%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="White"
+                  <asp:Button ID="btnExcel" class="button" style="margin-top: -500px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel1_Click"/>
+                  <asp:Button ID="Button1" class="button" style="margin-top: -1025px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel_Click"/>
+
+                    <asp:GridView ID="GridView1" CssClass="mGrid" style="width: 97%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="black"
     AutoGenerateColumns="False" BorderStyle="Solid"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte">
                      <Columns>
                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No.">
@@ -301,7 +312,7 @@ body {
                         </ItemTemplate>
                     </asp:TemplateField>
                      </Columns>
-     <HeaderStyle CssClass="prueba"  ForeColor="White"></HeaderStyle>
+     <HeaderStyle CssClass="prueba"  ForeColor="white" BackColor="#003563"></HeaderStyle>
         </asp:GridView>
     </div>
         </div>

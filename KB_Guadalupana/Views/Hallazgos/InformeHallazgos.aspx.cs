@@ -29,6 +29,41 @@ namespace KB_Guadalupana.Views.Hallazgos
             llenargridviewreporte();
         }
 
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.AddHeader("content-disposition", "attachment;filename = MatrizdeSeguimiento.xls");
+            Response.ContentType = "application/vnd.xls";
+
+            System.IO.StringWriter stringWriter = new System.IO.StringWriter();
+
+            System.Web.UI.HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
+            GridView1.RenderControl(htmlTextWriter);
+            Response.Write(stringWriter.ToString());
+
+            Response.End();
+        }
+
+        protected void btnExcel1_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.AddHeader("content-disposition", "attachment;filename = MatrizdeSeguimiento.xls");
+            Response.ContentType = "application/vnd.xls";
+
+            System.IO.StringWriter stringWriter = new System.IO.StringWriter();
+
+            System.Web.UI.HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
+            GridViewReporteH.RenderControl(htmlTextWriter);
+            Response.Write(stringWriter.ToString());
+
+            Response.End();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
+        }
+
         public void llenargridviewreporte()
         {
             trimestre = Session["Mes1"].ToString();
@@ -47,6 +82,7 @@ namespace KB_Guadalupana.Views.Hallazgos
             if((estado == "2") || (estado == "3") || (estado == "1"))
             {
                 GridView1.Visible = false;
+                btnExcel.Visible = true;
                 using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
                 {
                     try
@@ -77,6 +113,7 @@ namespace KB_Guadalupana.Views.Hallazgos
             else
             {
                 GridViewReporteH.Visible = false;
+                btnExcel.Visible = false;
                 using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
                 {
                     try

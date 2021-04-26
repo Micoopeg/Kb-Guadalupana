@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Reporte.aspx.cs" Inherits="KB_Guadalupana.Views.Sesion.Reporte" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VistaHallazgo.aspx.cs" Inherits="KB_Guadalupana.Views.Hallazgos.VistaHallazgo" %>
 
 <!DOCTYPE html>
 
@@ -145,18 +145,18 @@ body {
 </style>
 </head>
 <body>
-    <center><img class="sobre" src="../../Imagenes/EP-Guadalupana.png"/></center>
+    <center><img class="sobre" src="Imagenes/SH-Guadalupana.png"/></center>
     <div class="menu"></div>
     <form id="form1" runat="server">
           <div class="topnav">
-            <a class="active" href="ReportesAdmin/ReporteAdmin.aspx">Regresar</a>
-            <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Reporte Estado Patrimonial Usuarios</b></span>
+            <a class="active" href="ConsultarHallazgos.aspx">Regresar</a>
+            <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Consulta Hallazgos Creados</b></span>
             <a href="CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
         <br />
         <br />
         <div class="general">
-             <div style="display:flex; align-content:center;align-items:center; justify-content:center; flex-direction:row">
+            <%-- <div style="display:flex; align-content:center;align-items:center; justify-content:center; flex-direction:row">
                 <input type="number" runat="server"  id="RBuscarcif" style="font-size: 20px;width: 10%;border:0;" placeholder="Ingrese CIF" class="etiquetas"/>
                 <asp:Button ID="RBuscar" runat="server" CssClass="button button1" OnClick="buscar_Click" Text="Buscar" />
                 <asp:Button ID="VerTodos" runat="server" CssClass="button button1" OnClick="VerTodos_Click" Text="Ver todos" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -164,34 +164,43 @@ body {
                 <input type="number" runat="server"  id="RCif" style="font-size: 20px;width: 10%;border:0;" placeholder="CIF" class="etiquetas" readonly="readonly"/>
                 <asp:Button ID="Buscar" runat="server" CssClass="button button1" OnClick="iniciarsesion_Click" Text="Generar Reporte" />
                 <input id="Text6" visible="false" runat="server" style="width: 20.0%;" type="text" class="tampe"   placeholder="Religion" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-            </div><br />
+            </div><br />--%>
             
               <div class="tabla">
-     <asp:GridView ID="GridViewReporte" CssClass="mGrid" style="width: 950px;text-align:center;text-decoration: none;Color: black;" runat="server"  HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte" BorderStyle="Solid">
+     <asp:GridView ID="GridViewReporteH" CssClass="mGrid" style="width: 950px;text-align:center;text-decoration: none;Color: black;" runat="server"  HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" BorderStyle="Solid"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte">
                      <Columns>
-                            <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="ID">
-                           <ItemTemplate>
-                           <asp:Label ID="lblcif" Text='<%# Eval("codepinformaciongeneralcif") %>' runat="server" />
+                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="ID">
+                        <ItemTemplate>
+                           <asp:Label ID="idhallazgo" Text='<%# Eval("id_shhallazgo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre">
-                           <ItemTemplate>
-                           <asp:Label ID="lblnombre" Text='<%# Eval("gen_usuarionombre") %>' runat="server" />
+                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Rubro">
+                        <ItemTemplate>
+                           <asp:Label ID="lblrubro" Text='<%# Eval("sh_rubro") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                        
-                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="CIF">
+                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Mes">
                            <ItemTemplate>
-                           <asp:Label ID="lblnumcif" Text='<%# Eval("ep_informaciongeneralcif") %>' runat="server" />
+                           <asp:Label ID="Estado1" Text='<%# Eval("sh_mes") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado">
+                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Gerencia">
                            <ItemTemplate>
-                           <asp:Label ID="Estado" Text='<%# Eval("Tipo") %>' runat="server" />
+                           <asp:Label ID="Estado2" Text='<%# Eval("sh_gerencianombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                        <asp:ButtonField ItemStyle-Font-Underline="false" ItemStyle-CssClass="fa-check-circle"  Text="Seleccionar" CommandName="Select" ItemStyle-Width="150" >
+                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Area">
+                           <ItemTemplate>
+                           <asp:Label ID="Estado3" Text='<%# Eval("sh_areanombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado">
+                           <ItemTemplate>
+                           <asp:Label ID="Estado4" Text='<%# Eval("sh_nombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                        <asp:ButtonField ItemStyle-Font-Underline="false" ItemStyle-CssClass="fa-check-circle"  Text="Editar" CommandName="Select" ItemStyle-Width="150" >
                             <ItemStyle Width="120px"></ItemStyle>
                          </asp:ButtonField>
                      </Columns>
@@ -207,3 +216,4 @@ body {
 </body>
     
 </html>
+

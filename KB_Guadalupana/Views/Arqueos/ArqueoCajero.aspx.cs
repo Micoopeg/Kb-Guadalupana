@@ -196,6 +196,7 @@ namespace Modulo_de_arqueos.Views
         protected void operar_Click(object sender, EventArgs e)
         {
             Session["op"] = "1";
+            Session["siguiente"] = "0";
             try
                 {
                 //SUMA DE BILLETES

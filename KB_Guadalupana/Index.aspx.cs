@@ -54,8 +54,8 @@ namespace Login_Web
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No se puede autenticar con las credenciales proporcionadas');", true);
             }
 
-            //Session["sesion_usuario"] = "pggteo";
-            //Session["Nombre"] = "Diego Jose Gomez Giron";
+            //Session["sesion_usuario"] = "pgaortiz";
+            //Session["Nombre"] = "Aida Jimena Ortiz Delgado";
             //Response.Redirect("Views/Sesion/MenuBarra.aspx");
         }
 

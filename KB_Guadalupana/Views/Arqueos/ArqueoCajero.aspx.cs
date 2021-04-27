@@ -599,6 +599,7 @@ namespace Modulo_de_arqueos.Views
             if (puesto == "1")
             {
                 CAUsuario.Visible = false;
+                TituloUsuario.Visible = false;
             }
             else if (puesto == "2")
             {

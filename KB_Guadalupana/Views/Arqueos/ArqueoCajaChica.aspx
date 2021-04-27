@@ -411,7 +411,7 @@
             <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Fecha de realización</b></label>
             <input id="CABuscarfecha" runat="server" onchange="traerArqueos();" Width="40%" type="date" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 10px;padding: 5px;width:30%" /><br />
 
-            <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Usuario que lo realizó</b></label>
+            <span id="TituloUsuario" runat="server" style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Usuario que lo realizó</b></span>
             <asp:DropDownList id="CAUsuario" runat="server" OnSelectedIndexChanged="CAUsuario_SelectedIndexChanged" Width="33%" class="etiquetas" AutoPostBack="true"></asp:DropDownList><br />
 
             <label style="font-size:13px;display:flex;justify-content:flex-start; width:33%"><b>Número de arqueo</b></label>

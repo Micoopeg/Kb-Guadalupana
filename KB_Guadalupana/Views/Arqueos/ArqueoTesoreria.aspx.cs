@@ -651,6 +651,7 @@ namespace Modulo_de_arqueos.Views
             {
                 llenarcomboarqueos();
                 CAUsuario.Visible = false;
+                TituloUsuario.Visible = false;
             }
             else if (puesto == "2")
             {

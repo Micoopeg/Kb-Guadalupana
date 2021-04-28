@@ -60,6 +60,15 @@ namespace KB_Guadalupana.Views.Hallazgos
         protected global::System.Web.UI.HtmlControls.HtmlInputText Totales;
 
         /// <summary>
+        /// Control Text2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
+
+        /// <summary>
         /// Control form1.
         /// </summary>
         /// <remarks>
@@ -121,5 +130,14 @@ namespace KB_Guadalupana.Views.Hallazgos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton iniciar;
+
+        /// <summary>
+        /// Control eli.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton eli;
     }
 }

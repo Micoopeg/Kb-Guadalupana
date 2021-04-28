@@ -26,7 +26,8 @@ namespace KB_Guadalupana.Views.Hallazgos
             MostrarSol();
             MostrarNuevos();
             MostrarTtotal();
-            if(!IsPostBack)
+            MostrarEliminados();
+            if (!IsPostBack)
             {
                 llenarcombosucursal();
             }
@@ -78,6 +79,16 @@ namespace KB_Guadalupana.Views.Hallazgos
             for (int i = 0; i < var1.Length; i++)
             {
                 Totales.Value = Convert.ToString(var1[0]);
+
+            }
+        }
+
+        public void MostrarEliminados()
+        {
+            string[] var1 = sen.consultarTotal6();
+            for (int i = 0; i < var1.Length; i++)
+            {
+                Text2.Value = Convert.ToString(var1[0]);
 
             }
         }
@@ -140,6 +151,11 @@ namespace KB_Guadalupana.Views.Hallazgos
             Session["Estado"] = Estado.Value;
 
             Response.Redirect("VistaHallazgo.aspx");
+        }
+
+        protected void elimi_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("VistaEliminar.aspx");
         }
     }
 }

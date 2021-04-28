@@ -266,19 +266,19 @@ padding: 8px;
   <form  runat="server" style="margin-top: 70px;">
     <div class="inset">
         <p>
-          <a href="CrearHallazgo.aspx" class="button" style="vertical-align:middle"><span>Nuevo Hallazgo</span></a>
+          <a id="Crear" runat="server" href="CrearHallazgo.aspx" class="button" style="vertical-align:middle"><span>Nuevo Hallazgo</span></a>
             <br/>
             <br/>
-          <a href="ConsultarHallazgos.aspx"  class="button" style="vertical-align:middle"><span>Consultar Hallazgos</span></a> 
+          <a id="Consultar" runat="server" href="ConsultarHallazgos.aspx"  class="button" style="vertical-align:middle"><span>Consultar Hallazgos</span></a> 
             <br/>
             <br/>
-          <a href="MatrizHallazgos.aspx" class="button" style="vertical-align:middle"><span>Matriz de Seguimiento</span></a> 
+          <a id="Matriz" runat="server" href="MatrizHallazgos.aspx" class="button" style="vertical-align:middle"><span>Matriz de Seguimiento</span></a> 
             <br/>
             <br/>
-          <a href="ConsultaHallazgo.aspx" class="button" style="vertical-align:middle"><span>Ver Hallazgos</span></a> 
+          <a id="Consulta" runat="server" href="ConsultaHallazgo.aspx" class="button" style="vertical-align:middle"><span>Ver Hallazgos</span></a> 
             <br/>
             <br/>
-          <a href="MantenimientoGerencias.aspx" class="button" style="vertical-align:middle;background-color: orange;"><span>Mantenimiento Gerencias</span></a> 
+          <a id="Mantenimiento" runat="server" href="MantenimientoGerencias.aspx" class="button" style="vertical-align:middle;background-color: orange;"><span>Mantenimiento Gerencias</span></a> 
         </p>
     </div>
 </form>

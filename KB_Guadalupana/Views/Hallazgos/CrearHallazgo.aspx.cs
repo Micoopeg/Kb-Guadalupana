@@ -24,14 +24,14 @@ namespace KB_Guadalupana.Views.Hallazgos
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 llenarcombosucursal();
                 ConsultaId();
             }
         }
 
-        public void llenarcombosucursal()  
+        public void llenarcombosucursal()
         {
             //using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
             //{
@@ -52,7 +52,7 @@ namespace KB_Guadalupana.Views.Hallazgos
             //}
         }
 
-        public void llenarcomboarea(long codtiposucursal)  
+        public void llenarcomboarea(long codtiposucursal)
         {
             //using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
             //{
@@ -84,7 +84,7 @@ namespace KB_Guadalupana.Views.Hallazgos
         {
             if ((Rubro.Value == null) || (Rubro.Value == ""))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El area de Rubro no puede estar vacia. "+ Rubro.Value + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El area de Rubro no puede estar vacia. " + Rubro.Value + "');", true);
             }
             //else if (IGAgencia1.Text == "[Gerencias]")
             //{
@@ -113,7 +113,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                     string ext = System.IO.Path.GetExtension(archivo.FileName);
                     ext = ext.ToLower();
 
-                    if((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
+                    if ((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
                     {
                         string idvalor = Session["IDH"].ToString();
 
@@ -122,7 +122,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                         archivo.SaveAs(Server.MapPath("Archivos/" + idvalor + archivo.FileName));
 
                         string sig199 = logic.siguiente("sh_hallazgo ", "id_shhallazgo");
-                        string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, "", "5" };
+                        string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, "0", "5" };
                         logic.insertartablas("sh_hallazgo", valores199);
                     }
                     else
@@ -133,7 +133,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                 else
                 {
                     string sig199 = logic.siguiente("sh_hallazgo ", "id_shhallazgo");
-                    string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, "null", Recomendacion.Value, MesH.Value, Año.Value, "", "5" };
+                    string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, "null", Recomendacion.Value, MesH.Value, Año.Value, "0", "5" };
                     logic.insertartablas("sh_hallazgo", valores199);
                 }
 

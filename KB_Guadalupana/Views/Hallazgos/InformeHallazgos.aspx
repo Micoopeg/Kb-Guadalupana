@@ -194,10 +194,12 @@ body {
 
             
         </div>
-
+        <asp:Button ID="btnExcel" class="button" style="margin-top: -60px;position: absolute;right: 631px;" runat="server" Text="Exportar a Excel" OnClick="btnExcel1_Click"/>
+                  <asp:Button ID="Button1" class="button" style="margin-top: -930px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel_Click"/>
+                    
 
               <div class="tabla">
-     <asp:GridView ID="GridViewReporteH" CssClass="mGrid" style="width: 97%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="black"
+     <asp:GridView ID="GridViewReporteH" CssClass="mGrid"  style="width: 90%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="black"
     AutoGenerateColumns="False" BorderStyle="Solid"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte">
         
          <Columns>
@@ -236,7 +238,12 @@ body {
                            <asp:Label ID="Estado5" Text='<%# Eval("sh_recomendacion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha Repuesta">
+                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Usuario Repuesta">
+                           <ItemTemplate>
+                           <asp:Label ID="Estado6" Text='<%# Eval("sh_usuario") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                      <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha Repuesta">
                            <ItemTemplate>
                            <asp:Label ID="Estado6" Text='<%# Eval("Fecha") %>' runat="server" />
                         </ItemTemplate>
@@ -255,10 +262,8 @@ body {
      <HeaderStyle CssClass="prueba"  ForeColor="white" BackColor="#003563" ></HeaderStyle>
         </asp:GridView>
 
-                  <asp:Button ID="btnExcel" class="button" style="margin-top: -500px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel1_Click"/>
-                  <asp:Button ID="Button1" class="button" style="margin-top: -1025px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel_Click"/>
-
-                    <asp:GridView ID="GridView1" CssClass="mGrid" style="width: 97%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="black"
+                  
+                  <asp:GridView ID="GridView1" CssClass="mGrid" style="width: 97%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="black"
     AutoGenerateColumns="False" BorderStyle="Solid"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte">
                      <Columns>
                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No.">

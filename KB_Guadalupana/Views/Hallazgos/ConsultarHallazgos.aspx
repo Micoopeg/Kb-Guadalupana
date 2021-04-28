@@ -260,10 +260,17 @@ body {
                         <label style="color:white;text-align: center;">Total Hallazgos</label>
                         <input style="color:darkorange;background-color:#003563;font-weight: bold;text-align: center;font-size: 30px;" type="text" runat="server" id="Totales" disabled/>
                     </p>
+                     <p class="col-md-6">
+                        <label style="color:white;text-align: center;">Eliminados</label>
+                        <input style="color:#FF0B00;background-color:#003563;font-weight: bold;text-align: center;font-size: 30px;" type="text" runat="server" id="Text2" disabled/>
+                    </p>
                 </div>
             </div>
         </form>
     </div>
+     <p class="p-container">
+                <a runat="server" class="bo" style="margin-left: -430px; margin-top: 13px;position: absolute;" onclick="eliminados()"  >Reporte Eliminados</a>
+            </p>
     <div class="col-md-1">
         <form id="form1" runat="server" style="margin-top: 45px;">
             <h1 style="color:white">Ver Hallazgos</h1>
@@ -325,6 +332,7 @@ body {
                 <a runat="server" class="bo"  onclick="iniciar()" >Consultar</a>
             </p>
             <asp:LinkButton ID="iniciar" runat="server" OnClick="iniciar_Click" ClientIDMode="Static" style="background: border-box;"></asp:LinkButton>
+            <asp:LinkButton ID="eli" runat="server" OnClick="elimi_Click" ClientIDMode="Static" style="background: border-box;"></asp:LinkButton>
         </form>
     </div>
 </div>    
@@ -333,8 +341,12 @@ body {
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
  <script type="text/javascript">
-     function iniciar() {
+     function iniciar()
+     {
          document.getElementById('iniciar').click();
+     }
+     function eliminados() {
+         document.getElementById('eli').click();
      }
 
  </script>

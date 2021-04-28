@@ -205,6 +205,32 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public string[] consultarTotal6()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='6'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
         public string[] consultarID()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
@@ -514,7 +540,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select `id_sharea`,`sh_areanombre` from sh_area where `sh_gerencias_id_shgerencia`='"+dato+"'";
+                    string consultaGraAsis = "select `id_sharea`,`sh_areanombre` from sh_area where id_sharea ='" + dato+"'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();

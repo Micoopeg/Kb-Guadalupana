@@ -27,8 +27,8 @@ namespace KB_Guadalupana.Views.Hallazgos
 
         public void permisos()
         {
-          Session["sesion_usuario"] = "pgdgomez";
-          string sesionuser =  Session["sesion_usuario"].ToString();
+            //Session["sesion_usuario"] = "pgdgomez";
+            string sesionuser =  Session["sesion_usuario"].ToString();
 
             string[] var1 = sen.consultarUsuario(sesionuser);
             string valor = Convert.ToString(var1[0]);

@@ -153,9 +153,11 @@ namespace KB_Guadalupana.Views.Hallazgos
 
                     string[] var1 = sen.consultarHora();
                     string fecha = Convert.ToString(var1[0]);
+                    string abre = Session["sesion_usuario"].ToString();
+
 
                     string sig199 = logic.siguiente("sh_respuesta ", "id_shrespuesta");
-                    string[] valores199 = { sig199, Textarea1.Value, fecha, doc, idvalor };
+                    string[] valores199 = { sig199, Textarea1.Value, fecha, doc, idvalor, abre };
                     logic.insertartablas("sh_respuesta", valores199);
 
                     ideditar = Session["Idguardarse"].ToString();
@@ -193,7 +195,8 @@ namespace KB_Guadalupana.Views.Hallazgos
 
                     string idvalor = Session["Idguardarse"].ToString();
                     string sig199 = logic.siguiente("sh_respuesta ", "id_shrespuesta");
-                    string[] valores199 = { sig199, Textarea1.Value, fecha, "null", idvalor };
+                    string abre = Session["sesion_usuario"].ToString();
+                    string[] valores199 = { sig199, Textarea1.Value, fecha, "null", idvalor, abre };
                     logic.insertartablas("sh_respuesta", valores199);
 
                 ideditar = Session["Idguardarse"].ToString();

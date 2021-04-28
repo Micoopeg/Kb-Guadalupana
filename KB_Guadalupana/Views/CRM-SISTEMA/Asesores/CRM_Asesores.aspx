@@ -244,7 +244,7 @@
             
                  <h4>Prospectos pendientes</h4>
                   <%-- GRIDVIEW Inversiones--%>
-               <div id="divGridprospecto" style="overflow: auto; height: 130px" runat="server">
+               <div id="divGridprospecto" style="overflow: auto; height: 100px" runat="server">
                  <asp:GridView ID="gridviewprospectos" CssClass="mGrid"  runat="server" HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedprospectos" BorderStyle="Solid" Width="82%" >
                      <Columns>

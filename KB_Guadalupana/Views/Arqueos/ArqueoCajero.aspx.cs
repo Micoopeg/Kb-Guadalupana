@@ -196,6 +196,7 @@ namespace Modulo_de_arqueos.Views
         protected void operar_Click(object sender, EventArgs e)
         {
             Session["op"] = "1";
+            Session["siguiente"] = "0";
             try
                 {
                 //SUMA DE BILLETES
@@ -330,27 +331,34 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
-    
-            numarqueo = DropNumarqueo.SelectedValue;
-            Session["siguiente"] = "1";
-            Session["op"] = "1";
-            mostrarcajero();
-            if (cont == 1)
+            if(CABuscarfecha.Value == "")
             {
-                arqueo.Visible = false;
-                EBuscar.Visible = false;
+                String script = "alert('Debe ingresar la fecha');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
-            {  mostrardetalle();
-                arqueo.Visible = true;
-                Creararqueo.Visible = false;
-                Buscararqueo.Visible = false;
-                visualizar.Visible = true;
-                imprimir.Visible = true;
-                operar.Visible = false;
-                EBuscar.Visible = false;
+            {
+                numarqueo = DropNumarqueo.SelectedValue;
+                Session["siguiente"] = "1";
+                Session["op"] = "1";
+                mostrarcajero();
+                if (cont == 1)
+                {
+                    arqueo.Visible = false;
+                    EBuscar.Visible = false;
+                }
+                else
+                {
+                    mostrardetalle();
+                    arqueo.Visible = true;
+                    Creararqueo.Visible = false;
+                    Buscararqueo.Visible = false;
+                    visualizar.Visible = true;
+                    imprimir.Visible = true;
+                    operar.Visible = false;
+                    EBuscar.Visible = false;
+                }
             }
-            
         }
 
         public void mostrarcajero()
@@ -554,6 +562,7 @@ namespace Modulo_de_arqueos.Views
             imprimir.Visible = true;
             CJefe.Value = Session["Nombre"] as string;
             operar.Enabled = true;
+            EBuscar.Visible = false;
             //CJefe.Value = Session["sesion_usuario"] as string;
 
             //if (consulta == "")
@@ -590,6 +599,7 @@ namespace Modulo_de_arqueos.Views
             if (puesto == "1")
             {
                 CAUsuario.Visible = false;
+                TituloUsuario.Visible = false;
             }
             else if (puesto == "2")
             {

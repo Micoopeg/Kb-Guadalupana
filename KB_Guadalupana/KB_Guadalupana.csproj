@@ -125,6 +125,9 @@
     <Reference Include="Renci.SshNet, Version=2020.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2020.0.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -583,6 +586,11 @@
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\MantenimientosControl\controlCRM.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
+    <Content Include="Views\ProcesosJudiciales\AsignarProceso.aspx" />
+    <Content Include="Views\ProcesosJudiciales\Dashboard.aspx" />
+    <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
     <Content Include="Views\Seguridad\ModificarModulo.aspx" />
@@ -662,6 +670,7 @@
     <Compile Include="Controllers\ModeloEX.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
     <Compile Include="Controllers\Sentencia_arqueos.cs" />
+    <Compile Include="Controllers\Sentencia_juridico.cs" />
     <Compile Include="Controllers\Sentencia_seguridad.cs" />
     <Compile Include="DataMontos.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1193,6 +1202,41 @@
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.designer.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProcesosJudiciales\AsignarProceso.aspx.cs">
+      <DependentUpon>AsignarProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\AsignarProceso.aspx.designer.cs">
+      <DependentUpon>AsignarProceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.cs">
+      <DependentUpon>MenuPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.designer.cs">
+      <DependentUpon>MenuPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx.cs">
+      <DependentUpon>ProcesoJudicial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx.designer.cs">
+      <DependentUpon>ProcesoJudicial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx.cs">
+      <DependentUpon>ProcesosAsignadosJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx.designer.cs">
+      <DependentUpon>ProcesosAsignadosJuridico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.cs">
       <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1518,6 +1562,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ProcesosJudiciales\Subidos\DocumentosExpediente\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

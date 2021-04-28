@@ -7,39 +7,21 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Modulo_de_arqueos.Views
+namespace KB_Guadalupana.Views.ProcesosJudiciales
 {
 
 
-    public partial class ArqueoCajero
+    public partial class ProcesoJudicial
     {
 
         /// <summary>
-        /// Control NombreUsuario.
+        /// Control menu.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NombreUsuario;
-
-        /// <summary>
-        /// Control visualizar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl visualizar;
-
-        /// <summary>
-        /// Control imprimir.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl imprimir;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu;
 
         /// <summary>
         /// Control form1.
@@ -51,471 +33,426 @@ namespace Modulo_de_arqueos.Views
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control Creararqueo.
+        /// Control formulario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Creararqueo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formulario;
 
         /// <summary>
-        /// Control Buscararqueo.
+        /// Control Agencia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Buscararqueo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Agencia;
 
         /// <summary>
-        /// Control EBuscar.
+        /// Control Instrumento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EBuscar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Instrumento;
 
         /// <summary>
-        /// Control CABuscarfecha.
+        /// Control LineaCredito.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CABuscarfecha;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText LineaCredito;
 
         /// <summary>
-        /// Control TituloUsuario.
+        /// Control destino.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TituloUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText destino;
 
         /// <summary>
-        /// Control CAUsuario.
+        /// Control Garantia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CAUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Garantia;
 
         /// <summary>
-        /// Control DropNumarqueo.
+        /// Control Plazomeses.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropNumarqueo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Plazomeses;
 
         /// <summary>
-        /// Control btnArqueos.
+        /// Control Metodocalculo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnArqueos;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Metodocalculo;
 
         /// <summary>
-        /// Control Buscar.
+        /// Control Estado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Buscar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Estado;
 
         /// <summary>
-        /// Control arqueo.
+        /// Control Moneda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl arqueo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Moneda;
 
         /// <summary>
-        /// Control area.
+        /// Control Tasa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl area;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Tasa;
 
         /// <summary>
-        /// Control CFecha.
+        /// Control FechaSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CFecha;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText FechaSolicitud;
 
         /// <summary>
-        /// Control CAgencia.
+        /// Control FechaDesembolso1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CAgencia;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText FechaDesembolso1;
 
         /// <summary>
-        /// Control CCAgencia.
+        /// Control FechaUltimoDes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CCAgencia;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText FechaUltimoDes;
 
         /// <summary>
-        /// Control CNombre.
+        /// Control FechaVencimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CNombre;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText FechaVencimiento;
 
         /// <summary>
-        /// Control CUsuario.
+        /// Control FechaUltimaCuota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText FechaUltimaCuota;
 
         /// <summary>
-        /// Control COperador.
+        /// Control FechaActa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText COperador;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText FechaActa;
 
         /// <summary>
-        /// Control CPuestooperador.
+        /// Control NumActa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CPuestooperador;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText NumActa;
 
         /// <summary>
-        /// Control CJefe.
+        /// Control OficialNombre1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CJefe;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText OficialNombre1;
 
         /// <summary>
-        /// Control CPuestoencargado.
+        /// Control OficialNombre2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CPuestoencargado;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText OficialNombre2;
 
         /// <summary>
-        /// Control CComentario.
+        /// Control OficialApellido1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CComentario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText OficialApellido1;
 
         /// <summary>
-        /// Control CCantidad1.
+        /// Control OficialApellido2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CCantidad1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText OficialApellido2;
 
         /// <summary>
-        /// Control CCantidad2.
+        /// Control NumPrestamo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CCantidad2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl NumPrestamo;
 
         /// <summary>
-        /// Control CCantidad3.
+        /// Control AgenciaCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CCantidad3;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText AgenciaCliente;
 
         /// <summary>
-        /// Control CCantidad4.
+        /// Control CodigoCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CCantidad4;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CodigoCliente;
 
         /// <summary>
-        /// Control CCantidad5.
+        /// Control ClienteNombre1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CCantidad5;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ClienteNombre1;
 
         /// <summary>
-        /// Control CCantidad6.
+        /// Control ClienteNombre2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CCantidad6;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ClienteNombre2;
 
         /// <summary>
-        /// Control CCantidad7.
+        /// Control ClienteApellido1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CCantidad7;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ClienteApellido1;
 
         /// <summary>
-        /// Control CBTotal1.
+        /// Control ClienteApellido2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CBTotal1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText ClienteApellido2;
 
         /// <summary>
-        /// Control CBTotal2.
+        /// Control MontoOriginal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CBTotal2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl MontoOriginal;
 
         /// <summary>
-        /// Control CBTotal3.
+        /// Control CapitalDesem.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CBTotal3;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CapitalDesem;
 
         /// <summary>
-        /// Control CBTotal4.
+        /// Control SaldoActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CBTotal4;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl SaldoActual;
 
         /// <summary>
-        /// Control CBTotal5.
+        /// Control DescripcionDoc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CBTotal5;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText DescripcionDoc;
 
         /// <summary>
-        /// Control CBTotal6.
+        /// Control PTipoDocumento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CBTotal6;
+        protected global::System.Web.UI.WebControls.DropDownList PTipoDocumento;
 
         /// <summary>
-        /// Control CBTotal7.
+        /// Control FileUpload1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CBTotal7;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
 
         /// <summary>
-        /// Control CMCantidad1.
+        /// Control Agregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CMCantidad1;
+        protected global::System.Web.UI.WebControls.Button Agregar;
 
         /// <summary>
-        /// Control CMCantidad2.
+        /// Control gridViewDocumentos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CMCantidad2;
+        protected global::System.Web.UI.WebControls.GridView gridViewDocumentos;
 
         /// <summary>
-        /// Control CMCantidad3.
+        /// Control Saldo1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CMCantidad3;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Saldo1;
 
         /// <summary>
-        /// Control CMCantidad4.
+        /// Control Interes1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CMCantidad4;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Interes1;
 
         /// <summary>
-        /// Control CMCantidad5.
+        /// Control Number1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CMCantidad5;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Number1;
 
         /// <summary>
-        /// Control CMCantidad6.
+        /// Control Gastos1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CMCantidad6;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Gastos1;
 
         /// <summary>
-        /// Control CMTotal1.
+        /// Control Total1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CMTotal1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Total1;
 
         /// <summary>
-        /// Control CMTotal2.
+        /// Control Intereses2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CMTotal2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Intereses2;
 
         /// <summary>
-        /// Control CMTotal3.
+        /// Control Mora2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CMTotal3;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Mora2;
 
         /// <summary>
-        /// Control CMTotal4.
+        /// Control Gastos2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CMTotal4;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Gastos2;
 
         /// <summary>
-        /// Control CMTotal5.
+        /// Control Total2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CMTotal5;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Total2;
 
         /// <summary>
-        /// Control CMTotal6.
+        /// Control PCBoton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CMTotal6;
-
-        /// <summary>
-        /// Control CTotalefectivo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CTotalefectivo;
-
-        /// <summary>
-        /// Control CTotalrecibido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CTotalrecibido;
-
-        /// <summary>
-        /// Control CTotalentregado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CTotalentregado;
-
-        /// <summary>
-        /// Control operar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button operar;
-
-        /// <summary>
-        /// Control siguiente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button siguiente;
+        protected global::System.Web.UI.WebControls.Button PCBoton;
     }
 }

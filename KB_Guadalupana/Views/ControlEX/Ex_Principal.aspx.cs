@@ -24,12 +24,30 @@ namespace KB_Guadalupana.Views.ControlEX
             NombreAgencia.InnerText = Convert.ToString(Session["Nombre"] = exc.agencia(usernombre));
 
             now();
+            string area = exc.obtenerarea(usernombre);
+            string rol = exc.obtenerrol(usernombre);
+            if (area == "52" && rol == "1") {
+                Response.Redirect("Ex_VistaMensajeria.aspx");
+            }
+            else
+            {
+                if (usernombre != "")
+                {
 
-            coduser = exc.obtenercoduser(usernombre);
-            expenv.InnerText = exc.contenv(coduser);
-            exppenv.InnerText = exc.contpen(coduser);
-            exphall.InnerText = exc.contret(coduser);
-            expgen.InnerText = exc.contexis(coduser);
+
+                    coduser = exc.obtenercoduser(usernombre);
+                    expenv.InnerText = exc.contenv(coduser);
+                    exppenv.InnerText = exc.contpen(coduser);
+                    exphall.InnerText = exc.contret(coduser);
+                    expgen.InnerText = exc.contexis(coduser);
+
+                }
+                else
+                {
+                    Response.Redirect("../Sesion/MenuBarra.aspx");
+
+                }
+            }
         }
 
         public void now()

@@ -53,11 +53,7 @@
 							<span class="span fa fa-play"></span>
 						</a>
 					</li>  
-					<li class="li">
-						<a href="javascript:void(0);" class="links">Enviar Expediente
-							<span class="span fa fa-play"></span>
-						</a>
-					</li>  
+				
 					
 				</ul>
 			</li>

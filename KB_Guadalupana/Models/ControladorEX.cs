@@ -56,18 +56,25 @@ namespace KB_Guadalupana.Models
         }
 
         //fin
-        public string obtenerean13(string expediente)
-        {
-
-            string ean13 = mex.obtenerean13(expediente);
-            return ean13;
-        }
+    
 
         public string obtenerrol(string user)
         {
 
             string rol = mex.obtenerrol(user);
             return rol;
+        }
+        public string obtenerarea(string user)
+        {
+
+            string area = mex.obtenerarea(user);
+            return area;
+        }
+        public string obtenerareanombre(string area)
+        {
+
+            string cod = mex.obtenerareanombre(area);
+            return cod;
         }
         public string obtenercodncred(string ncred)
         {
@@ -81,7 +88,48 @@ namespace KB_Guadalupana.Models
             string cod = mex.obtenercoduser(nomuser);
             return cod;
         }
+        public string obtenercoduserexp(string crd)
+        {
 
+            string cod = mex.obtenercoduserexp(crd);
+            return cod;
+        }
+        public string obtenercrdexp(string crd)
+        {
+
+            string cod = mex.obtenercrdexp(crd);
+            return cod;
+        }
+        public string obtenertipo(string crd)
+        {
+
+            string tipo = mex.obtenertipocrd(crd);
+            return tipo;
+        }
+        public string obtenertiponombre(string crd)
+        {
+
+            string tipo = mex.obtenertipocrdnom(crd);
+            return tipo;
+        }
+        public string obtenerlote(string crd)
+        {
+
+            string lote = mex.obtenerlote(crd);
+            return lote;
+        }
+        public string obtenercodexp(string crd)
+        {
+
+            string cod = mex.obtenerexp(crd);
+            return cod;
+        }
+        public string obtenercodenv(string crd)
+        {
+
+            string cod = mex.obtenercodenv(crd);
+            return cod;
+        }
         public void Insertar(string sql)
         {
 

@@ -269,6 +269,7 @@
     <Content Include="EXDiseños\EstilosDashboard.css" />
     <Content Include="EXDiseños\EstilosGenExp.css" />
     <Content Include="EXDiseños\EstilosGenExpmenu.css" />
+    <Content Include="EXDiseños\EstilosMensajeria.css" />
     <Content Include="EXDiseños\EstiloTablas.css" />
     <Content Include="EXDiseños\ExtiloExEnvio.css" />
     <Content Include="EXDiseños\jquery.js" />
@@ -280,6 +281,7 @@
     <Content Include="EXDiseños\scriptvalidar.js" />
     <Content Include="EXDiseños\stylebarra.css" />
     <Content Include="EXDiseños\stylepaginas.css" />
+    <Content Include="EXDiseños\Trackestilo.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

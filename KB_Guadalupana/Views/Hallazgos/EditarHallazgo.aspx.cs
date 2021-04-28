@@ -122,6 +122,13 @@ namespace KB_Guadalupana.Views.Hallazgos
             }
         }
 
+        protected void IGAgencia1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IGADepa1.Visible = true;
+            IGADepa1.ClearSelection();
+            llenarcomboarea(long.Parse(IGAgencia1.SelectedValue));
+        }
+
         public void actualizar()
         {
             string valor;
@@ -178,6 +185,15 @@ namespace KB_Guadalupana.Views.Hallazgos
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
             }
+        }
+
+        protected void IGAgencia2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IGAgencia2.Visible = true;
+            IGAgencia2.ClearSelection();
+            
+             llenarcomboarea1(long.Parse(IGAgencia4.SelectedValue));
+            
         }
 
         public void actualizar1()

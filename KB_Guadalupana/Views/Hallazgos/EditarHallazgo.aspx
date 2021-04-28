@@ -307,19 +307,19 @@ padding: 8px;
      <div class="row">
           <p class="col-md-3">
             <label style="color:white">Gerencia</label>
-         <asp:DropDownList id="IGAgencia1"  runat="server" class="dis" style="max-width: 170px"></asp:DropDownList>
+         <asp:DropDownList id="IGAgencia1"  OnSelectedIndexChanged="IGAgencia1_SelectedIndexChanged"  runat="server" class="dis" style="max-width: 170px"  AutoPostBack="true"></asp:DropDownList>
         </p>
       <p class="col-md-3">
             <label style="color:white">Area/Departamento</label>
-            <asp:DropDownList id="IGADepa1" runat="server" class="dis" style="max-width: 170px" ></asp:DropDownList>
+            <asp:DropDownList id="IGADepa1" runat="server" class="dis" style="max-width: 170px" AutoPostBack="true" ></asp:DropDownList>
         </p>
          <p class="col-md-3" id="gerencia2" runat="server">
             <label style="color:white">Gerencia</label>
-         <asp:DropDownList id="IGAgencia4"  runat="server" class="dis" style="max-width: 170px" ></asp:DropDownList>
+         <asp:DropDownList id="IGAgencia4"   OnSelectedIndexChanged="IGAgencia2_SelectedIndexChanged" runat="server" class="dis" style="max-width: 170px"  AutoPostBack="true"></asp:DropDownList>
         </p>
       <p class="col-md-3" id="gerencia21" runat="server">
             <label style="color:white">Area/Departamento</label>
-            <asp:DropDownList id="IGAgencia2" runat="server" class="dis" style="max-width: 170px" ></asp:DropDownList>
+            <asp:DropDownList id="IGAgencia2" runat="server" class="dis" style="max-width: 170px" AutoPostBack="true" ></asp:DropDownList>
         </p>
       </div>
   </div>

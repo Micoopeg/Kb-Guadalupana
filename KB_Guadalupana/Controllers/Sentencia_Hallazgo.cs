@@ -265,7 +265,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select sh_rubro from sh_hallazgo WHERE id_shhallazgo='"+dato+"'";
+                    string consultaGraAsis = "select sh_rubro from sh_hallazgo WHERE id_shhallazgo='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -291,7 +291,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select id_shhallazgo,sh_mes,sh_año,sh_rubro,sh_hallazgo,sh_recomendacion,sh_estado_id_shestado , sh_calificacion,	sh_archivo from sh_hallazgo where id_shhallazgo='" + dato+"'";
+                    string consultaGraAsis = "select id_shhallazgo,sh_mes,sh_año,sh_rubro,sh_hallazgo,sh_recomendacion,sh_estado_id_shestado , sh_calificacion,	sh_archivo from sh_hallazgo where id_shhallazgo='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -317,7 +317,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select sh_gerencias_id_shgerencia,sh_idarea from sh_asignacion where sh_hallazgo_id_shhallazgo='"+dato+"' limit 1";
+                    string consultaGraAsis = "select sh_gerencias_id_shgerencia,sh_idarea from sh_asignacion where sh_hallazgo_id_shhallazgo='" + dato + "' limit 1";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -343,7 +343,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select sh_gerencias_id_shgerencia,sh_idarea from sh_asignacion where sh_hallazgo_id_shhallazgo='"+dato+"' order by sh_idarea ASC LIMIT 1";
+                    string consultaGraAsis = "select sh_gerencias_id_shgerencia,sh_idarea from sh_asignacion where sh_hallazgo_id_shhallazgo='" + dato + "' order by sh_idarea ASC LIMIT 1";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -369,7 +369,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(sh_hallazgo_id_shhallazgo) from sh_asignacion where sh_hallazgo_id_shhallazgo='"+dato+"'";
+                    string consultaGraAsis = "select count(sh_hallazgo_id_shhallazgo) from sh_asignacion where sh_hallazgo_id_shhallazgo='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -395,7 +395,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select COUNT(sh_hallazgo_id_shhallazgo) from sh_asignacion where sh_hallazgo_id_shhallazgo='"+dato+"'";
+                    string consultaGraAsis = "select COUNT(sh_hallazgo_id_shhallazgo) from sh_asignacion where sh_hallazgo_id_shhallazgo='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -488,7 +488,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select `id_shasignacion` from sh_asignacion where sh_hallazgo_id_shhallazgo='"+dato+"'";
+                    string consultaGraAsis = "select `id_shasignacion` from sh_asignacion where sh_hallazgo_id_shhallazgo='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -514,7 +514,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select `sh_gerencianombre` from sh_gerencias where id_shgerencia='"+dato+"'";
+                    string consultaGraAsis = "select `sh_gerencianombre` from sh_gerencias where id_shgerencia='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -540,7 +540,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select `id_sharea`,`sh_areanombre` from sh_area where id_sharea ='" + dato+"'";
+                    string consultaGraAsis = "select `id_sharea`,`sh_areanombre` from sh_area where id_sharea ='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -566,7 +566,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select codgenusuario from gen_usuario where gen_usuarionombre='"+dato+"'";
+                    string consultaGraAsis = "select codgenusuario from gen_usuario where gen_usuarionombre='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -592,7 +592,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT sh_rol,sh_gerencia,sh_area from sh_permisos where sh_usuario='"+ dato+"'";
+                    string consultaGraAsis = "SELECT sh_rol,sh_gerencia,sh_area from sh_permisos where sh_usuario='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -618,7 +618,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT t1.sh_areanombre from sh_permisos t0 inner join sh_area t1 on t0.sh_area=t1.id_sharea where t0.sh_area='"+dato+"'";
+                    string consultaGraAsis = "SELECT t1.sh_areanombre from sh_permisos t0 inner join sh_area t1 on t0.sh_area=t1.id_sharea where t0.sh_area='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -644,7 +644,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select `sh_gerencias_id_shgerencia` from sh_area where id_sharea='"+dato+"'";
+                    string consultaGraAsis = "select `sh_gerencias_id_shgerencia` from sh_area where id_sharea='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -670,7 +670,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select `sh_gerencias_id_shgerencia`,`id_sharea` from sh_area where `sh_areanombre`='" + dato+"'";
+                    string consultaGraAsis = "select `sh_gerencias_id_shgerencia`,`id_sharea` from sh_area where `sh_areanombre`='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -722,7 +722,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select `id_shasignacion`,`sh_gerencias_id_shgerencia`,`sh_hallazgo_id_shhallazgo`,`sh_idarea` from sh_asignacion where `sh_hallazgo_id_shhallazgo`= '"+dato+"' order by `id_shasignacion` desc limit 1";
+                    string consultaGraAsis = "select `id_shasignacion`,`sh_gerencias_id_shgerencia`,`sh_hallazgo_id_shhallazgo`,`sh_idarea` from sh_asignacion where `sh_hallazgo_id_shhallazgo`= '" + dato + "' order by `id_shasignacion` desc limit 1";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -748,7 +748,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select `id_shasignacion`,`sh_gerencias_id_shgerencia`,`sh_hallazgo_id_shhallazgo`,`sh_idarea` from sh_asignacion where `sh_hallazgo_id_shhallazgo`= '"+dato+"' order by `id_shasignacion` asc limit 1";
+                    string consultaGraAsis = "select `id_shasignacion`,`sh_gerencias_id_shgerencia`,`sh_hallazgo_id_shhallazgo`,`sh_idarea` from sh_asignacion where `sh_hallazgo_id_shhallazgo`= '" + dato + "' order by `id_shasignacion` asc limit 1";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -774,7 +774,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(`id_shasignacion`) from sh_asignacion where `sh_hallazgo_id_shhallazgo`='"+dato+"' order by `id_shasignacion` desc";
+                    string consultaGraAsis = "select count(`id_shasignacion`) from sh_asignacion where `sh_hallazgo_id_shhallazgo`='" + dato + "' order by `id_shasignacion` desc";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();

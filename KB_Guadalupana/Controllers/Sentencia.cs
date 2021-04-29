@@ -3835,6 +3835,25 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-    }
 
+        public bool consultarbd(string tabla)
+        {
+            using (MySqlConnection conn = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    conn.Open();
+                    string consultaGraAsis = " select * from " + tabla + ";";
+                    comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                    MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+    }
 }
+

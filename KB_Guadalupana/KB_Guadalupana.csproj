@@ -602,6 +602,7 @@
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\MantenimientosControl\controlCRM.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
+    <Content Include="Views\PaginaDeError\Error404.aspx" />
     <Content Include="Views\ProcesosJudiciales\AsignarProceso.aspx" />
     <Content Include="Views\ProcesosJudiciales\Dashboard.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
@@ -1332,6 +1333,13 @@
     </Compile>
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.designer.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaginaDeError\Error404.aspx.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PaginaDeError\Error404.aspx.designer.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\AsignarProceso.aspx.cs">
       <DependentUpon>AsignarProceso.aspx</DependentUpon>

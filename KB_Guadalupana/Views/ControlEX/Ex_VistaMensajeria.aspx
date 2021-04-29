@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         
-        
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         
         
         <div class="center">
@@ -20,7 +20,12 @@
     <form class="form" id="form1">
       
       <p class="name">
-          <span id="span1" runat="server" style="font-size:15px; color:white; " >Número de Lote: </span>  <asp:TextBox ID="name" name="name"  onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox>
+          <span id="span1" runat="server" style="font-size:15px; color:white; " >Número de Lote Entrada: </span>  <asp:TextBox ID="name" name="name"  onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox>
+
+      
+      </p>
+     <p class="name">
+          <span id="span2" runat="server" style="font-size:15px; color:white; " >Número de Lote Salida : </span>  <asp:TextBox ID="txtname" name="name"  onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox>
 
       
       </p>
@@ -32,8 +37,10 @@
       <div class="submit">
         
           <asp:LinkButton Text="Validar Lote" ID="buttoblue" runat="server" OnClick="envio_Click"   > </asp:LinkButton>
+
         <div class="ease"></div>
       </div>
+    
     </form>
   </div>
 </div>

@@ -67,7 +67,7 @@
 			</li>
 
 			<li class="li">
-				<a href="javascript:void(0);" class="links">
+				<a href="javascript:void(0);" onclick="redirigir3()" class="links">
 					<span class="span fa fa-eye"></span>Expedientes con Hallazgos
 				</a>
 			</li>
@@ -122,12 +122,15 @@
              <div class="row">
            <div class="col-md-9"><span id="alerta" runat="server" style="font-size:25px; color: orangered;">Verifique los Expendientes antes de Generar la Orden, no olvide descargar los documentos. </span>
                <span id="alerta2" runat="server" style="font-size:15px; color: lawngreen;">Seleccione únicamente los expedientes que desea cargar a la Orden de envio </span>
+               <br />
                <span id="alerta3" runat="server" style="font-size:15px; color: lawngreen;">Seleccione los Expedientes y la persona a quien los asignará </span>
+               <br />
+               <span id="alerta4" runat="server" style="font-size:15px; color: lawngreen;">Ingrese los hallazgos encontrados y Marque el expediente </span>
            </div>
            <div class="col-md-2">
            <div class="form-group"> 
                <asp:LinkButton ID="btnorden" runat="server" OnClick="btnorden_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Generar Orden" /> </asp:LinkButton>
-                <div style="    margin-left: -218px;position: absolute; margin-top: 13px;"> <asp:LinkButton ID="btnhallazgo" runat="server" OnClick="btnhallazgo_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Insertar Hallazgo" /> </asp:LinkButton>
+                <div id="btndiv" runat="server" style=" margin-left: -218px;position: absolute; margin-top: 13px;"> <asp:LinkButton ID="btnhallazgo" runat="server" OnClick="btnhallazgo_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Insertar Hallazgo" /> </asp:LinkButton>
                    </div>
                  
           
@@ -484,7 +487,7 @@
        
           <asp:LinkButton ID="btninicio" runat="server" OnClick="btnInicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>
-        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnNuevo_Click" ClientIDMode="Static"></asp:LinkButton>
+        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click" ClientIDMode="Static"></asp:LinkButton>
 
        <%--<asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>

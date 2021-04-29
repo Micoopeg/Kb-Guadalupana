@@ -96,7 +96,7 @@
 
            <div class="form-group"> 
 
-           <span id="span" runat="server" style="font-size:15px">Cod Mensajero: </span> <input id="txtcodigo" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Codigo Mensajero" required="required" tabindex="1" autofocus="autofocus"  />        
+           
             <div style="position: absolute;    margin-left: -220px;">
                  <span id="span3" runat="server" style="font-size:15px; margin-left: -77px">No. Prestamo: <h5 style="font-size:15px; position: absolute;margin-top: -18px; margin-left: 108px;" id="num" runat="server" ></h5>  </span><textarea id="hallazgo" placeholder="Hallazgos encontrados" runat="server"    class="form-control" style="max-width:190px; height:100px; min-width: 180px;min-height: 139px;  "   required  ></textarea>
 
@@ -105,7 +105,8 @@
               
 
                <span id="span1" runat="server" style="font-size:15px">Codigo de Barras: </span><asp:TextBox ID="txtbarras" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
-                <span id="span2" runat="server" style="font-size:15px">Codigo de Barras: </span><asp:TextBox ID="txtbarras2" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras2_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
+                
+               <span id="span2" runat="server" style="font-size:15px">Codigo de Barras: </span><asp:TextBox ID="txtbarras2" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras2_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
               <label id="encabasignados" runat="server" style="color:white">Usuario</label>
                <asp:DropDownList ID="asignado" runat="server" CssClass="dis" AutoPostBack="false" Width="177px"></asp:DropDownList>
            </div>
@@ -113,14 +114,15 @@
              </div>
 
              <div class="row">
-           <div class="col-md-9"><span id="alerta" runat="server" style="font-size:25px; color: orangered;">Verifique los Expendientes antes de Generar la Orden, no olvide descargar los documentos. </span>
+           <div class="col-md-9"><span id="alerta" runat="server" style="font-size:15px; color: orangered;">Verifique los Expendientes antes de Generar la Orden, no olvide descargar los documentos. </span>
                <span id="alerta2" runat="server" style="font-size:15px; color: lawngreen;">Seleccione únicamente los expedientes que desea cargar a la Orden de envio </span>
                <span id="alerta3" runat="server" style="font-size:15px; color: lawngreen;">Seleccione los Expedientes y la persona a quien los asignará </span>
+               <span id="alerta4" runat="server" style="font-size:15px; color: lawngreen; ">Marque los expedientes con el lector de barras. </span>
            </div>
            <div class="col-md-2">
            <div class="form-group"> 
                <asp:LinkButton ID="btnorden" runat="server" OnClick="btnorden_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Generar Orden" /> </asp:LinkButton>
-               
+                <asp:LinkButton ID="btnlimpiar" runat="server" OnClick="btnlimpiar_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Limpiar Hallazgo" /> </asp:LinkButton>
                  
           
            </div>
@@ -241,7 +243,7 @@
       
 
          <asp:GridView ID="DGVAMARCAR" CssClass="table table-striped" style="width: 400px;text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" BorderStyle="Solid" OnSelectedIndexChanged="GDVTEMP_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="GDVTEMP_PageIndexChanging" >
+    AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="5" OnPageIndexChanging="DGVAMARCAR_PageIndexChanging" >
                     <Columns>
                          <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Fecha/Hora Desembolso">
                            <ItemTemplate>
@@ -297,7 +299,7 @@
       
 
          <asp:GridView ID="DGVOREN" CssClass="table table-striped" style="width: 400px;text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" BorderStyle="Solid" OnSelectedIndexChanged="GDVTEMP_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="GDVTEMP_PageIndexChanging" >
+    AutoGenerateColumns="False" BorderStyle="Solid" AllowPaging="true" PageSize="5" OnPageIndexChanging="DGVOREN_PageIndexChanging" >
                     <Columns>
                          <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Fecha/Hora Desembolso">
                            <ItemTemplate>

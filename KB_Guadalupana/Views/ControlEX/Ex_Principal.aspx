@@ -53,13 +53,14 @@
 							<span class="span fa fa-play"></span>
 						</a>
 					</li>  
+                  
 				
 					
 				</ul>
 			</li>
 
-			<li class="li ">
-				<a href="javascript:void(0);" class="links">
+			<li id="mesareg" runat="server" class="li ">
+				<a href="javascript:void(0);" onclick="redirigir3();" class="links">
 					<span class="span fa fa-eye"></span>Expedientes con Hallazgos
 					
 				</a>
@@ -94,7 +95,7 @@
                 <p class="card-small-icon">
                      <span class="fa fa-folder-open"></span>
                 </p>
-                <p id="expgen" runat="server" class="card-small-number">10</p>
+                <p id="esmens" runat="server" class="card-small-number">0</p>
                 
             </div>
             <div class="card-small">
@@ -102,15 +103,15 @@
                 <p class="card-small-icon">
                     <span class="span fa fa-suitcase"></span>
                 </p>
-                <p id="expenv" runat="server" class="card-small-number">6</p>
+                <p id="extran" runat="server" class="card-small-number">0</p>
                
             </div>
             <div class="card-small">
-                <p class="card-small-views">Agencia</p>
+                <p class="card-small-views">Agencias</p>
                 <p class="card-small-icon">
                      <span class="fa fa-location-arrow"></span>
                 </p>
-                <p id="exppenv" runat="server" class="card-small-number">4</p>
+                <p id="exppenv" runat="server" class="card-small-number">0</p>
                
             </div>
             <div class="card-small">
@@ -118,15 +119,15 @@
                 <p class="card-small-icon">
                      <span class="fa fa-eye"></span>
                 </p>
-                <p id="exphall" runat="server" class="card-small-number">3</p>
+                <p id="exmesa" runat="server" class="card-small-number">0</p>
               
             </div>
                  <div class="card-small">
-                <p class="card-small-views">Juridico</p>
+                <p class="card-small-views">Jurídico</p>
                 <p class="card-small-icon">
                      <span class="fa fa-eye"></span>
                 </p>
-                <p id="P1" runat="server" class="card-small-number">3</p>
+                <p id="exjur" runat="server" class="card-small-number">0</p>
               
             </div>
                  <div class="card-small">
@@ -134,7 +135,7 @@
                 <p class="card-small-icon">
                      <span class="fa fa-eye"></span>
                 </p>
-                <p id="P2" runat="server" class="card-small-number">3</p>
+                <p id="exarch" runat="server" class="card-small-number">0</p>
               
             </div>
                  <div class="card-small">
@@ -142,7 +143,7 @@
                 <p class="card-small-icon">
                      <span class="fa fa-eye"></span>
                 </p>
-                <p id="P3" runat="server" class="card-small-number">3</p>
+                <p id="exret" runat="server" class="card-small-number">0</p>
               
             </div>
             
@@ -151,7 +152,7 @@
     </section>
          <asp:LinkButton ID="btninicio" runat="server" OnClick="btnInicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>
-        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnNuevo_Click" ClientIDMode="Static"></asp:LinkButton>
+        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click" ClientIDMode="Static"></asp:LinkButton>
        <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnpendiente" ClientIDMode="Static"></asp:LinkButton>
 
        <%--  <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>

@@ -53,43 +53,120 @@ namespace KB_Guadalupana.Views.ControlEX
 
         }
         protected void envio_Click(object sender, EventArgs e)
-        {
-            if (name.Text != "") {
-                //estado recibido y etapa 1 bitacora
-                string verifica = mex.lotevalidado(name.Text);
-                if (verifica != "True") {
-                    DataTable dt4 = new DataTable();
-                    dt4 = mex.lotesinfo(name.Text);
-                    if (dt4.Rows.Count != 0)
-                    {
-                        for (int i = 0; i < dt4.Rows.Count; i++)
-                        {
+        {//entrada
 
-                            string numeroenv = dt4.Rows[i]["codexenvio"].ToString();
-                            string codexp = exc.obtenercodexp(dt4.Rows[i]["Nocredito"].ToString());
-                            string sigbit = exc.siguiente("ex_bitacora", "codexbit");
+            if (name.Text != "" || txtname.Text != "")
+            {
 
-                            string updatelote = "UPDATE `ex_loteenvio` SET  `estado`= 1 WHERE numerolote = '" + name.Text + "' ";
-                            exc.Insertar(updatelote);
-                            string updateenviolote = "UPDATE `ex_envio` SET `estado`= 2,`codexetapa`= 2 WHERE codexenvio = '" + numeroenv + "' ";
-                            exc.Insertar(updateenviolote);
+                if (name.Text != "")
+                {
+                    //estado recibido y etapa 1 bitacora
+                    string verifica = mex.lotevalidado(name.Text);
+                    switch (verifica) {
 
-                            string bitacora = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigbit + "', '" + numeroenv + "', '" + codexp + "', '" + fechaactual + "', 2, 2 );";
-                            exc.Insertar(bitacora);
+                        case "0":
+                            DataTable dt4 = new DataTable();
+                            dt4 = mex.lotesinfo(name.Text);
+                            if (dt4.Rows.Count != 0)
+                            {
+                                for (int i = 0; i < dt4.Rows.Count; i++)
+                                {
 
-                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Validado')", true);
-                        }
+                                    string numeroenv = dt4.Rows[i]["codexenvio"].ToString();
+                                    string codexp = exc.obtenercodexp(dt4.Rows[i]["Nocredito"].ToString());
+                                    string sigbit = exc.siguiente("ex_bitacora", "codexbit");
+
+                                    string updatelote = "UPDATE `ex_loteenvio` SET  `estado`= 1 WHERE numerolote = '" + name.Text + "' ";
+                                    exc.Insertar(updatelote);
+                                    string updateenviolote = "UPDATE `ex_envio` SET `estado`= 2,`codexetapa`= 2 WHERE codexenvio = '" + numeroenv + "' ";
+                                    exc.Insertar(updateenviolote);
+
+                                    string bitacora = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigbit + "', '" + numeroenv + "', '" + codexp + "', '" + fechaactual + "', 2, 2 );";
+                                    exc.Insertar(bitacora);
+                                    name.Text = "";
+                                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Validado')", true);
+                                }
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Inválido')", true); }
+                            break;
+
+                        case "1":
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Este Lote Ya Fué Ingresado a Mesa de Control')", true);
+                            name.Text = "";
+                            break;
+
+                        default:
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El lote no existe')", true);
+
+                            break;
+                    
                     }
-                    else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Inválido')", true); }
+                 
+                  
+                  
+
+
+
                 }
-                else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Este Lote Ya Fué Validado')", true); }
+             
+                //salida
+                if (txtname.Text != "")
+                {
+                    //estado recibido y etapa 1 bitacora
+                    string verifica = mex.lotevalidado2(txtname.Text).Trim();
+                    switch (verifica) {
 
+                        case "0":
+                            DataTable dt4 = new DataTable();
+                            dt4 = mex.lotesinfo2(txtname.Text);
+                            if (dt4.Rows.Count != 0)
+                            {
+                                for (int i = 0; i < dt4.Rows.Count; i++)
+                                {
+
+                                    string numeroenv = dt4.Rows[i]["codexp"].ToString();
+                                    string codexp = exc.obtenercodexp(dt4.Rows[i]["codgencred"].ToString());
+                                    string sigbit = exc.siguiente("ex_bitacora", "codexbit");
+
+                                    string updatelote = "UPDATE `ex_lotesalida` SET  `estado`= 1 WHERE numerolote = '" + txtname.Text + "' ";
+                                    exc.Insertar(updatelote);
+                                    string updateenviolote = "UPDATE `ex_envio` SET `estado`= 2,`codexetapa`= 6 WHERE codexenvio = '" + numeroenv + "' ";
+                                    exc.Insertar(updateenviolote);
+
+                                    string bitacora = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigbit + "', '" + numeroenv + "', '" + codexp + "', '" + fechaactual + "', 2, 6 );";
+                                    exc.Insertar(bitacora);
+                                    txtname.Text = "";
+                                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Validado')", true);
+                                }
+                            }
+                            else { txtname.Text = ""; ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Inválido')", true); }
+
+
+                          
+                            break;
+                        case "1":
+                            txtname.Text = "";
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El Lote Ya Fué Validado y Enviado Al Archivo')", true);
+                            
+                            break;
+                    
+                        default:
+                            txtname.Text = "";
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El lote no Existe')", true);
+                            break;
+                      
+
+                    }
+
+
+
+                }
             }
-            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número inválido')", true); }
-            
 
-            //estado enviado y etapa 2 envios
-
+            else
+            {
+                txtname.Text = "";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Aún no ingresa el Número de lote')", true); }
         }
     }
 }

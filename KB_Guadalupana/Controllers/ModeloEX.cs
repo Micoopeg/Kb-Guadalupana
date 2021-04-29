@@ -156,7 +156,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = " SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto, gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  (exev.estado= 1 OR exev.estado=3) AND exev.codexetapa = 4";
+                    string consultaGraAsis = " SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto, gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  (exev.estado= 1 OR exev.estado=3) AND exev.codexetapa = 5";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -433,7 +433,29 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-       
+        public string obtenerlote2(string crd)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = " SELECT exsal.numerolote FROM ex_expediente  expe INNER JOIN ex_lotesalida exsal ON expe.codexp  = exsal.codexp WHERE expe.codgencred = '" + crd + "' ; ";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
         public string obtenercoduserexp(string crd)
         {
             String camporesultante = "";
@@ -572,6 +594,30 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
+
+        public string comentario(string crd)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = " SELECT exp.ex_comentario  FROM  ex_expediente exp WHERE exp.codgencred = '" + crd + "' ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
         //SELECT exev.codexenvio FROM ex_envio exev INNER JOIN ex_expediente exp ON exp.codgencred = exev.Nocredito INNER JOIN ex_asignado exa ON exa.codexp = exp.codexp WHERE exev.Nocredito= "0400024134" AND exev.estado = 1 AND exev.codexetapa = 3 AND exa.proceso = 3
         public string confirmarareaasig(string crd)
         {
@@ -667,7 +713,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-        public string contenv(string usuario)
+        public string contenv( )
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -675,7 +721,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT COUNT(exc.codexp) FROM ex_expediente exc WHERE exc.codusuario= '" + usuario + "' AND exc.ex_tipoevento = 2  ;";
+                    string sql = "SELECT COUNT(exenv.codexenvio) FROM ex_envio exenv WHERE (exenv.estado = 1 AND exenv.codexetapa =3) OR (exenv.estado = 2 AND exenv.codexetapa =3) OR (exenv.estado = 1 AND exenv.codexetapa =5);";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -690,7 +736,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-        public string contpen(string usuario)
+        public string contjur()
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -698,7 +744,53 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT COUNT(exc.codexp) FROM ex_expediente exc WHERE exc.codusuario= '" + usuario + "' AND exc.ex_tipoevento = 7  ;";
+                    string sql = "SELECT COUNT(exenv.codexenvio) FROM ex_envio exenv WHERE exenv.estado = 1 AND exenv.codexetapa = 4  ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string contpen()
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv WHERE (exenv.estado = 2  AND exenv.codexetapa =2) OR (exenv.estado = 2  AND exenv.codexetapa =6);";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string contreten()
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT(exp.codexp)  FROM ex_expediente exp WHERE exp.ex_comentario != NULL;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -714,7 +806,7 @@ namespace KB_Guadalupana.Controllers
 
         }
 
-        public string contret(string usuario)
+        public string contret( )
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -722,7 +814,30 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT COUNT(exc.codexp) FROM ex_expediente exc WHERE exc.codusuario= '" + usuario + "' AND exc.ex_tipoevento = 5  ;";
+                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv WHERE exenv.estado = 2  AND exenv.codexetapa =1 ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string contarch()
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv WHERE exenv.estado = 1 AND exenv.codexetapa =6 ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -738,7 +853,7 @@ namespace KB_Guadalupana.Controllers
 
         }
 
-        public string contexis(string usuario)
+        public string contexis()
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -746,7 +861,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT COUNT(exc.codexp) FROM ex_expediente exc WHERE exc.codusuario= '" + usuario + "'   ;";
+                    string sql = "SELECT COUNT(tmp.codextemp) FROM ex_temporal1 tmp WHERE tmp.estado = 7  ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -784,7 +899,29 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
+        public string lotevalidado2(string lote)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT estado FROM ex_lotesalida WHERE  numerolote = '" + lote + "' LIMIT 1  ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
 
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
         // fin
         public DataTable llenarGridViewevento()
         {
@@ -807,7 +944,7 @@ namespace KB_Guadalupana.Controllers
                 return dt;
             }
         }
-        public DataTable llenardgvnegocios(string user)
+        public DataTable llenardgvnegocios(string crd)
         {
             DataTable dt = new DataTable();
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -816,7 +953,28 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia WHERE NOT EXISTS ( SELECT null FROM ex_expediente exp WHERE gcrd.gen_numcredito = exp.codgencred) AND gaso.usercreacion = '" + user + "' AND NOT EXISTS ( SELECT null FROM ex_temporal1 tmp WHERE tmp.Nocredito = gcrd.gen_numcredito ) ", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred WHERE exp.codgencred ='" + crd+"' ", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+        public DataTable llenarporareaage(string area)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(" SELECT gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred WHERE tmp.codexarea = '" + area + "' ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -996,7 +1154,8 @@ namespace KB_Guadalupana.Controllers
                 return dt;
             }
         }
-        public DataTable llenarmesaarch()
+
+         public DataTable llenarmesaarch()
         {
             DataTable dt = new DataTable();
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -1006,6 +1165,27 @@ namespace KB_Guadalupana.Controllers
                 {
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred  WHERE  exenv.codexetapa = 4 AND exenv.estado = 2  AND NOT EXISTS ( SELECT null FROM ex_asignado exas WHERE exas.codexp = exp.codexp AND exas.proceso = 5)  ", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+        public DataTable llenararch()
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(" SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto, gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito= exp.codgencred  WHERE exenv.codexetapa = 6 AND exenv.estado = 2  ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1047,7 +1227,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE   exenv.codexetapa = 3 AND exenv.estado = 2 AND exasig.codasignado = '" + coduser + "' AND exasig.proceso = 4", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE   exenv.codexetapa = 3 AND (exenv.estado = 2 OR exenv.estado = 3) AND exasig.codasignado = '" + coduser + "' AND exasig.proceso = 4", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1166,6 +1346,27 @@ namespace KB_Guadalupana.Controllers
                 return dt;
             }
         }
+        public DataTable lotesinfo2(string nlote)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT expe.codexp, expe.codgencred FROM  ex_expediente expe  INNER JOIN ex_lotesalida exsal ON expe.codexp = exsal.codexp WHERE exsal.numerolote = '" + nlote + "' ;", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
         public void Insertar(string sql)
         {
 
@@ -1249,6 +1450,85 @@ namespace KB_Guadalupana.Controllers
                 {
                     sqlCon.Open();
                     string sql = "SELECT ea.codexan13 FROM ex_ean13ctrl ea WHERE ea.codexan13 = '" + ean + "'; ";   
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+
+        }
+        public string buscaretapa(string crd)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT exev.codexetapa FROM ex_envio exev  WHERE exev.Nocredito =  '" + crd + "'; ";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+
+        }
+        public string buscaragencia(string crd)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT exar.ex_nombrea FROM ex_temporal1  tmp INNER JOIN ex_controlarea exar ON exar.codexcontrolarea =tmp.codexarea WHERE tmp.Nocredito =  '" + crd + "'; ";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+
+        }
+
+        public string buscarnoexp(string crd)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT exp.codexp  FROM ex_expediente exp WHERE exp.codgencred =  '" + crd + "'; ";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();

@@ -81,7 +81,7 @@
 
  
 
-            <center><h3 id="numeroexp" runat="server" >Expediente</h3></center>
+            <center><h3 id="numeroexp" runat="server" >Expediente Agencia</h3></center>
         <center><h3 id="procesoesp" runat="server">proceso especifico en el que se encuentra</h3></center>
          <center><h3 id="nocred" runat="server">04005878</h3></center>
         
@@ -89,31 +89,31 @@
       <div class='progress'>
   <div class='progress_inner'>
     <div class='progress_inner__step'>
-          <label for='step-5' id="fechaagin" style="margin-top: -89px">Ingreso: 24/11/2021</label>
+  <%--        <label for='step-5' id="fechaagin" style="margin-top: -89px">Ingreso: 24/11/2021</label>--%>
       <label for='step-1' style="color:aqua" >Agencia</label>
-          <label for='step-5' id="fechaag" style="padding-top:10px;">Salida: 24/11/2021</label>
+ <%--         <label for='step-5' id="fechaag" style="padding-top:10px;">Salida: 24/11/2021</label>--%>
     </div>
     <div class='progress_inner__step'>
-          <label for='step-5' id="fechamensajein" style="margin-top: -89px">Ingreso: 24/11/2021</label>
+         <%-- <label for='step-5' id="fechamensajein" style="margin-top: -89px">Ingreso: 24/11/2021</label>--%>
       <label for='step-2' style="color:aqua">Mensajería</label>
-          <label for='step-5' id="fechamensaje" style="padding-top:10px;">Salida: 24/11/2021</label>
+         <%-- <label for='step-5' id="fechamensaje" style="padding-top:10px;">Salida: 24/11/2021</label>--%>
     </div>
     <div class='progress_inner__step'>
-          <label for='step-5' id="fechamesain" style="margin-top: -89px">Ingreso: 24/11/2021</label>
+<%--          <label for='step-5' id="fechamesain" style="margin-top: -89px">Ingreso: 24/11/2021</label>--%>
       <label for='step-3'style="color:aqua">Mesa de QA</label>
-          <label for='step-5' id="fechamesa" style="padding-top:10px;">Salida: 24/11/2021</label>
+     <%--     <label for='step-5' id="fechamesa" style="padding-top:10px;">Salida: 24/11/2021</label>--%>
     </div>
     <div class='progress_inner__step'>
-         <label for='step-5' id="fechajuring" style="margin-top: -89px">Ingreso: 24/11/2021</label>
-      <label for='step-4' style="color:aqua">Juridico</label>
-          <label for='step-5' id="fechajur" style="padding-top:10px;">Salida: 24/11/2021</label>
+    <%--     <label for='step-5' id="fechajuring" style="margin-top: -89px">Ingreso: 24/11/2021</label>--%>
+      <label for='step-4' style="color:aqua">Juridico/ Mesa </label>
+<%--          <label for='step-5' id="fechajur" style="padding-top:10px;">Salida: 24/11/2021</label>--%>
         
 
     </div>
     <div class='progress_inner__step'>
-          <label for='step-5' id="fecharchin" style="margin-top: -89px">Ingreso: 24/11/2021</label>
-      <label for='step-5' style="color:aqua" > Archivo</label>
-        <label for='step-5' id="fecharch" style="padding-top:10px; ">Salida: 24/11/2021</label>
+        <%--  <label for='step-5' id="fecharchin" style="margin-top: -89px">Ingreso: 24/11/2021</label>--%>
+      <label for='step-5' style="color:aqua" > Mesa/Archivo</label>
+      <%--  <label for='step-5' id="fecharch" style="padding-top:10px; ">Salida: 24/11/2021</label>--%>
     </div>
   
     <input checked='checked' id='step-1' name='step' type='radio'>
@@ -122,7 +122,7 @@
     <input id='step-4' type='radio'>
     <input id='step-5'  type='radio'>
 
-    <div class='progress_inner__bar'></div>
+    <div id="progress" runat="server" class='progress_inner__bar'></div>
     <div class='progress_inner__bar--set'></div>
   </div>
 </div>

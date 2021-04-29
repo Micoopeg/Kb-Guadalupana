@@ -168,6 +168,15 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alerta3;
 
         /// <summary>
+        /// alerta4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alerta4;
+
+        /// <summary>
         /// btnorden control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace KB_Guadalupana.Views.ControlEX
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnorden;
+
+        /// <summary>
+        /// btndiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btndiv;
 
         /// <summary>
         /// btnhallazgo control.

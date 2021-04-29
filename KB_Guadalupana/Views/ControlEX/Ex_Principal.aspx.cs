@@ -36,10 +36,13 @@ namespace KB_Guadalupana.Views.ControlEX
 
 
                     coduser = exc.obtenercoduser(usernombre);
-                    expenv.InnerText = exc.contenv(coduser);
-                    exppenv.InnerText = exc.contpen(coduser);
-                    exphall.InnerText = exc.contret(coduser);
-                    expgen.InnerText = exc.contexis(coduser);
+                    exmesa.InnerText = exc.contenv();
+                    esmens.InnerText = exc.contpen();
+                    extran.InnerText = exc.contret();
+                    exppenv.InnerText = exc.contexis();
+                    exjur.InnerText = mex.contjur();
+                    exret.InnerText = mex.contret();
+                    exarch.InnerText = mex.contarch();
 
                 }
                 else
@@ -47,6 +50,10 @@ namespace KB_Guadalupana.Views.ControlEX
                     Response.Redirect("../Sesion/MenuBarra.aspx");
 
                 }
+            }
+            if (rol=="8" || rol == "2") {
+                mesareg.Visible = true;
+            
             }
         }
 
@@ -78,6 +85,10 @@ namespace KB_Guadalupana.Views.ControlEX
 
         }
 
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ex_VistaMesaQA.aspx");
+        }
 
         protected void btnInicio_Click(object sender, EventArgs e) {
 
@@ -91,12 +102,7 @@ namespace KB_Guadalupana.Views.ControlEX
             Response.Redirect("Ex_Principal.aspx");
 
         }
-        protected void btnNuevo_Click(object sender, EventArgs e)
-        {
-
-            Response.Redirect("Ex_GenExpedientes.aspx");
-
-        }
+    
         protected void btnpendiente(object sender, EventArgs e)
         {
 

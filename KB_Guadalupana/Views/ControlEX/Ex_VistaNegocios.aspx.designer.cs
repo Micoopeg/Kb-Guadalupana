@@ -51,40 +51,31 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl span;
 
         /// <summary>
-        /// txtcodigo control.
+        /// dgvnumcred control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcodigo;
+        protected global::System.Web.UI.WebControls.DropDownList dgvnumcred;
 
         /// <summary>
-        /// alerta control.
+        /// span1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alerta;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl span1;
 
         /// <summary>
-        /// alerta2 control.
+        /// asignado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alerta2;
-
-        /// <summary>
-        /// LinkButton2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.DropDownList asignado;
 
         /// <summary>
         /// encabselec control.

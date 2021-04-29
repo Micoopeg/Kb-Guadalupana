@@ -30,28 +30,28 @@ namespace KB_Guadalupana.Models
             string datos = mex.contpdf(usuario);
             return datos;
         }
-        public string contenv(string usuario)
+        public string contenv( )
         {
 
-            string ean13 = mex.contenv(usuario);
+            string ean13 = mex.contenv();
             return ean13;
         }
-        public string contpen(string usuario)
+        public string contpen( )
         {
 
-            string ean13 = mex.contpen(usuario);
+            string ean13 = mex.contpen();
             return ean13;
         }
-        public string contret(string usuario)
+        public string contret( )
         {
 
-            string ean13 = mex.contret(usuario);
+            string ean13 = mex.contret();
             return ean13;
         }
-        public string contexis(string usuario)
+        public string contexis()
         {
 
-            string ean13 = mex.contexis(usuario);
+            string ean13 = mex.contexis();
             return ean13;
         }
 
@@ -113,6 +113,12 @@ namespace KB_Guadalupana.Models
             return tipo;
         }
         public string obtenerlote(string crd)
+        {
+
+            string lote = mex.obtenerlote(crd);
+            return lote;
+        }
+        public string obtenerlote2(string crd)
         {
 
             string lote = mex.obtenerlote(crd);

@@ -167,7 +167,7 @@ body {
             </div><br />--%>
             
               <div class="tabla">
-     <asp:GridView ID="GridViewReporteH" CssClass="mGrid" style="width: 950px;text-align:center;text-decoration: none;Color: black;" runat="server"  HeaderStyle-ForeColor="White"
+     <asp:GridView ID="GridViewReporteH" CssClass="mGrid" style="width: 100%;text-align:center;text-decoration: none;Color: black;" runat="server"  HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" BorderStyle="Solid"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte">
                      <Columns>
                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="ID">

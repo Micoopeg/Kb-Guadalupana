@@ -332,7 +332,7 @@ padding: 8px;
         <p class="col-md-2">
             <label style="color:white">Calificación</label>
              <select id="Cal" runat="server" class="dis">
-                    <option disabled selected>Valor</option>
+                    <option disabled selected>0</option>
                     <option  value="1">1</option>
                     <option  value="2">2</option>
                     <option  value="3">3</option>

@@ -19,12 +19,12 @@ namespace KB_Guadalupana.Views.Hallazgos
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Crear.Visible = false;
-            //Consultar.Visible = false;
-            //Matriz.Visible = false;
-            //Consulta.Visible = false;
-            //Mantenimiento.Visible = false;
-            //permisos();
+            Crear.Visible = false;
+            Consultar.Visible = false;
+            Matriz.Visible = false;
+            Consulta.Visible = false;
+            Mantenimiento.Visible = false;
+            permisos();
         }
 
         public void permisos()

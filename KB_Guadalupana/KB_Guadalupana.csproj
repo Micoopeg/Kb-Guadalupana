@@ -587,7 +587,7 @@
     <Content Include="Views\Hallazgos\MantenimientoGerencias.aspx" />
     <Content Include="Views\Hallazgos\MatrizHallazgos.aspx" />
     <Content Include="Views\Hallazgos\MenuHallazgos.aspx" />
-    <Content Include="Views\Hallazgos\RespuestaHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\RespuestaHallazgo.aspx" />
     <Content Include="Views\Hallazgos\Seguridad.aspx" />
     <Content Include="Views\Hallazgos\VistaEliminar.aspx" />
     <Content Include="Views\Hallazgos\VistaHallazgo.aspx" />
@@ -1270,12 +1270,12 @@
     <Compile Include="Views\Hallazgos\MenuHallazgos.aspx.designer.cs">
       <DependentUpon>MenuHallazgos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Hallazgos\RespuestaHallazgos.aspx.cs">
-      <DependentUpon>RespuestaHallazgos.aspx</DependentUpon>
+    <Compile Include="Views\Hallazgos\RespuestaHallazgo.aspx.cs">
+      <DependentUpon>RespuestaHallazgo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Hallazgos\RespuestaHallazgos.aspx.designer.cs">
-      <DependentUpon>RespuestaHallazgos.aspx</DependentUpon>
+    <Compile Include="Views\Hallazgos\RespuestaHallazgo.aspx.designer.cs">
+      <DependentUpon>RespuestaHallazgo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Hallazgos\Seguridad.aspx.cs">
       <DependentUpon>Seguridad.aspx</DependentUpon>

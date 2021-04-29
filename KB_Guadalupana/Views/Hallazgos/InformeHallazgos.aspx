@@ -195,7 +195,7 @@ body {
             
         </div>
         <asp:Button ID="btnExcel" class="button" style="margin-top: -60px;position: absolute;right: 631px;" runat="server" Text="Exportar a Excel" OnClick="btnExcel1_Click"/>
-                  <asp:Button ID="Button1" class="button" style="margin-top: -930px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel_Click"/>
+                  <asp:Button ID="Button1" class="button" style="margin-top: -60px;margin-left:550px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel_Click"/>
                     
 
               <div class="tabla">

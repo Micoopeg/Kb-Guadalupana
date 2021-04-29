@@ -45,7 +45,7 @@ namespace Modulo_de_arqueos.Views
                 NombreFirma2.InnerHtml = Session["nombreop"] as string;
                 puesto2.InnerHtml = Session["puestooperador"] as string;
                 puesto3.InnerHtml = Session["puestoencargado"] as string;
-
+                operar.Visible = true;
 
                 llenarcomboagencia();
 
@@ -55,6 +55,7 @@ namespace Modulo_de_arqueos.Views
                     mostrartesoreria();
                     mostrardetalle();
                     mostrarcheques();
+                    operar.Visible = false;
                 }
                    
             }

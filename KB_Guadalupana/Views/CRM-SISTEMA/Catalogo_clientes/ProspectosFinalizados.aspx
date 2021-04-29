@@ -211,7 +211,7 @@
                            <asp:Label ID="lblcodeptelefono1" Text='<%# Eval("crminfo_prospectocuentaconigss") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tiene cuenta en coope" Visible="True">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="¿Tiene cuenta en cooperativa?" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lbltipotelefono2"  Text='<%# Eval("crminfo_prospectocuentaencooperativa") %>' runat="server" />
                         </ItemTemplate>
@@ -221,7 +221,7 @@
                             <asp:Label ID="lblnombretelefono3" Text='<%# Eval("crminfo_contactadopor") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Dpi de referencia">
+                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="DPI de referencia">
                            <ItemTemplate>
                             <asp:Label ID="lblnumerotelefono4" Text='<%# Eval("crminfo_prospectoreferenciado") %>' runat="server" />
                         </ItemTemplate>

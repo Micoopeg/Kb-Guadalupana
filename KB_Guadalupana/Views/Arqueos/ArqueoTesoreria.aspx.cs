@@ -174,6 +174,7 @@ namespace Modulo_de_arqueos.Views
             try
             {
                 Session["op"] = "1";
+                Session["siguiente2"] = "0";
                 //SUBTOTAL DE BILLETES
                 decimal subtotal1, subtotal2, subtotal3, subtotal4, subtotal5, subtotal6, subtotal7;
                 subtotal1 = Convert.ToDecimal(200.00) * Convert.ToDecimal(TCantidadb1.Value);
@@ -650,6 +651,7 @@ namespace Modulo_de_arqueos.Views
             {
                 llenarcomboarqueos();
                 CAUsuario.Visible = false;
+                TituloUsuario.Visible = false;
             }
             else if (puesto == "2")
             {

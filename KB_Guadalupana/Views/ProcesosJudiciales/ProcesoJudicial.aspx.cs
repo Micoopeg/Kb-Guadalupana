@@ -15,7 +15,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
     {
         Sentencia_juridico sn = new Sentencia_juridico();
         string documento = "";
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -86,7 +86,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         public void llenarcombodocumento()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -110,7 +110,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         public void llenargridviewdocumentos()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

@@ -46,7 +46,18 @@ namespace Login_Web
                 //}
 
                 // Response.Redirect("Views/Sesion/Inicio.aspx");
-                Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                
+                    if (sn.consultarbd("gen_usuario") == true)
+                    {
+                        Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                      //Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                }
+                else
+                    {
+                        Response.Write("Sin conexion");
+                        Response.Redirect("Views/PaginaDeError/Error404.aspx");
+                    }
+                    
 
             }
             else
@@ -54,8 +65,8 @@ namespace Login_Web
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No se puede autenticar con las credenciales proporcionadas');", true);
             }
 
-            //Session["sesion_usuario"] = "pggteo";
-            //Session["Nombre"] = "Diego Jose Gomez Giron";
+            //Session["sesion_usuario"] = "pgaortiz";
+            //Session["Nombre"] = "Aida Jimena Ortiz Delgado";
             //Response.Redirect("Views/Sesion/MenuBarra.aspx");
         }
 

@@ -79,7 +79,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                            "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
                            "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
                            "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
-                           "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + gerencia + "' and t1.sh_idarea='" + area1 + "'";
+                           "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + gerencia + "' and t1.sh_idarea='" + area1 + "' and t4.id_shestado!='6'";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);
@@ -102,12 +102,14 @@ namespace KB_Guadalupana.Views.Hallazgos
                 {
                     //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                     sqlCon.Open();
-                    string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre,t3.sh_areanombre " +
-                           "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
-                           "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
-                           "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
-                           "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
-                           "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + valor + "' and t1.sh_idarea='" + area1 + "'";
+                    string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes," +
+                        "t4.sh_nombre,t2.sh_gerencianombre,t3.sh_areanombre " +
+                        "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
+                        "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
+                        "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
+                        "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
+                        "where t0.sh_mes='"+trimestre+"' and t0.sh_año='"+año+"' and t1.sh_gerencias_id_shgerencia='"+gerencia+"' " +
+                        "and t1.sh_idarea='"+area1+"' and t4.id_shestado!='6'";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);
@@ -135,7 +137,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                            "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
                            "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
                            "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
-                           "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + valor + "' and t1.sh_idarea='" + areasa + "'";
+                           "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + valor + "' and t1.sh_idarea='" + areasa + "' and t4.id_shestado!='6'";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);

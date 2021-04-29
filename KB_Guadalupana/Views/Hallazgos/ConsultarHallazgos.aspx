@@ -275,6 +275,17 @@ body {
         <form id="form1" runat="server" style="margin-top: 45px;">
             <h1 style="color:white">Ver Hallazgos</h1>
                 <div class="inset">
+                    <div class="form-group">
+                        <center><label for="isProductDiscounted" class="text-uppercase font-weight-bold;" style="color: white;">¿Desea todos los filtros?</label></center>
+                            <div class="btn-group w-100" data-toggle="buttons" name="isProductDiscounted">
+                                <label style="color: white;"  class="btn btn btn-blue-grey waves-effect w-50 form-check-label active">
+                                    <input id="isDiscounted" class="form-check-input" style="color:white" name="isDiscounted" type="radio" /> No 
+                                </label>
+                                <label style="color: white;" class="btn btn btn-blue-grey waves-effect form-check-label w-50">
+                                    <input id="isNotDiscounted" runat="server"  class="form-check-input" style="color:white" name="isDiscounted" type="radio"  />Si
+                                </label>
+                            </div>
+                    </div>
                     <p>
                           <label style="color:white">Gerencia</label>
                       <asp:DropDownList id="IGAgencia1"  OnSelectedIndexChanged="IGAgencia1_SelectedIndexChanged" runat="server" class="dis" AutoPostBack="true"></asp:DropDownList>
@@ -349,6 +360,28 @@ body {
          document.getElementById('eli').click();
      }
 
+
+     var discounted = document.getElementById('isDiscounted');
+     var no_discounted = document.getElementById('isNotDiscounted')
+     var discount_percentage = document.getElementById('IGAgencia1')
+     var discount_percentage1 = document.getElementById('IGADepa1')
+     var discount_percentage2 = document.getElementById('Estado')
+
+     function updateStatus() {
+         if (discounted.checked) {
+             discount_percentage.disabled = true;
+             discount_percentage1.disabled = true;
+             discount_percentage2.disabled = true;
+         }
+         else {
+             discount_percentage.disabled = false;
+             discount_percentage1.disabled = false;
+             discount_percentage2.disabled = false;
+         }
+     }
+
+     discounted.addEventListener('change', updateStatus)
+     no_discounted.addEventListener('change', updateStatus)
  </script>
 </body>
 </html>

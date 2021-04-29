@@ -24,6 +24,15 @@ namespace KB_Guadalupana.Views.Hallazgos
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control isNotDiscounted.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton isNotDiscounted;
+
+        /// <summary>
         /// Control IGAgencia1.
         /// </summary>
         /// <remarks>

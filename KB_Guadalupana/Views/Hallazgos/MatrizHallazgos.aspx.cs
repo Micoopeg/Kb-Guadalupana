@@ -22,6 +22,7 @@ namespace KB_Guadalupana.Views.Hallazgos
             if (!IsPostBack)
             {
                 llenarcombosucursal();
+               
             }
         }
 
@@ -41,6 +42,10 @@ namespace KB_Guadalupana.Views.Hallazgos
                     IGAgencia1.DataValueField = "id_shgerencia";
                     IGAgencia1.DataBind();
                     IGAgencia1.Items.Insert(0, new ListItem("[Gerencias]", "0"));
+
+                    IGAgencia1.Enabled = true;
+                    IGADepa1.Enabled = true;
+
                 }
                 catch { }
             }

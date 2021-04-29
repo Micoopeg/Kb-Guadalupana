@@ -34,13 +34,15 @@ namespace KB_Guadalupana.Views.Hallazgos
             Response.Clear();
             Response.AddHeader("content-disposition", "attachment;filename = MatrizdeSeguimiento.xls");
             Response.ContentType = "application/vnd.xls";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
 
-            System.IO.StringWriter stringWriter = new System.IO.StringWriter();
+            System.IO.StringWriter sw = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter hw = new HtmlTextWriter(sw);
 
-            System.Web.UI.HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
-            GridView1.RenderControl(htmlTextWriter);
-            Response.Write(stringWriter.ToString());
+            GridView1.RenderControl(hw);
 
+            Response.Write(sw.ToString());
             Response.End();
         }
 
@@ -49,13 +51,15 @@ namespace KB_Guadalupana.Views.Hallazgos
             Response.Clear();
             Response.AddHeader("content-disposition", "attachment;filename = MatrizdeSeguimiento.xls");
             Response.ContentType = "application/vnd.xls";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
 
-            System.IO.StringWriter stringWriter = new System.IO.StringWriter();
+            System.IO.StringWriter sw = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter hw = new HtmlTextWriter(sw);
 
-            System.Web.UI.HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
-            GridViewReporteH.RenderControl(htmlTextWriter);
-            Response.Write(stringWriter.ToString());
+            GridViewReporteH.RenderControl(hw);
 
+            Response.Write(sw.ToString());
             Response.End();
         }
 
@@ -66,11 +70,14 @@ namespace KB_Guadalupana.Views.Hallazgos
 
         public void llenargridviewreporte()
         {
-            trimestre = Session["Mes1"].ToString();
-            año = Session["Año1"].ToString();
+
             gerencia = Session["Gerencia1"].ToString();
             area = Session["Area1"].ToString();
-            estado = Session["Estado1"].ToString();
+            estado = Session["Estado1"].ToString(); 
+
+            año = Session["Año1"].ToString();
+            trimestre = Session["Mes1"].ToString();
+
             mostrar();
 
             mess.InnerText = trimestre;
@@ -79,7 +86,8 @@ namespace KB_Guadalupana.Views.Hallazgos
 
         public void mostrar()
         {
-            if ((estado == "2") || (estado == "3") || (estado == "1"))
+
+            if((gerencia == "0" ) || (area == null || area == "") || (estado == "Estado"))
             {
                 GridView1.Visible = false;
                 btnExcel.Visible = true;
@@ -90,14 +98,16 @@ namespace KB_Guadalupana.Views.Hallazgos
                     {
                         //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                         sqlCon.Open();
-                        string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre," +
-                            "t3.sh_areanombre, t0.sh_recomendacion,t4.sh_nombre,t5.sh_comentario as Comen,t5.sh_fecha as Fecha,t5.sh_usuario " +
-                            "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
+                        string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes," +
+                            "t4.sh_nombre,t2.sh_gerencianombre, t3.sh_areanombre, t0.sh_recomendacion," +
+                            "t4.sh_nombre,t5.sh_comentario as Comen,t5.sh_fecha as Fecha,t5.sh_usuario " +
+                            "from sh_hallazgo t0 " +
+                            "inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
                             "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
-                            "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
-                            "inner join sh_respuesta t5 on t0.id_shhallazgo=t5.sh_hallazgo_id_shhallazgo " +
-                            "where t0.sh_mes='" + trimestre + "' " +
-                            "and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + gerencia + "' and t1.sh_idarea='" + area + "'";
+                            "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
+                            "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
+                            "left join sh_respuesta t5 on t0.id_shhallazgo=t5.sh_hallazgo_id_shhallazgo " +
+                            "where t0.sh_mes='"+ trimestre + "' and t0.sh_año='"+ año + "'";
                         MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                         DataTable ds3 = new DataTable();
                         command.Fill(ds3);
@@ -113,30 +123,65 @@ namespace KB_Guadalupana.Views.Hallazgos
             }
             else
             {
-                GridViewReporteH.Visible = false;
-                btnExcel.Visible = false;
-                using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+                if ((estado == "2") || (estado == "3") || (estado == "1"))
                 {
-                    try
+                    GridView1.Visible = false;
+                    btnExcel.Visible = true;
+                    Button1.Visible = false;
+                    using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
                     {
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
-                        sqlCon.Open();
-                        string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre,t3.sh_areanombre, t0.sh_recomendacion,t4.sh_nombre " +
-                            "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
-                            "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
-                            "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
-                            "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
-                            "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + gerencia + "' and t1.sh_idarea='" + area + "' and t0.sh_estado_id_shestado ='" + estado + "'";
-                        MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                        DataTable ds3 = new DataTable();
-                        command.Fill(ds3);
-                        GridView1.DataSource = ds3;
-                        GridView1.DataBind();
+                        try
+                        {
+                            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
+                            sqlCon.Open();
+                            string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre," +
+                                "t3.sh_areanombre, t0.sh_recomendacion,t4.sh_nombre,t5.sh_comentario as Comen,t5.sh_fecha as Fecha,t5.sh_usuario " +
+                                "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
+                                "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
+                                "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
+                                "inner join sh_respuesta t5 on t0.id_shhallazgo=t5.sh_hallazgo_id_shhallazgo " +
+                                "where t0.sh_mes='" + trimestre + "' " +
+                                "and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + gerencia + "' and t1.sh_idarea='" + area + "'";
+                            MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                            DataTable ds3 = new DataTable();
+                            command.Fill(ds3);
+                            GridViewReporteH.DataSource = ds3;
+                            GridViewReporteH.DataBind();
 
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                        }
                     }
-                    catch (Exception ex)
+                }
+                else
+                {
+                    GridViewReporteH.Visible = false;
+                    btnExcel.Visible = false;
+                    using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
                     {
-                        Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                        try
+                        {
+                            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
+                            sqlCon.Open();
+                            string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre,t3.sh_areanombre, t0.sh_recomendacion,t4.sh_nombre " +
+                                "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
+                                "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
+                                "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
+                                "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
+                                "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + gerencia + "' and t1.sh_idarea='" + area + "' and t0.sh_estado_id_shestado ='" + estado + "'";
+                            MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                            DataTable ds3 = new DataTable();
+                            command.Fill(ds3);
+                            GridView1.DataSource = ds3;
+                            GridView1.DataBind();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                        }
                     }
                 }
             }

@@ -195,11 +195,11 @@ body {
             
         </div>
         <asp:Button ID="btnExcel" class="button" style="margin-top: -60px;position: absolute;right: 631px;" runat="server" Text="Exportar a Excel" OnClick="btnExcel1_Click"/>
-                  <asp:Button ID="Button1" class="button" style="margin-top: -60px;margin-left:550px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel_Click"/>
+        <asp:Button ID="Button1" class="button" style="margin-top: -60px;margin-left:550px; position: absolute;" runat="server" Text="Exportar a Excel" OnClick="btnExcel_Click"/>
                     
 
               <div class="tabla">
-     <asp:GridView ID="GridViewReporteH" CssClass="mGrid"  style="width: 90%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="black"
+     <asp:GridView ID="GridViewReporteH" CssClass="mGrid"  style="width: 97%;text-align:center;text-decoration: none;Color: black;text-align: center;vertical-align:middle;" runat="server"  HeaderStyle-ForeColor="black"
     AutoGenerateColumns="False" BorderStyle="Solid"  OnSelectedIndexChanged = "OnSelectedIndexChangedReporte">
         
          <Columns>

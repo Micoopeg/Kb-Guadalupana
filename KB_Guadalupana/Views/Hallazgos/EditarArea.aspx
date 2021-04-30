@@ -297,7 +297,7 @@ padding: 8px;
             <a class="active" href="MantenimientoGerencias.aspx">Regresar</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 12.6%;height: -14px;margin-top: -41px;max-width: 150px;">
              <center><img class="sobre" src="Imagenes/SH-Guadalupana1.png"/></center></span>
-            <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
+            <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
  <form id="form1" runat="server" style="margin-top: 13px;height: auto;">
 <div class="row" style="margin-right: 0px;" >

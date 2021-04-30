@@ -296,7 +296,7 @@ padding: 8px;
             <a class="active" href="MenuHallazgos.aspx">Regresar</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 12.6%;height: -14px;margin-top: -41px;max-width: 150px;">
              <center><img class="sobre" src="Imagenes/SH-Guadalupana1.png"/></center></span>
-            <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
+            <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
         <div id="content" class="col-lg-12">
             <div class="content"style="text-align: justify"><b>Usuario:</b>El tamaño maximo para poder cargar el archivo debe de ser de 10MB. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>

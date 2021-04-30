@@ -176,7 +176,7 @@ body {
           <div class="topnav">
             <a class="active" href="MatrizHallazgos.aspx">Regresar</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Matriz de Seguimiento de </b><b id="mess" runat="server"></b><b>/</b><b id="B1" runat="server"></b></span>
-            <a href="CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
+            <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
         <br />
         <br />

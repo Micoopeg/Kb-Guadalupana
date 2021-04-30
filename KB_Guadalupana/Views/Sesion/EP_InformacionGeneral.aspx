@@ -150,7 +150,7 @@ body {
 
 <body>
     <div class="topnav">
-            <a class="active" href="Inicio.aspx">Inicio</a>
+            <a class="active" href="MenuBarra.aspx">Inicio</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
             <a href="CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>

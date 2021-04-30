@@ -229,7 +229,7 @@ body {
 
 <body>
         <div class="topnav">
-            <a class="active" href="../Inicio.aspx">Inicio</a>
+            <a class="active" href="../MenuBarra.aspx">Inicio</a>
             <a href="../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
         </div>
   

@@ -86,14 +86,6 @@ namespace KB_Guadalupana.Views.Hallazgos
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El area de Rubro no puede estar vacia. " + Rubro.Value + "');", true);
             }
-            //else if (IGAgencia1.Text == "[Gerencias]")
-            //{
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Es necesario seleccionar una Gerencia.');", true);
-            //}
-            //else if (IGADepa1.Text == "")
-            //{
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Es necesario seleccionar un Area/Departamento.');", true);
-            //}
             else if (MesH.Value == "Mes")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Es necesario seleccionar un Mes.');", true);
@@ -124,6 +116,18 @@ namespace KB_Guadalupana.Views.Hallazgos
                         string sig199 = logic.siguiente("sh_hallazgo ", "id_shhallazgo");
                         string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, "0", "5" };
                         logic.insertartablas("sh_hallazgo", valores199);
+
+                        string[] var1 = sen.cidhallazgo();
+                        string val = Convert.ToString(var1[0]);
+
+                        if (val != sig199)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El Hallazgo no se pudo crear,Favor crearlo nuevamente');window.location.href= 'CrearHallazgo.aspx';", true);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "window.location.href= 'AsignarHallazgo.aspx';", true);
+                        }
                     }
                     else
                     {
@@ -135,9 +139,19 @@ namespace KB_Guadalupana.Views.Hallazgos
                     string sig199 = logic.siguiente("sh_hallazgo ", "id_shhallazgo");
                     string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, "null", Recomendacion.Value, MesH.Value, Año.Value, "0", "5" };
                     logic.insertartablas("sh_hallazgo", valores199);
-                }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", " window.location.href= 'AsignarHallazgo.aspx';", true);
+                    string[] var1 = sen.cidhallazgo();
+                    string val = Convert.ToString(var1[0]);
+
+                    if (val != sig199)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El Hallazgo no se pudo crear,Favor crearlo nuevamente');window.location.href= 'CrearHallazgo.aspx';", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "window.location.href= 'AsignarHallazgo.aspx';", true);
+                    }
+                }
             }
         }
 

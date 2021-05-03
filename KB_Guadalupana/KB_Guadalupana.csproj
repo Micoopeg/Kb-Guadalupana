@@ -576,6 +576,22 @@
     <Content Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx" />
     <Content Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx" />
     <Content Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx" />
+    <Content Include="Views\Hallazgos\AsignarHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\ConsultaHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\ConsultarHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\CrearHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\EditarArea.aspx" />
+    <Content Include="Views\Hallazgos\EditarGerencia.aspx" />
+    <Content Include="Views\Hallazgos\EditarHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\InformeHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\MantenimientoGerencias.aspx" />
+    <Content Include="Views\Hallazgos\MatrizHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\MenuHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\RespuestaHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\Seguridad.aspx" />
+    <Content Include="Views\Hallazgos\VistaEliminar.aspx" />
+    <Content Include="Views\Hallazgos\VistaHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\VistaHallazgo1.aspx" />
     <Content Include="Views\Imagenes\barra.png" />
     <Content Include="Views\Imagenes\F1.png" />
     <Content Include="Views\Imagenes\F2.png" />
@@ -586,6 +602,7 @@
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\MantenimientosControl\controlCRM.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
+    <Content Include="Views\PaginaDeError\Error404.aspx" />
     <Content Include="Views\ProcesosJudiciales\AsignarProceso.aspx" />
     <Content Include="Views\ProcesosJudiciales\Dashboard.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
@@ -663,6 +680,7 @@
     </Compile>
     <Compile Include="Controllers\Conexion.cs" />
     <Compile Include="Controllers\Conexion_arqueos.cs" />
+    <Compile Include="Controllers\Conexion_Hallazgo.cs" />
     <Compile Include="Controllers\Conexion_seguridad.cs" />
     <Compile Include="Controllers\CRM_Conexion.cs" />
     <Compile Include="Controllers\CRM_Sentencias.cs" />
@@ -670,6 +688,7 @@
     <Compile Include="Controllers\ModeloEX.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
     <Compile Include="Controllers\Sentencia_arqueos.cs" />
+    <Compile Include="Controllers\Sentencia_Hallazgo.cs" />
     <Compile Include="Controllers\Sentencia_juridico.cs" />
     <Compile Include="Controllers\Sentencia_seguridad.cs" />
     <Compile Include="DataMontos.Designer.cs">
@@ -690,6 +709,7 @@
     <Compile Include="Models\ControladorEX.cs" />
     <Compile Include="Models\Logica.cs" />
     <Compile Include="Models\Logica_arqueos.cs" />
+    <Compile Include="Models\Logica_Hallazgos.cs" />
     <Compile Include="montodatos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1174,6 +1194,118 @@
     <Compile Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx.designer.cs">
       <DependentUpon>CRM_Reporteria.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Hallazgos\AsignarHallazgo.aspx.cs">
+      <DependentUpon>AsignarHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\AsignarHallazgo.aspx.designer.cs">
+      <DependentUpon>AsignarHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\ConsultaHallazgo.aspx.cs">
+      <DependentUpon>ConsultaHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\ConsultaHallazgo.aspx.designer.cs">
+      <DependentUpon>ConsultaHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\ConsultarHallazgos.aspx.cs">
+      <DependentUpon>ConsultarHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\ConsultarHallazgos.aspx.designer.cs">
+      <DependentUpon>ConsultarHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\CrearHallazgo.aspx.cs">
+      <DependentUpon>CrearHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\CrearHallazgo.aspx.designer.cs">
+      <DependentUpon>CrearHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarArea.aspx.cs">
+      <DependentUpon>EditarArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarArea.aspx.designer.cs">
+      <DependentUpon>EditarArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarGerencia.aspx.cs">
+      <DependentUpon>EditarGerencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarGerencia.aspx.designer.cs">
+      <DependentUpon>EditarGerencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarHallazgo.aspx.cs">
+      <DependentUpon>EditarHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarHallazgo.aspx.designer.cs">
+      <DependentUpon>EditarHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\InformeHallazgos.aspx.cs">
+      <DependentUpon>InformeHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\InformeHallazgos.aspx.designer.cs">
+      <DependentUpon>InformeHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MantenimientoGerencias.aspx.cs">
+      <DependentUpon>MantenimientoGerencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MantenimientoGerencias.aspx.designer.cs">
+      <DependentUpon>MantenimientoGerencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MatrizHallazgos.aspx.cs">
+      <DependentUpon>MatrizHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MatrizHallazgos.aspx.designer.cs">
+      <DependentUpon>MatrizHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MenuHallazgos.aspx.cs">
+      <DependentUpon>MenuHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MenuHallazgos.aspx.designer.cs">
+      <DependentUpon>MenuHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\RespuestaHallazgo.aspx.cs">
+      <DependentUpon>RespuestaHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\RespuestaHallazgo.aspx.designer.cs">
+      <DependentUpon>RespuestaHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\Seguridad.aspx.cs">
+      <DependentUpon>Seguridad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\Seguridad.aspx.designer.cs">
+      <DependentUpon>Seguridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaEliminar.aspx.cs">
+      <DependentUpon>VistaEliminar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaEliminar.aspx.designer.cs">
+      <DependentUpon>VistaEliminar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaHallazgo.aspx.cs">
+      <DependentUpon>VistaHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaHallazgo.aspx.designer.cs">
+      <DependentUpon>VistaHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaHallazgo1.aspx.cs">
+      <DependentUpon>VistaHallazgo1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaHallazgo1.aspx.designer.cs">
+      <DependentUpon>VistaHallazgo1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\MantenimientosControl\controlAgenda.aspx.cs">
       <DependentUpon>controlAgenda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1201,6 +1333,13 @@
     </Compile>
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.designer.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaginaDeError\Error404.aspx.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PaginaDeError\Error404.aspx.designer.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\AsignarProceso.aspx.cs">
       <DependentUpon>AsignarProceso.aspx</DependentUpon>
@@ -1562,6 +1701,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Hallazgos\Archivos\" />
+    <Folder Include="Views\Hallazgos\Imagenes\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\DocumentosExpediente\" />
   </ItemGroup>
   <ItemGroup>

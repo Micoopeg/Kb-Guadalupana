@@ -41,7 +41,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
             }
             else
             {
-                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Index.aspx';";
+                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }        
@@ -153,7 +153,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "select a.codcrminfoprospecto,a.codcrminfogeneralprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto,a.crminfo_prospectotelefono,a.crminfo_prospectoemail,a.crminfo_prospectoingresos,a.crminfo_prospectoegresos,a.crminfo_prospectoañoslaborados,a.crminfo_prospectotrabajaactualmente,a.crminfo_prospectodescripciontrabajoactual,a.codcrmtiposervicio,a.crminfo_prospectomonto,a.codcrmfinalidadservicio,a.codcrmcontactollamadas,a.crminfo_prospectofechaprimerllamada,a.crminfo_prospectofechaultimallamada,a.codcrmsemaforoestado,a.codcrmestadodescripcion,a.crminfo_prospectocuentaconigss,a.codcrmtipodomicilio,a.crminfo_prospectoañosdomicilio,a.crminfo_prospectocuentaencooperativa,a.crminfo_prospectosucursalcerca,a.crminfo_prospectodescripcion,a.crminfo_contactadopor,a.crminfo_prospectoreferenciado FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE d.crmcontrol_ingresousuario='" + usuario + "' AND codcrmsemaforoestado!=4 OR codcrmsemaforoestado!=1;";
+                    string QueryString = "select a.codcrminfoprospecto,a.codcrminfogeneralprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto,a.crminfo_prospectotelefono,a.crminfo_prospectoemail,a.crminfo_prospectoingresos,a.crminfo_prospectoegresos,a.crminfo_prospectoañoslaborados,a.crminfo_prospectotrabajaactualmente,a.crminfo_prospectodescripciontrabajoactual,a.codcrmtiposervicio,a.crminfo_prospectomonto,a.codcrmfinalidadservicio,a.codcrmcontactollamadas,a.crminfo_prospectofechaprimerllamada,a.crminfo_prospectofechaultimallamada,a.codcrmsemaforoestado,a.codcrmestadodescripcion,a.crminfo_prospectocuentaconigss,a.codcrmtipodomicilio,a.crminfo_prospectoañosdomicilio,a.crminfo_prospectocuentaencooperativa,a.crminfo_prospectosucursalcerca,a.crminfo_prospectodescripcion,a.crminfo_contactadopor,a.crminfo_prospectoreferenciado FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE d.crmcontrol_ingresousuario='" + usuario + "' AND (codcrmsemaforoestado!=4 OR codcrmsemaforoestado!=1);";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);

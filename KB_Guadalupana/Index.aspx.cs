@@ -46,7 +46,18 @@ namespace Login_Web
                 //}
 
                 // Response.Redirect("Views/Sesion/Inicio.aspx");
-                Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                
+                    if (sn.consultarbd("gen_usuario") == true)
+                    {
+                        Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                      //Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                }
+                else
+                    {
+                        Response.Write("Sin conexion");
+                        Response.Redirect("Views/PaginaDeError/Error404.aspx");
+                    }
+                    
 
             }
             else

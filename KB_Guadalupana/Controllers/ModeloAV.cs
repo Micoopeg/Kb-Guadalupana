@@ -564,7 +564,7 @@ namespace KBGuada.Models
                 return camporesultante;
             }
         }
-        public string consultartareauserexistente(string user)
+        public string consultartareauserexistente(string user, string codtar)
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -572,7 +572,7 @@ namespace KBGuada.Models
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT avc.codavtarea FROM av_controlasignado avc WHERE avc.codavcontroling= '" + user + "';";
+                    string sql = "SELECT avc.codavtarea FROM av_controlasignado avc WHERE avc.codavcontroling= '" + user + "' AND avc.codavtarea = '"+codtar+"' LIMIT 1 ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();

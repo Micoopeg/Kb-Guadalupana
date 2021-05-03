@@ -165,9 +165,9 @@ namespace KBGuada.Controllers
 
 
         }
-            public string consultartareauserexistente(string user)
+            public string consultartareauserexistente(string user, string codtar)
         {
-            string asign = mav.consultartareauserexistente(user);
+            string asign = mav.consultartareauserexistente(user, codtar);
             return asign;
         }
             public string siguiente(string tabla, string campo)

@@ -24,43 +24,56 @@ namespace KB_Guadalupana.Models
 
         //conteo expedientes
 
-        public string contenv(string usuario)
+        public string contpdf(string usuario)
         {
 
-            string ean13 = mex.contenv(usuario);
+            string datos = mex.contpdf(usuario);
+            return datos;
+        }
+        public string contenv( )
+        {
+
+            string ean13 = mex.contenv();
             return ean13;
         }
-        public string contpen(string usuario)
+        public string contpen( )
         {
 
-            string ean13 = mex.contpen(usuario);
+            string ean13 = mex.contpen();
             return ean13;
         }
-        public string contret(string usuario)
+        public string contret( )
         {
 
-            string ean13 = mex.contret(usuario);
+            string ean13 = mex.contret();
             return ean13;
         }
-        public string contexis(string usuario)
+        public string contexis()
         {
 
-            string ean13 = mex.contexis(usuario);
+            string ean13 = mex.contexis();
             return ean13;
         }
 
         //fin
-        public string obtenerean13(string expediente)
+    
+
+        public string obtenerrol(string user)
         {
 
-            string ean13 = mex.obtenerean13(expediente);
-            return ean13;
+            string rol = mex.obtenerrol(user);
+            return rol;
         }
-
-        public string obtenercodcred(string codexp)
+        public string obtenerarea(string user)
         {
 
-            string cod = mex.obtenercodcred(codexp);
+            string area = mex.obtenerarea(user);
+            return area;
+        }
+        public string obtenerareanombre(string area)
+        {
+
+            string cod = mex.obtenerareanombre(area);
             return cod;
         }
         public string obtenercodncred(string ncred)
@@ -75,7 +88,54 @@ namespace KB_Guadalupana.Models
             string cod = mex.obtenercoduser(nomuser);
             return cod;
         }
+        public string obtenercoduserexp(string crd)
+        {
 
+            string cod = mex.obtenercoduserexp(crd);
+            return cod;
+        }
+        public string obtenercrdexp(string crd)
+        {
+
+            string cod = mex.obtenercrdexp(crd);
+            return cod;
+        }
+        public string obtenertipo(string crd)
+        {
+
+            string tipo = mex.obtenertipocrd(crd);
+            return tipo;
+        }
+        public string obtenertiponombre(string crd)
+        {
+
+            string tipo = mex.obtenertipocrdnom(crd);
+            return tipo;
+        }
+        public string obtenerlote(string crd)
+        {
+
+            string lote = mex.obtenerlote(crd);
+            return lote;
+        }
+        public string obtenerlote2(string crd)
+        {
+
+            string lote = mex.obtenerlote2(crd);
+            return lote;
+        }
+        public string obtenercodexp(string crd)
+        {
+
+            string cod = mex.obtenerexp(crd);
+            return cod;
+        }
+        public string obtenercodenv(string crd)
+        {
+
+            string cod = mex.obtenercodenv(crd);
+            return cod;
+        }
         public void Insertar(string sql)
         {
 
@@ -85,6 +145,11 @@ namespace KB_Guadalupana.Models
         public string siguiente(string tabla, string campo)
         {
             string llave = mex.obtenerfinal(tabla, campo);
+            return llave;
+        }
+        public string siguiente2(string tabla, string campo)
+        {
+            string llave = mex.obtenerfinallote(tabla, campo);
             return llave;
         }
         public string ultimo(string tabla, string campo)

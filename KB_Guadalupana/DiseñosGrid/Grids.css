@@ -1,0 +1,25 @@
+﻿.mGrid 
+{
+    width: 99%;
+    background-color: white;
+    margin: 5px 0 10px 0;
+    border-collapse: collapse;
+}
+
+    .mGrid td 
+    {
+        padding: 2px;
+        border: solid 1px #717171;
+        color: #717171;
+    }
+
+    .mGrid th 
+    {
+        padding: 4px 2px;
+        color: #fff;
+        border: 0;
+        background: #003563;
+       
+        font-size: 0.9em;
+        text-align: center;
+    }

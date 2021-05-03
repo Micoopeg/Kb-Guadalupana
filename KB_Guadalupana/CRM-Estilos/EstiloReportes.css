@@ -1,0 +1,15 @@
+﻿input text{
+    height:40px;
+    text-align:center;
+}
+select{
+    height:40px;
+    color:black;
+    width:210px;
+
+}
+
+.texto {
+    height: 40px;
+    text-align: center;
+}

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="chart" targetNamespace="http://tempuri.org/chart.xsd" xmlns:mstns="http://tempuri.org/chart.xsd" xmlns="http://tempuri.org/chart.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="graficamontosTableAdapter" GeneratorDataComponentClassName="graficamontosTableAdapter" Name="graficamontos" UserDataComponentName="graficamontosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString (Web.config)" DbObjectName="bdkbguadalupana.graficamontos" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `Name_exp_1` FROM `bdkbguadalupana`.`graficamontos`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Name_exp_1" DataSetColumn="Name_exp_1" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="chart" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="chart" msprop:Generator_UserDSName="chart">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="graficamontos" msprop:Generator_TableClassName="graficamontosDataTable" msprop:Generator_TableVarName="tablegraficamontos" msprop:Generator_TablePropName="graficamontos" msprop:Generator_RowDeletingName="graficamontosRowDeleting" msprop:Generator_RowChangingName="graficamontosRowChanging" msprop:Generator_RowEvHandlerName="graficamontosRowChangeEventHandler" msprop:Generator_RowDeletedName="graficamontosRowDeleted" msprop:Generator_UserTableName="graficamontos" msprop:Generator_RowChangedName="graficamontosRowChanged" msprop:Generator_RowEvArgName="graficamontosRowChangeEvent" msprop:Generator_RowClassName="graficamontosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name_exp_1" msprop:Generator_ColumnVarNameInTable="columnName_exp_1" msprop:Generator_ColumnPropNameInRow="Name_exp_1" msprop:Generator_ColumnPropNameInTable="Name_exp_1Column" msprop:Generator_UserColumnName="Name_exp_1" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

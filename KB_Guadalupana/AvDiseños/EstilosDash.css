@@ -1,0 +1,240 @@
+﻿
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    background: #ffff;
+}
+
+a {
+    text-decoration: none;
+    font-family: sans-serif;
+
+}
+
+span {
+    font-size: 20px;
+    font-weight: normal;
+    padding-right: 16px;
+}
+
+#main-container {
+    width: 450px;
+    height: 330px;
+    margin: 3em auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+
+.tab {
+    width: 450px;
+    height: 55px;
+    -webkit-transition: background .1s ease-out;
+    -moz-transition: background .1s ease-out;
+    -o-transition: background .1s ease-out;
+    -ms-transition: background .1s ease-out;
+    transition: background .1s ease-out;
+}
+
+    .tab h3 {
+        margin: 0 0 0 20px;
+        line-height: 50px;
+        cursor: pointer;
+        font-size: 16px;
+        font-family: sans-serif;
+        display: inline-block;
+        float: left;
+        -webkit-transition: color .1s ease-out;
+        -moz-transition: color .1s ease-out;
+        -o-transition: color .1s ease-out;
+        -ms-transition: color .1s ease-out;
+        transition: color .1s ease-out;
+    }
+
+.notification {
+    display: inline-block;
+    width: 39px;
+    line-height: 24px;
+    float: right;
+    margin: 15px 15px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 11px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    -webkit-transition: background .1s ease-out;
+    -moz-transition: background .1s ease-out;
+    -o-transition: background .1s ease-out;
+    -ms-transition: background .1s ease-out;
+    transition: background .1s ease-out;
+}
+
+.tabSelected {
+    background: #003563;
+}
+
+    .tabSelected h3 {
+        color: #ffffff;
+    }
+
+    .tabSelected .notification {
+        background: #c9412b;
+    }
+
+        .tabSelected .notification:hover {
+            background: #B33923;
+        }
+
+.tabNoSelected {
+    background: #ffffff;
+    border-bottom: solid 1px #e6e6e6;
+}
+
+    .tabNoSelected:hover {
+        border: solid 1px #F2F2F2;
+    }
+
+    .tabNoSelected h3 {
+        color: #363a3d;
+    }
+
+    .tabNoSelected .notification {
+        background: #dcdddf;
+    }
+
+        .tabNoSelected .notification:hover {
+            background: #2eb398;
+        }
+
+.tabBody {
+    background: #003563;
+    width: 450px;
+    height: 50px;
+    display: none;
+    border-top: solid 1px #003563;
+}
+
+.tabBodyOptions {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .tabBodyOptions a {
+        display: block;
+        color: #fce7e4;
+        font-size: 13px;
+        line-height: 32px;
+        width: 310px;
+        padding-left: 20px;
+        -webkit-transition: background .3s ease-out;
+        -moz-transition: background .3s ease-out;
+        -o-transition: background .3s ease-out;
+        -ms-transition: background .3s ease-out;
+        transition: background .3s ease-out;
+    }
+
+        .tabBodyOptions a:hover {
+            background: #df4f37;
+            color: #ffffff;
+        }
+
+    .tabBodyOptions span {
+        font-size: 18px;
+    }
+
+
+.topnav {
+    overflow: hidden;
+    background-color: #003563;
+}
+
+    .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #69a43c;
+            color: white;
+        }
+
+    .topnav .icon {
+        display: none;
+    }
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .topnav.responsive {
+        position: relative;
+    }
+
+        .topnav.responsive .icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .topnav.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+}
+
+.carta-box {
+    margin: 25px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    perspective: 1000px;
+}
+
+    .carta-box:hover .carta {
+        transform: rotateY(180deg);
+    }
+
+.carta {
+    transform-style: preserve-3d;
+    transition: all 0.5s linear;
+}
+
+.cara {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+    .cara.detras {
+        transform: rotateY(180deg);
+    }
+
+.minh-100 {
+    height: 80vh;
+}

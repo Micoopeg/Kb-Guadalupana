@@ -11,7 +11,7 @@ namespace KB_Guadalupana.Views.ControlEX
 {
 
 
-    public partial class Ex_Principal
+    public partial class Ex_AgenciaHallazgos
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-
-        /// <summary>
         /// inicio control.
         /// </summary>
         /// <remarks>
@@ -42,40 +33,13 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlAnchor inicio;
 
         /// <summary>
-        /// negocios control.
+        /// legalizados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl negocios;
-
-        /// <summary>
-        /// mesareg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mesareg;
-
-        /// <summary>
-        /// archivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl archivo;
-
-        /// <summary>
-        /// hallazgos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hallazgos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl legalizados;
 
         /// <summary>
         /// pendientes control.
@@ -87,85 +51,67 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pendientes;
 
         /// <summary>
-        /// NombreAgencia control.
+        /// val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NombreAgencia;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl val;
 
         /// <summary>
-        /// Date control.
+        /// alerta5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Date;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alerta5;
 
         /// <summary>
-        /// esmens control.
+        /// btndivhall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl esmens;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btndivhall;
 
         /// <summary>
-        /// extran control.
+        /// numcredito control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl extran;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl numcredito;
 
         /// <summary>
-        /// exppenv control.
+        /// LinkButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exppenv;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
 
         /// <summary>
-        /// exmesa control.
+        /// ajuridico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exmesa;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ajuridico;
 
         /// <summary>
-        /// exjur control.
+        /// DGVCONHALLAZGO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exjur;
-
-        /// <summary>
-        /// exarch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exarch;
-
-        /// <summary>
-        /// exret control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exret;
+        protected global::System.Web.UI.WebControls.GridView DGVCONHALLAZGO;
 
         /// <summary>
         /// btninicio control.
@@ -211,14 +157,5 @@ namespace KB_Guadalupana.Views.ControlEX
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
-
-        /// <summary>
-        /// LinkButton6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
     }
 }

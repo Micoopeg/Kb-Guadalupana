@@ -130,10 +130,10 @@ namespace KB_Guadalupana.Views.ControlEX
 
                                     string updatelote = "UPDATE `ex_lotesalida` SET  `estado`= 1 WHERE numerolote = '" + txtname.Text + "' ";
                                     exc.Insertar(updatelote);
-                                    string updateenviolote = "UPDATE `ex_envio` SET `estado`= 2,`codexetapa`= 6 WHERE codexenvio = '" + numeroenv + "' ";
+                                    string updateenviolote = "UPDATE `ex_envio` SET `estado`= 6,`codexetapa`= 5 WHERE codexenvio = '" + numeroenv + "' ";
                                     exc.Insertar(updateenviolote);
 
-                                    string bitacora = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigbit + "', '" + numeroenv + "', '" + codexp + "', '" + fechaactual + "', 2, 6 );";
+                                    string bitacora = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigbit + "', '" + numeroenv + "', '" + codexp + "', '" + fechaactual + "', 6, 5 );";
                                     exc.Insertar(bitacora);
                                     txtname.Text = "";
                                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Validado')", true);

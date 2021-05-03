@@ -21,7 +21,7 @@ namespace KB_Guadalupana.Views.ControlEX
         int ctrl2 = 15;
         protected void Page_Load(object sender, EventArgs e)
         {
-            generar2();
+   
             GenerarPDF();
         }
 
@@ -133,6 +133,18 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.Close();
                 System.Diagnostics.Process.Start(Environment.GetFolderPath(
                            Environment.SpecialFolder.Desktop) + "/codes.pdf");
+
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                Response.AppendHeader("Content-Disposition", "attachment; filename=foo.pdf");
+                Response.TransmitFile("~/Desktop/codigos.pdf");
+                Response.End();
+                //Response.ContentType = "application/pdf";
+                //Response.AddHeader("content-disposition", "attachment;filename=codigos" + ".pdf");
+                //Response.TransmitFile(Server.MapPath("~/Desktop/codigos.pdf"));
+                //Response.Write(doc);
+                //Response.Flush();
+                //Response.End();
                 //MessageBox.Show("Bar codes generated on desktop fileName=codes.pdf");
             }
             catch
@@ -144,8 +156,12 @@ namespace KB_Guadalupana.Views.ControlEX
             }
 
 
-     
 
+      
+
+         
+
+          
 
 
 

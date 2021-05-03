@@ -19,9 +19,9 @@ namespace KB_Guadalupana.Views.ControlEX
         protected void Page_Load(object sender, EventArgs e)
         {
             usernombre = Convert.ToString(Session["sesion_usuario"] = "pgecasasola");
-            nombrepersona = Convert.ToString(Session["Nombre"] = "Edgar Casasola");
+            nombrepersona = Convert.ToString(Session["Nombre"] = "Edgar Ruben Casasola Bachez");
 
-            NombreAgencia.InnerText = Convert.ToString(Session["Nombre"] = exc.agencia(usernombre));
+            NombreAgencia.InnerText = Convert.ToString(Session["NombreAG"] = exc.agencia(usernombre));
 
             now();
             string area = exc.obtenerarea(usernombre);
@@ -41,7 +41,7 @@ namespace KB_Guadalupana.Views.ControlEX
                     extran.InnerText = exc.contret();
                     exppenv.InnerText = exc.contexis();
                     exjur.InnerText = mex.contjur();
-                    exret.InnerText = mex.contret();
+                    exret.InnerText = mex.contreten();
                     exarch.InnerText = mex.contarch();
 
                 }
@@ -51,10 +51,60 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 }
             }
-            if (rol=="8" || rol == "2") {
-                mesareg.Visible = true;
-            
+            switch (rol) {
+
+                case "2":
+                    mesareg.Visible = true;
+                    archivo.Visible = false;
+                    negocios.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+                case "3":
+                    negocios.Visible = false;
+                    archivo.Visible = false;
+                    mesareg.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+                case "4":
+                    mesareg.Visible = false;
+                    archivo.Visible = false;
+                    negocios.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+                case "5":
+                    negocios.Visible = true;
+                    archivo.Visible = false;
+                    mesareg.Visible = false;
+                    hallazgos.Visible = false;
+                    pendientes.Visible = false;
+                    break;
+                case "6":
+                    mesareg.Visible = false;
+                    archivo.Visible = false;
+                    negocios.Visible = false;
+                    break;
+                case "7":
+                    archivo.Visible = true;
+                    mesareg.Visible = false;
+                    negocios.Visible = false;
+                    pendientes.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+                case "8":
+                    mesareg.Visible = true;
+                    archivo.Visible = false;
+                    hallazgos.Visible = false;
+                    negocios.Visible = false;
+                    break;
+                case "9":
+                    negocios.Visible = false;
+                    archivo.Visible = false;
+                    mesareg.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+
             }
+          
         }
 
         public void now()
@@ -85,6 +135,16 @@ namespace KB_Guadalupana.Views.ControlEX
 
         }
 
+        protected void LinkButton5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
+        }
+
+        protected void LinkButton6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ex_AgenciaHallazgos.aspx");
+        }
+
         protected void LinkButton3_Click(object sender, EventArgs e)
         {
             Response.Redirect("Ex_VistaMesaQA.aspx");
@@ -99,7 +159,7 @@ namespace KB_Guadalupana.Views.ControlEX
         protected void btnEXGEN_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("Ex_Principal.aspx");
+            Response.Redirect("Ex_VistaNegocios.aspx");
 
         }
     

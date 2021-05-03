@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<a href="javascript:void(0);" class="links" class="bt-menu">
+		<a href="javascript:void(0);" class="links"  class="bt-menu">
 			<span class="span fa fa-list"></span>
 		</a>
 	</div>  
@@ -39,38 +39,30 @@
 
 			</li>
 
-			<li class="li submenu">
-				<a href="javascript:void(0);" class="links">
-					<span class="span fa fa-suitcase"></span>Expedientes
-                    <span class="span fa fa-arrow-down"></span>
+			<li class="li">
+				<a href="javascript:void(0);" onclick="redirigir2()"  class="links">
+					<span class="span fa fa-suitcase"></span>Control de Negocios
+   
 				</a>
-                <ul class="children">
-                    <li class="li">
-						<a href="javascript:void(0);" onclick="redirigir2()" class="links">Expedientes General
-							<span class="span fa fa-play"></span>
-						</a>
-					</li>  
-				
-					
-				</ul>
+           
 			</li>
 
-			<li class="li ">
+			<%--<li class="li ">
 				<a href="javascript:void(0);" class="links">
 					<span class="span fa fa-eye"></span>Expedientes con Hallazgos
 					
 				</a>
 
 				
-			</li>
+			</li>--%>
 
-			<li class="li">
+		<%--	<li class="li">
 				<a href="javascript:void(0);" onclick="redirigir4()" class="links">
 					<span class="span fa fa-location-arrow"></span>Pendientes de envío
 				</a>
-			</li>
+			</li>--%>
 		<li class="li">
-				<a href="javascript:void(0);" class="links">
+				<a href="javascript:void(0);" onclick="redirigir4()" class="links">
 					<span class="span fa fa-user"></span>Cerrar Sesion
 				</a>
 			</li>
@@ -86,7 +78,7 @@
          <center><h3 id="nocred" runat="server">04005878</h3></center>
         
         
-      <div class='progress'>
+      <div class='progress' style="position: relative; margin-top: 17%; margin-bottom: -156px">
   <div class='progress_inner'>
     <div class='progress_inner__step'>
   <%--        <label for='step-5' id="fechaagin" style="margin-top: -89px">Ingreso: 24/11/2021</label>--%>
@@ -126,7 +118,62 @@
     <div class='progress_inner__bar--set'></div>
   </div>
 </div>
-<!-- partial -->
+<!-- partial -->   <br />   
+
+        <div class="container">
+
+  <div class="row">
+      <center> <h3 id="encabselec" runat="server" style="margin-top:10%; margin-bottom: -100px">Registro del Expediente</h3></center>
+       
+    <div class="col-md-12" style="overflow-x: auto;" >
+      <div style=" text-align: -webkit-center; margin-top: 11%;">
+          <asp:GridView ID="DGVTRACK" CssClass="table table-striped" style="width: 400px; text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
+    AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="10" OnPageIndexChanging="DGVTRACK_PageIndexChanging" >
+                    <Columns>
+                          <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No">
+                           <ItemTemplate>
+                           <asp:Label ID="hall"  Width="30px" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Fecha/Hora">
+                           <ItemTemplate>
+                           <asp:Label ID="lblfecha"  Width="150px" Text='<%# Eval("ex_fechaev") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                        <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Estado">
+                           <ItemTemplate>
+                           <asp:Label ID="lblevento"  Width="80px" Text='<%# Eval("ex_evento") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Etapa Actual">
+                           <ItemTemplate>
+                           <asp:Label ID="lblactual"  Width="90px" Text='<%# Eval("etapa_actual") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                        <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Etapa Siguiente">
+                           <ItemTemplate>
+                           <asp:Label ID="lblsig"  Width="110px" Text='<%# Eval("etapa_siguiente")%>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                   
+         
+
+                     </Columns>
+        <HeaderStyle CssClass="prueba" Width="300px" ForeColor="White"></HeaderStyle>
+        </asp:GridView>
+</div>
+    </div>
+        
+  </div>
+       
+
+            <br /> <br />
+
+          
+
+                    
+
+</div>
 
          <asp:LinkButton ID="btninicio" runat="server" OnClick="btnInicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>

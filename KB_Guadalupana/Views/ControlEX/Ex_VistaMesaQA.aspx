@@ -48,22 +48,16 @@
 			</li>
 
 			<li class="li submenu">
-				<a href="javascript:void(0);" class="links">
-					<span class="span fa fa-suitcase"></span>Expedientes
-                    <span class="span fa fa-arrow-down"></span>
+				<a href="javascript:void(0);" onclick="redirigir2()" class="links">
+					<span class="span fa fa-suitcase"></span>Expedientes General
+               
 				</a>
-                <ul class="children">
-                    <li class="li">
-						<a href="javascript:void(0);" onclick="redirigir2()" class="links" style="padding:10px">Expedientes General
-							<span class="span fa fa-play"></span>
-						</a>
-					</li> 					
-				</ul>
+             
 			</li>
 
 			<li class="li">
 				<a href="javascript:void(0);" class="links">
-					<span class="span fa fa-eye"></span>Expedientes con Hallazgos
+					<span class="span fa fa-eye"></span>Expedientes Legalizados
 				</a>
 			</li>
 
@@ -81,7 +75,7 @@
 	</nav>
 </header>
 
-		   <center>
+	  <center>
          
          
            <div class="containter" id="val" runat="server" >
@@ -89,42 +83,56 @@
              <div class="col-md-9">
                   <center>
 
-             <h3 style=" margin-left: 30%; margin-right: 30%;">Pendiente de envío</h3>
+             <h3 style=" font-size:20px; margin-left: 30%; margin-right: 30%;">Expedientes legalizados</h3>
          </center>
              </div>
            <div class="col-md-2">
 
            <div class="form-group"> 
 
-           
-            <div style="position: absolute;    margin-left: -220px;">
-                 <span id="span3" runat="server" style="font-size:15px; margin-left: -77px">No. Prestamo: <h5 style="font-size:15px; position: absolute;margin-top: -18px; margin-left: 108px;" id="num" runat="server" ></h5>  </span><textarea id="hallazgo" placeholder="Hallazgos encontrados" runat="server"    class="form-control" style="max-width:190px; height:100px; min-width: 180px;min-height: 139px;  "   required  ></textarea>
 
+          
 
-            </div>
-              
+               <span id="span1" runat="server" style="font-size:15px">1. Validar Ingreso de Expedientes: </span><asp:TextBox ID="txtbarras" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
+                <span id="span2" runat="server" style="font-size:15px">2. Leer para Validar Expediente: </span><asp:TextBox ID="txtbarras2" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras2_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
 
-               <span id="span1" runat="server" style="font-size:15px">Codigo de Barras: </span><asp:TextBox ID="txtbarras" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
                 
-               <span id="span2" runat="server" style="font-size:15px">Codigo de Barras: </span><asp:TextBox ID="txtbarras2" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras2_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
-              <label id="encabasignados" runat="server" style="color:white">Usuario</label>
-               <asp:DropDownList ID="asignado" runat="server" CssClass="dis" AutoPostBack="false" Width="177px"></asp:DropDownList>
+           
            </div>
                </div>
              </div>
 
              <div class="row">
-           <div class="col-md-9"><span id="alerta" runat="server" style="font-size:15px; color: orangered;">Verifique los Expendientes antes de Generar la Orden, no olvide descargar los documentos. </span>
-               <span id="alerta2" runat="server" style="font-size:15px; color: lawngreen;">Seleccione únicamente los expedientes que desea cargar a la Orden de envio </span>
-               <span id="alerta3" runat="server" style="font-size:15px; color: lawngreen;">Seleccione los Expedientes y la persona a quien los asignará </span>
-               <span id="alerta4" runat="server" style="font-size:15px; color: lawngreen; ">Marque los expedientes con el lector de barras. </span>
+           <div class="col-md-9"><span id="alerta" runat="server" style="font-size:25px; width:25%; color: orangered;">Verifique los expendientes antes de generar la orden, no olvide descargar los documentos. </span>
+               <span visible="false" id="alerta2" runat="server" style="font-size:15px; color: lawngreen;">Seleccione únicamente los expedientes que desea cargar a la Orden de envio </span>
+            <span id="alerta7" visible="false" runat="server" style="font-size:20px; color:white;"><b>¿Desea Generar la carta de transporte con los expedientes seleccionados?</b> </span>
+               <span id="alerta5" visible="false" runat="server" style="font-size:25px; color:white;"><b>Ingrese o consulte los hallazgos del expediente</b> </span>
+               <br />
+               <label visible="false" id="encabasignados" runat="server" style="color:white; font-size:15px">Usuario</label><br />
+               
+                 <div style="  margin-left: -220px;">
+                 <span id="span3" runat="server" style="font-size:15px; margin-left:-25%" visible="false">No. Prestamo: <h5 style="font-size:15px; margin-top:-19px; margin-left: -116px " id="num" runat="server" ></h5>  </span><textarea visible="false" id="hallazgo" placeholder="Hallazgos encontrados" runat="server"    class="form-control" style="max-width:671px; height:88px; min-width: 671px;min-height: 100px; margin-left:220px "   required  ></textarea>
+
+
+            </div>
+              
+               
            </div>
            <div class="col-md-2">
            <div class="form-group"> 
                <asp:LinkButton ID="btnorden" runat="server" OnClick="btnorden_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Generar Orden" /> </asp:LinkButton>
-                <asp:LinkButton ID="btnlimpiar" runat="server" OnClick="btnlimpiar_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Limpiar Hallazgo" /> </asp:LinkButton>
-                 
-          
+                <div id="btndiv" visible="false" runat="server" style=" margin-left: -184%;position: absolute; margin-top: 2%;"> <asp:LinkButton ID="btnhallazgo" runat="server" OnClick="btnhallazgo_Click" class="btn btn-primary form-control" type="submit" Width="111%"  Text="Insertar Hallazgo" /> 
+                   </div>
+                <div id="btndivhall" visible="false" runat="server" style=" margin-left: -284%;position: absolute; margin-top: 2%;"> <asp:LinkButton  ID="consultahall" runat="server" OnClick="consultahall_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Consultar Hallazgos" /> 
+                   </div>
+                  <div visible="false" id="divuserbtn" runat="server" style=" margin-left: -184%;position: absolute; margin-top: 26%;"> <asp:LinkButton  ID="btnasignaruser" runat="server" OnClick="btnasignaruser_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Asignar" /> 
+                   </div>
+                <div visible="false" id="divbtnverificar" runat="server" style=" margin-left: -46%;position: absolute; margin-top: -36%;"> <asp:LinkButton  ID="btnverificar" runat="server" OnClick="btnverificar_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Validar" /> 
+                   </div>
+            <div visible="false" id="divsi" runat="server" style=" margin-left: -615px;position: absolute; margin-top: -2%;"> <asp:LinkButton  ID="si" runat="server" OnClick="si_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Si" /> 
+                   </div>
+            <div visible="false" id="divno" runat="server" style=" margin-left: -566px;position: absolute; margin-top: -2%;"> <asp:LinkButton  ID="no" runat="server" OnClick="no_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="No" /> 
+                   </div>
            </div>
                </div>
              </div>
@@ -152,7 +160,7 @@
                            <asp:Label ID="lblcif"  Width="80px" Text='<%# Eval("cifgeneral") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Prestamo">
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Préstamo">
                            <ItemTemplate>
                            <asp:Label ID="lblnumcred"  Width="90px" Text='<%# Eval("gen_numcredito") %>' runat="server" />
                         </ItemTemplate>
@@ -188,7 +196,7 @@
         
   </div>
             <div class="row">
-                <h3 id="ajuridico" runat="server">Expedientes con Hallazgos</h3>
+                <h3 id="ajuridico" runat="server">Expedientes Asignados</h3>
                  <div class="col-md-12" style="overflow-x: auto;" >
                 <asp:GridView ID="DGVCONHALLAZGO" CssClass="table table-striped" style="width: 400px;text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="5" OnPageIndexChanging="DGVCONHALLAZGO_PageIndexChanging" OnSelectedIndexChanged="DGVCONHALLAZGO_SelectedIndexChanged" >
@@ -203,7 +211,7 @@
                            <asp:Label ID="lblcif"  Width="80px" Text='<%# Eval("cifgeneral") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Prestamo">
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Préstamo">
                            <ItemTemplate>
                            <asp:Label ID="lblnumcred"  Width="90px" Text='<%# Eval("gen_numcredito") %>' runat="server" />
                         </ItemTemplate>
@@ -236,7 +244,7 @@
 </div>
             </div>
                  <div class="row">
-        <h3 id="H1" runat="server">Listos para envío</h3>
+  
                
     <div class="col-md-12" style="overflow-x: auto;" >
       
@@ -255,7 +263,7 @@
                            <asp:Label ID="lblcif"  Width="80px" Text='<%# Eval("cifgeneral") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Prestamo">
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Préstamo">
                            <ItemTemplate>
                            <asp:Label ID="lblnumcred"  Width="90px" Text='<%# Eval("gen_numcredito") %>' runat="server" />
                         </ItemTemplate>
@@ -311,7 +319,7 @@
                            <asp:Label ID="lblcif"  Width="80px" Text='<%# Eval("cifgeneral") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Prestamo">
+                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No. Préstamo">
                            <ItemTemplate>
                            <asp:Label ID="lblnumcred"  Width="90px" Text='<%# Eval("gen_numcredito") %>' runat="server" />
                         </ItemTemplate>
@@ -357,15 +365,13 @@
          <asp:LinkButton ID="btninicio" runat="server" OnClick="btnInicio_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>
         <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnNuevo_Click" ClientIDMode="Static"></asp:LinkButton>
-
+        <asp:LinkButton ID="LinkButton5" runat="server" OnClick="LinkButton5_Click" ClientIDMode="Static"></asp:LinkButton>
        <%--<asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
        <asp:LinkButton ID="LinkButton8" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>--%>
-   <script>
-             $('#<%=asignado.ClientID%>').chosen();
-   </script>
+ 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src="../../EXDiseños/scriptvalidar.js" type="text/javascript"></script>
 		        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="../../EXDiseños/scriptbarra.js"></script>

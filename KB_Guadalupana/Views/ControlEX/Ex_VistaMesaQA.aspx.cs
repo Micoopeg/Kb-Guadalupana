@@ -30,7 +30,7 @@ namespace KB_Guadalupana.Views.ControlEX
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
+            now();
             usernombre = Convert.ToString(Session["sesion_usuario"]);
             nombrepersona = Convert.ToString(Session["Nombre"]);
             coduser = exc.obtenercoduser(usernombre);
@@ -49,20 +49,21 @@ namespace KB_Guadalupana.Views.ControlEX
                     case "2":
 
 
-                        txtbarras.Visible = true;
-                        txtbarras2.Visible = false;
-                        span1.Visible = true;
-                        span3.Visible = true;
-                        alerta2.Visible = true;
+                        txtbarras.Visible = false;
+
+                        txtbarras2.Visible = true;
+                        span1.Visible = false;
+                        span3.Visible = false;
+                        alerta2.Visible = false;
                         encabselec.Visible = false;
                         encabenvio.Visible = false;
                         ajuridico.Visible = true;
                         btnorden.Visible = false;
-                        asignado.Visible = false;
+                        
                         alerta.Visible = false;
-                        alerta3.Visible = false;
-                        H1.Visible = false;
-                        alerta4.Visible = false;
+            
+                    
+          
                         encabasignados.Visible = false;
                         ajuridico.Attributes.Add("style", "margin-top: 70px;");
                         alerta2.Attributes.Add("style", "font-size:15px; color: lawngreen; text-align: initial; margin-left: -116px");
@@ -82,44 +83,44 @@ namespace KB_Guadalupana.Views.ControlEX
 
                     case "8":
                         txtbarras.Visible = true;
-                        txtbarras2.Visible = false;
+                        txtbarras2.Visible = true;
 
-                        span1.Visible = false;
+                        span1.Visible = true;
         
                         btnorden.Visible = true;
                         alerta.Visible = false;
                         alerta2.Visible = false;
-                        alerta3.Visible = true;
-                        asignado.Visible = true;
+        
+                     
                         encabenvio.Visible = true;
                         encabselec.Visible = true;
-                        alerta4.Visible = false;
+             
                         ajuridico.Visible = true;
                      
-                        if (!IsPostBack) { llenarcomboasignadojuridico(); }
-                        llenardtgvmesa();
+                        if (!IsPostBack) { }
+                        //llenardtgvmesa();
                         llenardtgasignado();
                 
                         llenarlistos();
                         break;
                     case "7":
-                        txtbarras.Visible = false;
-                        btnlimpiar.Visible = false;    
+                        txtbarras.Visible = true;
+                
                         hallazgo.Visible = false;
                         span1.Visible = true;
                         span2.Visible = false;
                         span3.Visible = false;
-                        alerta4.Visible = true;
+             
                         alerta2.Visible = false;
-                        txtbarras2.Visible = true;
+                        txtbarras2.Visible = false;
                         encabselec.Visible = false;
                         encabenvio.Visible = false;
                         ajuridico.Visible = true;
                         btnorden.Visible = false;
-                        asignado.Visible = false;
+                     
                         alerta.Visible = false;
-                        alerta3.Visible = false;
-                        H1.Visible = false;
+                 
+                    
                         encabasignados.Visible = false;
                         llenararch();
 
@@ -158,13 +159,13 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.SetMargins(40f, 40f, 40f, 40f);
 
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                     Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/cartaenvio.pdf", FileMode.Create));
+                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cartaenvioarchivo.pdf", FileMode.Create));
 
                 doc.AddAuthor("Micoope");
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/F1.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -190,25 +191,23 @@ namespace KB_Guadalupana.Views.ControlEX
                 string cant2 = Convert.ToString(cant);
                 doc.Add(Chunk.NEWLINE);
 
-                var tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-                tbl.AddCell(new PdfPCell(logo) { Border = 0, Rowspan = 3, VerticalAlignment = Element.ALIGN_MIDDLE });
-                tbl.AddCell(new PdfPCell(new Phrase("NO. LOTE " + lote + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                tbl.AddCell(new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                var tbl = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
+                tbl.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
+                tbl.AddCell(new PdfPCell(new Phrase("NO. LOTE de Salida " + lote + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tbl.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
 
                 doc.Add(tbl);
 
                 doc.Add(new Phrase(" "));
                 doc.Add(new Phrase(" "));
 
-                tbl = new PdfPTable(new float[] { 30f, 40f, 30f }) { WidthPercentage = 100 };
-                tbl.AddCell(new PdfPCell(new Phrase("" + noma + ":", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+                tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
 
-                tbl.AddCell(new PdfPCell(new Phrase("Formato Oficial Para Envío de expedientes ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                tbl.AddCell(new PdfPCell(new Phrase("ARCHIVO", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-
-                tbl.AddCell(new PdfPCell(new Phrase("DE.......................PARA", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+                tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                tbl.AddCell(new PdfPCell(new Phrase("Destino: Archivo ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
 
                 doc.Add(tbl);
@@ -238,7 +237,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 table.TotalWidth = 550f;
 
                 table.LockedWidth = true;
-                float[] widths = new float[] { 40f, 15f, 25f, 40f, 20f, 35f };
+                float[] widths = new float[] { 20f, 15f, 25f, 40f, 35f, 35f };
                 table.SetWidths(widths);
                 table.HorizontalAlignment = 0;
 
@@ -281,6 +280,22 @@ namespace KB_Guadalupana.Views.ControlEX
 
 
 
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
+                PdfPTable tablef = new PdfPTable(1);
+
+                tablef.AddCell(new PdfPCell(new Phrase("Firma___________________" + nombrepersona, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                float[] widthsf = new float[] { 30f };
+                tablef.SetWidths(widthsf);
+                tablef.HorizontalAlignment = 0;
+
+
+
+                doc.Add(tablef);
 
 
 
@@ -288,7 +303,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 doc.Close();
                 System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                           Environment.SpecialFolder.Desktop) + "/cartaenvio.pdf");
+                           Environment.SpecialFolder.MyDocuments) + "/cartaenvioarchivo.pdf");
                 estadomesaarch();
                 Response.Redirect("Ex_VistaMesaQA.aspx");
 
@@ -302,7 +317,7 @@ namespace KB_Guadalupana.Views.ControlEX
             DataTable dt3 = new DataTable();
             string a = exc.obtenerarea(usernombre);
             string noma = exc.obtenerareanombre(a);
-            crearlotesalida();
+ 
             dt3 = mex.llenarenviomesaarch();
 
             if (dt3.Rows.Count < 1)
@@ -314,15 +329,15 @@ namespace KB_Guadalupana.Views.ControlEX
             {
                 Document doc = new Document(PageSize.LETTER);
                 doc.SetMargins(40f, 40f, 40f, 40f);
-
+                
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                     Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/cartaenvio5.pdf", FileMode.Create));
+                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cartaenvioarch.pdf", FileMode.Create));
 
                 doc.AddAuthor("Micoope");
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/F1.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -348,25 +363,22 @@ namespace KB_Guadalupana.Views.ControlEX
                 string cant2 = Convert.ToString(cant);
                 doc.Add(Chunk.NEWLINE);
 
-                var tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-                tbl.AddCell(new PdfPCell(logo) { Border = 0, Rowspan = 3, VerticalAlignment = Element.ALIGN_MIDDLE });
-                tbl.AddCell(new PdfPCell(new Phrase("NO. LOTE " + lote + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                tbl.AddCell(new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-
+                var tbl = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
+                tbl.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
+                tbl.AddCell(new PdfPCell(new Phrase("NO. LOTE de Salida " + lote + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tbl.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
                 doc.Add(tbl);
+                
 
                 doc.Add(new Phrase(" "));
                 doc.Add(new Phrase(" "));
+                tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
 
-                tbl = new PdfPTable(new float[] { 30f, 40f, 30f }) { WidthPercentage = 100 };
-                tbl.AddCell(new PdfPCell(new Phrase("" + noma + ":", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-
-                tbl.AddCell(new PdfPCell(new Phrase("Formato Oficial Para Envío de expedientes ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                tbl.AddCell(new PdfPCell(new Phrase("ARCHIVO", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-
-                tbl.AddCell(new PdfPCell(new Phrase("DE.......................PARA", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+                tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                tbl.AddCell(new PdfPCell(new Phrase("Destino: Archivo ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
 
                 doc.Add(tbl);
@@ -384,9 +396,8 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 doc.Close();
                 System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                           Environment.SpecialFolder.Desktop) + "/cartaenvio5.pdf");
-                estadomesaarch();
-                Response.Redirect("Ex_VistaMesaQA.aspx");
+                           Environment.SpecialFolder.MyDocuments) + "/cartaenvioarch.pdf");
+              
 
             }
 
@@ -401,7 +412,7 @@ namespace KB_Guadalupana.Views.ControlEX
             DataTable dt3 = new DataTable();
     
             dt3 = mex.llenarenviomesaarch();
-            string numerolote = exc.siguiente("ex_lotesalida", "numerolote");
+            string numerolote = exc.siguiente2("ex_lotesalida", "numerolote");
             for (int i = 0; i < dt3.Rows.Count; i++)
             {
 
@@ -450,39 +461,17 @@ namespace KB_Guadalupana.Views.ControlEX
         }
         protected void btnorden_Click(object sender, EventArgs e)
         {
-          
-            string permiso = exc.obtenerrol(usernombre);
-            try
-            {
-              
-                switch (permiso)
-                {
-                    //agencia jefe
-                 
-                    //mesa encargado 8
-                    case "8":
 
 
-                        GenerarPDFjuridicomesa();
-                        GenerarPDFjuridicomesaext();
-                        break;
-               
+            alerta7.Visible = true;
+            divsi.Visible = true;
+            divno.Visible = true;
 
-
-
-                }
-
-
-
-
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-
-            }
-
-
+            alerta5.Visible = false;
+            btndivhall.Visible = false;
+            hallazgo.Visible = false;
+            span3.Visible = false;
+            btndiv.Visible = false;
 
         }
         public void now()
@@ -559,24 +548,24 @@ namespace KB_Guadalupana.Views.ControlEX
 
         protected void DGVSELECT_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string quien = asignado.SelectedValue;
-            int invl = asignado.SelectedIndex;
+            //string quien = asignado.SelectedValue;
+            //int invl = asignado.SelectedIndex;
 
 
-            GridViewRow row = DGVSELECT.SelectedRow;
-            DataTable dt1 = new DataTable();
-            string numcred = (DGVSELECT.SelectedRow.FindControl("lblnumcred") as Label).Text;
-            string codexp = exc.obtenercodexp(numcred);
-            string sigas = exc.siguiente("ex_asignado", "codasig");
-            if (quien != "" && invl != 0)
-            {
+            //GridViewRow row = DGVSELECT.SelectedRow;
+            //DataTable dt1 = new DataTable();
+            //string numcred = (DGVSELECT.SelectedRow.FindControl("lblnumcred") as Label).Text;
+            //string codexp = exc.obtenercodexp(numcred);
+            //string sigas = exc.siguiente("ex_asignado", "codasig");
+            //if (quien != "" && invl != 0)
+            //{
 
-                string asignar = "INSERT INTO `ex_asignado`(`codasig`, `codexp`, `codasignado`, `proceso`) VALUES ('" + sigas + "', '" + codexp + "', '" + asignado.SelectedValue + "' , 5)";
-                exc.Insertar(asignar);
+            //    string asignar = "INSERT INTO `ex_asignado`(`codasig`, `codexp`, `codasignado`, `proceso`) VALUES ('" + sigas + "', '" + codexp + "', '" + asignado.SelectedValue + "' , 5)";
+            //    exc.Insertar(asignar);
 
-                Response.Redirect("Ex_VistaMesaQA.aspx");
-            }
-            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Seleccione a quién desea asignarle los expedientes.')", true); }
+            //    Response.Redirect("Ex_VistaMesaQA.aspx");
+            //}
+            //else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Seleccione a quién desea asignarle los expedientes.')", true); }
 
 
 
@@ -591,118 +580,231 @@ namespace KB_Guadalupana.Views.ControlEX
 
         protected void DGVCONHALLAZGO_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+
             string numcred = (DGVCONHALLAZGO.SelectedRow.FindControl("lblnumcred") as Label).Text;
-
-            string cargar = mex.obtenercoment(numcred);
-            string codexpe = exc.obtenercodexp(numcred);
-
-            if (codexpe != "")
+            string rol = exc.obtenerrol(usernombre);
+            switch (rol)
             {
 
-                hallazgo.Visible = true;
-                hallazgo.Disabled = true;
-                span3.Visible = true;
-                if (cargar == "NULL")
-                {
+                case "2":
+                    btnhallazgo.Visible = true;
+                    btndiv.Visible = true;
+                    btndivhall.Visible = true;
+                    hallazgo.Visible = true;
+                    alerta5.Visible = true;
+                    span3.Visible = true;
                     num.InnerText = numcred;
-                    hallazgo.Value = "No se registraron hallazgos. Puede enviarlo.";
-                }
-                else
-                {
-                    num.InnerText = numcred;
-                    hallazgo.Value = cargar;
+                    btndivhall.Attributes.Add("style", "margin-left: -284%; position: absolute; margin-top: 18%; ");
+                    btndiv.Attributes.Add("style", "margin-left: -184%; position: absolute; margin-top: 18%; ");
+                    break;
+                case "8":
+                    btnhallazgo.Visible = true;
+                    btndiv.Visible = true;
+                    btndivhall.Visible = true;
+                    hallazgo.Visible = true;
+                    alerta5.Visible = true;
 
-                }
+                    alerta7.Visible = false;
+                    divsi.Visible = false;
+                    divno.Visible = false;
+
+                    span3.Visible = true;
+           
+                    divuserbtn.Visible = false;
+                    encabasignados.Visible = false;
+    
+                    num.InnerText = numcred;
+                    break;
+
+                    //string numcred = (DGVCONHALLAZGO.SelectedRow.FindControl("lblnumcred") as Label).Text;
+
+
+                    //string codexpe = exc.obtenercodexp(numcred);
+                    //string cargar = mex.obtenerhall(codexpe);
+                    //if (codexpe != "")
+                    //{
+
+                    //    hallazgo.Visible = true;
+                    //    hallazgo.Disabled = true;
+                    //    span3.Visible = true;
+                    //    if (cargar == "NULL")
+                    //    {
+                    //        num.InnerText = numcred;
+                    //        hallazgo.Value = "No se registraron hallazgos. Puede enviarlo.";
+                    //    }
+                    //    else
+                    //    {
+                    //        num.InnerText = numcred;
+                    //        hallazgo.Value = cargar;
+
+                    //    }
+
+                    //}
+                    //else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Expediente Inválido')", true); }
+
 
             }
-            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Expediente Inválido')", true); }
-
-
         }
 
         protected void txtbarras_TextChanged(object sender, EventArgs e)
         {
             //buscar segun codigo ingresado y cargar en dgv pendiente
 
+            string roler = exc.obtenerrol(usernombre);
+
+            switch(roler){
+
+                case "8":
+                    string barras = txtbarras.Text;
+                    Regex regex = new Regex("");
+                    string[] s = regex.Split(barras);
 
 
-            string barras = txtbarras.Text;
-            Regex regex = new Regex("");
-            string[] s = regex.Split(barras);
 
-
-
-            if (s.Length == 14)
-            {
-
-                string numero = "0" + s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9];
-
-
-                string hall = mex.comentario(numero) ;
-                string obtener = mex.confirmarasog(numero);
-                string coasg = mex.confirmarareaasig3(numero);
-                string a = exc.obtenerarea(usernombre);
-                string codenv = exc.obtenercodenv(numero);
-                string codexpe = exc.obtenercodexp(numero);
-                if (hall == "")
-                {
-                    if (codenv != "" && obtener != "" && coasg != "")
+                    if (s.Length == 14)
                     {
 
-                        string updateenv = "UPDATE `ex_envio` SET `estado`= 2 ,`codexetapa`= 5,`usuario`= '" + coduser + "' , `codareauser`= '" + a + "' WHERE Nocredito = '" + numero + "'";
-                        string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                        exc.Insertar(updateres);
-                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+                        string numero = "0" + s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9];
 
-                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                        exc.Insertar(bitacoraa);
 
-                        txtbarras.Text = "";
-                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
-                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+                        string obtener = mex.confirmarasog(numero);
+                        string coaexist = mex.expedienteexiste(numero, "2", "4");
+                        string a = exc.obtenerarea(usernombre);
+                        string codenv = exc.obtenercodenv(numero);
+                        string codexpe = exc.obtenercodexp(numero);
+
+                        if (codenv != "" && coaexist != "")
+                        {
+
+
+                            string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                            exc.Insertar(updateres);
+                            string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                            string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                            exc.Insertar(bitacoraa);
+
+                            txtbarras.Text = "";
+                            String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+                        }
+                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
 
                     }
-                    else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente o contacte a soporte')", true); }
-                }
-                else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Expediente con hallazgos')", true); }
+
+                    else if (s.Length == 15)
+                    {
+
+                        string numero = s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9] + s[10];
+
+
+                        string obtener = mex.confirmarasog(numero);
+
+
+                        string a = exc.obtenerarea(usernombre);
+                        string codenv = exc.obtenercodenv(numero);
+                        string codexpe = exc.obtenercodexp(numero);
+                        string coaexist = mex.expedienteexiste(numero, "2", "4");
+                        if (codenv != "" && coaexist != "")
+                        {
+
+
+                            string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                            exc.Insertar(updateres);
+                            string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                            string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                            exc.Insertar(bitacoraa);
+
+                            txtbarras.Text = "";
+                            String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                        }
+                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
+
+                    }
+                    else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
+                    break;
+
+                case "7":
+                    string barrasarc = txtbarras.Text;
+                    Regex regexarc = new Regex("");
+                    string[] sarc = regexarc.Split(barrasarc);
+
+
+
+                    if (sarc.Length == 14)
+                    {
+
+                        string numero = "0" + sarc[1] + sarc[2] + sarc[3] + sarc[4] + sarc[5] + sarc[6] + sarc[7] + sarc[8] + sarc[9];
+
+
+                        string coaexist = mex.expedienteexiste(numero, "6", "5");
+                        string a = exc.obtenerarea(usernombre);
+                        string codenv = exc.obtenercodenv(numero);
+                        string codexpe = exc.obtenercodexp(numero);
+
+                        if (codenv != "" && coaexist != "")
+                        {
+
+
+                            string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 6  WHERE Nocredito = '" + numero + "'";
+                            exc.Insertar(updateres);
+                            string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                            string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 6 );";
+                            exc.Insertar(bitacoraa);
+
+                            txtbarras.Text = "";
+                            String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+                        }
+                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
+
+                    }
+
+                    else if (sarc.Length == 15)
+                    {
+
+                        string numero = sarc[1] + sarc[2] + sarc[3] + sarc[4] + sarc[5] + sarc[6] + sarc[7] + sarc[8] + sarc[9] + sarc[10];
+
+
+
+
+                        string a = exc.obtenerarea(usernombre);
+                        string codenv = exc.obtenercodenv(numero);
+                        string codexpe = exc.obtenercodexp(numero);
+                        string coaexist = mex.expedienteexiste(numero, "6", "5");
+                        if (codenv != "" && coaexist != "")
+                        {
+
+
+                            string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 6  WHERE Nocredito = '" + numero + "'";
+                            exc.Insertar(updateres);
+                            string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                            string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 6 );";
+                            exc.Insertar(bitacoraa);
+
+                            txtbarras.Text = "";
+                            String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                        }
+                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
+
+                    }
+                    else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
+                    break;
+
+            
+            
             }
 
-            else if (s.Length == 15)
-            {
-
-                string numero = s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9] + s[10];
-
-
-                string obtener = mex.confirmarasog(numero);
-
-                string hall = mex.comentario(numero);
-                string a = exc.obtenerarea(usernombre);
-                string codenv = exc.obtenercodenv(numero);
-                string codexpe = exc.obtenercodexp(numero);
-                string coasg = mex.confirmarareaasig3(numero);
-
-                if (hall == "")
-                {
-                    if (codenv != "" && obtener != "" && coasg != "")
-                    {
-
-                        string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                        exc.Insertar(updateres);
-                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
-
-                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                        exc.Insertar(bitacoraa);
-
-                        txtbarras.Text = "";
-                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
-                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                    }
-                    else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente o contacte a soporte')", true); }
-                }
-                else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Expediente con hallazgos')", true); }
             
-        }
-            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
         }
 
         protected void DGVAMARCAR_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -719,76 +821,43 @@ namespace KB_Guadalupana.Views.ControlEX
 
         protected void txtbarras2_TextChanged(object sender, EventArgs e)
         {
-            string barras = txtbarras2.Text;
-            Regex regex = new Regex("");
-            string[] s = regex.Split(barras);
 
 
+            string rol = exc.obtenerrol(usernombre);
 
-            if (s.Length == 14)
+            switch (rol)
             {
 
-                string numero = "0" + s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9];
+                case "2":
+                    divbtnverificar.Visible = true;
+                    alerta5.Visible = false;
+                    btndivhall.Visible = false;
+                    span3.Visible = false;
+                    hallazgo.Visible = false;
+                    btndiv.Visible = false;
+                    divbtnverificar.Attributes.Add("style", "margin-left: -46%; position: absolute;margin-top: -24%;");
+                    break;
+  
+                case "8":
+
+                    divbtnverificar.Visible = true;
+                    alerta5.Visible = false;
+                    btndivhall.Visible = false;
+                    span3.Visible = false;
+                    hallazgo.Visible = false;
+                    btndiv.Visible = false;
+
+                    break;
+               
 
 
-
-                string obtener = mex.confirmarasog(numero);
-                string coasg = mex.confirmarareaasig3(numero);
-                string a = exc.obtenerarea(usernombre);
-                string codenv = exc.obtenercodenv(numero);
-                string codexpe = exc.obtenercodexp(numero);
-
-                if (codenv != "" && obtener != "" && coasg != "")
-                {
-
-
-                    string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 6  WHERE Nocredito = '" + numero + "'";
-                    exc.Insertar(updateres);
-                    string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
-
-                    string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 6 );";
-                    exc.Insertar(bitacoraa);
-
-                    txtbarras2.Text = "";
-                    String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
-                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-
-                }
-                else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente o contacte a soporte')", true); }
 
             }
 
-            else if (s.Length == 15)
-            {
-
-                string numero = s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9] + s[10];
 
 
-                string obtener = mex.confirmarasog(numero);
 
 
-                string a = exc.obtenerarea(usernombre);
-                string codenv = exc.obtenercodenv(numero);
-                string codexpe = exc.obtenercodexp(numero);
-                string coasg = mex.confirmarareaasig3(numero);
-                if (codenv != "" && obtener != "" && coasg != "")
-                {
-
-                    string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 6  WHERE Nocredito = '" + numero + "'";
-                    exc.Insertar(updateres);
-                    string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
-
-                    string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 6);";
-                    exc.Insertar(bitacoraa);
-
-                    txtbarras2.Text = "";
-                    String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
-                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                }
-                else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente o contacte a soporte')", true); }
-
-            }
-            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
         }
 
         protected void btnlimpiar_Click(object sender, EventArgs e)
@@ -810,6 +879,303 @@ namespace KB_Guadalupana.Views.ControlEX
             else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione el Expediente)", true); }
         }
 
+        protected void txtbarras3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnhallazgo_Click(object sender, EventArgs e)
+        {
+            if (hallazgo.Value != "")
+            {
+
+
+                string envioev = exc.obtenercodenv(num.InnerText);
+                string sighall = exc.siguiente("ex_hallazgos", "codexhall");
+                string exped = exc.obtenercodexp(num.InnerText);
+                string insertarhall = "INSERT INTO `ex_hallazgos`(`codexhall`, `codexp`, `hallazgo`, `estadohall`) VALUES ('" + sighall + "','" + exped + "', '" + hallazgo.Value + "',1 ) ;";
+                exc.Insertar(insertarhall);
+
+                //string updateretenido = "UPDATE `ex_envio` SET  `estado`= 3 WHERE codexenvio = '"+envioev+"'";
+                //exc.Insertar(updateretenido);
+                String script = "alert('Hallazgo Enviado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+            }
+            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ingrese los hallazgos o Recargue la página')", true); }
+
+        }
+
+        protected void consultahall_Click(object sender, EventArgs e)
+        {
+            string numcred = (DGVCONHALLAZGO.SelectedRow.FindControl("lblnumcred") as Label).Text;
+            if (numcred != "")
+            {
+                string noexp = exc.obtenercodexp(numcred);
+
+                Session["exp"] = noexp;
+                Session["nocredit"] = numcred;
+                Response.Redirect("Ex_verhallazgos.aspx");
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' No hay un expediente seleccionado')", true);
+
+
+            }
+        }
+
+        protected void btnasignaruser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void si_Click(object sender, EventArgs e)
+        {
+            string permiso = exc.obtenerrol(usernombre);
+            try
+            {
+
+                switch (permiso)
+                {
+                    //agencia jefe
+
+                    //mesa encargado 8
+                    case "8":
+
+                        GenerarPDFjuridicomesaext();
+                        GenerarPDFjuridicomesa();
+
+                        break;
+
+
+
+
+                }
+
+
+
+
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+
+            }
+
+        }
+
+        protected void no_Click(object sender, EventArgs e)
+        {
+            String script = "alert('Orden cancelada '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+        }
+
+        protected void LinkButton5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ex_pendienteAg.aspx");
+        }
+
+        protected void btnverificar_Click(object sender, EventArgs e)
+        {
+
+            string rolu = exc.obtenerrol(usernombre);
+
+            switch (rolu)
+            {
+
+                case "2":
+                    string barras = txtbarras2.Text;
+                    Regex regex = new Regex("");
+                    string[] s = regex.Split(barras);
+
+
+
+                    if (s.Length == 14)
+                    {
+
+                        string numero = "0" + s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9];
+
+
+
+                        string obtener = mex.confirmarasog(numero);
+                        string coasg = mex.confirmarareaasig2(numero);
+                        string etapa = mex.expedienteexiste(numero, "1", "5");
+                        string a = exc.obtenerarea(usernombre);
+                        string codenv = exc.obtenercodenv(numero);
+                        string codexpe = exc.obtenercodexp(numero);
+                        DataTable dthall = new DataTable();
+                        dthall = mex.llenarhallazgos(codexpe);
+                        if (dthall.Rows.Count == 0)
+                        {
+                            if (codenv != "" && obtener != "" && coasg != "")
+                            {
+
+
+                                string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                exc.Insertar(updateres);
+                                string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                                string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 5 );";
+                                exc.Insertar(bitacoraa);
+
+                                txtbarras.Text = "";
+                                String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente o contacte a soporte')", true); }
+                        }
+                        else {
+                            String script = "alert('El expediente no puede ser enviado al archivo porque tiene hallazgos '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+                        }
+
+
+                    }
+
+                    else if (s.Length == 15)
+                    {
+
+                        string numero = s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9] + s[10];
+
+
+                        string obtener = mex.confirmarasog(numero);
+
+
+                        string a = exc.obtenerarea(usernombre);
+                        string codenv = exc.obtenercodenv(numero);
+                        string etapa = mex.expedienteexiste(numero, "1", "5");
+                        string codexpe = exc.obtenercodexp(numero);
+                        string coasg = mex.confirmarareaasig2(numero);
+
+                             DataTable dthall = new DataTable();
+                        dthall = mex.llenarhallazgos(codexpe);
+                        if (dthall.Rows.Count == 0)
+                        {
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                            {
+
+
+                                string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                exc.Insertar(updateres);
+                                string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                                string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 5 );";
+                                exc.Insertar(bitacoraa);
+
+                                txtbarras.Text = "";
+                                String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente o contacte a soporte')", true); }
+                        }
+                        else
+                        {
+                            String script = "alert('El expediente no puede ser enviado al archivo porque tiene hallazgos '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                        }
+                    }
+                    else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
+                    break;
+                case "8":
+                    string barras8 = txtbarras2.Text;
+                    Regex regex8 = new Regex("");
+                    string[] s8 = regex8.Split(barras8);
+
+
+
+                    if (s8.Length == 14)
+                    {
+
+                        string numero = "0" + s8[1] + s8[2] + s8[3] + s8[4] + s8[5] + s8[6] + s8[7] + s8[8] + s8[9];
+
+
+
+                        string obtener = mex.confirmarasog(numero);
+                        string coasg = mex.confirmarareaasig2(numero);
+                        string a = exc.obtenerarea(usernombre);
+                        string codenv = exc.obtenercodenv(numero);
+                        string codexpe = exc.obtenercodexp(numero);
+                        string etapa = mex.expedienteexiste(numero, "1", "5");
+
+                        DataTable dthall = new DataTable();
+                        dthall = mex.llenarhallazgos(codexpe);
+                        if (dthall.Rows.Count == 0)
+                        {
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                            {
+
+                                string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                exc.Insertar(updateres);
+                                string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                                string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 5 );";
+                                exc.Insertar(bitacoraa);
+
+                                txtbarras.Text = "";
+                                String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente o contacte a soporte')", true); }
+                        }
+                        else
+                        {
+                            String script = "alert('El expediente no puede ser enviado al archivo porque tiene hallazgos '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                        }
+                    }
+
+                    else if (s8.Length == 15)
+                    {
+
+                        string numero = s8[1] + s8[2] + s8[3] + s8[4] + s8[5] + s8[6] + s8[7] + s8[8] + s8[9] + s8[10];
+
+
+                        string obtener = mex.confirmarasog(numero);
+
+
+                        string a = exc.obtenerarea(usernombre);
+                        string etapa = mex.expedienteexiste(numero, "1", "5");
+                        string codenv = exc.obtenercodenv(numero);
+                        string codexpe = exc.obtenercodexp(numero);
+                        string coasg = mex.confirmarareaasig2(numero);
+                        DataTable dthall = new DataTable();
+                        dthall = mex.llenarhallazgos(codexpe);
+                        if (dthall.Rows.Count == 0)
+                        {
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                            {
+
+
+                                string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                exc.Insertar(updateres);
+                                string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                                string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 5 );";
+                                exc.Insertar(bitacoraa);
+
+                                txtbarras.Text = "";
+                                String script = "alert('Expediente Validado '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente ')", true); }
+                        }
+                        else
+                        {
+                            String script = "alert('El expediente no puede ser enviado al archivo porque tiene hallazgos '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                        }
+                    }
+                    else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
+                    break;
+              
+
+            }
+        }
+
         public void llenarlistos()
         {
 
@@ -819,26 +1185,26 @@ namespace KB_Guadalupana.Views.ControlEX
             DGVOREN.DataBind();
 
         }
-        public void llenarcomboasignadojuridico()
-        {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string QueryString = "select * from ex_controlingreso WHERE ex_controlarea = 43";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataSet ds = new DataSet();
-                    myCommand.Fill(ds, "usuarios");
-                    asignado.DataSource = ds;
-                    asignado.DataTextField = "nomcom";
-                    asignado.DataValueField = "codexcontroling";
-                    asignado.DataBind();
-                    asignado.Items.Insert(0, new System.Web.UI.WebControls.ListItem("[Usuarios]", "0"));
-                }
-                catch { Console.WriteLine("Verifique los campos"); }
-            }
-        }
+        //public void llenarcomboasignadojuridico()
+        //{
+        //    using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            sqlCon.Open();
+        //            string QueryString = "select * from ex_controlingreso WHERE ex_controlarea = 43";
+        //            MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+        //            DataSet ds = new DataSet();
+        //            myCommand.Fill(ds, "usuarios");
+        //            asignado.DataSource = ds;
+        //            asignado.DataTextField = "nomcom";
+        //            asignado.DataValueField = "codexcontroling";
+        //            asignado.DataBind();
+        //            asignado.Items.Insert(0, new System.Web.UI.WebControls.ListItem("[Usuarios]", "0"));
+        //        }
+        //        catch { Console.WriteLine("Verifique los campos"); }
+        //    }
+        //}
 
         protected void btnEXGEN_Click(object sender, EventArgs e)
         {

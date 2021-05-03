@@ -42,33 +42,36 @@
 
 			</li>
 
-			<li class="li submenu">
-				<a href="javascript:void(0);" class="links">
-					<span class="span fa fa-suitcase"></span>Expedientes
+			<li id="negocios" runat="server" class="li">
+				<a href="javascript:void(0);" onclick="redirigir2()"  class="links">
+					<span class="span fa fa-suitcase"></span>Control de Negocios
                     <span class="span fa fa-arrow-down"></span>
 				</a>
-                <ul class="children">
-                    <li class="li">
-						<a href="javascript:void(0);" onclick="redirigir2()" class="links">Expedientes General
-							<span class="span fa fa-play"></span>
-						</a>
-					</li>  
-                  
-				
-					
-				</ul>
+             
 			</li>
 
-			<li id="mesareg" runat="server" class="li ">
+			<li id="mesareg" runat="server" class="li " visible="false">
 				<a href="javascript:void(0);" onclick="redirigir3();" class="links">
-					<span class="span fa fa-eye"></span>Expedientes con Hallazgos
+					<span class="span fa fa-eye"></span>Expedientes Legalizados
 					
 				</a>
 
 				
 			</li>
+            <li id="archivo" runat="server" class="li " visible="false">
+				<a href="javascript:void(0);" onclick="redirigir3();" class="links">
+					<span class="span fa fa-suitcase"></span>Recepción de Archivo
+					
+				</a>
 
-			<li class="li">
+				
+			</li>
+            <li id="hallazgos" runat="server" class="li">
+				<a href="javascript:void(0);" onclick="redirigir6()" class="links">
+					<span class="span fa fa-eye"></span>Expedientes con hallazgos
+				</a>
+			</li>
+			<li id="pendientes" runat="server" class="li">
 				<a href="javascript:void(0);" onclick="redirigir4()" class="links">
 					<span class="span fa fa-location-arrow"></span>Pendientes de envío
 				</a>
@@ -154,8 +157,9 @@
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>
         <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click" ClientIDMode="Static"></asp:LinkButton>
        <asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnpendiente" ClientIDMode="Static"></asp:LinkButton>
-
-       <%--  <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
+        <asp:LinkButton ID="LinkButton5" runat="server" OnClick="LinkButton5_Click" ClientIDMode="Static"></asp:LinkButton>
+        <asp:LinkButton ID="LinkButton6" runat="server" OnClick="LinkButton6_Click" ClientIDMode="Static"></asp:LinkButton>
+       <%--  
          <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btnappuser_Click" ClientIDMode="Static"></asp:LinkButton>
        <asp:LinkButton ID="LinkButton8" runat="server" OnClick="btnestadouser_Click" ClientIDMode="Static"></asp:LinkButton>--%>

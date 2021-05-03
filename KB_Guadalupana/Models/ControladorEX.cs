@@ -121,7 +121,7 @@ namespace KB_Guadalupana.Models
         public string obtenerlote2(string crd)
         {
 
-            string lote = mex.obtenerlote(crd);
+            string lote = mex.obtenerlote2(crd);
             return lote;
         }
         public string obtenercodexp(string crd)
@@ -145,6 +145,11 @@ namespace KB_Guadalupana.Models
         public string siguiente(string tabla, string campo)
         {
             string llave = mex.obtenerfinal(tabla, campo);
+            return llave;
+        }
+        public string siguiente2(string tabla, string campo)
+        {
+            string llave = mex.obtenerfinallote(tabla, campo);
             return llave;
         }
         public string ultimo(string tabla, string campo)

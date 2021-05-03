@@ -4,18 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using KB_Guadalupana.Controllers;
+using KB_Guadalupana.Models;
+
 
 namespace KB_Guadalupana.Views.ControlEX
 {
     public partial class Tracking : System.Web.UI.Page
     {
         string etapas, agencia, exp, cod;
+        ModeloEX mex = new ModeloEX();
+        ControladorEX exc = new ControladorEX();
         protected void Page_Load(object sender, EventArgs e)
         {
             etapas = Convert.ToString(Session["etapa"]);
             agencia = Convert.ToString(Session["agencia"]);
             exp = Convert.ToString(Session["exp"]);
             cod = Convert.ToString(Session["cred"]);
+            llenararch();
             switch (etapas) {
 
                 case "1":
@@ -70,17 +77,32 @@ namespace KB_Guadalupana.Views.ControlEX
         }
         //recibo el estado del expediente y aumento width segun estado
 
-        //
+        public void llenararch()
+        {
+
+            DataTable dt1 = new DataTable();
+            dt1 = mex.llenartrack(cod);
+            DGVTRACK.DataSource = dt1;
+            DGVTRACK.DataBind();
+
+        }
         protected void btnInicio_Click(object sender, EventArgs e)
         {
 
             Response.Redirect("../Sesion/MenuBarra.aspx");
 
         }
+
+        protected void DGVTRACK_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            DGVTRACK.PageIndex = e.NewPageIndex;
+            llenararch();
+        }
+
         protected void btnEXGEN_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("Ex_Principal.aspx");
+            Response.Redirect("Ex_VistaNegocios.aspx");
 
         }
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -92,7 +114,7 @@ namespace KB_Guadalupana.Views.ControlEX
         protected void btnpendiente(object sender, EventArgs e)
         {
 
-            Response.Redirect("Ex_pendienteAg.aspx");
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
         }
     }
 }

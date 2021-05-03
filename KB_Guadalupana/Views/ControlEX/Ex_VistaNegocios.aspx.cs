@@ -8,7 +8,6 @@ using System.Data;
 using KB_Guadalupana.Controllers;
 using KB_Guadalupana.Models;
 
-using System.Data;
 using MySql.Data.MySqlClient;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -29,7 +28,15 @@ namespace KB_Guadalupana.Views.ControlEX
 
             usernombre = Convert.ToString(Session["sesion_usuario"]);
             nombrepersona = Convert.ToString(Session["Nombre"]);
+            string rolex = exc.obtenerrol(usernombre);
 
+            switch (rolex)
+            {
+
+
+           
+
+            }
 
             if (!IsPostBack) {
 
@@ -130,6 +137,17 @@ namespace KB_Guadalupana.Views.ControlEX
             }
             else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Seleccione un numero de credito')", true); }
 
+
+        }
+
+        protected void LinkButton4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ex_Principal.aspx");
+        }
+
+        protected void LinkButton6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
 
         }
 

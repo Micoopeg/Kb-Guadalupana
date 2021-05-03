@@ -307,6 +307,16 @@ namespace KB_Guadalupana.Views.ControlEX
 
 
 
+            //tbl2.WriteSelectedRows(0, 50, doc.Left + 30, doc.Top - 10, writer.DirectContent);
+            ////tbl.AddCell(new PdfPCell(new Phrase("MINI AG C.C PRADERA:", detalle)) { Border = 0, BackgroundColor = new BaseColor(0, 69, 161), HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+
+            ////tbl.AddCell(new PdfPCell(new Phrase("OFICINAS CENTRALES · 14 Avenida 1-65 Zona 14, ", parrafo)) { BorderColor = new BaseColor(0, 69, 161), BorderWidthBottom = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+            ////tbl.AddCell(new PdfPCell(new Phrase("CENTRAL ZONA 14", detalle)) { Border = 0, BackgroundColor = new BaseColor(0, 69, 161), HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+
+            //tbl2.AddCell(new PdfPCell(new Phrase("Firma: ____________________", parrafo)) { Border= 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_BOTTOM });
+
+
+            //doc.Add(tbl2);
 
 
 

@@ -26,7 +26,7 @@ namespace KB_Guadalupana.Views.ControlEX
         string rol;
         string area;
         string fechaactual;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             usernombre = Convert.ToString(Session["sesion_usuario"]);

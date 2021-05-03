@@ -19,7 +19,7 @@ namespace KB_Guadalupana.Views.ControlEX
     {
         ModeloEX mex = new ModeloEX();
         ControladorEX exc = new ControladorEX();
-
+        Conexion conexiongeneral = new Conexion();
         string fechamin, horamin, fechahora, usernombre, nombrepersona, coduser;
         char delimitador2 = ' ';
         string cif;
@@ -27,7 +27,7 @@ namespace KB_Guadalupana.Views.ControlEX
         string area;
         string fechaactual;
         
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+    
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -1199,7 +1199,7 @@ namespace KB_Guadalupana.Views.ControlEX
         //llenados
         public void llenarcomboasignado()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1220,7 +1220,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
         public void llenarcomboasignadojuridico()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

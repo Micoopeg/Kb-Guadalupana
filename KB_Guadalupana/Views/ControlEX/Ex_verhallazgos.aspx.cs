@@ -19,7 +19,7 @@ namespace KB_Guadalupana.Views.ControlEX
         ControladorEX exc = new ControladorEX();
         string fechamin, horamin, fechahora, usernombre, nombrepersona, coduser;
         string codexp,no;
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+
 
     
 

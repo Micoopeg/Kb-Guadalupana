@@ -8,12 +8,12 @@ namespace KB_Guadalupana.Controllers
 {
     public class ModeloEX
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+       
         Conexion conexiongeneral = new Conexion();
         public string[] datetime()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -41,7 +41,7 @@ namespace KB_Guadalupana.Controllers
         public string[] datosempleado(string cif)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -69,7 +69,7 @@ namespace KB_Guadalupana.Controllers
         public string[] cartaenvio(string area)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -96,7 +96,7 @@ namespace KB_Guadalupana.Controllers
         public string[] cartaenviomesa()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -123,7 +123,7 @@ namespace KB_Guadalupana.Controllers
         public string[] cartaenviojuridico()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -150,7 +150,7 @@ namespace KB_Guadalupana.Controllers
         public string[] cartaenviomesaarch()
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -177,7 +177,7 @@ namespace KB_Guadalupana.Controllers
         public string[] lotes(string nlote)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 string[] Campos = new string[30];
                 int i = 0;
@@ -205,7 +205,7 @@ namespace KB_Guadalupana.Controllers
         public string Agencia(string coduser)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -228,7 +228,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerhall(string codexp)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -251,7 +251,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenercodporcif(string cif)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -274,7 +274,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerrol(string usuario)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -297,7 +297,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerarea(string usuario)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -320,7 +320,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerareanombre(string codarea)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -343,7 +343,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenercodncred(string ncred)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -367,7 +367,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenercoduser(string nomuser)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -390,7 +390,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenercrdexp(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -413,7 +413,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerlote(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -436,7 +436,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerlote2(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -459,7 +459,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenercoduserexp(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -482,7 +482,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenertipocrd(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -505,7 +505,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenertipocrd2(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -528,7 +528,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenertipocrdnom(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -551,7 +551,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerexp(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -574,7 +574,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerhallazgo (string nohall)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -597,7 +597,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenercodenv(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -620,7 +620,7 @@ namespace KB_Guadalupana.Controllers
         public string confirmarasog(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -644,7 +644,7 @@ namespace KB_Guadalupana.Controllers
         public string comentario(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -668,7 +668,7 @@ namespace KB_Guadalupana.Controllers
         public string confirmarareaasig(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -691,7 +691,7 @@ namespace KB_Guadalupana.Controllers
         public string confirmarareaasig2(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -714,7 +714,7 @@ namespace KB_Guadalupana.Controllers
         public string expedienteexiste(string crd, string estado, string etapa)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -737,7 +737,7 @@ namespace KB_Guadalupana.Controllers
         public string confirmarareaasig3(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -762,7 +762,7 @@ namespace KB_Guadalupana.Controllers
         public string contpdf(string usuario)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -785,7 +785,7 @@ namespace KB_Guadalupana.Controllers
         public string contenv( )
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -808,7 +808,7 @@ namespace KB_Guadalupana.Controllers
         public string contjur()
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -831,7 +831,7 @@ namespace KB_Guadalupana.Controllers
         public string contpen()
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -854,7 +854,7 @@ namespace KB_Guadalupana.Controllers
         public string contreten()
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -878,7 +878,7 @@ namespace KB_Guadalupana.Controllers
         public string contret( )
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -901,7 +901,7 @@ namespace KB_Guadalupana.Controllers
         public string contarch()
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -925,7 +925,7 @@ namespace KB_Guadalupana.Controllers
         public string contexis()
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -948,7 +948,7 @@ namespace KB_Guadalupana.Controllers
         public string lotevalidado(string lote)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -971,7 +971,7 @@ namespace KB_Guadalupana.Controllers
         public string lotevalidado2(string lote)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -995,7 +995,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarGridViewevento()
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1016,7 +1016,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenardgvnegocios(string crd)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1037,7 +1037,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarporareaage(string area)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1058,7 +1058,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarGridViewevento3(string user)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1079,7 +1079,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarGridViewevento2(string user)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1100,7 +1100,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarenvio(string area)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1121,7 +1121,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarexphall(string area)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1142,7 +1142,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarenviomesa()
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1163,7 +1163,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarenviojuridicomesa()
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1184,7 +1184,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarenviomesaarch()
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1205,7 +1205,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarmesa()
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1226,7 +1226,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarjuridico()
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1248,7 +1248,7 @@ namespace KB_Guadalupana.Controllers
          public DataTable llenarmesaarch()
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1269,7 +1269,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenararch()
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1290,7 +1290,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenartrack(string nocre)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1311,7 +1311,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarmesamesaasignado(string coduser)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1334,7 +1334,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarjuridicoasignado(string coduser)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1356,7 +1356,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarhallazgos(string codexp)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1377,7 +1377,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarmesarchasignadohall(string coduser)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1398,7 +1398,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable llenarmesarchasignado(string coduser)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1419,7 +1419,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable codigostable(string user)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1442,7 +1442,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable codigostablegerencia(string area)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1463,7 +1463,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable lotesinfo(string nlote)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1484,7 +1484,7 @@ namespace KB_Guadalupana.Controllers
         public DataTable lotesinfo2(string nlote)
         {
             DataTable dt = new DataTable();
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
 
                 try
@@ -1505,7 +1505,7 @@ namespace KB_Guadalupana.Controllers
         public void Insertar(string sql)
         {
 
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
              
                 try
@@ -1526,7 +1526,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerfinal(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1552,7 +1552,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerfinallote(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1578,7 +1578,7 @@ namespace KB_Guadalupana.Controllers
         public string obtenerultimo(string tabla, string campo)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1605,7 +1605,7 @@ namespace KB_Guadalupana.Controllers
         public string buscareanigual(string ean)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1631,7 +1631,7 @@ namespace KB_Guadalupana.Controllers
         public string buscaretapa(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1657,7 +1657,7 @@ namespace KB_Guadalupana.Controllers
         public string buscaragencia(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1684,7 +1684,7 @@ namespace KB_Guadalupana.Controllers
         public string buscarnoexp(string crd)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -1710,7 +1710,7 @@ namespace KB_Guadalupana.Controllers
         public string tablavacia(string tabla)
         {
             String camporesultante = "";
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {

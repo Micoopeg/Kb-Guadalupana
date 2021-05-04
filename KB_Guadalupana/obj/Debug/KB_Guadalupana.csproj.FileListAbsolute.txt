@@ -6607,7 +6607,6 @@ C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\bin\
 C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csprojAssemblyReference.cache
 C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\obj\Debug\RdlCompile.cache
 C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\obj\Debug\RdlCompile.compiled
 C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csproj.CoreCompileInputs.cache
@@ -7386,3 +7385,4 @@ C:\Users\Administrador\Documents\KB-Despliegue\Kb-Guadalupana\KB_Guadalupana\obj
 C:\Users\Administrador\Documents\KB-Despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.dll
 C:\Users\Administrador\Documents\KB-Despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.pdb
 C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\Rotativa.dll
+C:\Users\pggteo\Desktop\Versiones de KB-GUADA\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csprojAssemblyReference.cache

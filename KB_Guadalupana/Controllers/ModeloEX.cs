@@ -75,7 +75,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE tmp.codexarea = '" + area+"' AND  tmp.estado = 7";
+                    string consultaGraAsis = "SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE tmp.codexarea = '" + area+"' AND  tmp.estado = 7";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -102,7 +102,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = " SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto, CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado= 8  AND exev.codexetapa = 3";
+                    string consultaGraAsis = " SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto, CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado= 8  AND exev.codexetapa = 3";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -129,7 +129,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = " SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto, CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE exev.estado= 8 AND exev.codexetapa = 4";
+                    string consultaGraAsis = " SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto, CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE exev.estado= 8 AND exev.codexetapa = 4";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -156,7 +156,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = " SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto, CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado= 8 AND exev.codexetapa = 5";
+                    string consultaGraAsis = " SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto, CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado= 8 AND exev.codexetapa = 5";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -859,7 +859,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT COUNT( DISTINCT exh.codexp)  FROM  ex_hallazgos exh;";
+                    string sql = "SELECT COUNT( DISTINCT exh.codexp)  FROM  ex_hallazgos exh WHERE exh.estadohall = 1;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -1022,7 +1022,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred WHERE exp.codgencred ='" + crd+"' ", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred WHERE exp.codgencred ='" + crd+"' ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1043,7 +1043,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred WHERE tmp.codexarea = '" + area + "' ", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred WHERE tmp.codexarea = '" + area + "' ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1064,7 +1064,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia WHERE NOT EXISTS ( SELECT null FROM ex_expediente exp WHERE gcrd.gen_numcredito = exp.codgencred) AND gaso.usercreacion = '" + user + "' AND NOT EXISTS ( SELECT null FROM ex_temporal1 tmp WHERE tmp.Nocredito = gcrd.gen_numcredito ) AND gaso.gen_fecha_creacion > '2021-05-02' ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia WHERE NOT EXISTS ( SELECT null FROM ex_expediente exp WHERE gcrd.gen_numcredito = exp.codgencred) AND gaso.usercreacion = '" + user + "' AND NOT EXISTS ( SELECT null FROM ex_temporal1 tmp WHERE tmp.Nocredito = gcrd.gen_numcredito ) AND gaso.gen_fecha_creacion > '2021-05-02' AND  gcrd.estado = 4;", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1085,7 +1085,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE gaso.usercreacion = '" + user+ "' AND tmp.estado = 7  ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE gaso.usercreacion = '" + user+ "' AND tmp.estado = 7  ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1106,7 +1106,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE tmp.estado = 7 AND tmp.codexarea = '" + area+"'", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE tmp.estado = 7 AND tmp.codexarea = '" + area+"'", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1127,7 +1127,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_hallazgos exh ON exh.codexp = exp.codexp WHERE tmp.codexarea = '" + area + "'", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_hallazgos exh ON exh.codexp = exp.codexp WHERE tmp.codexarea = '" + area + "'", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1148,7 +1148,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado=8 AND exev.codexetapa = 3 ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado=8 AND exev.codexetapa = 3 ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1169,7 +1169,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado=8 AND exev.codexetapa = 4 ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado=8 AND exev.codexetapa = 4 ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1190,7 +1190,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado = 8 AND exev.codexetapa = 5 ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , gcrd.gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_envio exev  ON exev.Nocredito = tmp.Nocredito  WHERE  exev.estado = 8 AND exev.codexetapa = 5 ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1211,7 +1211,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred  WHERE tmp.estado = 2 AND exenv.codexetapa = 3 AND exenv.estado = 1 AND NOT EXISTS ( SELECT null FROM ex_asignado exas WHERE exas.codexp = exp.codexp)   ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred  WHERE tmp.estado = 2 AND exenv.codexetapa = 3 AND exenv.estado = 1 AND NOT EXISTS ( SELECT null FROM ex_asignado exas WHERE exas.codexp = exp.codexp)   ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1232,7 +1232,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred  WHERE  exenv.codexetapa = 4 AND exenv.estado = 1  AND NOT EXISTS ( SELECT null FROM ex_asignado exas WHERE exas.codexp = exp.codexp AND exas.proceso = 4)  ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred  WHERE  exenv.codexetapa = 4 AND exenv.estado = 1  AND NOT EXISTS ( SELECT null FROM ex_asignado exas WHERE exas.codexp = exp.codexp AND exas.proceso = 4)  ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1254,7 +1254,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred  WHERE  exenv.codexetapa = 4 AND exenv.estado = 2  AND NOT EXISTS ( SELECT null FROM ex_asignado exas WHERE exas.codexp = exp.codexp AND exas.proceso = 5)  ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred  WHERE  exenv.codexetapa = 4 AND exenv.estado = 2  AND NOT EXISTS ( SELECT null FROM ex_asignado exas WHERE exas.codexp = exp.codexp AND exas.proceso = 5)  ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1275,7 +1275,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(" SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto, CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito= exp.codgencred  WHERE exenv.codexetapa = 6 AND exenv.estado = 1  ", sqlCon);
+                    MySqlCommand command = new MySqlCommand(" SELECT gcrd.gen_fechaprestamo, gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto, CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito= exp.codgencred  WHERE exenv.codexetapa = 6 AND exenv.estado = 1  ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1296,7 +1296,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT exp.codgencred, exb.ex_fechaev, exte.ex_evento, exeta.etapa_actual, exeta.etapa_siguiente FROM ex_bitacora exb INNER JOIN ex_tipoevento exte ON exte.codexevento=exb.codexevento INNER JOIN ex_etapa exeta ON exeta.codexetapa= exb.codexetapa INNER JOIN ex_expediente exp ON exb.codexp = exp.codexp INNER JOIN ex_envio exev ON exev.codexenvio- exb.codexenvio WHERE exp.codgencred = '"+nocre+"' ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT exp.codgencred, exb.ex_fechaev, exte.ex_evento, exeta.etapa_actual, exeta.etapa_siguiente FROM ex_bitacora exb INNER JOIN ex_tipoevento exte ON exte.codexevento=exb.codexevento INNER JOIN ex_etapa exeta ON exeta.codexetapa= exb.codexetapa INNER JOIN ex_expediente exp ON exb.codexp = exp.codexp INNER JOIN ex_envio exev ON exev.codexenvio = exb.codexenvio WHERE exp.codgencred = '"+nocre+"' ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1317,7 +1317,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE  exenv.codexetapa = 3 AND exenv.estado = 1 AND exasig.codasignado = '" + coduser+"' AND exasig.proceso = 3 ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE  exenv.codexetapa = 3 AND exenv.estado = 1 AND exasig.codasignado = '" + coduser+"' AND exasig.proceso = 3 ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1340,7 +1340,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE   exenv.codexetapa = 4 AND exenv.estado = 1 AND exasig.codasignado = '" + coduser + "' AND exasig.proceso = 4", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE   exenv.codexetapa = 4 AND exenv.estado = 1 AND exasig.codasignado = '" + coduser + "' AND exasig.proceso = 4", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1383,7 +1383,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE   exenv.codexetapa = 4 AND exenv.estado = 3 AND exasig.codasignado = '" + coduser + "' AND exasig.proceso = 5", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE   exenv.codexetapa = 4 AND exenv.estado = 3 AND exasig.codasignado = '" + coduser + "' AND exasig.proceso = 5", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1404,7 +1404,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT  DISTINCT  gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT(gaso.primer_nombre, ' ' , gaso.segundo_nombre, ' ' , gaso.primer_apellido, ' ', gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE   exenv.codexetapa = 5 AND exenv.estado = 1 AND exasig.codasignado = '" + coduser + "' AND (exasig.proceso = 3 OR exasig.proceso = 4)", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT  DISTINCT  gcrd.gen_fechaprestamo,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito INNER JOIN ex_expediente exp ON exp.codgencred = gcrd.gen_numcredito INNER JOIN ex_envio exenv ON exenv.Nocredito=exp.codgencred INNER JOIN ex_asignado exasig ON exasig.codexp = exp.codexp WHERE   exenv.codexetapa = 5 AND exenv.estado = 1 AND exasig.codasignado = '" + coduser + "' AND (exasig.proceso = 3 OR exasig.proceso = 4)", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);

@@ -152,6 +152,11 @@ namespace KB_Guadalupana.Views.ControlEX
 
         }
 
+        protected void LinkButton5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
+        }
+
         public void llenarcombocred()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))

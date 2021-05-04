@@ -47,33 +47,27 @@
 
 			</li>
 
-			<li class="li submenu">
+			<li class="li">
 				<a href="javascript:void(0);" onclick="redirigir2()" class="links">
-					<span class="span fa fa-suitcase"></span>Expedientes
-                    <span class="span fa fa-arrow-down"></span>
+					<span class="span fa fa-suitcase"></span>Expedientes General
+               
 				</a>
-                <ul class="children">
-                    <li class="li">
-						<a href="javascript:void(0);" onclick="redirigir4()" class="links" style="padding:10px">Control de Negocios
-							<span class="span fa fa-play"></span>
-						</a>
-					</li> 					
-				</ul>
+             
 			</li>
 
-			<li class="li">
-				<a href="javascript:void(0);" class="links">
-					<span class="span fa fa-eye"></span>Expedientes con Hallazgos
+		<li id="exphall" runat="server" class="li" visible="false" >
+				<a href="javascript:void(0);" onclick="redirigir3()" class="links">
+					<span class="span fa fa-eye"></span>Expedientes Legalizados
 				</a>
 			</li>
 
-			<li class="li">
+			<li id="pendiente" runat="server" class="li">
 				<a href="javascript:void(0);" class="links" onclick="redirigir5()" >
 					<span class="span fa fa-location-arrow"></span>Pendientes de envío
 				</a>
 			</li>
 		<li class="li">
-				<a href="javascript:void(0);" class="links">
+				<a href="javascript:void(0);" onclick="redirigir6()" class="links">
 					<span class="span fa fa-user"></span>Cerrar Sesion
 				</a>
 			</li>
@@ -205,6 +199,7 @@
         <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnNuevo_Click" ClientIDMode="Static"></asp:LinkButton>
        <asp:LinkButton ID="LinkButton4" runat="server" OnClick="LinkButton4_Click" ClientIDMode="Static"></asp:LinkButton>
        <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnpendiente" ClientIDMode="Static"></asp:LinkButton>
+       <asp:LinkButton ID="LinkButton6" runat="server" OnClick="LinkButton6_Click" ClientIDMode="Static"></asp:LinkButton>
 
        <%--<asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>

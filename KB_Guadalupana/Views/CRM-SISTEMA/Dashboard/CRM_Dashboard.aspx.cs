@@ -28,7 +28,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Dashboard
             }
             else
             {
-                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
+
+                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }

@@ -168,5 +168,17 @@ namespace KB_Guadalupana.Views.ControlEX
                 txtname.Text = "";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Aún no ingresa el Número de lote')", true); }
         }
+
+        protected void btncerrar(object sender, EventArgs e)
+        {
+
+            Response.Redirect("../../Index.aspx");
+        }
+        protected void btninicio_click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("../Sesion/MenuBarra.aspx");
+
+        }
     }
 }

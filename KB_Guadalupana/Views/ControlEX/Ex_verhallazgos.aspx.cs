@@ -63,13 +63,16 @@ namespace KB_Guadalupana.Views.ControlEX
                 case "6":
                     llenarhallvista();
                     nota.Visible = false;
+                    exphall.Visible= false;
                     break;
 
                 case "8":
                     llenarhall();
+                    exphall.Visible = true;
                     break;
                 case "2":
                     llenarhall();
+                    exphall.Visible = true;
                     break;
                 default:
 
@@ -104,6 +107,11 @@ namespace KB_Guadalupana.Views.ControlEX
 
         }
 
+        protected void LinkButton6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
+        }
+
         public void llenarhall()
         {
             DataTable dt1 = new DataTable();
@@ -129,7 +137,7 @@ namespace KB_Guadalupana.Views.ControlEX
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("Ex_GenExpedientes.aspx");
+            Response.Redirect("Ex_VistaMesaQA.aspx");
 
         }
         protected void btnpendiente(object sender, EventArgs e)

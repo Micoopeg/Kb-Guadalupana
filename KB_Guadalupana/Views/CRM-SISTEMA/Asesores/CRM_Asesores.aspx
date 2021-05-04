@@ -37,7 +37,7 @@
             </div>
             <center>
 			<div id="logo">
-				<a href="../MenuPrincipal/CRM_MenuPrincipal.aspx"><img src="../../../Imagenes/logo.jpeg" class="img-fluid" style="width: auto;border-radius:49px;height: 100px;position: absolute;left: 44px;" alt="Responsive image" /></a>
+				<a href="../MenuPrincipal/CRM_MenuPrincipal.aspx"><img src="../../../Imagenes/logo.jpeg" class="img-fluid" style="width: auto;border-radius:49px;height: 100px;position: absolute;left: 44px;" alt="Responsive image" /></a>                
     </div>
 	</center>
             <!--Menu-->

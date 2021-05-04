@@ -117,7 +117,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         encabenvio.Visible = false;
                         ajuridico.Visible = true;
                         btnorden.Visible = false;
-                     
+                        pendientes.Visible = false;
                         alerta.Visible = false;
                  
                     
@@ -165,7 +165,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -337,7 +337,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -974,6 +974,11 @@ namespace KB_Guadalupana.Views.ControlEX
         protected void LinkButton5_Click(object sender, EventArgs e)
         {
             Response.Redirect("Ex_pendienteAg.aspx");
+        }
+
+        protected void LinkButton6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
         }
 
         protected void btnverificar_Click(object sender, EventArgs e)

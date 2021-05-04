@@ -318,7 +318,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         doc.AddTitle("Caratulas");
                         doc.Open();
 
-                        iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                        iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                         logo.ScalePercent(45f);
 
                         BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -434,7 +434,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -601,7 +601,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -775,7 +775,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -949,7 +949,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -1039,7 +1039,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -1130,7 +1130,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -2119,6 +2119,11 @@ namespace KB_Guadalupana.Views.ControlEX
         protected void LinkButton4_Click1(object sender, EventArgs e)
         {
 
+        }
+
+        protected void LinkButton6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
         }
 
         protected void btnverificar_Click(object sender, EventArgs e)

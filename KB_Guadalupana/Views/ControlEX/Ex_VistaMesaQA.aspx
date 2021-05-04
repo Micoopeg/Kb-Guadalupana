@@ -55,19 +55,15 @@
              
 			</li>
 
-			<li class="li">
-				<a href="javascript:void(0);" class="links">
-					<span class="span fa fa-eye"></span>Expedientes Legalizados
-				</a>
-			</li>
+			
 
-			<li class="li">
+			<li class="li" id="pendientes" runat="server">
 				<a href="javascript:void(0);" class="links" onclick="redirigir5()" >
 					<span class="span fa fa-location-arrow"></span>Pendientes de envío
 				</a>
 			</li>
 		<li class="li">
-				<a href="javascript:void(0);" class="links">
+				<a href="javascript:void(0);" onclick="redirigir6()" class="links">
 					<span class="span fa fa-user"></span>Cerrar Sesion
 				</a>
 			</li>
@@ -366,6 +362,7 @@
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnEXGEN_Click" ClientIDMode="Static"></asp:LinkButton>
         <asp:LinkButton ID="LinkButton3" runat="server" OnClick="btnNuevo_Click" ClientIDMode="Static"></asp:LinkButton>
         <asp:LinkButton ID="LinkButton5" runat="server" OnClick="LinkButton5_Click" ClientIDMode="Static"></asp:LinkButton>
+        <asp:LinkButton ID="LinkButton6" runat="server" OnClick="LinkButton6_Click" ClientIDMode="Static"></asp:LinkButton>
        <%--<asp:LinkButton ID="LinkButton4" runat="server" OnClick="btnmoduloscrear_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btnModapp_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton6" runat="server" OnClick="btnmodulospermisos_Clicl" ClientIDMode="Static"></asp:LinkButton>

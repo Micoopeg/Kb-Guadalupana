@@ -16,13 +16,21 @@ namespace KB_Guadalupana.Views.Seguridad
     {
         ControladorAV cav = new ControladorAV();
         Conexion conexiongeneral = new Conexion();
-
+        Sentencia_seguridad sn = new Sentencia_seguridad();
         string NOMAPP, URL, ABRAPP, OP, op2;
         
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string user = Convert.ToString(Session["sesion_usuario"]);
+            string respuesta = sn.obtenerpermisoseguridad(user);
+
+            if (respuesta == "0" || respuesta == null || respuesta == "" || respuesta == "False")
+            {
+                String script = "alert('El usuario no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Index.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            }
             if (!IsPostBack)
             {
                 llenarcomboarea();

@@ -502,5 +502,30 @@ namespace KB_Guadalupana.Controllers
 
 
             }
+
+        public string obtenerpermisoseguridad(string usuario)
+        {
+
+
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT a.gen_mdiest FROM gen_mdimenu a INNER JOIN gen_usuario b ON a.codgenusuario=b.codgenusuario WHERE b.gen_usuarionombre='pggteo' AND a.codgenapp=7";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
         }
+    }
     } 

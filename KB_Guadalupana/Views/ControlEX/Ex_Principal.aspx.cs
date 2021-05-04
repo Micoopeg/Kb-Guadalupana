@@ -145,6 +145,11 @@ namespace KB_Guadalupana.Views.ControlEX
             Response.Redirect("Ex_AgenciaHallazgos.aspx");
         }
 
+        protected void LinkButton7_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
+        }
+
         protected void LinkButton3_Click(object sender, EventArgs e)
         {
             Response.Redirect("Ex_VistaMesaQA.aspx");

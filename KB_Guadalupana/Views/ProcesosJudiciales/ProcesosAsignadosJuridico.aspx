@@ -8,12 +8,16 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet"/>
-    <title>Dashboard</title>
+    <title>Créditos Asignados</title>
      <style>
-
+         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
         html{
             width:100%;
             height:100%;
+        }
+
+        body{
+            font-family:"Montserrat";
         }
 
         .general{

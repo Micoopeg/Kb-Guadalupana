@@ -1,4 +1,5 @@
 ﻿using System;
+using KB_Guadalupana.Controllers;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 {
     public partial class ProcesosAsignadosJuridico : System.Web.UI.Page
     {
-        string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
+        Conexion conexiongeneral = new Conexion();
         protected void Page_Load(object sender, EventArgs e)
         {
             llenargridviewasignacion();
@@ -19,7 +20,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         public void llenargridviewasignacion()
         {
-            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
@@ -42,7 +43,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected void OnSelectedIndexChangedAsignacion(object sender, EventArgs e)
         {
             string numcredito = Convert.ToString((gridViewAsignacion.SelectedRow.FindControl("lblnumcredito") as Label).Text);
-            Session["credito_asignado"] = numcredito;
+            Session["credito"] = numcredito;
             Response.Redirect("ProcesoJudicial.aspx");
         }
     }

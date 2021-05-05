@@ -314,7 +314,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         string nombredoc = siguiente + '-' + FileUpload1.FileName;
                         sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
                         FileUpload1.SaveAs(Server.MapPath("Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName));
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se ha guardado el archivo');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
                         llenargridviewdocumentos();
                     }
                 }
@@ -322,6 +322,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
                 }
+                IntegracionC.Focus();
             }
             catch
             {
@@ -363,7 +364,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     //string id = Convert.ToString((gridViewDocumentos.SelectedRow.FindControl("lblid") as Label).Text);
                     string documentoselec;
                     documentoselec = sn.obtenernombredocumento(id);
-                    File.Delete(@"C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\Views\ProcesosJudiciales\Subidos\DocumentosExpediente\" + documentoselec);
+                    File.Delete(Server.MapPath("Subidos/DocumentosExpediente/" + documentoselec));
 
                     sqlCon.Open();
                     string query = "DELETE FROM pj_documento WHERE idpj_documento = @id";
@@ -376,6 +377,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Documento borrado');", true);
                 }
+                IntegracionC.Focus();
             }
             catch
             {

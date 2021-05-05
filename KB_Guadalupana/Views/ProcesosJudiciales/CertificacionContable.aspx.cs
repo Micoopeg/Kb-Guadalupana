@@ -262,6 +262,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             Validar.Visible = false;
             Guardar.Visible = true;
             Regresar2.Visible = false;
+            Guardar.Focus();
         }
 
         protected void VerDocumento_Click(object sender, EventArgs e)
@@ -282,8 +283,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 doc.SetMargins(40f, 40f, 40f, 40f);
                 try
                 {
-                    PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/"+ idcertidicacion.Value+ "-certificacion.pdf", FileMode.Create));
+
+                PdfWriter writer = PdfWriter.GetInstance(doc, HttpContext.Current.Response.OutputStream);
                     doc.Open();
                     doc.NewPage();
                     PdfContentByte cb1 = writer.DirectContent;
@@ -388,8 +389,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     ////////////////////***********************************//////////////////////
 
                     doc.Close();
-                        System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                                   Environment.SpecialFolder.Desktop) + "/" + idcertidicacion.Value + "-certificacion.pdf");
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename= "+idcertidicacion.Value+"-certificacion" + ".pdf");
+                HttpContext.Current.Response.Write(doc);
+                Response.Flush();
+                Response.End();
+               
                         //MessageBox.Show("Bar codes generated on desktop fileName=codes.pdf");
                 }
                 catch
@@ -718,6 +723,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             validado.Visible = true;
             comentario2.Visible = true;
             Contador.Visible = false;
+            Regresar.Focus();
         }
     }
 }

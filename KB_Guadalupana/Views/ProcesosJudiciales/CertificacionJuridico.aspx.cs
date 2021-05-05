@@ -213,6 +213,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             Enviar.Visible = true;
             Validar.Visible = false;
             Regresar.Visible = false;
+            Enviar.Focus();
         }
 
         protected void Validar_Click(object sender, EventArgs e)

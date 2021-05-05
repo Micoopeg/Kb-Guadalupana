@@ -191,7 +191,7 @@
 
                     <div style="overflow: auto; height: 400px">
                         <asp:GridView ID="gridViewCertificacion" runat="server" CssClass="tabla" AutoGenerateColumns="False"
-                            OnSelectedIndexChanged = "OnSelectedIndexChangedCertificacion" BorderStyle="Solid">
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedCertificacion" BorderStyle="Solid"  OnRowDataBound="gridViewCertificacion_RowDataBound">
                             <Columns>
                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de crédito">
                                     <ItemTemplate>

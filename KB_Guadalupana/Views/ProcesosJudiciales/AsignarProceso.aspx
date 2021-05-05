@@ -185,8 +185,8 @@
                         </div>
 
                     <div class="formato">
-                         <input id="PrimerNombre" runat="server" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese nombres" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                         <input id="SegundoNombre" runat="server" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese nombres" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                         <input id="PrimerNombre" runat="server" onkeyup="javascript:this.value=this.value.toUpperCase();" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese nombres" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                         <input id="SegundoNombre" runat="server" onkeyup="javascript:this.value=this.value.toUpperCase();" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese nombres" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                     </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -195,8 +195,8 @@
                         </div>
 
                       <div class="formato">
-                       <input id="PrimerApellido" runat="server" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese apellidos" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                       <input id="SegundoApellido" runat="server" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese apellidos" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="PrimerApellido" runat="server" onkeyup="javascript:this.value=this.value.toUpperCase();" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese apellidos" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="SegundoApellido" runat="server" onkeyup="javascript:this.value=this.value.toUpperCase();" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese apellidos" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                     </div><br />
                 </div>
 

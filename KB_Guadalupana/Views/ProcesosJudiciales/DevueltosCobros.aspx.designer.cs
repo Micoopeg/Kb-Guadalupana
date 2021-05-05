@@ -375,6 +375,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.WebControls.GridView gridViewDocumentos;
 
         /// <summary>
+        /// Control IntegracionC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl IntegracionC;
+
+        /// <summary>
         /// Control tarjeta.
         /// </summary>
         /// <remarks>

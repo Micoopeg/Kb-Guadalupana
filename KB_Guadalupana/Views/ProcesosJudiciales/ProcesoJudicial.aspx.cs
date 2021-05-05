@@ -73,7 +73,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         string nombredoc = siguiente + '-' + FileUpload1.FileName;
                         sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
                         FileUpload1.SaveAs(Server.MapPath("Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName));
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se ha guardado el archivo');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
                         llenargridviewdocumentos();
                     }
                 }
@@ -81,6 +81,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
                 }
+                integracionc.Focus();
             }
             catch
             {
@@ -296,6 +297,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 credito.Visible = true;
                 NumIncidente.Value = sig2;
             }
+            PCBoton.Focus();
         }
 
         protected void PCBoton_Click(object sender, EventArgs e)

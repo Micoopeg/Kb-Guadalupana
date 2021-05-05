@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -275,8 +276,8 @@ namespace KB_Guadalupana.Views.ControlEX
             string a = exc.obtenerarea(usernombre);
             dt3 = mex.codigostablegerencia(a);
 
+            string noma = exc.obtenerareanombre(a);
 
-        
 
 
             if (dt3.Rows.Count < 1)
@@ -287,24 +288,47 @@ namespace KB_Guadalupana.Views.ControlEX
 
             else
             {
+
+                crearexp();
+      
                 Document doc = new Document(PageSize.LETTER);
+                PdfWriter writer = PdfWriter.GetInstance(doc, HttpContext.Current.Response.OutputStream);
                 doc.SetMargins(40f, 40f, 40f, 40f);
+
+
+     
+                doc.AddAuthor("Micoope");
+                doc.AddTitle("Caratulas");
+                doc.Open();
+
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
+
+                logo.ScalePercent(45f);
+
+                BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
+                iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+
+                BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_titulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+
+
+                BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
+
+
+                BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+                BaseFont helvetica = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                iTextSharp.text.Font negrita = new iTextSharp.text.Font(helvetica, 10f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+
+
                 try
                 {
 
-                    PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/codigos.pdf", FileMode.Create));
+                    
                     doc.Open();
-
-
-                    //dt3.Columns.Add("ID");
-
-                    //for (int i = 0; i < cont2; i++)
-                    //{
-                    //    DataRow row = dt3.NewRow();
-                    //    row["ID"] = "040045789624" + i.ToString();
-                    //    dt3.Rows.Add(row);
-                    //}
+                    PdfContentByte cb1 = writer.DirectContent;
+                    BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_BOLDITALIC, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                     System.Drawing.Image img1 = null;
 
                     for (int i = 0; i < dt3.Rows.Count; i++)
@@ -312,56 +336,33 @@ namespace KB_Guadalupana.Views.ControlEX
                         if (i != 0)
                       
                         doc.NewPage();
-                        PdfContentByte cb1 = writer.DirectContent;
-                        BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_BOLDITALIC, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                        doc.AddAuthor("Micoope");
-                        doc.AddTitle("Caratulas");
-                        doc.Open();
-
-                        iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
-                        logo.ScalePercent(45f);
-
-                        BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                        iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                        BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                        iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_titulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-
-                        BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                        iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
-
-
-                        BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                        iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-
+                       
 
                         doc.Add(Chunk.NEWLINE);
                         string cod = exc.obtenercrdexp(dt3.Rows[i]["Nocredito"].ToString());
                         string tipocrd = exc.obtenertiponombre(dt3.Rows[i]["codgarantia"].ToString());
                            
-                        var tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-                        tbl.AddCell(new PdfPCell(logo) { Border = 0, Rowspan = 3, VerticalAlignment = Element.ALIGN_MIDDLE });
-                        tbl.AddCell(new PdfPCell(new Phrase("NO. Expediente: "+cod+" ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                        tbl.AddCell(new PdfPCell(new Phrase("Tipo de expediente: Credito "+tipocrd+"", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                        tbl.AddCell(new PdfPCell(new Phrase("Fecha de emisión: "+ fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                        var tbl1 = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
+                        tbl1.AddCell(new PdfPCell(logo) { Border = 0, Rowspan = 3, VerticalAlignment = Element.ALIGN_MIDDLE });
+                        tbl1.AddCell(new PdfPCell(new Phrase("NO. Expediente: "+cod+" ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("Tipo de expediente: Credito "+tipocrd+"", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("Fecha de emisión: "+ fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
 
-                        doc.Add(tbl);
+                        doc.Add(tbl1);
 
                         doc.Add(new Phrase(" "));
                         doc.Add(new Phrase(" "));
 
-                        tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-                        tbl.AddCell(new PdfPCell(new Phrase("Datos del Expediente:", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+                        tbl1 = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
+                        tbl1.AddCell(new PdfPCell(new Phrase("Datos del Expediente:", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
 
-                        tbl.AddCell(new PdfPCell(new Phrase("Nombre: " + dt3.Rows[i]["nomcom"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("Nombre: " + dt3.Rows[i]["nomcom"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
-                        tbl.AddCell(new PdfPCell(new Phrase("CIF: " + dt3.Rows[i]["cifgeneral"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                        tbl.AddCell(new PdfPCell(new Phrase("Monto: Q"+dt3.Rows[i]["gen_monto"].ToString() + " Fecha Desembolso: " + dt3.Rows[i]["gen_fechadesembolso"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("CIF: " + dt3.Rows[i]["cifgeneral"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("Monto: Q"+dt3.Rows[i]["gen_monto"].ToString() + " Fecha Desembolso: " + dt3.Rows[i]["gen_fechadesembolso"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
 
-                        doc.Add(tbl);
+                        doc.Add(tbl1);
 
                         int checksum = calculocheck(dt3.Rows[i]["Nocredito"].ToString());
 
@@ -388,12 +389,171 @@ namespace KB_Guadalupana.Views.ControlEX
 
                     }
 
-                    ////////////////////***********************************//////////////////////
+                    ////////////////////****************PDF2*******************//////////////////////
+                    doc.NewPage();
+                    string lote = exc.obtenerlote(dt3.Rows[0]["Nocredito"].ToString());
+                    int cant = dt3.Rows.Count;
+                    string cant2 = Convert.ToString(cant);
+                    doc.Add(Chunk.NEWLINE);
+
+                    var tbl = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
+                    tbl.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
+                    tbl.AddCell(new PdfPCell(new Phrase("NO. LOTE " + lote + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+
+                    doc.Add(tbl);
+
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+
+                    tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
+
+                    tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+                    tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + ":", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                    tbl.AddCell(new PdfPCell(new Phrase("Destino: Central Zona 14 ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+
+
+
+                    doc.Add(tbl);
+
+
+
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+
+
+
+                    string[] datos2 = mex.cartaenvio(a);
+
+
+                    PdfPTable table = new PdfPTable(6);
+                    tbl = new PdfPTable(new float[] { 15f, 10f, 15f, 30f, 15f, 15f }) { WidthPercentage = 100 };
+                    var c1 = new PdfPCell(new Phrase("Fecha/Hora Desembolso", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 4f };
+                    var c2 = new PdfPCell(new Phrase("CIF", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
+                    var c3 = new PdfPCell(new Phrase("NO. Préstamo", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
+                    var c4 = new PdfPCell(new Phrase("Nombre", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
+                    var c5 = new PdfPCell(new Phrase("Monto", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
+                    var c6 = new PdfPCell(new Phrase("Tipo", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
+
+
+                    string cont = exc.contpdf(usernombre);
+                    int envios = Convert.ToInt32(cont);
+                    table.TotalWidth = 550f;
+
+                    table.LockedWidth = true;
+                    float[] widths = new float[] { 20f, 15f, 25f, 40f, 35f, 35f };
+                    table.SetWidths(widths);
+                    table.HorizontalAlignment = 0;
+
+                    table.AddCell(c1);
+                    table.AddCell(c2);
+                    table.AddCell(c3);
+                    table.AddCell(c4);
+                    table.AddCell(c5);
+                    table.AddCell(c6);
+
+                    c1.Border = 0;
+                    c2.Border = 0;
+                    c3.Border = 0;
+                    c4.Border = 0;
+                    c5.Border = 0;
+                    c6.Border = 0;
+
+                    try
+                    {
+
+                        for (int j = 0; j < datos2.Length; j++)
+                        {
+
+                            /*c1.Phrase = new Phrase(Convert.ToString(datos2.GetValue(j)));*/
+
+
+                            table.AddCell(Convert.ToString(datos2.GetValue(j)));
+
+                        }
+
+                        doc.Add(table);
+
+
+                    }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine(err.Message);
+
+                    }
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    PdfPTable tablef = new PdfPTable(1);
+
+                    tablef.AddCell(new PdfPCell(new Phrase("Firma___________________" + nombrepersona, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                    float[] widthsf = new float[] { 30f };
+                    tablef.SetWidths(widthsf);
+                    tablef.HorizontalAlignment = 0;
+
+
+
+                    doc.Add(tablef);
+
+
+                    //****finpdf2****
+
+                    //****pdf3*****//
+                    doc.NewPage();
+         
+                    doc.Add(Chunk.NEWLINE);
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+
+                    var tbl2 = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
+                    tbl2.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
+                    tbl2.AddCell(new PdfPCell(new Phrase("NO. LOTE " + lote + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl2.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl2.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl2.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    doc.Add(tbl2);
+
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+
+
+                    tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
+
+                    tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+                    tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + ":", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                    tbl.AddCell(new PdfPCell(new Phrase("Destino: Central Zona 14 ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                    doc.Add(tbl);
+
+
+
+
+                    //fin pdf3//
+
+
+
+
+
+                  
+
+
 
                     doc.Close();
-                    System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                               Environment.SpecialFolder.MyDocuments) + "/codigos.pdf");
-                    //MessageBox.Show("Bar codes generated on desktop fileName=codes.pdf");
+                    estadoenviado();
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("content-disposition", "attachment;filename=AgenciaEnvio" + ".pdf");
+                    HttpContext.Current.Response.Write(doc);
+                   
+                    Response.Flush();
+                    Response.End();
                 }
                 catch
                 {
@@ -404,179 +564,14 @@ namespace KB_Guadalupana.Views.ControlEX
                 }
 
 
-
+             
 
 
             }
 
 
         }
-        public void GenerarPDF2()
-        {
-            DataTable dt3 = new DataTable();
-            string a = exc.obtenerarea(usernombre);
-            string noma = exc.obtenerareanombre(a);
-            dt3 = mex.codigostablegerencia(a);
-          
-            if (dt3.Rows.Count < 1) { 
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ningun elemento Seleccionado ')", true);
-            
-            }
-            else
-            {
-                Document doc = new Document(PageSize.LETTER);
-                doc.SetMargins(40f, 40f, 40f, 40f);
-
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cartaenvio.pdf", FileMode.Create));
-
-                doc.AddAuthor("Micoope");
-                doc.AddTitle("Carta");
-                doc.Open();
-
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
-                logo.ScalePercent(45f);
-
-                BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_titulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-
-                BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
-
-
-                BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0 ));
-
-                BaseFont helvetica = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font negrita = new iTextSharp.text.Font(helvetica, 10f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                //obtener el lote al que pertenece 1 exp
-                string lote = exc.obtenerlote(dt3.Rows[0]["Nocredito"].ToString());
-                int cant = dt3.Rows.Count;
-                string cant2 = Convert.ToString(cant);
-                doc.Add(Chunk.NEWLINE);
-
-                var tbl = new PdfPTable(new float[] {5f,90f}) { WidthPercentage = 100 };
-                tbl.AddCell(new PdfPCell(logo ) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("NO. LOTE "+lote+"", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-
-                doc.Add(tbl);
-
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-
-                tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-
-                tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-                tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + ":", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("Destino: Central Zona 14 ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-
-
-
-                doc.Add(tbl);
-
-
-
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-
-
-
-                string[] datos2 = mex.cartaenvio(a);
-
-
-                PdfPTable table = new PdfPTable(6);
-                tbl = new PdfPTable(new float[] { 15f, 10f, 15f, 30f, 15f, 15f }) { WidthPercentage = 100 };
-                var c1 = new PdfPCell(new Phrase("Fecha/Hora Desembolso", negrita)) { Border = 0, BorderWidthBottom = 2f,  Padding = 4f };
-                var c2 = new PdfPCell(new Phrase("CIF", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
-                var c3 = new PdfPCell(new Phrase("NO. Préstamo", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
-                var c4 = new PdfPCell(new Phrase("Nombre", negrita)) { Border = 0, BorderWidthBottom = 2f,  Padding = 2f };
-                var c5 = new PdfPCell(new Phrase("Monto", negrita)) { Border = 0, BorderWidthBottom = 2f,  Padding = 2f };
-                var c6 = new PdfPCell(new Phrase("Tipo", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
-
-
-                string cont = exc.contpdf(usernombre);
-                int envios = Convert.ToInt32(cont);
-                table.TotalWidth = 550f;
-
-                table.LockedWidth = true;
-                float[] widths = new float[] { 20f, 15f, 25f, 40f, 35f, 35f };
-                table.SetWidths(widths);
-                table.HorizontalAlignment = 0;
-           
-                table.AddCell(c1);
-                table.AddCell(c2);
-                table.AddCell(c3);
-                table.AddCell(c4);
-                table.AddCell(c5);
-                table.AddCell(c6);
-
-                c1.Border = 0;
-                c2.Border = 0;
-                c3.Border = 0;
-                c4.Border = 0;
-                c5.Border = 0;
-                c6.Border = 0;
-
-                try
-                {
-
-                    for (int j = 0; j < datos2.Length; j++)
-                    {
-
-                        /*c1.Phrase = new Phrase(Convert.ToString(datos2.GetValue(j)));*/
-
-
-                        table.AddCell(Convert.ToString(datos2.GetValue(j)));
-       
-                    }
-
-                    doc.Add(table);
-
-
-                }
-                catch (Exception err)
-                {
-                    Console.WriteLine(err.Message);
-
-                }
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                PdfPTable tablef = new PdfPTable(1);
-
-                tablef.AddCell(new PdfPCell(new Phrase("Firma___________________" + nombrepersona, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                float[] widthsf = new float[] { 30f};
-                tablef.SetWidths(widthsf);
-                tablef.HorizontalAlignment = 0;
-               
-
-
-                doc.Add(tablef);
-
-
-
-                doc.Close();
-              
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                           Environment.SpecialFolder.MyDocuments) + "/cartaenvio.pdf");
-
-
-            }
-            
-
-            
-    }
+     
         public void GenerarPDFMesa()
         {
             DataTable dt3 = new DataTable();
@@ -592,11 +587,10 @@ namespace KB_Guadalupana.Views.ControlEX
             else
             {
                 Document doc = new Document(PageSize.LETTER);
+                PdfWriter writer = PdfWriter.GetInstance(doc, HttpContext.Current.Response.OutputStream);
                 doc.SetMargins(40f, 40f, 40f, 40f);
 
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cartaenvio.pdf", FileMode.Create));
-
+                
                 doc.AddAuthor("Micoope");
                 doc.AddTitle("Carta");
                 doc.Open();
@@ -733,19 +727,39 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 doc.Add(tablef);
 
+                doc.NewPage();
+ 
+                doc.Add(Chunk.NEWLINE);
+
+                var tble = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
+                tble.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
+                tble.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tble.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tble.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                doc.Add(tble);
+
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
 
 
+                tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
 
+                tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+                tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                tbl.AddCell(new PdfPCell(new Phrase("Destino: Jurídico ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
+         
 
                 doc.Close();
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                           Environment.SpecialFolder.MyDocuments) + "/cartaenvio.pdf");
-
-
-
                 estadomesa();
-                Response.Redirect("Ex_pendienteAg.aspx");
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename=Infomesa" + ".pdf");
+                HttpContext.Current.Response.Write(doc);
+                Response.Flush();
+                Response.End();
+
+
+               
             }
           
 
@@ -766,11 +780,10 @@ namespace KB_Guadalupana.Views.ControlEX
             else
             {
                 Document doc = new Document(PageSize.LETTER);
+                PdfWriter writer = PdfWriter.GetInstance(doc, HttpContext.Current.Response.OutputStream);
                 doc.SetMargins(40f, 40f, 40f, 40f);
 
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cartaenvio.pdf", FileMode.Create));
-
+          
                 doc.AddAuthor("Micoope");
                 doc.AddTitle("Carta");
                 doc.Open();
@@ -907,268 +920,14 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 doc.Add(tablef);
 
-
-
-
-
-                doc.Close();
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                           Environment.SpecialFolder.MyDocuments) + "/cartaenvio.pdf");
-                estadojuridicomesa();
-                Response.Redirect("Ex_pendienteAg.aspx");
-
-            }
-
-
-
-        }
-
-
-
-        public void GenerarPDF2ext()
-        {
-            DataTable dt3 = new DataTable();
-            string a = exc.obtenerarea(usernombre);
-            string noma = exc.obtenerareanombre(a);
-            dt3 = mex.codigostablegerencia(a);
-
-            if (dt3.Rows.Count < 1)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ningun elemento Seleccionado ')", true);
-
-            }
-            else
-            {
-                Document doc = new Document(PageSize.LETTER);
-                doc.SetMargins(40f, 40f, 40f, 40f);
-
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cartaenvio2.pdf", FileMode.Create));
-
-                doc.AddAuthor("Micoope");
-                doc.AddTitle("Carta");
-                doc.Open();
-
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
-                logo.ScalePercent(45f);
-
-                BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_titulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-
-                BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
-
-
-                BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                BaseFont helvetica = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font negrita = new iTextSharp.text.Font(helvetica, 10f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                //obtener el lote al que pertenece 1 exp
-                string lote = exc.obtenerlote(dt3.Rows[0]["Nocredito"].ToString());
-                int cant = dt3.Rows.Count;
-                string cant2 = Convert.ToString(cant);
-                doc.Add(Chunk.NEWLINE);
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-
-                var tbl = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
-                tbl.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("NO. LOTE " + lote + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                doc.Add(tbl);
-
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-
-
-                tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-
-                tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-                tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + ":", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("Destino: Central Zona 14 ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-
-
-
-                doc.Add(tbl);
-
-
-
-                doc.Close();
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                           Environment.SpecialFolder.MyDocuments) + "/cartaenvio2.pdf");
-
-
-            }
-
-
-
-        }
-        public void GenerarPDFMesaext()
-        {
-            DataTable dt3 = new DataTable();
-            string a = exc.obtenerarea(usernombre);
-            string noma = exc.obtenerareanombre(a);
-            dt3 = mex.llenarenviomesa();
-
-            if (dt3.Rows.Count < 1)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ningun elemento Seleccionado ')", true);
-
-            }
-            else
-            {
-                Document doc = new Document(PageSize.LETTER);
-                doc.SetMargins(40f, 40f, 40f, 40f);
-
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cartaenvioe.pdf", FileMode.Create));
-
-                doc.AddAuthor("Micoope");
-                doc.AddTitle("Carta");
-                doc.Open();
-
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
-                logo.ScalePercent(45f);
-
-                BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_titulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-
-                BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
-
-
-                BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                BaseFont helvetica = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font negrita = new iTextSharp.text.Font(helvetica, 10f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                //obtener el lote al que pertenece 1 exp
-                string lote = exc.obtenerlote(dt3.Rows[0]["gen_numcredito"].ToString());
-                int cant = dt3.Rows.Count;
-                string cant2 = Convert.ToString(cant);
-                doc.Add(Chunk.NEWLINE);
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                var tbl = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
-                tbl.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                doc.Add(tbl);
-
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-
-
-                tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-
-                tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-                tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("Destino: Jurídico ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-
-
-
-
-                doc.Add(tbl);
-
-
-
-                doc.Close();
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                           Environment.SpecialFolder.MyDocuments) + "/cartaenvioe.pdf");
-
-
-
-               
-            }
-
-
-
-        }
-        public void GenerarPDFjuridicomesaext()
-        {
-            DataTable dt3 = new DataTable();
-            string a = exc.obtenerarea(usernombre);
-            string noma = exc.obtenerareanombre(a);
-            dt3 = mex.llenarenviojuridicomesa();
-
-            if (dt3.Rows.Count < 1)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ningun elemento Seleccionado ')", true);
-
-            }
-            else
-            {
-                Document doc = new Document(PageSize.LETTER);
-                doc.SetMargins(40f, 40f, 40f, 40f);
-
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
-                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cartaenvioa.pdf", FileMode.Create));
-
-                doc.AddAuthor("Micoope");
-                doc.AddTitle("Carta");
-                doc.Open();
-
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
-                logo.ScalePercent(45f);
-
-                BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_titulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-
-                BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
-
-
-                BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                BaseFont helvetica = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-                iTextSharp.text.Font negrita = new iTextSharp.text.Font(helvetica, 10f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                //obtener el lote al que pertenece 1 exp
-                string lote = exc.obtenerlote(dt3.Rows[0]["gen_numcredito"].ToString());
-                int cant = dt3.Rows.Count;
-                string cant2 = Convert.ToString(cant);
-                doc.Add(Chunk.NEWLINE);
-
-
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-                var tbl = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
-                tbl.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbl.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                doc.Add(tbl);
+                //2
+                doc.NewPage();
+                var tbls = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
+                tbls.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
+                tbls.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tbls.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                tbls.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                doc.Add(tbls);
 
                 doc.Add(new Phrase(" "));
                 doc.Add(new Phrase(" "));
@@ -1186,16 +945,30 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.Add(tbl);
 
 
+
+
+         
                 doc.Close();
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(
-                           Environment.SpecialFolder.MyDocuments) + "/cartaenvioa.pdf");
-           
+                estadojuridicomesa();
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename=codigos" + ".pdf");
+                HttpContext.Current.Response.Write(doc);
+                Response.Flush();
+                Response.End();
+               
+            
 
             }
 
 
 
         }
+
+
+
+   
+   
+  
         //llenados
         public void llenarcomboasignado()
         {
@@ -2050,13 +1823,9 @@ namespace KB_Guadalupana.Views.ControlEX
 
                                 if (rol == "1" && area == "45" && cif == txtcodigo.Value)
                                 {
-                                    crearexp();
+                                 
                                     GenerarPDF();
-                                    GenerarPDF2ext();
-                                    GenerarPDF2();
-
-                                    estadoenviado();
-                                    Response.Redirect("Ex_pendienteAg.aspx");
+                                   
 
                                 }
                                 else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Codigo Invalido')", true); }
@@ -2080,14 +1849,16 @@ namespace KB_Guadalupana.Views.ControlEX
                         break;
                     //mesa encargado 8
                     case "8":
-                        GenerarPDFMesaext();
+                    
 
                         GenerarPDFMesa();
+                      
                         break;
                     //juridico encargado
                     case "9":
-                        GenerarPDFjuridicomesaext();
+           
                         GenerarPDFjuridicomesa();
+                      
 
 
                         break;

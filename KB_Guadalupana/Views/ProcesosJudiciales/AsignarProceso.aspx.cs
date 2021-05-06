@@ -153,6 +153,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     else
                     {
                         string nombres = PrimerApellido.Value + " " + SegundoApellido.Value;
+                        string stado = Convert.ToString(WS.State);
+                        
+                        Response.Write(stado);
                         if (WS.buscarcreditosasociados(nombres).Tables[0].Rows.Count == 0)
                         {
                             ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Crédito no encontrado');", true);

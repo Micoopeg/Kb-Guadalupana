@@ -152,7 +152,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 Response.Write("NO HAY DATOS QUE MOSTRARA");
             }
             else
-            {
+            {                
                 gridview1.DataSource = WS.buscarresponsables(numcredito);
                 gridview1.DataBind();
 

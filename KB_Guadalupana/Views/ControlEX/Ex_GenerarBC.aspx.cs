@@ -19,17 +19,20 @@ namespace KB_Guadalupana.Views.ControlEX
         long eancode;
         int ctrl = 0;
         int ctrl2 = 15;
+        ServiceReference1.WebService1SoapClient WS = new ServiceReference1.WebService1SoapClient();
         protected void Page_Load(object sender, EventArgs e)
         {
    
-            GenerarPDF();
+         
         }
 
         protected void btngenerar_Click(object sender, EventArgs e)
         {
 
 
+            string estado = WS.buscarcreditoexpedientes(TextBox1.Text);
 
+            Label1.Text = estado;
 
         }
 
@@ -46,7 +49,13 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.Open();
 
                 DataTable dt = new DataTable();
-                dt.Columns.Add("ID");
+                dt.Columns.Add("fecha_desembolso");
+                dt.Columns.Add("CIF");
+                dt.Columns.Add("");
+                dt.Columns.Add("CIF");
+                dt.Columns.Add("CIF");
+                dt.Columns.Add("CIF");
+
 
                 for (int i = 0; i < 10; i++)
                 {

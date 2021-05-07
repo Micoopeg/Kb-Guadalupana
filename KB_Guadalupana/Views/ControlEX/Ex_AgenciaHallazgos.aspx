@@ -128,7 +128,7 @@
                     <Columns>
                          <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Fecha/Hora Desembolso">
                            <ItemTemplate>
-                           <asp:Label ID="lblfecha"  Width="150px" Text='<%# Eval("gen_fechaprestamo") %>' runat="server" />
+                           <asp:Label ID="lblfecha"  Width="150px" Text='<%# Eval("gen_fecha_creacion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                         <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="CIF">

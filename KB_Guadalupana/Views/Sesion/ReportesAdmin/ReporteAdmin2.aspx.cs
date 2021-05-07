@@ -791,20 +791,17 @@ namespace KB_Guadalupana.Views.Sesion.ReportesAdmin
 
         public void mostrarTel1()
         {
-            sesion = Session["sesion_usuario"].ToString();
-            string[] var10 = sn.consultarcif(sesion);
-            string cifnumero = var10[0];
-            string[] var1 = sn.consultarconcampomenaFena(cifnumero);
+            sesion = Session["IDReporte1"].ToString();
+            //string[] var10 = sn.consultarcif(sesion);
+            //string cifnumero = var10[0];
+            string[] var1 = sn.consultarconcampomenaFena(sesion);
             string valor;
             string valor1, valor2;
-            valor = Convert.ToString(var1[1]);
+            valor = Convert.ToString(var1[0]);
             if ((valor != "") && (valor != null))
             {
-                for (int i = 0; i < var1.Length; i++)
-                {
-                    //Fena1.Value = Convert.ToString(var1[0]);
-                    Fena2.Value = Convert.ToString(var1[1]);
-                }
+                //Fena1.Value = Convert.ToString(var1[0]);
+                Fena2.Value = Convert.ToString(var1[0]);
             }
         }
     }

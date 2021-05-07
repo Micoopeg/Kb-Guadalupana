@@ -328,7 +328,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.Close();
                 estadomesaarch();
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename=codigos" + ".pdf");
+                Response.AddHeader("content-disposition", "attachment;filename=OrdenMesa" + ".pdf");
                 HttpContext.Current.Response.Write(doc);
                 Response.Flush();
                 Response.End();

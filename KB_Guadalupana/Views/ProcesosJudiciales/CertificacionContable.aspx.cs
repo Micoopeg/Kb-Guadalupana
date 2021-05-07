@@ -330,7 +330,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     doc.Add(def);
                     doc.Add(new Paragraph(" ", parrafo));
 
-                    iTextSharp.text.Paragraph def4 = new iTextSharp.text.Paragraph("El infrascrito Perito Contador de Cooperativa Parroquial Guadalupana, R. L., registrado en la Superintendencia de Administración Tributaria bajo el número siete millones seiscientos setenta mil veintiuno guion seis (7670021-6), hace constar que:", new Font(basf, 12));
+                    iTextSharp.text.Paragraph def4 = new iTextSharp.text.Paragraph("El infrascrito Perito Contador de Cooperativa Parroquial de Ahorro y Crédito Integral Guadalupana, R. L., registrado en la Superintendencia de Administración Tributaria bajo el número siete millones seiscientos setenta mil veintiuno guion seis (7670021-6), hace constar que:", new Font(basf, 12));
                     def4.Alignment = Element.ALIGN_JUSTIFIED;
                     doc.Add(def4);
 

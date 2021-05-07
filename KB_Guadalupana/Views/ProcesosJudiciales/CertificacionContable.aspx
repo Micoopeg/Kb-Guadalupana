@@ -209,7 +209,7 @@
                         <label class="titulos"><b>No. de préstamo</b></label>
                         <label class="titulos" style="margin-left:11%"><b>No. de incidente</b></label>
                         <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
-                        <label class="titulos" style="margin-left:22%"><b>Código cliente</b></label>
+                        <label class="titulos" style="margin-left:22%"><b>CIF</b></label>
                     </div>
 
                     <div class="formato">
@@ -553,7 +553,8 @@
                         </div><br />
 
                         <div id="comentario2" runat="server" class="formato3">
-                            <label class="titulos">Observaciones</label>
+                            <label class="titulos">Razones de Rechazo
+                            </label>
                             <input id="Observaciones" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
                    </div>

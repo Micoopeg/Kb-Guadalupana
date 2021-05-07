@@ -20,6 +20,15 @@ namespace KB_Guadalupana.Views.Seguridad
         string app, idusuario, user;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string user = Convert.ToString(Session["sesion_usuario"]);
+            string respuesta = sn.obtenerpermisoseguridad(user);
+
+            if (respuesta == "0" || respuesta == null || respuesta == "" || respuesta == "False")
+            {
+                String script = "alert('El usuario no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Index.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            }
+
             AAUsuario.Value = Session["usuario_seguridad"] as string;
             user = Convert.ToString( Session["usuario_seguridad"]);
             if (user != "")

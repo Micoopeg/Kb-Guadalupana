@@ -84,10 +84,10 @@ namespace Modulo_de_arqueos.Views
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "Agencia");
                     TAgencia.DataSource = ds;
-                    TAgencia.DataTextField = "sa_nombreagencia";
+                    TAgencia.DataTextField = "idsa_agencia";
                     TAgencia.DataValueField = "idsa_agencia";
                     TAgencia.DataBind();
-                    TAgencia.Items.Insert(0, new ListItem("[Agencia]", "0"));
+                    TAgencia.Items.Insert(0, new ListItem("[Código Agencia]", "0"));
                 }
                 catch { }
                 finally { try { cn.desconectar(); } catch { } }
@@ -161,7 +161,7 @@ namespace Modulo_de_arqueos.Views
 
         protected void TAgencia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TCodigoagencia.Value = TAgencia.SelectedValue;
+            TCodigoagencia.Value = sn.nombreagencia(TAgencia.SelectedValue);
         }
 
         protected void CAUsuario_SelectedIndexChanged(object sender, EventArgs e)
@@ -174,6 +174,7 @@ namespace Modulo_de_arqueos.Views
             try
             {
                 Session["op"] = "1";
+                Session["siguiente2"] = "0";
                 //SUBTOTAL DE BILLETES
                 decimal subtotal1, subtotal2, subtotal3, subtotal4, subtotal5, subtotal6, subtotal7;
                 subtotal1 = Convert.ToDecimal(200.00) * Convert.ToDecimal(TCantidadb1.Value);
@@ -269,13 +270,23 @@ namespace Modulo_de_arqueos.Views
                 string[] fechadia = dia2.Split(concat2);
                 dia = fechadia[0];
 
+                string[] fechadia2 = dia2.Split(delimitador2);
+                string dia3 = fechadia2[0];
+                string hora = fechadia2[1];
+
+                string[] horayfecha = hora.Split(delimitador);
+                string hora1 = horayfecha[0];
+                string minutos = horayfecha[1];
+
+                string fechayhora2 = dia3 + '-' + mes + '-' + año + ' ' + hora1 + ':' + minutos;
+
                 usuario = Session["sesion_usuario"] as string;
                 idusuario = sn.obteneridusuario(usuario);
-                numeroarqueo = sn.numarqueoT(año, mes, dia, idusuario);
+                numeroarqueo = sn.numarqueoT(dia3, mes, año, idusuario);
 
                 string sig = logic.siguiente("sa_encabezadotesoreria", "idsa_encabezadotesoreria");
                 Session["idtesoreria"] = sig.ToString();
-                string[] valores = { sig, numeroarqueo, idusuario, TFecha.Value, TAgencia.SelectedValue, TNombreoperador.Value, TOperador.Value, TPuestooperador.Value, TNombreencargado.Value, TPuestoencargado.Value, TTesoreria.Value, "0" };
+                string[] valores = { sig, numeroarqueo, idusuario, fechayhora2, TAgencia.SelectedValue, TNombreoperador.Value, TOperador.Value, TPuestooperador.Value, TNombreencargado.Value, TPuestoencargado.Value, TTesoreria.Value, "0" };
                 logic.insertartablas("sa_encabezadotesoreria", valores);
                 lg.bitacoraingresoprocedimientos(usuario, "Arqueos", "Ingreso de datos", "Creación de arqueo Cajero Tesorería");
 
@@ -329,27 +340,36 @@ namespace Modulo_de_arqueos.Views
 
         protected void buscar_Click(object sender, EventArgs e)
         {
-            numarqueo = DropNumarqueo.SelectedValue;
-            Session["siguiente2"] = "1";
-            Session["op"] = "1";
-            mostrartesoreria();
-            if (cont == 1)
+            if(CABuscarfecha.Value == "")
             {
-                arqueo.Visible = false;
-                EBuscar.Visible = false;
+                String script = "alert('Debe ingresar la fecha');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
-                mostrardetalle();
-                mostrarcheques();
-                arqueo.Visible = true;
-                Creararqueo.Visible = false;
-                Buscararqueo.Visible = false;
-                visualizar.Visible = true;
-                imprimir.Visible = true;
-                operar.Visible = false;
-                EBuscar.Visible = false;
+                numarqueo = DropNumarqueo.SelectedValue;
+                Session["siguiente2"] = "1";
+                Session["op"] = "1";
+                mostrartesoreria();
+                if (cont == 1)
+                {
+                    arqueo.Visible = false;
+                    EBuscar.Visible = false;
+                }
+                else
+                {
+                    mostrardetalle();
+                    mostrarcheques();
+                    arqueo.Visible = true;
+                    Creararqueo.Visible = false;
+                    Buscararqueo.Visible = false;
+                    visualizar.Visible = true;
+                    imprimir.Visible = true;
+                    operar.Visible = false;
+                    EBuscar.Visible = false;
+                }
             }
+           
             //NombreFirma.InnerHtml = Session["Nombre"] as string;
             //Nombrefirma2.InnerHtml = TNombreencargado.Value;
             //puesto2.InnerHtml = TPuestoencargado.Value;
@@ -393,7 +413,7 @@ namespace Modulo_de_arqueos.Views
                     string fechaenc = Convert.ToString(var[1]);
                     //TFecha.Value = Convert.ToString(var[1]);
                     TAgencia.SelectedValue = Convert.ToString(var[2]);
-                    TCodigoagencia.Value = Convert.ToString(var[2]);
+                    TCodigoagencia.Value = Convert.ToString(sn.nombreagencia(var[2]));
                     TNombreoperador.Value = Convert.ToString(var[3]);
                     Nombrefirma2.InnerHtml = Convert.ToString(var[3]);
                     TOperador.Value = Convert.ToString(var[4]);
@@ -409,7 +429,7 @@ namespace Modulo_de_arqueos.Views
 
                     string[] fechasep = fechaenc.Split(delimitador2);
                     string[] horai = fechasep[3].Split(delimitador);
-                    fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horai[0] + ":" + horai[1];
+                    fechatotal1 = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + ' ' + horai[0] + ":" + horai[1];
                     TFecha.Attributes.Add("value", fechatotal1);
                 }
             }
@@ -595,6 +615,7 @@ namespace Modulo_de_arqueos.Views
             imprimir.Visible = true;
             TNombreencargado.Value = Session["Nombre"] as string;
             operar.Enabled = true;
+            EBuscar.Visible = false;
 
             //if (consulta == "")
             //{
@@ -630,6 +651,7 @@ namespace Modulo_de_arqueos.Views
             {
                 llenarcomboarqueos();
                 CAUsuario.Visible = false;
+                TituloUsuario.Visible = false;
             }
             else if (puesto == "2")
             {
@@ -655,7 +677,7 @@ namespace Modulo_de_arqueos.Views
                     string[] valores2 = fechamin.Split(delimitador2);
                     horamin = Convert.ToString(fecha.GetValue(1));
                     string[] horas = horamin.Split(delimitador);
-                    fechahora = valores2[0] + "-" + valores2[1] + "-" + valores2[2] + concat + horas[0] + ":" + horas[1];
+                    fechahora = valores2[2] + "-" + valores2[1] + "-" + valores2[0] + delimitador2 + horas[0] + ":" + horas[1];
 
                     TFecha.Attributes.Add("value", fechahora);
                 }

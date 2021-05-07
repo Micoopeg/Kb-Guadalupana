@@ -252,24 +252,24 @@
         .nombre:hover{
             color: white;
         }
-                .ayuda 
+        .ayuda 
         {
           background-color: #69a43c; 
           border: none;
           color: white;
-          padding: 0px 0px;
+          padding: 5px;
           text-align: center;
           text-decoration: none;
           display: flex;
-          font-size: 16px;
+          font-size: 10px;
           margin: 4px 2px;
           transition-duration: 0.4s;
           align-items: center;
           justify-content:center;
           align-content:center;
           cursor: pointer;
-          width:30px;
-          height:30px;
+          width:70px;
+          height:40px;
         }
         .ayuda:hover
         {
@@ -285,7 +285,7 @@
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
      </div>
 
-     <a class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajero.aspx" ><i class="fa fa-question"></i></a>
+        <a class="ayuda" style="right: 7%;position: absolute;margin-top: 1px;" target="_blank" href="Manual/ManualCajero.aspx" ><i class="fa fa-question" style='font-size:15px'></i>  Consultar Guía</a>
          <div style="display: flex;justify-content: center;align-items: center;">
     <div id="visualizar" runat="server" class="boton2" style="display: flex;justify-content: center;align-items: center;" onclick="obtenerimagen();">
 				<a style="cursor:pointer;" class="nombre">
@@ -336,7 +336,7 @@
                         <input id="CPMonto" runat="server" type="text" value="0" min="0" style="height:22px" class="etiquetas3" onchange="sumarmontoq(this.value);"/>
                      </div>
                      <div style="display:flex; flex-direction: row; width:100%">
-                          <label style="width:5%" class="etiquetas2">Q </label>
+                          <label style="width:5%" class="etiquetas2">$ </label>
                     <input id="CPMontoDo" runat="server" value="0" min="0" type="text" style="height:22px" class="etiquetas3" onchange="sumarmontod(this.value);"/>
                      </div>
                 </div>
@@ -362,7 +362,7 @@
                         <input id="CAMonto" runat="server" value="0" min="0" type="text" style="height:22px" class="etiquetas3" onchange="sumarmontoq2(this.value);"/>
                      </div >
                      <div style="display:flex; flex-direction: row; width:100%">
-                        <label style="width:5%" class="etiquetas2">Q </label>
+                        <label style="width:5%" class="etiquetas2">$ </label>
                         <input id="CAMontoDo" runat="server" value="0" min="0" type="text" style="height:22px" class="etiquetas3" onchange="sumarmontod2(this.value);"/>
                      </div>
                 </div>
@@ -377,7 +377,7 @@
 
             <div class="datosGenerales2">
                  <label style="width:40%; display:flex; justify-content:flex-end"><b>Total cheques en Dólares:</b></label>&nbsp;&nbsp;
-                 <label style="width:5%" class="etiquetas2">Q </label>
+                 <label style="width:5%" class="etiquetas2">$ </label>
                 <span id="CDTotal" runat="server" type="text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 3px;padding: 5px;width:30%;height:22px" >0.00</span>
             </div>
             <br /><br />
@@ -399,7 +399,7 @@
 
              <div class="solid" style="margin-top: 5px;"></div>
 
-            <p>El usuario <span id="usuarioDescripcion" runat="server"></span> con   No.  De  operador   <span id="operadorDescripción" runat="server"></span> bajo    supervision   del    Jefe  y/o Auxiliar de Agencia,  CERTIFICAN:  Las  
+            <p>El usuario <span id="usuarioDescripcion" runat="server"></span> con   No.  de  operador   <span id="operadorDescripción" runat="server"></span> bajo    supervisión   del    Jefe  y/o Auxiliar de Agencia,  CERTIFICAN:  Las  
                 transacciones   integradas  por:   cheques y  efectivo  recibido  y  entregado en cada  una  de  las  transacciones,  concuerdan  con  
                 los registros   del  sistema de cómputo BankWorks. Así  mismo, efectuaron  el  buen  uso   de   las boletas  utilizadas  en  forma  
                 correlativa  que  se  mencionan  en   este arqueo  de  efectivo  y  valores.    Los  abajo firmantes nos sometemos  a  las responsabilidades 

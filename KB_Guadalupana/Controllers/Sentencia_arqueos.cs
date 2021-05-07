@@ -6,6 +6,10 @@ using System.Linq;
 using System.Web;
 using SA_Arqueos.Controllers;
 using KB_Guadalupana.Controllers;
+//using SelectPdf;
+//using Microsoft.AspNetCore.Mvc;
+using Rotativa;
+using System.Web.Mvc;
 
 namespace SA_Arqueos.Controllers
 {
@@ -14,6 +18,33 @@ namespace SA_Arqueos.Controllers
         Conexion conexiongeneral = new Conexion();
         Conexion_arqueos cn = new Conexion_arqueos();
         MySqlCommand comm;
+
+       //public IActionResult GeneratePdf(string html)
+       // {
+       //     html = html.Replace("StrTag", "<").Replace("EndTag", ">");
+
+       //     HtmlToPdf oHtmlToPdf = new HtmlToPdf();
+       //     PdfDocument oPdfDocument = oHtmlToPdf.ConvertHtmlString(html);
+       //     byte[] pdf = oPdfDocument.Save();
+       //     oPdfDocument.Close();
+
+       //     return File(
+       //             pdf,
+       //             "application/pdf",
+       //             "StudentList.pdf"
+       //         );
+       // }
+
+       // private IActionResult File(byte[] pdf, string v1, string v2)
+       // {
+       //     throw new NotImplementedException();
+       // }
+
+        public ActionResult Print()
+        {
+            return new ActionAsPdf("MenuArqueos", new { nombre = "Aida" })
+            { FileName = "Test.pdf" };
+        }
 
         public void ingreso(string query)
         {
@@ -362,6 +393,26 @@ namespace SA_Arqueos.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
 
+        }
+
+        //AGENCIA
+        public string nombreagencia(string id)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT sa_nombreagencia FROM sa_agencia WHERE idsa_agencia = '"+id+"'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch { }
+                return camporesultante;
+            }
         }
 
         //MODIFICAR ENCABEZADO

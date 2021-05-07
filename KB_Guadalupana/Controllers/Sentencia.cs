@@ -1951,7 +1951,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT sum(a.ep_prestamomomentoinicial) as Total FROM ep_prestamo a" +
+                    string consultaGraAsis = "SELECT sum(a.ep_prestamosaldoactual) as Total FROM ep_prestamo a" +
                         " INNER JOIN ep_tipoprestamo b INNER JOIN ep_institucion c INNER JOIN ep_tipoinstitucion d " +
                         "INNER JOIN ep_informaciongeneral e ON a.codeptipoprestamo=b.codeptipoprestamo " +
                         "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoinstitucion=d.codeptipoinstitucion " +
@@ -2288,11 +2288,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a " +
-                        "INNER JOIN ep_menajedecasaencabezado b INNER JOIN ep_informaciongeneral c " +
-                        "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
-                        "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif" +
-                        " WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=12";
+                    string consultaGraAsis = "SELECT a.ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b INNER join ep_informaciongeneral c ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado AND b.codepinformaciongeneralcif = c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=12";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -3835,6 +3831,25 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-    }
 
+        public bool consultarbd(string tabla)
+        {
+            using (MySqlConnection conn = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    conn.Open();
+                    string consultaGraAsis = " select * from " + tabla + ";";
+                    comm = new MySqlCommand(consultaGraAsis, cn.conectar());
+                    MySqlDataReader mostrarResultados = comm.ExecuteReader();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+    }
 }
+

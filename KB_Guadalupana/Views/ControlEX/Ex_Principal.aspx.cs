@@ -18,18 +18,93 @@ namespace KB_Guadalupana.Views.ControlEX
         string usernombre, nombrepersona, coduser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            usernombre = Convert.ToString(Session["sesion_usuario"] = "pgecasasola");
-            nombrepersona = Convert.ToString(Session["Nombre"] = "Edgar Casasola");
+            usernombre = Convert.ToString(Session["sesion_usuario"] = "pgizapete");
+            nombrepersona = Convert.ToString(Session["Nombre"] = "A lopez" );
 
-            NombreAgencia.InnerText = Convert.ToString( Session["Nombre"] = exc.agencia(usernombre));
-            
+            NombreAgencia.InnerText = Convert.ToString(Session["NombreAG"] = exc.agencia(usernombre));
+
             now();
+            string area = exc.obtenerarea(usernombre);
+            string rol = exc.obtenerrol(usernombre);
+            if (area == "52" && rol == "1") {
+                Response.Redirect("Ex_VistaMensajeria.aspx");
+            }
+            else
+            {
+                if (usernombre != "")
+                {
 
-            coduser = exc.obtenercoduser(usernombre);
-            expenv.InnerText = exc.contenv(coduser);
-            exppenv.InnerText = exc.contpen(coduser);
-            exphall.InnerText = exc.contret(coduser);
-            expgen.InnerText = exc.contexis(coduser);
+
+                    coduser = exc.obtenercoduser(usernombre);
+                    exmesa.InnerText = exc.contenv();
+                    esmens.InnerText = exc.contpen();
+                    extran.InnerText = exc.contret();
+                    exppenv.InnerText = exc.contexis();
+                    exjur.InnerText = mex.contjur();
+                    exret.InnerText = mex.contreten();
+                    exarch.InnerText = mex.contarch();
+
+                }
+                else
+                {
+                    Response.Redirect("../Sesion/MenuBarra.aspx");
+
+                }
+            }
+            switch (rol) {
+
+                case "2":
+                    mesareg.Visible = true;
+                    archivo.Visible = false;
+                    negocios.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+                case "3":
+                    negocios.Visible = false;
+                    archivo.Visible = false;
+                    mesareg.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+                case "4":
+                    mesareg.Visible = false;
+                    archivo.Visible = false;
+                    negocios.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+                case "5":
+                    negocios.Visible = true;
+                    archivo.Visible = false;
+                    mesareg.Visible = false;
+                    hallazgos.Visible = false;
+                    pendientes.Visible = false;
+                    break;
+                case "6":
+                    mesareg.Visible = false;
+                    archivo.Visible = false;
+                    negocios.Visible = false;
+                    break;
+                case "7":
+                    archivo.Visible = true;
+                    mesareg.Visible = false;
+                    negocios.Visible = false;
+                    pendientes.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+                case "8":
+                    mesareg.Visible = true;
+                    archivo.Visible = false;
+                    hallazgos.Visible = false;
+                    negocios.Visible = false;
+                    break;
+                case "9":
+                    negocios.Visible = false;
+                    archivo.Visible = false;
+                    mesareg.Visible = false;
+                    hallazgos.Visible = false;
+                    break;
+
+            }
+          
         }
 
         public void now()
@@ -59,25 +134,44 @@ namespace KB_Guadalupana.Views.ControlEX
 
 
         }
-       
 
-        protected void btnInicio_Click(object sender ,  EventArgs e) {
+        protected void LinkButton5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
+        }
+
+        protected void LinkButton6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ex_AgenciaHallazgos.aspx");
+        }
+
+        protected void LinkButton7_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Sesion/CerrarSesion.aspx");
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ex_VistaMesaQA.aspx");
+        }
+
+        protected void btnInicio_Click(object sender, EventArgs e) {
 
             Response.Redirect("../Sesion/MenuBarra.aspx");
-        
+
         }
 
         protected void btnEXGEN_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("Ex_Principal.aspx");
+            Response.Redirect("Ex_VistaNegocios.aspx");
 
         }
-        protected void btnNuevo_Click(object sender, EventArgs e)
+    
+        protected void btnpendiente(object sender, EventArgs e)
         {
 
-            Response.Redirect("Ex_GenExpedientes.aspx");
-
+            Response.Redirect("Ex_pendienteAg.aspx");
         }
     }
 }

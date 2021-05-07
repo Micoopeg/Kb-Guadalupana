@@ -51,7 +51,7 @@ namespace KBGuada.Views.session
                         cav.insertartarea(sql3);
                     }
                     //un update o un insert
-                    string asignado = cav.consultartareauserexistente(codusuario);
+                    string asignado = cav.consultartareauserexistente(codusuario,tarea);
 
                     if (asignado == tarea)
                     {
@@ -80,14 +80,15 @@ namespace KBGuada.Views.session
                             nombre = Convert.ToString(datostarea.GetValue(3));
                             apellido = Convert.ToString(datostarea.GetValue(4));
                             telefono = Convert.ToString(datostarea.GetValue(5));
-                            fechain = Convert.ToString(datostarea.GetValue(6));
-                            fechafin = Convert.ToString(datostarea.GetValue(7));
-                            descrip = Convert.ToString(datostarea.GetValue(10));
-                            estado = Convert.ToString(datostarea.GetValue(11));
-                            prioridad = Convert.ToString(datostarea.GetValue(12));
-                            tipo = Convert.ToString(datostarea.GetValue(13));
-                            asociad = Convert.ToString(datostarea.GetValue(14));
-                            acceso = Convert.ToString(datostarea.GetValue(15));
+                            string monto = Convert.ToString(datostarea.GetValue(6));
+                            fechain = Convert.ToString(datostarea.GetValue(7));
+                            fechafin = Convert.ToString(datostarea.GetValue(8));
+                            descrip = Convert.ToString(datostarea.GetValue(11));
+                            estado = Convert.ToString(datostarea.GetValue(12));
+                            prioridad = Convert.ToString(datostarea.GetValue(13));
+                            tipo = Convert.ToString(datostarea.GetValue(14));
+                            asociad = Convert.ToString(datostarea.GetValue(15));
+                            acceso = Convert.ToString(datostarea.GetValue(16));
                             string[] fechasep = fechain.Split(delimitador);
 
                             string[] horesep = fechasep[3].Split(delimitador2);
@@ -137,14 +138,15 @@ namespace KBGuada.Views.session
                             nombre = Convert.ToString(datostarea.GetValue(3));
                             apellido = Convert.ToString(datostarea.GetValue(4));
                             telefono = Convert.ToString(datostarea.GetValue(5));
-                            fechain = Convert.ToString(datostarea.GetValue(6));
-                            fechafin = Convert.ToString(datostarea.GetValue(7));
-                            descrip = Convert.ToString(datostarea.GetValue(10));
-                            estado = Convert.ToString(datostarea.GetValue(11));
-                            prioridad = Convert.ToString(datostarea.GetValue(12));
-                            tipo = Convert.ToString(datostarea.GetValue(13));
-                            asociad = Convert.ToString(datostarea.GetValue(14));
-                            acceso = Convert.ToString(datostarea.GetValue(15));
+                            string monto = Convert.ToString(datostarea.GetValue(6));
+                            fechain = Convert.ToString(datostarea.GetValue(7));
+                            fechafin = Convert.ToString(datostarea.GetValue(8));
+                            descrip = Convert.ToString(datostarea.GetValue(11));
+                            estado = Convert.ToString(datostarea.GetValue(12));
+                            prioridad = Convert.ToString(datostarea.GetValue(13));
+                            tipo = Convert.ToString(datostarea.GetValue(14));
+                            asociad = Convert.ToString(datostarea.GetValue(15));
+                            acceso = Convert.ToString(datostarea.GetValue(16));
                             string[] fechasep = fechain.Split(delimitador);
 
                             string[] horesep = fechasep[3].Split(delimitador2);
@@ -215,9 +217,9 @@ namespace KBGuada.Views.session
                         cav.insertartarea(sql3);
                     }
                     //un update o un insert
-                    string asignado = cav.consultartareauserexistente(codusuario);
+                    string asignado = cav.consultartareauserexistente(codusuario, tarea);
 
-                    if (asignado == tarea)
+                    if (asignado != "" )
                     {
                         ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Esta tarea ya fue asignada a este usuario')", true);
 
@@ -243,14 +245,15 @@ namespace KBGuada.Views.session
                             nombre = Convert.ToString(datostarea.GetValue(3));
                             apellido = Convert.ToString(datostarea.GetValue(4));
                             telefono = Convert.ToString(datostarea.GetValue(5));
-                            fechain = Convert.ToString(datostarea.GetValue(6));
-                            fechafin = Convert.ToString(datostarea.GetValue(7));
-                            descrip = Convert.ToString(datostarea.GetValue(10));
-                            estado = Convert.ToString(datostarea.GetValue(11));
-                            prioridad = Convert.ToString(datostarea.GetValue(12));
-                            tipo = Convert.ToString(datostarea.GetValue(13));
-                            asociad = Convert.ToString(datostarea.GetValue(14));
-                            acceso = Convert.ToString(datostarea.GetValue(15));
+                            string monto = Convert.ToString(datostarea.GetValue(6));
+                            fechain = Convert.ToString(datostarea.GetValue(7));
+                            fechafin = Convert.ToString(datostarea.GetValue(8));
+                            descrip = Convert.ToString(datostarea.GetValue(11));
+                            estado = Convert.ToString(datostarea.GetValue(12));
+                            prioridad = Convert.ToString(datostarea.GetValue(13));
+                            tipo = Convert.ToString(datostarea.GetValue(14));
+                            asociad = Convert.ToString(datostarea.GetValue(15));
+                            acceso = Convert.ToString(datostarea.GetValue(16));
                             string[] fechasep = fechain.Split(delimitador);
 
                             string[] horesep = fechasep[3].Split(delimitador2);
@@ -280,66 +283,67 @@ namespace KBGuada.Views.session
                         }
 
                     }
-                    else if (asignado != tarea) {
+                    //else if (asignado == "") {
 
-                        string cif = cav.obtenercif(codusuario);
+                    //    string cif = cav.obtenercif(codusuario);
 
-                        string cadena = "INSERT INTO av_controlasignado VALUES ( '" + codusuario + "', '" + tarea + "','" + cif + "' );";
-                        cav.insertartarea(cadena);
-
-
-                        //obtener los datos de la tarea
-
-                        string[] datostarea = mav.consultadatostarea(tarea);
-
-                        titulo = AVTITULO.Value;
-
-                        for (int i = 0; i < datostarea.Length; i++)
-                        {
-                            nombre = Convert.ToString(datostarea.GetValue(3));
-                        apellido = Convert.ToString(datostarea.GetValue(4));
-                        telefono = Convert.ToString(datostarea.GetValue(5));
-                        fechain = Convert.ToString(datostarea.GetValue(6));
-                        fechafin = Convert.ToString(datostarea.GetValue(7));
-                        descrip = Convert.ToString(datostarea.GetValue(10));
-                        estado = Convert.ToString(datostarea.GetValue(11));
-                        prioridad = Convert.ToString(datostarea.GetValue(12));
-                        tipo = Convert.ToString(datostarea.GetValue(13));
-                        asociad = Convert.ToString(datostarea.GetValue(14));
-                        acceso = Convert.ToString(datostarea.GetValue(15));
-                            string[] fechasep = fechain.Split(delimitador);
-
-                            string[] horesep = fechasep[3].Split(delimitador2);
-                            string fechainitotal = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horesep[0] + ":" + horesep[1];
-
-                            string[] fechasep2 = fechafin.Split(delimitador);
-                            string[] horesep2 = fechasep2[3].Split(delimitador2);
-
-                            string fechafintotal = fechasep2[0] + "-" + fechasep2[1] + "-" + fechasep2[2] + concat + horesep2[0] + ":" + horesep2[1];
-
-                            string agenda = cav.consultaragenda(codusuario);
-                            string sig = cav.siguiente("av_tarea", "codavtarea");
-                            string sql = "SET lc_time_names = 'es_ES'; INSERT INTO `av_tarea`(`codavtarea` , `codavagenda`, `av_titulo`, `av_pnombre`, `av_papellido`, `av_telefono`, `av_fechaini`, `av_fechafin`,`fechaini`, `fechafin`, `av_descripcion`, `cod_estado`, `codprioridad`, `codtipotarea`, `codasociado`,`codavpertarea`) VALUES ('" + sig + "', '" + agenda + "' ,'" + titulo + "','" + nombre + "','" + apellido + "','" + telefono + "','" + fechainitotal + "','" + fechafintotal + "', DATE_FORMAT('" + fechainitotal + "', '%d %b %Y'),  DATE_FORMAT('" + fechafintotal + "', '%d %b %Y') , '" + descrip + "', '" + estado + "' , '" + prioridad + "' ,'" + tipo + "',1, '" + acceso + "' ); ";
-
-                            cav.insertartarea(sql);
+                    //    string cadena = "INSERT INTO av_controlasignado VALUES ( '" + codusuario + "', '" + tarea + "','" + cif + "' );";
+                    //    cav.insertartarea(cadena);
 
 
+                    //    //obtener los datos de la tarea
 
+                    //    string[] datostarea = mav.consultadatostarea(tarea);
+
+                    //    titulo = AVTITULO.Value;
+
+                    //    for (int i = 0; i < datostarea.Length; i++)
+                    //    {
+                    //        nombre = Convert.ToString(datostarea.GetValue(3));
+                    //    apellido = Convert.ToString(datostarea.GetValue(4));
+                    //    telefono = Convert.ToString(datostarea.GetValue(5));
+                    //string monto = Convert.ToString(datostarea.GetValue(6));
+                    //        fechain = Convert.ToString(datostarea.GetValue(7));
+                    //    fechafin = Convert.ToString(datostarea.GetValue(8));
+                    //    descrip = Convert.ToString(datostarea.GetValue(11));
+                    //    estado = Convert.ToString(datostarea.GetValue(12));
+                    //    prioridad = Convert.ToString(datostarea.GetValue(13));
+                    //    tipo = Convert.ToString(datostarea.GetValue(14));
+                    //    asociad = Convert.ToString(datostarea.GetValue(15));
+                    //    acceso = Convert.ToString(datostarea.GetValue(16));
+                    //        string[] fechasep = fechain.Split(delimitador);
+
+                    //        string[] horesep = fechasep[3].Split(delimitador2);
+                    //        string fechainitotal = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horesep[0] + ":" + horesep[1];
+
+                    //        string[] fechasep2 = fechafin.Split(delimitador);
+                    //        string[] horesep2 = fechasep2[3].Split(delimitador2);
+
+                    //        string fechafintotal = fechasep2[0] + "-" + fechasep2[1] + "-" + fechasep2[2] + concat + horesep2[0] + ":" + horesep2[1];
+
+                    //        string agenda = cav.consultaragenda(codusuario);
+                    //        string sig = cav.siguiente("av_tarea", "codavtarea");
+                    //        string sql = "SET lc_time_names = 'es_ES'; INSERT INTO `av_tarea`(`codavtarea` , `codavagenda`, `av_titulo`, `av_pnombre`, `av_papellido`, `av_telefono`, `av_fechaini`, `av_fechafin`,`fechaini`, `fechafin`, `av_descripcion`, `cod_estado`, `codprioridad`, `codtipotarea`, `codasociado`,`codavpertarea`) VALUES ('" + sig + "', '" + agenda + "' ,'" + titulo + "','" + nombre + "','" + apellido + "','" + telefono + "','" + fechainitotal + "','" + fechafintotal + "', DATE_FORMAT('" + fechainitotal + "', '%d %b %Y'),  DATE_FORMAT('" + fechafintotal + "', '%d %b %Y') , '" + descrip + "', '" + estado + "' , '" + prioridad + "' ,'" + tipo + "',1, '" + acceso + "' ); ";
+
+                    //        cav.insertartarea(sql);
 
 
 
-                            limpiar();
-                            Response.Redirect("Av_Reasignar.aspx");
 
 
-                        }
+
+                    //        limpiar();
+                    //        Response.Redirect("Av_Reasignar.aspx");
+
+
+                    //    }
 
                     
 
 
 
 
-                    }
+                    //}
 
 
 
@@ -376,9 +380,9 @@ namespace KBGuada.Views.session
                         cav.insertartarea(sql3);
                     }
                     //un update o un insert
-                    string asignado = cav.consultartareauserexistente(codusuario);
+                    string asignado = cav.consultartareauserexistente(codusuario,tarea);
 
-                    if (asignado == tarea)
+                    if (asignado != "")
                     {
                         ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Esta tarea ya fue asignada a este usuario')", true);
 
@@ -404,14 +408,15 @@ namespace KBGuada.Views.session
                             nombre = Convert.ToString(datostarea.GetValue(3));
                             apellido = Convert.ToString(datostarea.GetValue(4));
                             telefono = Convert.ToString(datostarea.GetValue(5));
-                            fechain = Convert.ToString(datostarea.GetValue(6));
-                            fechafin = Convert.ToString(datostarea.GetValue(7));
-                            descrip = Convert.ToString(datostarea.GetValue(10));
-                            estado = Convert.ToString(datostarea.GetValue(11));
-                            prioridad = Convert.ToString(datostarea.GetValue(12));
-                            tipo = Convert.ToString(datostarea.GetValue(13));
-                            asociad = Convert.ToString(datostarea.GetValue(14));
-                            acceso = Convert.ToString(datostarea.GetValue(15));
+                            string monto = Convert.ToString(datostarea.GetValue(6));
+                            fechain = Convert.ToString(datostarea.GetValue(7));
+                            fechafin = Convert.ToString(datostarea.GetValue(8));
+                            descrip = Convert.ToString(datostarea.GetValue(11));
+                            estado = Convert.ToString(datostarea.GetValue(12));
+                            prioridad = Convert.ToString(datostarea.GetValue(13));
+                            tipo = Convert.ToString(datostarea.GetValue(14));
+                            asociad = Convert.ToString(datostarea.GetValue(15));
+                            acceso = Convert.ToString(datostarea.GetValue(16));
                             string[] fechasep = fechain.Split(delimitador);
 
                             string[] horesep = fechasep[3].Split(delimitador2);
@@ -443,57 +448,58 @@ namespace KBGuada.Views.session
 
                     }
 
-                    else if (asignado != tarea)
-                    {
-                        string cif = cav.obtenercif(codusuario);
-                        //insertar en tabla de asignados
-                        string cadena = "INSERT INTO av_controlasignado VALUES ( '" + codusuario + "', '" + tarea + "','" + cif + "' );";
-                        cav.insertartarea(cadena);
+                    //else if (asignado != tarea)
+                    //{
+                    //    string cif = cav.obtenercif(codusuario);
+                    //    //insertar en tabla de asignados
+                    //    string cadena = "INSERT INTO av_controlasignado VALUES ( '" + codusuario + "', '" + tarea + "','" + cif + "' );";
+                    //    cav.insertartarea(cadena);
 
 
 
-                        //obtener los datos de la tarea
+                    //    //obtener los datos de la tarea
 
-                       string[] datostarea = mav.consultadatostarea(tarea);
-                        for (int i = 0; i < datostarea.Length; i++)
-                        {
-                            titulo = AVTITULO.Value;
-                            nombre = Convert.ToString(datostarea.GetValue(3));
-                            apellido = Convert.ToString(datostarea.GetValue(4));
-                            telefono = Convert.ToString(datostarea.GetValue(5));
-                            fechain = Convert.ToString(datostarea.GetValue(6));
-                            fechafin = Convert.ToString(datostarea.GetValue(7));
-                            descrip = Convert.ToString(datostarea.GetValue(10));
-                            estado = Convert.ToString(datostarea.GetValue(11));
-                            prioridad = Convert.ToString(datostarea.GetValue(12));
-                            tipo = Convert.ToString(datostarea.GetValue(13));
-                            asociad = Convert.ToString(datostarea.GetValue(14));
-                            acceso = Convert.ToString(datostarea.GetValue(15));
+                    //   string[] datostarea = mav.consultadatostarea(tarea);
+                    //    for (int i = 0; i < datostarea.Length; i++)
+                    //    {
+                    //        titulo = AVTITULO.Value;
+                    //        nombre = Convert.ToString(datostarea.GetValue(3));
+                    //        apellido = Convert.ToString(datostarea.GetValue(4));
+                    //        telefono = Convert.ToString(datostarea.GetValue(5));
+                    //        string monto = Convert.ToString(datostarea.GetValue(6));
+                    //        fechain = Convert.ToString(datostarea.GetValue(7));
+                    //        fechafin = Convert.ToString(datostarea.GetValue(8));
+                    //        descrip = Convert.ToString(datostarea.GetValue(11));
+                    //        estado = Convert.ToString(datostarea.GetValue(12));
+                    //        prioridad = Convert.ToString(datostarea.GetValue(13));
+                    //        tipo = Convert.ToString(datostarea.GetValue(14));
+                    //        asociad = Convert.ToString(datostarea.GetValue(15));
+                    //        acceso = Convert.ToString(datostarea.GetValue(16));
 
-                            string[] fechasep = fechain.Split(delimitador);
+                    //        string[] fechasep = fechain.Split(delimitador);
 
-                            string[] horesep = fechasep[3].Split(delimitador2);
-                            string fechainitotal = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horesep[0] + ":" + horesep[1];
-
-
-                            string[] fechasep2 = fechafin.Split(delimitador);
-                            string[] horesep2 = fechasep2[3].Split(delimitador2);
-
-                            string fechafintotal = fechasep2[0] + "-" + fechasep2[1] + "-" + fechasep2[2] + concat + horesep2[0] + ":" + horesep2[1];
+                    //        string[] horesep = fechasep[3].Split(delimitador2);
+                    //        string fechainitotal = fechasep[0] + "-" + fechasep[1] + "-" + fechasep[2] + concat + horesep[0] + ":" + horesep[1];
 
 
-                            string agenda = cav.consultaragenda(codusuario);
-                            string sig = cav.siguiente("av_tarea", "codavtarea");
-                            string sql = "SET lc_time_names = 'es_ES'; INSERT INTO `av_tarea`(`codavtarea` , `codavagenda`, `av_titulo`, `av_pnombre`, `av_papellido`, `av_telefono`, `av_fechaini`, `av_fechafin`,`fechaini`, `fechafin`, `av_descripcion`, `cod_estado`, `codprioridad`, `codtipotarea`, `codasociado`,`codavpertarea`) VALUES ('" + sig + "', '" + agenda + "' ,'" + titulo + "','" + nombre + "','" + apellido + "','" + telefono + "','" + fechainitotal + "','" + fechafintotal + "', DATE_FORMAT('" + fechainitotal + "', '%d %b %Y'),  DATE_FORMAT('" + fechafintotal + "', '%d %b %Y') , '" + descrip + "', '" + estado + "' , '" + prioridad + "' ,'" + tipo + "',1, '" + acceso + "' ); ";
+                    //        string[] fechasep2 = fechafin.Split(delimitador);
+                    //        string[] horesep2 = fechasep2[3].Split(delimitador2);
 
-                            cav.insertartarea(sql);
-
-                            limpiar();
-                            Response.Redirect("Av_Reasignar.aspx");
+                    //        string fechafintotal = fechasep2[0] + "-" + fechasep2[1] + "-" + fechasep2[2] + concat + horesep2[0] + ":" + horesep2[1];
 
 
-                        }
-                    }
+                    //        string agenda = cav.consultaragenda(codusuario);
+                    //        string sig = cav.siguiente("av_tarea", "codavtarea");
+                    //        string sql = "SET lc_time_names = 'es_ES'; INSERT INTO `av_tarea`(`codavtarea` , `codavagenda`, `av_titulo`, `av_pnombre`, `av_papellido`, `av_telefono`, `av_fechaini`, `av_fechafin`,`fechaini`, `fechafin`, `av_descripcion`, `cod_estado`, `codprioridad`, `codtipotarea`, `codasociado`,`codavpertarea`) VALUES ('" + sig + "', '" + agenda + "' ,'" + titulo + "','" + nombre + "','" + apellido + "','" + telefono + "','" + fechainitotal + "','" + fechafintotal + "', DATE_FORMAT('" + fechainitotal + "', '%d %b %Y'),  DATE_FORMAT('" + fechafintotal + "', '%d %b %Y') , '" + descrip + "', '" + estado + "' , '" + prioridad + "' ,'" + tipo + "',1, '" + acceso + "' ); ";
+
+                    //        cav.insertartarea(sql);
+
+                    //        limpiar();
+                    //        Response.Redirect("Av_Reasignar.aspx");
+
+
+                    //    }
+                    //}
 
 
                 }

@@ -181,9 +181,9 @@
             <div class="form-group" style="text-align: center">
 
                 <label for="exampleInputEmail1">
-                    <h1>Titulo de la tarea</h1>
+                    <h1>Título de la tarea</h1>
                 </label>
-                <input id="AVTITULO" type="text" runat="server" class="form-control form-control-lg" aria-describedby="emailHelp" placeholder="Ingrese el Titulo de la Tarea" style="text-align: center;" />
+                <input id="AVTITULO" type="text" runat="server" class="form-control form-control-lg" aria-describedby="emailHelp" placeholder="Ingrese el Título de la Tarea" style="text-align: center;" />
             </div>
             <div class="form-group">
 
@@ -203,7 +203,7 @@
 
             </div>
             <div class="form-group">
-                <h1>Telefono</h1>
+                <h1>Teléfono</h1>
                 <div class="row">
                     <div class="col">
                         <input id="AVTEL" runat="server" class="form-control form-control-lg" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" />
@@ -238,7 +238,7 @@
 
             <div class="form-group" style="text-align: center">
                 <label for="exampleFormControlTextarea1">
-                    <h1>Descripcion de tarea</h1>
+                    <h1>Descripción de tarea</h1>
                 </label>
                 <textarea id="AVDESCRIP" runat="server" class="form-control form-control-lg" rows="3" maxlength="130"></textarea>
             </div>

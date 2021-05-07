@@ -101,6 +101,33 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
+        public string[] datosusuarioex(string codex)
+        {
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT * FROM ex_controlingreso WHERE codexcontroling = '" + codex + "' ;";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+
+        }
         public string obteneridusuario(string usuario)
         {
 
@@ -502,5 +529,30 @@ namespace KB_Guadalupana.Controllers
 
 
             }
+
+        public string obtenerpermisoseguridad(string usuario)
+        {
+
+
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT a.gen_mdiest FROM gen_mdimenu a INNER JOIN gen_usuario b ON a.codgenusuario=b.codgenusuario WHERE b.gen_usuarionombre='pggteo' AND a.codgenapp=7";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
         }
+    }
     } 

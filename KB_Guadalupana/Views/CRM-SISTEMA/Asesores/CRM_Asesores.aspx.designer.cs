@@ -60,22 +60,22 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control Chart1.
+        /// Control divGridprospecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGridprospecto;
 
         /// <summary>
-        /// Control Chart2.
+        /// Control gridviewprospectos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart2;
+        protected global::System.Web.UI.WebControls.GridView gridviewprospectos;
 
         /// <summary>
         /// Control txtnumerogeneral.
@@ -355,23 +355,5 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
-
-        /// <summary>
-        /// Control divGridprospecto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGridprospecto;
-
-        /// <summary>
-        /// Control gridviewprospectos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridviewprospectos;
     }
 }

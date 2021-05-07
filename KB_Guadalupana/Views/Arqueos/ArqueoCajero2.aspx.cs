@@ -27,11 +27,13 @@ namespace Modulo_de_arqueos.Views
             puesto.InnerHtml = Session["puesto"] as string;
             id = Session["idcajero1"] as string;
             siguiente = Session["siguiente"] as string;
-            if(siguiente == "1")
+            operar.Enabled = true;
+            if (siguiente == "1")
             {
                 mostrardetalle();
+                operar.Visible = false;
             }
-            operar.Enabled = true;
+           
         }
 
         protected void anterior_Click(object sender, EventArgs e)

@@ -10,7 +10,9 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:Button ID="btnGenerar" runat="server" Text="Generar PDF" Width="154px" OnClick="btngenerar_Click"/>
+        <asp:Button ID="btnGenerar" runat="server" Text="buscar" Width="154px" OnClick="btngenerar_Click"/>
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
     </form>
 </body>
 </html>

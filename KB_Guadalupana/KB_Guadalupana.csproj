@@ -125,6 +125,9 @@
     <Reference Include="Renci.SshNet, Version=2020.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2020.0.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -148,6 +151,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -246,6 +251,13 @@
     <Content Include="AvDiseños\script.js" />
     <Content Include="AvDiseños\scriptdas.js" />
     <Content Include="AvDiseños\style.css" />
+    <None Include="Connected Services\ServiceReference1\WebService1.disco" />
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -269,6 +281,7 @@
     <Content Include="EXDiseños\EstilosDashboard.css" />
     <Content Include="EXDiseños\EstilosGenExp.css" />
     <Content Include="EXDiseños\EstilosGenExpmenu.css" />
+    <Content Include="EXDiseños\EstilosMensajeria.css" />
     <Content Include="EXDiseños\EstiloTablas.css" />
     <Content Include="EXDiseños\ExtiloExEnvio.css" />
     <Content Include="EXDiseños\jquery.js" />
@@ -280,6 +293,7 @@
     <Content Include="EXDiseños\scriptvalidar.js" />
     <Content Include="EXDiseños\stylebarra.css" />
     <Content Include="EXDiseños\stylepaginas.css" />
+    <Content Include="EXDiseños\Trackestilo.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -400,6 +414,7 @@
     <Content Include="Conjuntodedatosdataset.xss">
       <DependentUpon>Conjuntodedatosdataset.xsd</DependentUpon>
     </Content>
+    <None Include="Connected Services\ServiceReference1\WebService1.wsdl" />
     <None Include="DataMontos.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataMontos.Designer.cs</LastGenOutput>
@@ -471,6 +486,7 @@
     <Content Include="mydbDataSet.xss">
       <DependentUpon>mydbDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="ReportesAv\ReporteUsuarios.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -537,12 +553,14 @@
     <Content Include="Views\Arqueos\Manual\ManualCajeroAutomatico.aspx" />
     <Content Include="Views\Arqueos\Manual\ManualTesoreria.aspx" />
     <Content Include="Views\Arqueos\MenuArqueos.aspx" />
+    <Content Include="Views\ControlEX\Ex_AgenciaHallazgos.aspx" />
     <Content Include="Views\ControlEX\Ex_EnvioEx.aspx" />
     <Content Include="Views\ControlEX\Ex_GenerarBC.aspx" />
     <Content Include="Views\ControlEX\Ex_LeerBC.aspx" />
     <Content Include="Views\ControlEX\Ex_GenExpedientes.aspx" />
     <Content Include="Views\ControlEX\Ex_pendienteAg.aspx" />
     <Content Include="Views\ControlEX\Ex_Principal.aspx" />
+    <Content Include="Views\ControlEX\Ex_verhallazgos.aspx" />
     <Content Include="Views\ControlEX\Ex_VistaArchivo.aspx" />
     <Content Include="Views\ControlEX\Ex_VistaJuridico.aspx" />
     <Content Include="Views\ControlEX\Ex_VistaMensajeria.aspx" />
@@ -573,6 +591,22 @@
     <Content Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx" />
     <Content Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx" />
     <Content Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx" />
+    <Content Include="Views\Hallazgos\AsignarHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\ConsultaHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\ConsultarHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\CrearHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\EditarArea.aspx" />
+    <Content Include="Views\Hallazgos\EditarGerencia.aspx" />
+    <Content Include="Views\Hallazgos\EditarHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\InformeHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\MantenimientoGerencias.aspx" />
+    <Content Include="Views\Hallazgos\MatrizHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\MenuHallazgos.aspx" />
+    <Content Include="Views\Hallazgos\RespuestaHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\Seguridad.aspx" />
+    <Content Include="Views\Hallazgos\VistaEliminar.aspx" />
+    <Content Include="Views\Hallazgos\VistaHallazgo.aspx" />
+    <Content Include="Views\Hallazgos\VistaHallazgo1.aspx" />
     <Content Include="Views\Imagenes\barra.png" />
     <Content Include="Views\Imagenes\F1.png" />
     <Content Include="Views\Imagenes\F2.png" />
@@ -582,7 +616,25 @@
     <Content Include="Views\MantenimientosControl\controlAgenda.aspx" />
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\MantenimientosControl\controlCRM.aspx" />
+    <Content Include="Views\MantenimientosControl\controlExpedientes.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
+    <Content Include="Views\PaginaDeError\Error404.aspx" />
+    <Content Include="Views\ProcesosJudiciales\AsignarProceso.aspx" />
+    <Content Include="Views\ProcesosJudiciales\Bitacora.aspx" />
+    <Content Include="Views\ProcesosJudiciales\CertificacionContable.aspx" />
+    <Content Include="Views\ProcesosJudiciales\CertificacionJuridico.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ControlIncidente.aspx" />
+    <Content Include="Views\ProcesosJudiciales\CreditosCertificacionJuridico.aspx" />
+    <Content Include="Views\ProcesosJudiciales\Dashboard.aspx" />
+    <Content Include="Views\ProcesosJudiciales\DashboardCobros.aspx" />
+    <Content Include="Views\ProcesosJudiciales\DashboardConta.aspx" />
+    <Content Include="Views\ProcesosJudiciales\DashboardJuridico.aspx" />
+    <Content Include="Views\ProcesosJudiciales\DevueltosCobros.aspx" />
+    <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
+    <Content Include="Views\ProcesosJudiciales\MenuPrincipalProcesos.aspx" />
+    <Content Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
     <Content Include="Views\Seguridad\ModificarModulo.aspx" />
@@ -653,8 +705,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Conjuntodedatosdataset.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Conexion.cs" />
     <Compile Include="Controllers\Conexion_arqueos.cs" />
+    <Compile Include="Controllers\Conexion_Hallazgo.cs" />
     <Compile Include="Controllers\Conexion_seguridad.cs" />
     <Compile Include="Controllers\CRM_Conexion.cs" />
     <Compile Include="Controllers\CRM_Sentencias.cs" />
@@ -662,6 +720,8 @@
     <Compile Include="Controllers\ModeloEX.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
     <Compile Include="Controllers\Sentencia_arqueos.cs" />
+    <Compile Include="Controllers\Sentencia_Hallazgo.cs" />
+    <Compile Include="Controllers\Sentencia_juridico.cs" />
     <Compile Include="Controllers\Sentencia_seguridad.cs" />
     <Compile Include="DataMontos.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -681,6 +741,7 @@
     <Compile Include="Models\ControladorEX.cs" />
     <Compile Include="Models\Logica.cs" />
     <Compile Include="Models\Logica_arqueos.cs" />
+    <Compile Include="Models\Logica_Hallazgos.cs" />
     <Compile Include="montodatos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -913,6 +974,13 @@
     <Compile Include="Views\Arqueos\MenuArqueos.aspx.designer.cs">
       <DependentUpon>MenuArqueos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ControlEX\Ex_AgenciaHallazgos.aspx.cs">
+      <DependentUpon>Ex_AgenciaHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_AgenciaHallazgos.aspx.designer.cs">
+      <DependentUpon>Ex_AgenciaHallazgos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ControlEX\Ex_EnvioEx.aspx.cs">
       <DependentUpon>Ex_EnvioEx.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -954,6 +1022,13 @@
     </Compile>
     <Compile Include="Views\ControlEX\Ex_Principal.aspx.designer.cs">
       <DependentUpon>Ex_Principal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_verhallazgos.aspx.cs">
+      <DependentUpon>Ex_verhallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Ex_verhallazgos.aspx.designer.cs">
+      <DependentUpon>Ex_verhallazgos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ControlEX\Ex_VistaArchivo.aspx.cs">
       <DependentUpon>Ex_VistaArchivo.aspx</DependentUpon>
@@ -1165,6 +1240,118 @@
     <Compile Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx.designer.cs">
       <DependentUpon>CRM_Reporteria.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Hallazgos\AsignarHallazgo.aspx.cs">
+      <DependentUpon>AsignarHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\AsignarHallazgo.aspx.designer.cs">
+      <DependentUpon>AsignarHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\ConsultaHallazgo.aspx.cs">
+      <DependentUpon>ConsultaHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\ConsultaHallazgo.aspx.designer.cs">
+      <DependentUpon>ConsultaHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\ConsultarHallazgos.aspx.cs">
+      <DependentUpon>ConsultarHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\ConsultarHallazgos.aspx.designer.cs">
+      <DependentUpon>ConsultarHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\CrearHallazgo.aspx.cs">
+      <DependentUpon>CrearHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\CrearHallazgo.aspx.designer.cs">
+      <DependentUpon>CrearHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarArea.aspx.cs">
+      <DependentUpon>EditarArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarArea.aspx.designer.cs">
+      <DependentUpon>EditarArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarGerencia.aspx.cs">
+      <DependentUpon>EditarGerencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarGerencia.aspx.designer.cs">
+      <DependentUpon>EditarGerencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarHallazgo.aspx.cs">
+      <DependentUpon>EditarHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\EditarHallazgo.aspx.designer.cs">
+      <DependentUpon>EditarHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\InformeHallazgos.aspx.cs">
+      <DependentUpon>InformeHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\InformeHallazgos.aspx.designer.cs">
+      <DependentUpon>InformeHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MantenimientoGerencias.aspx.cs">
+      <DependentUpon>MantenimientoGerencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MantenimientoGerencias.aspx.designer.cs">
+      <DependentUpon>MantenimientoGerencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MatrizHallazgos.aspx.cs">
+      <DependentUpon>MatrizHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MatrizHallazgos.aspx.designer.cs">
+      <DependentUpon>MatrizHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MenuHallazgos.aspx.cs">
+      <DependentUpon>MenuHallazgos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\MenuHallazgos.aspx.designer.cs">
+      <DependentUpon>MenuHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\RespuestaHallazgo.aspx.cs">
+      <DependentUpon>RespuestaHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\RespuestaHallazgo.aspx.designer.cs">
+      <DependentUpon>RespuestaHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\Seguridad.aspx.cs">
+      <DependentUpon>Seguridad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\Seguridad.aspx.designer.cs">
+      <DependentUpon>Seguridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaEliminar.aspx.cs">
+      <DependentUpon>VistaEliminar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaEliminar.aspx.designer.cs">
+      <DependentUpon>VistaEliminar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaHallazgo.aspx.cs">
+      <DependentUpon>VistaHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaHallazgo.aspx.designer.cs">
+      <DependentUpon>VistaHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaHallazgo1.aspx.cs">
+      <DependentUpon>VistaHallazgo1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Hallazgos\VistaHallazgo1.aspx.designer.cs">
+      <DependentUpon>VistaHallazgo1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\MantenimientosControl\controlAgenda.aspx.cs">
       <DependentUpon>controlAgenda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1186,12 +1373,138 @@
     <Compile Include="Views\MantenimientosControl\controlCRM.aspx.designer.cs">
       <DependentUpon>controlCRM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\MantenimientosControl\controlExpedientes.aspx.cs">
+      <DependentUpon>controlExpedientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\controlExpedientes.aspx.designer.cs">
+      <DependentUpon>controlExpedientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.designer.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaginaDeError\Error404.aspx.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PaginaDeError\Error404.aspx.designer.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\AsignarProceso.aspx.cs">
+      <DependentUpon>AsignarProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\AsignarProceso.aspx.designer.cs">
+      <DependentUpon>AsignarProceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Bitacora.aspx.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Bitacora.aspx.designer.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\CertificacionContable.aspx.cs">
+      <DependentUpon>CertificacionContable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\CertificacionContable.aspx.designer.cs">
+      <DependentUpon>CertificacionContable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\CertificacionJuridico.aspx.cs">
+      <DependentUpon>CertificacionJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\CertificacionJuridico.aspx.designer.cs">
+      <DependentUpon>CertificacionJuridico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ControlIncidente.aspx.cs">
+      <DependentUpon>ControlIncidente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ControlIncidente.aspx.designer.cs">
+      <DependentUpon>ControlIncidente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\CreditosCertificacionJuridico.aspx.cs">
+      <DependentUpon>CreditosCertificacionJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\CreditosCertificacionJuridico.aspx.designer.cs">
+      <DependentUpon>CreditosCertificacionJuridico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DashboardCobros.aspx.cs">
+      <DependentUpon>DashboardCobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DashboardCobros.aspx.designer.cs">
+      <DependentUpon>DashboardCobros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DashboardConta.aspx.cs">
+      <DependentUpon>DashboardConta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DashboardConta.aspx.designer.cs">
+      <DependentUpon>DashboardConta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DashboardJuridico.aspx.cs">
+      <DependentUpon>DashboardJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DashboardJuridico.aspx.designer.cs">
+      <DependentUpon>DashboardJuridico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DevueltosCobros.aspx.cs">
+      <DependentUpon>DevueltosCobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DevueltosCobros.aspx.designer.cs">
+      <DependentUpon>DevueltosCobros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.cs">
+      <DependentUpon>MenuPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.designer.cs">
+      <DependentUpon>MenuPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\MenuPrincipalProcesos.aspx.cs">
+      <DependentUpon>MenuPrincipalProcesos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\MenuPrincipalProcesos.aspx.designer.cs">
+      <DependentUpon>MenuPrincipalProcesos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx.cs">
+      <DependentUpon>PendienteCertificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx.designer.cs">
+      <DependentUpon>PendienteCertificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx.cs">
+      <DependentUpon>ProcesoJudicial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx.designer.cs">
+      <DependentUpon>ProcesoJudicial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx.cs">
+      <DependentUpon>ProcesosAsignadosJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx.designer.cs">
+      <DependentUpon>ProcesosAsignadosJuridico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.cs">
       <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>
@@ -1518,6 +1831,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Hallazgos\Archivos\" />
+    <Folder Include="Views\Hallazgos\Imagenes\" />
+    <Folder Include="Views\ProcesosJudiciales\Subidos\CertificacionContable\" />
+    <Folder Include="Views\ProcesosJudiciales\Subidos\DocumentosExpediente\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1602,6 +1919,12 @@
     <EmbeddedResource Include="ReportesAv\Report1.rdlc" />
     <EmbeddedResource Include="ReportesAv\ReporteMontos.rdlc" />
     <EmbeddedResource Include="Views\CRM-SISTEMA\Reporteria\Report1.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

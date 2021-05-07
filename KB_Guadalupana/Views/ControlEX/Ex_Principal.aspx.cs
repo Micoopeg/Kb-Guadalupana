@@ -18,8 +18,8 @@ namespace KB_Guadalupana.Views.ControlEX
         string usernombre, nombrepersona, coduser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            usernombre = Convert.ToString(Session["sesion_usuario"] = "pgizapete");
-            nombrepersona = Convert.ToString(Session["Nombre"] = "A lopez" );
+            usernombre = Convert.ToString(Session["sesion_usuario"] );
+            nombrepersona = Convert.ToString(Session["Nombre"] );
 
             NombreAgencia.InnerText = Convert.ToString(Session["NombreAG"] = exc.agencia(usernombre));
 

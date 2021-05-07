@@ -359,7 +359,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         tbl1.AddCell(new PdfPCell(new Phrase("Nombre: " + dt3.Rows[i]["nomcom"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
                         tbl1.AddCell(new PdfPCell(new Phrase("CIF: " + dt3.Rows[i]["cifgeneral"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                        tbl1.AddCell(new PdfPCell(new Phrase("Monto: Q"+dt3.Rows[i]["gen_monto"].ToString() + " Fecha Desembolso: " + dt3.Rows[i]["gen_fecha_creacion"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("Monto: Q"+dt3.Rows[i]["gen_monto"].ToString() + " Fecha Desembolso: " + dt3.Rows[i]["gen_fechadesembolso"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
 
                         doc.Add(tbl1);
@@ -1014,7 +1014,7 @@ namespace KB_Guadalupana.Views.ControlEX
         public void llenardtgvw() {
             DataTable dt1 = new DataTable();
             DataTable dt2 = new DataTable();
-            dt2.Columns.Add("gen_fecha_creacion");
+            dt2.Columns.Add("gen_fechadesembolso");
             dt2.Columns.Add("cifgeneral");
             dt2.Columns.Add("gen_numcredito");
             dt2.Columns.Add("nombrecompleto");
@@ -1035,7 +1035,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         case "VIGENTE AL DIA":
                             DataRow row = dt2.NewRow();
 
-                            row["gen_fecha_creacion"] = dt1.Rows[i]["gen_fecha_creacion"].ToString();
+                            row["gen_fechadesembolso"] = dt1.Rows[i]["gen_fechadesembolso"].ToString();
                             row["cifgeneral"] = dt1.Rows[i]["cifgeneral"].ToString();
                             row["gen_numcredito"] = dt1.Rows[i]["gen_numcredito"].ToString();
                             row["nombrecompleto"] = dt1.Rows[i]["nombrecompleto"].ToString();

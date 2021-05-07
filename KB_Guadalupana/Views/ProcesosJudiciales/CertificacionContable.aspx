@@ -189,6 +189,27 @@
         .tabla td{
             padding:7px;
         }
+           .ventana{
+             display:flex;
+             align-content:flex-start;
+             justify-content:flex-start;
+             justify-items:flex-start;
+             flex-direction:column;
+             margin-left:0px;
+         }
+                  .formatoinput5{
+            width:90%;
+            margin-top:8px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            height: 30px;
+            border-color: transparent;
+        }
+        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}
+.wrapper{ height:100px; width:100%; padding-top:20px}
+ 
+.fixed{position:fixed; top:0;visibility:visible}
 
     </style>
 </head>
@@ -201,6 +222,8 @@
                  <div style="display:flex; justify-content:center">
                     <label style="font-size:18px" class="titulos">Emisión de Certificación Contable</label>
                  </div><br />
+                     <div class="header"></div>
+                      
 
                     <div id="Div1" runat="server" class="encabezado" style="border-color:#8DDB51; border:2px #4B752B solid">
                           <label style="font-size:15px" class="titulos"><b>Información principal</b></label><br /><br />
@@ -370,6 +393,24 @@
 
                 </div><br />
 
+                    <div class="menu2" id="ventana" runat="server">
+
+                    <div class="formato3">
+                           <label class="titulos"><b>No. de préstamo</b></label>
+                          <input id="CreditoNumero" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                     <div class="formato3">
+                         <label class="titulos"><b>No. de incidente</b></label>
+                        <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                    <div class="formato3">
+                        <label class="titulos"><b>Cliente - Nombre</b></label>
+                        <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
+                    </div><br />
+                </div>
+
                 <div class="encabezado">
                     <label class="titulos"><b>Documentos para conformación de expediente</b></label><br /><br />
 
@@ -421,6 +462,8 @@
                     <input id="MontoOriginalEspacios" runat="server" type="text" class="formatoinput" visible="false"/>
                        <input id="SaldoEspacios" runat="server" type="text" class="formatoinput" visible="false"/>
                      <input id="InteresesEspacio" runat="server" type="text" class="formatoinput" visible="false"/>
+                             <input id="Num1" runat="server" type="text" class="formatoinput" visible="false"/>
+                             <input id="Num2" runat="server" type="text" class="formatoinput" visible="false"/>
                 </div><br />
 
                 <div class="encabezado">
@@ -543,6 +586,8 @@
 
                    <div id="validado" runat="server" class="encabezado">
                         <div id="Contador" runat="server" class="formato3">
+                            <label class="titulos">Ingrese número registrado:</label>
+                            <input id="NumRegistro" runat="server" type="text" class="formatoinput2" placeholder="Ingrese número registrado" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /><br />
                             <label class="titulos">Ingrese nombre del contador(a) general:</label>
                             <input id="nombreContador" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput2" placeholder="Ingrese nombre" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
@@ -554,7 +599,12 @@
 
                         <div id="comentario2" runat="server" class="formato3">
                             <label class="titulos">Observaciones</label>
-                            <input id="Observaciones" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                            <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        </div><br />
+
+                        <div id="Razones" runat="server" class="formato3">
+                            <label class="titulos">Razones de rechazo</label>
+                            <input id="RazonesRechazo" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
                    </div>
 
@@ -568,6 +618,30 @@
                    <br /><br />
             </div>
         </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    posicionarMenu();
+
+    $(window).scroll(function () {
+        posicionarMenu();
+    });
+
+    function posicionarMenu() {
+        var altura_del_header = $('.header').outerHeight(true);
+        var altura_del_menu = $('.menu2').outerHeight(true);
+
+        if ($(window).scrollTop() >= altura_del_header) {
+            $('.menu2').addClass('fixed');
+            $('.menu2').addClass('fixed');
+            $('.wrapper').css('margin-top', (altura_del_menu) + 'px');
+        } else {
+            $('.menu2').removeClass('fixed');
+            $('.wrapper').css('margin-top', '0');
+        }
+    }
+
+</script>
 
         <script>
             function total(numero) {

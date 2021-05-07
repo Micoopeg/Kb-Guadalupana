@@ -15,30 +15,57 @@ namespace KB_Guadalupana.Views.Seguridad
     {
 
         /// <summary>
-        /// Control SAUsuario.
+        /// Control UsuarioSA.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText SAUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList UsuarioSA;
 
         /// <summary>
-        /// Control SAPuesto.
+        /// Control BuscarUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SAPuesto;
+        protected global::System.Web.UI.WebControls.Button BuscarUsuario;
 
         /// <summary>
-        /// Control SGuardar.
+        /// Control Puesto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SGuardar;
+        protected global::System.Web.UI.WebControls.DropDownList Puesto;
+
+        /// <summary>
+        /// Control EstadoU.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList EstadoU;
+
+        /// <summary>
+        /// Control btninsert.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btninsert;
+
+        /// <summary>
+        /// Control Actualizar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Actualizar;
     }
 }

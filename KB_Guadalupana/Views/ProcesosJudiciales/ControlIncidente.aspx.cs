@@ -29,7 +29,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT idpj_incidente, pj_numcredito, pj_nombre, pj_fechacreacion, DATEDIFF(now(), pj_fechacreacion) AS Dias FROM pj_bitacora GROUP BY pj_numcredito";
+                    string query = "SELECT DISTINCT(idpj_incidente), pj_numcredito, pj_nombre, pj_fechacreacion, DATEDIFF(now(), pj_fechacreacion) AS Dias FROM pj_bitacora";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataTable dt = new DataTable();
                     myCommand.Fill(dt);

@@ -339,6 +339,51 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlInputText DescripcionDoc;
 
         /// <summary>
+        /// Control ventana.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ventana;
+
+        /// <summary>
+        /// Control CreditoNumero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText CreditoNumero;
+
+        /// <summary>
+        /// Control NumeroIncidente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText NumeroIncidente;
+
+        /// <summary>
+        /// Control ClienteNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea ClienteNombre;
+
+        /// <summary>
+        /// Control Documentos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Documentos;
+
+        /// <summary>
         /// Control PTipoDocumento.
         /// </summary>
         /// <remarks>
@@ -366,6 +411,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.WebControls.Button Agregar;
 
         /// <summary>
+        /// Control OtroDocumento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText OtroDocumento;
+
+        /// <summary>
         /// Control gridViewDocumentos.
         /// </summary>
         /// <remarks>
@@ -373,6 +427,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridViewDocumentos;
+
+        /// <summary>
+        /// Control IntegracionC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl IntegracionC;
 
         /// <summary>
         /// Control TipoCredito.

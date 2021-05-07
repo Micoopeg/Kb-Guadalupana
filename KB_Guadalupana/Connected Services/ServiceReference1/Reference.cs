@@ -50,6 +50,13 @@ namespace KB_Guadalupana.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/buscarcreditoporcif", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> buscarcreditoporcifAsync(string valordebusqueda);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/buscarcreditoexpedientes", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string buscarcreditoexpedientes(string variablebusqueda);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/buscarcreditoexpedientes", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> buscarcreditoexpedientesAsync(string variablebusqueda);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -117,6 +124,14 @@ namespace KB_Guadalupana.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> buscarcreditoporcifAsync(string valordebusqueda) {
             return base.Channel.buscarcreditoporcifAsync(valordebusqueda);
+        }
+        
+        public string buscarcreditoexpedientes(string variablebusqueda) {
+            return base.Channel.buscarcreditoexpedientes(variablebusqueda);
+        }
+        
+        public System.Threading.Tasks.Task<string> buscarcreditoexpedientesAsync(string variablebusqueda) {
+            return base.Channel.buscarcreditoexpedientesAsync(variablebusqueda);
         }
     }
 }

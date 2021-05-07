@@ -38,6 +38,31 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public string siguiente(string tabla, string campo)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT MAX(" + campo + "+1) FROM " + tabla + ";"; //SELECT MAX(idFuncion) FROM `funciones`     
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+        }
+
         public string obtenerusuario(string id)
         {
             String camporesultante = "";
@@ -502,5 +527,129 @@ namespace KB_Guadalupana.Controllers
 
 
             }
+
+        public void insertaringresojuridico(string id, string usuario, string area, string rol, string estado, string puesto)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "INSERT INTO pj_controlingreso VALUES ('"+id+"', '"+usuario+"', '"+area+"', '"+rol+"', '"+estado+"', '"+puesto+"')";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
         }
+
+        public void modificaringresojuridico(string usuario, string area, string rol, string estado, string puesto)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE pj_controlingreso SET idpj_area='"+area+ "', idpj_rol='"+rol+ "', pj_status='"+estado+ "', pj_puesto='"+puesto+"' WHERE idpj_usuario='" + usuario+ "' AND pj_status='Activo'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public string[] buscarcontroljuridico(string usuario)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[10];
+                int i = 0;
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM pj_controlingreso WHERE idpj_usuario = '"+usuario+ "' AND pj_status = 'Activo'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos     
+            }
+        }
+
+        public string[] buscarcontrolarqueos(string usuario)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[10];
+                int i = 0;
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM sa_control_ingreso WHERE cod_genusuario = '" + usuario + "' AND sa_estado = 'Activo'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos     
+            }
+        }
+
+        public void insertarcontrolarqueos(string id, string usuario, string puesto, string estado)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "INSERT INTO sa_control_ingreso VALUES ('"+id+"', '"+usuario+"', '"+puesto+"', '"+estado+"')";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public void modificarcontrolarqueos(string usuario, string puesto, string estado)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE sa_control_ingreso SET cod_puesto='"+puesto+ "', sa_estado='"+estado+ "' WHERE cod_genusuario='"+usuario+ "' AND sa_estado='Activo'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+    }
     } 

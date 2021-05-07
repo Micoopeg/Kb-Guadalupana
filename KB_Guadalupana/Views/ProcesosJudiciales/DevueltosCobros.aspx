@@ -488,7 +488,7 @@
                        </div>
                 </div><br />
 
-                <div style="display:flex; justify-content:center" class="encabezado">
+                <div id="IntegracionC" runat="server" style="display:flex; justify-content:center" class="encabezado">
 
                     <div style="display:flex; justify-content:center">
                         <label style="font-size:15px" class="titulos">Integración de cuenta</label>

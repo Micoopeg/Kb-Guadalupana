@@ -89,6 +89,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="buscarcreditoexpedientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="variablebusqueda" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarcreditoexpedientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscarcreditoexpedientesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -121,6 +135,12 @@
   <wsdl:message name="buscarcreditoporcifSoapOut">
     <wsdl:part name="parameters" element="tns:buscarcreditoporcifResponse" />
   </wsdl:message>
+  <wsdl:message name="buscarcreditoexpedientesSoapIn">
+    <wsdl:part name="parameters" element="tns:buscarcreditoexpedientes" />
+  </wsdl:message>
+  <wsdl:message name="buscarcreditoexpedientesSoapOut">
+    <wsdl:part name="parameters" element="tns:buscarcreditoexpedientesResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebService1Soap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -141,6 +161,10 @@
     <wsdl:operation name="buscarcreditoporcif">
       <wsdl:input message="tns:buscarcreditoporcifSoapIn" />
       <wsdl:output message="tns:buscarcreditoporcifSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscarcreditoexpedientes">
+      <wsdl:input message="tns:buscarcreditoexpedientesSoapIn" />
+      <wsdl:output message="tns:buscarcreditoexpedientesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
@@ -190,6 +214,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="buscarcreditoexpedientes">
+      <soap:operation soapAction="http://tempuri.org/buscarcreditoexpedientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -231,6 +264,15 @@
     </wsdl:operation>
     <wsdl:operation name="buscarcreditoporcif">
       <soap12:operation soapAction="http://tempuri.org/buscarcreditoporcif" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarcreditoexpedientes">
+      <soap12:operation soapAction="http://tempuri.org/buscarcreditoexpedientes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -1085,7 +1085,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT gcrd.gen_fechadesembolso,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE gaso.usercreacion = '" + user+ "' AND tmp.estado = 7  ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gcrd.gen_fechadesembolso,gaso.cifgeneral, gcrd.gen_numcredito, CONCAT_ws(' ',gaso.primer_nombre, gaso.segundo_nombre, gaso.primer_apellido, gaso.segundo_apellido) AS nombrecompleto , CONCAT('Q',FORMAT(gcrd.gen_monto,2,'de_DE')) as gen_monto, extp.ex_nomtipo FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE gaso.usercreacion = '" + user+ "' AND tmp.estado = 7  ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);

@@ -201,7 +201,7 @@
                 </div>
 
                  <div class="formato2">
-                    <asp:Button ID="APBuscar" runat="server" CssClass="boton" Text="Buscar" OnClick="APBuscar_Click"/>
+                    <asp:Button ID="APBuscar" runat="server" CssClass="boton" Text="Buscar Crédito" OnClick="APBuscar_Click"/>
                   <%--  <asp:Button ID="APAsignar" runat="server" CssClass="boton2" Text="Asignar" OnClick="APAsignar_Click"/>--%>
                       <%-- <asp:Button ID="Prueba" runat="server" CssClass="boton2" Text="Asignar" OnClick="Prueba_Click"/>--%>
                  </div><br /><br /><br />

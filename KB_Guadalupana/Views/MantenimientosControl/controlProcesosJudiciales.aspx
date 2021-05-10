@@ -1,17 +1,21 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SeguridadArqueo.aspx.cs" Inherits="KB_Guadalupana.Views.Seguridad.SeguridadArqueo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="controlProcesosJudiciales.aspx.cs" Inherits="KB_Guadalupana.Views.MantenimientosControl.controlProcesosJudiciales" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="UTF-8" />
-    <title>Seguridad Arqueo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Seguridad Proceso</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
+ 
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 </head>
-    <style>
+     <style>
 
         form 
 {
@@ -49,7 +53,7 @@ form:before {
 }
 
 .inset {
- padding: 20px;
+  padding: 20px;
   border-top: 1px solid #19191a;
   align-content:center;
   align-items:center;
@@ -271,81 +275,88 @@ padding: 8px;
     margin-left:0px;
 }
 </style>
-
-
 <body>
-    <div class="topnav">
+       <div class="topnav">
             <a class="active" href="../Sesion/Inicio.aspx">Inicio</a>
             <span class="nav-text" style="position: absolute;font-size: 25px;MARGIN: 0.6%;left: 37%;color: white; height: 20px;"><b>Seguridad KB-Guadalupana</b></span>
             <a href="../Sesion/../CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
-    
-    
-  <form runat="server">
-  <h1 style="color:white">Estado Usuarios Sistema Arqueos</h1>
-  <div class="inset">
-<div class="row">
-    <p class="col-md-6">
-         <p class="Modulos2">
-              <asp:DropDownList ID="UsuarioSA" runat="server" CssClass="dis2" AutoPostBack="false"></asp:DropDownList>
+
+    <form id="form1" runat="server">
+         <h1 style="color:white">Estado Usuarios Procesos Judiciales</h1>
+          <div class="inset">
+    <div class="row">
+
+          <p class="Modulos2">
+              <asp:DropDownList ID="UsuarioPJ" runat="server" CssClass="dis2" AutoPostBack="false"></asp:DropDownList>
               <asp:Button ID="BuscarUsuario" runat="server" CssClass="BuscarM"  Text="Buscar Usuario" OnClick="BuscarUsuario_Click"></asp:Button>
           </p><br />
-    </p>
 
-      <div class="row">
+        <div class="row">
+            <label  style="color:white">Seleccione área</label>
+            <asp:DropDownList ID="Area" runat="server" CssClass="dis3" AutoPostBack="true" OnSelectedIndexChanged="Area_SelectedIndexChanged"></asp:DropDownList>
+        </div>
+
+        <div class="row">
             <label  style="color:white">Seleccione puesto</label>
             <asp:DropDownList ID="Puesto" runat="server" CssClass="dis3" AutoPostBack="false"></asp:DropDownList>
         </div>
 
-         <div class="row">
+        <div class="row">
+            <label style="color:white">Seleccione rol</label>
+             <asp:DropDownList ID="Rol" runat="server" CssClass="dis3" AutoPostBack="false"></asp:DropDownList>
+        </div>
+
+           <div class="row">
             <label style="color:white">Seleccione Estado</label>
              <asp:DropDownList ID="EstadoU" runat="server" CssClass="dis3" AutoPostBack="false"></asp:DropDownList>
         </div>
-     <%--<p class="col-md-4">
-        <label  style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
-    <p class="col-md-4">
-        <label style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
-     <p class="col-md-4">
-        <label style="color:white">Usuarios</label>
+         <%--<p class="col-md-4">
+            <label  style="color:white">Usuarios</label>
+            <input style="color:white" type="text" name="email" id="email">
+        </p>
+        <p class="col-md-4">
+            <label style="color:white">Usuarios</label>
+            <input style="color:white" type="text" name="email" id="email">
+        </p>
+         <p class="col-md-4">
+            <label style="color:white">Usuarios</label>
+            <select class="dis">
+                <option disabled selected>Departamento</option>
+                <option value="">Informatica</option>
+                <option value="">Cumplimiento</option>
+            </select>
+        </p>--%>
+    </div>
+       <%--<p >
+            <label  style="color:white">Usuarios</label>
+            <input style="color:white" type="text" name="email" id="email">
+        </p>
+      <p>
+        <label style="color:white">Estado</label>
         <select class="dis">
-            <option disabled selected>Departamento</option>
-            <option value="">Informatica</option>
-            <option value="">Cumplimiento</option>
-        </select>
-    </p>--%>
-</div>
-   <%--<p >
-        <label  style="color:white">Usuarios</label>
-        <input style="color:white" type="text" name="email" id="email">
-    </p>
-  <p>
-    <label style="color:white">Estado</label>
-    <select class="dis">
-            <option disabled selected>Departamento</option>
-            <option value="">Informatica</option>
-            <option value="">Cumplimiento</option>
-        </select>
-  </p>--%>
-  </div>
+                <option disabled selected>Departamento</option>
+                <option value="">Informatica</option>
+                <option value="">Cumplimiento</option>
+            </select>
+      </p>--%>
+      </div>
 
-         <div class="row">
+          <div class="row">
    
             <asp:Button ID="btninsert" runat="server" CssClass="MGuardar" Text="Guardar Nuevo" OnClick="btninsert_Click"></asp:Button> <br />
               <asp:Button ID="Actualizar" runat="server" CssClass="MGuardar" Text="Actualizar datos" OnClick="Actualizar_Click"></asp:Button> <br />
           </div>
 
-        <script>
-          $('#<%=UsuarioSA.ClientID%>').chosen();
+          <script>
+          $('#<%=UsuarioPJ.ClientID%>').chosen();
           </script>
         <script>
-            $('#<%=Puesto.ClientID%>').chosen();
+            $('#<%=Area.ClientID%>').chosen();
         </script>
-</form>
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script>
+            $('#<%=Rol.ClientID%>').chosen();
+        </script>
+    </form>
 </body>
 </html>

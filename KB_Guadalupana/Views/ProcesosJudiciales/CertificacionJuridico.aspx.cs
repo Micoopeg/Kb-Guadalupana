@@ -24,6 +24,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenarformulario();
                 validado.Visible = false;
                 Enviar.Visible = false;
+                llenarcomboarea();
             }
         }
 
@@ -47,6 +48,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                 }
             }
+        }
+
+        public void llenarcomboarea()
+        {
+            AreaCredito.Items.Insert(0, new ListItem("[Área]", "0"));
+            AreaCredito.Items.Insert(1, new ListItem("Cobros", "1"));
+            AreaCredito.Items.Insert(2, new ListItem("Contabilidad", "2"));
         }
 
         public void llenarformulario()
@@ -91,9 +99,11 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     FechaActa.Value = fecha6[0];
                     NumActa.Value = campos[11];
                     NumPrestamo.Value = campos[1];
+                    CreditoNumero.Value = campos[1];
                     DPI.Value = campos[21];
                     CodigoCliente.Value = campos[19];
                     NombreCliente.Value = campos[20];
+                    ClienteNombre.Value = campos[20];
                     MontoOriginal.Value = "Q " + campos[9];
                     CapitalDesem.Value = "Q " + campos[9];
                     Interes1.Value = campos[16];
@@ -149,6 +159,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 for (int i = 0; i < campos3.Length; i++)
                 {
                     NumIncidente.Value = campos3[0];
+                    NumeroIncidente.Value = campos3[0];
                     NumTarjeta.Value = campos3[1];
                     NumCuenta.Value = campos3[2];
                     CIF.Value = campos3[3];
@@ -174,6 +185,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 for (int i = 0; i < campos2.Length; i++)
                 {
                     NumIncidente.Value = campos2[0];
+                    NumeroIncidente.Value = campos2[0];
                     Gastos1.Value = campos2[1];
                     GastosJudiciales.Value =campos2[2];
                     OtrosGastos.Value = campos2[3];
@@ -277,57 +289,74 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         protected void Enviar_Click(object sender, EventArgs e)
         {
-            string sig = sn.siguiente("pj_certificacionjuridicodevolver", "pj_certificacionjuridicodevolver");
-            string numcredito = Session["credito"] as string;
-            string usuario = Session["sesion_usuario"] as string;
-            string idusuario = sn.obteneridusuario(usuario);
-            sn.devolvercertificacionjuridico(sig, numcredito, Observaciones.Value, idusuario);
-            sn.estadodevuelto(numcredito, "34", "2");
-
-            string tipocredito = Session["TipoCredito"] as string;
-            string id = "";
-            string tabla = "";
-            string fecha;
-
-            if (tipocredito == "tarjeta")
+            if(AreaCredito.SelectedValue == "")
             {
-                id = "idpj_tipotarjeta";
-                tabla = "pj_tipotarjeta";
-                fecha = sn.fechacreaciontarjeta(numcredito);
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Seleccione un área');", true);
             }
             else
             {
-                id = "idpj_tipocredito";
-                tabla = "pj_tipocredito";
-                fecha = sn.fechacreacioncredito(numcredito);
-            }
+                string sig = sn.siguiente("pj_certificacionjuridicodevolver", "pj_certificacionjuridicodevolver");
+                string numcredito = Session["credito"] as string;
+                string usuario = Session["sesion_usuario"] as string;
+                string idusuario = sn.obteneridusuario(usuario);
+                sn.devolvercertificacionjuridico(sig, numcredito, Observaciones.Value, idusuario);
+                sn.estadodevuelto(numcredito, "34", "2");
 
-            string[] fechaseparada = fecha.Split(' ');
-            string[] fechacreacion = fechaseparada[0].Split('/');
-            string diacreacion = fechacreacion[0];
-            string mescreacion = fechacreacion[1];
-            string añocreacion = fechacreacion[2];
+                string tipocredito = Session["TipoCredito"] as string;
+                string id = "";
+                string tabla = "";
+                string fecha;
 
-            string horacreacion = fechaseparada[1];
+                if (tipocredito == "tarjeta")
+                {
+                    id = "idpj_tipotarjeta";
+                    tabla = "pj_tipotarjeta";
+                    fecha = sn.fechacreaciontarjeta(numcredito);
+                }
+                else
+                {
+                    id = "idpj_tipocredito";
+                    tabla = "pj_tipocredito";
+                    fecha = sn.fechacreacioncredito(numcredito);
+                }
 
-            string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+                string[] fechaseparada = fecha.Split(' ');
+                string[] fechacreacion = fechaseparada[0].Split('/');
+                string diacreacion = fechacreacion[0];
+                string mescreacion = fechacreacion[1];
+                string añocreacion = fechacreacion[2];
 
-            string[] fechayhora = sn.fechayhora();
-            string[] fecha2 = fechayhora[0].Split(' ');
-            string año = fecha2[0];
-            string mes = fecha2[1];
-            string dia = fecha2[2];
+                string horacreacion = fechaseparada[1];
 
-            string hora = fechayhora[1];
-            string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
+                string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
 
-            string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, "Sin comentarios");
+                string[] fechayhora = sn.fechayhora();
+                string[] fecha2 = fechayhora[0].Split(' ');
+                string año = fecha2[0];
+                string mes = fecha2[1];
+                string dia = fecha2[2];
 
-            string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "34", "26", fechahoraactual, fechacreacion2, Observaciones.Value);
+                string hora = fechayhora[1];
+                string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresa a Cobros');", true);
+                string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, "Sin comentarios");
+
+                if(AreaCredito.SelectedValue == "1")
+                {
+                    string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                    sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "34", "26", fechahoraactual, fechacreacion2, Observaciones.Value);
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresa a Cobros');", true);
+                }
+                else
+                {
+                    string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                    sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "34", "28", fechahoraactual, fechacreacion2, Observaciones.Value);
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresa a Contabilidad');", true);
+                }
+           }
         }
     }
 }

@@ -26,6 +26,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenarcombotipocredito();
                 credito.Visible = false;
                 tarjeta.Visible = false;
+                OtroDocumento.Visible = false;
             }
         }
 
@@ -81,7 +82,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
                 }
-                integracionc.Focus();
+                IntegracionC.Focus();
             }
             catch
             {
@@ -152,13 +153,14 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 Response.Write("NO HAY DATOS QUE MOSTRARA");
             }
             else
-            {                
+            {
                 gridview1.DataSource = WS.buscarresponsables(numcredito);
                 gridview1.DataBind();
 
                 for (int i = 0; i < campos.Length; i++)
                 {
                     NumIncidente.Value = sig;
+                    NumeroIncidente.Value = sig;
                     Agencia.Value = campos[29];
                     Instrumento.Value = campos[17];
                     LineaCredito.Value = campos[18];
@@ -183,9 +185,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     FechaActa.Value = fecha6[0];
                     NumActa.Value = campos[11];
                     NumPrestamo.Value = campos[1];
+                    CreditoNumero.Value = campos[1];
                     DPI.Value = campos[21];
                     CodigoCliente.Value = campos[19];
+                    NumCif.Value = campos[19];
                     NombreCliente.Value = campos[20];
+                    ClienteNombre.Value = campos[20];
                     MontoOriginal.Value = "Q " + campos[9];
                     CapitalDesem.Value = "Q " + campos[9];
                     Interes1.Value = campos[16];
@@ -297,6 +302,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 credito.Visible = true;
                 NumIncidente.Value = sig2;
             }
+
             PCBoton.Focus();
         }
 
@@ -387,6 +393,18 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             }
         }
 
+        protected void PTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(PTipoDocumento.SelectedValue == "13")
+            {
+                OtroDocumento.Visible = true;
+            }
+            else
+            {
+                OtroDocumento.Visible = false;
+            }
+        }
+
         //protected void OnSelectedIndexChangedprospectos(object sender, EventArgs e)
         //{
         //    string codigo;
@@ -395,6 +413,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         //    //mostrar los otros datos
         //}
 
-     
+
     }
 }

@@ -406,6 +406,11 @@
                     </div><br />
 
                     <div class="formato3">
+                         <label class="titulos"><b>CIF</b></label>
+                        <input id="NumCif" runat="server" type="text" class="formatoinput5" min="0" placeholder="CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                    <div class="formato3">
                         <label class="titulos"><b>Cliente - Nombre</b></label>
                         <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
                     </div><br />

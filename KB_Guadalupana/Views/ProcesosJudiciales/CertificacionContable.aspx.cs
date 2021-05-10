@@ -283,8 +283,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 doc.SetMargins(40f, 40f, 40f, 40f);
                 try
                 {
+<<<<<<< HEAD
 
                 PdfWriter writer = PdfWriter.GetInstance(doc, HttpContext.Current.Response.OutputStream);
+=======
+                    PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(
+                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/"+ idcertidicacion.Value+ "-certificacion.pdf", FileMode.Create));
+>>>>>>> parent of bb2c98d (Creditos devueltos Contabilidad)
                     doc.Open();
                     doc.NewPage();
                     PdfContentByte cb1 = writer.DirectContent;
@@ -389,12 +394,17 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     ////////////////////***********************************//////////////////////
 
                     doc.Close();
+<<<<<<< HEAD
                 Response.ContentType = "application/pdf";
                 Response.AddHeader("content-disposition", "attachment;filename= "+idcertidicacion.Value+"-certificacion" + ".pdf");
                 HttpContext.Current.Response.Write(doc);
                 Response.Flush();
                 Response.End();
                
+=======
+                        System.Diagnostics.Process.Start(Environment.GetFolderPath(
+                                   Environment.SpecialFolder.Desktop) + "/" + idcertidicacion.Value + "-certificacion.pdf");
+>>>>>>> parent of bb2c98d (Creditos devueltos Contabilidad)
                         //MessageBox.Show("Bar codes generated on desktop fileName=codes.pdf");
                 }
                 catch

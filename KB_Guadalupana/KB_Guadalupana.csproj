@@ -617,6 +617,7 @@
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\MantenimientosControl\controlCRM.aspx" />
     <Content Include="Views\MantenimientosControl\controlExpedientes.aspx" />
+    <Content Include="Views\MantenimientosControl\controlProcesosJudiciales.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
     <Content Include="Views\PaginaDeError\Error404.aspx" />
     <Content Include="Views\ProcesosJudiciales\AsignarProceso.aspx" />
@@ -630,6 +631,9 @@
     <Content Include="Views\ProcesosJudiciales\DashboardConta.aspx" />
     <Content Include="Views\ProcesosJudiciales\DashboardJuridico.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosCobros.aspx" />
+    <Content Include="Views\ProcesosJudiciales\DevueltosConta.aspx" />
+    <Content Include="Views\ProcesosJudiciales\Mantenimientos\InformacionUsuario.aspx" />
+    <Content Include="Views\ProcesosJudiciales\Mantenimientos\MantenimientoArea.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipalProcesos.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx" />
@@ -1379,6 +1383,12 @@
     </Compile>
     <Compile Include="Views\MantenimientosControl\controlExpedientes.aspx.designer.cs">
       <DependentUpon>controlExpedientes.aspx</DependentUpon>
+    <Compile Include="Views\MantenimientosControl\controlProcesosJudiciales.aspx.cs">
+      <DependentUpon>controlProcesosJudiciales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\controlProcesosJudiciales.aspx.designer.cs">
+      <DependentUpon>controlProcesosJudiciales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\MantenimientosControl\SeguridadArqueo.aspx.cs">
       <DependentUpon>SeguridadArqueo.aspx</DependentUpon>
@@ -1470,6 +1480,27 @@
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\DevueltosCobros.aspx.designer.cs">
       <DependentUpon>DevueltosCobros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DevueltosConta.aspx.cs">
+      <DependentUpon>DevueltosConta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DevueltosConta.aspx.designer.cs">
+      <DependentUpon>DevueltosConta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Mantenimientos\InformacionUsuario.aspx.cs">
+      <DependentUpon>InformacionUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Mantenimientos\InformacionUsuario.aspx.designer.cs">
+      <DependentUpon>InformacionUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Mantenimientos\MantenimientoArea.aspx.cs">
+      <DependentUpon>MantenimientoArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Mantenimientos\MantenimientoArea.aspx.designer.cs">
+      <DependentUpon>MantenimientoArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>

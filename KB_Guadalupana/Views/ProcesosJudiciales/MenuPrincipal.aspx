@@ -149,7 +149,7 @@ body{
 <body>
     <form id="form1" runat="server">
            <div class="topnav" id="myTopnav">
-              <a href="../Sesion/Inicio.aspx" class="active">Inicio</a>
+              <a href="../Sesion/MenuBarra.aspx" class="active">Inicio</a>
              <%-- <a href="#news">News</a>--%>
               <%--<a href="#contact">Buscar  <i class="fa fa-search"></i></a>--%>
           <%--    <div class="dropdown">

@@ -7,21 +7,30 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace KB_Guadalupana.Views.Seguridad
+namespace KB_Guadalupana.Views.MantenimientosControl
 {
 
 
-    public partial class SeguridadArqueo
+    public partial class controlProcesosJudiciales
     {
 
         /// <summary>
-        /// Control UsuarioSA.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList UsuarioSA;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// Control UsuarioPJ.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList UsuarioPJ;
 
         /// <summary>
         /// Control BuscarUsuario.
@@ -33,6 +42,15 @@ namespace KB_Guadalupana.Views.Seguridad
         protected global::System.Web.UI.WebControls.Button BuscarUsuario;
 
         /// <summary>
+        /// Control Area.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Area;
+
+        /// <summary>
         /// Control Puesto.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace KB_Guadalupana.Views.Seguridad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList Puesto;
+
+        /// <summary>
+        /// Control Rol.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Rol;
 
         /// <summary>
         /// Control EstadoU.

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CertificacionContable.aspx.cs" Inherits="KB_Guadalupana.Views.ProcesosJudiciales.CertificacionContable" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DevueltosConta.aspx.cs" Inherits="KB_Guadalupana.Views.ProcesosJudiciales.DevueltosConta" %>
 
 <!DOCTYPE html>
 
@@ -232,7 +232,7 @@
                         <label class="titulos"><b>No. de préstamo</b></label>
                         <label class="titulos" style="margin-left:11%"><b>No. de incidente</b></label>
                         <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
-                        <label class="titulos" style="margin-left:22%"><b>CIF</b></label>
+                        <label class="titulos" style="margin-left:22%"><b>Código cliente</b></label>
                     </div>
 
                     <div class="formato">
@@ -481,8 +481,8 @@
                         </div>
 
                         <div class="formato">
-                               <input id="NumTarjeta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de tarjeta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                               <input id="NumCuenta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de cuenta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                               <input id="NumTarjeta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de tarjeta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="NumCuenta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de cuenta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                          <div class="formatoTitulo" style="margin-bottom:5px">
@@ -492,9 +492,9 @@
                         </div>
 
                         <div class="formato">
-                             <input id="CIF" runat="server" type="number" class="formatoinput3" placeholder="Ingrese CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                             <input id="PrimerNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                             <input id="SegundoNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese segundo nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                             <input id="CIF" runat="server" type="number" class="formatoinput3" placeholder="Ingrese CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                             <input id="PrimerNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                             <input id="SegundoNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese segundo nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                          <div class="formatoTitulo" style="margin-bottom:5px">
@@ -503,8 +503,8 @@
                         </div>
 
                         <div class="formato">
-                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -513,8 +513,8 @@
                         </div>
 
                          <div class="formato">
-                               <input id="PrimerApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                               <input id="SegundoApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                               <input id="PrimerApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="SegundoApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -523,8 +523,8 @@
                         </div>
 
                          <div class="formato">
-                               <input id="Limite" runat="server" type="text" class="formatoinput" placeholder="Ingrese el limite" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                               <input id="Saldo" runat="server" type="text" class="formatoinput" placeholder="Ingrese el saldo" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                               <input id="Limite" runat="server" type="text" class="formatoinput" placeholder="Ingrese el limite" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="Saldo" runat="server" type="text" class="formatoinput" placeholder="Ingrese el saldo" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
                     </div><br /><br />
 
@@ -578,11 +578,6 @@
                     </div>
                  </div>
 
-                  <div class="formato2">
-                    <asp:Button ID="Validar" runat="server" CssClass="boton" Text="Aceptar Crédito" OnClick="Validar_Click"/>
-                    <asp:Button ID="Regresar2" runat="server" CssClass="boton2" Text="Rechazar Crédito" OnClick="Regresar2_Click"/>
-                  </div><br />
-
 
                    <div id="validado" runat="server" class="encabezado">
                         <div id="Contador" runat="server" class="formato3">
@@ -601,21 +596,11 @@
                             <label class="titulos">Observaciones</label>
                             <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
-
-                        <div id="Razones" runat="server" class="formato3">
-                            <label class="titulos">Razones de rechazo</label>
-                            <input id="RazonesRechazo" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                        </div><br />
                    </div>
 
                   <div class="formato2">
-                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click"/>
+                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Enviar" OnClick="Guardar_Click"/>
                   </div><br />
-
-                   <div class="formato2">
-                     <asp:Button ID="Regresar" runat="server" CssClass="boton" Text="Enviar" OnClick="Regresar_Click"/>
-                  </div>
-                   <br /><br />
             </div>
         </div>
 

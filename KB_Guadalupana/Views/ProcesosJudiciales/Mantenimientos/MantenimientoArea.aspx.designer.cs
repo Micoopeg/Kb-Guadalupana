@@ -7,57 +7,57 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace KB_Guadalupana.Views.Seguridad
+namespace KB_Guadalupana.Views.ProcesosJudiciales.Mantenimientos
 {
 
 
-    public partial class SeguridadArqueo
+    public partial class MantenimientoArea
     {
 
         /// <summary>
-        /// Control UsuarioSA.
+        /// Control menu.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList UsuarioSA;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu;
 
         /// <summary>
-        /// Control BuscarUsuario.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BuscarUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control Puesto.
+        /// Control MArea.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Puesto;
+        protected global::System.Web.UI.WebControls.DropDownList MArea;
 
         /// <summary>
-        /// Control EstadoU.
+        /// Control ABuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EstadoU;
+        protected global::System.Web.UI.WebControls.Button ABuscar;
 
         /// <summary>
-        /// Control btninsert.
+        /// Control NombreArea.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btninsert;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText NombreArea;
 
         /// <summary>
         /// Control Actualizar.
@@ -67,5 +67,14 @@ namespace KB_Guadalupana.Views.Seguridad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Actualizar;
+
+        /// <summary>
+        /// Control Guardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Guardar;
     }
 }

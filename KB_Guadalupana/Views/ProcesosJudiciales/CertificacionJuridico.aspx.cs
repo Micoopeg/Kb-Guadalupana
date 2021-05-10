@@ -102,6 +102,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     CreditoNumero.Value = campos[1];
                     DPI.Value = campos[21];
                     CodigoCliente.Value = campos[19];
+                    NumCif.Value = campos[19];
                     NombreCliente.Value = campos[20];
                     ClienteNombre.Value = campos[20];
                     MontoOriginal.Value = "Q " + campos[9];

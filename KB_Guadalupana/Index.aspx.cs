@@ -29,46 +29,46 @@ namespace Login_Web
         protected void iniciarsesion_Click(object sender, EventArgs e)
         {
 
-            if (AuthenticateUser(IdUser.Value, PSUser.Value))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Si Se Autentifica el Usuario');", true);
-                Session["sesion_usuario"] = IdUser.Value;
-                Session["Nombre"] = nombre;
-                Session["Correo"] = correo;
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Correo: " + Session["Correo"] + "');", true);
+            //if (AuthenticateUser(IdUser.Value, PSUser.Value))
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Si Se Autentifica el Usuario');", true);
+            //    Session["sesion_usuario"] = IdUser.Value;
+            //    Session["Nombre"] = nombre;
+            //    Session["Correo"] = correo;
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Correo: " + Session["Correo"] + "');", true);
 
 
-                //usuario = sn.verificacionUsuario(IdUser.Value);
+            //    //usuario = sn.verificacionUsuario(IdUser.Value);
 
-                //if (usuario == "")
-                //{
-                //    string sig = lg.siguiente("gen_usuario", "codgenusuario");
-                //    sn.crearUsuario(sig, "1", IdUser.Value, "@guadapulana.com.gt", "1", "1");
-                //}
+            //    //if (usuario == "")
+            //    //{
+            //    //    string sig = lg.siguiente("gen_usuario", "codgenusuario");
+            //    //    sn.crearUsuario(sig, "1", IdUser.Value, "@guadapulana.com.gt", "1", "1");
+            //    //}
 
-                // Response.Redirect("Views/Sesion/Inicio.aspx");
-                
-                    if (sn.consultarbd("gen_usuario") == true)
-                    {
-                        Response.Redirect("Views/Sesion/MenuBarra.aspx");
-                      //Response.Redirect("Views/Sesion/MenuBarra.aspx");
-                }
-                else
-                    {
-                        Response.Write("Sin conexion");
-                        Response.Redirect("Views/PaginaDeError/Error404.aspx");
-                    }
-                    
+            //    // Response.Redirect("Views/Sesion/Inicio.aspx");
 
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No se puede autenticar con las credenciales proporcionadas');", true);
-            }
+            //    if (sn.consultarbd("gen_usuario") == true)
+            //    {
+            //        Response.Redirect("Views/Sesion/MenuBarra.aspx");
+            //        //Response.Redirect("Views/Sesion/MenuBarra.aspx");
+            //    }
+            //    else
+            //    {
+            //        Response.Write("Sin conexion");
+            //        Response.Redirect("Views/PaginaDeError/Error404.aspx");
+            //    }
 
-            //Session["sesion_usuario"] = "pgaortiz";
-            //Session["Nombre"] = "Diego Jose Gomez Giron";
-            //Response.Redirect("Views/Sesion/MenuBarra.aspx");
+
+            //}
+            //else
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No se puede autenticar con las credenciales proporcionadas');", true);
+            //}
+
+            Session["sesion_usuario"] = "pgafabian";
+            Session["Nombre"] = "Usuario de prueba";
+            Response.Redirect("Views/Sesion/MenuBarra.aspx");
         }
 
         private bool AuthenticateUser(string userName, string password)

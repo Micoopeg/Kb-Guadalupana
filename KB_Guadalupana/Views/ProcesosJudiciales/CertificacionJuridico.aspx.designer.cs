@@ -573,11 +573,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlInputText Observaciones;
 
         /// <summary>
-<<<<<<< HEAD
         /// Enviar control.
-=======
-        /// Control Enviar.
->>>>>>> parent of bb2c98d (Creditos devueltos Contabilidad)
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

@@ -630,11 +630,6 @@
     <Content Include="Views\ProcesosJudiciales\DashboardConta.aspx" />
     <Content Include="Views\ProcesosJudiciales\DashboardJuridico.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosCobros.aspx" />
-<<<<<<< HEAD
-=======
-    <Content Include="Views\ProcesosJudiciales\Mantenimientos\InformacionUsuario.aspx" />
-    <Content Include="Views\ProcesosJudiciales\Mantenimientos\MantenimientoArea.aspx" />
->>>>>>> parent of bb2c98d (Creditos devueltos Contabilidad)
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipalProcesos.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx" />
@@ -1476,23 +1471,6 @@
     <Compile Include="Views\ProcesosJudiciales\DevueltosCobros.aspx.designer.cs">
       <DependentUpon>DevueltosCobros.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
-    <Compile Include="Views\ProcesosJudiciales\Mantenimientos\InformacionUsuario.aspx.cs">
-      <DependentUpon>InformacionUsuario.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ProcesosJudiciales\Mantenimientos\InformacionUsuario.aspx.designer.cs">
-      <DependentUpon>InformacionUsuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProcesosJudiciales\Mantenimientos\MantenimientoArea.aspx.cs">
-      <DependentUpon>MantenimientoArea.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ProcesosJudiciales\Mantenimientos\MantenimientoArea.aspx.designer.cs">
-      <DependentUpon>MantenimientoArea.aspx</DependentUpon>
-    </Compile>
->>>>>>> parent of bb2c98d (Creditos devueltos Contabilidad)
     <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

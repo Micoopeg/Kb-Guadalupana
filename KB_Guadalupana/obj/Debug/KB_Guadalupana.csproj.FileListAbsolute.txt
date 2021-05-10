@@ -7357,3 +7357,4 @@ C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csproj.CopyComplete
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.pdb
+C:\Users\pgecasasola\Desktop\Repos control de Expedientes\Kb-Guadalupana\KB_Guadalupana\bin\Rotativa.dll

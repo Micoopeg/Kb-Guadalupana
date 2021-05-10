@@ -38,7 +38,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 idcertidicacion.Value = sig3;
             }
         }
-
+        //version aida
         public void llenargridviewdocumentos()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))

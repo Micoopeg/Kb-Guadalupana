@@ -41,15 +41,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string var1 = WS.buscarcredito(NumCredito.Value);
                     char delimitador = '|';
                     string[] valoresprocesados = var1.Split(delimitador);
-                    string numcredito = sn.obtenernumtipocredito(NumCredito.Value);
-                    string numtarjeta = sn.obtenernumtipotarjeta(NumCredito.Value);
                     if (var1.Length == 4)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Crédito no encontrado');", true);
-                    }
-                    else if (numcredito != "" || numtarjeta != "")
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Ya se inició proceso con ese crédito');", true);
                     }
                     else
                     {
@@ -259,19 +253,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             GridViewRow row = gridview2.SelectedRow;
             codigo = (gridview2.SelectedRow.FindControl("lblnumerocred") as Label).Text;
             //mostrar los otros datos
-
-            string numcredito = sn.obtenernumtipocredito(codigo);
-            string numtarjeta = sn.obtenernumtipotarjeta(codigo);
-
-            if (numcredito != "" || numtarjeta != "")
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Ya se inició proceso con ese crédito');", true);
-            }
-            else
-            {
-                Session["credito"] = codigo;
-                Response.Redirect("ProcesoJudicial.aspx");
-            } 
+            Session["credito"] = codigo;
+            Response.Redirect("ProcesoJudicial.aspx");
         }
 
         //protected void APAsignar_Click(object sender, EventArgs e)
@@ -309,7 +292,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT A.idpj_credito AS Credito, A.pj_nombrecliente AS Nombre, A.pj_status AS Estado, B.gen_areanombre AS DeArea, C.pj_comentario AS Comentario, A.pj_fecha AS Fecha FROM pj_etapa_credito AS A INNER JOIN pj_area AS B ON A.gen_area = B.codgenarea INNER JOIN pj_bitacora AS C ON(C.pj_numcredito = A.idpj_credito AND C.pj_estado = A.pj_status AND A.gen_area = C.pj_deArea) WHERE A.pj_status = 'Devuelto' AND C.pj_paraArea = 26";
+                    string query = "SELECT A.idpj_credito AS Credito, A.pj_nombrecliente AS Nombre, A.pj_status AS Estado, B.gen_areanombre AS DeArea, C.pj_comentario AS Comentario, A.pj_fecha AS Fecha FROM pj_etapa_credito AS A INNER JOIN pj_area AS B ON A.gen_area = B.codgenarea INNER JOIN pj_bitacora AS C ON(C.pj_numcredito = A.idpj_credito AND C.pj_estado = A.pj_status AND A.gen_area = C.pj_deArea) WHERE A.pj_status = 'Devuelto' ";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataTable dt = new DataTable();
                     myCommand.Fill(dt);

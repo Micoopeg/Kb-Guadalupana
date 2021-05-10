@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <link rel="stylesheet" href="../../DiseñoForms/style.css" />
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 </head>
     <style>
@@ -49,11 +50,8 @@ form:before {
 }
 
 .inset {
- padding: 20px;
+  padding: 20px;
   border-top: 1px solid #19191a;
-  align-content:center;
-  align-items:center;
-  justify-content:center;
 }
 
 form h1 {
@@ -136,7 +134,7 @@ input[type=submit] {
   font-weight: bold;
   cursor: pointer;
   font-size: 13px;
-  margin-left: 0px;
+  margin-left: 260px;
 }
 
 input[type=submit]:hover {
@@ -213,63 +211,6 @@ padding: 8px;
     color: #2C3E50;
     font-size: 13px;            
 }
-.dis2
-{
-padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
-    width: 50%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 13px;            
-}
-.dis3
-{
-padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 13px;            
-}
-.BuscarM {
-  padding: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 10px 10px rgba(255, 255, 255, 0.1);
-  border-radius: 0.3em;
-  background: #69a43c;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 13px;
-  width:30%;
-  height:35px;
-}
-
-.BuscarM:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -10px 10px rgba(255, 255, 255, 0.1);
-}
-.Modulos2{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
-    width:100%;
-}
-.row{
-    display:flex;
-    flex-direction:column;
-    width:95%;
-    justify-content:center;
-    align-content:center;
-    align-items:center;
-    margin-left:0px;
-}
 </style>
 
 
@@ -286,21 +227,13 @@ padding: 8px;
   <div class="inset">
 <div class="row">
     <p class="col-md-6">
-         <p class="Modulos2">
-              <asp:DropDownList ID="UsuarioSA" runat="server" CssClass="dis2" AutoPostBack="false"></asp:DropDownList>
-              <asp:Button ID="BuscarUsuario" runat="server" CssClass="BuscarM"  Text="Buscar Usuario" OnClick="BuscarUsuario_Click"></asp:Button>
-          </p><br />
+        <label  style="color:white">Usuario</label>
+        <input style="color:black" type="text" id="SAUsuario" runat="server" readonly="true"/>
     </p>
-
-      <div class="row">
-            <label  style="color:white">Seleccione puesto</label>
-            <asp:DropDownList ID="Puesto" runat="server" CssClass="dis3" AutoPostBack="false"></asp:DropDownList>
-        </div>
-
-         <div class="row">
-            <label style="color:white">Seleccione Estado</label>
-             <asp:DropDownList ID="EstadoU" runat="server" CssClass="dis3" AutoPostBack="false"></asp:DropDownList>
-        </div>
+    <p class="col-md-6">
+        <label style="color:white">Puesto</label>
+         <asp:DropDownList ID="SAPuesto" runat="server" CssClass="dis" AutoPostBack="true"></asp:DropDownList>
+    </p>
      <%--<p class="col-md-4">
         <label  style="color:white">Usuarios</label>
         <input style="color:white" type="text" name="email" id="email">
@@ -331,19 +264,9 @@ padding: 8px;
         </select>
   </p>--%>
   </div>
-
-         <div class="row">
-   
-            <asp:Button ID="btninsert" runat="server" CssClass="MGuardar" Text="Guardar Nuevo" OnClick="btninsert_Click"></asp:Button> <br />
-              <asp:Button ID="Actualizar" runat="server" CssClass="MGuardar" Text="Actualizar datos" OnClick="Actualizar_Click"></asp:Button> <br />
-          </div>
-
-        <script>
-          $('#<%=UsuarioSA.ClientID%>').chosen();
-          </script>
-        <script>
-            $('#<%=Puesto.ClientID%>').chosen();
-        </script>
+  <p class="p-container">
+     <asp:Button ID="SGuardar" runat="server" Text="Guardar" OnClick="SGuardar_Click"/>
+  </p>
 </form>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

@@ -104,11 +104,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     FechaActa.Value = fecha6[0];
                     NumActa.Value = campos[11];
                     NumPrestamo.Value = campos[1];
-                    CreditoNumero.Value = campos[1];
                     DPI.Value = campos[21];
                     CodigoCliente.Value = campos[19];
                     NombreCliente.Value = campos[20];
-                    ClienteNombre.Value = campos[20];
                     MontoOriginal.Value = "Q " + campos[9];
                     CapitalDesem.Value = "Q " + campos[9];
                     Interes1.Value = campos[16];
@@ -200,7 +198,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 for (int i = 0; i < campos3.Length; i++)
                 {
                     NumIncidente.Value = campos3[0];
-                    NumeroIncidente.Value = campos3[0];
                     NumTarjeta.Value = campos3[1];
                     NumCuenta.Value = campos3[2];
                     CIF.Value = campos3[3];
@@ -225,7 +222,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 for (int i = 0; i < campos2.Length; i++)
                 {
                     NumIncidente.Value = campos2[0];
-                    NumeroIncidente.Value = campos2[0];
                     Gastos1.Value = campos2[1];
                     GastosJudiciales.Value = campos2[2];
                     OtrosGastos.Value = campos2[3];
@@ -266,23 +262,17 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             Validar.Visible = false;
             Guardar.Visible = true;
             Regresar2.Visible = false;
-            Razones.Visible = false;
             Guardar.Focus();
         }
 
         protected void VerDocumento_Click(object sender, EventArgs e)
         {
-            if(nombreContador.Value == "" | NumRegistro.Value == "")
+            if(nombreContador.Value == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Ingrese nombre del contador(a) general');", true);
             }
             else
             {
-                string[] numeroregistrado = NumRegistro.Value.Split('-');
-                string num1 = NumeroALetras((double)Convert.ToDecimal(numeroregistrado[0]));
-                string num2 = NumeroALetras((double)Convert.ToDecimal(numeroregistrado[1]));
-                Num1.Value = num1;
-                Num2.Value = num2;
                 GenerarPDF();
             }
         }
@@ -293,6 +283,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 doc.SetMargins(40f, 40f, 40f, 40f);
                 try
                 {
+
                 PdfWriter writer = PdfWriter.GetInstance(doc, HttpContext.Current.Response.OutputStream);
                     doc.Open();
                     doc.NewPage();
@@ -334,12 +325,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     //string año = fecha[0];
                     //string mes = fecha[1];
                     //string dia = fecha[2];
-                    iTextSharp.text.Paragraph def = new iTextSharp.text.Paragraph("Certificación", new Font(basf, 17));
+                    iTextSharp.text.Paragraph def = new iTextSharp.text.Paragraph("Certificación", titulo);
                     def.Alignment = Element.ALIGN_CENTER;
                     doc.Add(def);
                     doc.Add(new Paragraph(" ", parrafo));
 
-                    iTextSharp.text.Paragraph def4 = new iTextSharp.text.Paragraph("El infrascrito Perito Contador de Cooperativa Parroquial de Ahorro y Crédito Integral Guadalupana, R. L., registrado en la Superintendencia de Administración Tributaria bajo el número "+Num1.Value.ToLower()+" guion "+Num2.Value.ToLower()+" ("+NumRegistro.Value+"), hace constar que:", new Font(basf, 12));
+                    iTextSharp.text.Paragraph def4 = new iTextSharp.text.Paragraph("El infrascrito Perito Contador de Cooperativa Parroquial de Ahorro y Crédito Integral Guadalupana, R. L., registrado en la Superintendencia de Administración Tributaria bajo el número siete millones seiscientos setenta mil veintiuno guion seis (7670021-6), hace constar que:", new Font(basf, 12));
                     def4.Alignment = Element.ALIGN_JUSTIFIED;
                     doc.Add(def4);
 
@@ -351,7 +342,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                     doc.Add(new Paragraph(" ", parrafo));
 
-                    iTextSharp.text.Paragraph def6 = new iTextSharp.text.Paragraph("Y para los usos legales que a la interesada convenga, se extiende la presente a los " + DiaLetras.Value.ToLower() + " (" + Dia.Value + ") días del mes de " + MesLetras.Value.ToLower() + " (" + Mes.Value + ") del año " + AñoLetras.Value.ToLower() + " (" + Año.Value + ").", new Font(basf, 12));
+                    iTextSharp.text.Paragraph def6 = new iTextSharp.text.Paragraph("Y para los usos legales que a la interesada convenga, se extiende la presente a los " + DiaLetras.Value + " (" + Dia.Value + ") días del mes de " + MesLetras.Value + " (" + Mes.Value + ") del año " + AñoLetras.Value + " (" + Año.Value + ").", new Font(basf, 12));
                     def6.Alignment = Element.ALIGN_JUSTIFIED;
                     doc.Add(def6);
 
@@ -399,12 +390,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                     doc.Close();
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename= " + idcertidicacion.Value + "-certificacion" + ".pdf");
+                Response.AddHeader("content-disposition", "attachment;filename= "+idcertidicacion.Value+"-certificacion" + ".pdf");
                 HttpContext.Current.Response.Write(doc);
                 Response.Flush();
                 Response.End();
-                //MessageBox.Show("Bar codes generated on desktop fileName=codes.pdf");
-            }
+               
+                        //MessageBox.Show("Bar codes generated on desktop fileName=codes.pdf");
+                }
                 catch
                 {
                 }
@@ -521,14 +513,14 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             decimal total;
             string saldofinal = "";
-            if(Saldo1.Value == "")
+            if(SaldoActual.Value == "")
             {
-                saldofinal = "0.00";
+                saldofinal = "0";
             }
             else
             {
 
-                string[] saldo = Saldo1.Value.Split(' ');
+                string[] saldo = SaldoActual.Value.Split(' ');
                 int numero2 = saldo.Length;
                 string[] saldoactual = saldo[numero2 - 1].Split(',');
                 SaldoEspacios.Value = saldo[numero2 - 1];
@@ -539,24 +531,17 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     saldofinal = saldofinal + saldoactual[i];
                 }
             }
+            
 
+            string[] intereses = Intereses2.Value.Split(' ');
+            int numero = intereses.Length;
+            string[] interesesactual = intereses[numero - 1].Split(',');
             string interesesfinal = "";
-            if (Intereses2.Value == "")
-            {
-                interesesfinal = "0.00";
-            }
-            else
-            {
-                string[] intereses = Intereses2.Value.Split(' ');
-                int numero = intereses.Length;
-                string[] interesesactual = intereses[numero - 1].Split(',');
+            InteresesEspacio.Value = intereses[numero - 1];
 
-                InteresesEspacio.Value = intereses[numero - 1];
-
-                for (int i = 0; i < interesesactual.Length; i++)
-                {
-                    interesesfinal = interesesfinal + interesesactual[i];
-                }
+            for (int i = 0; i < interesesactual.Length; i++)
+            {
+                interesesfinal = interesesfinal + interesesactual[i];
             }
 
             total = Convert.ToDecimal(saldofinal) + Convert.ToDecimal(interesesfinal);
@@ -611,6 +596,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string[] decimalesMonto = montofinal.Split('.');
             MontoDecimales.Value = decimalesMonto[1].ToString();
 
+
         }
 
         protected void Guardar_Click(object sender, EventArgs e)
@@ -623,7 +609,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
 
             string sig3 = sn.siguiente("pj_certificacioncontable", "idpj_certificacioncontable");
-            sn.guardarcreditocontable(sig3, NumRegistro.Value,nombreContador.Value, numcredito, idusuario, Observaciones.Value);
+            sn.guardarcreditocontable(sig3, "pendiente","pendiente", numcredito, idusuario, Observaciones.Value);
             sn.guardaretapa(sig2, "2", numcredito, sn.datetime(), "Enviado", idusuario, "28", NombreCliente.Value);
             sn.cambiarestado(numcredito, "1");
 
@@ -721,7 +707,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "26", "28", fechahoraactual, fechacreacion2, "Sin comentarios");
 
             string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "28", "26", fechahoraactual, fechacreacion2, RazonesRechazo.Value);
+            sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "28", "26", fechahoraactual, fechacreacion2, Observaciones.Value);
 
 
             ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresó a cobros');", true);
@@ -735,9 +721,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             Regresar.Visible = true;
             Guardar.Visible = false;
             validado.Visible = true;
-            comentario2.Visible = false;
+            comentario2.Visible = true;
             Contador.Visible = false;
-            Razones.Visible = true;
             Regresar.Focus();
         }
     }

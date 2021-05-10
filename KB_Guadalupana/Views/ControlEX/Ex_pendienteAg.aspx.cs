@@ -1031,8 +1031,10 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 if (estado.Length != 4) {
 
-                    switch (valoresprocesados[1]) {
-                        case "VIGENTE AL DIA":
+                    if (valoresprocesados[2] == "VIGENTE AL DIA") {
+
+                        if (valoresprocesados[1] == dt1.Rows[i]["ex_nomtipo"].ToString()) {
+
                             DataRow row = dt2.NewRow();
 
                             row["gen_fechadesembolso"] = dt1.Rows[i]["gen_fechadesembolso"].ToString();
@@ -1042,11 +1044,19 @@ namespace KB_Guadalupana.Views.ControlEX
                             row["gen_monto"] = dt1.Rows[i]["gen_monto"].ToString();
                             row["ex_nomtipo"] = dt1.Rows[i]["ex_nomtipo"].ToString();
 
+
+
+
                             dt2.Rows.Add(row);
-                            break;
-                    
-                    
+                        }
+
+
+                        
+
+
+
                     }
+                 
 
 
                 

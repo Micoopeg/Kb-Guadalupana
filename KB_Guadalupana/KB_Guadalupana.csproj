@@ -609,6 +609,7 @@
     <Content Include="Views\ProcesosJudiciales\DashboardConta.aspx" />
     <Content Include="Views\ProcesosJudiciales\DashboardJuridico.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosCobros.aspx" />
+    <Content Include="Views\ProcesosJudiciales\DevueltosConta.aspx" />
     <Content Include="Views\ProcesosJudiciales\Mantenimientos\InformacionUsuario.aspx" />
     <Content Include="Views\ProcesosJudiciales\Mantenimientos\MantenimientoArea.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
@@ -1315,6 +1316,13 @@
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\DevueltosCobros.aspx.designer.cs">
       <DependentUpon>DevueltosCobros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DevueltosConta.aspx.cs">
+      <DependentUpon>DevueltosConta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\DevueltosConta.aspx.designer.cs">
+      <DependentUpon>DevueltosConta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\Mantenimientos\InformacionUsuario.aspx.cs">
       <DependentUpon>InformacionUsuario.aspx</DependentUpon>

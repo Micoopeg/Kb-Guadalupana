@@ -16,7 +16,7 @@ using System.Globalization;
 
 namespace KB_Guadalupana.Views.ProcesosJudiciales
 {
-    public partial class CertificacionContable : System.Web.UI.Page
+    public partial class DevueltosConta : System.Web.UI.Page
     {
         Conexion conexiongeneral = new Conexion();
         Sentencia_juridico sn = new Sentencia_juridico();
@@ -27,11 +27,11 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 credito.Visible = false;
                 tarjeta.Visible = false;
-                Guardar.Visible = false;
-                Regresar.Visible = false;
+                Guardar.Visible = true;
                 llenargridviewdocumentos();
                 llenarformulario();
-                validado.Visible = false;
+                llenardatoscertificacion();
+                validado.Visible = true;
                 fechaactual();
                 convertirnumeros();
                 string sig3 = sn.siguiente("pj_certificacioncontable", "idpj_certificacioncontable");
@@ -237,6 +237,19 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             }
         }
 
+        public void llenardatoscertificacion()
+        {
+            string numcredito = Session["credito"] as string;
+            string[] var = sn.traercertificacioncontable(numcredito);
+
+            for (int i = 0; i < var.Length; i++)
+            {
+                NumRegistro.Value = var[1];
+                nombreContador.Value = var[2];
+                Observaciones.Value = var[5];
+            }
+        }
+
         protected void OnSelectedIndexChangedDocumento(object sender, EventArgs e)
         {
             try
@@ -259,20 +272,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             }
         }
 
-        protected void Validar_Click(object sender, EventArgs e)
-        {
-            validado.Visible = true;
-            Regresar.Visible = false;
-            Validar.Visible = false;
-            Guardar.Visible = true;
-            Regresar2.Visible = false;
-            Razones.Visible = false;
-            Guardar.Focus();
-        }
 
         protected void VerDocumento_Click(object sender, EventArgs e)
         {
-            if(nombreContador.Value == "" | NumRegistro.Value == "")
+            if (nombreContador.Value == "" | NumRegistro.Value == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Ingrese nombre del contador(a) general');", true);
             }
@@ -289,18 +292,18 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         public void GenerarPDF()
         {
-                Document doc = new Document(PageSize.LETTER);
-                doc.SetMargins(40f, 40f, 40f, 40f);
-                try
-                {
+            Document doc = new Document(PageSize.LETTER);
+            doc.SetMargins(40f, 40f, 40f, 40f);
+            try
+            {
                 PdfWriter writer = PdfWriter.GetInstance(doc, HttpContext.Current.Response.OutputStream);
-                    doc.Open();
-                    doc.NewPage();
-                    PdfContentByte cb1 = writer.DirectContent;
-                    BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_BOLDITALIC, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                    doc.AddAuthor("Certificacion");
-                    doc.AddTitle("Caratulas");
-                    doc.Open();
+                doc.Open();
+                doc.NewPage();
+                PdfContentByte cb1 = writer.DirectContent;
+                BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_BOLDITALIC, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                doc.AddAuthor("Certificacion");
+                doc.AddTitle("Caratulas");
+                doc.Open();
 
                 //iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/F1.png"));
                 //logo.ScalePercent(45f);
@@ -311,93 +314,93 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 BaseFont basf2 = BaseFont.CreateFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                    iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+                iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
 
-                    BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                    iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_subtitulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-
-                    BaseFont _parrafo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                    iTextSharp.text.Font parrafo = new Font(_parrafo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
+                BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
+                iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_subtitulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
 
 
-                    BaseFont _detalle = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
-                    iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 11f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
-
-                    //decimal total;
-                    //total = Convert.ToDecimal(SaldoActual.Value) + Convert.ToDecimal(Interes1.Value);
+                BaseFont _parrafo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
+                iTextSharp.text.Font parrafo = new Font(_parrafo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
 
 
+                BaseFont _detalle = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
+                iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 11f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
 
-                    //string fechaactual = sn.datetime();
-                    //string[] fecha = fechaactual.Split('-');
-                    //string año = fecha[0];
-                    //string mes = fecha[1];
-                    //string dia = fecha[2];
-                    iTextSharp.text.Paragraph def = new iTextSharp.text.Paragraph("Certificación", new Font(basf, 17));
-                    def.Alignment = Element.ALIGN_CENTER;
-                    doc.Add(def);
-                    doc.Add(new Paragraph(" ", parrafo));
-
-                    iTextSharp.text.Paragraph def4 = new iTextSharp.text.Paragraph("El infrascrito Perito Contador de Cooperativa Parroquial de Ahorro y Crédito Integral Guadalupana, R. L., registrado en la Superintendencia de Administración Tributaria bajo el número "+Num1.Value.ToLower()+" guion "+Num2.Value.ToLower()+" ("+NumRegistro.Value+"), hace constar que:", new Font(basf, 12));
-                    def4.Alignment = Element.ALIGN_JUSTIFIED;
-                    doc.Add(def4);
-
-                    doc.Add(new Paragraph(" ", parrafo));
-
-                    iTextSharp.text.Paragraph def5 = new iTextSharp.text.Paragraph("En sus Registros Contables figura el préstamo a nombre de " + NombreCliente.Value + " con un monto original de " + MontoOriginalLetras.Value+ " con "+MontoDecimales.Value + "/100 ( Q " + MontoOriginalEspacios.Value + "), y un saldo capital de " + SaldoActualLetras.Value + " con "+SaldoDecimales.Value+ "/100 ( Q " + SaldoEspacios.Value + "), e intereses de " + InteresesLetras.Value + " con " + InteresesDecimales.Value + "/100 ( Q " + InteresesEspacio.Value + "), los cuales hacen un total de " +TotalLetras.Value+ " con " +TotalDecimales.Value+"/100 ( Q " + Total.Value + ").", new Font(basf, 12));
-                    def5.Alignment = Element.ALIGN_JUSTIFIED;
-                    doc.Add(def5);
-
-                    doc.Add(new Paragraph(" ", parrafo));
-
-                    iTextSharp.text.Paragraph def6 = new iTextSharp.text.Paragraph("Y para los usos legales que a la interesada convenga, se extiende la presente a los " + DiaLetras.Value.ToLower() + " (" + Dia.Value + ") días del mes de " + MesLetras.Value.ToLower() + " (" + Mes.Value + ") del año " + AñoLetras.Value.ToLower() + " (" + Año.Value + ").", new Font(basf, 12));
-                    def6.Alignment = Element.ALIGN_JUSTIFIED;
-                    doc.Add(def6);
-
-                    doc.Add(new Paragraph(" ", parrafo));
-                    doc.Add(new Paragraph(" ", parrafo));
-                    doc.Add(new Paragraph(" ", parrafo));
-                    doc.Add(new Paragraph(" ", parrafo));
-                    doc.Add(new Paragraph(" ", parrafo));
-                    doc.Add(new Paragraph(" ", parrafo));
-
-                    iTextSharp.text.Paragraph def2 = new iTextSharp.text.Paragraph(""+nombreContador.Value+"", new Font(basf, 12));
-                    def2.Alignment = Element.ALIGN_CENTER;
-                    doc.Add(def2);
-                    iTextSharp.text.Paragraph def3 = new iTextSharp.text.Paragraph("CONTADOR(A) GENERAL", new Font(basf, 12));
-                    def3.Alignment = Element.ALIGN_CENTER;
-                    doc.Add(def3);
-
-                    //doc.Add(Chunk.NEWLINE);
-                    //string cod = exc.obtenercrdexp(dt3.Rows[i]["Nocredito"].ToString());
-                    //string tipocrd = exc.obtenertiponombre(dt3.Rows[i]["codgarantia"].ToString());
-
-                    //var tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-                    //tbl.AddCell(new PdfPCell(logo) { Border = 0, Rowspan = 3, VerticalAlignment = Element.ALIGN_MIDDLE });
-                    //tbl.AddCell(new PdfPCell(new Phrase("NO. Expediente: " + cod + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                    //tbl.AddCell(new PdfPCell(new Phrase("Tipo de expediente: Credito " + tipocrd + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                    //tbl.AddCell(new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-
-                    //doc.Add(tbl);
-
-                    //doc.Add(new Phrase(" "));
-                    //doc.Add(new Phrase(" "));
-
-                    //tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-                    //tbl.AddCell(new PdfPCell(new Phrase("Datos del Expediente:", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-
-                    //tbl.AddCell(new PdfPCell(new Phrase("Nombre: " + dt3.Rows[i]["nomcom"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-
-                    //tbl.AddCell(new PdfPCell(new Phrase("CIF: " + dt3.Rows[i]["cifgeneral"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                    //tbl.AddCell(new PdfPCell(new Phrase("Monto: Q" + dt3.Rows[i]["gen_monto"].ToString() + " Fecha Desembolso: " + dt3.Rows[i]["gen_fechadesembolso"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                //decimal total;
+                //total = Convert.ToDecimal(SaldoActual.Value) + Convert.ToDecimal(Interes1.Value);
 
 
-                    //doc.Add(tbl);
 
-                    ////////////////////***********************************//////////////////////
+                //string fechaactual = sn.datetime();
+                //string[] fecha = fechaactual.Split('-');
+                //string año = fecha[0];
+                //string mes = fecha[1];
+                //string dia = fecha[2];
+                iTextSharp.text.Paragraph def = new iTextSharp.text.Paragraph("Certificación", new Font(basf, 17));
+                def.Alignment = Element.ALIGN_CENTER;
+                doc.Add(def);
+                doc.Add(new Paragraph(" ", parrafo));
 
-                    doc.Close();
+                iTextSharp.text.Paragraph def4 = new iTextSharp.text.Paragraph("El infrascrito Perito Contador de Cooperativa Parroquial de Ahorro y Crédito Integral Guadalupana, R. L., registrado en la Superintendencia de Administración Tributaria bajo el número " + Num1.Value.ToLower() + " guion " + Num2.Value.ToLower() + " (" + NumRegistro.Value + "), hace constar que:", new Font(basf, 12));
+                def4.Alignment = Element.ALIGN_JUSTIFIED;
+                doc.Add(def4);
+
+                doc.Add(new Paragraph(" ", parrafo));
+
+                iTextSharp.text.Paragraph def5 = new iTextSharp.text.Paragraph("En sus Registros Contables figura el préstamo a nombre de " + NombreCliente.Value + " con un monto original de " + MontoOriginalLetras.Value + " con " + MontoDecimales.Value + "/100 ( Q " + MontoOriginalEspacios.Value + "), y un saldo capital de " + SaldoActualLetras.Value + " con " + SaldoDecimales.Value + "/100 ( Q " + SaldoEspacios.Value + "), e intereses de " + InteresesLetras.Value + " con " + InteresesDecimales.Value + "/100 ( Q " + InteresesEspacio.Value + "), los cuales hacen un total de " + TotalLetras.Value + " con " + TotalDecimales.Value + "/100 ( Q " + Total.Value + ").", new Font(basf, 12));
+                def5.Alignment = Element.ALIGN_JUSTIFIED;
+                doc.Add(def5);
+
+                doc.Add(new Paragraph(" ", parrafo));
+
+                iTextSharp.text.Paragraph def6 = new iTextSharp.text.Paragraph("Y para los usos legales que a la interesada convenga, se extiende la presente a los " + DiaLetras.Value.ToLower() + " (" + Dia.Value + ") días del mes de " + MesLetras.Value.ToLower() + " (" + Mes.Value + ") del año " + AñoLetras.Value.ToLower() + " (" + Año.Value + ").", new Font(basf, 12));
+                def6.Alignment = Element.ALIGN_JUSTIFIED;
+                doc.Add(def6);
+
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+
+                iTextSharp.text.Paragraph def2 = new iTextSharp.text.Paragraph("" + nombreContador.Value + "", new Font(basf, 12));
+                def2.Alignment = Element.ALIGN_CENTER;
+                doc.Add(def2);
+                iTextSharp.text.Paragraph def3 = new iTextSharp.text.Paragraph("CONTADOR(A) GENERAL", new Font(basf, 12));
+                def3.Alignment = Element.ALIGN_CENTER;
+                doc.Add(def3);
+
+                //doc.Add(Chunk.NEWLINE);
+                //string cod = exc.obtenercrdexp(dt3.Rows[i]["Nocredito"].ToString());
+                //string tipocrd = exc.obtenertiponombre(dt3.Rows[i]["codgarantia"].ToString());
+
+                //var tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
+                //tbl.AddCell(new PdfPCell(logo) { Border = 0, Rowspan = 3, VerticalAlignment = Element.ALIGN_MIDDLE });
+                //tbl.AddCell(new PdfPCell(new Phrase("NO. Expediente: " + cod + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                //tbl.AddCell(new PdfPCell(new Phrase("Tipo de expediente: Credito " + tipocrd + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                //tbl.AddCell(new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                //doc.Add(tbl);
+
+                //doc.Add(new Phrase(" "));
+                //doc.Add(new Phrase(" "));
+
+                //tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
+                //tbl.AddCell(new PdfPCell(new Phrase("Datos del Expediente:", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
+
+                //tbl.AddCell(new PdfPCell(new Phrase("Nombre: " + dt3.Rows[i]["nomcom"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+
+                //tbl.AddCell(new PdfPCell(new Phrase("CIF: " + dt3.Rows[i]["cifgeneral"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                //tbl.AddCell(new PdfPCell(new Phrase("Monto: Q" + dt3.Rows[i]["gen_monto"].ToString() + " Fecha Desembolso: " + dt3.Rows[i]["gen_fechadesembolso"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+
+
+                //doc.Add(tbl);
+
+                ////////////////////***********************************//////////////////////
+
+                doc.Close();
                 Response.ContentType = "application/pdf";
                 Response.AddHeader("content-disposition", "attachment;filename= " + idcertidicacion.Value + "-certificacion" + ".pdf");
                 HttpContext.Current.Response.Write(doc);
@@ -405,9 +408,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 Response.End();
                 //MessageBox.Show("Bar codes generated on desktop fileName=codes.pdf");
             }
-                catch
-                {
-                }
+            catch
+            {
+            }
         }
 
         public void fechaactual()
@@ -440,7 +443,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         private static string NumeroALetras(double value)
         {
-            string num2Text = ""; 
+            string num2Text = "";
             value = Math.Truncate(value);
 
             if (value == 0) num2Text = "CERO";
@@ -514,14 +517,14 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 }
             }
             return num2Text;
-        
+
         }
 
         public void convertirnumeros()
         {
             decimal total;
             string saldofinal = "";
-            if(Saldo1.Value == "")
+            if (Saldo1.Value == "")
             {
                 saldofinal = "0.00";
             }
@@ -621,11 +624,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string usuario = Session["sesion_usuario"] as string;
             string idusuario = sn.obteneridusuario(usuario);
             string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+            string area = Session["area"] as string;
 
-            string sig3 = sn.siguiente("pj_certificacioncontable", "idpj_certificacioncontable");
-            sn.guardarcreditocontable(sig3, NumRegistro.Value,nombreContador.Value, numcredito, idusuario, Observaciones.Value);
-            sn.guardaretapa(sig2, "2", numcredito, sn.datetime(), "Enviado", idusuario, "28", NombreCliente.Value);
-            sn.cambiarestado(numcredito, "1");
+            sn.estadoreingreso(numcredito, "2");
+
+            sn.editarcertificacioncontable(numcredito, NumRegistro.Value, nombreContador.Value, Observaciones.Value, idusuario);
+
 
             string tipocredito = Session["TipoCredito"] as string;
             string fecha;
@@ -648,7 +652,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string horacreacion = fechaseparada[1];
 
             string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
-            
+
 
             string[] fechayhora = sn.fechayhora();
             string[] fecha2 = fechayhora[0].Split(' ');
@@ -660,85 +664,11 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
 
             string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "26", "28", fechahoraactual, fechacreacion2, "Recibido");
-
-            string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "28", "34", fechahoraactual, fechacreacion2, Observaciones.Value);
+            sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Reingreso", "28", "34", fechahoraactual, fechacreacion2, "Modificado");
 
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se guardó exitosamente');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se envió exitosamente');", true);
         }
 
-        protected void Regresar_Click(object sender, EventArgs e)
-        {
-            Validar.Visible = false;
-            Regresar.Visible = false;
-            certificacion.Visible = false;
-            Contador.Visible = false;
-
-            string numcredito = Session["credito"] as string;
-            sn.estadodevuelto(numcredito, "28", "1");
-            
-
-            string tipocredito = Session["TipoCredito"] as string;
-            string id = "";
-            string tabla = "";
-            string fecha;
-
-            if(tipocredito == "tarjeta")
-            {
-                id = "idpj_tipotarjeta";
-                tabla = "pj_tipotarjeta";
-                fecha = sn.fechacreaciontarjeta(numcredito);
-            }
-            else
-            {
-                id = "idpj_tipocredito";
-                tabla = "pj_tipocredito";
-                fecha = sn.fechacreacioncredito(numcredito);
-            }
-
-            string[] fechaseparada = fecha.Split(' ');
-            string[] fechacreacion = fechaseparada[0].Split('/');
-            string diacreacion = fechacreacion[0];
-            string mescreacion = fechacreacion[1];
-            string añocreacion = fechacreacion[2];
-
-            string horacreacion = fechaseparada[1];
-
-            string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
-
-            string[] fechayhora = sn.fechayhora();
-            string[] fecha2 = fechayhora[0].Split(' ');
-            string año = fecha2[0];
-            string mes = fecha2[1];
-            string dia = fecha2[2];
-
-            string hora = fechayhora[1];
-            string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
-
-            string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "26", "28", fechahoraactual, fechacreacion2, "Sin comentarios");
-
-            string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "28", "26", fechahoraactual, fechacreacion2, RazonesRechazo.Value);
-
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresó a cobros');", true);
-        }
-
-        protected void Regresar2_Click(object sender, EventArgs e)
-        {
-            Validar.Visible = false;
-            Regresar2.Visible = false;
-            certificacion.Visible = false;
-            Regresar.Visible = true;
-            Guardar.Visible = false;
-            validado.Visible = true;
-            comentario2.Visible = false;
-            Contador.Visible = false;
-            Razones.Visible = true;
-            Regresar.Focus();
-        }
     }
 }

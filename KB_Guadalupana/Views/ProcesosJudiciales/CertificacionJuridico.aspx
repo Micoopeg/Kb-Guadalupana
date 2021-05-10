@@ -559,6 +559,10 @@
                             <label class="titulos">Razones de rechazo</label>
                             <input id="Observaciones" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
+                       <div class="formato3">
+                            <label class="titulos">Área a la que se regresa el crédito</label>
+                           <asp:DropDownList id="AreaCredito" runat="server" class="formatoinput2" AutoPostBack="false"></asp:DropDownList>
+                        </div><br />
                    </div><br />
 
                   <div id="enviar" class="formato2">

@@ -684,6 +684,45 @@ namespace CRM_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos               
             }
         }
+
+        public void despidocrm(string variabledeeliminacion)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    string consulta = "DELETE FROM crmcontrol_ingreso where codcrmcontrolingreso='" + variabledeeliminacion + "';";
+                    Console.WriteLine(consulta);
+                    comm = new MySqlCommand(consulta, sqlCon);
+                    MySqlDataReader mostrar = comm.ExecuteReader();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err.Message);
+
+                }
+            }
+        }
+        public void trasladodeleadspordespido(string fuente, string destino)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    string consulta = "UPDATE crmcontrol_prospecto_agente SET codcrmcontrolingreso ='" + destino + "'  WHERE codcrmcontrolingreso='" + fuente + "';";
+                    comm = new MySqlCommand(consulta, sqlCon);
+                    MySqlDataReader mostrar = comm.ExecuteReader();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err.Message);
+                }
+            }
+        }
     }
 }
        

@@ -126,7 +126,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
             string[] var1 = sn.consultarconcampoingresocrm("crmcontrol_ingreso", "crmcontrol_ingresousuario", Nombresesion);
             if (var1[0]=="0")
             {
-                String script = "alert('El usuario no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
+                String script = "alert('El usuario no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }

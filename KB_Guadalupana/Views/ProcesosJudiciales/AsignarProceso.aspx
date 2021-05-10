@@ -8,9 +8,12 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
     <title>Asignar Proceso</title>
         <style>
-
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
         html{
             width:100%;
             height:100%;
@@ -71,6 +74,7 @@
             display: flex;
             align-items: center;
             align-content:center;
+            text-transform:uppercase;
         }
 
         .formatoinput2{
@@ -80,6 +84,7 @@
             border-radius: 5px;
             height: 30px;
             border-color: transparent;
+            text-transform:uppercase;
         }
 
         .formatoinput3 {
@@ -148,6 +153,14 @@
             flex-direction:row;
             justify-content: flex-start;
         }
+
+        .tabla{
+            width:100%;
+            text-align:center;
+        }
+        .tabla td{
+            padding:5px;
+        }
     </style>
 </head>
       <div id="menu" runat="server" class="menu"></div>
@@ -156,175 +169,125 @@
         <div class="general">
             <div class="formularioCobros">
                 <div class="encabezado">
-                    <div class="formato3">
-                        <label class="titulos"><b>No. de crédito</b></label>
-                         <input id="NumCredito" runat="server" type="number" class="formatoinput2" min="0" placeholder="Ingrese no. de crédito" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                         <div class="formatoTitulo" style="margin-bottom:5px">
+                            <label class="titulos"><b>No. de crédito</b></label>
+                            <label class="titulos" style="margin-left:40%"><b>CIF</b></label>
+                        </div>
+
+                     <div class="formato">
+                         <input id="NumCredito" runat="server" type="text" class="formatoinput" min="0" placeholder="Ingrese no. de crédito" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                         <input id="CIF" runat="server" type="text" class="formatoinput" min="0" placeholder="Ingrese CIF" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                     </div><br />
-                     <div class="formato3">
-                        <label class="titulos"><b>Primer nombre</b></label>
-                         <input id="PrimerNombre" runat="server" type="text" class="formatoinput2" placeholder="Ingrese primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+
+                       <div class="formatoTitulo" style="margin-bottom:5px">
+                             <label class="titulos"><b>Primer Nombre</b></label>
+                            <label class="titulos" style="margin-left:38%"><b>Segundo Nombre</b></label>
+                        </div>
+
+                    <div class="formato">
+                         <input id="PrimerNombre" runat="server" onkeyup="javascript:this.value=this.value.toUpperCase();" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese nombres" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                         <input id="SegundoNombre" runat="server" onkeyup="javascript:this.value=this.value.toUpperCase();" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese nombres" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                     </div><br />
-                    <div class="formato3">
-                        <label class="titulos"><b>Primer apellido</b</label>
-                         <input id="PrimerApellido" runat="server" type="text" class="formatoinput2" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                    </div>
+
+                        <div class="formatoTitulo" style="margin-bottom:5px">
+                             <label class="titulos"><b>Primer Apellido</b></label>
+                            <label class="titulos" style="margin-left:38%"><b>Segundo Apellido</b></label>
+                        </div>
+
+                      <div class="formato">
+                       <input id="PrimerApellido" runat="server" onkeyup="javascript:this.value=this.value.toUpperCase();" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese apellidos" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                       <input id="SegundoApellido" runat="server" onkeyup="javascript:this.value=this.value.toUpperCase();" onkeypress="return sololetras(event);"  type="text" class="formatoinput" placeholder="Ingrese apellidos" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                    </div><br />
                 </div>
 
                  <div class="formato2">
-                    <asp:Button ID="APBuscar" runat="server" CssClass="boton" Text="Buscar" OnClick="APBuscar_Click"/>
-                    <asp:Button ID="APAsignar" runat="server" CssClass="boton2" Text="Asignar" OnClick="APAsignar_Click"/>
-                 </div><br />
+                    <asp:Button ID="APBuscar" runat="server" CssClass="boton" Text="Buscar Crédito" OnClick="APBuscar_Click"/>
+                  <%--  <asp:Button ID="APAsignar" runat="server" CssClass="boton2" Text="Asignar" OnClick="APAsignar_Click"/>--%>
+                      <%-- <asp:Button ID="Prueba" runat="server" CssClass="boton2" Text="Asignar" OnClick="Prueba_Click"/>--%>
+                 </div><br /><br /><br />
 
-                <div id="formulario" runat="server" class="encabezado">
-                        <div class="formatoTitulo" style="margin-bottom:5px">
-                             <label class="titulos"><b>Nombre de agencia</b></label>
-                            <label class="titulos" style="margin-left:38%"><b>Instrumento</b></label>
-                        </div>
-                        <div class="formato">
-                              <input id="Agencia" runat="server" type="text" class="formatoinput" placeholder="Nombre de agencia" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                             <input id="Instrumento" runat="server"  type="text" class="formatoinput" placeholder="Instrumento" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                        </div><br />
+     <div id="divgridviewprospectos2" runat="server" style="overflow: auto; height: 300px">
+     <asp:GridView ID="gridview2" CssClass="tabla" runat="server"  HeaderStyle-ForeColor="Black"
+    AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChangedprospectos" BorderStyle="Solid">
+                     <Columns>
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de crédito" Visible="True">
+                           <ItemTemplate>
+                           <asp:Label ID="lblnumerocred" Text='<%# Eval("COLNUMDOCUMEN") %>' runat="server" />
+                        </ItemTemplate>
 
-                     <div class="formatoTitulo" style="margin-bottom:5px">
-                             <label class="titulos"><b>Línea de crédito</b></label>
-                            <label class="titulos" style="margin-left:40%"><b>Destino</b></label>
-                        </div>
-                        <div class="formato">
-                              <input id="LineaCredito" runat="server"  type="text" class="formatoinput" placeholder="Línea de crédito" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                             <input id="destino" runat="server"  type="text" class="formatoinput" placeholder="Destino" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                        </div><br />
+<ControlStyle CssClass="dise&#241;o"></ControlStyle>
+                    </asp:TemplateField>
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="CIF" Visible="True">
+                           <ItemTemplate>
+                           <asp:Label ID="lbltipotelefono" Text='<%# Eval("CIFCODCLIENTE") %>' runat="server" />
+                        </ItemTemplate>
 
-                     <div class="formato3">
-                        <label class="titulos"><b>Garantía</b</label>
-                         <input id="Garantia" runat="server"  type="text" class="formatoinput2" placeholder="Garantía" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+<ControlStyle CssClass="dise&#241;o"></ControlStyle>
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Nombre completo">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnombretelefono" Text='<%# Eval("CIFNOMBRECLIE") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                       <asp:TemplateField HeaderText="DPI">
+                           <ItemTemplate>
+                            <asp:Label ID="lblnombretelefono2" Text='<%# Eval("CIFDOCIDENT06") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                            <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarcelulargridview icon-prev"  CommandName="Select" ItemStyle-Width="120">
+                            <ItemStyle Width="120px"></ItemStyle>
+                             </asp:ButtonField>
+                     </Columns>
+     <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>
+        </asp:GridView>
+                </div>
+
+                <br /><br /><br />
+                 <div style="display:flex; justify-content:center">
+                        <label style="font-size:18px" class="titulos">Créditos devueltos</label>
                     </div><br />
 
-                    <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Plazo en meses</b></label>
-                        <label class="titulos" style="margin-left:23%"><b>Método de cálculo</b></label>
-                        <label class="titulos" style="margin-left:21%"><b>Estado</b></label>
-                    </div>
-
-                    <div class="formato">
-                        <input id="Plazomeses" runat="server"  type="number" class="formatoinput3" min="0" placeholder="Plazo en medes" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                        <input id="Metodocalculo" runat="server"  type="text" class="formatoinput3" placeholder="Método cálculo" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                         <input id="Estado" runat="server"  type="text" class="formatoinput3" placeholder="Estado" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                       <div class="formatoTitulo" style="margin-bottom:5px">
-                             <label class="titulos"><b>Moneda</b></label>
-                            <label class="titulos" style="margin-left:46%"><b>Tasa</b></label>
-                        </div>
-                         <div class="formato">
-                              <input id="Moneda" runat="server"  type="text" class="formatoinput" placeholder="Moneda" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                             <input id="Tasa" runat="server"  type="number" class="formatoinput" min="0" placeholder="Tasa" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                        </div><br />
-
-                     <div class="formato3">
-                        <label class="titulos"><b>Fecha solicitud</b</label>
-                        <input id="FechaSolicitud" runat="server"  type="text" class="formatoinput2" placeholder="Fecha solicitud" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                    <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Fecha 1er. desembolso</b></label>
-                        <label class="titulos" style="margin-left:35%"><b>Fecha último desembolso</b></label>
-                    </div>
-
-                    <div class="formato">
-                           <input id="FechaDesembolso1" runat="server"  type="text" class="formatoinput" placeholder="Fecha 1er. desembolso" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                           <input id="FechaUltimoDes" runat="server"  type="text" class="formatoinput" placeholder="Fecha último desembolso" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                     <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Fecha de vencimiento</b></label>
-                        <label class="titulos" style="margin-left:35%"><b>Fecha última cuota</b></label>
-                    </div>
-
-                    <div class="formato">
-                           <input id="FechaVencimiento" runat="server"  type="text" class="formatoinput" placeholder="Fecha vencimiento" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                           <input id="FechaUltimaCuota" runat="server"  type="text" class="formatoinput" placeholder="Fecha última cuota" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                      <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Fecha de acta</b></label>
-                        <label class="titulos" style="margin-left:42%"><b>Número de acta</b></label>
-                    </div>
-
-                    <div class="formato">
-                           <input id="FechaActa" runat="server"  type="text" class="formatoinput" placeholder="Fecha de acta" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                           <input id="NumActa" runat="server"  type="number" min="0" class="formatoinput" placeholder="Número de acta" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                      <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Oficial - Primer Nombre</b></label>
-                        <label class="titulos" style="margin-left:33%"><b>Oficial - Segundo Nombre</b></label>
-                    </div>
-
-                    <div class="formato">
-                           <input id="OficialNombre1" runat="server"  type="text" class="formatoinput" placeholder="Primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                           <input id="OficialNombre2" runat="server" type="text" class="formatoinput" placeholder="Segundo nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                      <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Oficial - Primer Apellido</b></label>
-                        <label class="titulos" style="margin-left:33%"><b>Oficial - Segundo Apellido</b></label>
-                    </div>
-
-                    <div class="formato">
-                           <input id="OficialApellido1" runat="server" type="text" class="formatoinput" placeholder="Primer Apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                           <input id="OficialApellido2" runat="server" type="text" class="formatoinput" placeholder="Segundo Apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                         <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>No. de prestamo</b></label>
-                        <label class="titulos" style="margin-left:22%"><b>Agencia cliente</b></label>
-                        <label class="titulos" style="margin-left:23%"><b>Código cliente</b></label>
-                    </div>
-
-                    <div class="formato">
-                        <input id="NumPrestamo" runat="server" type="number" class="formatoinput3" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                        <input id="AgenciaCliente" runat="server" type="text" class="formatoinput3" placeholder="Agencia cliente" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                         <input id="CodigoCliente" runat="server" type="number" min="0" class="formatoinput3" placeholder="Código cliente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                       <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Cliente - Primer Nombre</b></label>
-                        <label class="titulos" style="margin-left:33%"><b>Cliente - Segundo Nombre</b></label>
-                    </div>
-
-                    <div class="formato">
-                           <input id="ClienteNombre1" runat="server" type="text" class="formatoinput" placeholder="Primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                           <input id="ClienteNombre2" runat="server" type="text" class="formatoinput" placeholder="Segundo nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                    <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Cliente - Primer Apellido</b></label>
-                        <label class="titulos" style="margin-left:33%"><b>Cliente - Segundo Apellido</b></label>
-                    </div>
-
-                    <div class="formato">
-                           <input id="ClienteApellido1" runat="server" type="text" class="formatoinput" placeholder="Primer Apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                           <input id="ClienteApellido2" runat="server" type="text" class="formatoinput" placeholder="Segundo Apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                   <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Monto original</b></label>
-                        <label class="titulos" style="margin-left:23%"><b>Capital desembolsado</b></label>
-                        <label class="titulos" style="margin-left:18%"><b>Saldo actual</b></label>
-                    </div>
-
-                    <div class="formato">
-                        <input id="MontoOriginal" runat="server" type="number" class="formatoinput3" min="0" placeholder="Monto original" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                        <input id="CapitalDesem" runat="server" type="number" class="formatoinput3" min="0" placeholder="Capital desembolsado" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                        <input id="SaldoActual" runat="server" type="number" min="0" class="formatoinput3" placeholder="Saldo actual" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                    <div class="formato3">
-                        <label class="titulos"><b>Descripción documento</b></label>
-                         <input id="DescripcionDoc" runat="server" type="number" min="0" class="formatoinput2" placeholder="Código cliente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br/>
-
-                </div><br />
+                <div id="tablaC" runat="server" style="overflow: auto; height: 300px">
+                        <asp:GridView ID="gridViewCreditos" runat="server" CssClass="tabla" AutoGenerateColumns="False"
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedCreditos" BorderStyle="Solid">
+                            <Columns>
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de crédito">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnumcredito" Text='<%# Eval("Credito") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnombre" Text='<%# Eval("Nombre") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblestado" Text='<%# Eval("Estado") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                   <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Del área de">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lbldeArea" Text='<%# Eval("DeArea") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Comentario">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblcomentario" Text='<%# Eval("Comentario") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblfecha" Text='<%# Eval("Fecha") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:ButtonField   Text="Ver crédito" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="100px"></ItemStyle>
+                                </asp:ButtonField>
+                            </Columns>
+                             <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>
+                        </asp:GridView>
+                    </div><br /><br />
 
             </div>
         </div>
@@ -334,6 +297,49 @@
                $('.menu').load('MenuPrincipal.aspx');
            });
          </script>
+            <script type="text/javascript">
+                function sololetras(evt) {
+                    var charCode = (evt.which) ? evt.which : event.keyCode
+                    if (charCode > 31 && (charCode < 48 || charCode > 57))
+                        return true;
+
+                    return false;
+                }
+            </script>
+
+        <script>
+            var texto1 = document.querySelector('#NumCredito');
+            var texto2 = document.querySelector('#CIF');
+
+            texto1.addEventListener('keypress', function (e) {
+                // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
+                const decimalCode = 46;
+                // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
+                if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
+                    e.preventDefault();
+                }
+                // chequeo que sólo exista un punto decimal
+                else if (e.keyCode == decimalCode && /\./.test(this.value)) {
+                    event.preventDefault();
+                }
+            }, true)
+
+            texto2.addEventListener('keypress', function (e) {
+                // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
+                const decimalCode = 46;
+                // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
+                if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
+                    e.preventDefault();
+                }
+                // chequeo que sólo exista un punto decimal
+                else if (e.keyCode == decimalCode && /\./.test(this.value)) {
+                    event.preventDefault();
+                }
+            }, true)
+        </script>
+          <%--  <script>
+                $('#<%=DropNombre.ClientID%>').chosen();
+            </script>--%>
     </form>
 </body>
 </html>

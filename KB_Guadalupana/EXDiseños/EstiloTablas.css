@@ -1,6 +1,6 @@
 ﻿.seleccionarregistrogridview {
 
-
+    text-align:center;
 
 
 }
@@ -112,4 +112,9 @@ tbody:hover td {
 tbody:hover tr:hover td {
     color: #444;
     text-shadow: 0 1px 0 #fff;
+}
+table tbody tr td a {
+
+margin-left: 0px;
+
 }

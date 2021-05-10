@@ -42,7 +42,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                 Crear.Visible = true;
                 Consultar.Visible = true;
                 Matriz.Visible = true;
-                Consulta.Visible = false;
+                Consulta.Visible = true;
                 Mantenimiento.Visible = true;
             }
             else if (valor1 != "7")

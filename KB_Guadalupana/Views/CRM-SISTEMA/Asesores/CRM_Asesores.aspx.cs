@@ -22,7 +22,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
     {
 
         string key = "millave";
-       // OleDbConnection oledbConn;
+        // OleDbConnection oledbConn;
         CRM_Sentencias sn = new CRM_Sentencias();
         CRM_Logica logic = new CRM_Logica();
         CRM_Conexion cn = new CRM_Conexion();
@@ -35,101 +35,28 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
             // roldelcrm = Convert.ToString(Session["roldelcrm"]);
             nombreusuario = Convert.ToString(Session["usuariodelcrm"]);
             int rolusuario = Convert.ToInt32(Session["roldelcrm"]);
-            if (rolusuario ==3 || rolusuario == 6)
+            if (rolusuario == 3 || rolusuario == 6)
             {
-                
+
             }
             else
             {
-                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Index.aspx';";
+                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
-            }        
+            }
 
-            if (!IsPostBack){                
+            if (!IsPostBack)
+            {
                 llenarcombotiposervicio();
                 llenarcontactollamada();
                 llenarsemaforo();
                 llenartipodomicilio();
-               llenarsucursalmascercana();
+                llenarsucursalmascercana();
             }
             llenargridviewprospecto(nombreusuario);
-            llenargrafico2();
-            llenargrafico3();
         }
 
-
-        public void llenargrafico2()
-        {
-            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string QueryString = "SELECT b.crmsemaforo_estadonombre,b.crmsemaforo_estadodescripcion,COUNT(a.codcrmsemaforoestado) AS Cantidad  FROM crminfo_prospecto a INNER JOIN crmsemaforo_estado b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrmsemaforoestado=b.codcrmsemaforoestado AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso where crmcontrol_ingresousuario='"+nombreusuario+"' group by a.codcrmsemaforoestado  order by crmsemaforo_estadonombre ASC;";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataSet ds = new DataSet();
-                    myCommand.Fill(ds, "grafica");
-                    Chart1.Titles.Clear();
-                    Chart1.Series.Clear();
-                    Chart1.ChartAreas.Clear();
-                    // Chart1.DataSource = ds;
-                    ChartArea agregargrafico = new ChartArea();
-                    agregargrafico.Area3DStyle.Enable3D = true;
-                    Chart1.ChartAreas.Add(agregargrafico);
-                    Series seriedatos = new Series("codcrmsemaforoestado");
-                    seriedatos.ChartType = SeriesChartType.Pie;
-                    seriedatos.XValueMember = "crmsemaforo_estadodescripcion";
-                    seriedatos.YValueMembers = "Cantidad";
-                    seriedatos.IsValueShownAsLabel = true;
-                    Chart1.Series.Add(seriedatos);
-                    Chart1.DataSource = ds;
-
-
-                  }
-                catch
-                {
-                    Console.WriteLine("Verifique los campos");
-                }
-            }
-
-
-        }
-
-        public void llenargrafico3()
-        {
-            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string QueryString = "SELECT a.codcrmcontrolingreso,COUNT(a.codcrmcontrolingreso) AS Cantidad FROM crmalertas_programadas a INNER JOIN crmcontrol_ingreso b ON a.codcrmcontrolingreso=b.codcrmcontrolingreso where crmcontrol_ingresousuario='"+nombreusuario+"';";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataSet ds = new DataSet();
-                    myCommand.Fill(ds, "grafica2");
-                    //Chart2.Titles.Clear();
-                    //Chart2.Series.Clear();
-                    //Chart2.ChartAreas.Clear();
-                    // Chart1.DataSource = ds;
-                    ChartArea agregargrafico = new ChartArea();
-                   // agregargrafico.Area3DStyle.Enable3D = true;
-                    Chart2.ChartAreas.Add(agregargrafico);
-                    Series seriedatos = new Series("codcrmcontrolingreso");
-                    seriedatos.XValueMember = "codcrmcontrolingreso";
-                    seriedatos.YValueMembers = "Cantidad";
-                    Chart2.Series.Add(seriedatos);
-                    Chart2.DataSource = ds;
-
-
-                }
-                catch
-                {
-                    Console.WriteLine("Verifique los campos");
-                }
-            }
-
-
-        }
 
 
 
@@ -172,12 +99,12 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
 
         }
         protected void OnSelectedIndexChangedprospectos(object sender, EventArgs e)
-        {          
+        {
 
             GridViewRow row = gridviewprospectos.SelectedRow;
             txtnumerogeneral.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblcodigo") as Label).Text);
-            txtnumeroderegistro.Value=Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblcodigogeneralprospecto") as Label).Text);
-            txtnumerodpi.Value= Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lbldpi") as Label).Text);
+            txtnumeroderegistro.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblcodigogeneralprospecto") as Label).Text);
+            txtnumerodpi.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lbldpi") as Label).Text);
             txtnombrecompleto.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblnombre") as Label).Text);
             txttelefono.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lbltelefono") as Label).Text);
             txtemail.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblcorreo") as Label).Text);
@@ -188,18 +115,18 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
             txttabajoactual.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lbldescripciondeltrabajo") as Label).Text);
             combotiposervicio.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblservicio") as Label).Text);
 
-            txtmonto.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblmonto") as Label).Text);         
-                 
-           combocontactollamadas.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblcontactollamada") as Label).Text);
+            txtmonto.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblmonto") as Label).Text);
+
+            combocontactollamadas.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblcontactollamada") as Label).Text);
             string fecha = string.Format("{0:yyyy-MM-dd}", (gridviewprospectos.SelectedRow.FindControl("lblprimerallamada") as Label).Text);
             txtfechainicio.Value = fecha.Trim();
             string fecha2 = string.Format("{0:yyyy-MM-dd}", (gridviewprospectos.SelectedRow.FindControl("lblultimallamada") as Label).Text);
-            txtfechafin.Value = fecha2.Trim();       
-            combosemaforoestado.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblsemaforoestado") as Label).Text);         
-            
-            combocuentaigss.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lbligss") as Label).Text);         
+            txtfechafin.Value = fecha2.Trim();
+            combosemaforoestado.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblsemaforoestado") as Label).Text);
+
+            combocuentaigss.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lbligss") as Label).Text);
             combotipodomicilio.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lbltipodomicilio") as Label).Text);
-            txtañodomicilio.Value= Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblañosendomicilio") as Label).Text);
+            txtañodomicilio.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblañosendomicilio") as Label).Text);
             comboposeecuentacoope.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblcuentaencoope") as Label).Text);
             combosucursalmascerca.SelectedValue = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lblsucursalcercana") as Label).Text);
             exampleFormControlTextarea1.Value = Convert.ToString((gridviewprospectos.SelectedRow.FindControl("lbldescripcion") as Label).Text);
@@ -234,7 +161,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                     break;
 
 
-                    
+
             }
             txtnumerodpi.Focus();
         }
@@ -266,13 +193,13 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "select * from crm_finalidadservicio where codcrmtiposervicio='" + codtiposervicio+"';";
+                    string QueryString = "select * from crm_finalidadservicio where codcrmtiposervicio='" + codtiposervicio + "';";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "finalidadservicio");
                     combofinalidaddeservicio.DataSource = ds;
                     combofinalidaddeservicio.DataTextField = "crm_finalidaddescripcion";
-                    combofinalidaddeservicio.DataValueField = "codcrmfinalidadservicio"; 
+                    combofinalidaddeservicio.DataValueField = "codcrmfinalidadservicio";
                     combofinalidaddeservicio.DataBind();
                     combofinalidaddeservicio.Items.Insert(0, new ListItem("[Seleccione la finalidad del servicio]", "0"));
                 }
@@ -372,7 +299,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "descripcionestado");
                     combosemaforodescripcion.DataSource = ds;
-                    combosemaforodescripcion.DataTextField = "crmestado_descripcionnombre"; 
+                    combosemaforodescripcion.DataTextField = "crmestado_descripcionnombre";
                     combosemaforodescripcion.DataValueField = "codcrmestadodescripcion";
                     combosemaforodescripcion.DataBind();
                     combosemaforodescripcion.Items.Insert(0, new ListItem("[Motivo del estado]", "0"));
@@ -506,18 +433,18 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         {
             string str;
             string datoencriptado = Encriptar(nombreusuario);
-            str = "window.open('../Agenda/CRM_Agenda.aspx?Nombre="+ datoencriptado + "','Titulo','width=350,height=400,sc rollbars=no,resizable=no')";
+            str = "window.open('../Agenda/CRM_Agenda.aspx?Nombre=" + datoencriptado + "','Titulo','width=350,height=400,sc rollbars=no,resizable=no')";
             Response.Write("<script languaje=javascript>" + str + "</script>");
         }
 
         protected void Btn_Guardarprospecto_Click(object sender, EventArgs e)
         {
-            if (txtnumerodpi.Value == "" || txtnombrecompleto.Value=="" || txttelefono.Value == "" ||
-                txtemail.Value == "" || txtingreso.Value == ""||txtegresos.Value==""||txtañoslaborados.Value==""||combotienetrabajo.SelectedValue=="0"||
-                txttelefono.Value==""||combotiposervicio.SelectedValue=="0"||txtmonto.Value==""||combofinalidaddeservicio.Value=="0"||combocontactollamadas.SelectedValue=="0"||
-                txtfechainicio.Value==""||txtfechafin.Value==""||combosemaforoestado.SelectedValue=="0"||combosemaforodescripcion.SelectedValue=="0"||
-                combocuentaigss.SelectedValue=="0"||combotipodomicilio.SelectedValue=="0"||txtañodomicilio.Value==""||comboposeecuentacoope.SelectedValue=="0"||
-                combosucursalmascerca.SelectedValue=="0")
+            if (txtnumerodpi.Value == "" || txtnombrecompleto.Value == "" || txttelefono.Value == "" ||
+                txtemail.Value == "" || txtingreso.Value == "" || txtegresos.Value == "" || txtañoslaborados.Value == "" || combotienetrabajo.SelectedValue == "0" ||
+                txttelefono.Value == "" || combotiposervicio.SelectedValue == "0" || txtmonto.Value == "" || combofinalidaddeservicio.Value == "0" || combocontactollamadas.SelectedValue == "0" ||
+                txtfechainicio.Value == "" || txtfechafin.Value == "" || combosemaforoestado.SelectedValue == "0" || combosemaforodescripcion.SelectedValue == "0" ||
+                combocuentaigss.SelectedValue == "0" || combotipodomicilio.SelectedValue == "0" || txtañodomicilio.Value == "" || comboposeecuentacoope.SelectedValue == "0" ||
+                combosucursalmascerca.SelectedValue == "0")
             {
                 String script = "alert('Verifique que todos los campos se encuentren llenos');";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
@@ -538,15 +465,16 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                     exampleFormControlTextarea1.Value,combosucursalmascerca.SelectedValue,combocuentaigss.SelectedValue,
                     txtañodomicilio.Value,comboposeecuentacoope.SelectedValue,txtdpireferencia.Value };
 
-                string[] campos1 = { "codcrminfogeneralprospecto", "crminfogeneral_prospectodpi", "crminfogeneral_prospectonombrecompleto"};
-                string[] valores1 = {txtnumeroderegistro.Value,txtnumerodpi.Value,txtnombrecompleto.Value };                
+                string[] campos1 = { "codcrminfogeneralprospecto", "crminfogeneral_prospectodpi", "crminfogeneral_prospectonombrecompleto" };
+                string[] valores1 = { txtnumeroderegistro.Value, txtnumerodpi.Value, txtnombrecompleto.Value };
                 try
                 {
-                   logic.modificartablas("crminfo_prospecto", campos, valores);
-                   logic.modificartablas("crminfogeneral_prospecto", campos1, valores1);
-                    logic.bitacoraingresoprocedimientos("usuario", "CRM", "Aplicación Asesores", "Modificado de un prospecto - Correlativo : '"+txtnumerodpi.Value+"'");
+                    logic.modificartablas("crminfo_prospecto", campos, valores);
+                    logic.modificartablas("crminfogeneral_prospecto", campos1, valores1);
+                    logic.bitacoraingresoprocedimientos("usuario", "CRM", "Aplicación Asesores", "Modificado de un prospecto - Correlativo : '" + txtnumerodpi.Value + "'");
                 }
-                catch {
+                catch
+                {
                     Console.WriteLine("dejo de funcionar");
                 }
                 llenargridviewprospecto(nombreusuario);

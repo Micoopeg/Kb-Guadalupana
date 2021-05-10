@@ -47,18 +47,18 @@ namespace Login_Web
                 //}
 
                 // Response.Redirect("Views/Sesion/Inicio.aspx");
-
-                if (sn.consultarbd("gen_usuario") == true)
-                {
-                    Response.Redirect("Views/Sesion/MenuBarra.aspx");
-                    //Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                
+                    if (sn.consultarbd("gen_usuario") == true)
+                    {
+                        Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                      //Response.Redirect("Views/Sesion/MenuBarra.aspx");
                 }
                 else
-                {
-                    Response.Write("Sin conexion");
-                    Response.Redirect("Views/PaginaDeError/Error404.aspx");
-                }
-
+                    {
+                        Response.Write("Sin conexion");
+                        Response.Redirect("Views/PaginaDeError/Error404.aspx");
+                    }
+                    
 
             }
             else
@@ -67,7 +67,7 @@ namespace Login_Web
             }
 
             //Session["sesion_usuario"] = "pgaortiz";
-            //Session["Nombre"] = "Aida Jimena Ortiz Delgado";
+            //Session["Nombre"] = "Diego Jose Gomez Giron";
             //Response.Redirect("Views/Sesion/MenuBarra.aspx");
         }
 

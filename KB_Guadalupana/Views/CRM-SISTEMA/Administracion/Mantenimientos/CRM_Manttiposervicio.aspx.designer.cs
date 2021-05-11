@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace KB_Guadalupana.Views.CRM_SISTEMA.Asesores
+namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
 {
 
 
-    public partial class CRM_Prospectosenproceso
+    public partial class CRM_Manttiposervicio
     {
 
         /// <summary>
@@ -24,102 +24,66 @@ namespace KB_Guadalupana.Views.CRM_SISTEMA.Asesores
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control LinkButton1.
+        /// Control btnmenuprincipal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton btnmenuprincipal;
 
         /// <summary>
-        /// Control LinkButton3.
+        /// Control btnnuevoingreso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.LinkButton btnnuevoingreso;
 
         /// <summary>
-        /// Control lblcriterio.
+        /// Control txtcodigo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcriterio;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcodigo;
 
         /// <summary>
-        /// Control txtnombrecompleto.
+        /// Control txtnombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnombrecompleto;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnombre;
 
         /// <summary>
-        /// Control btnbuscar.
+        /// Control btnmodificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnbuscar;
+        protected global::System.Web.UI.WebControls.LinkButton btnmodificar;
 
         /// <summary>
-        /// Control gridviewprospectos.
+        /// Control btnguardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridviewprospectos;
+        protected global::System.Web.UI.WebControls.LinkButton btnguardar;
 
         /// <summary>
-        /// Control gridview1.
+        /// Control gridviewmant.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridview1;
-
-        /// <summary>
-        /// Control gridview2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridview2;
-
-        /// <summary>
-        /// Control gridview3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridview3;
-
-        /// <summary>
-        /// Control gridview4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridview4;
-
-        /// <summary>
-        /// Control gridview5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridview5;
+        protected global::System.Web.UI.WebControls.GridView gridviewmant;
     }
 }

@@ -53,7 +53,7 @@
      <asp:GridView ID="gridviewprospectos" CssClass="container"  style="width: 692px;  text-align:center" runat="server"  HeaderStyle-ForeColor="Black"
     AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChangedprospectos" BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Lead" Visible="True">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Leed" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lblcodprospeto" Text='<%# Eval("codcrminfoprospecto") %>' runat="server" />
                         </ItemTemplate>

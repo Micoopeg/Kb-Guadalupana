@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
+namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 {
 
 
-    public partial class CRM_Asesores
+    public partial class Ingresodedatos
     {
 
         /// <summary>
@@ -24,139 +24,94 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control ScriptManager1.
+        /// Control btndashboards.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btndashboards;
 
         /// <summary>
-        /// Control Timer1.
+        /// Control btnalertas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnalertas;
 
         /// <summary>
-        /// Control UpdatePanel1.
+        /// Control btningresodedatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btningresodedatos;
 
         /// <summary>
-        /// Control Label2.
+        /// Control btncarteraasociados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btncarteraasociados;
 
         /// <summary>
-        /// Control divGridprospecto.
+        /// Control btnmedia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGridprospecto;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnmedia;
 
         /// <summary>
-        /// Control gridviewprospectos.
+        /// Control btncharts.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridviewprospectos;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btncharts;
 
         /// <summary>
-        /// Control txtnumerogeneral.
+        /// Control btnevenetos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnumerogeneral;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnevenetos;
 
         /// <summary>
-        /// Control txtnumeroderegistro.
+        /// Control btnotrocontenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnumeroderegistro;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnotrocontenido;
 
         /// <summary>
-        /// Control txtnumerodpi.
+        /// Control btnadmintools.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnumerodpi;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnadmintools;
 
         /// <summary>
-        /// Control txtnombrecompleto.
+        /// Control Chart1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnombrecompleto;
-
-        /// <summary>
-        /// Control txttelefono.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txttelefono;
-
-        /// <summary>
-        /// Control txtemail.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtemail;
-
-        /// <summary>
-        /// Control txtingreso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtingreso;
-
-        /// <summary>
-        /// Control txtegresos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtegresos;
-
-        /// <summary>
-        /// Control txtañoslaborados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtañoslaborados;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
 
         /// <summary>
         /// Control combotienetrabajo.
@@ -168,24 +123,6 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         protected global::System.Web.UI.WebControls.DropDownList combotienetrabajo;
 
         /// <summary>
-        /// Control txttabajoactual.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txttabajoactual;
-
-        /// <summary>
-        /// Control divareaseguimiento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divareaseguimiento;
-
-        /// <summary>
         /// Control combotiposervicio.
         /// </summary>
         /// <remarks>
@@ -193,15 +130,6 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList combotiposervicio;
-
-        /// <summary>
-        /// Control txtmonto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtmonto;
 
         /// <summary>
         /// Control combofinalidaddeservicio.
@@ -220,24 +148,6 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList combocontactollamadas;
-
-        /// <summary>
-        /// Control txtfechainicio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtfechainicio;
-
-        /// <summary>
-        /// Control txtfechafin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtfechafin;
 
         /// <summary>
         /// Control combosemaforoestado.
@@ -285,15 +195,6 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         protected global::System.Web.UI.WebControls.DropDownList combotipodomicilio;
 
         /// <summary>
-        /// Control txtañodomicilio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtañodomicilio;
-
-        /// <summary>
         /// Control comboposeecuentacoope.
         /// </summary>
         /// <remarks>
@@ -312,48 +213,57 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         protected global::System.Web.UI.WebControls.DropDownList combosucursalmascerca;
 
         /// <summary>
-        /// Control txtcontactadopor.
+        /// Control FileUpload1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcontactadopor;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
 
         /// <summary>
-        /// Control txtdpireferencia.
+        /// Control btncargardatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtdpireferencia;
+        protected global::System.Web.UI.WebControls.Button btncargardatos;
 
         /// <summary>
-        /// Control exampleFormControlTextarea1.
+        /// Control Button1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea exampleFormControlTextarea1;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Control LinkButton1.
+        /// Control lblOculto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.Label lblOculto;
 
         /// <summary>
-        /// Control LinkButton2.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// Control GridView1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

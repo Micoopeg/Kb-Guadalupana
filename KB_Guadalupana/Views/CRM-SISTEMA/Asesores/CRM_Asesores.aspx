@@ -102,6 +102,7 @@
                 <div class="menu" style="border-style:groove;">
                     <center>            
                   <%-- GRIDVIEW Inversiones--%>
+                        <%-- GRIDVIEW Inversione2s--%>
                         <span>Buscar por nombre:</span><asp:TextBox BorderStyle="Groove" runat="server" style="margin-left:1%"  ID="txtbusquedaprospecto"></asp:TextBox>
                         <asp:LinkButton runat="server" style="text-decoration:none" ID="busquedaporfiltro" OnClick="busquedaporfiltro_Click">Buscar</asp:LinkButton>
                          <asp:CheckBox ID="chkproceso" OnCheckedChanged="chkproceso_CheckedChanged" AutoPostBack="true" runat="server" Text="Proceso"></asp:CheckBox>

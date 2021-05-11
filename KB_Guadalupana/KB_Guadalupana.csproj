@@ -581,7 +581,6 @@
     <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Alertas.aspx" />
     <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Asesores.aspx" />
     <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Crearreferido.aspx" />
-    <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Prospectosenproceso.aspx" />
     <Content Include="Views\CRM-SISTEMA\Asesores\CRM_Prospectosfinalizados.aspx" />
     <Content Include="Views\CRM-SISTEMA\Catalogo_clientes\Prospectoenprocesos.aspx" />
     <Content Include="Views\CRM-SISTEMA\Catalogo_clientes\ProspectosFinalizados.aspx" />
@@ -589,6 +588,7 @@
     <Content Include="Views\CRM-SISTEMA\Dashboard\CRM_Dashboard.aspx" />
     <Content Include="Views\CRM-SISTEMA\Dashboard\CRM_SubestadoProceso.aspx" />
     <Content Include="Views\CRM-SISTEMA\Ingresodata\CRM_Ingresodedatos.aspx" />
+    <Content Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx" />
     <Content Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx" />
     <Content Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx" />
     <Content Include="Views\Hallazgos\AsignarHallazgo.aspx" />
@@ -1172,13 +1172,6 @@
     <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Crearreferido.aspx.designer.cs">
       <DependentUpon>CRM_Crearreferido.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Prospectosenproceso.aspx.cs">
-      <DependentUpon>CRM_Prospectosenproceso.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Prospectosenproceso.aspx.designer.cs">
-      <DependentUpon>CRM_Prospectosenproceso.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\CRM-SISTEMA\Asesores\CRM_Prospectosfinalizados.aspx.cs">
       <DependentUpon>CRM_Prospectosfinalizados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1227,6 +1220,13 @@
     </Compile>
     <Compile Include="Views\CRM-SISTEMA\Ingresodata\CRM_Ingresodedatos.aspx.designer.cs">
       <DependentUpon>CRM_Ingresodedatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx.cs">
+      <DependentUpon>Ingresodedatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CRM-SISTEMA\Ingresodata\Ingresodedatos.aspx.designer.cs">
+      <DependentUpon>Ingresodedatos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx.cs">
       <DependentUpon>CRM_MenuPrincipal.aspx</DependentUpon>

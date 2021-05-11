@@ -45,7 +45,6 @@
     </div>     
     <div class="col-md-8">
       <h3>REGISTROS</h3>
-        <asp:Label runat="server">Finalidad de servicio:</asp:Label><input id="txtbusqueda" placeholder="BUSCAR POR NOMBRE" style="margin-left:2%" runat="server" /><asp:LinkButton runat="server" style="margin-left:2%; border-style:none; color:white" ID="btnbuscar" OnClick="btnbuscar_Click">Buscar</asp:LinkButton><br />
          <asp:GridView ID="gridviewmant" CssClass="table table-striped"  runat="server" HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedmantenimiento" BorderStyle="Solid" Width="100%" AllowPaging="True" OnPageIndexChanging="gridviewmantenimiento_PageIndexChanging" PageSize="3" >                 
                      <Columns>

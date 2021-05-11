@@ -183,35 +183,5 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
                 }
             }
         }
-
-        public void llenargridviewmantenimientobusqueda(string filtro)
-        {
-            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string QueryString = "SELECT a.codcrmfinalidadservicio,a.codcrmtiposervicio,a.crm_finalidaddescripcion,b.crmtipo_servicionombre FROM crm_finalidadservicio a INNER JOIN crmtipo_servicio b ON a.codcrmtiposervicio=b.codcrmtiposervicio WHERE a.crm_finalidaddescripcion LIKE '%"+filtro+"%' ;";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds3 = new DataTable();
-                    command.Fill(ds3);
-                    gridviewmant.DataSource = ds3;
-                    gridviewmant.DataBind();
-
-
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
-                }
-
-            }
-
-        }
-        protected void btnbuscar_Click(object sender, EventArgs e)
-        {
-            llenargridviewmantenimientobusqueda(txtbusqueda.Value);
-        }
     }
 }

@@ -159,35 +159,5 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
             }
         }
 
-        public void llenargridviewmantenimientofiltro(string filtro)
-        {
-            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string QueryString = "SELECT * FROM crmtipo_domicilio WHERE crmtipo_domicilionombre LIKE '%"+filtro+"%';";
-                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataTable ds3 = new DataTable();
-                    command.Fill(ds3);
-                    gridviewmant.DataSource = ds3;
-                    gridviewmant.DataBind();
-
-
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
-                }
-
-            }
-
-        }
-
-        protected void btnbuscar_Click(object sender, EventArgs e)
-        {
-            llenargridviewmantenimientofiltro(txtbusqueda.Value);
-        }
     }
 }

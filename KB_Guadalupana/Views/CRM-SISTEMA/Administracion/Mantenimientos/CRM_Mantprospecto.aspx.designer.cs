@@ -123,24 +123,6 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
         protected global::System.Web.UI.WebControls.LinkButton btnguardar;
 
         /// <summary>
-        /// Control txtbusqueda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtbusqueda;
-
-        /// <summary>
-        /// Control btnbuscar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnbuscar;
-
-        /// <summary>
         /// Control gridviewmant.
         /// </summary>
         /// <remarks>

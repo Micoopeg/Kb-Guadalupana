@@ -115,7 +115,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Controldedespidos
                     combousuarioadministrativo.DataTextField = "crmcontrol_ingresousuario";
                     combousuarioadministrativo.DataValueField = "codcrmcontrolingreso";
                     combousuarioadministrativo.DataBind();
-                    combousuarioadministrativo.Items.Insert(0, new ListItem("[Agencia Fuente]", "0"));
+                    combousuarioadministrativo.Items.Insert(0, new ListItem("[Seleccione el usuario]", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
             }

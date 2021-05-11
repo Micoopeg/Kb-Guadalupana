@@ -80,6 +80,7 @@
                             <asp:Label ID="Label2" runat="server" Text="1" ForeColor="White"></asp:Label>
                             )</span></a>
                         <a href="CRM_Prospectosfinalizados.aspx" title="Asociadosfinalizados"><i class="icon-file-alt"></i><span>Prospectos Finalizados</span></a>
+                        <a href="CRM_Prospectosenproceso.aspx" title="AsociadosAprobados"><i class="icon-file-alt"></i><span>Prospectos Aprobados</span></a>
                         <a href="CRM_Crearreferido.aspx" title="Crearasociadoreferido"><i class="icon-book"></i><span>Crear Referido</span></a>
                         <%-- <a href="" title="cerarsesion"><i class="icon-signout"></i><span>  
 			Cerrar Sesión</span></a>--%>

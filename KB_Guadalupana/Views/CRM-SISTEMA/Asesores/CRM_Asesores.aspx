@@ -102,7 +102,12 @@
            <center>            
                  <h4>Prospectos pendientes</h4>
                   <%-- GRIDVIEW Inversiones--%>
-               <div id="divGridprospecto" style="overflow: auto; height: 100px" runat="server">
+                        <%-- GRIDVIEW Inversione2s--%>
+                        <span>Buscar por nombre:</span><asp:TextBox BorderStyle="Groove" runat="server" style="margin-left:1%"  ID="txtbusquedaprospecto"></asp:TextBox>
+                        <asp:LinkButton runat="server" style="text-decoration:none" ID="busquedaporfiltro" OnClick="busquedaporfiltro_Click">Buscar</asp:LinkButton>
+                         <asp:CheckBox ID="chkproceso" OnCheckedChanged="chkproceso_CheckedChanged" AutoPostBack="true" runat="server" Text="Proceso"></asp:CheckBox>
+                        <asp:CheckBox ID="chknocontesta" runat="server" OnCheckedChanged="chknocontesta_CheckedChanged" AutoPostBack="true" Text="No contesta"></asp:CheckBox>
+                        <div id="divGridprospecto" style="overflow: auto; height: 153px" runat="server">
                  <asp:GridView ID="gridviewprospectos" CssClass="mGrid"  runat="server" HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedprospectos" BorderStyle="Solid" Width="82%" >
                      <Columns>

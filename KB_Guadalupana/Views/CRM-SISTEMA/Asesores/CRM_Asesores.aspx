@@ -37,20 +37,21 @@
         .menu {
             height: 180px;
             width: 100%;
-            background: white;           
+            background: white;
             color: black;
             text-align: center
         }
 
         .wrapper {
-            height: 2000px;
+            height: 1000px;
             width: 100%;
             padding-top: 20px
         }
 
         .fixed {
             position: fixed;
-            top: 0
+            top: 4px;
+            width:81%;
         }
     </style>
 
@@ -63,7 +64,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <asp:Timer ID="Timer1" runat="server" Interval="3000"></asp:Timer>
         <!-- partial:index.partial.html -->
-        <div id="responsive-admin-menu">
+        <div id="responsive-admin-menu" style="height: 1484px">
             <div id="responsive-menu">
                 <div class="menuicon">≡</div>
             </div>
@@ -80,6 +81,7 @@
                             <asp:Label ID="Label2" runat="server" Text="1" ForeColor="White"></asp:Label>
                             )</span></a>
                         <a href="CRM_Prospectosfinalizados.aspx" title="Asociadosfinalizados"><i class="icon-file-alt"></i><span>Prospectos Finalizados</span></a>
+                        <a href="CRM_Prospectosenproceso.aspx" title="AsociadosAprobados"><i class="icon-file-alt"></i><span>Prospectos Aprobados</span></a>
                         <a href="CRM_Crearreferido.aspx" title="Crearasociadoreferido"><i class="icon-book"></i><span>Crear Referido</span></a>
                         <%-- <a href="" title="cerarsesion"><i class="icon-signout"></i><span>  
 			Cerrar Sesión</span></a>--%>
@@ -92,22 +94,26 @@
             <!--Menu-->
         </div>
 
-        <div id="content-wrapper">
+        <div id="content-wrapper" style="height: 1410px">
             <div style="border: 1px #e8e8e8 solid; width: 100%; float: right; margin: 10px 0px 10px 0px">
                 <div style="border-bottom: 1px #e8e8e8 solid; background-color: #f3f3f3; padding: 8px; font-size: 13px; font-weight: 700; color: #45484d;">
-                    ESTATUS DE CLIENTES
+                    ESTATUS DE POSPECTOS
                 </div>
-                <div class="menu">
-           <center>            
-                 <h4>Prospectos pendientes</h4>
+                <div class="menu" style="border-style:groove;">
+                    <center>            
                   <%-- GRIDVIEW Inversiones--%>
-               <div id="divGridprospecto" style="overflow: auto; height: 100px" runat="server">
+                        <%-- GRIDVIEW Inversione2s--%>
+                        <span>Buscar por nombre:</span><asp:TextBox BorderStyle="Groove" runat="server" style="margin-left:1%"  ID="txtbusquedaprospecto"></asp:TextBox>
+                        <asp:LinkButton runat="server" style="text-decoration:none" ID="busquedaporfiltro" OnClick="busquedaporfiltro_Click">Buscar</asp:LinkButton>
+                         <asp:CheckBox ID="chkproceso" OnCheckedChanged="chkproceso_CheckedChanged" AutoPostBack="true" runat="server" Text="Proceso"></asp:CheckBox>
+                        <asp:CheckBox ID="chknocontesta" runat="server" OnCheckedChanged="chknocontesta_CheckedChanged" AutoPostBack="true" Text="No contesta"></asp:CheckBox>
+                        <div id="divGridprospecto" style="overflow: auto; height: 153px" runat="server">
                  <asp:GridView ID="gridviewprospectos" CssClass="mGrid"  runat="server" HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedprospectos" BorderStyle="Solid" Width="82%" >
+    AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedprospectos" BorderStyle="Solid" Width="90%" >
                      <Columns>
                          <asp:TemplateField HeaderText="Numero" Visible="false">
                            <ItemTemplate>
-                            <asp:Label ID="lblcodigo" Text='<%# Eval("codcrminfoprospecto") %>' runat="server" />
+                            <asp:Label ID="lblcodigo" Text='<%# Eval("codcrminfoprospecto")%>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                          <asp:TemplateField HeaderText="Numero" Visible="false">
@@ -253,7 +259,7 @@
                 </div>
             </div>
             <div class="wrapper">
-                <div style="border: 1px #e8e8e8 solid; width: 100%; height: 906px; float: right; margin: 10px 0px 10px 0px">
+                <div style="border: 1px #e8e8e8 solid; width: 100%; height: 1148px; float: right; margin: 10px 0px 10px 0px">
                     <div style="border-bottom: 1px #e8e8e8 solid; background-color: #f3f3f3; padding: 8px; font-size: 13px; font-weight: 700; color: #45484d;">
                         CONTROL DE PROSPECTOS
                     </div>
@@ -261,91 +267,123 @@
                         <h4 style="text-align: center">INFORMACIÓN GENERAL</h4>
                         <input id="txtnumerogeneral" style="margin-left: 1%;" placeholder="DPI" visible="false" runat="server" type="text" tabindex="1" class="inputscortos" autofocus="autofocus" />
                         <input id="txtnumeroderegistro" style="margin-left: 1%;" placeholder="DPI" visible="false" runat="server" type="text" tabindex="1" class="inputscortos" autofocus="autofocus" />
-                        <div >
-                        <span>Documento DPI:</span>
-                        <input id="txtnumerodpi" disabled="disabled" onkeypress="return numeros(event);" style="margin-left: 1%;" placeholder="DPI" runat="server" type="text" tabindex="1" class="inputscortos" autofocus="autofocus" />
-                        </div>
-                         <div>
-                        <span>Nombre Completo:</span>
-                        <input id="txtnombrecompleto" onkeypress="return soloLetras(event)" style="margin-left: 2%;" placeholder="Nombre Completo" runat="server" type="text" tabindex="2" class="inputslargos" autofocus="autofocus" />
-                        </div>
-                        <span>Numero de teléfono:</span>
-                        <input id="txttelefono" onkeypress="return numeros(event);" style="margin-left: 2%;" placeholder="Teléfono" runat="server" type="text" tabindex="3" class="inputscortos" maxlength="8" autofocus="autofocus" />
-                        <input id="txtemail" style="margin-left: 2%;" placeholder="Correo electrónico" runat="server" type="text" tabindex="4" class="inputslargos" autofocus="autofocus" />
-                        <div style="border: 1px #e8e8e8 solid; width: 30%; float: left; margin: 10px 0px 10px 0px">
-                            <%-- AREA DE INGRESOS --%>
-                            <h4 style="text-align: center">ÁREA DE INGRESOS</h4>
-                            <input id="txtingreso" onkeypress="return solonumeros(event);" style="margin-left: 3%; width: 40%" placeholder="Q - Ingresos" runat="server" type="text" tabindex="5" class="inputscortos" autofocus="autofocus" />
-                            <input id="txtegresos" onkeypress="return solonumeros(event);" style="margin-left: 3%; width: 40%" placeholder="Q - Egresos" runat="server" type="text" tabindex="6" class="inputscortos" autofocus="autofocus" />
-                        </div>
-                        <div style="border: 1px #e8e8e8 solid; width: 68%; float: right; margin: 10px 0px 10px 0px">
-                            <%-- AREA DE EMPLEADOS --%>
-                            <h4 style="text-align: center">ÁREA DE EMPLEO</h4>
-                            <input id="txtañoslaborados" onkeypress="return numeros(event);" style="margin-left: 9%; width: 18%;" placeholder="Años laborados" runat="server" type="text" tabindex="7" class="inputscortos" autofocus="autofocus" />
-                            <asp:DropDownList ID="combotienetrabajo" runat="server" Style="margin-left: 1%; width: 24%;" TabIndex="8" CssClass="inputscortos">
-                                <asp:ListItem Text="¿Trabaja actualmente?" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="Si" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="No" Value="2"></asp:ListItem>
-                            </asp:DropDownList>
-                            <input id="txttabajoactual" style="margin-left: 1%; width: 33%" placeholder="Trabajo actual" runat="server" type="text" tabindex="9" class="inputscortos" autofocus="autofocus" />
-                        </div>
-                        <div id="divareaseguimiento" runat="server" style="border: 1px #e8e8e8 solid; width: 100%; margin: 10px 0px 10px 0px">
-                            <%-- AREA DE SEGUIMIENTOS --%>
-                            <h4 style="text-align: left">Área de segumiento</h4>
-                            <asp:DropDownList ID="combotiposervicio" runat="server" OnSelectedIndexChanged="tiposervicio_SelectedIndexChanged" AutoPostBack="true" Style="margin-left: 1%; width: 12%;" TabIndex="10" CssClass="inputscortos">
-                                <asp:ListItem Text="Tipo de servicio" Value="0"></asp:ListItem>
-                            </asp:DropDownList>
-                            <input id="txtmonto" onkeypress="return solonumeros(event);" style="margin-left: 1%; width: 8%;" placeholder="Q - Monto" runat="server" type="text" tabindex="11" class="inputscortos" autofocus="autofocus" />
-                            <select id="combofinalidaddeservicio" runat="server" style="margin-left: 1%; width: 24%;" class="inputscortos">
-                                <option value="0">Seleccione la finalidad del servicio </option>
-                            </select>
-                            <asp:DropDownList ID="combocontactollamadas" runat="server" Style="margin-left: 1%; width: 18%;" TabIndex="12" CssClass="inputscortos">
-                                <asp:ListItem Text="Estado de la llamada" Value="0"></asp:ListItem>
-                            </asp:DropDownList>
-                            <input id="txtfechainicio" style="margin-left: 2%; width: 13%;" runat="server" type="date" tabindex="13" class="inputscortos" value="2020-04-25" min="1950-01-01" max="2021-12-31" autofocus="autofocus" />
-                            <input id="txtfechafin" style="margin-left: 2%; width: 13%;" runat="server" type="date" tabindex="14" class="inputscortos" value="2020-04-25" min="1950-01-01" max="2021-12-31" autofocus="autofocus" />
-                            <hr style="border: groove" />
-                            <asp:DropDownList ID="combosemaforoestado" OnSelectedIndexChanged="seleccionsemaforo_SelectedIndexChanged" AutoPostBack="true" runat="server" Style="margin-left: 21%; width: 15%;" TabIndex="15" CssClass="inputscortos">
-                                <asp:ListItem Text="Seleccione el color" Value="0"></asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:TextBox Style="margin-left: 2%;" Width="30px" Height="30px" ID="txtcolorestado" Enabled="false" runat="server" TabIndex="16"></asp:TextBox>
-                            <asp:DropDownList ID="combosemaforodescripcion" runat="server" Style="margin-left: 10%; width: 21%; text-align: center;" TabIndex="17" CssClass="inputscortos">
-                                <asp:ListItem Text="Motivo del estado" Value="0"></asp:ListItem>
-                            </asp:DropDownList>
 
-                            <hr style="border: groove" />
-
-                            <h4 style="text-align: center">INFORMACIÓN ADCIONAL</h4>
-                            <asp:DropDownList ID="combocuentaigss" runat="server" Style="margin-left: 2%; width: 14%;" TabIndex="18" CssClass="inputscortos">
-                                <asp:ListItem Text="¿Cuenta con IGSS?" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="Si" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="No" Value="2"></asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:DropDownList ID="combotipodomicilio" runat="server" Style="margin-left: 2%; width: 15%;" TabIndex="19" CssClass="inputscortos">
-                                <asp:ListItem Text="Tipo del domicilio" Value="0"></asp:ListItem>
-                            </asp:DropDownList>
-                            <input id="txtañodomicilio" onkeypress="return numeros(event);" style="margin-left: 1%;" placeholder="¿Años de residencia?" runat="server" type="text" tabindex="20" class="inputscortos" autofocus="autofocus" />
-                            <asp:DropDownList ID="comboposeecuentacoope" runat="server" Style="margin-left: 2%; width: 20%;" TabIndex="21" CssClass="inputscortos">
-                                <asp:ListItem Text="¿Posee cuenta en cooperativa?" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="Si" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="No" Value="2"></asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:DropDownList ID="combosucursalmascerca" runat="server" Style="margin-left: 2%; width: 22%;" TabIndex="22" CssClass="inputscortos">
-                                <asp:ListItem Text="¿Sucursal más cercana?" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="Central" Value="1"></asp:ListItem>
-
-                            </asp:DropDownList>
-                            <center> 
-         <input id="txtcontactadopor"  style="margin-left:1%;" placeholder="Contactado Por:" runat="server" type="text" tabindex="18" class="inputscortos"   autofocus="autofocus" />
-       <input id="txtdpireferencia" onkeypress="return numeros(event);" style="margin-left:1%;" placeholder="Dpi de referencia" runat="server" type="text" tabindex="19" class="inputscortos"   autofocus="autofocus" />
-         </center>
-                            <%-- AREA DE COMENTARIOS / DESCRIPCIÓN --%>
-                            <div class="form-group" style="float: none">
-                                <textarea class="form-control rounded-0" style="width: 95%; margin-left: 28px; text-align: center;" placeholder="Descripción" tabindex="23" id="exampleFormControlTextarea1" runat="server" rows="5"></textarea>
+                        <div style="display: block; margin-left: 12%">
+                            <span>Documento DPI:</span>
+                            <input id="txtnumerodpi" disabled="disabled" onkeypress="return numeros(event);" style="margin-left: 1%;" placeholder="DPI" runat="server" type="text" tabindex="1" class="inputscortos" autofocus="autofocus" />
+                            <div style="margin-left: 12%; display: inline">
+                                <span>Nombre Completo:</span>
+                                <input id="txtnombrecompleto" onkeypress="return soloLetras(event)" style="margin-left: 1%;" placeholder="Nombre Completo" runat="server" type="text" tabindex="2" class="inputslargos" autofocus="autofocus" />
                             </div>
-                            <br />
-                            <%-- AREA DE BOTONES --%>
-                            <center>
+                        </div>
+                        <div style="display: block; margin-left: 9%">
+                            <span>Numero de teléfono:</span>
+                            <input id="txttelefono" onkeypress="return numeros(event);" style="margin-left: 1%;" placeholder="Teléfono" runat="server" type="text" tabindex="3" class="inputscortos" maxlength="8" autofocus="autofocus" />
+                            <div style="margin-left: 11%; display: inline">
+                                <span>Correo Electrónico:</span>
+                                <input id="txtemail" style="margin-left: 1%;" placeholder="Correo electrónico" runat="server" type="text" tabindex="4" class="inputslargos" autofocus="autofocus" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 2px; font-size: 13px;">
+                        <%-- AREA DE INGRESOS --%>
+                        <h4 style="text-align: center">ÁREA DE INGRESOS</h4>
+                        <span style="margin-left: 8%">Ingresos:</span>
+                        <input id="txtingreso" onkeypress="return solonumeros(event);" style="margin-left: 1%; width: 25%" placeholder="Q - Ingresos" runat="server" type="text" tabindex="5" class="inputscortos" autofocus="autofocus" />
+                        <span style="margin-left: 5%">Egresos:</span>
+                        <input id="txtegresos" onkeypress="return solonumeros(event);" style="margin-left: 1%; width: 25%" placeholder="Q - Egresos" runat="server" type="text" tabindex="6" class="inputscortos" autofocus="autofocus" />
+                    </div>
+                    <div style="padding: 2px; font-size: 13px;">
+                        <%-- AREA DE EMPLEADOS --%>
+                        <h4 style="text-align: center">ÁREA DE EMPLEO</h4>
+                        <span style="margin-left: 15%">Años laborados</span>
+                        <input id="txtañoslaborados" onkeypress="return numeros(event);" style="margin-left: 1%; width: 18%;" placeholder="Años laborados" runat="server" type="text" tabindex="7" class="inputscortos" autofocus="autofocus" />
+                        <span style="margin-left: 12%">¿Trabaja actualmente?</span>
+                        <asp:DropDownList ID="combotienetrabajo" runat="server" Style="margin-left: 1%; width: 24%;" TabIndex="8" CssClass="inputscortos">
+                            <asp:ListItem Text="Seleccione una opción" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Si" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="No" Value="2"></asp:ListItem>
+                        </asp:DropDownList>
+                        <center>
+                              <span style="margin-left:5%">¿En que empresa labora o que actividad realiza?</span>
+                            <input id="txttabajoactual" style="margin-left: 1%; width: 33%" placeholder="Trabajo actual" runat="server" type="text" tabindex="9" class="inputscortos" autofocus="autofocus" />
+                                  </center>
+                    </div>
+                    <div style="padding: 1px; font-size: 13px;">
+                        <%-- AREA DE SEGUIMIENTOS --%>
+                        <h4 style="text-align: center">Área de seguimiento</h4>
+                        <span style="margin-left: 1%">Tipo de servicio:</span>
+                        <asp:DropDownList ID="combotiposervicio" runat="server" OnSelectedIndexChanged="tiposervicio_SelectedIndexChanged" AutoPostBack="true" Style="margin-left: 1%; width: 14%;" TabIndex="10" CssClass="inputscortos">
+                            <asp:ListItem Text="Tipo de servicio" Value="0"></asp:ListItem>
+                        </asp:DropDownList>
+                        <span style="margin-left: 3%">Monto:</span>
+                        <input id="txtmonto" onkeypress="return solonumeros(event);" style="margin-left: 1%; width: 8%;" placeholder="Q - Monto" runat="server" type="text" tabindex="11" class="inputscortos" autofocus="autofocus" />
+                        <span style="margin-left: 3%">Destino o Finalidad de servicio:</span>
+                        <select id="combofinalidaddeservicio" runat="server" style="margin-left: 1%; width: 24%;" class="inputscortos">
+                            <option value="0">Seleccione la finalidad del servicio </option>
+                        </select>
+                        <span style="margin-left: 9%">Estado de la llamada:</span>
+                        <asp:DropDownList ID="combocontactollamadas" runat="server" Style="margin-left: 1%; width: 18%;" TabIndex="12" CssClass="inputscortos">
+                            <asp:ListItem Text="Estado de la llamada" Value="0"></asp:ListItem>
+                        </asp:DropDownList>
+                        <span>Primera llamada</span>
+                        <input id="txtfechainicio" style="margin-left: 1%; width: 13%;" runat="server" type="date" tabindex="13" class="inputscortos" value="2020-04-25" min="1950-01-01" max="2021-12-31" autofocus="autofocus" />
+                        <span>Ultima llamada</span>
+                        <input id="txtfechafin" style="margin-left: 1%; width: 13%;" runat="server" type="date" tabindex="14" class="inputscortos" value="2020-04-25" min="1950-01-01" max="2021-12-31" autofocus="autofocus" />
+                        <hr style="border: groove" />
+                    </div>
+                    <span style="margin-left: 4%;">Color de semáforo:</span>
+                    <asp:DropDownList ID="combosemaforoestado" OnSelectedIndexChanged="seleccionsemaforo_SelectedIndexChanged" AutoPostBack="true" runat="server" Style="margin-left: 1%; width: 18%;" TabIndex="15" CssClass="inputscortos">
+                        <asp:ListItem Text="Seleccione el color" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:TextBox Style="margin-left: 5%;" Width="30px" Height="30px" ID="txtcolorestado" Enabled="false" runat="server" TabIndex="16"></asp:TextBox>
+                    <span style="margin-left: 2%;">Motivo del estado:</span>
+                    <asp:DropDownList ID="combosemaforodescripcion" runat="server" Style="margin-left: 1%; width: 21%; text-align: center;" TabIndex="17" CssClass="inputscortos">
+                        <asp:ListItem Text="Motivo del estado" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <hr style="border: groove" />
+                    <h4 style="text-align: center">INFORMACIÓN ADCIONAL</h4>
+                    <span style="margin-left: 2%">¿Cuenta con IGSS?</span>
+                    <asp:DropDownList ID="combocuentaigss" runat="server" Style="margin-left: 2%; width: 19%;" TabIndex="18" CssClass="inputscortos">
+                        <asp:ListItem Text="Seleccione una opción" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Si" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="No" Value="2"></asp:ListItem>
+                    </asp:DropDownList>
+                    <span style="margin-left: 3%">Tipo de domicilio:</span>
+                    <asp:DropDownList ID="combotipodomicilio" runat="server" Style="margin-left: 1%; width: 19%;" TabIndex="19" CssClass="inputscortos">
+                        <asp:ListItem Text="Tipo del domicilio" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                    <span style="margin-left: 2%">¿Años en domicilio?</span>
+                    <input id="txtañodomicilio" onkeypress="return numeros(event);" style="margin-left: 1%;" placeholder="¿Años de residencia?" runat="server" type="text" tabindex="20" class="inputscortos" autofocus="autofocus" />
+                    <span style="margin-left: 2%">¿Posee cuenta en cooperativa?</span>
+                    <asp:DropDownList ID="comboposeecuentacoope" runat="server" Style="margin-left: 1%; width: 20%;" TabIndex="21" CssClass="inputscortos">
+                        <asp:ListItem Text="Seleccione una opción" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Si" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="No" Value="2"></asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                    <span style="margin-left: 2%">Sucursal más cercana:</span>
+                    <asp:DropDownList ID="combosucursalmascerca" runat="server" Style="margin-left: 1%; width: 22%;" TabIndex="22" CssClass="inputscortos">
+                        <asp:ListItem Text="¿Sucursal más cercana?" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Central" Value="1"></asp:ListItem>
+
+                    </asp:DropDownList>
+                                <span style="margin-left:4%;">Contactado por:</span>
+                         <input id="txtcontactadopor"  style="margin-left:1%;" placeholder="Contactado Por:" runat="server" type="text" tabindex="18" class="inputscortos"   autofocus="autofocus" />
+                   <br />
+                    <center>    
+                    <span style="margin-left:8%">DPI de referencia:</span>
+                                <input id="txtdpireferencia" maxlength="13" onkeypress="return numeros(event);" style="margin-left:1%;" placeholder="DPI de referencia" runat="server" type="text" tabindex="19" class="inputscortos"   autofocus="autofocus" />
+                   </center>
+                        <%-- AREA DE COMENTARIOS / DESCRIPCIÓN --%>
+                    <div class="form-group" style="float: none">
+                        <textarea class="form-control rounded-0" style="width: 95%; margin-left: 28px; text-align: center;" placeholder="Descripción" tabindex="23" id="exampleFormControlTextarea1" runat="server" rows="5" maxlength="150" ></textarea>
+                    </div>
+                    <br />
+                    <%-- AREA DE BOTONES --%>
+                    <center>
    
     <asp:LinkButton ID="LinkButton1" class="btn btn-warning" style=" text-decoration:none; width:45%" value="Crear Alerta" type="button" runat="server" tabindex="24" name="Crear Alerta" title="Crear Alerta" OnClick="Btn_abriralerta_Click" >Crear Alerta</asp:LinkButton>
          <asp:LinkButton ID="LinkButton2" class="btn btn-success" style=" text-decoration:none; width:45%" value="Guardar" type="button" runat="server" tabindex="25" name="Guardar" title="Guardar" OnClick="Btn_Guardarprospecto_Click" >Guardar</asp:LinkButton>
@@ -353,11 +391,11 @@
    
          </center>
 
-                            <%-- AREA DEL GRIDVIEW --%>
-                        </div>
-                    </div>
+                    <%-- AREA DEL GRIDVIEW --%>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
 
         <br />
@@ -366,6 +404,22 @@
         <script src="../../../CRM-Script/Script.js" type="text/javascript"></script>
     </form>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script>
+                function format(input) {
+                    var num = input.value.replace(/\,/g, '');
+                    if (!isNaN(num)) {
+                        num = num.toString().split('').reverse().join('').replace(/(?=\d*\,?)(\d{3})/g, '$1,');
+                        num = num.split('').reverse().join('').replace(/^[\,]/, '');
+                        input.value = num;
+                    }
+                    else {
+                        alert('Solo se permiten numeros');
+                        input.value = input.value.replace(/[^\d\,]*/g, '');
+                    }
+                }
+                $('#OtrosGastos').mask('000,000,000.00', { reverse: true });
+            </script>
+
     <script>
         posicionarMenu();
         $(window).scroll(function () {

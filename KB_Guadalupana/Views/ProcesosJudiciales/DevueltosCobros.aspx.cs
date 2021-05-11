@@ -92,9 +92,11 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     FechaActa.Value = fecha6[0];
                     NumActa.Value = campos[11];
                     NumPrestamo.Value = campos[1];
+                    CreditoNumero.Value = campos[1];
                     DPI.Value = campos[21];
                     CodigoCliente.Value = campos[19];
                     NombreCliente.Value = campos[20];
+                    ClienteNombre.Value = campos[20];
                     MontoOriginal.Value = "Q " + campos[9];
                     CapitalDesem.Value = "Q " + campos[9];
                     Interes1.Value = campos[16];
@@ -150,6 +152,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 for (int i = 0; i < campos3.Length; i++)
                 {
                     NumIncidente.Value = campos3[0];
+                    NumeroIncidente.Value = campos3[0];
                     NumTarjeta.Value = campos3[1];
                     NumCuenta.Value = campos3[2];
                     CIF.Value = campos3[3];
@@ -175,6 +178,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 for (int i = 0; i < campos2.Length; i++)
                 {
                     NumIncidente.Value = campos2[0];
+                    NumeroIncidente.Value = campos2[0];
                     Gastos1.Value = campos2[1];
                     GastosJudiciales.Value = campos2[2];
                     OtrosGastos.Value = campos2[3];
@@ -317,6 +321,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
                         llenargridviewdocumentos();
                     }
+                  
                 }
                 else
                 {

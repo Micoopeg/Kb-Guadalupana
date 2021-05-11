@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
+namespace KB_Guadalupana.Views.CRM_SISTEMA.Asesores
 {
 
 
-    public partial class CRM_Mantfrasesdeldia
+    public partial class CRM_Prospectosenproceso
     {
 
         /// <summary>
@@ -24,67 +24,40 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control btnmenuprincipal.
+        /// Control LinkButton1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnmenuprincipal;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
 
         /// <summary>
-        /// Control btnnuevoingreso.
+        /// Control LinkButton3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnnuevoingreso;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
 
         /// <summary>
-        /// Control txtcodigo.
+        /// Control lblcriterio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcodigo;
+        protected global::System.Web.UI.WebControls.Label lblcriterio;
 
         /// <summary>
-        /// Control txtnombre.
+        /// Control txtnombrecompleto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnombre;
-
-        /// <summary>
-        /// Control btnmodificar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnmodificar;
-
-        /// <summary>
-        /// Control btnguardar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnguardar;
-
-        /// <summary>
-        /// Control txtbusqueda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtbusqueda;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnombrecompleto;
 
         /// <summary>
         /// Control btnbuscar.
@@ -96,12 +69,57 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
         protected global::System.Web.UI.WebControls.LinkButton btnbuscar;
 
         /// <summary>
-        /// Control gridviewmant.
+        /// Control gridviewprospectos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridviewmant;
+        protected global::System.Web.UI.WebControls.GridView gridviewprospectos;
+
+        /// <summary>
+        /// Control gridview1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridview1;
+
+        /// <summary>
+        /// Control gridview2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridview2;
+
+        /// <summary>
+        /// Control gridview3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridview3;
+
+        /// <summary>
+        /// Control gridview4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridview4;
+
+        /// <summary>
+        /// Control gridview5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridview5;
     }
 }

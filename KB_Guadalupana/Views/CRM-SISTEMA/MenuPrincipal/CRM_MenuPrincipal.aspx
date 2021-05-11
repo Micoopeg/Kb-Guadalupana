@@ -62,18 +62,20 @@
 				<div id="other-sub" style="display: none;">
 					<a href="../Administracion/Mantenimientos/CRM_Manttiposervicio.aspx" title="Forms"><i class="icon-book"></i><span>  
 					Tipos de servicio</span></a>
-					<a href="../Administracion/Mantenimientos/CRM_Manttipodomicilio.aspx" title="Mail Lists"><i class="icon-book"></i><span>  
+					<a href="../Administracion/Mantenimientos/CRM_Manttipodomicilio.aspx" title="tiposervicio"><i class="icon-book"></i><span>  
 					Tipos de domicilio</span></a>
-					<a href="../Administracion/Mantenimientos/CRM_Mantdescripcionestado.aspx" title="Forms"><i class="icon-book"></i><span>  
+					<a href="../Administracion/Mantenimientos/CRM_Mantdescripcionestado.aspx" title="tipodomicilio"><i class="icon-book"></i><span>  
 					Descripción por estado</span></a>
-					<a href="../Administracion/Mantenimientos/CRM_Mantcontactollamadas.aspx" title="Mail Lists"><i class="icon-book"></i><span>  
+					<a href="../Administracion/Mantenimientos/CRM_Mantcontactollamadas.aspx" title="descripcion"><i class="icon-book"></i><span>  
 					Contacto llamada</span></a>
-					<a href="../Administracion/Mantenimientos/CRM_Finalidaddeservicio.aspx" title="Mail Lists"><i class="icon-book"></i><span>  
+					<a href="../Administracion/Mantenimientos/CRM_Finalidaddeservicio.aspx" title="contacto"><i class="icon-book"></i><span>  
 					Finalidad de servicio</span></a>
-					<a href="../Administracion/Mantenimientos/CRM_Mantfrasesdeldia.aspx" title="Mail Lists"><i class="icon-book"></i><span>  
+					<a href="../Administracion/Mantenimientos/CRM_Mantfrasesdeldia.aspx" title="finalidad"><i class="icon-book"></i><span>  
 					Frases del día</span></a>
-					<a href="../Administracion/Mantenimientos/CRM_Mantprospecto.aspx" title="Mail Lists"><i class="icon-book"></i><span>  
+					<a href="../Administracion/Mantenimientos/CRM_Mantprospecto.aspx" title="frases"><i class="icon-book"></i><span>  
 					 Clientes</span></a>
+					<a href="../Administracion/Controldedespidos/Trasalado_por_despido.aspx" title="Despido"><i class="icon-book"></i><span>  
+					 Control de despidos</span></a>
 				</div>
 		<a href="~/Views/CRM-SISTEMA/Administracion/Reasignaciones/Reasignar_prospecto.aspx" title="Graph &amp; Charts" id="btnasignacionforzosa" runat="server"><i class="icon-briefcase"></i><span>  
 			Asignaciones Forzosa</span></a>

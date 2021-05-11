@@ -1,12 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Prospectoenprocesos.aspx.cs" Inherits="CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes.Prospectoenprocesos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CRM_Prospectosenproceso.aspx.cs" Inherits="KB_Guadalupana.Views.CRM_SISTEMA.Asesores.CRM_Prospectosenproceso" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-     <title>CRM-Prospecto en proceso</title>
-        <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg"/>
+    <title>CRM-Prospectos Aprobados</title>
+    <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg"/>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="../../../CRM-Estilos/Estiloparagraficas.css" />
@@ -19,14 +19,13 @@
 
         }
     </style>
-
 </head>
-<body style="background-color:#2c3e50">
+<body style="background-color:#000B1C">
     <form id="form1" runat="server">
         <header style="background-color:#69a43c">
   <div class="row">
     <div class="col-sm-4" >
-        <asp:LinkButton ID="LinkButton1" class="btn btn-success" style=" background-color:#003561; border-radius:0px; border-color:#003561; text-decoration:none; width:100%" value="Menu Principal" type="button" runat="server" tabindex="25" name="Guardar" title="Guardar" OnClick="btnmenuprincipal_Click" >Menú Principal</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton1" class="btn btn-success" style=" background-color:#003561; border-radius:0px; border-color:#003561; text-decoration:none; width:100%" value="Menu Principal" type="button" runat="server" tabindex="25" name="Guardar" title="Guardar" OnClick="btnmenuprincipal_Click" >Regresar</asp:LinkButton>
     </div>
     <div class="col-sm-4">
         <center>
@@ -34,7 +33,7 @@
         </center>
     </div>
          <div class="col-sm-4">
-             <asp:LinkButton ID="LinkButton3" class="btn btn-success" style="background-color:#003561; text-decoration:none; border-color:#003561; border-radius:0px; width:100%" value="Cerrar sesion" type="button" runat="server" tabindex="25" name="Guardar" title="Cerrar sesion" OnClick="btnmenucerrar_Click"  >Cerrar Sesión</asp:LinkButton>
+             <asp:LinkButton ID="LinkButton3" class="btn btn-success" style="background-color:#003561; text-decoration:none; border-color:#003561; border-radius:0px; width:100%" value="Cerrar sesion" type="button" runat="server" tabindex="25" name="Guardar" title="Cerrar sesion" OnClick="LinkButton3_Click"  >Cerrar Sesión</asp:LinkButton>
     </div>
   </div>
         </header>
@@ -43,10 +42,8 @@
 
             <%-- Inicio de los textbox --%>
                 <%-- GRIDVIEW NUMEROS DE TELEFONO --%>
-            <asp:Label ID="lblcriterio" style="color:white" runat="server" Text="Criterio Busqueda:"></asp:Label>
+            <asp:Label ID="lblcriterio" style="color:white" runat="server" Text="Buscar:"></asp:Label>
             <input id="txtnombrecompleto"  style="margin-left:2%;" placeholder="Criterio de búsqueda" runat="server" type="text" tabindex="1" autofocus/>
-               <asp:DropDownList TabIndex="2" ID="comboagencia" style="height:25px" runat="server" name="agencia" placeholder="[AGENCIA]" required="required">
-               </asp:DropDownList>
             <asp:LinkButton ID="btnbuscar" style="color:white" runat="server" OnClick="btnbuscar_Click">Buscar</asp:LinkButton>
             <br />
             <br />
@@ -121,7 +118,7 @@
      <asp:GridView ID="gridview2" CssClass="container"  style="width: 90%; text-align:center" runat="server"  HeaderStyle-ForeColor="Black"
     AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChangedprospectos" BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo de domicilio" Visible="True">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo de domilio" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lblcodeptelefono1" Text='<%# Eval("crmtipo_domicilionombre") %>' runat="server" />
                         </ItemTemplate>
@@ -212,7 +209,7 @@
                            <asp:Label ID="lblcodeptelefono1" Text='<%# Eval("crminfo_prospectocuentaconigss") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="¿Tiene cuenta en cooperativa?" Visible="True">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tiene cuenta en coope" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lbltipotelefono2"  Text='<%# Eval("crminfo_prospectocuentaencooperativa") %>' runat="server" />
                         </ItemTemplate>
@@ -222,7 +219,7 @@
                             <asp:Label ID="lblnombretelefono3" Text='<%# Eval("crminfo_contactadopor") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="DPI de referencia">
+                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Dpi de referencia">
                            <ItemTemplate>
                             <asp:Label ID="lblnumerotelefono4" Text='<%# Eval("crminfo_prospectoreferenciado") %>' runat="server" />
                         </ItemTemplate>
@@ -247,3 +244,4 @@
     </form>
 </body>
 </html>
+

@@ -54,7 +54,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
                     btningresodedatos.Visible = false;
                     btncarteraasociados.Visible = false;
                     btncatalogodeclientes.Visible = true;
-                    btnmantenimientos.Visible = false;
+                    btnmantenimientos.Visible = true;
                     btncharts.Visible = true;
                     btndashboards.Visible = true;
                     btnasignacionforzosa.Visible=true;

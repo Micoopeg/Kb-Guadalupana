@@ -1084,8 +1084,66 @@ namespace KB_Guadalupana.Views.ControlEX
         {
             string ar = exc.obtenerarea(usernombre);
             DataTable dt1 = new DataTable();
+            DataTable dt2 = new DataTable();
+
+            dt2.Columns.Add("gen_fechadesembolso");
+            dt2.Columns.Add("cifgeneral");
+            dt2.Columns.Add("gen_numcredito");
+            dt2.Columns.Add("nombrecompleto");
+            dt2.Columns.Add("gen_monto");
+            dt2.Columns.Add("ex_nomtipo");
+
+
             dt1 = mex.llenarenvio(ar);
-            GDVTEMP.DataSource = dt1;
+
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                string estado = WS.buscarcreditoexpedientes(dt1.Rows[i]["gen_numcredito"].ToString());
+                char delimitador = '|';
+                string[] valoresprocesados = estado.Split(delimitador);
+
+                if (estado.Length != 4)
+                {
+
+                    if (valoresprocesados[2] == "VIGENTE AL DIA")
+                    {
+
+                        if (valoresprocesados[1] == dt1.Rows[i]["ex_nomtipo"].ToString())
+                        {
+
+                            DataRow row = dt2.NewRow();
+
+                            row["gen_fechadesembolso"] = dt1.Rows[i]["gen_fechadesembolso"].ToString();
+                            row["cifgeneral"] = dt1.Rows[i]["cifgeneral"].ToString();
+                            row["gen_numcredito"] = dt1.Rows[i]["gen_numcredito"].ToString();
+                            row["nombrecompleto"] = dt1.Rows[i]["nombrecompleto"].ToString();
+                            row["gen_monto"] = dt1.Rows[i]["gen_monto"].ToString();
+                            row["ex_nomtipo"] = dt1.Rows[i]["ex_nomtipo"].ToString();
+
+
+
+
+                            dt2.Rows.Add(row);
+                        }
+
+
+
+
+
+
+                    }
+
+
+
+
+
+                }
+
+
+            }
+
+
+            GDVTEMP.DataSource = dt2;
             GDVTEMP.DataBind();
 
         }

@@ -6,7 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>CRM-Prospectos Finalizados</title>
-    <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg"/>
+    }    <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg"/>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="../../../CRM-Estilos/Estiloparagraficas.css" />
@@ -51,7 +51,7 @@
      <asp:GridView ID="gridviewprospectos" CssClass="container"  style="width: 692px;  text-align:center" runat="server"  HeaderStyle-ForeColor="Black"
     AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChangedprospectos" BorderStyle="Solid">
                      <Columns>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Lead" Visible="True">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Leed" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lblcodprospeto" Text='<%# Eval("codcrminfoprospecto") %>' runat="server" />
                         </ItemTemplate>

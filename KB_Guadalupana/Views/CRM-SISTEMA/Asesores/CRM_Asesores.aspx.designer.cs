@@ -60,42 +60,6 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control txtbusquedaprospecto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbusquedaprospecto;
-
-        /// <summary>
-        /// Control busquedaporfiltro.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton busquedaporfiltro;
-
-        /// <summary>
-        /// Control chkproceso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkproceso;
-
-        /// <summary>
-        /// Control chknocontesta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chknocontesta;
-
-        /// <summary>
         /// Control divGridprospecto.
         /// </summary>
         /// <remarks>
@@ -211,6 +175,15 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txttabajoactual;
+
+        /// <summary>
+        /// Control divareaseguimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divareaseguimiento;
 
         /// <summary>
         /// Control combotiposervicio.

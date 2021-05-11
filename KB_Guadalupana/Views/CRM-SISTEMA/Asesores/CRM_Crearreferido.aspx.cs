@@ -49,7 +49,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
             }
             else
             {
-                if (txtnumerodpi.Value.Length == 13 && txtdpidereferido.Value.Length == 13)
+                if (txtnumerodpi.Value.Length == 13 || txtdpidereferido.Value.Length == 13)
                 {
                     if (validardpi(txtnumerodpi.Value) == true)
                     {

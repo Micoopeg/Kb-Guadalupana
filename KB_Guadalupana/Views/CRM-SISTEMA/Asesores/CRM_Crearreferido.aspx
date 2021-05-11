@@ -40,16 +40,24 @@
                     CONTROL DE PROSPECTOS
                 </div>
                 <div style="padding: 8px; font-size: 13px;">
-        <h4 style="text-align:center">INFORMACIÓN GENERAL</h4>       
+        <h4 style="text-align:center">INFORMACIÓN GENERAL</h4>     
+       <span>DPI de la persona que esta referenciando:</span>
        <input id="txtdpidereferido" style="margin-left:1%;" placeholder="DPI DE REFERIDO" visible="true" runat="server" type="text" tabindex="1" onkeypress="return numeros(event);" maxlength="13" class="inputscortos"  autofocus="autofocus" />
+       <span>DPI del nuevo cliente:</span>
       <input id="txtnumerodpi" onkeypress="return numeros(event);" style="margin-left:1%;" placeholder="DPI" runat="server" type="text" tabindex="2" maxlength="13" class="inputscortos"  autofocus="autofocus" />
-      <input id="txtnombrecompleto" onkeypress="return soloLetras(event)" style="margin-left:2%;" placeholder="Nombre Completo" runat="server" type="text" tabindex="3" class="inputslargos"  autofocus="autofocus"/>
-      <input id="txttelefono"  onkeypress="return numeros(event);" style="margin-left:2%;" placeholder="Teléfono" maxlength="8" runat="server" type="text" tabindex="4" class="inputscortos"  autofocus="autofocus"/>
-     <input id="txtemail" style="margin-left:2%;" placeholder="Correo electrónico" runat="server" type="text" tabindex="5" class="inputslargos"  autofocus="autofocus"/>
-     <div style="border: 1px #e8e8e8 solid; width: 30%; float: left; margin: 10px 0px 10px 0px">
+      <span>Nombre completo:</span>
+      <input id="txtnombrecompleto" onkeypress="return soloLetras(event)" style="margin-left:1%; width:250px" placeholder="Nombre Completo" runat="server" type="text" tabindex="3" class="inputslargos"  autofocus="autofocus"/>
+      <br />
+                    <span>Teléfono:</span>
+      <input id="txttelefono"  onkeypress="return numeros(event);" style="margin-left:1%;" placeholder="Teléfono" maxlength="8" runat="server" type="text" tabindex="4" class="inputscortos"  autofocus="autofocus"/>
+      <span>Corre electrónico:</span>
+                    <input id="txtemail" style="margin-left:1%;" placeholder="Correo electrónico" runat="server" type="text" tabindex="5" class="inputslargos"  autofocus="autofocus"/>
+                    <br />
+                    <center>
      <%-- AREA DE COMENTARIOS / DESCRIPCIÓN --%>
+          <span>Comentarios:</span>
 <div class="form-group" style="float:initial">
-  <textarea class="form-control rounded-0" style="width:95%; margin-left:28px; text-align:center;" placeholder="Descripción" tabindex="24" id="exampleFormControlTextarea1" runat="server" rows="5"></textarea>
+  <textarea class="form-control rounded-0" maxlength="500" style="width:95%; margin-left:28px; text-align:center;" placeholder="Comentarios" tabindex="24" id="exampleFormControlTextarea1" runat="server" rows="5"></textarea>
 </div>
      <br />
      <%-- AREA DE BOTONES --%> 
@@ -60,7 +68,7 @@
    
    
          </center>
-</div>
+                        </center>
                     <%-- AREA DEL GRIDVIEW --%>      
       </div>                
       </div>

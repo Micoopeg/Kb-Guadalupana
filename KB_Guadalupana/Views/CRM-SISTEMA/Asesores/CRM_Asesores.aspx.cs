@@ -80,7 +80,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "select a.codcrminfoprospecto,a.codcrminfogeneralprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto,a.crminfo_prospectotelefono,a.crminfo_prospectoemail,a.crminfo_prospectoingresos,a.crminfo_prospectoegresos,a.crminfo_prospectoañoslaborados,a.crminfo_prospectotrabajaactualmente,a.crminfo_prospectodescripciontrabajoactual,a.codcrmtiposervicio,a.crminfo_prospectomonto,a.codcrmfinalidadservicio,a.codcrmcontactollamadas,a.crminfo_prospectofechaprimerllamada,a.crminfo_prospectofechaultimallamada,a.codcrmsemaforoestado,a.codcrmestadodescripcion,a.crminfo_prospectocuentaconigss,a.codcrmtipodomicilio,a.crminfo_prospectoañosdomicilio,a.crminfo_prospectocuentaencooperativa,a.crminfo_prospectosucursalcerca,a.crminfo_prospectodescripcion,a.crminfo_contactadopor,a.crminfo_prospectoreferenciado FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE d.crmcontrol_ingresousuario='" + usuario + "' AND (codcrmsemaforoestado!=4 OR codcrmsemaforoestado!=1);";
+                    string QueryString = "select a.codcrminfoprospecto,a.codcrminfogeneralprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto,a.crminfo_prospectotelefono,a.crminfo_prospectoemail,a.crminfo_prospectoingresos,a.crminfo_prospectoegresos,a.crminfo_prospectoañoslaborados,a.crminfo_prospectotrabajaactualmente,a.crminfo_prospectodescripciontrabajoactual,a.codcrmtiposervicio,a.crminfo_prospectomonto,a.codcrmfinalidadservicio,a.codcrmcontactollamadas,a.crminfo_prospectofechaprimerllamada,a.crminfo_prospectofechaultimallamada,a.codcrmsemaforoestado,a.codcrmestadodescripcion,a.crminfo_prospectocuentaconigss,a.codcrmtipodomicilio,a.crminfo_prospectoañosdomicilio,a.crminfo_prospectocuentaencooperativa,a.crminfo_prospectosucursalcerca,a.crminfo_prospectodescripcion,a.crminfo_contactadopor,a.crminfo_prospectoreferenciado FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE d.crmcontrol_ingresousuario='" + usuario + "' AND (codcrmsemaforoestado=2 OR codcrmsemaforoestado=3);";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);
@@ -181,7 +181,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                     combotiposervicio.DataTextField = "crmtipo_servicionombre";
                     combotiposervicio.DataValueField = "codcrmtiposervicio";
                     combotiposervicio.DataBind();
-                    combotiposervicio.Items.Insert(0, new ListItem("[Tipo de servicio]", "0"));
+                    combotiposervicio.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
             }
@@ -221,7 +221,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                     combocontactollamadas.DataTextField = "crmcontacto_llamadasnombre";
                     combocontactollamadas.DataValueField = "codcrmcontactollamadas";
                     combocontactollamadas.DataBind();
-                    combocontactollamadas.Items.Insert(0, new ListItem("[Estado de la llamada]", "0"));
+                    combocontactollamadas.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
             }
@@ -241,7 +241,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                     combosemaforoestado.DataTextField = "crmsemaforo_estadonombre";
                     combosemaforoestado.DataValueField = "codcrmsemaforoestado";
                     combosemaforoestado.DataBind();
-                    combosemaforoestado.Items.Insert(0, new ListItem("[Seleccione el color]", "0"));
+                    combosemaforoestado.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
             }
@@ -261,7 +261,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                     combotipodomicilio.DataTextField = "crmtipo_domicilionombre";
                     combotipodomicilio.DataValueField = "codcrmtipodomicilio";
                     combotipodomicilio.DataBind();
-                    combotipodomicilio.Items.Insert(0, new ListItem("[Tipo de domicilio]", "0"));
+                    combotipodomicilio.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
             }
@@ -281,7 +281,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
                     combosucursalmascerca.DataTextField = "crm_genagenciasnombre";
                     combosucursalmascerca.DataValueField = "codcrmgenagencias";
                     combosucursalmascerca.DataBind();
-                    combosucursalmascerca.Items.Insert(0, new ListItem("[¿Sucrusal más cercana?]", "0"));
+                    combosucursalmascerca.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
                 }
                 catch { Console.WriteLine("Verifique los campos"); }
             }
@@ -510,5 +510,145 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Asesores
         }
 
 
+        public void llenargridviewprospectofiltro(string usuario, string filtro)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select a.codcrminfoprospecto,a.codcrminfogeneralprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto,a.crminfo_prospectotelefono,a.crminfo_prospectoemail,a.crminfo_prospectoingresos,a.crminfo_prospectoegresos,a.crminfo_prospectoañoslaborados,a.crminfo_prospectotrabajaactualmente,a.crminfo_prospectodescripciontrabajoactual,a.codcrmtiposervicio,a.crminfo_prospectomonto,a.codcrmfinalidadservicio,a.codcrmcontactollamadas,a.crminfo_prospectofechaprimerllamada,a.crminfo_prospectofechaultimallamada,a.codcrmsemaforoestado,a.codcrmestadodescripcion,a.crminfo_prospectocuentaconigss,a.codcrmtipodomicilio,a.crminfo_prospectoañosdomicilio,a.crminfo_prospectocuentaencooperativa,a.crminfo_prospectosucursalcerca,a.crminfo_prospectodescripcion,a.crminfo_contactadopor,a.crminfo_prospectoreferenciado FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE d.crmcontrol_ingresousuario='" + usuario + "' AND (codcrmsemaforoestado=2 OR codcrmsemaforoestado=3) AND crminfogeneral_prospectonombrecompleto LIKE '%"+filtro+"%';";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    gridviewprospectos.DataSource = ds3;
+                    gridviewprospectos.DataBind();
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+
+            }
+
+        }
+
+        public void llenargridviewprospectofiltradoconuno(string usuario, string estado, string filtro)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select a.codcrminfoprospecto,a.codcrminfogeneralprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto,a.crminfo_prospectotelefono,a.crminfo_prospectoemail,a.crminfo_prospectoingresos,a.crminfo_prospectoegresos,a.crminfo_prospectoañoslaborados,a.crminfo_prospectotrabajaactualmente,a.crminfo_prospectodescripciontrabajoactual,a.codcrmtiposervicio,a.crminfo_prospectomonto,a.codcrmfinalidadservicio,a.codcrmcontactollamadas,a.crminfo_prospectofechaprimerllamada,a.crminfo_prospectofechaultimallamada,a.codcrmsemaforoestado,a.codcrmestadodescripcion,a.crminfo_prospectocuentaconigss,a.codcrmtipodomicilio,a.crminfo_prospectoañosdomicilio,a.crminfo_prospectocuentaencooperativa,a.crminfo_prospectosucursalcerca,a.crminfo_prospectodescripcion,a.crminfo_contactadopor,a.crminfo_prospectoreferenciado FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE d.crmcontrol_ingresousuario='" + usuario + "' AND (codcrmsemaforoestado='"+estado+"') AND crminfogeneral_prospectonombrecompleto LIKE '%" + filtro + "%';";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    gridviewprospectos.DataSource = ds3;
+                    gridviewprospectos.DataBind();
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+
+            }
+
+        }
+        public void llenargridviewprospectofiltradocondos(string usuario, string estado1,string estado2, string filtro)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select a.codcrminfoprospecto,a.codcrminfogeneralprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto,a.crminfo_prospectotelefono,a.crminfo_prospectoemail,a.crminfo_prospectoingresos,a.crminfo_prospectoegresos,a.crminfo_prospectoañoslaborados,a.crminfo_prospectotrabajaactualmente,a.crminfo_prospectodescripciontrabajoactual,a.codcrmtiposervicio,a.crminfo_prospectomonto,a.codcrmfinalidadservicio,a.codcrmcontactollamadas,a.crminfo_prospectofechaprimerllamada,a.crminfo_prospectofechaultimallamada,a.codcrmsemaforoestado,a.codcrmestadodescripcion,a.crminfo_prospectocuentaconigss,a.codcrmtipodomicilio,a.crminfo_prospectoañosdomicilio,a.crminfo_prospectocuentaencooperativa,a.crminfo_prospectosucursalcerca,a.crminfo_prospectodescripcion,a.crminfo_contactadopor,a.crminfo_prospectoreferenciado FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE d.crmcontrol_ingresousuario='" + usuario + "' AND (codcrmsemaforoestado='" + estado1 + "' OR codcrmsemaforoestado='" + estado2 + "' ) AND crminfogeneral_prospectonombrecompleto LIKE '%" + filtro + "%';";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    gridviewprospectos.DataSource = ds3;
+                    gridviewprospectos.DataBind();
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+
+            }
+
+        }
+
+        protected void busquedaporfiltro_Click(object sender, EventArgs e)
+        {
+         
+            if (chkproceso.Checked==true)
+            {
+                llenargridviewprospectofiltradoconuno(nombreusuario, "2", txtbusquedaprospecto.Text);
+            }
+            else if (chknocontesta.Checked==true)
+            {
+                llenargridviewprospectofiltradoconuno(nombreusuario, "3", txtbusquedaprospecto.Text);
+            }
+            else if (chknocontesta.Checked == true && chkproceso.Checked == true)
+            {
+                llenargridviewprospectofiltradocondos(nombreusuario,"2","3",txtbusquedaprospecto.Text);
+            }
+            else
+            {
+                llenargridviewprospectofiltro(nombreusuario, txtbusquedaprospecto.Text);
+            }
+
+        }
+
+        protected void chkproceso_CheckedChanged(object sender, EventArgs e)
+        {
+            txtbusquedaprospecto.Text = "";
+            if (chknocontesta.Checked == true && chkproceso.Checked == true)
+            {
+                llenargridviewprospectofiltradocondos(nombreusuario, "2","3", txtbusquedaprospecto.Text);  //esto hace una busqueda por dos estados
+            }
+            else if (chknocontesta.Checked == false && chkproceso.Checked == true)
+            {
+                llenargridviewprospectofiltradoconuno(nombreusuario, "2", txtbusquedaprospecto.Text);  //esto hace una busqueda por un solo estado
+            }
+            else if (chknocontesta.Checked == false && chkproceso.Checked == false)
+            {
+                llenargridviewprospecto(nombreusuario);
+            }
+           else if (chknocontesta.Checked == true && chkproceso.Checked == false)
+            {
+                llenargridviewprospectofiltradoconuno(nombreusuario, "3", txtbusquedaprospecto.Text);  //esto hace una busqueda por un solo estado
+            }
+        }
+
+        protected void chknocontesta_CheckedChanged(object sender, EventArgs e)
+        {
+            txtbusquedaprospecto.Text = "";
+            if (chkproceso.Checked == true && chknocontesta.Checked==true)
+            {
+                llenargridviewprospectofiltradocondos(nombreusuario, "2", "3", txtbusquedaprospecto.Text);  //esto hace una busqueda por dos estados
+            }
+            else if (chknocontesta.Checked == true && chkproceso.Checked==false)
+            {
+                llenargridviewprospectofiltradoconuno(nombreusuario, "3", txtbusquedaprospecto.Text);              
+            }
+            else if (chkproceso.Checked == true && chknocontesta.Checked == false)
+            {
+                llenargridviewprospectofiltradoconuno(nombreusuario, "2", txtbusquedaprospecto.Text);
+            }
+            else if (chknocontesta.Checked == false && chkproceso.Checked == false)
+            {
+                llenargridviewprospecto(nombreusuario);
+            }
+        }
     }
 }

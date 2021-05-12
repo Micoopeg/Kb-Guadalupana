@@ -235,7 +235,7 @@
                     </asp:TemplateField>
                           <asp:TemplateField HeaderText="Descripcion"  Visible="false">
                            <ItemTemplate>
-                            <asp:Label ID="lbldescripcion" Text='<%# Eval("crminfo_prospectosucursalcerca") %>' runat="server" />
+                            <asp:Label ID="lbldescripcion" Text='<%# Eval("crminfo_prospectodescripcion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                  <asp:TemplateField HeaderText="Contactado por"  Visible="false">

@@ -251,6 +251,17 @@
     <Content Include="AvDiseños\script.js" />
     <Content Include="AvDiseños\scriptdas.js" />
     <Content Include="AvDiseños\style.css" />
+    <Content Include="bdkbguadalupanaDataSet4.xsc">
+      <DependentUpon>bdkbguadalupanaDataSet4.xsd</DependentUpon>
+    </Content>
+    <None Include="bdkbguadalupanaDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdkbguadalupanaDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="bdkbguadalupanaDataSet4.xss">
+      <DependentUpon>bdkbguadalupanaDataSet4.xsd</DependentUpon>
+    </Content>
     <None Include="Connected Services\ServiceReference1\WebService1.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
@@ -632,11 +643,13 @@
     <Content Include="Views\ProcesosJudiciales\DashboardJuridico.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosCobros.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosConta.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ExpedientesEntregados.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipalProcesos.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx" />
     <Content Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx" />
     <Content Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx" />
+    <Content Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
     <Content Include="Views\Seguridad\ModificarModulo.aspx" />
@@ -696,6 +709,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>bdkbguadalupanaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdkbguadalupanaDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdkbguadalupanaDataSet4.xsd</DependentUpon>
     </Compile>
     <Compile Include="chart.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1487,6 +1505,13 @@
     <Compile Include="Views\ProcesosJudiciales\DevueltosConta.aspx.designer.cs">
       <DependentUpon>DevueltosConta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ExpedientesEntregados.aspx.cs">
+      <DependentUpon>ExpedientesEntregados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ExpedientesEntregados.aspx.designer.cs">
+      <DependentUpon>ExpedientesEntregados.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1521,6 +1546,13 @@
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx.designer.cs">
       <DependentUpon>ProcesosAsignadosJuridico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx.cs">
+      <DependentUpon>ReporteAbogados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx.designer.cs">
+      <DependentUpon>ReporteAbogados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.cs">
       <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>
@@ -1935,6 +1967,7 @@
     <EmbeddedResource Include="ReportesAv\Report1.rdlc" />
     <EmbeddedResource Include="ReportesAv\ReporteMontos.rdlc" />
     <EmbeddedResource Include="Views\CRM-SISTEMA\Reporteria\Report1.rdlc" />
+    <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\Report1.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

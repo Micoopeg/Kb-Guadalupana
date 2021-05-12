@@ -1051,5 +1051,26 @@ namespace KB_Guadalupana.Controllers
                 catch { }
             }
         }
+
+        public DataTable reporteabogados(string abogado)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT B.pj_nombreabogado, A.pj_numcredito, A.pj_fechaasignacion FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado Where A.idpj_abogado = '"+abogado+"'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
     }
 }

@@ -464,7 +464,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT gaso.usercreacion FROM gen_asociado gaso INNER JOIN gen_credito gcrd ON gcrd.codgenasociado = gaso.codgenasociado WHERE gcrd.gen_numcredito = '" + crd + "' ;";
+                    string sql = "SELECT gep.gen_peticionesusuariodelcredito FROM gen_peticiones gep WHERE gep.gen_peticionesnumerocredito = '" + crd + "' ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -487,7 +487,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT gaso.codgarantia FROM gen_asociado gaso INNER JOIN gen_credito gcrd ON gcrd.codgenasociado = gaso.codgenasociado WHERE gcrd.gen_numcredito = '" + crd + "' ;";
+                    string sql = "SELECT gep.gen_peticionesgarantia FROM gen_peticiones gep WHERE gep.gen_peticionesnumerocredito = '" + crd + "' ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();

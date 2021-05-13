@@ -3334,7 +3334,7 @@ namespace KB_Guadalupana.Views.Sesion
                 try
                 {
                     string sig = logic.siguiente("ep_infofamiliar", "codepinfofamiliar");
-                    string[] valores1 = { sig, cifactual, "", Text1.Value, "", Text2.Value, "", "", Date1.Value, "", "", "", Text3.Value };
+                    string[] valores1 = { sig, cifactual, "", Text1.Value, "", Text2.Value, "", Date1.Value, Date1.Value, "", "0", "", Text3.Value };
                     logic.insertartablas("ep_infofamiliar", valores1);
                 }
                 catch (Exception err)

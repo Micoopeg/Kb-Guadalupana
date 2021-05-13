@@ -286,7 +286,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
             for (int i = 0; i < dt4.Rows.Count; i++)
             {
-                string estado = WS.buscarcreditoexpedientes(dt4.Rows[i]["gen_numcredito"].ToString());
+                string estado = WS.buscarcreditoexpedientes(dt4.Rows[i]["Nocredito"].ToString());
                 char delimitador = '|';
                 string[] valoresprocesados = estado.Split(delimitador);
 
@@ -301,12 +301,12 @@ namespace KB_Guadalupana.Views.ControlEX
 
                             DataRow row = dt3.NewRow();
 
-                            row["gen_fechadesembolso"] = dt3.Rows[i]["gen_fechadesembolso"].ToString();
-                            row["cifgeneral"] = dt3.Rows[i]["cifgeneral"].ToString();
-                            row["gen_numcredito"] = dt3.Rows[i]["gen_numcredito"].ToString();
-                            row["nombrecompleto"] = dt3.Rows[i]["nombrecompleto"].ToString();
-                            row["gen_monto"] = dt3.Rows[i]["gen_monto"].ToString();
-                            row["ex_nomtipo"] = dt3.Rows[i]["ex_nomtipo"].ToString();
+                            row["Nocredito"] = dt4.Rows[i]["Nocredito"].ToString();
+                            row["nomcom"] = dt4.Rows[i]["nomcom"].ToString();
+                            row["cifgeneral"] = dt4.Rows[i]["cifgeneral"].ToString();
+                            row["gen_monto"] = dt4.Rows[i]["gen_monto"].ToString();
+                            row["gen_fechadesembolso"] = dt4.Rows[i]["gen_fechadesembolso"].ToString();
+                            row["ex_nomtipo"] = dt4.Rows[i]["ex_nomtipo"].ToString();
 
 
 
@@ -357,7 +357,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Caratulas");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgaortiz/Documents/Sistema-Integrado/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
 
                 logo.ScalePercent(45f);
 
@@ -401,7 +401,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         var tbl1 = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
                         tbl1.AddCell(new PdfPCell(logo) { Border = 0, Rowspan = 3, VerticalAlignment = Element.ALIGN_MIDDLE });
                         tbl1.AddCell(new PdfPCell(new Phrase("NO. Expediente: "+cod+" ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                        tbl1.AddCell(new PdfPCell(new Phrase("Tipo de expediente: Credito "+ dt3.Rows[i]["codgarantia"].ToString() + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("Tipo de expediente: Credito "+ dt3.Rows[i]["ex_nomtipo"].ToString() + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
                         tbl1.AddCell(new PdfPCell(new Phrase("Fecha de emisión: "+ fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
 
                         doc.Add(tbl1);
@@ -415,7 +415,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         tbl1.AddCell(new PdfPCell(new Phrase("Nombre: " + dt3.Rows[i]["nomcom"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
                         tbl1.AddCell(new PdfPCell(new Phrase("CIF: " + dt3.Rows[i]["cifgeneral"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                        tbl1.AddCell(new PdfPCell(new Phrase("Monto: Q"+dt3.Rows[i]["gen_monto"].ToString() + " Fecha Desembolso: " + dt3.Rows[i]["gen_fechadesembolso"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("Monto: "+dt3.Rows[i]["gen_monto"].ToString() + " Fecha Desembolso: " + dt3.Rows[i]["gen_fechadesembolso"].ToString() + " ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
 
 
                         doc.Add(tbl1);
@@ -522,12 +522,12 @@ namespace KB_Guadalupana.Views.ControlEX
 
                         for (int j = 0; j < datos2.Length; j++)
                         {
-                            string tipo = WS.buscarcreditoexpedientes(Convert.ToString(datos2.GetValue(2)));
+                            
                             /*c1.Phrase = new Phrase(Convert.ToString(datos2.GetValue(j)));*/
-                            if (Convert.ToString(datos2.GetValue(5)) == tipo ) {
+                           
 
                                 table.AddCell(Convert.ToString(datos2.GetValue(j)));
-                            }
+                            
                         }
 
                         doc.Add(table);

@@ -1662,8 +1662,8 @@ namespace KB_Guadalupana.Views.ControlEX
 
         protected void GDVTEMP_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            DGVMESA.PageIndex = e.NewPageIndex;
-            llenardtgvw2();
+            GDVTEMP.PageIndex = e.NewPageIndex;
+            llenardtgvw3();
 
         }
 

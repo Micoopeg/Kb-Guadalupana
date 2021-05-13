@@ -270,11 +270,67 @@ namespace KB_Guadalupana.Views.ControlEX
         {
 
             DataTable dt3 = new DataTable();
-            
+            DataTable dt4 = new DataTable();
+          
 
-           
+            dt3.Columns.Add("Nocredito");
+            dt3.Columns.Add("nomcom");
+            dt3.Columns.Add("cifgeneral");
+            dt3.Columns.Add("gen_monto");
+            dt3.Columns.Add("gen_fechadesembolso");
+            dt3.Columns.Add("ex_nomtipo");
+
+
             string a = exc.obtenerarea(usernombre);
-            dt3 = mex.codigostablegerencia(a);
+            dt4 = mex.codigostablegerencia(a);
+
+            for (int i = 0; i < dt4.Rows.Count; i++)
+            {
+                string estado = WS.buscarcreditoexpedientes(dt4.Rows[i]["gen_numcredito"].ToString());
+                char delimitador = '|';
+                string[] valoresprocesados = estado.Split(delimitador);
+
+                if (estado.Length != 4)
+                {
+
+                    if (valoresprocesados[2] == "VIGENTE AL DIA")
+                    {
+
+                        if (valoresprocesados[1] == dt4.Rows[i]["ex_nomtipo"].ToString())
+                        {
+
+                            DataRow row = dt3.NewRow();
+
+                            row["gen_fechadesembolso"] = dt3.Rows[i]["gen_fechadesembolso"].ToString();
+                            row["cifgeneral"] = dt3.Rows[i]["cifgeneral"].ToString();
+                            row["gen_numcredito"] = dt3.Rows[i]["gen_numcredito"].ToString();
+                            row["nombrecompleto"] = dt3.Rows[i]["nombrecompleto"].ToString();
+                            row["gen_monto"] = dt3.Rows[i]["gen_monto"].ToString();
+                            row["ex_nomtipo"] = dt3.Rows[i]["ex_nomtipo"].ToString();
+
+
+
+
+                            dt3.Rows.Add(row);
+                        }
+
+
+
+
+
+
+                    }
+
+
+
+
+
+                }
+
+
+            }
+
+          
 
             string noma = exc.obtenerareanombre(a);
 
@@ -340,12 +396,12 @@ namespace KB_Guadalupana.Views.ControlEX
 
                         doc.Add(Chunk.NEWLINE);
                         string cod = exc.obtenercrdexp(dt3.Rows[i]["Nocredito"].ToString());
-                        string tipocrd = exc.obtenertiponombre(dt3.Rows[i]["codgarantia"].ToString());
+                     
                            
                         var tbl1 = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
                         tbl1.AddCell(new PdfPCell(logo) { Border = 0, Rowspan = 3, VerticalAlignment = Element.ALIGN_MIDDLE });
                         tbl1.AddCell(new PdfPCell(new Phrase("NO. Expediente: "+cod+" ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                        tbl1.AddCell(new PdfPCell(new Phrase("Tipo de expediente: Credito "+tipocrd+"", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                        tbl1.AddCell(new PdfPCell(new Phrase("Tipo de expediente: Credito "+ dt3.Rows[i]["codgarantia"].ToString() + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
                         tbl1.AddCell(new PdfPCell(new Phrase("Fecha de emisión: "+ fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
 
                         doc.Add(tbl1);
@@ -466,16 +522,15 @@ namespace KB_Guadalupana.Views.ControlEX
 
                         for (int j = 0; j < datos2.Length; j++)
                         {
-
+                            string tipo = WS.buscarcreditoexpedientes(Convert.ToString(datos2.GetValue(2)));
                             /*c1.Phrase = new Phrase(Convert.ToString(datos2.GetValue(j)));*/
+                            if (Convert.ToString(datos2.GetValue(5)) == tipo ) {
 
-
-                            table.AddCell(Convert.ToString(datos2.GetValue(j)));
-
+                                table.AddCell(Convert.ToString(datos2.GetValue(j)));
+                            }
                         }
 
                         doc.Add(table);
-
 
                     }
                     catch (Exception err)

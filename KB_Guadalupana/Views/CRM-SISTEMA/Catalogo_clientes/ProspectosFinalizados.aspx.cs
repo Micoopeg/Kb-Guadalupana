@@ -28,6 +28,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
             rolgeneral = rolusuario;
             if (rolusuario == 2 || rolusuario == 5 || rolusuario == 6 || rolusuario == 7)
             {
+                txtnombrecompleto.Visible = false;
 
             }
             else

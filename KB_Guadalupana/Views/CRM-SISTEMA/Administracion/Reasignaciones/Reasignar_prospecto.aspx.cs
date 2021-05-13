@@ -77,7 +77,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
                 }
                 else
                 {      
-                    String script = "alert('El usuario  no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
+                    String script = "alert('El usuario  no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../../../Index.aspx';";
                     ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
                 }

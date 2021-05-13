@@ -23,14 +23,14 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Controldedespidos
 
             nombreusuario = Convert.ToString(Session["usuariodelcrm"]);
             int rolusuario = Convert.ToInt32(Session["roldelcrm"]);
-            if (rolusuario == 4 || rolusuario == 6)
+            if (rolusuario == 4 || rolusuario == 6 || rolusuario == 2)
             {
 
 
             }
             else
             {
-                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
+                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../../../Index.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }

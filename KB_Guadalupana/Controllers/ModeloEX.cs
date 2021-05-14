@@ -767,7 +767,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = " SELECT COUNT( tmp.Nocredito) FROM gen_credito gcrd INNER JOIN gen_asociado gaso ON gaso.codgenasociado = gcrd.codgenasociado INNER JOIN ex_tipocredito extp ON extp.codextipocred = gaso.codgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gcrd.gen_numcredito WHERE gaso.usercreacion = '"+usuario+"';";
+                    string sql = " SELECT COUNT( tmp.Nocredito) FROM gen_peticiones gep INNER JOIN ex_tipocredito extp ON extp.codextipocred = gep.gen_peticionesgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito =gep.gen_peticionesnumerocredito WHERE gep.gen_peticionesusuariodelcredito  = '" + usuario+"';";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();

@@ -636,7 +636,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
             if (dt3.Rows.Count < 1)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ningun elemento Seleccionado ')", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' No hay expedientes en la lista ')", true);
 
             }
             else
@@ -829,7 +829,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
             if (dt3.Rows.Count < 1)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ningun elemento Seleccionado ')", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' No hay expedientes en la lista ')", true);
 
             }
             else
@@ -1995,7 +1995,7 @@ namespace KB_Guadalupana.Views.ControlEX
                                    
 
                                 }
-                                else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Codigo Invalido')", true); }
+                                else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Código Inválido')", true); }
 
 
 
@@ -2284,7 +2284,7 @@ namespace KB_Guadalupana.Views.ControlEX
                             }
 
                         }
-                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El código no corresponde a ningun expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
+                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El código no corresponde a ningún expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
 
                     }
 
@@ -2351,7 +2351,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
                             }
                         }
-                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código no corresponde a ningun expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
+                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código no corresponde a ningún expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
 
                     }
                     else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
@@ -2501,7 +2501,7 @@ namespace KB_Guadalupana.Views.ControlEX
                             String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
                             ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                         }
-                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código no corresponde a ningun expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
+                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código no corresponde a ningún expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
 
                     }
                     else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }

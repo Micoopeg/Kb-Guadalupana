@@ -87,6 +87,15 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pendientes;
 
         /// <summary>
+        /// Control usuarioent.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl usuarioent;
+
+        /// <summary>
         /// Control NombreAgencia.
         /// </summary>
         /// <remarks>

@@ -164,7 +164,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgaortiz/Documents/Sistema-Integrado/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);

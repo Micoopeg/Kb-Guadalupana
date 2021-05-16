@@ -87,6 +87,7 @@
 
     <section class="overview">
         <div class="wrapper">
+            <h2 id="usuarioent" runat="server" >usuario</h2>
 			<h2 id="NombreAgencia" runat="server" >Area no cargada</h2>
 			<h2 id="Date" runat="server" >sin fecha error</h2>
             <h2>Expedientes del día</h2>

@@ -357,7 +357,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Caratulas");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgaortiz/Documents/Sistema-Integrado/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
 
                 logo.ScalePercent(45f);
 

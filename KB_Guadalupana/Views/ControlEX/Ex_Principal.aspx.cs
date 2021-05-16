@@ -21,17 +21,19 @@ namespace KB_Guadalupana.Views.ControlEX
             usernombre = Convert.ToString(Session["sesion_usuario"] );
             nombrepersona = Convert.ToString(Session["Nombre"] );
 
-            NombreAgencia.InnerText = Convert.ToString(Session["NombreAG"] = exc.agencia(usernombre));
 
+            NombreAgencia.InnerText = Convert.ToString(Session["NombreAG"] = exc.agencia(usernombre));
+            usuarioent.InnerText = nombrepersona;
             now();
             string area = exc.obtenerarea(usernombre);
             string rol = exc.obtenerrol(usernombre);
+            string codigous = mex.obtenercodigo(usernombre);
             if (area == "52" && rol == "1") {
                 Response.Redirect("Ex_VistaMensajeria.aspx");
             }
             else
             {
-                if (usernombre != "")
+                if (codigous != "")
                 {
 
 
@@ -44,6 +46,60 @@ namespace KB_Guadalupana.Views.ControlEX
                     exret.InnerText = mex.contreten();
                     exarch.InnerText = mex.contarch();
 
+                    switch (rol)
+                    {
+
+                        case "2":
+                            mesareg.Visible = true;
+                            archivo.Visible = false;
+                            negocios.Visible = false;
+                            hallazgos.Visible = false;
+                            break;
+                        case "3":
+                            negocios.Visible = false;
+                            archivo.Visible = false;
+                            mesareg.Visible = false;
+                            hallazgos.Visible = false;
+                            break;
+                        case "4":
+                            mesareg.Visible = false;
+                            archivo.Visible = false;
+                            negocios.Visible = false;
+                            hallazgos.Visible = false;
+                            break;
+                        case "5":
+                            negocios.Visible = true;
+                            archivo.Visible = false;
+                            mesareg.Visible = false;
+                            hallazgos.Visible = false;
+                            pendientes.Visible = false;
+                            break;
+                        case "6":
+                            mesareg.Visible = false;
+                            archivo.Visible = false;
+                            negocios.Visible = false;
+                            break;
+                        case "7":
+                            archivo.Visible = true;
+                            mesareg.Visible = false;
+                            negocios.Visible = false;
+                            pendientes.Visible = false;
+                            hallazgos.Visible = false;
+                            break;
+                        case "8":
+                            mesareg.Visible = true;
+                            archivo.Visible = false;
+                            hallazgos.Visible = false;
+                            negocios.Visible = false;
+                            break;
+                        case "9":
+                            negocios.Visible = false;
+                            archivo.Visible = false;
+                            mesareg.Visible = false;
+                            hallazgos.Visible = false;
+                            break;
+
+                    }
                 }
                 else
                 {
@@ -51,59 +107,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 }
             }
-            switch (rol) {
-
-                case "2":
-                    mesareg.Visible = true;
-                    archivo.Visible = false;
-                    negocios.Visible = false;
-                    hallazgos.Visible = false;
-                    break;
-                case "3":
-                    negocios.Visible = false;
-                    archivo.Visible = false;
-                    mesareg.Visible = false;
-                    hallazgos.Visible = false;
-                    break;
-                case "4":
-                    mesareg.Visible = false;
-                    archivo.Visible = false;
-                    negocios.Visible = false;
-                    hallazgos.Visible = false;
-                    break;
-                case "5":
-                    negocios.Visible = true;
-                    archivo.Visible = false;
-                    mesareg.Visible = false;
-                    hallazgos.Visible = false;
-                    pendientes.Visible = false;
-                    break;
-                case "6":
-                    mesareg.Visible = false;
-                    archivo.Visible = false;
-                    negocios.Visible = false;
-                    break;
-                case "7":
-                    archivo.Visible = true;
-                    mesareg.Visible = false;
-                    negocios.Visible = false;
-                    pendientes.Visible = false;
-                    hallazgos.Visible = false;
-                    break;
-                case "8":
-                    mesareg.Visible = true;
-                    archivo.Visible = false;
-                    hallazgos.Visible = false;
-                    negocios.Visible = false;
-                    break;
-                case "9":
-                    negocios.Visible = false;
-                    archivo.Visible = false;
-                    mesareg.Visible = false;
-                    hallazgos.Visible = false;
-                    break;
-
-            }
+            
           
         }
 

@@ -71,7 +71,7 @@
 				</a>
 			</li>
 		<li class="li">
-				<a href="javascript:void(0);" class="links">
+				<a href="javascript:void(0);" onclick="redirigir6()" class="links">
 					<span class="span fa fa-user"></span>Cerrar Sesion
 				</a>
 			</li>

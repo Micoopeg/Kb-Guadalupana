@@ -479,6 +479,29 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
+        public string obtenercodigo(string usuario)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = " SELECT exc.codexcontroling FROM ex_controlingreso exc WHERE exc.ex_controlusuario = '" +usuario + "' ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
         public string obtenertipocrd(string crd)
         {
             String camporesultante = "";
@@ -1127,7 +1150,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gep.gen_peticionesfechacredito as gen_fechadesembolso, gep.gen_peticionescodigocliente AS cifgeneral ,gep.gen_peticionesnumerocredito AS gen_numcredito , CONCAT_ws(' ', gep.gen_peticionesprimernombre, gep.gen_peticionessegundonombre, gep.gen_peticionestercernombre, gep.gen_peticionesprimerapellido, gep.gen_peticionessegundoapellido) AS nombrecompleto, CONCAT('Q',FORMAT(gep.gen_peticionesmontocredito,2,'de_DE')) as gen_monto, extp.ex_nomtipo AS ex_nomtipo FROM gen_peticiones gep INNER JOIN ex_tipocredito extp ON extp.codextipocred = gep.gen_peticionesgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gep.gen_peticionesnumerocredito INNER JOIN ex_expediente exp ON exp.codgencred = gep.gen_peticionesnumerocredito INNER JOIN ex_hallazgos exh ON exh.codexp = exp.codexp WHERE tmp.codexarea = '" + area + "'", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gep.gen_peticionesfechacredito as gen_fechadesembolso, gep.gen_peticionescodigocliente AS cifgeneral ,gep.gen_peticionesnumerocredito AS gen_numcredito , CONCAT_ws(' ', gep.gen_peticionesprimernombre, gep.gen_peticionessegundonombre, gep.gen_peticionestercernombre, gep.gen_peticionesprimerapellido, gep.gen_peticionessegundoapellido) AS nombrecompleto, CONCAT('Q',FORMAT(gep.gen_peticionesmontocredito,2,'de_DE')) as gen_monto, extp.ex_nomtipo AS ex_nomtipo FROM gen_peticiones gep INNER JOIN ex_tipocredito extp ON extp.codextipocred = gep.gen_peticionesgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gep.gen_peticionesnumerocredito INNER JOIN ex_expediente exp ON exp.codgencred = gep.gen_peticionesnumerocredito INNER JOIN ex_hallazgos exh ON exh.codexp = exp.codexp WHERE tmp.codexarea = '" + area + "' AND exh.estado = 1; ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);

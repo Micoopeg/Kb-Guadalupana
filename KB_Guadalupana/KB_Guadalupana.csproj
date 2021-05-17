@@ -437,6 +437,17 @@
     <Content Include="graficmonto.xsc">
       <DependentUpon>graficmonto.xsd</DependentUpon>
     </Content>
+    <Content Include="DataSetAbogado.xsc">
+      <DependentUpon>DataSetAbogado.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSetAbogado.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetAbogado.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataSetAbogado.xss">
+      <DependentUpon>DataSetAbogado.xsd</DependentUpon>
+    </Content>
     <None Include="graficmonto.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>graficmonto.Designer.cs</LastGenOutput>
@@ -644,12 +655,18 @@
     <Content Include="Views\ProcesosJudiciales\DevueltosCobros.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosConta.aspx" />
     <Content Include="Views\ProcesosJudiciales\ExpedientesEntregados.aspx" />
+    <Content Include="Views\ProcesosJudiciales\FacturacionAbogado.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipalProcesos.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx" />
+    <Content Include="Views\ProcesosJudiciales\PendienteFacturacionAbogado.aspx" />
+    <Content Include="Views\ProcesosJudiciales\PendientePresentacionDemanda.aspx" />
+    <Content Include="Views\ProcesosJudiciales\PendienteResolucion.aspx" />
+    <Content Include="Views\ProcesosJudiciales\PresentacionDemanda.aspx" />
     <Content Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx" />
     <Content Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx" />
     <Content Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx" />
+    <Content Include="Views\ProcesosJudiciales\ResolucionTramite.aspx" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
     <Content Include="Views\Seguridad\ModificarModulo.aspx" />
@@ -747,6 +764,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataMontos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetAbogado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetAbogado.xsd</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1512,6 +1534,13 @@
     <Compile Include="Views\ProcesosJudiciales\ExpedientesEntregados.aspx.designer.cs">
       <DependentUpon>ExpedientesEntregados.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProcesosJudiciales\FacturacionAbogado.aspx.cs">
+      <DependentUpon>FacturacionAbogado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\FacturacionAbogado.aspx.designer.cs">
+      <DependentUpon>FacturacionAbogado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProcesosJudiciales\MenuPrincipal.aspx.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1533,6 +1562,34 @@
     <Compile Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx.designer.cs">
       <DependentUpon>PendienteCertificacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteFacturacionAbogado.aspx.cs">
+      <DependentUpon>PendienteFacturacionAbogado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteFacturacionAbogado.aspx.designer.cs">
+      <DependentUpon>PendienteFacturacionAbogado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendientePresentacionDemanda.aspx.cs">
+      <DependentUpon>PendientePresentacionDemanda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendientePresentacionDemanda.aspx.designer.cs">
+      <DependentUpon>PendientePresentacionDemanda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteResolucion.aspx.cs">
+      <DependentUpon>PendienteResolucion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteResolucion.aspx.designer.cs">
+      <DependentUpon>PendienteResolucion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PresentacionDemanda.aspx.cs">
+      <DependentUpon>PresentacionDemanda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PresentacionDemanda.aspx.designer.cs">
+      <DependentUpon>PresentacionDemanda.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx.cs">
       <DependentUpon>ProcesoJudicial.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1553,6 +1610,13 @@
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx.designer.cs">
       <DependentUpon>ReporteAbogados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ResolucionTramite.aspx.cs">
+      <DependentUpon>ResolucionTramite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\ResolucionTramite.aspx.designer.cs">
+      <DependentUpon>ResolucionTramite.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.cs">
       <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>
@@ -1882,7 +1946,9 @@
     <Folder Include="Views\Hallazgos\Archivos\" />
     <Folder Include="Views\Hallazgos\Imagenes\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\CertificacionContable\" />
+    <Folder Include="Views\ProcesosJudiciales\Subidos\Demanda\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\DocumentosExpediente\" />
+    <Folder Include="Views\ProcesosJudiciales\Subidos\Resolucion\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -97,7 +97,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT * FROM pj_tipodocumento";
+                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento != 14 AND idpj_tipodocumento != 15 AND idpj_tipodocumento != 16 AND idpj_tipodocumento != 17 AND idpj_tipodocumento != 18";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds);
@@ -326,8 +326,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string consultadicabi = sn.tipodocumentoConsultaDicabi(numcredito);
             string bitacora = sn.tipodocumentoBitacora(numcredito);
             string estadocuenta = sn.tipodocumentoEstadoCuenta(numcredito);
+            string avaluo = sn.tipodocumentoAvaluo(numcredito);
+            string transunion = sn.tipodocumentoTransunion(numcredito);
 
-            if(infornet == "" || recibo == "" || dpi == "" || cartaingreso == "" || contratos == "" || solicitudcredito == "" || consultaiggs == "" || consultadicabi == "" || bitacora == "" || estadocuenta == "")
+            if(infornet == "" || recibo == "" || dpi == "" || cartaingreso == "" || contratos == "" || solicitudcredito == "" || consultaiggs == "" || consultadicabi == "" || bitacora == "" || estadocuenta == "" || avaluo == "" || transunion == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los documentos');", true);
             }

@@ -232,7 +232,7 @@
                         <label class="titulos"><b>No. de préstamo</b></label>
                         <label class="titulos" style="margin-left:11%"><b>No. de incidente</b></label>
                         <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
-                        <label class="titulos" style="margin-left:22%"><b>Código cliente</b></label>
+                        <label class="titulos" style="margin-left:22%"><b>CIF</b></label>
                     </div>
 
                     <div class="formato">

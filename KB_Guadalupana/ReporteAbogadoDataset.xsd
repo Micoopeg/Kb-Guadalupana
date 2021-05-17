@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReporteAbogadoDataset" targetNamespace="http://tempuri.org/ReporteAbogadoDataset.xsd" xmlns:mstns="http://tempuri.org/ReporteAbogadoDataset.xsd" xmlns="http://tempuri.org/ReporteAbogadoDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString2.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vistarepoabogadoTableAdapter" GeneratorDataComponentClassName="vistarepoabogadoTableAdapter" Name="vistarepoabogado" UserDataComponentName="vistarepoabogadoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString2 (Web.config)" DbObjectName="bdkbguadalupana.vistarepoabogado" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `pj_nombre`, `pj_cif`, `pj_numcredito`, `pj_fechaasignacion`, `pj_nombreabogado` FROM `bdkbguadalupana`.`vistarepoabogado`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReporteAbogadoDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ReporteAbogadoDataset" msprop:Generator_UserDSName="ReporteAbogadoDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vistarepoabogado" msprop:Generator_TableClassName="vistarepoabogadoDataTable" msprop:Generator_TableVarName="tablevistarepoabogado" msprop:Generator_TablePropName="vistarepoabogado" msprop:Generator_RowDeletingName="vistarepoabogadoRowDeleting" msprop:Generator_RowChangingName="vistarepoabogadoRowChanging" msprop:Generator_RowEvHandlerName="vistarepoabogadoRowChangeEventHandler" msprop:Generator_RowDeletedName="vistarepoabogadoRowDeleted" msprop:Generator_UserTableName="vistarepoabogado" msprop:Generator_RowChangedName="vistarepoabogadoRowChanged" msprop:Generator_RowEvArgName="vistarepoabogadoRowChangeEvent" msprop:Generator_RowClassName="vistarepoabogadoRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

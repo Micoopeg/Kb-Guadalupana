@@ -7899,3 +7899,5 @@ C:\Users\Administrador\Desktop\Ambiente de Pre-despliegue\Kb-Guadalupana\KB_Guad
 C:\Users\Administrador\Desktop\Ambiente de Pre-despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csproj.CopyComplete
 C:\Users\Administrador\Desktop\Ambiente de Pre-despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.dll
 C:\Users\Administrador\Desktop\Ambiente de Pre-despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.pdb
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\obj\Debug\RdlCompile.cache
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\obj\Debug\RdlCompile.compiled

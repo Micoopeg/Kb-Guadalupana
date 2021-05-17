@@ -7720,3 +7720,5 @@ C:\Users\pgaortiz\Documents\Sistema-Integrado\Kb-Guadalupana\KB_Guadalupana\bin\
 C:\Users\pgaortiz\Documents\Sistema-Integrado\Kb-Guadalupana\KB_Guadalupana\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\pgaortiz\Documents\Sistema-Integrado\Kb-Guadalupana\KB_Guadalupana\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\pgaortiz\Documents\Sistema-Integrado\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csproj.CopyComplete
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\obj\Debug\RdlCompile.cache
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\obj\Debug\RdlCompile.compiled

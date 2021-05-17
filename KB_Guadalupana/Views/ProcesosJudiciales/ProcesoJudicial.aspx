@@ -233,7 +233,7 @@
                <div id="Div1" runat="server" class="encabezado" style="border-color:#8DDB51; border:2px #4B752B solid">
                        <label style="font-size:15px" class="titulos"><b>Información principal</b></label><br /><br />
               
-                         <div class="formatoTitulo" style="margin-bottom:5px">
+                    <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>No. de préstamo</b></label>
                         <label class="titulos" style="margin-left:20%"><b>DPI</b></label>
                         <label class="titulos" style="margin-left:31%"><b>CIF</b></label>
@@ -501,8 +501,8 @@
                         </div>
 
                         <div class="formato">
-                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese otro nombre" value="No posee" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese apellido casada" value="No posee" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">

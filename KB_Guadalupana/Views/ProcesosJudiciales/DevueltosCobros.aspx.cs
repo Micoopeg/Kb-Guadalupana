@@ -343,7 +343,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT * FROM pj_tipodocumento";
+                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento != 14 AND idpj_tipodocumento != 15";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds);

@@ -199,7 +199,18 @@ body{
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                  <a id="A1" runat="server" href="CreditosCertificacionJuridico.aspx">Revisión de Certificación Contable</a>
+                  <a id="A1" runat="server" href="CreditosCertificacionJuridico.aspx">Verificación de expedientes</a>
+                </div>
+              </div>
+
+                <div id="MenuAbogado" runat="server" class="dropdown">
+                <button class="dropbtn">Menú
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a id="A2" runat="server" href="PendientePresentacionDemanda.aspx">Presentación de Demanda</a>
+                  <a id="A3" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
+                  <a id="A4" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
                 </div>
               </div>
 

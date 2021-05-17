@@ -76,6 +76,18 @@
             align-content:center;
         }
 
+            .formatocheckbox {
+            width: 25px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            height: 25px;
+            border-color: transparent;
+            display: flex;
+            align-items: flex-start;
+            align-content:flex-start;
+            justify-content:flex-start;
+        }
+
         .formatoinput2{
             width:98%;
             margin-top:8px;
@@ -173,6 +185,8 @@
 
          .titulos{
              font-size:13px;
+             display:flex;
+             align-items:center;
          }
 
         .formatoTitulo{
@@ -198,6 +212,20 @@
             border-color: transparent;
         }
 
+        .formatocheck{
+            display:flex;
+            justify-content:space-between;
+            flex-direction:row;
+            width:100%;
+            margin-bottom: 5px;
+        }
+
+               .formatocheck2{
+            display:flex;
+            flex-direction:row;
+            width:35%;
+        }
+
         .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
 .menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
@@ -213,7 +241,7 @@
              <div class="formularioCobros">
 
                  <div style="display:flex; justify-content:center">
-                    <label style="font-size:18px" class="titulos">Emisión de Certificación Contable</label>
+                    <label style="font-size:18px" class="titulos">Verificación de expedientes</label>
                  </div><br />
                  <div class="header"></div>
 
@@ -412,6 +440,12 @@
                 <div class="encabezado">
                     <label class="titulos"><b>Documentos para conformación de expediente</b></label><br /><br />
 
+                    <div class="formato">
+                        <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
+                       <asp:FileUpload id="FileUpload1" runat="server"></asp:FileUpload>
+                         <asp:Button ID="Agregar" OnClick="agregar_Click" runat="server" Width="20%" Height="30px" CssClass="boton3" Text="Agregar" />
+                    </div><br /><br />
+
                     <div style="justify-content: center;display:flex" class="formato">
                         <div style="overflow: auto; height: 123px">
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
@@ -455,8 +489,8 @@
                         </div>
 
                         <div class="formato">
-                               <input id="NumTarjeta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de tarjeta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                               <input id="NumCuenta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de cuenta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="NumTarjeta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de tarjeta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                               <input id="NumCuenta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de cuenta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
                         </div><br />
 
                          <div class="formatoTitulo" style="margin-bottom:5px">
@@ -466,9 +500,9 @@
                         </div>
 
                         <div class="formato">
-                             <input id="CIF" runat="server" type="number" class="formatoinput3" placeholder="Ingrese CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                             <input id="PrimerNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                             <input id="SegundoNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese segundo nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                             <input id="CIF" runat="server" type="number" class="formatoinput3" placeholder="Ingrese CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                             <input id="PrimerNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                             <input id="SegundoNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese segundo nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
                         </div><br />
 
                          <div class="formatoTitulo" style="margin-bottom:5px">
@@ -477,8 +511,8 @@
                         </div>
 
                         <div class="formato">
-                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
                         </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -487,8 +521,8 @@
                         </div>
 
                          <div class="formato">
-                               <input id="PrimerApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                               <input id="SegundoApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="PrimerApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                               <input id="SegundoApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
                         </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -497,8 +531,8 @@
                         </div>
 
                          <div class="formato">
-                               <input id="Limite" runat="server" type="text" class="formatoinput" placeholder="Ingrese el limite" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                               <input id="Saldo" runat="server" type="text" class="formatoinput" placeholder="Ingrese el saldo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="Limite" runat="server" type="text" class="formatoinput" placeholder="Ingrese el limite" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                               <input id="Saldo" runat="server" type="text" class="formatoinput" placeholder="Ingrese el saldo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
                         </div><br />
                     </div><br />
                      
@@ -526,20 +560,20 @@
                          <div class="formato4" style="display:flex; justify-content:flex-start">
                             <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Gastos cobranza:</b></label>
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
-                            <input id="Gastos1" style="width:32%;text-align:end" runat="server" onchange="gastos1(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            <input id="Gastos1" style="width:32%;text-align:end" runat="server" onchange="gastos1(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
                         </div><br />
 
                          <div class="formato4" style="display:flex; justify-content:flex-start">
                             <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Gastos judiciales:</b></label>
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
-                            <input id="GastosJudiciales" style="width:32%;text-align:end" runat="server" onchange="gastosJudiciales(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            <input id="GastosJudiciales" style="width:32%;text-align:end" runat="server" onchange="gastosJudiciales(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
                         </div><br />
 
                         <div class="formato4" style="display:flex; justify-content:flex-start">
                             <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Otros gastos:</b></label>
                              <label class="titulos" style="width:3%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
-                            <input id="OtrosGastos" style="width:21%;text-align:end" runat="server" onchange="otrosGastos(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                             <input id="Comentario" style="width:41%; margin-left:4%;" runat="server" type="text" class="formatoinput" placeholder="Comentario" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            <input id="OtrosGastos" style="width:21%;text-align:end" runat="server" onchange="otrosGastos(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                             <input id="Comentario" style="width:41%; margin-left:4%;" runat="server" type="text" class="formatoinput" placeholder="Comentario" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
                           
                         </div><br />
 
@@ -555,7 +589,7 @@
                  </div>
 
                   <div class="formato2">
-                    <asp:Button ID="Validar" runat="server" CssClass="boton" Text="Aceptar" OnClick="Validar_Click"/>
+                    <asp:Button ID="Validar" runat="server" CssClass="boton" Text="Aceptar" OnClick="ValidarCredito_Click"/>
                     <asp:Button ID="Regresar" runat="server" CssClass="boton2" Text="Rechazar" OnClick="Regresar_Click"/>
                   </div><br />
 
@@ -570,8 +604,105 @@
                         </div><br />
                    </div><br />
 
+
+                 <div id="Documentos" runat="server" class="encabezado">
+                   <%-- <label style="font-size:15px" class="titulos"><b>Documentos adjuntos</b></label><br /><br />
+
+                     <label class="titulos" style="margin-bottom:10px"><b>Tipo de documento </b></label>
+                    
+                     <div class="formato">
+                        <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
+                       <asp:FileUpload id="FileUpload1" runat="server"></asp:FileUpload>
+                         <asp:Button ID="Agregar" OnClick="agregar_Click" runat="server" Width="20%" Height="30px" CssClass="boton3" Text="Agregar" />
+                    </div><br /><br />--%>
+
+<%--                    <div style="justify-content: center;display:flex" class="formato">
+                        <div style="overflow: auto; height: 123px">
+                        <asp:GridView ID="gridViewDocumentos2" runat="server" AutoGenerateColumns="False" CssClass="tabla"
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento2" BorderStyle="Solid">
+                             <Columns>
+                                <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="No. documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lbltipodoc" Text='<%# Eval("TipoDocumento") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="135px"></ItemStyle>
+                                </asp:ButtonField>
+                            </Columns>
+                             <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
+                        </asp:GridView>
+                       </div>
+                       </div><br /><br />--%>
+
+                     <label style="font-size:15px" class="titulos"><b>Asignación de Abogado</b></label><br /><br />
+
+                     <div class="formato3">
+                         <div class="formatoTitulo">
+                              <label class="titulos" style="margin-bottom:10px">Nombre del abogado a asignar</label>
+                              <label class="titulos" style="margin-bottom:10px; margin-left:24%">No. colegiado</label>
+                         </div>
+                         <div class="formato">
+                            <asp:DropDownList id="NombreAbogado" runat="server" class="formatoinput"  OnSelectedIndexChanged="Nombreabogado_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                            <input id="NumColgiado" runat="server" type="text" class="formatoinput" placeholder="No. Colegiado" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                         </div><br /><br />
+
+                           <label class="titulos">Seleccione las medidas precautorias obligatorias</label><br />
+                         <div class="formatocheck">
+                             <div class="formatocheck2">
+                                <input id="MedidasPre1" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre1" class="titulos">&nbsp;&nbsp;Embargo de Salario</label>
+                             </div>
+                              <div class="formatocheck2">
+                                <input id="MedidasPre2" runat="server" type="checkbox" class="formatocheckbox" value="2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre2" class="titulos">&nbsp;&nbsp;Embargo de cuentas bancarias</label>
+                              </div>
+                         </div>
+
+                         <div class="formatocheck">
+                             <div class="formatocheck2">
+                                 <input id="MedidasPre3" runat="server" type="checkbox" class="formatocheckbox" value="3" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                              <label for="MedidasPre3" class="titulos">&nbsp;&nbsp;Arraigo</label>
+                             </div>
+                             <div class="formatocheck2">
+                                <input id="MedidasPre4" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre4" class="titulos">&nbsp;&nbsp;Embargo en cooperativas</label>
+                             </div>
+                         </div>
+
+                         <div class="formatocheck">
+                             <div class="formatocheck2">
+                                <input id="MedidasPre5" runat="server" type="checkbox" class="formatocheckbox" value="5" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre5" class="titulos">&nbsp;&nbsp;Otra</label>
+                             </div>
+                             <input id="OtrasMedidas" runat="server" type="text" class="formatoinput" placeholder="Ingrese nombre de otra medida" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                         </div><br /><br />
+
+                          <label class="titulos">Seleccione tipo de proceso</label>
+                          <asp:DropDownList id="TipoProceso" runat="server" Width="100%" class="formatoinput2" AutoPostBack="false"></asp:DropDownList>
+                         <br />
+                     </div>
+
+                     <div class="formato3">
+
+                     </div>
+
+                </div><br />
+
                   <div id="enviar" class="formato2">
-                    <asp:Button ID="Enviar" runat="server" CssClass="boton" Text="Enviar" OnClick="Enviar_Click"/>
+                    <asp:Button ID="Enviar" runat="server" CssClass="boton" Text="Enviar" OnClick="Enviar_Click"/> 
+                    <asp:Button ID="GuardarC" runat="server" CssClass="boton" Text="Guardar" OnClick="GuardarC_Click"/>
+
                   </div><br />
             </div>
         </div>

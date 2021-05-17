@@ -186,7 +186,7 @@
          <div class="general">
             <div class="formularioCobros">
                  <div style="display:flex; justify-content:center">
-                    <label style="font-size:18px" class="titulos">Créditos para emisión de certificación contable</label>
+                    <label style="font-size:18px" class="titulos">Verificación de expedientes</label>
                  </div><br />
 
                     <div style="overflow: auto; height: 400px">
@@ -208,7 +208,7 @@
                                        <asp:Label ID="lblestado" Text='<%# Eval("pj_status") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Validar certificación" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                <asp:ButtonField   Text="Validar expedientes" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
                                     <ItemStyle Width="100px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>

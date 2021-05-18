@@ -196,6 +196,11 @@
             border-radius: 5px;
             height: 30px;
             border-color: transparent;
+            font-family:"Montserrat";
+            max-width: 90%;
+            min-width: 90%;
+            max-height:30px;
+            min-height:30px;
         }
 
          .seleccionarcelulargridview{

@@ -1061,7 +1061,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT B.pj_nombreabogado, A.pj_numcredito, A.pj_fechaasignacion FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado Where A.idpj_abogado = '" + abogado + "'";
+                    string query = "SELECT A.pj_nombre, A.pj_cif, A.pj_numcredito, A.pj_fechaasignacion, B.pj_nombreabogado FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado WHERE A.idpj_abogado = '"+abogado+"'";
                      MySqlCommand command = new MySqlCommand(query, sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
@@ -1232,6 +1232,90 @@ namespace KB_Guadalupana.Controllers
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
                 return camporesultante;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public DataTable fechaactual()
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT DATE_FORMAT(CURDATE(), '%d / %m / %Y') AS Fecha";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public DataTable nombreabogado(string id)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT pj_nombreabogado FROM pj_abogado WHERE idpj_abogado = '"+id+"'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public DataTable dpi(string usuario)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT DISTINCT(B.ep_informaciongeneralnumeroidentificacion) FROM ep_control AS A INNER JOIN ep_informaciongeneral AS B ON A.codepinformaciongeneralcif = B.codepinformaciongeneralcif WHERE A.codgenusuario = '"+usuario+"'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public DataTable nombreUsuario(string usuario)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT CONCAT(B.ep_informaciongeneralprimernombre , ' ' , B.ep_informaciongeneralsegundonombre , ' ' , B.ep_informaciongeneralprimerapellido , ' ' , B.ep_informaciongeneralsegundoapellido) AS Nombre FROM ep_control AS A INNER JOIN ep_informaciongeneral AS B ON A.codepinformaciongeneralcif = B.codepinformaciongeneralcif WHERE A.codgenusuario = '"+usuario+"'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
             }
         }
     }

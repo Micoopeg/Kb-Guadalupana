@@ -57,30 +57,39 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             try
             {
-                if (FileUpload1.HasFile)
+                if (PTipoDocumento.SelectedValue == "0")
                 {
-                    string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
-                    ext = ext.ToLower();
-
-                    if (ext != ".pdf")
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf');", true);
-                    }
-                    else
-                    {
-                        string numcredito = Session["credito"] as string;
-                        string siguiente = sn.siguiente("pj_documento", "idpj_documento");
-                        documento = "Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName;
-                        string nombredoc = siguiente + '-' + FileUpload1.FileName;
-                        sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
-                        FileUpload1.SaveAs(Server.MapPath("Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName));
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
-                        llenargridviewdocumentos();
-                    }
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Seleccione tipo de documento');", true);
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+
+
+                    if (FileUpload1.HasFile)
+                    {
+                        string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
+                        ext = ext.ToLower();
+
+                        if (ext != ".pdf")
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf');", true);
+                        }
+                        else
+                        {
+                            string numcredito = Session["credito"] as string;
+                            string siguiente = sn.siguiente("pj_documento", "idpj_documento");
+                            documento = "Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName;
+                            string nombredoc = siguiente + '-' + FileUpload1.FileName;
+                            sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
+                            FileUpload1.SaveAs(Server.MapPath("Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName));
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
+                            llenargridviewdocumentos();
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+                    }
                 }
                 IntegracionC.Focus();
             }

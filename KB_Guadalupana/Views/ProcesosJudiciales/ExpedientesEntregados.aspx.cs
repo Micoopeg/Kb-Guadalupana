@@ -56,9 +56,17 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected void Generar_Click(object sender, EventArgs e)
         {
             ReporteAbogados.Reset();
-            ReportDataSource fuente = new ReportDataSource("DataSetJuridico", obtenerdatos());
+            ReportDataSource fuente = new ReportDataSource("DataSetAbogado", obtenerdatos());
+            ReportDataSource fuente2 = new ReportDataSource("DataSetFecha", fechaactual());
+            ReportDataSource fuente3 = new ReportDataSource("DataSetNombre", nombreabogado());
+            ReportDataSource fuente4 = new ReportDataSource("DataSetDpi", dpi());
+            ReportDataSource fuente5 = new ReportDataSource("DataSetNombreUsuario", nombreusuario());
 
             ReporteAbogados.LocalReport.DataSources.Add(fuente);
+            ReporteAbogados.LocalReport.DataSources.Add(fuente2);
+            ReporteAbogados.LocalReport.DataSources.Add(fuente3);
+            ReporteAbogados.LocalReport.DataSources.Add(fuente4);
+            ReporteAbogados.LocalReport.DataSources.Add(fuente5);
             ReporteAbogados.LocalReport.ReportPath = "Views/ProcesosJudiciales/Reportes/Report1.rdlc";
             ReporteAbogados.LocalReport.Refresh();
         }
@@ -68,6 +76,48 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             DataTable dt = new DataTable();
 
             dt = sn.reporteabogados(Abogados.SelectedValue);
+
+            return dt;
+        }
+
+        private DataTable fechaactual()
+        {
+            DataTable dt = new DataTable();
+
+            dt = sn.fechaactual();
+
+            return dt;
+        }
+
+        private DataTable nombreabogado()
+        {
+            DataTable dt = new DataTable();
+
+            dt = sn.nombreabogado(Abogados.SelectedValue);
+
+            return dt;
+        }
+
+        private DataTable dpi()
+        {
+            string usuario = Session["sesion_usuario"] as string;
+            string idusuario = sn.obteneridusuario(usuario);
+
+            DataTable dt = new DataTable();
+
+            dt = sn.dpi(idusuario);
+
+            return dt;
+        }
+
+        private DataTable nombreusuario()
+        {
+            string usuario = Session["sesion_usuario"] as string;
+            string idusuario = sn.obteneridusuario(usuario);
+
+            DataTable dt = new DataTable();
+
+            dt = sn.nombreUsuario(idusuario);
 
             return dt;
         }

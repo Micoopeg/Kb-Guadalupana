@@ -149,7 +149,7 @@ body{
 <body>
     <form id="form1" runat="server">
            <div class="topnav" id="myTopnav">
-              <a href="../Sesion/Inicio.aspx" class="active">Inicio</a>
+              <a href="../Sesion/MenuBarra.aspx" class="active">Inicio</a>
              <%-- <a href="#news">News</a>--%>
               <%--<a href="#contact">Buscar  <i class="fa fa-search"></i></a>--%>
           <%--    <div class="dropdown">
@@ -203,7 +203,7 @@ body{
                 </div>
               </div>
 
-                <div id="MenuAbogado" runat="server" class="dropdown">
+              <%--  <div id="MenuAbogado" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
@@ -212,7 +212,7 @@ body{
                   <a id="A3" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
                   <a id="A4" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
                 </div>
-              </div>
+              </div>--%>
 
              <a href="ControlIncidente.aspx">Control de Incidente  <i class="fas fa-pen"></i></a>
 

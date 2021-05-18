@@ -176,15 +176,16 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     ApellidoCasada.Value = campos3[7];
                     PrimerApellido.Value = campos3[8];
                     SegundoApellido.Value = campos3[9];
-                    Limite.Value = "Q " + campos3[10];
-                    Saldo.Value = "Q " + campos3[11];
+                    Limite.Value = campos3[10];
+                    Saldo.Value = campos3[11];
                     Gastos1.Value = campos3[13];
                     GastosJudiciales.Value = campos3[14];
                     OtrosGastos.Value = campos3[15];
                     Comentario.Value = campos3[16];
                     Total1.InnerText = "Q " + campos3[17];
                 }
-
+                credito.Visible = true;
+                tarjeta.Visible = true;
             }
             else
             {
@@ -243,89 +244,97 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string usuario = Session["sesion_usuario"] as string;
             string idusuario = sn.obteneridusuario(usuario);
 
-            sn.guardaretapa(sig, "3", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value);
-            sn.cambiarestado(numcredito, "2");
-
-            if (MedidasPre1.Checked)
+            if (NombreAbogado.SelectedValue == "0" || TipoProceso.SelectedValue == "0")
             {
-                string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                sn.insertarmedidaspre(sig6, "1", "Embargo de Salario", numcredito);
-            }
-            if (MedidasPre2.Checked)
-            {
-                string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                sn.insertarmedidaspre(sig6, "2", "Embargo de cuentas bancarias", numcredito);
-            }
-            if(MedidasPre3.Checked)
-            {
-                string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                sn.insertarmedidaspre(sig6, "3", "Arraigo", numcredito);
-            }
-            if (MedidasPre4.Checked)
-            {
-                string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito);
-            }
-            if (MedidasPre5.Checked)
-            {
-                string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                sn.insertarmedidaspre(sig6, "5", OtrasMedidas.Value, numcredito);
-            }
-
-            string tipocredito = Session["TipoCredito"] as string;
-            string id = "";
-            string tabla = "";
-            string fecha;
-
-            if (tipocredito == "tarjeta")
-            {
-                id = "idpj_tipotarjeta";
-                tabla = "pj_tipotarjeta";
-                fecha = sn.fechacreaciontarjeta(numcredito);
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe completar los datos');", true);
             }
             else
             {
-                id = "idpj_tipocredito";
-                tabla = "pj_tipocredito";
-                fecha = sn.fechacreacioncredito(numcredito);
+                sn.guardaretapa(sig, "3", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value);
+                sn.cambiarestado(numcredito, "2");
 
+                if (MedidasPre1.Checked)
+                {
+                    string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                    sn.insertarmedidaspre(sig6, "1", "Embargo de Salario", numcredito);
+                }
+                if (MedidasPre2.Checked)
+                {
+                    string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                    sn.insertarmedidaspre(sig6, "2", "Embargo de cuentas bancarias", numcredito);
+                }
+                if (MedidasPre3.Checked)
+                {
+                    string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                    sn.insertarmedidaspre(sig6, "3", "Arraigo", numcredito);
+                }
+                if (MedidasPre4.Checked)
+                {
+                    string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                    sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito);
+                }
+                if (MedidasPre5.Checked)
+                {
+                    string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                    sn.insertarmedidaspre(sig6, "5", OtrasMedidas.Value, numcredito);
+                }
+
+                string tipocredito = Session["TipoCredito"] as string;
+                string id = "";
+                string tabla = "";
+                string fecha;
+
+                if (tipocredito == "tarjeta")
+                {
+                    id = "idpj_tipotarjeta";
+                    tabla = "pj_tipotarjeta";
+                    fecha = sn.fechacreaciontarjeta(numcredito);
+                }
+                else
+                {
+                    id = "idpj_tipocredito";
+                    tabla = "pj_tipocredito";
+                    fecha = sn.fechacreacioncredito(numcredito);
+
+                }
+
+                string[] fechaseparada = fecha.Split(' ');
+                string[] fechacreacion = fechaseparada[0].Split('/');
+                string diacreacion = fechacreacion[0];
+                string mescreacion = fechacreacion[1];
+                string añocreacion = fechacreacion[2];
+
+                string horacreacion = fechaseparada[1];
+
+                string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+
+                string[] fechayhora = sn.fechayhora();
+                string[] fecha2 = fechayhora[0].Split(' ');
+                string año = fecha2[0];
+                string mes = fecha2[1];
+                string dia = fecha2[2];
+
+                string hora = fechayhora[1];
+                string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
+
+                string sig2 = sn.siguiente("pj_certificacionjuidico", "idpj_certificacionjuidico");
+                sn.insertarcertificacionjuridico(sig2, NombreAbogado.SelectedValue, TipoProceso.SelectedValue, numcredito, idusuario, fechahoraactual, NombreCliente.Value, CodigoCliente.Value);
+
+                string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, "Sin comentarios");
+
+                string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "34", "51", fechahoraactual, fechacreacion2, "Sin comentarios");
+
+
+                String script = "alert('Se guardó exitosamente'); window.location.href= 'CreditosCertificacionJuridico.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
-
-            string[] fechaseparada = fecha.Split(' ');
-            string[] fechacreacion = fechaseparada[0].Split('/');
-            string diacreacion = fechacreacion[0];
-            string mescreacion = fechacreacion[1];
-            string añocreacion = fechacreacion[2];
-
-            string horacreacion = fechaseparada[1];
-
-            string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
-
-            string[] fechayhora = sn.fechayhora();
-            string[] fecha2 = fechayhora[0].Split(' ');
-            string año = fecha2[0];
-            string mes = fecha2[1];
-            string dia = fecha2[2];
-
-            string hora = fechayhora[1];
-            string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
-
-            string sig2 = sn.siguiente("pj_certificacionjuidico", "idpj_certificacionjuidico");
-            sn.insertarcertificacionjuridico(sig2, NombreAbogado.SelectedValue, TipoProceso.SelectedValue, numcredito, idusuario, fechahoraactual, NombreCliente.Value, CodigoCliente.Value);
-
-            string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, "Sin comentarios");
-
-            string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "34", "51", fechahoraactual, fechacreacion2, "Sin comentarios");
-
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se guardó exitosamente');", true);
         }
 
         protected void Enviar_Click(object sender, EventArgs e)
         {
-            if(AreaCredito.SelectedValue == "")
+            if(AreaCredito.SelectedValue == "" || Observaciones.Value == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Seleccione un área');", true);
             }
@@ -399,30 +408,37 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             try
             {
-                if (FileUpload1.HasFile)
+                if (PTipoDocumento.SelectedValue == "0")
                 {
-                    string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
-                    ext = ext.ToLower();
-
-                    if (ext != ".pdf")
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf');", true);
-                    }
-                    else
-                    {
-                        string numcredito = Session["credito"] as string;
-                        string siguiente = sn.siguiente("pj_documento", "idpj_documento");
-                        documento = "Subidos/CertificacionContable/" + siguiente + '-' + FileUpload1.FileName;
-                        string nombredoc = siguiente + '-' + FileUpload1.FileName;
-                        sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
-                        FileUpload1.SaveAs(Server.MapPath("Subidos/CertificacionContable/" + siguiente + '-' + FileUpload1.FileName));
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
-                        llenargridviewdocumentos();
-                    }
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Seleccione tipo de dpcumento');", true);
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+                    if (FileUpload1.HasFile)
+                    {
+                        string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
+                        ext = ext.ToLower();
+
+                        if (ext != ".pdf")
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf');", true);
+                        }
+                        else
+                        {
+                            string numcredito = Session["credito"] as string;
+                            string siguiente = sn.siguiente("pj_documento", "idpj_documento");
+                            documento = "Subidos/CertificacionContable/" + siguiente + '-' + FileUpload1.FileName;
+                            string nombredoc = siguiente + '-' + FileUpload1.FileName;
+                            sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
+                            FileUpload1.SaveAs(Server.MapPath("Subidos/CertificacionContable/" + siguiente + '-' + FileUpload1.FileName));
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
+                            llenargridviewdocumentos();
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+                    }
                 }
                 MedidasPre1.Focus();
             }
@@ -439,7 +455,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT * FROM pj_tipodocumento WHERE idpj_tipodocumento IN (14,15)";
+                    string query = "SELECT * FROM pj_tipodocumento WHERE idpj_tipodocumento = 14";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds);

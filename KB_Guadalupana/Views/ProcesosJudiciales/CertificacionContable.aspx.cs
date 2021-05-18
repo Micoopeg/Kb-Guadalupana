@@ -623,109 +623,128 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string idusuario = sn.obteneridusuario(usuario);
             string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
 
-            string sig3 = sn.siguiente("pj_certificacioncontable", "idpj_certificacioncontable");
-            sn.guardarcreditocontable(sig3, NumRegistro.Value,nombreContador.Value, numcredito, idusuario, Observaciones.Value);
-            sn.guardaretapa(sig2, "2", numcredito, sn.datetime(), "Enviado", idusuario, "28", NombreCliente.Value);
-            sn.cambiarestado(numcredito, "1");
-
-            string tipocredito = Session["TipoCredito"] as string;
-            string fecha;
-
-            if (tipocredito == "tarjeta")
+            if (Observaciones.Value == "" || NumRegistro.Value == "" || nombreContador.Value == "")
             {
-                fecha = sn.fechacreaciontarjeta(numcredito);
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe completar los datos');", true);
             }
             else
             {
-                fecha = sn.fechacreacioncredito(numcredito);
+                string sig3 = sn.siguiente("pj_certificacioncontable", "idpj_certificacioncontable");
+                sn.guardarcreditocontable(sig3, NumRegistro.Value, nombreContador.Value, numcredito, idusuario, Observaciones.Value);
+                sn.guardaretapa(sig2, "2", numcredito, sn.datetime(), "Enviado", idusuario, "28", NombreCliente.Value);
+                sn.cambiarestado(numcredito, "1");
+
+                string tipocredito = Session["TipoCredito"] as string;
+                string fecha;
+
+                if (tipocredito == "tarjeta")
+                {
+                    fecha = sn.fechacreaciontarjeta(numcredito);
+                }
+                else
+                {
+                    fecha = sn.fechacreacioncredito(numcredito);
+                }
+
+                string[] fechaseparada = fecha.Split(' ');
+                string[] fechacreacion = fechaseparada[0].Split('/');
+                string diacreacion = fechacreacion[0];
+                string mescreacion = fechacreacion[1];
+                string añocreacion = fechacreacion[2];
+
+                string horacreacion = fechaseparada[1];
+
+                string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+
+
+                string[] fechayhora = sn.fechayhora();
+                string[] fecha2 = fechayhora[0].Split(' ');
+                string año = fecha2[0];
+                string mes = fecha2[1];
+                string dia = fecha2[2];
+
+                string hora = fechayhora[1];
+                string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
+
+                string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "26", "28", fechahoraactual, fechacreacion2, "Recibido");
+
+                string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "28", "34", fechahoraactual, fechacreacion2, Observaciones.Value);
+
+
+                String script = "alert('Se guardó exitosamente'); window.location.href= 'PendienteCertificacion.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
-
-            string[] fechaseparada = fecha.Split(' ');
-            string[] fechacreacion = fechaseparada[0].Split('/');
-            string diacreacion = fechacreacion[0];
-            string mescreacion = fechacreacion[1];
-            string añocreacion = fechacreacion[2];
-
-            string horacreacion = fechaseparada[1];
-
-            string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
-            
-
-            string[] fechayhora = sn.fechayhora();
-            string[] fecha2 = fechayhora[0].Split(' ');
-            string año = fecha2[0];
-            string mes = fecha2[1];
-            string dia = fecha2[2];
-
-            string hora = fechayhora[1];
-            string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
-
-            string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "26", "28", fechahoraactual, fechacreacion2, "Recibido");
-
-            string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "28", "34", fechahoraactual, fechacreacion2, Observaciones.Value);
-
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se guardó exitosamente');", true);
         }
 
         protected void Regresar_Click(object sender, EventArgs e)
         {
+
+
             Validar.Visible = false;
             Regresar.Visible = false;
             certificacion.Visible = false;
             Contador.Visible = false;
 
-            string numcredito = Session["credito"] as string;
-            sn.estadodevuelto(numcredito, "28", "1");
-            
-
-            string tipocredito = Session["TipoCredito"] as string;
-            string id = "";
-            string tabla = "";
-            string fecha;
-
-            if(tipocredito == "tarjeta")
+            if (RazonesRechazo.Value == "")
             {
-                id = "idpj_tipotarjeta";
-                tabla = "pj_tipotarjeta";
-                fecha = sn.fechacreaciontarjeta(numcredito);
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los datos');", true);
             }
             else
             {
-                id = "idpj_tipocredito";
-                tabla = "pj_tipocredito";
-                fecha = sn.fechacreacioncredito(numcredito);
+
+
+                string numcredito = Session["credito"] as string;
+                sn.estadodevuelto(numcredito, "28", "1");
+
+
+                string tipocredito = Session["TipoCredito"] as string;
+                string id = "";
+                string tabla = "";
+                string fecha;
+
+                if (tipocredito == "tarjeta")
+                {
+                    id = "idpj_tipotarjeta";
+                    tabla = "pj_tipotarjeta";
+                    fecha = sn.fechacreaciontarjeta(numcredito);
+                }
+                else
+                {
+                    id = "idpj_tipocredito";
+                    tabla = "pj_tipocredito";
+                    fecha = sn.fechacreacioncredito(numcredito);
+                }
+
+                string[] fechaseparada = fecha.Split(' ');
+                string[] fechacreacion = fechaseparada[0].Split('/');
+                string diacreacion = fechacreacion[0];
+                string mescreacion = fechacreacion[1];
+                string añocreacion = fechacreacion[2];
+
+                string horacreacion = fechaseparada[1];
+
+                string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+
+                string[] fechayhora = sn.fechayhora();
+                string[] fecha2 = fechayhora[0].Split(' ');
+                string año = fecha2[0];
+                string mes = fecha2[1];
+                string dia = fecha2[2];
+
+                string hora = fechayhora[1];
+                string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
+
+                string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "26", "28", fechahoraactual, fechacreacion2, "Sin comentarios");
+
+                string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "28", "26", fechahoraactual, fechacreacion2, RazonesRechazo.Value);
+
+                String script = "alert('El crédito regresó a cobros'); window.location.href= 'PendienteCertificacion.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
-
-            string[] fechaseparada = fecha.Split(' ');
-            string[] fechacreacion = fechaseparada[0].Split('/');
-            string diacreacion = fechacreacion[0];
-            string mescreacion = fechacreacion[1];
-            string añocreacion = fechacreacion[2];
-
-            string horacreacion = fechaseparada[1];
-
-            string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
-
-            string[] fechayhora = sn.fechayhora();
-            string[] fecha2 = fechayhora[0].Split(' ');
-            string año = fecha2[0];
-            string mes = fecha2[1];
-            string dia = fecha2[2];
-
-            string hora = fechayhora[1];
-            string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
-
-            string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "26", "28", fechahoraactual, fechacreacion2, "Sin comentarios");
-
-            string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-            sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "28", "26", fechahoraactual, fechacreacion2, RazonesRechazo.Value);
-
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresó a cobros');", true);
         }
 
         protected void Regresar2_Click(object sender, EventArgs e)

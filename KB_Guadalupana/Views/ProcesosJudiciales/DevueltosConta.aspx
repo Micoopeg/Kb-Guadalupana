@@ -204,6 +204,11 @@
             border-radius: 5px;
             height: 30px;
             border-color: transparent;
+             font-family:"Montserrat";
+            max-width: 90%;
+            min-width: 90%;
+            max-height:30px;
+            min-height:30px;
         }
         .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
 .menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}

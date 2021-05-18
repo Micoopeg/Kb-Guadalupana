@@ -254,6 +254,17 @@
     <Content Include="bdkbguadalupanaDataSet4.xsc">
       <DependentUpon>bdkbguadalupanaDataSet4.xsd</DependentUpon>
     </Content>
+    <Content Include="AbogadoReporteDataSet.xsc">
+      <DependentUpon>AbogadoReporteDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="AbogadoReporteDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AbogadoReporteDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="AbogadoReporteDataSet.xss">
+      <DependentUpon>AbogadoReporteDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="bdkbguadalupanaDataSet4.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>bdkbguadalupanaDataSet4.Designer.cs</LastGenOutput>
@@ -448,6 +459,50 @@
     <Content Include="DataSetAbogado.xss">
       <DependentUpon>DataSetAbogado.xsd</DependentUpon>
     </Content>
+    <Content Include="FechaActualData.xsc">
+      <DependentUpon>FechaActualData.xsd</DependentUpon>
+    </Content>
+    <Content Include="DpiDataSet.xsc">
+      <DependentUpon>DpiDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="DpiDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DpiDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DpiDataSet.xss">
+      <DependentUpon>DpiDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="FechaActualData.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FechaActualData.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="FechaActualData.xss">
+      <DependentUpon>FechaActualData.xsd</DependentUpon>
+    </Content>
+    <Content Include="FechaActualDataset.xsc">
+      <DependentUpon>FechaActualDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="FechaActualDataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FechaActualDataset.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="FechaActualDataset.xss">
+      <DependentUpon>FechaActualDataset.xsd</DependentUpon>
+    </Content>
+    <Content Include="FechaDataset.xsc">
+      <DependentUpon>FechaDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="FechaDataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FechaDataset.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="FechaDataset.xss">
+      <DependentUpon>FechaDataset.xsd</DependentUpon>
+    </Content>
     <None Include="graficmonto.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>graficmonto.Designer.cs</LastGenOutput>
@@ -509,6 +564,28 @@
       <DependentUpon>mydbDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <Content Include="NombreAbogadoData.xsc">
+      <DependentUpon>NombreAbogadoData.xsd</DependentUpon>
+    </Content>
+    <None Include="NombreAbogadoData.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NombreAbogadoData.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="NombreAbogadoData.xss">
+      <DependentUpon>NombreAbogadoData.xsd</DependentUpon>
+    </Content>
+    <Content Include="NombreUsuarioDataSet.xsc">
+      <DependentUpon>NombreUsuarioDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="NombreUsuarioDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NombreUsuarioDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="NombreUsuarioDataSet.xss">
+      <DependentUpon>NombreUsuarioDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="ReportesAv\ReporteUsuarios.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -720,6 +797,11 @@
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbogadoReporteDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AbogadoReporteDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="bdkbguadalupanaDataSet.Designer.cs">
@@ -770,6 +852,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetAbogado.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DpiDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DpiDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FechaActualData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FechaActualData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FechaActualDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FechaActualDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FechaDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FechaDataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -808,6 +910,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>mydbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NombreAbogadoData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NombreAbogadoData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NombreUsuarioDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NombreUsuarioDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportesAv\ReporteUsuarios.aspx.cs">

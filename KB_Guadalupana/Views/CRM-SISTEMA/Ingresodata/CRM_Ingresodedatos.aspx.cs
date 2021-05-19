@@ -1,5 +1,6 @@
 ﻿using CRM_Guadalupana.Controllers;
 using CRM_Guadalupana.Models;
+using KB_Guadalupana.Controllers;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
         string usuarioglobal;
         CRM_Logica logic = new CRM_Logica();
         CRM_Sentencias sn = new CRM_Sentencias();
-        CRM_Conexion cn =  new CRM_Conexion(); 
+        CRM_Conexion cn =  new CRM_Conexion();
+        KB_Rutas kbruta = new KB_Rutas();
         string registrodpiremplazable = "0"; //remplazable dpi en el ingreso de los datos
         string dpiguardar = "";
         DateTime fechaactual; //FECHA PARA VLAIDACIONES DE NO ESTAR VACIO EL CAMPO
@@ -80,7 +82,10 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
         bool verificararchivoconmismonombre(string fileName)
         {
             string ext = Path.GetFileName(fileName);
-            if (File.Exists(MapPath("Archivos/" + ext)))
+            //string ruta = Path.Combine(Server.MapPath("~/"), "Pedidos");
+            //if (File.Exists(HttpContext.Current.Server.MapPath("C:/ARCHIVOS_KBGUADALUPANA/SISTEMA_CRM/ArchiverodeLeads/" + ext)))            
+            string ruta = kbruta.rutaestaticaarchivoscrm();
+            if (File.Exists((ruta + ext)))            
             {
                 return true;
             }
@@ -164,9 +169,9 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                 {
                     if (verificararchivoconmismonombre(FileUpload1.FileName) == false)
                     {
-                        FileUpload1.SaveAs(MapPath("Archivos/" + FileUpload1.FileName));
+                        FileUpload1.SaveAs(MapPath(kbruta.rutaestaticaarchivoscrm() + FileUpload1.FileName));
                         Label1.Text = FileUpload1.FileName + " cargado exitosamente";
-                        lblOculto.Text = MapPath("Archivos/" + FileUpload1.FileName);
+                        lblOculto.Text = MapPath(kbruta.rutaestaticaarchivoscrm() + FileUpload1.FileName);
                     }
                     else
                     {
@@ -619,7 +624,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 
         protected void btncerrasesion_Click(object sender, EventArgs e)
         {
-            String script = "alert('Se encuentra saliendo del programa'); window.location.href= '../../Index.aspx';";
+            String script = "alert('Se encuentra saliendo del programa'); window.location.href= '../Sesion/MenuBarra.aspx';";
             ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
         }
     }

@@ -225,6 +225,29 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
+        public string aleatoriovalido(string numero)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT estado  FROM `ex_aleatorio` WHERE numero = '"+numero+"'  ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
         public string obtenerhall(string codexp)
         {
             String camporesultante = "";
@@ -234,6 +257,29 @@ namespace KB_Guadalupana.Controllers
                 {
                     sqlCon.Open();
                     string sql = " SELECT hallazgo FROM ex_hallazgos WHERE codexp ='" + codexp + "' and estadohall=1 ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string obteneraleatorio()
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT round(rand()*100000) ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -1150,7 +1196,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gep.gen_peticionesfechacredito as gen_fechadesembolso, gep.gen_peticionescodigocliente AS cifgeneral ,gep.gen_peticionesnumerocredito AS gen_numcredito , CONCAT_ws(' ', gep.gen_peticionesprimernombre, gep.gen_peticionessegundonombre, gep.gen_peticionestercernombre, gep.gen_peticionesprimerapellido, gep.gen_peticionessegundoapellido) AS nombrecompleto, CONCAT('Q',FORMAT(gep.gen_peticionesmontocredito,2,'de_DE')) as gen_monto, extp.ex_nomtipo AS ex_nomtipo FROM gen_peticiones gep INNER JOIN ex_tipocredito extp ON extp.codextipocred = gep.gen_peticionesgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gep.gen_peticionesnumerocredito INNER JOIN ex_expediente exp ON exp.codgencred = gep.gen_peticionesnumerocredito INNER JOIN ex_hallazgos exh ON exh.codexp = exp.codexp WHERE tmp.codexarea = '" + area + "' AND exh.estado = 1; ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gep.gen_peticionesfechacredito as gen_fechadesembolso, gep.gen_peticionescodigocliente AS cifgeneral ,gep.gen_peticionesnumerocredito AS gen_numcredito , CONCAT_ws(' ', gep.gen_peticionesprimernombre, gep.gen_peticionessegundonombre, gep.gen_peticionestercernombre, gep.gen_peticionesprimerapellido, gep.gen_peticionessegundoapellido) AS nombrecompleto, CONCAT('Q',FORMAT(gep.gen_peticionesmontocredito,2,'de_DE')) as gen_monto, extp.ex_nomtipo AS ex_nomtipo FROM gen_peticiones gep INNER JOIN ex_tipocredito extp ON extp.codextipocred = gep.gen_peticionesgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gep.gen_peticionesnumerocredito INNER JOIN ex_expediente exp ON exp.codgencred = gep.gen_peticionesnumerocredito INNER JOIN ex_hallazgos exh ON exh.codexp = exp.codexp WHERE tmp.codexarea = '" + area + "' AND exh.estadohall = 1; ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1298,7 +1344,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gep.gen_peticionesfechacredito as gen_fechadesembolso, gep.gen_peticionescodigocliente AS cifgeneral ,gep.gen_peticionesnumerocredito AS gen_numcredito , CONCAT_ws(' ', gep.gen_peticionesprimernombre, gep.gen_peticionessegundonombre, gep.gen_peticionestercernombre, gep.gen_peticionesprimerapellido, gep.gen_peticionessegundoapellido) AS nombrecompleto, CONCAT('Q',FORMAT(gep.gen_peticionesmontocredito,2,'de_DE')) as gen_monto, extp.ex_nomtipo AS ex_nomtipo  FROM gen_peticiones gep INNER JOIN ex_tipocredito extp ON extp.codextipocred = gep.gen_peticionesgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gep.gen_peticionesnumerocredito INNER JOIN ex_expediente exp ON exp.codgencred = gep.gen_peticionesnumerocredito INNER JOIN ex_envio exenv ON exenv.Nocredito= exp.codgencred WHERE exenv.codexetapa = 6 AND exenv.estado = 1 ; ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT DISTINCT gep.gen_peticionesfechacredito as gen_fechadesembolso, gep.gen_peticionescodigocliente AS cifgeneral ,gep.gen_peticionesnumerocredito AS gen_numcredito , CONCAT_ws(' ', gep.gen_peticionesprimernombre, gep.gen_peticionessegundonombre, gep.gen_peticionestercernombre, gep.gen_peticionesprimerapellido, gep.gen_peticionessegundoapellido) AS nombrecompleto, CONCAT('Q',FORMAT(gep.gen_peticionesmontocredito,2,'de_DE')) as gen_monto, extp.ex_nomtipo AS ex_nomtipo  FROM gen_peticiones gep INNER JOIN ex_tipocredito extp ON extp.codextipocred = gep.gen_peticionesgarantia INNER JOIN ex_temporal1 tmp ON tmp.Nocredito = gep.gen_peticionesnumerocredito INNER JOIN ex_expediente exp ON exp.codgencred = gep.gen_peticionesnumerocredito INNER JOIN ex_envio exenv ON exenv.Nocredito= exp.codgencred WHERE exenv.codexetapa = 7 AND exenv.estado = 1 ; ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);

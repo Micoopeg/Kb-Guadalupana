@@ -17,6 +17,7 @@ namespace KB_Guadalupana.Views.Hallazgos
         Logica_Hallazgos logic = new Logica_Hallazgos();
         Conexion cn = new Conexion();
         Sentencia_Hallazgo sen = new Sentencia_Hallazgo();
+        KB_Rutas rutas = new KB_Rutas();
 
         int ids = 0;
         int valor = 1;
@@ -108,13 +109,15 @@ namespace KB_Guadalupana.Views.Hallazgos
                     if ((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
                     {
                         string idvalor = Session["IDH"].ToString();
+                        string rutadoc = rutas.rutaestaticaarchivoshallazgos();
+                        //string doc = rutadoc + idvalor + archivo.FileName;
+                        string doc = idvalor + archivo.FileName;
 
-                        string doc = "Archivos/" + idvalor + archivo.FileName;
-
-                        archivo.SaveAs(Server.MapPath("Archivos/" + idvalor + archivo.FileName));
+                        archivo.SaveAs(rutadoc+doc);
+                        //archivo.SaveAs(Server.MapPath("Archivos/" + idvalor + archivo.FileName));
 
                         string sig199 = logic.siguiente("sh_hallazgo ", "id_shhallazgo");
-                        string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, "0", "5" };
+                        string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, "0", "","5" };
                         logic.insertartablas("sh_hallazgo", valores199);
 
                         string[] var1 = sen.cidhallazgo();
@@ -137,7 +140,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                 else
                 {
                     string sig199 = logic.siguiente("sh_hallazgo ", "id_shhallazgo");
-                    string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, "null", Recomendacion.Value, MesH.Value, Año.Value, "0", "5" };
+                    string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, "null", Recomendacion.Value, MesH.Value, Año.Value, "0","", "5" };
                     logic.insertartablas("sh_hallazgo", valores199);
 
                     string[] var1 = sen.cidhallazgo();
@@ -153,6 +156,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                     }
                 }
             }
+            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras el archivo se esta subiendo.');", true);
         }
 
         public void ConsultaId()

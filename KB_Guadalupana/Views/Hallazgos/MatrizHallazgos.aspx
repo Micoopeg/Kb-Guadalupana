@@ -258,14 +258,7 @@ body {
                         <label style="color:white">Area/Departamento</label>
                          <asp:DropDownList id="IGADepa1" runat="server" class="dis" AutoPostBack="true" ></asp:DropDownList>
                          <label style="color:white">Estado</label>
-                              <select id="Estado" runat="server" class="dis" >
-                                <option disabled selected>Estado</option>
-                                <option  value="1">Solucionado</option>
-                                <option  value="2">En proceso</option>
-                                <option  value="4">No se Obtuvo Respuesta</option>
-                                <option  value="5">Nuevo</option>
-                                <option  value="6">Eliminado</option>
-                             </select>
+                 <asp:DropDownList id="cmbestado"  runat="server" class="dis" AutoPostBack="true" ></asp:DropDownList>
                          
                     </p>
                     <p class="col-md-6">
@@ -324,7 +317,7 @@ body {
      var no_discounted = document.getElementById('isNotDiscounted')
      var discount_percentage = document.getElementById('IGAgencia1')
      var discount_percentage1 = document.getElementById('IGADepa1')
-     var discount_percentage2 = document.getElementById('Estado')
+     var discount_percentage2 = document.getElementById('cmbestado')
 
      function updateStatus()
      {

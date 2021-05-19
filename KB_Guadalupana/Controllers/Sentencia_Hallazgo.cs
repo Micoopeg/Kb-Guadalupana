@@ -291,7 +291,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select id_shhallazgo,sh_mes,sh_año,sh_rubro,sh_hallazgo,sh_recomendacion,sh_estado_id_shestado , sh_calificacion,	sh_archivo from sh_hallazgo where id_shhallazgo='" + dato + "'";
+                    string consultaGraAsis = "select id_shhallazgo,sh_mes,sh_año,sh_rubro,sh_hallazgo,sh_recomendacion,sh_estado_id_shestado , sh_calificacion,	sh_archivo,sh_comentario from sh_hallazgo where id_shhallazgo='" + dato + "'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -817,6 +817,59 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
+        public string[] consultaparcial()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='7'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] consultanosolucionado()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='8'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
 
     }
 

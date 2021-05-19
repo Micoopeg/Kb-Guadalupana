@@ -35,9 +35,9 @@ namespace KB_Guadalupana.Views.Hallazgos
             string valor = Convert.ToString(var1[0]);
 
             string[] var2 = sen.consultarRol(valor);
-            string valor1 = Convert.ToString(var2[2]);
+            string valor1 = Convert.ToString(var2[0]);
 
-            if (valor1 == "7")
+            if (valor1 == "5" || valor1 == "1")
             {
                 Crear.Visible = true;
                 Consultar.Visible = true;
@@ -45,7 +45,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                 Consulta.Visible = true;
                 Mantenimiento.Visible = true;
             }
-            else if (valor1 != "7")
+            else
             {
                 Crear.Visible = false;
                 Consultar.Visible = false;

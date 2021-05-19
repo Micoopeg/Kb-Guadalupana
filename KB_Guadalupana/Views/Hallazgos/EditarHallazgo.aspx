@@ -389,14 +389,7 @@ padding: 8px;
         </p>
           <p class="col-md-3">
             <label style="color:white">Estado</label>
-                <select id="Estado" runat="server" class="dis">
-                    <option disabled selected>Estado</option>
-                    <option  value="1">Solucionado</option>
-                    <option  value="2">En Proceso</option>
-                    <option  value="4">No se obtuvo Respuesta</option>
-                    <option  value="5">Nuevo</option>
-                </select>
-
+              <asp:DropDownList id="cmbestado" runat="server" class="dis" style="max-width: 170px" ></asp:DropDownList>
 
          <p class="col-md-3" id="Subir" runat="server">
             <label style="color:white">Cargar Imagen</label>
@@ -419,20 +412,28 @@ padding: 8px;
             <label style="color:white">Recomendación</label>
             <textarea id="Recomendacion" runat="server" name="texto" rows="3" cols="42"></textarea>
         </p> 
-          
-          <p class="col-md-6" style="margin-top: -35px;">
-             <input type="button" style="margin-left: 67px;margin-top: 60px;" class="button" Value="Actualizar"  name="next" onclick="GuardarHallazgo()"/>
-        </p>
-          <p class="col-md-6"  style="margin-top: -35px;">
-             <input type="button" style="margin-left: 462px;margin-top: 0px;background-color: #B80000;" class="button" Value="Eliminar"  name="next" onclick="Eliminar()"/>
-        </p>
+              </p>
+          <div  class="col-md-6">            
+            <label style="color:white">Comentario</label>
+            <textarea id="txtcomentario" runat="server" name="texto" rows="3" cols="42"></textarea>
+          </div>
+            
+          <br />            
 </div>
+                    <center>
+           <input type="button" style="margin-left: 67px;margin-top: 60px;" class="button" Value="Actualizar"  name="next" onclick="GuardarHallazgo()"/>
+             <input type="button" style="background-color: #B80000;" class="button" Value="Eliminar"  name="next" onclick="Eliminar()"/>
+
+      </center>
   </div>
 
          <asp:LinkButton ID="eliminar" runat="server" OnClick="Eliminar_Hallazgo_Click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="guardar" runat="server" OnClick="guardarh_Hallazgo_Click" ClientIDMode="Static"></asp:LinkButton>
+        
         </form>
+
     </div>
+
 </div> 
 
      <script type="text/javascript">

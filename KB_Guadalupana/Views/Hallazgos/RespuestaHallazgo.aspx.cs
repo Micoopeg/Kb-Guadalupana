@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
+using System.IO;
 
 namespace KB_Guadalupana.Views.Hallazgos
 {
@@ -20,6 +21,7 @@ namespace KB_Guadalupana.Views.Hallazgos
         Sentencia_Hallazgo sen = new Sentencia_Hallazgo();
         Logica_Hallazgos logic = new Logica_Hallazgos();
         Conexion cn = new Conexion();
+        KB_Rutas kbrutas = new KB_Rutas();
         string ideditar;
         string consulta;
         string valor = "1";
@@ -77,12 +79,16 @@ namespace KB_Guadalupana.Views.Hallazgos
             ideditar = Session["Idguardarse"].ToString();
             string[] var1 = sen.consultarHallazgo(ideditar);
             ruta = Convert.ToString(var1[8]);
+            string rutaestatica = kbrutas.rutaestaticaarchivoshallazgos();
 
-            string FilePath = Server.MapPath(ruta); //Variable ruta
+            string FilePath = rutaestatica+ruta; //Variable ruta
             WebClient user = new WebClient();
-            Byte[] FileBuffer = user.DownloadData(FilePath);
+            if (File.Exists(FilePath))
+            {
+                Byte[] FileBuffer = user.DownloadData(FilePath);
             if (FileBuffer != null)
             {
+
                 string[] partes = ruta.Split('.');
                 string subcadena = partes[1];
 
@@ -107,6 +113,11 @@ namespace KB_Guadalupana.Views.Hallazgos
                     Response.BinaryWrite(FileBuffer);
                 }
                 //Response.ContentType = "application/docx";
+            }
+            }
+            else
+            {
+                Response.Write("EL ARCHIVO QUE ESTÁ BUSCANDO NO SE ENCUENTRA ALMACENADO");
             }
         }
 

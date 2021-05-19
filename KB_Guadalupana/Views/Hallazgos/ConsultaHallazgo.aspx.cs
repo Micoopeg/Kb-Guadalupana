@@ -36,6 +36,8 @@ namespace KB_Guadalupana.Views.Hallazgos
             string[] var2 = sen.consultarRol(valor);
             string valor1 = Convert.ToString(var2[0]);
 
+            //Auditor Interno - JEFE
+
             //Gerente General
             if (valor1 == "1")
             {
@@ -207,7 +209,22 @@ namespace KB_Guadalupana.Views.Hallazgos
                 Messa.Visible = true;
                 año.Visible = true;
             }
-
+            //Auditor Interno - JEFE
+            else if (valor1 == "5")
+            {
+                if (!IsPostBack)
+                {
+                    llenarcombosucursal();
+                    g1.Visible = false;
+                    g1.Visible = false;
+                    g2.Visible = false;
+                    g3.Visible = false;
+                    g4.Visible = false;
+                    g5.Visible = false;
+                    g6.Visible = false;
+                    g7.Visible = false;
+                }
+            }
             else
             {
                 IGAgencia1.Visible = false;

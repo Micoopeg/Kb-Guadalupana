@@ -258,6 +258,16 @@ body {
                            <asp:Label ID="Estado7" Text='<%# Eval("sh_nombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Calificación" >
+                           <ItemTemplate >
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_calificacion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Comentario de auditor" >
+                           <ItemTemplate >
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_comentario") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>             
                      </Columns>
      <HeaderStyle CssClass="prueba"  ForeColor="white" BackColor="#003563" ></HeaderStyle>
         </asp:GridView>
@@ -316,6 +326,16 @@ body {
                            <asp:Label ID="Estado7" Text='<%# Eval("sh_nombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Calificación" >
+                           <ItemTemplate >
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_calificacion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Comentario de auditor" >
+                           <ItemTemplate >
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_comentario") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>       
                      </Columns>
      <HeaderStyle CssClass="prueba"  ForeColor="white" BackColor="#003563"></HeaderStyle>
         </asp:GridView>

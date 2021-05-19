@@ -264,6 +264,14 @@ body {
                         <label style="color:white;text-align: center;">Eliminados</label>
                         <input style="color:#FF0B00;background-color:#003563;font-weight: bold;text-align: center;font-size: 30px;" type="text" runat="server" id="Text2" disabled/>
                     </p>
+                   <p class="col-md-6">
+                        <label style="color:white;text-align: center;">Solución Parcial</label>
+                        <input style="color:aliceblue;background-color:#003563;font-weight: bold;text-align: center;font-size: 30px;" type="text" runat="server" id="txtsolucionparcial" disabled/>
+                    </p>
+                        <p class="col-md-6">
+                        <label style="color:white;text-align: center;">No solucionado</label>
+                        <input style="color:coral;background-color:#003563;font-weight: bold;text-align: center;font-size: 30px;" type="text" runat="server" id="txtnosolucionado" disabled/>
+                    </p>
                 </div>
             </div>
         </form>
@@ -291,16 +299,9 @@ body {
                       <asp:DropDownList id="IGAgencia1"  OnSelectedIndexChanged="IGAgencia1_SelectedIndexChanged" runat="server" class="dis" AutoPostBack="true"></asp:DropDownList>
                            
                         <label style="color:white">Area/Departamento</label>
-                         <asp:DropDownList id="IGADepa1" runat="server" class="dis" AutoPostBack="true" ></asp:DropDownList>
-                         <label style="color:white">Estado</label>
-                              <select id="Estado" runat="server" class="dis">
-                                <option disabled selected>Estado</option>
-                                <option  value="1">Solucionado</option>
-                                <option  value="2">En proceso</option>
-                                <option  value="4">No se Obtuvo Respuesta</option>
-                                <option  value="5">Nuevo</option>
-                                <option  value="6">Eliminado</option>
-                             </select>
+                         <asp:DropDownList id="IGADepa1" runat="server" class="dis" AutoPostBack="true" ></asp:DropDownList>                         
+                         <label style="color:white">Estado</label>                       
+                        <asp:DropDownList id="cmbestado" runat="server" class="dis" AutoPostBack="true" ></asp:DropDownList>
                          
                     </p>
                     <p class="col-md-6">
@@ -365,7 +366,7 @@ body {
      var no_discounted = document.getElementById('isNotDiscounted')
      var discount_percentage = document.getElementById('IGAgencia1')
      var discount_percentage1 = document.getElementById('IGADepa1')
-     var discount_percentage2 = document.getElementById('Estado')
+     var discount_percentage2 = document.getElementById('cmbestado')
 
      function updateStatus() {
          if (discounted.checked) {

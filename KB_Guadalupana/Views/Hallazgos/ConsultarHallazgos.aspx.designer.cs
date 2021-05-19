@@ -69,6 +69,24 @@ namespace KB_Guadalupana.Views.Hallazgos
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
 
         /// <summary>
+        /// Control txtsolucionparcial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtsolucionparcial;
+
+        /// <summary>
+        /// Control txtnosolucionado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnosolucionado;
+
+        /// <summary>
         /// Control form1.
         /// </summary>
         /// <remarks>
@@ -105,13 +123,13 @@ namespace KB_Guadalupana.Views.Hallazgos
         protected global::System.Web.UI.WebControls.DropDownList IGADepa1;
 
         /// <summary>
-        /// Control Estado.
+        /// Control cmbestado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Estado;
+        protected global::System.Web.UI.WebControls.DropDownList cmbestado;
 
         /// <summary>
         /// Control Mes.

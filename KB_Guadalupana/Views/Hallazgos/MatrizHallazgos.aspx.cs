@@ -22,6 +22,7 @@ namespace KB_Guadalupana.Views.Hallazgos
             if (!IsPostBack)
             {
                 llenarcombosucursal();
+                llenarcomboestado();
                
             }
         }
@@ -85,9 +86,31 @@ namespace KB_Guadalupana.Views.Hallazgos
             Session["Año1"] = año.Value;
             Session["Gerencia1"] = IGAgencia1.Text;
             Session["Area1"] = IGADepa1.Text;
-            Session["Estado1"] = Estado.Value;
+            Session["Estado1"] = cmbestado.SelectedValue;
 
             Response.Redirect("InformeHallazgos.aspx");
         }
+        public void llenarcomboestado()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select * from sh_estado";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "estado");
+                    cmbestado.DataSource = ds;
+                    cmbestado.DataTextField = "sh_nombre";
+                    cmbestado.DataValueField = "id_shestado";
+                    cmbestado.DataBind();
+                    cmbestado.Items.Insert(0, new ListItem("[Estado]", "0"));
+                }
+                catch { }
+            }
+        }
+
     }
+
 }

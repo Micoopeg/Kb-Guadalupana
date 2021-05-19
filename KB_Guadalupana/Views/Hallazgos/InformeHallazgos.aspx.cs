@@ -100,7 +100,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                         sqlCon.Open();
                         string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes," +
                             "t4.sh_nombre,t2.sh_gerencianombre, t3.sh_areanombre, t0.sh_recomendacion," +
-                            "t4.sh_nombre,t5.sh_comentario as Comen,t5.sh_fecha as Fecha,t5.sh_usuario " +
+                            "t4.sh_nombre,t5.sh_comentario as Comen,t5.sh_fecha as Fecha,t5.sh_usuario,t0.sh_comentario,t0.sh_calificacion " +
                             "from sh_hallazgo t0 " +
                             "inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
                             "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
@@ -135,7 +135,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                             //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                             sqlCon.Open();
                             string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre," +
-                                "t3.sh_areanombre, t0.sh_recomendacion,t4.sh_nombre,t5.sh_comentario as Comen,t5.sh_fecha as Fecha,t5.sh_usuario " +
+                                "t3.sh_areanombre, t0.sh_recomendacion,t4.sh_nombre,t5.sh_comentario as Comen,t5.sh_fecha as Fecha,t5.sh_usuario,t0.sh_comentario,t0.sh_calificacion " +
                                 "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
                                 "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
                                 "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
@@ -165,7 +165,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                         {
                             //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                             sqlCon.Open();
-                            string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre,t3.sh_areanombre, t0.sh_recomendacion,t4.sh_nombre " +
+                            string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre,t3.sh_areanombre, t0.sh_recomendacion,t4.sh_nombre,t0.sh_comentario,t0.sh_calificacion " +
                                 "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
                                 "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
                                 "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +

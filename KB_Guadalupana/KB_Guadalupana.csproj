@@ -835,6 +835,7 @@
     <Compile Include="Controllers\Conexion_seguridad.cs" />
     <Compile Include="Controllers\CRM_Conexion.cs" />
     <Compile Include="Controllers\CRM_Sentencias.cs" />
+    <Compile Include="Controllers\KB_Rutas.cs" />
     <Compile Include="Controllers\ModeloAV.cs" />
     <Compile Include="Controllers\ModeloEX.cs" />
     <Compile Include="Controllers\Sentencia.cs" />

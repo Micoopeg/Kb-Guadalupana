@@ -27,9 +27,12 @@ namespace KB_Guadalupana.Views.Hallazgos
             MostrarNuevos();
             MostrarTtotal();
             MostrarEliminados();
+            Mostrarparcial();
+            Mostrarnosolucionado();
             if (!IsPostBack)
             {
                 llenarcombosucursal();
+                llenarcomboestado();
             }
         }
 
@@ -79,6 +82,26 @@ namespace KB_Guadalupana.Views.Hallazgos
             for (int i = 0; i < var1.Length; i++)
             {
                 Totales.Value = Convert.ToString(var1[0]);
+
+            }
+        }
+
+        public void Mostrarparcial()
+        {
+            string[] var1 = sen.consultaparcial();
+            for (int i = 0; i < var1.Length; i++)
+            {
+                txtsolucionparcial.Value = Convert.ToString(var1[0]);
+
+            }
+        }
+
+        public void Mostrarnosolucionado()
+        {
+            string[] var1 = sen.consultanosolucionado();
+            for (int i = 0; i < var1.Length; i++)
+            {
+                txtnosolucionado.Value = Convert.ToString(var1[0]);
 
             }
         }
@@ -148,7 +171,7 @@ namespace KB_Guadalupana.Views.Hallazgos
             Session["Año"] = año.Value;
             Session["Gerencia"] = IGAgencia1.Text;
             Session["Area"] = IGADepa1.Text;
-            Session["Estado"] = Estado.Value;
+            Session["Estado"] = cmbestado.SelectedValue;
 
             Response.Redirect("VistaHallazgo.aspx");
         }
@@ -156,6 +179,27 @@ namespace KB_Guadalupana.Views.Hallazgos
         protected void elimi_Click(object sender, EventArgs e)
         {
             Response.Redirect("VistaEliminar.aspx");
+        }
+
+        public void llenarcomboestado()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select * from sh_estado";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "estado");
+                    cmbestado.DataSource = ds;
+                    cmbestado.DataTextField = "sh_nombre";
+                    cmbestado.DataValueField = "id_shestado";
+                    cmbestado.DataBind();
+                    cmbestado.Items.Insert(0, new ListItem("Estado", "0"));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
         }
     }
 }

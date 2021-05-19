@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
+using System.IO;
 
 namespace KB_Guadalupana.Views.Hallazgos
 {
@@ -20,6 +21,7 @@ namespace KB_Guadalupana.Views.Hallazgos
         Sentencia_Hallazgo sen = new Sentencia_Hallazgo();
         Logica_Hallazgos logic = new Logica_Hallazgos();
         Conexion cn = new Conexion();
+        KB_Rutas kbruta = new KB_Rutas();
         string ideditar;
         string consulta;
         string valor = "1";
@@ -38,6 +40,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                 llenarcombosucursal1();
                 actualizar1();
                 archivo();
+                llenarcomboestado();
             }
         }
 
@@ -53,8 +56,9 @@ namespace KB_Guadalupana.Views.Hallazgos
                 Rubro.Value = Convert.ToString(var1[3]);
                 Hallazgo.Value = Convert.ToString(var1[4]);
                 Recomendacion.Value = Convert.ToString(var1[5]);
-                Estado.Value = Convert.ToString(var1[6]);
+                cmbestado.SelectedValue = Convert.ToString(var1[6]);
                 Cal.Value = Convert.ToString(var1[7]);
+                txtcomentario.Value = Convert.ToString(var1[9]);
             }
         }
 
@@ -223,36 +227,48 @@ namespace KB_Guadalupana.Views.Hallazgos
             ideditar = Session["Idguardar"].ToString();
             string[] var1 = sen.consultarHallazgo(ideditar);
             ruta = Convert.ToString(var1[8]);
+            string rutaestatica = kbruta.rutaestaticaarchivoshallazgos();
 
-            string FilePath = Server.MapPath(ruta); //Variable ruta
+            string FilePath = rutaestatica+ruta; //Variable ruta
             WebClient user = new WebClient();
-            Byte[] FileBuffer = user.DownloadData(FilePath);
-            if (FileBuffer != null)
+            if (File.Exists(FilePath))
             {
-                string[] partes = ruta.Split('.');
-                string subcadena = partes[1];
+                Byte[] FileBuffer = user.DownloadData(FilePath);
+                if (FileBuffer != null)
+                {
+                    string[] partes = ruta.Split('.');
+                    string subcadena = partes[1];
 
-                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('id: " + subcadena + "');", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('id: " + subcadena + "');", true);
 
-                if ((subcadena == "png") || (subcadena == "jpg"))
-                {
-                    Response.ContentType = "text/plain";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
+                    if ((subcadena == "png") || (subcadena == "jpg"))
+                    {
+                        Response.ContentType = "text/plain";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (subcadena == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (subcadena == "docx")
+                    {
+                        Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    //Response.ContentType = "application/docx";
                 }
-                else if (subcadena == "pdf")
+                else
                 {
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
+                    Response.Write("erorr");
                 }
-                else if (subcadena == "docx")
-                {
-                    Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
-                }
-                //Response.ContentType = "application/docx";
+            }
+            else
+            {
+                Response.Write("NO SE ENCUENTRA EL ARCHIVO EN ALMACENADO");
             }
         }
 
@@ -291,14 +307,15 @@ namespace KB_Guadalupana.Views.Hallazgos
                 {
                     string idvalor = Session["Idguardar"].ToString();
 
-                    string doc = "Archivos/" + idvalor + FileUpload1.FileName;
+                    string doc =  idvalor + FileUpload1.FileName;
+                    //string doc = "Archivos/" + idvalor + FileUpload1.FileName;
 
-                    FileUpload1.SaveAs(Server.MapPath("Archivos/" + idvalor + FileUpload1.FileName));
+                    FileUpload1.SaveAs(kbruta.rutaestaticaarchivoshallazgos() + idvalor + FileUpload1.FileName);
 
                     ideditar = Session["Idguardar"].ToString();
 
-                    string[] campos = { "id_shhallazgo", "sh_rubro", "sh_hallazgo", "sh_archivo", "sh_recomendacion", "sh_mes", "sh_año", "sh_calificacion", "sh_estado_id_shestado" };
-                    string[] valores = { ideditar, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, Cal.Value, Estado.Value };
+                    string[] campos = { "id_shhallazgo", "sh_rubro", "sh_hallazgo", "sh_archivo", "sh_recomendacion", "sh_mes", "sh_año", "sh_calificacion", "sh_comentario", "sh_estado_id_shestado" };
+                    string[] valores = { ideditar, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, Cal.Value,txtcomentario.Value, cmbestado.SelectedValue };
                     try
                     {
                         logic.modificartablas("sh_hallazgo", campos, valores);
@@ -323,8 +340,8 @@ namespace KB_Guadalupana.Views.Hallazgos
             else
             {
                 ideditar = Session["Idguardar"].ToString();
-                string[] campos = { "id_shhallazgo", "sh_rubro", "sh_hallazgo", "sh_recomendacion", "sh_mes", "sh_año", "sh_calificacion", "sh_estado_id_shestado" };
-                string[] valores = { ideditar, Rubro.Value, Hallazgo.Value, Recomendacion.Value, MesH.Value, Año.Value, Cal.Value, Estado.Value };
+                string[] campos = { "id_shhallazgo", "sh_rubro", "sh_hallazgo", "sh_recomendacion", "sh_mes", "sh_año", "sh_calificacion", "sh_comentario","sh_estado_id_shestado" };
+                string[] valores = { ideditar, Rubro.Value, Hallazgo.Value, Recomendacion.Value, MesH.Value, Año.Value, Cal.Value,txtcomentario.Value,cmbestado.SelectedValue };
                 try
                 {
                     logic.modificartablas("sh_hallazgo", campos, valores);
@@ -424,5 +441,27 @@ namespace KB_Guadalupana.Views.Hallazgos
 
             ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hallazgo Actualizado'); window.location.href= 'VistaHallazgo.aspx';", true);
         }
+
+        public void llenarcomboestado()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select * from sh_estado";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "estado");
+                    cmbestado.DataSource = ds;
+                    cmbestado.DataTextField = "sh_nombre";
+                    cmbestado.DataValueField = "id_shestado";
+                    cmbestado.DataBind();
+                    cmbestado.Items.Insert(0, new ListItem("[Estados]", "0"));
+                }
+                catch { }
+            }
+        }
+
     }
 }

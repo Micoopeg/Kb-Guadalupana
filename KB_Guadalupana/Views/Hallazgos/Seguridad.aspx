@@ -330,6 +330,7 @@ padding: 8px;
                     <option  value="2">Gerente</option>
                     <option  value="3">Jefe</option>
                     <option  value="4">Auditor</option>
+                    <option  value="4">Auditor Supremo</option>
                 </select>
         </p>
           <p class="col-md-5">

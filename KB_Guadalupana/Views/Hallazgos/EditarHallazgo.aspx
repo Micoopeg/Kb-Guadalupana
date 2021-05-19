@@ -415,7 +415,7 @@ padding: 8px;
               </p>
           <div  class="col-md-6">            
             <label style="color:white">Comentario</label>
-            <textarea id="txtcomentario" runat="server" name="texto" rows="3" cols="42"></textarea>
+            <textarea id="txtcomentario" runat="server" name="texto" rows="3" cols="42" maxlength="5000" placeholder="HASTA 5,000 CARACTERES"></textarea>
           </div>
             
           <br />            

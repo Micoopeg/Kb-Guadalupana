@@ -299,7 +299,7 @@ padding: 8px;
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
         <div id="content" class="col-lg-12">
-            <div class="content"style="text-align: justify"><b>Usuario:</b>El tamaño maximo para poder cargar el archivo debe de ser de 10MB. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red"></i></div>
+            <div class="content"style="text-align: justify"><b>Usuario:</b> El tamaño maximo para poder cargar el archivo debe de ser de 10MB. Evitar subir archivos que contengan punto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red;right:104px;height:143px"></i></div>
         </div>
     <form id="form1" runat="server">
                <h1 style="color:white">Crear Hallazgo</h1>
@@ -355,12 +355,12 @@ padding: 8px;
         </p>
           <p class="col-md-3">
             <label style="color:white">Rubro</label>
-            <input style="height: 36px;" type="text"  id="Rubro" runat="server"/>
+            <input style="height: 36px;" type="text"  id="Rubro" runat="server" maxlength="100"/>
         </p>
           
         <p class="col-md-6">
             <label style="color:white">Hallazgo</label>
-               <textarea id="Hallazgo" runat="server" name="texto" rows="3" cols="42"></textarea>
+               <textarea id="Hallazgo" runat="server" name="texto" rows="3" cols="42" maxlength="5000" placeholder="HASTA 5,000 CARACTERES"></textarea>
         </p> 
           
   
@@ -374,7 +374,7 @@ padding: 8px;
           
         <p class="col-md-6">
             <label style="color:white">Recomendación</label>
-            <textarea id="Recomendacion" runat="server" name="texto" rows="3" cols="42"></textarea>
+            <textarea id="Recomendacion" runat="server" name="texto" rows="3" cols="42" maxlength="5000" placeholder="HASTA 5,000 CARACTERES"></textarea>
         </p>
           <%-- <p class="col-md-6">
             <label style="color:white">Comentario</label>

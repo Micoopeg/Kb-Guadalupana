@@ -51,6 +51,42 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl val;
 
         /// <summary>
+        /// span control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl span;
+
+        /// <summary>
+        /// txtcodigo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcodigo;
+
+        /// <summary>
+        /// span4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl span4;
+
+        /// <summary>
+        /// txtlote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtlote;
+
+        /// <summary>
         /// span1 control.
         /// </summary>
         /// <remarks>
@@ -274,6 +310,24 @@ namespace KB_Guadalupana.Views.ControlEX
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton no;
+
+        /// <summary>
+        /// divrecib control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divrecib;
+
+        /// <summary>
+        /// btnmensajero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnmensajero;
 
         /// <summary>
         /// encabselec control.

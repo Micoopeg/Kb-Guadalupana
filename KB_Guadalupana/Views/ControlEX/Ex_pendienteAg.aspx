@@ -96,7 +96,7 @@
 
            <div class="form-group"> 
 
-           <span id="span" runat="server" style="font-size:15px">Cod Mensajero: </span> <input id="txtcodigo" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Codigo Mensajero" required="required" tabindex="1" autofocus="autofocus"  />        
+           <span id="span" runat="server" style="font-size:15px">Código Mensajero: </span> <input id="txtcodigo" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Codigo Mensajero" required="required" tabindex="1" autofocus="autofocus"  />        
           
 
                <span id="span1" runat="server" style="font-size:15px">1. Validar Ingreso de Expedientes: </span><asp:TextBox ID="txtbarras" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >

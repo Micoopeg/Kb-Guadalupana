@@ -679,7 +679,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         string numero = "0" + sarc[1] + sarc[2] + sarc[3] + sarc[4] + sarc[5] + sarc[6] + sarc[7] + sarc[8] + sarc[9];
 
 
-                        string coaexist = mex.expedienteexiste(numero, "6", "5");
+                        string coaexist = mex.expedienteexiste(numero, "9", "6");
                         string a = exc.obtenerarea(usernombre);
                         string codenv = exc.obtenercodenv(numero);
                         string codexpe = exc.obtenercodexp(numero);
@@ -688,11 +688,11 @@ namespace KB_Guadalupana.Views.ControlEX
                         {
 
 
-                            string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 6  WHERE Nocredito = '" + numero + "'";
+                            string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 7  WHERE Nocredito = '" + numero + "'";
                             exc.Insertar(updateres);
                             string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                            string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 6 );";
+                            string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 7 );";
                             exc.Insertar(bitacoraa);
 
                             txtbarras.Text = "";
@@ -715,16 +715,16 @@ namespace KB_Guadalupana.Views.ControlEX
                         string a = exc.obtenerarea(usernombre);
                         string codenv = exc.obtenercodenv(numero);
                         string codexpe = exc.obtenercodexp(numero);
-                        string coaexist = mex.expedienteexiste(numero, "6", "5");
+                        string coaexist = mex.expedienteexiste(numero, "9", "6");
                         if (codenv != "" && coaexist != "")
                         {
 
 
-                            string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 6  WHERE Nocredito = '" + numero + "'";
+                            string updateres = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 7  WHERE Nocredito = '" + numero + "'";
                             exc.Insertar(updateres);
                             string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                            string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 6 );";
+                            string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 7 );";
                             exc.Insertar(bitacoraa);
 
                             txtbarras.Text = "";
@@ -919,6 +919,76 @@ namespace KB_Guadalupana.Views.ControlEX
             Response.Redirect("../Sesion/CerrarSesion.aspx");
         }
 
+        protected void btnmensajero_Click(object sender, EventArgs e)
+        {
+            string verifica = mex.aleatoriovalido(txtcodigo.Value);
+            string verifica2 = mex.lotevalidado2(txtcodigo.Value).Trim();
+            if (verifica == "1" )
+            {
+                if (txtlote.Value != "")
+                {
+
+                    switch (verifica2)
+                    {
+
+                        case "2":
+                            DataTable dt4 = new DataTable();
+                            dt4 = mex.lotesinfo2(txtlote.Value);
+                            if (dt4.Rows.Count != 0)
+                            {
+                                for (int i = 0; i < dt4.Rows.Count; i++)
+                                {
+
+                                    string numeroenv = dt4.Rows[i]["codexp"].ToString();
+                                    string codexp = exc.obtenercodexp(dt4.Rows[i]["codgencred"].ToString());
+                                    string sigbit = exc.siguiente("ex_bitacora", "codexbit");
+
+                                    string updatelote = "UPDATE `ex_lotesalida` SET  `estado`= 3 WHERE numerolote = '" + txtlote.Value + "' ";
+                                    exc.Insertar(updatelote);
+                                    string updateenviolote = "UPDATE `ex_envio` SET `estado`= 9,`codexetapa`= 6 WHERE codexenvio = '" + numeroenv + "' ";
+                                    exc.Insertar(updateenviolote);
+
+                                    string bitacora = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigbit + "', '" + numeroenv + "', '" + codexp + "', '" + fechaactual + "', 9, 6 );";
+                                    exc.Insertar(bitacora);
+                                    txtcodigo.Value = "";
+                                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Validado')", true);
+                                }
+                            }
+                            else { txtlote.Value = ""; ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Inválido')", true); }
+
+
+
+                            break;
+                        case "3":
+                            txtlote.Value = "";
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El lote ya fué recibido en archivo')", true);
+
+                            break;
+
+                        default:
+                            txtlote.Value = "";
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El lote no Existe')", true);
+                            break;
+
+
+                    }
+                }
+                else {
+                    String script = "alert('Ingrese el número de lote  '); window.location.href= 'Ex_pendienteAg.aspx';";
+                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+
+                }
+            }
+            else {
+
+                String script = "alert('El código del mensajero es inválido  '); window.location.href= 'Ex_pendienteAg.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+
+            }
+        }
+
         protected void btnverificar_Click(object sender, EventArgs e)
         {
 
@@ -951,7 +1021,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         dthall = mex.llenarhallazgos(codexpe);
                         if (dthall.Rows.Count == 0)
                         {
-                            if (codenv != "" && obtener != "" && coasg != "")
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
                             {
 
 

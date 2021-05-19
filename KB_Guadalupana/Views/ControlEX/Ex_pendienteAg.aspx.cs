@@ -1575,7 +1575,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
 
                 string obtener = mex.confirmarasog(numero);
-                string coaexist = mex.expedienteexiste(numero, "2", "2");
+                string coaexist = mex.expedienteexiste(numero, "9", "2");
                 string a = exc.obtenerarea(usernombre);
                 string codenv = exc.obtenercodenv(numero);
                 string codexpe = exc.obtenercodexp(numero);
@@ -1616,7 +1616,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 string a = exc.obtenerarea(usernombre);
                 string codenv = exc.obtenercodenv(numero);
                 string codexpe = exc.obtenercodexp(numero);
-                string coaexist = mex.expedienteexiste(numero,"2","2");
+                string coaexist = mex.expedienteexiste(numero,"9","2");
                 if (codenv != "" && coaexist != "")
                 {
    
@@ -1976,7 +1976,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         if (txtcodigo.Value != "")
                         {
                             string[] datos = mex.datosempleado(txtcodigo.Value);
-
+                            string aleatorio = mex.aleatoriovalido(txtcodigo.Value);
                             try
                             {
                                 for (int i = 0; i < datos.Length; i++)
@@ -1988,7 +1988,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
                                 }
 
-                                if (rol == "1" && area == "45" && cif == txtcodigo.Value)
+                                if (rol == "1" && area == "45" && aleatorio == "1")
                                 {
                                  
                                     GenerarPDF();

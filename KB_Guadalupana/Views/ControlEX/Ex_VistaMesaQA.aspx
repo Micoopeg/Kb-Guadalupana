@@ -88,7 +88,8 @@
 
 
           
-
+                <span id="span" runat="server" style="font-size:15px">Código Mensajero: </span> <input id="txtcodigo" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Codigo Mensajero" required="required" tabindex="1" autofocus="autofocus"  />   
+               <span id="span4" runat="server" style="font-size:15px">Lote Recibido: </span> <input id="txtlote" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Número de lote" required="required" tabindex="1" autofocus="autofocus"  />   
                <span id="span1" runat="server" style="font-size:15px">1. Validar Ingreso de Expedientes: </span><asp:TextBox ID="txtbarras" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
                 <span id="span2" runat="server" style="font-size:15px">2. Leer para Validar Expediente: </span><asp:TextBox ID="txtbarras2" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras2_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
 
@@ -128,6 +129,8 @@
             <div visible="false" id="divsi" runat="server" style=" margin-left: -615px;position: absolute; margin-top: -2%;"> <asp:LinkButton  ID="si" runat="server" OnClick="si_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Si" /> 
                    </div>
             <div visible="false" id="divno" runat="server" style=" margin-left: -566px;position: absolute; margin-top: -2%;"> <asp:LinkButton  ID="no" runat="server" OnClick="no_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="No" /> 
+                   </div>
+               <div visible="false" id="divrecib" runat="server" style=" margin-left: -566px;position: absolute; margin-top: -2%;"> <asp:LinkButton  ID="btnmensajero" runat="server" OnClick="btnmensajero_Click" class="btn btn-primary form-control" type="submit" Width="100%"  Text="Validar Recepción" /> 
                    </div>
            </div>
                </div>

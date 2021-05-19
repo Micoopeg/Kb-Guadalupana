@@ -9,11 +9,18 @@
 	    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'/><link rel="stylesheet" href="../../EXDiseños/stylebarra.css"/>
    <link rel="stylesheet" type="text/css" href="../../EXDiseños/ExtiloExEnvio.css" />
      <link type="text/css" rel="stylesheet" href="../../EXDiseños/estilolector.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" class="form" runat="server">
         
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+       
         
             <center>   <header class="encabezado">
 	<div class="menu-bar">
@@ -51,18 +58,22 @@
         <div class="center">
 <div id="form-main">
   <div id="form-div">
-    <form class="form" id="form1">
-      
+
+      <h3>AGENCIA-MENSAJERÍA</h3>
       <p class="name">
-          <span id="span1" runat="server" style="font-size:15px; color:white; " >Número de Lote Entrada: </span>  <asp:TextBox ID="name" name="name"  onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox>
-
+          <span id="span1" runat="server" style="font-size:15px; color:white; " >Número de Lote Recibido : </span>  <asp:TextBox Enabled="false" ID="name" name="name" style="margin-left:73px" onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox><asp:RadioButton ID="RadioButton1" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" AutoPostBack="true" />
+ <span id="span3" runat="server" style="font-size:15px; color:white; " >Número de Lote Entregado en Mesa        : </span>  <asp:TextBox Enabled="false" ID="LOTEENTREGA" name="name"  onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox><asp:RadioButton ID="RadioButton2" runat="server" OnCheckedChanged="RadioButton2_CheckedChanged" AutoPostBack="true" />
       
       </p>
+        <br />
+        <h3>MENSAJERÍA-ARCHIVO</h3>
      <p class="name">
-          <span id="span2" runat="server" style="font-size:15px; color:white; " >Número de Lote Salida : </span>  <asp:TextBox ID="txtname" name="name"  onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox>
 
+          <span id="span2" runat="server" style="font-size:15px; color:white; " >Número de Lote Salida Recibido     : </span>  <asp:TextBox Enabled="false" ID="LOTEARCHIVO" name="name" style="margin-left:17px;" onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox><asp:RadioButton ID="RadioButton3" runat="server" OnCheckedChanged="RadioButton3_CheckedChanged" AutoPostBack="true" />
+            <span id="span4" runat="server" style="font-size:15px; color:white; " >Número de Lote Enviado al Archivo : </span>  <asp:TextBox Enabled="false" ID="txtname" name="name" style="margin-left:-7px;"  onkeypress="return numeros(event);"  runat="server"  Width="20%" > </asp:TextBox><asp:RadioButton ID="RadioButton4" runat="server" OnCheckedChanged="RadioButton4_CheckedChanged" AutoPostBack="true" />
       
       </p>
+        
     <br />
 
      
@@ -75,10 +86,44 @@
         <div class="ease"></div>
       </div>
     
-    </form>
+  
   </div>
 </div>
             </div>
+
+
+         <div class="center" >
+<div id="form-main2">
+  <div id="form-div2" style="margin-top:392px">
+
+      <h3>Código aleatorio</h3>
+      <p class="name">
+         <asp:DropDownList  ID="mensajero" runat="server" CssClass="dis"  Width="150px"   ></asp:DropDownList> 
+   
+      </p>
+<h3 id="cod" runat="server" style="text-align:center">  <span style="font-size:15px; color:white;" >Código </span> </h3>
+      
+    <br />
+
+     
+    
+      
+      <div class="submit"  id="btnvis" runat="server">
+      
+          <asp:LinkButton  Text="Generar Código" ID="buttoblues" runat="server" OnClick="generar_Click" type="submit"  > </asp:LinkButton>
+
+        <div class="ease"></div>
+      </div>
+    
+
+  </div>
+</div>
+            </div>
+      
+         <script>
+             $('#<%=mensajero.ClientID%>').chosen();
+         </script>
+         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
           <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btncerrar" ClientIDMode="Static"></asp:LinkButton>

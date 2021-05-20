@@ -783,28 +783,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 doc.Add(tablef);
 
-                doc.NewPage();
- 
-                doc.Add(Chunk.NEWLINE);
-
-                var tble = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
-                tble.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
-                tble.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tble.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tble.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                doc.Add(tble);
-
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-
-
-                tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-
-                tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-                tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("Destino: Jurídico ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-
-         
+               
 
                 doc.Close();
                 estadomesa();
@@ -977,28 +956,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.Add(tablef);
 
                 //2
-                doc.NewPage();
-                var tbls = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
-                tbls.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
-                tbls.AddCell(new PdfPCell(new Phrase("Cantidad: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbls.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                tbls.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
-                doc.Add(tbls);
-
-                doc.Add(new Phrase(" "));
-                doc.Add(new Phrase(" "));
-
-
-                tbl = new PdfPTable(new float[] { 40f, 50f }) { WidthPercentage = 100 };
-
-                tbl.AddCell(new PdfPCell(new Phrase("Datos del Envío ", detalle)) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Rowspan = 3 });
-                tbl.AddCell(new PdfPCell(new Phrase("Origen: " + noma + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                tbl.AddCell(new PdfPCell(new Phrase("Destino: QA ", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-
-
-
-
-                doc.Add(tbl);
+            
 
 
 

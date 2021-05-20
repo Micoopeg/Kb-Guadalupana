@@ -30,28 +30,34 @@ namespace KB_Guadalupana.Models
             string datos = mex.contpdf(usuario);
             return datos;
         }
-        public string contenv( )
+        public string contenv(string area )
         {
 
-            string ean13 = mex.contenv();
+            string ean13 = mex.contenv(area);
             return ean13;
         }
-        public string contpen( )
+        public string contenv2()
         {
 
-            string ean13 = mex.contpen();
+            string ean13 = mex.contenv2();
             return ean13;
         }
-        public string contret( )
+        public string contpen(string area )
         {
 
-            string ean13 = mex.contret();
+            string ean13 = mex.contpen(area);
             return ean13;
         }
-        public string contexis()
+        public string contret(string area )
         {
 
-            string ean13 = mex.contexis();
+            string ean13 = mex.contret(area);
+            return ean13;
+        }
+        public string contexis(string area)
+        {
+
+            string ean13 = mex.contexis(area);
             return ean13;
         }
 

@@ -90,7 +90,10 @@ namespace KB_Guadalupana.Views.ControlEX
                         btnorden.Visible = true;
                         alerta.Visible = false;
                         alerta2.Visible = false;
-        
+                        span.Visible = false;
+                        span4.Visible = false;
+                        txtlotes.Visible = false;
+                        txtcodigo.Visible = false;
                      
                         encabenvio.Visible = true;
                         encabselec.Visible = true;
@@ -116,7 +119,8 @@ namespace KB_Guadalupana.Views.ControlEX
                         encabselec.Visible = false;
                         encabenvio.Visible = false;
                         ajuridico.Visible = true;
-                        btnorden.Visible = false;
+                        btnorden.Visible = true;
+                        btnorden.Text = "Comprobante";
                         pendientes.Visible = false;
                         alerta.Visible = false;
                  
@@ -337,6 +341,166 @@ namespace KB_Guadalupana.Views.ControlEX
 
             }
 
+
+
+        }
+        public void GenerarPDFsolvencia()
+        {
+            DataTable dt3 = new DataTable();
+            string a = exc.obtenerarea(usernombre);
+            string noma = exc.obtenerareanombre(a);
+            string cod = mex.aleatoriovalido(txtcodigo.Value);
+
+            if (cod == "1")
+            {
+                dt3 = mex.repolotes(txtcodigo.Value);
+
+                if (dt3.Rows.Count < 1)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ningun elemento Seleccionado ')", true);
+
+                }
+                else
+                {
+                   
+                    Document doc = new Document(PageSize.LETTER);
+                    doc.SetMargins(40f, 40f, 40f, 40f);
+
+                    PdfWriter writer = PdfWriter.GetInstance(doc, HttpContext.Current.Response.OutputStream);
+                    doc.AddAuthor("Micoope");
+                    doc.AddTitle("Carta");
+                    doc.Open();
+
+                    iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Sistema 2/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
+                    logo.ScalePercent(45f);
+
+                    BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
+                    iTextSharp.text.Font titulo = new iTextSharp.text.Font(_titulo, 20f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+
+                    BaseFont _subtitulo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                    iTextSharp.text.Font subtitulo = new iTextSharp.text.Font(_titulo, 14f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+
+
+                    BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                    iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
+
+
+                    BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                    iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+
+                    BaseFont helvetica = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                    iTextSharp.text.Font negrita = new iTextSharp.text.Font(helvetica, 10f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
+
+                    //obtener el lote al que pertenece 1 exp
+                    string lote = mex.mensajeronom(txtcodigo.Value);
+                    int cant = dt3.Rows.Count;
+                    string cant2 = Convert.ToString(cant);
+                    doc.Add(Chunk.NEWLINE);
+
+                    var tbl = new PdfPTable(new float[] { 5f, 90f }) { WidthPercentage = 100 };
+                    tbl.AddCell(new PdfPCell(logo) { Border = 1, Rowspan = 6, VerticalAlignment = Element.ALIGN_LEFT });
+                    tbl.AddCell(new PdfPCell(new Phrase("Mensajero: " + lote + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl.AddCell(new PdfPCell(new Phrase("Cantidad Recibida: " + cant2 + "", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl.AddCell(new PdfPCell(new Phrase("Tipo de Paquete: Expedientes", parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+                    tbl.AddCell(new PdfPCell(new Phrase("Fecha de Emisión: " + fechaactual, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_TOP });
+
+                    doc.Add(tbl);
+
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+
+
+                    string[] datos2 = mex.solvenciaarchivomensajeria(txtcodigo.Value);
+
+
+                    PdfPTable table = new PdfPTable(2);
+                    tbl = new PdfPTable(new float[] { 15f, 10f, 15f, 30f, 15f, 15f }) { WidthPercentage = 100 };
+                    var c1 = new PdfPCell(new Phrase("Lote", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 4f };
+                    var c2 = new PdfPCell(new Phrase("Mensajero", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
+            
+
+
+ 
+           
+                    table.TotalWidth = 550f;
+
+                    table.LockedWidth = true;
+                    float[] widths = new float[] { 25f, 25f };
+                    table.SetWidths(widths);
+                    table.HorizontalAlignment = 0;
+
+                    table.AddCell(c1);
+                    table.AddCell(c2);
+           
+
+                    c1.Border = 0;
+                    c2.Border = 0;
+              
+                    try
+                    {
+
+                        for (int j = 0; j < datos2.Length; j++)
+                        {
+
+                            /*c1.Phrase = new Phrase(Convert.ToString(datos2.GetValue(j)));*/
+
+
+                            table.AddCell(Convert.ToString(datos2.GetValue(j)));
+
+                        }
+
+                        doc.Add(table);
+
+
+                    }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine(err.Message);
+
+                    }
+
+
+
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    doc.Add(new Phrase(" "));
+                    PdfPTable tablef = new PdfPTable(1);
+
+                    tablef.AddCell(new PdfPCell(new Phrase("Firma___________________" + nombrepersona, parrafo)) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                    float[] widthsf = new float[] { 30f };
+                    tablef.SetWidths(widthsf);
+                    tablef.HorizontalAlignment = 0;
+
+
+
+                    doc.Add(tablef);
+
+
+               
+
+
+
+                    doc.Close();
+                  
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("content-disposition", "attachment;filename=comprobante" + ".pdf");
+                    HttpContext.Current.Response.Write(doc);
+                    Response.Flush();
+                    Response.End();
+
+
+
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Código inválido')", true);
+                txtcodigo.Value = "";
+
+            }
 
 
         }
@@ -785,7 +949,7 @@ namespace KB_Guadalupana.Views.ControlEX
                     btndiv.Visible = false;
 
                     break;
-               
+             
 
 
 
@@ -885,6 +1049,10 @@ namespace KB_Guadalupana.Views.ControlEX
                         Response.Redirect("Ex_VistaMesaQA.aspx");
 
                         break;
+                    case "7":
+                        GenerarPDFsolvencia();
+
+                            break;
 
 
 
@@ -922,18 +1090,23 @@ namespace KB_Guadalupana.Views.ControlEX
         protected void btnmensajero_Click(object sender, EventArgs e)
         {
             string verifica = mex.aleatoriovalido(txtcodigo.Value);
-            string verifica2 = mex.lotevalidado2(txtcodigo.Value).Trim();
+            string verifica2 = mex.lotevalidado2(txtlotes.Text).Trim();
             if (verifica == "1" )
             {
-                if (txtlote.Value != "")
+                if (txtlotes.Text != "")
                 {
 
                     switch (verifica2)
                     {
 
                         case "2":
+                        
                             DataTable dt4 = new DataTable();
-                            dt4 = mex.lotesinfo2(txtlote.Value);
+                            dt4 = mex.lotesinfo2(txtlotes.Text);
+                            string siginfo = exc.siguiente("ex_lotemensajero", "codexlotemensajero");
+                            string repoinfo = "INSERT INTO `ex_lotemensajero`(`codexlotemensajero`, `ex_mensajerocod`, `ex_lote`, `estado`) VALUES ('" + siginfo + "','" + txtcodigo.Value + "','" + txtlotes.Text + "',1)";
+                            exc.Insertar(repoinfo);
+
                             if (dt4.Rows.Count != 0)
                             {
                                 for (int i = 0; i < dt4.Rows.Count; i++)
@@ -942,31 +1115,34 @@ namespace KB_Guadalupana.Views.ControlEX
                                     string numeroenv = dt4.Rows[i]["codexp"].ToString();
                                     string codexp = exc.obtenercodexp(dt4.Rows[i]["codgencred"].ToString());
                                     string sigbit = exc.siguiente("ex_bitacora", "codexbit");
+                                  
 
-                                    string updatelote = "UPDATE `ex_lotesalida` SET  `estado`= 3 WHERE numerolote = '" + txtlote.Value + "' ";
+                                    string updatelote = "UPDATE `ex_lotesalida` SET  `estado`= 3 WHERE numerolote = '" + txtlotes.Text + "' ";
                                     exc.Insertar(updatelote);
                                     string updateenviolote = "UPDATE `ex_envio` SET `estado`= 9,`codexetapa`= 6 WHERE codexenvio = '" + numeroenv + "' ";
                                     exc.Insertar(updateenviolote);
 
                                     string bitacora = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigbit + "', '" + numeroenv + "', '" + codexp + "', '" + fechaactual + "', 9, 6 );";
                                     exc.Insertar(bitacora);
-                                    txtcodigo.Value = "";
+
+                                  
+                                    txtlotes.Text = "";
                                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Validado')", true);
                                 }
                             }
-                            else { txtlote.Value = ""; ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Inválido')", true); }
+                            else { txtlotes.Text = ""; ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Lote Inválido')", true); }
 
 
 
                             break;
                         case "3":
-                            txtlote.Value = "";
+                            txtlotes.Text = "";
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El lote ya fué recibido en archivo')", true);
 
                             break;
 
                         default:
-                            txtlote.Value = "";
+                            txtlotes.Text = "";
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El lote no Existe')", true);
                             break;
 
@@ -974,7 +1150,7 @@ namespace KB_Guadalupana.Views.ControlEX
                     }
                 }
                 else {
-                    String script = "alert('Ingrese el número de lote  '); window.location.href= 'Ex_pendienteAg.aspx';";
+                    String script = "alert('Ingrese el número de lote  '); window.location.href= 'Ex_VistaMesaQA.aspx';";
                     ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
 
@@ -982,11 +1158,18 @@ namespace KB_Guadalupana.Views.ControlEX
             }
             else {
 
-                String script = "alert('El código del mensajero es inválido  '); window.location.href= 'Ex_pendienteAg.aspx';";
+                String script = "alert('El código del mensajero es inválido  '); window.location.href= 'Ex_VistaMesaQA.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
 
             }
+        }
+
+        protected void txtlotes_TextChanged(object sender, EventArgs e)
+        {
+            
+                    divrecib.Attributes.Add("style", " margin-top: 3%;");
+            divrecib.Visible = true;
         }
 
         protected void btnverificar_Click(object sender, EventArgs e)

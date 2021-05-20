@@ -174,6 +174,33 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
+        public string[] solvenciaarchivomensajeria(string nummero)
+        {
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT exc.nomcom, exl.ex_lote FROM ex_aleatorio exal INNER JOIN ex_controlingreso exc ON exc.codexcontroling = exal.asignado INNER JOIN ex_lotemensajero exl ON exl.ex_mensajerocod = exal.numero WHERE exal.numero = ' "+nummero+"' ";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+
+        }
         public string[] lotes(string nlote)
         {
 
@@ -234,6 +261,29 @@ namespace KB_Guadalupana.Controllers
                 {
                     sqlCon.Open();
                     string sql = "SELECT estado  FROM `ex_aleatorio` WHERE numero = '"+numero+"'  ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string mensajeronom(string numero)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT exc.nomcom FROM ex_aleatorio exal INNER JOIN ex_controlingreso exc ON exc.codexcontroling = exal.asignado INNER JOIN ex_lotemensajero exl ON exl.ex_mensajerocod = exal.numero WHERE exal.numero = '" + numero + "'  ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -1271,6 +1321,27 @@ namespace KB_Guadalupana.Controllers
                 return dt;
             }
         }
+        public DataTable llenarsolvenciamensajero()
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
         public DataTable llenarmesa()
         {
             DataTable dt = new DataTable();
@@ -1571,6 +1642,27 @@ namespace KB_Guadalupana.Controllers
                 return dt;
             }
         }
+        public DataTable repolotes(string codmens)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(" SELECT exl.ex_lote  FROM ex_lotemensajero exl  WHERE exl.ex_mensajerocod  = '" + codmens + "' ;", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
         public void Insertar(string sql)
         {
 
@@ -1644,6 +1736,7 @@ namespace KB_Guadalupana.Controllers
 
 
         }
+
         public string obtenerultimo(string tabla, string campo)
         {
             String camporesultante = "";

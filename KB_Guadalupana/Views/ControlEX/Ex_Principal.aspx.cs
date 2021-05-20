@@ -18,7 +18,7 @@ namespace KB_Guadalupana.Views.ControlEX
         string usernombre, nombrepersona, coduser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            usernombre = Convert.ToString(Session["sesion_usuario"] );
+            usernombre = Convert.ToString(Session["sesion_usuario"] = "pgecasasola" );
             nombrepersona = Convert.ToString(Session["Nombre"] );
 
 

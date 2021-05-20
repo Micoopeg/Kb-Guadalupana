@@ -79,7 +79,7 @@
              <div class="col-md-9">
                   <center>
 
-             <h3 style=" font-size:20px; margin-left: 30%; margin-right: 30%;">Expedientes legalizados</h3>
+             <h3 style=" font-size:20px; margin-left: 30%; margin-right: 30%;">Expedientes en Archivo</h3>
          </center>
              </div>
            <div class="col-md-2">
@@ -88,8 +88,8 @@
 
 
           
-                <span id="span" runat="server" style="font-size:15px">Código Mensajero: </span> <input id="txtcodigo" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Codigo Mensajero" required="required" tabindex="1" autofocus="autofocus"  />   
-               <span id="span4" runat="server" style="font-size:15px">Lote Recibido: </span> <input id="txtlote" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Número de lote" required="required" tabindex="1" autofocus="autofocus"  />   
+                <span id="span" runat="server" style="font-size:15px">Código Mensajero: </span> <input id="txtcodigo" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Codigo Mensajero"  required="required" tabindex="1" autofocus="autofocus"  />   
+               <span id="span4" runat="server" style="font-size:15px">Lote Recibido: </span> <asp:TextBox ID="txtlotes" onkeypress="return numeros(event);"  runat="server" class="form-control" type="text" name="codigo" placeholder="Número de lote" required="required" tabindex="1" autofocus="autofocus" AutoPostBack="true" OnTextChanged="txtlotes_TextChanged"  ></asp:TextBox >  
                <span id="span1" runat="server" style="font-size:15px">1. Validar Ingreso de Expedientes: </span><asp:TextBox ID="txtbarras" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
                 <span id="span2" runat="server" style="font-size:15px">2. Leer para Validar Expediente: </span><asp:TextBox ID="txtbarras2" runat="server" onkeypress="return numeros(event);" CssClass="form-control" AutoPostBack="true"  OnTextChanged="txtbarras2_TextChanged" required  autofocus =" autofocus" ></asp:TextBox >
 

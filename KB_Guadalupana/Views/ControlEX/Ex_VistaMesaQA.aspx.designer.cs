@@ -78,13 +78,13 @@ namespace KB_Guadalupana.Views.ControlEX
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl span4;
 
         /// <summary>
-        /// txtlote control.
+        /// txtlotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtlote;
+        protected global::System.Web.UI.WebControls.TextBox txtlotes;
 
         /// <summary>
         /// span1 control.

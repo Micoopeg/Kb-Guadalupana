@@ -17,5 +17,12 @@ namespace KB_Guadalupana.Controllers
             string rutaestaticaarchivoscrm = @"C:\ARCHIVOS_KBGUADALUPANA\SISTEMA_CRM\ArchiverodeLeads\";
             return rutaestaticaarchivoscrm;
         }
+        public string rutaexpedientes() {
+
+            string rutaestaticaexpedientes = @"C:\ARCHIVOS_KBGUADALUPANA\SISTEMA-EXPEDIENTES\Imagenes\pdfencab.png";
+            return rutaestaticaexpedientes;
+
+
+        }
     }
 }

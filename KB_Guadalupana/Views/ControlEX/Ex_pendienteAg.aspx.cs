@@ -21,6 +21,7 @@ namespace KB_Guadalupana.Views.ControlEX
         ModeloEX mex = new ModeloEX();
         ControladorEX exc = new ControladorEX();
         Conexion conexiongeneral = new Conexion();
+        KB_Rutas ruta = new KB_Rutas();
         string fechamin, horamin, fechahora, usernombre, nombrepersona, coduser;
         char delimitador2 = ' ';
         string cif;
@@ -357,7 +358,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Caratulas");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine(ruta.rutaexpedientes()));
 
                 logo.ScalePercent(45f);
 
@@ -650,7 +651,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine(ruta.rutaexpedientes()));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
@@ -843,7 +844,7 @@ namespace KB_Guadalupana.Views.ControlEX
                 doc.AddTitle("Carta");
                 doc.Open();
 
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pggteo/Desktop/Versiones de KB-GUADA/Kb-Guadalupana/KB_Guadalupana/Imagenes/pdfencab.png"));
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine(ruta.rutaexpedientes()));
                 logo.ScalePercent(45f);
 
                 BaseFont _titulo = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);

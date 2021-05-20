@@ -60,9 +60,15 @@ namespace KB_Guadalupana.Views.ControlEX
                     numeroexp.InnerText = "Expediente: " + exp + "," + agencia;
                     procesoesp.InnerText ="Expediente Archivado"   ;
                     nocred.InnerText = "No. Credito " + cod;
+                    progress.Attributes.Add("style", "width: 60%;");
+                    break;
+                case "7":
+
+                    numeroexp.InnerText = "Expediente: " + exp + "," + agencia;
+                    procesoesp.InnerText = "Expediente Archivado";
+                    nocred.InnerText = "No. Credito " + cod;
                     progress.Attributes.Add("style", "width: 80%;");
                     break;
-
 
             }
 

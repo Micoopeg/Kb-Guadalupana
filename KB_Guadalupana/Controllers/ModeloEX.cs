@@ -47,7 +47,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT exc.ex_cifgeneral, exc.ex_controlarea, exc.ex_controlrol FROM ex_controlingreso exc WHERE exc.ex_cifgeneral = '" + cif + "' ;";
+                    string consultaGraAsis = "SELECT exc.ex_cifgeneral, exc.ex_controlarea, exc.ex_controlrol FROM ex_controlingreso exc INNER JOIN ex_aleatorio exal ON exal.asignado = exc.codexcontroling WHERE exal.numero = '" + cif + "' ;";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -1025,7 +1025,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv WHERE exenv.estado = 1 AND exenv.codexetapa =6 ;";
+                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv WHERE exenv.estado = 1 AND exenv.codexetapa =7 ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();

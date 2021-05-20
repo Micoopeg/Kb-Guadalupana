@@ -13,12 +13,13 @@ namespace KB_Guadalupana.Views.ControlEX
     {
         ModeloEX mex = new ModeloEX();
         ControladorEX exc = new ControladorEX();
+       
         string fechamin, horamin, fechahora;
         char delimitador2 = ' ';
         string usernombre, nombrepersona, coduser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            usernombre = Convert.ToString(Session["sesion_usuario"] = "pgecasasola" );
+            usernombre = Convert.ToString(Session["sesion_usuario"]  );
             nombrepersona = Convert.ToString(Session["Nombre"] );
 
 

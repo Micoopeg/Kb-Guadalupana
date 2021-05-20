@@ -398,9 +398,9 @@ namespace KB_Guadalupana.Views.ControlEX
 
         protected void RadioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            txtname.Enabled = true;
+            txtname.Enabled = false;
             LOTEENTREGA.Enabled = false;
-            LOTEARCHIVO.Enabled = false;
+            LOTEARCHIVO.Enabled = true;
             name.Enabled = false;
             RadioButton1.Checked = false;
             RadioButton2.Checked = false;
@@ -415,9 +415,9 @@ namespace KB_Guadalupana.Views.ControlEX
 
         protected void RadioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            LOTEARCHIVO.Enabled = true;
+            LOTEARCHIVO.Enabled = false;
             LOTEENTREGA.Enabled = false;
-            txtname.Enabled = false;
+            txtname.Enabled = true;
             name.Enabled = false;
             RadioButton1.Checked = false;
             RadioButton2.Checked = false;

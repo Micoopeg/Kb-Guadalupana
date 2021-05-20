@@ -98,7 +98,8 @@
 
       <h3>Código aleatorio</h3>
       <p class="name">
-         <asp:DropDownList  ID="mensajero" runat="server" CssClass="dis"  Width="150px"   ></asp:DropDownList> 
+          <center>
+         <asp:DropDownList  ID="mensajero" runat="server" CssClass="dis"  Width="150px"   ></asp:DropDownList> </center>
    
       </p>
 <h3 id="cod" runat="server" style="text-align:center">  <span style="font-size:15px; color:white;" >Código </span> </h3>

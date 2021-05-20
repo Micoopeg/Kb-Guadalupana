@@ -103,38 +103,48 @@ namespace KB_Guadalupana.Views.Hallazgos
             {
                 if (archivo.HasFile)
                 {
-                    string ext = System.IO.Path.GetExtension(archivo.FileName);
-                    ext = ext.ToLower();
-
-                    if ((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
+                    string[] validacionpunto = archivo.FileName.Split('.');
+                    if (validacionpunto.Length == 2)
                     {
-                        string idvalor = Session["IDH"].ToString();
-                        string rutadoc = rutas.rutaestaticaarchivoshallazgos();
-                        //string doc = rutadoc + idvalor + archivo.FileName;
-                        string doc = idvalor + archivo.FileName;
 
-                        archivo.SaveAs(rutadoc+doc);
-                        //archivo.SaveAs(Server.MapPath("Archivos/" + idvalor + archivo.FileName));
 
-                        string sig199 = logic.siguiente("sh_hallazgo ", "id_shhallazgo");
-                        string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, "0", "","5" };
-                        logic.insertartablas("sh_hallazgo", valores199);
+                        string ext = System.IO.Path.GetExtension(archivo.FileName);
+                        ext = ext.ToLower();
 
-                        string[] var1 = sen.cidhallazgo();
-                        string val = Convert.ToString(var1[0]);
-
-                        if (val != sig199)
+                        if ((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El Hallazgo no se pudo crear,Favor crearlo nuevamente');window.location.href= 'CrearHallazgo.aspx';", true);
+                            string idvalor = Session["IDH"].ToString();
+                            string rutadoc = rutas.rutaestaticaarchivoshallazgos();
+                            //string doc = rutadoc + idvalor + archivo.FileName;
+                            string doc = idvalor + archivo.FileName;
+
+                            archivo.SaveAs(rutadoc + doc);
+                            //archivo.SaveAs(Server.MapPath("Archivos/" + idvalor + archivo.FileName));
+
+                            string sig199 = logic.siguiente("sh_hallazgo ", "id_shhallazgo");
+                            string[] valores199 = { sig199, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, "0", "", "5" };
+                            logic.insertartablas("sh_hallazgo", valores199);
+
+                            string[] var1 = sen.cidhallazgo();
+                            string val = Convert.ToString(var1[0]);
+
+                            if (val != sig199)
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El Hallazgo no se pudo crear,Favor crearlo nuevamente');window.location.href= 'CrearHallazgo.aspx';", true);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "error", "window.location.href= 'AsignarHallazgo.aspx';", true);
+                            }
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "window.location.href= 'AsignarHallazgo.aspx';", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo no es compatible, los formatos permitos son: .docx,pdf,jpg y png')", true);
                         }
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo no es compatible, los formatos permitos son: .docx,pdf,jpg y png')", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El documento subido contiene un punto en su nombre favor eliminarlo, y volver a subirlo');window.location.href= 'CrearHallazgo.aspx';", true);
                     }
                 }
                 else

@@ -419,8 +419,8 @@ namespace KB_Guadalupana.Views.ControlEX
 
                     PdfPTable table = new PdfPTable(2);
                     tbl = new PdfPTable(new float[] { 15f, 10f, 15f, 30f, 15f, 15f }) { WidthPercentage = 100 };
-                    var c1 = new PdfPCell(new Phrase("Lote", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 4f };
-                    var c2 = new PdfPCell(new Phrase("Mensajero", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
+                    var c1 = new PdfPCell(new Phrase("Mensajero", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 4f };
+                    var c2 = new PdfPCell(new Phrase("Lote", negrita)) { Border = 0, BorderWidthBottom = 2f, Padding = 2f };
             
 
 

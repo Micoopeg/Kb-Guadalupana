@@ -89,6 +89,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         span1.Visible = true;
         
                         btnorden.Visible = true;
+                        
                         alerta.Visible = false;
                         alerta2.Visible = false;
                         span.Visible = false;
@@ -155,7 +156,9 @@ namespace KB_Guadalupana.Views.ControlEX
 
             if (dt3.Rows.Count < 1)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Ningun elemento Seleccionado ')", true);
+                String script = "alert('Ningun elemento Seleccionado  '); window.location.href= 'Ex_VistaMesaQA.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+              
 
             }
             else
@@ -563,18 +566,42 @@ namespace KB_Guadalupana.Views.ControlEX
         }
         protected void btnorden_Click(object sender, EventArgs e)
         {
+            string rol = exc.obtenerrol(usernombre);
+            switch (rol) {
 
 
-            alerta7.Visible = true;
-            alerta7.InnerText = "¿Desea Generar El Comprobante?";
-            divsi.Visible = true;
-            divno.Visible = true;
+                case "7":
+                    alerta7.Visible = true;
+                    alerta7.InnerText = "¿Desea Generar El Comprobante?";
+                    divsi.Visible = true;
+                    divno.Visible = true;
 
-            alerta5.Visible = false;
-            btndivhall.Visible = false;
-            hallazgo.Visible = false;
-            span3.Visible = false;
-            btndiv.Visible = false;
+                    alerta5.Visible = false;
+                    btndivhall.Visible = false;
+                    hallazgo.Visible = false;
+                    span3.Visible = false;
+                    btndiv.Visible = false;
+                    break;
+                case "8":
+                    alerta7.Visible = true;
+                    alerta7.InnerText = "¿Desea Generar la carta de transporte con los expedientes seleccionados?";
+                    divsi.Visible = true;
+                    divno.Visible = true;
+
+                    alerta5.Visible = false;
+                    btndivhall.Visible = false;
+                    hallazgo.Visible = false;
+                    span3.Visible = false;
+                    btndiv.Visible = false;
+
+
+                    break;
+          
+
+
+
+        }
+         
 
         }
         public void now()

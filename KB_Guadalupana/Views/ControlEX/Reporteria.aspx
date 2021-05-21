@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Reporteria.aspx.cs" Inherits="KB_Guadalupana.Views.ControlEX.Reporteria" %>
 
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,7 +59,7 @@
 	</nav>
 </header></center>
         
-      
+        <rsweb:ReportViewer ID="ReportViewer1" runat="server"></rsweb:ReportViewer>
 
 		   <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btncerrar" ClientIDMode="Static"></asp:LinkButton>

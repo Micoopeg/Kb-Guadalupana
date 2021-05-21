@@ -24,5 +24,11 @@ namespace KB_Guadalupana.Views.ControlEX
             Response.Redirect("../Sesion/MenuBarra.aspx");
 
         }
+        protected void btngeneral_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("Ex_Principal.aspx");
+
+        }
     }
 }

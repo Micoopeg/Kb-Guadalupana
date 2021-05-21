@@ -665,6 +665,7 @@
     <Content Include="Views\ControlEX\Ex_VistaMensajeria.aspx" />
     <Content Include="Views\ControlEX\Ex_VistaMesaQA.aspx" />
     <Content Include="Views\ControlEX\Ex_VistaNegocios.aspx" />
+    <Content Include="Views\ControlEX\Reporteria.aspx" />
     <Content Include="Views\ControlEX\Tracking.aspx" />
     <Content Include="Views\CRM-SISTEMA\Administracion\Controldedespidos\Trasalado_por_despido.aspx" />
     <Content Include="Views\CRM-SISTEMA\Administracion\Mantenimientos\CRM_Finalidaddeservicio.aspx" />
@@ -1219,6 +1220,13 @@
     </Compile>
     <Compile Include="Views\ControlEX\Ex_VistaNegocios.aspx.designer.cs">
       <DependentUpon>Ex_VistaNegocios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlEX\Reporteria.aspx.cs">
+      <DependentUpon>Reporteria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ControlEX\Reporteria.aspx.designer.cs">
+      <DependentUpon>Reporteria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ControlEX\Tracking.aspx.cs">
       <DependentUpon>Tracking.aspx</DependentUpon>
@@ -2145,6 +2153,7 @@
   <ItemGroup>
     <EmbeddedResource Include="ReportesAv\Report1.rdlc" />
     <EmbeddedResource Include="ReportesAv\ReporteMontos.rdlc" />
+    <EmbeddedResource Include="Views\ControlEX\Reportes\ReporteArchivo.rdlc" />
     <EmbeddedResource Include="Views\CRM-SISTEMA\Reporteria\Report1.rdlc" />
     <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\Report1.rdlc" />
   </ItemGroup>

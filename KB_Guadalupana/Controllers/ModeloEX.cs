@@ -901,7 +901,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-        public string contenv( )
+        public string contenv2()
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -924,7 +924,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-        public string contjur()
+        public string contjur2()
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -947,7 +947,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-        public string contpen()
+        public string contpen2()
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -970,7 +970,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-        public string contreten()
+        public string contreten2()
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -993,8 +993,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-
-        public string contret( )
+        public string contexis2()
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -1002,7 +1001,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv WHERE (exenv.estado = 2  AND exenv.codexetapa = 1) OR (exenv.estado = 6  AND exenv.codexetapa = 5)  ;";
+                    string sql = "SELECT COUNT(tmp.codextemp) FROM ex_temporal1 tmp WHERE tmp.estado = 7  ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -1017,7 +1016,123 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-        public string contarch()
+        public string contenv(string area )
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT(exenv.codexenvio) FROM ex_envio exenv INNER JOIN ex_temporal1 ext ON ext.Nocredito = exenv.Nocredito  WHERE (exenv.estado = 1 AND exenv.codexetapa =3) OR (exenv.estado = 2 AND exenv.codexetapa =3) OR (exenv.estado = 1 AND exenv.codexetapa =5) AND ext.codexarea = '"+area+"';";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string contjur(string area)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT(exenv.codexenvio) FROM ex_envio exenv INNER JOIN ex_temporal1 ext ON ext.Nocredito = exenv.Nocredito WHERE (exenv.estado = 1 AND exenv.codexetapa = 4) OR (exenv.estado = 8 AND exenv.codexetapa = 4) OR (exenv.estado = 2 AND exenv.codexetapa = 4) AND ext.codexarea = '"+area+"'  ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string contpen(string area)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv INNER JOIN ex_temporal1 ext ON ext.Nocredito = exenv.Nocredito  WHERE (exenv.estado = 2  AND exenv.codexetapa =2) OR (exenv.estado = 6  AND exenv.codexetapa =5) AND ext.codexarea = '"+area+"';";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string contreten(string area)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT( DISTINCT exh.codexp)  FROM  ex_hallazgos exh  INNER JOIN ex_expediente exp ON exp.codexp = exh.codexp INNER JOIN ex_temporal1 ext ON ext.Nocredito = exp.codgencred WHERE exh.estadohall = 1 AND ext.codexarea = '"+area+"';";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+
+        public string contret(string area )
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv INNER JOIN ex_temporal1 ext ON ext.Nocredito = exenv.Nocredito  WHERE (exenv.estado = 2  AND exenv.codexetapa = 1) OR (exenv.estado = 6  AND exenv.codexetapa = 5) AND ext.codexarea = '"+area+"' ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+        public string contarch2()
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -1040,8 +1155,7 @@ namespace KB_Guadalupana.Controllers
             }
 
         }
-
-        public string contexis()
+        public string contarch(string area)
         {
             String camporesultante = "";
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -1049,7 +1163,31 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT COUNT(tmp.codextemp) FROM ex_temporal1 tmp WHERE tmp.estado = 7  ;";
+                    string sql = "SELECT COUNT(exenv.codexenvio)  FROM ex_envio exenv INNER JOIN ex_temporal1 ext ON ext.Nocredito = exenv.Nocredito WHERE exenv.estado = 1 AND exenv.codexetapa =7  AND ext.codexarea = '"+area+"' ;";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+
+        }
+
+        public string contexis(string area)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT COUNT(tmp.codextemp) FROM ex_temporal1 tmp WHERE tmp.estado = 7 and tmp.codexarea = '"+area+"'  ;";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();

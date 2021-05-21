@@ -19,8 +19,8 @@ namespace KB_Guadalupana.Views.ControlEX
         string usernombre, nombrepersona, coduser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            usernombre = Convert.ToString(Session["sesion_usuario"]  );
-            nombrepersona = Convert.ToString(Session["Nombre"] );
+            usernombre = Convert.ToString(Session["sesion_usuario"]   );
+            nombrepersona = Convert.ToString(Session["Nombre"]  );
 
 
             NombreAgencia.InnerText = Convert.ToString(Session["NombreAG"] = exc.agencia(usernombre));
@@ -39,13 +39,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
 
                     coduser = exc.obtenercoduser(usernombre);
-                    exmesa.InnerText = exc.contenv();
-                    esmens.InnerText = exc.contpen();
-                    extran.InnerText = exc.contret();
-                    exppenv.InnerText = exc.contexis();
-                    exjur.InnerText = mex.contjur();
-                    exret.InnerText = mex.contreten();
-                    exarch.InnerText = mex.contarch();
+                 
 
                     switch (rol)
                     {
@@ -55,18 +49,39 @@ namespace KB_Guadalupana.Views.ControlEX
                             archivo.Visible = false;
                             negocios.Visible = false;
                             hallazgos.Visible = false;
+                            exmesa.InnerText = exc.contenv2();
+                            esmens.InnerText = mex.contpen2();
+                            extran.InnerText = mex.contreten2();
+                            exppenv.InnerText = mex.contexis2();
+                            exjur.InnerText = mex.contjur2();
+                            exret.InnerText = mex.contreten2();
+                            exarch.InnerText = mex.contarch2();
                             break;
                         case "3":
                             negocios.Visible = false;
                             archivo.Visible = false;
                             mesareg.Visible = false;
                             hallazgos.Visible = false;
+                            exmesa.InnerText = exc.contenv2();
+                            esmens.InnerText = mex.contpen2();
+                            extran.InnerText = mex.contreten2();
+                            exppenv.InnerText = mex.contexis2();
+                            exjur.InnerText = mex.contjur2();
+                            exret.InnerText = mex.contreten2();
+                            exarch.InnerText = mex.contarch2();
                             break;
                         case "4":
                             mesareg.Visible = false;
                             archivo.Visible = false;
                             negocios.Visible = false;
                             hallazgos.Visible = false;
+                            exmesa.InnerText = exc.contenv(area);
+                            esmens.InnerText = exc.contpen(area);
+                            extran.InnerText = exc.contret(area);
+                            exppenv.InnerText = exc.contexis(area);
+                            exjur.InnerText = mex.contjur(area);
+                            exret.InnerText = mex.contreten(area);
+                            exarch.InnerText = mex.contarch(area);
                             break;
                         case "5":
                             negocios.Visible = true;
@@ -74,11 +89,25 @@ namespace KB_Guadalupana.Views.ControlEX
                             mesareg.Visible = false;
                             hallazgos.Visible = false;
                             pendientes.Visible = false;
+                            exmesa.InnerText = exc.contenv2();
+                            esmens.InnerText = mex.contpen2();
+                            extran.InnerText = mex.contreten2();
+                            exppenv.InnerText = mex.contexis2();
+                            exjur.InnerText = mex.contjur2();
+                            exret.InnerText = mex.contreten2();
+                            exarch.InnerText = mex.contarch2();
                             break;
                         case "6":
                             mesareg.Visible = false;
                             archivo.Visible = false;
                             negocios.Visible = false;
+                            exmesa.InnerText = exc.contenv(area);
+                            esmens.InnerText = exc.contpen(area);
+                            extran.InnerText = exc.contret(area);
+                            exppenv.InnerText = exc.contexis(area);
+                            exjur.InnerText = mex.contjur(area);
+                            exret.InnerText = mex.contreten(area);
+                            exarch.InnerText = mex.contarch(area);
                             break;
                         case "7":
                             archivo.Visible = true;
@@ -86,18 +115,39 @@ namespace KB_Guadalupana.Views.ControlEX
                             negocios.Visible = false;
                             pendientes.Visible = false;
                             hallazgos.Visible = false;
+                            exmesa.InnerText = exc.contenv2();
+                            esmens.InnerText = mex.contpen2();
+                            extran.InnerText = mex.contreten2();
+                            exppenv.InnerText = mex.contexis2();
+                            exjur.InnerText = mex.contjur2();
+                            exret.InnerText = mex.contreten2();
+                            exarch.InnerText = mex.contarch2();
                             break;
                         case "8":
                             mesareg.Visible = true;
                             archivo.Visible = false;
                             hallazgos.Visible = false;
                             negocios.Visible = false;
+                            exmesa.InnerText = exc.contenv2();
+                            esmens.InnerText = mex.contpen2();
+                            extran.InnerText = mex.contreten2();
+                            exppenv.InnerText = mex.contexis2();
+                            exjur.InnerText = mex.contjur2();
+                            exret.InnerText = mex.contreten2();
+                            exarch.InnerText = mex.contarch2();
                             break;
                         case "9":
                             negocios.Visible = false;
                             archivo.Visible = false;
                             mesareg.Visible = false;
                             hallazgos.Visible = false;
+                            exmesa.InnerText = exc.contenv2();
+                            esmens.InnerText = mex.contpen2();
+                            extran.InnerText = mex.contreten2();
+                            exppenv.InnerText = mex.contexis2();
+                            exjur.InnerText = mex.contjur2();
+                            exret.InnerText = mex.contreten2();
+                            exarch.InnerText = mex.contarch2();
                             break;
 
                     }

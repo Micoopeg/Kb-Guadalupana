@@ -58,9 +58,9 @@
 		</ul>
 	</nav>
 </header></center>
-        
+        <center>
         <rsweb:ReportViewer ID="ReportViewer1" runat="server"></rsweb:ReportViewer>
-
+        </center>
 		   <asp:LinkButton ID="btninicio" runat="server" OnClick="btninicio_click" ClientIDMode="Static"></asp:LinkButton>
          <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btncerrar" ClientIDMode="Static"></asp:LinkButton>
     </form>

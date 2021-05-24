@@ -24,6 +24,19 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 Session["confirmar"] = "0";
                 //llenarcombonombre();
                 llenargridviewcredito();
+                llenargridviewcreditoeditado();
+
+                if(gridViewCreditos.Rows.Count == 0)
+                {
+                    tablaC.Visible = false;
+                    CreditosDevueltos.Visible = false;
+                }
+
+                if(gridViewEditar.Rows.Count == 0)
+                {
+                    Div1.Visible = false;
+                    EditarCreditos.Visible = false;
+                }
             }
         }
 
@@ -352,6 +365,35 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected void Prueba_Click(object sender, EventArgs e)
         {
             llamarwebservice();
+        }
+
+        public void llenargridviewcreditoeditado()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status FROM pj_etapa_credito WHERE idpj_etapa IN(1, 2) AND pj_status IN('Enviado', 'Reingreso')";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataTable dt = new DataTable();
+                    myCommand.Fill(dt);
+
+                    gridViewEditar.DataSource = dt;
+                    gridViewEditar.DataBind();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        protected void OnSelectedIndexChangedCreditosEditados(object sender, EventArgs e)
+        {
+            string numcredito = Convert.ToString((gridViewEditar.SelectedRow.FindControl("lblnumcredito") as Label).Text);
+            Session["credito"] = numcredito;
+            Response.Redirect("EditarCreditos.aspx");
         }
     }
 }

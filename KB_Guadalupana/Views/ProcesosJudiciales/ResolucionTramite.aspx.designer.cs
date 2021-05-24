@@ -168,15 +168,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlTextArea ClienteNombre;
 
         /// <summary>
-        /// Control EstadoDemanda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EstadoDemanda;
-
-        /// <summary>
         /// Control PTipoDocumento.
         /// </summary>
         /// <remarks>
@@ -213,13 +204,22 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.WebControls.GridView gridViewDocumentos;
 
         /// <summary>
+        /// Control EstadoDemanda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList EstadoDemanda;
+
+        /// <summary>
         /// Control FechaNotificacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText FechaNotificacion;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl FechaNotificacion;
 
         /// <summary>
         /// Control MedidasPre1.
@@ -265,6 +265,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox MedidasPre5;
+
+        /// <summary>
+        /// Control MedidasPre6.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox MedidasPre6;
 
         /// <summary>
         /// Control OtrasMedidas.

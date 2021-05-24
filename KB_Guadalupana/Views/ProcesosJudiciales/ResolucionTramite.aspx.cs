@@ -24,7 +24,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenarcombodocumento();
                 llenarformulario();
                 llenarcomboestado();
-                FechaNotificacion.Value = fechaactualText();
             }
         }
 
@@ -221,7 +220,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string idusuario = sn.obteneridusuario(usuario);
                 string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
 
-                string fechaactual = fechaactualBD();
+                string fechaactual = fechaText();
 
                 string sig3 = sn.siguiente("pj_resoluciontramite", "idpj_resoluciontramite");
                 sn.insertarresolucion(sig3, numcredito, idusuario, EstadoDemanda.SelectedValue, fechaactual);
@@ -251,7 +250,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (MedidasPre5.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "5", OtrasMedidas.Value, numcredito);
+                    sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito);
+                }
+                if (MedidasPre6.Checked)
+                {
+                    string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                    sn.insertarmedidaspre(sig6, "6", OtrasMedidas.Value, numcredito);
                 }
 
                 string tipocredito = Session["TipoCredito"] as string;
@@ -297,19 +301,18 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             }
         }
 
-        public string fechaactualText()
+        public string fechaText()
         {
             string fechahoraactual = "";
             try
             {
-                string[] fechayhora = sn.fechayhora();
-                string[] fecha = fechayhora[0].Split(' ');
-                string año = fecha[0];
+                string fechayhora = FechaNotificacion.Value;
+                string[] fecha = fechayhora.Split('/');
+                string dia = fecha[0];
                 string mes = fecha[1];
-                string dia = fecha[2];
+                string año = fecha[2];
 
-                string hora = fechayhora[1];
-                fechahoraactual = dia + '/' + mes + '/' + año + ' ' + hora;
+                fechahoraactual = año + '-' + mes + '-' + dia;
             }
             catch { }
             return fechahoraactual;

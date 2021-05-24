@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DevueltosCobros.aspx.cs" Inherits="KB_Guadalupana.Views.ProcesosJudiciales.DevueltosCobros" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditarCreditos.aspx.cs" Inherits="KB_Guadalupana.Views.ProcesosJudiciales.EditarCreditos" %>
 
 <!DOCTYPE html>
 

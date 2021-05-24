@@ -257,14 +257,29 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 string id = Convert.ToString((gridViewDocumentos.SelectedRow.FindControl("lblid") as Label).Text);
                 string documentoselec = sn.obtenerrutadocumento(id);
+
+                string nombrearchivo = sn.nombrearchivo(id);
+                string[] extension = nombrearchivo.Split('.');
+                int tamaño = extension.Length;
+                string tipo = extension[tamaño - 1];
+
                 string FilePath = Server.MapPath(documentoselec);
                 WebClient User = new WebClient();
                 Byte[] FileBuffer = User.DownloadData(FilePath);
                 if (FileBuffer != null)
                 {
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
+                    if (tipo.ToLower() == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+                    {
+                        Response.ContentType = "image/tiff";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
                 }
             }
             catch

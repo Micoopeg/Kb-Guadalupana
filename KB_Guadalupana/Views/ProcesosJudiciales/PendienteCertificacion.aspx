@@ -218,7 +218,7 @@
 
                 <br /><br />
                      <div style="display:flex; justify-content:center">
-                        <label style="font-size:18px" class="titulos">Créditos devueltos</label>
+                        <span id="CreditosDevueltos" runat="server" style="font-size:18px" class="titulos">Créditos devueltos</span>
                     </div><br />
 
                 <div id="tablaC" runat="server" style="overflow: auto; height: 300px">

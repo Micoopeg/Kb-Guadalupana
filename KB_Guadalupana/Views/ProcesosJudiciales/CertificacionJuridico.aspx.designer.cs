@@ -717,6 +717,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox MedidasPre5;
 
         /// <summary>
+        /// Control MedidasPre6.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox MedidasPre6;
+
+        /// <summary>
         /// Control OtrasMedidas.
         /// </summary>
         /// <remarks>

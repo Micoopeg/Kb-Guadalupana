@@ -235,7 +235,7 @@
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>No. de préstamo</b></label>
-                        <label class="titulos" style="margin-left:11%"><b>No. de incidente</b></label>
+                        <label class="titulos" style="margin-left:11%"><b>No. de proceso</b></label>
                         <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
                         <label class="titulos" style="margin-left:22%"><b>Código cliente</b></label>
                     </div>
@@ -401,7 +401,7 @@
                     <div class="menu2" id="ventana" runat="server">
 
                     <div class="formato3">
-                           <label class="titulos"><b>No. de préstamo</b></label>
+                           <label class="titulos"><b>No. de proceso</b></label>
                           <input id="CreditoNumero" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 

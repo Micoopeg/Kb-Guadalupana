@@ -234,7 +234,7 @@
                           <label style="font-size:15px" class="titulos"><b>Información principal</b></label><br /><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>No. de préstamo</b></label>
+                        <label class="titulos"><b>No. de proceso</b></label>
                         <label class="titulos" style="margin-left:11%"><b>No. de incidente</b></label>
                         <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
                         <label class="titulos" style="margin-left:22%"><b>CIF</b></label>
@@ -406,7 +406,7 @@
                     </div><br />
 
                      <div class="formato3">
-                         <label class="titulos"><b>No. de incidente</b></label>
+                         <label class="titulos"><b>No. de proceso</b></label>
                         <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 
@@ -474,6 +474,13 @@
                      <input id="InteresesEspacio" runat="server" type="text" class="formatoinput" visible="false"/>
                              <input id="Num1" runat="server" type="text" class="formatoinput" visible="false"/>
                              <input id="Num2" runat="server" type="text" class="formatoinput" visible="false"/>
+                      <input id="DiaEstado" runat="server" type="text" class="formatoinput" visible="false"/>
+                     <input id="MesEstado" runat="server" type="text" class="formatoinput" visible="false"/>
+                     <input id="AñoEstado" runat="server" type="text" class="formatoinput" visible="false"/>
+                      <input id="DiaEstadoLetras" runat="server" type="text" class="formatoinput" visible="false"/>
+                     <input id="MesEstadoLetras" runat="server" type="text" class="formatoinput" visible="false"/>
+                     <input id="AñoEstadoLetras" runat="server" type="text" class="formatoinput" visible="false"/>
+                     <input id="FechaEstado" runat="server" type="text" class="formatoinput" visible="false"/>
                 </div><br />
 
                 <div class="encabezado">
@@ -597,7 +604,7 @@
                    <div id="validado" runat="server" class="encabezado">
                         <div id="Contador" runat="server" class="formato3">
                             <label class="titulos">Ingrese número registrado:</label>
-                            <input id="NumRegistro" runat="server" type="text" class="formatoinput2" placeholder="Ingrese número registrado" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /><br />
+                            <input id="NumRegistro" runat="server" type="text" class="formatoinput2" placeholder="Ingrese número registrado" maxlength="60" onkeypress="return validar(event)" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /><br />
                             <label class="titulos">Ingrese nombre del contador(a) general:</label>
                             <input id="nombreContador" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput2" placeholder="Ingrese nombre" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
@@ -628,6 +635,14 @@
                    <br /><br />
             </div>
         </div>
+
+        <script>
+            function validar(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                tecla = String.fromCharCode(tecla)
+                return /^[0-9\-]+$/.test(tecla);
+            }
+        </script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>

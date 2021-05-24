@@ -7236,11 +7236,9 @@ C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\System.W
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Ubiety.Dns.Core.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\WebGrease.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Zstandard.Net.dll
-C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\EnvDTE.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.VisualStudio.Shell.Interop.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.ReportViewer.WinForms.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
-C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\stdole.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.VisualStudio.OLE.Interop.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.VisualStudio.TextManager.Interop.dll
 C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll

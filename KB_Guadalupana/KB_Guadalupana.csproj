@@ -52,6 +52,9 @@
     <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.11.4\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -731,6 +734,7 @@
     <Content Include="Views\ProcesosJudiciales\DashboardJuridico.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosCobros.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosConta.aspx" />
+    <Content Include="Views\ProcesosJudiciales\EditarCreditos.aspx" />
     <Content Include="Views\ProcesosJudiciales\ExpedientesEntregados.aspx" />
     <Content Include="Views\ProcesosJudiciales\FacturacionAbogado.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
@@ -738,11 +742,14 @@
     <Content Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteFacturacionAbogado.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendientePresentacionDemanda.aspx" />
+    <Content Include="Views\ProcesosJudiciales\PendienteRequerimientoPago.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteResolucion.aspx" />
+    <Content Include="Views\ProcesosJudiciales\PendienteSolicitudCheque.aspx" />
     <Content Include="Views\ProcesosJudiciales\PresentacionDemanda.aspx" />
     <Content Include="Views\ProcesosJudiciales\ProcesoJudicial.aspx" />
     <Content Include="Views\ProcesosJudiciales\ProcesosAsignadosJuridico.aspx" />
     <Content Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx" />
+    <Content Include="Views\ProcesosJudiciales\RequerimientoPago.aspx" />
     <Content Include="Views\ProcesosJudiciales\ResolucionTramite.aspx" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
@@ -1639,6 +1646,13 @@
     <Compile Include="Views\ProcesosJudiciales\DevueltosConta.aspx.designer.cs">
       <DependentUpon>DevueltosConta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProcesosJudiciales\EditarCreditos.aspx.cs">
+      <DependentUpon>EditarCreditos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\EditarCreditos.aspx.designer.cs">
+      <DependentUpon>EditarCreditos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProcesosJudiciales\ExpedientesEntregados.aspx.cs">
       <DependentUpon>ExpedientesEntregados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1688,12 +1702,26 @@
     <Compile Include="Views\ProcesosJudiciales\PendientePresentacionDemanda.aspx.designer.cs">
       <DependentUpon>PendientePresentacionDemanda.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteRequerimientoPago.aspx.cs">
+      <DependentUpon>PendienteRequerimientoPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteRequerimientoPago.aspx.designer.cs">
+      <DependentUpon>PendienteRequerimientoPago.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProcesosJudiciales\PendienteResolucion.aspx.cs">
       <DependentUpon>PendienteResolucion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\PendienteResolucion.aspx.designer.cs">
       <DependentUpon>PendienteResolucion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteSolicitudCheque.aspx.cs">
+      <DependentUpon>PendienteSolicitudCheque.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\PendienteSolicitudCheque.aspx.designer.cs">
+      <DependentUpon>PendienteSolicitudCheque.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\PresentacionDemanda.aspx.cs">
       <DependentUpon>PresentacionDemanda.aspx</DependentUpon>
@@ -1722,6 +1750,13 @@
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx.designer.cs">
       <DependentUpon>ReporteAbogados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\RequerimientoPago.aspx.cs">
+      <DependentUpon>RequerimientoPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\RequerimientoPago.aspx.designer.cs">
+      <DependentUpon>RequerimientoPago.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\ResolucionTramite.aspx.cs">
       <DependentUpon>ResolucionTramite.aspx</DependentUpon>
@@ -2146,6 +2181,7 @@
     <EmbeddedResource Include="ReportesAv\ReporteMontos.rdlc" />
     <EmbeddedResource Include="Views\CRM-SISTEMA\Reporteria\Report1.rdlc" />
     <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\Report1.rdlc" />
+    <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\SolicitudChequeR2.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

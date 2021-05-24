@@ -191,6 +191,7 @@ body{
                 </button>
                 <div class="dropdown-content">
                   <a id="Certificacion" runat="server" href="PendienteCertificacion.aspx">Emisión de Certificación Contable</a>
+                  <a id="Solicitud" runat="server" href="PendienteSolicitudCheque.aspx">Solicitud de cheque</a>
                 </div>
               </div>
 
@@ -199,20 +200,30 @@ body{
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                  <a id="A1" runat="server" href="CreditosCertificacionJuridico.aspx">Verificación de expedientes</a>
+                  <a id="Expedientes" runat="server" href="CreditosCertificacionJuridico.aspx">Verificación de expedientes</a>
+                  <a id="Reporte" runat="server" href="ExpedientesEntregados.aspx">Reporte Asignaciones</a>
                 </div>
               </div>
 
-              <%--  <div id="MenuAbogado" runat="server" class="dropdown">
+                <div id="MenuAbogado" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                  <a id="A2" runat="server" href="PendientePresentacionDemanda.aspx">Presentación de Demanda</a>
-                  <a id="A3" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
-                  <a id="A4" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
+                  <a id="Demanda" runat="server" href="PendientePresentacionDemanda.aspx">Presentación de Demanda</a>
+                  <a id="Tramite" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
+                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
                 </div>
-              </div>--%>
+              </div>
+
+             <div id="MenuAsistente" runat="server" class="dropdown">
+                <button class="dropbtn">Menú
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a id="RequerimientoPago" runat="server" href="PendienteRequerimientoPago.aspx">Requerimiento de pago</a>
+                </div>
+              </div>
 
              <a href="ControlIncidente.aspx">Control de Incidente  <i class="fas fa-pen"></i></a>
 

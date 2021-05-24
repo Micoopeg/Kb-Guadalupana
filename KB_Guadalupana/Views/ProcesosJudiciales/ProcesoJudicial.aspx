@@ -436,7 +436,7 @@
                        <input id="OtroDocumento" runat="server" type="text" class="formatoinput2" placeholder="Ingrese tipo de documento" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 
                     <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 123px">
+                        <div style="overflow: auto; height: 145px">
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
                             OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid">
                              <Columns>
@@ -463,6 +463,12 @@
                         </asp:GridView>
                        </div>
                        </div>
+                    <br /><br />
+                    <div class="formato">
+                        <span class="titulos"><b>Ingrese fecha de emisión de estado de cuenta</b></span>
+                        <input id="FechaEstadoCuenta" runat="server" type="date" class="formatoinput"/>
+                    </div>
+
                 </div><br />
 
                 <div id="IntegracionC" runat="server" style="display:flex; justify-content:center" class="encabezado">

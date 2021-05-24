@@ -143,11 +143,55 @@ namespace KB_Guadalupana.Views.ControlEX
         {
             string numhall = (DGVHALLVISTA.SelectedRow.FindControl("lblnumhall") as Label).Text;
             string sig = exc.siguiente("ex_bitacorahallazgos", "codexhallax");
-            string update = "UPDATE `ex_hallazgos` SET `estadohall`= 2 WHERE codexhall '" +numhall+"' ";
+            string update = "UPDATE `ex_hallazgos` SET `estadohall`= 2 WHERE codexhall = '" +numhall+"' ";
                 exc.Insertar(update);
             string bitacora = "INSERT INTO `ex_bitacorahallazgos`(`codexhallax`, `codhall`, `estadomomento`, `fecha`) VALUES ('"+sig+"','"+numhall+"',2,'"+fechaactual+"')";
             exc.Insertar(bitacora);
+
+            String script = "alert('Hallazgo Enviado '); window.location.href= 'EX_verhallazgos.aspx';";
+            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
         }
+
+
+        protected void gridViewIncidente_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //string estado = Convert.ToString((gridViewIncidente.SelectedRow.FindControl("lblestado") as Label).Text);
+                string _estado = DataBinder.Eval(e.Row.DataItem, "estadohall").ToString();
+
+                switch (_estado) {
+                    case "1":
+                        e.Row.BackColor = System.Drawing.Color.IndianRed;
+                        break;
+                    case "2":
+                        e.Row.BackColor = System.Drawing.Color.ForestGreen;
+                        break;
+
+                }
+             
+            }
+        }
+        protected void gridViewIncidente_RowDataBound2(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //string estado = Convert.ToString((gridViewIncidente.SelectedRow.FindControl("lblestado") as Label).Text);
+                string _estado = DataBinder.Eval(e.Row.DataItem, "estadohall").ToString();
+
+                switch (_estado)
+                {
+                    case "1":
+                        e.Row.BackColor = System.Drawing.Color.IndianRed;
+                        break;
+                    case "2":
+                        e.Row.BackColor = System.Drawing.Color.ForestGreen;
+                        break;
+
+                }
+            }
+        }
+
 
         public void llenarhall()
         {
@@ -182,6 +226,8 @@ namespace KB_Guadalupana.Views.ControlEX
 
             Response.Redirect("Ex_pendienteAg.aspx");
         }
+
+
         protected void btnInicio_Click(object sender, EventArgs e)
         {
 

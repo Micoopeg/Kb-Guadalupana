@@ -1640,7 +1640,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT exh.codexhall, exh.hallazgo FROM ex_hallazgos exh INNER JOIN ex_expediente exp ON exp.codexp= exh.codexp WHERE  exh.codexp = '"+codexp+"' AND (exh.estadohall = 1 OR exh.estadohall = 2)  ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT exh.codexhall, exh.hallazgo, exh.estadohall FROM ex_hallazgos exh INNER JOIN ex_expediente exp ON exp.codexp= exh.codexp WHERE  exh.codexp = '" + codexp+"' AND (exh.estadohall = 1 OR exh.estadohall = 2)  ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);
@@ -1661,7 +1661,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("SELECT exh.codexhall, exh.hallazgo FROM ex_hallazgos exh INNER JOIN ex_expediente exp ON exp.codexp= exh.codexp WHERE  exh.codexp = '" + codexp + "' AND exh.estadohall = 1   ", sqlCon);
+                    MySqlCommand command = new MySqlCommand("SELECT exh.codexhall, exh.hallazgo, exh.estadohall FROM ex_hallazgos exh INNER JOIN ex_expediente exp ON exp.codexp= exh.codexp WHERE  exh.codexp = '" + codexp + "' AND exh.estadohall = 1   ", sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
                     ds.Fill(dt);

@@ -135,7 +135,7 @@
     <div class="col-md-12" style="overflow-x: auto; padding-left: 20%" >
       
           <asp:GridView ID="DGVHALL" CssClass="table table-striped" style="width: 400px;text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="10" OnPageIndexChanging="DGVHALL_PageIndexChanging" OnSelectedIndexChanged="DGVHALL_SelectedIndexChanged" >
+    AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="10" OnPageIndexChanging="DGVHALL_PageIndexChanging" OnSelectedIndexChanged="DGVHALL_SelectedIndexChanged" OnRowDataBound="gridViewIncidente_RowDataBound"  >
                     <Columns>
                           <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No" Visible="false">
                            <ItemTemplate>
@@ -152,6 +152,11 @@
                            <asp:Label ID="lblcif"  Width="480px" Text='<%# Eval("hallazgo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                           <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="estado" Visible="false">
+                           <ItemTemplate>
+                           <asp:Label ID="lblestado"  Width="30px" Text='<%# Eval("estadohall") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                      <asp:ButtonField Text="Listo" CommandName="Select" ItemStyle-Width="150" ItemStyle-CssClass="seleccionarregistrogridview">
                             <ItemStyle Width="150px" >  </ItemStyle>
 
@@ -162,7 +167,7 @@
         </asp:GridView>
         
           <asp:GridView ID="DGVHALLVISTA" CssClass="table table-striped" style="width: 400px;text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="10" OnPageIndexChanging="DGVHALLVISTA_PageIndexChanging" OnSelectedIndexChanged="DGVHALLVISTA_SelectedIndexChanged" >
+    AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="10" OnPageIndexChanging="DGVHALLVISTA_PageIndexChanging" OnSelectedIndexChanged="DGVHALLVISTA_SelectedIndexChanged" OnRowDataBound="gridViewIncidente_RowDataBound2" >
                     <Columns>
                           <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No" Visible="false">
                            <ItemTemplate>
@@ -179,7 +184,13 @@
                            <asp:Label ID="lblcif"  Width="300px" Text='<%# Eval("hallazgo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                     <asp:ButtonField Text="Hallazgo Enviado" CommandName="Select" ItemStyle-Width="150" ItemStyle-CssClass="seleccionarregistrogridview">
+                           <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="estado" Visible="false">
+                           <ItemTemplate>
+                           <asp:Label ID="lblestado"  Width="30px" Text='<%# Eval("estadohall") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                     <asp:ButtonField Text="Enviar Hallazgo" CommandName="Select" ItemStyle-Width="150" ItemStyle-CssClass="seleccionarregistrogridview">
                             <ItemStyle Width="150px" >  </ItemStyle>
 
                             </asp:ButtonField>

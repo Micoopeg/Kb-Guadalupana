@@ -2053,58 +2053,117 @@ namespace KB_Guadalupana.Views.ControlEX
                         string a = exc.obtenerarea(usernombre);
                         string codenv = exc.obtenercodenv(numero);
                         string codexpe = exc.obtenercodexp(numero);
+                        DataTable dthall = new DataTable();
+                        dthall = mex.llenarhallazgos(codexpe);
 
-                        if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                        if (dthall.Rows.Count != 0)
                         {
-                            switch (tipo) {
-                                case "1":
-                                    string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updateres);
-                                    string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                            {
+                                switch (tipo)
+                                {
+                                    case "1":
+                                        string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres);
+                                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
-                                    exc.Insertar(bitacoraa);
+                                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
+                                        exc.Insertar(bitacoraa);
 
-                                    txtbarras.Text = "";
-                                    String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                                    break;
-                                case "2":
-                                    string updaipo2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updaipo2);
-                                    string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
+                                        txtbarras.Text = "";
+                                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                                        break;
+                                    case "2":
+                                        string updaipo2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updaipo2);
+                                        string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                                    exc.Insertar(bitaco);
+                                        string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitaco);
 
-                                    txtbarras.Text = "";
-                                    String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
-                                    break;
-                                case "3":
-                                    string updateres2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updateres2);
-                                    string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
+                                        txtbarras.Text = "";
+                                        String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
+                                        break;
+                                    case "3":
+                                        string updateres2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres2);
+                                        string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                                    exc.Insertar(bitacoraa2);
+                                        string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitacoraa2);
 
-                                    txtbarras.Text = "";
-                                    String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
-                                    break;
-                                default:
-                                    String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
-                                    break;
-                            
-                            
+                                        txtbarras.Text = "";
+                                        String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
+                                        break;
+                                    default:
+                                        String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
+                                        break;
+
+
+                                }
+
+
                             }
-
-                           
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
                         }
-                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a ningún expediente o no ha sigo asignado correctamente, por favor ingreselo manualmente o contacte a soporte')", true); }
+                        else {
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                            {
+                                switch (tipo)
+                                {
+                                    case "1":
+                                        string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres);
+                                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
+                                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
+                                        exc.Insertar(bitacoraa);
+
+                                        txtbarras.Text = "";
+                                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                                        break;
+                                    case "2":
+                                        string updaipo2 = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updaipo2);
+                                        string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitaco);
+
+                                        txtbarras.Text = "";
+                                        String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
+                                        break;
+                                    case "3":
+                                        string updateres2 = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres2);
+                                        string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitacoraa2);
+
+                                        txtbarras.Text = "";
+                                        String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
+                                        break;
+                                    default:
+                                        String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
+                                        break;
+
+
+                                }
+
+
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
+
+                        }
                     }
 
                     else if (s.Length == 15)
@@ -2121,57 +2180,117 @@ namespace KB_Guadalupana.Views.ControlEX
                         string etapa = mex.expedienteexiste(numero, "1", "3");
                         string codexpe = exc.obtenercodexp(numero);
                         string coasg = mex.confirmarareaasig2(numero);
-                        if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                        DataTable dthall = new DataTable();
+                        dthall = mex.llenarhallazgos(codexpe);
+                        if (dthall.Rows.Count != 0)
                         {
-
-                            switch (tipo)
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
                             {
-                                case "1":
-                                    string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updateres);
-                                    string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
-                                    exc.Insertar(bitacoraa);
+                                switch (tipo)
+                                {
+                                    case "1":
+                                        string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres);
+                                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                                    break;
-                                case "2":
-                                    string updaipo2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updaipo2);
-                                    string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
+                                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
+                                        exc.Insertar(bitacoraa);
 
-                                    string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                                    exc.Insertar(bitaco);
+                                        txtbarras.Text = "";
+                                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                                        break;
+                                    case "2":
+                                        string updaipo2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updaipo2);
+                                        string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
-                                    break;
-                                case "3":
-                                    string updateres2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updateres2);
-                                    string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
+                                        string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitaco);
 
-                                    string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                                    exc.Insertar(bitacoraa2);
+                                        txtbarras.Text = "";
+                                        String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
+                                        break;
+                                    case "3":
+                                        string updateres2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres2);
+                                        string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
-                                    break;
-                                default:
-                                    String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
-                                    break;
+                                        string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitacoraa2);
+
+                                        txtbarras.Text = "";
+                                        String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
+                                        break;
+                                    default:
+                                        String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
+                                        break;
+
+
+                                }
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código no corresponde a ningun expediente o ya fué ingresado y se encuentra en otra etapa')", true); }
+                        }
+                        else {
+
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                            {
+                                switch (tipo)
+                                {
+                                    case "1":
+                                        string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres);
+                                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
+                                        exc.Insertar(bitacoraa);
+
+                                        txtbarras.Text = "";
+                                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                                        break;
+                                    case "2":
+                                        string updaipo2 = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updaipo2);
+                                        string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitaco);
+
+                                        txtbarras.Text = "";
+                                        String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
+                                        break;
+                                    case "3":
+                                        string updateres2 = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres2);
+                                        string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitacoraa2);
+
+                                        txtbarras.Text = "";
+                                        String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
+                                        break;
+                                    default:
+                                        String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
+                                        break;
+
+
+                                }
 
 
                             }
-                        }
-                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código no corresponde a ningun expediente o ya fué ingresado y se encuentra en otra etapa')", true); }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
 
+
+                        }
                     }
                     else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
                     break;
@@ -2195,59 +2314,119 @@ namespace KB_Guadalupana.Views.ControlEX
                         string codenv = exc.obtenercodenv(numero);
                         string codexpe = exc.obtenercodexp(numero);
                         string etapa = mex.expedienteexiste(numero, "1", "3");
+                        DataTable dthall = new DataTable();
+                        dthall = mex.llenarhallazgos(codexpe);
 
-                        if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                        if (dthall.Rows.Count != 0)
                         {
-
-                            switch (tipo)
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
                             {
-                                case "1":
-                                    string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updateres);
-                                    string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
-                                    exc.Insertar(bitacoraa);
+                                switch (tipo)
+                                {
+                                    case "1":
+                                        string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres);
+                                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                                    break;
-                                case "2":
-                                    string updaipo2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updaipo2);
-                                    string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
+                                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
+                                        exc.Insertar(bitacoraa);
 
-                                    string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                                    exc.Insertar(bitaco);
+                                        txtbarras.Text = "";
+                                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                                        break;
+                                    case "2":
+                                        string updaipo2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updaipo2);
+                                        string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
-                                    break;
-                                case "3":
-                                    string updateres2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updateres2);
-                                    string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
+                                        string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitaco);
 
-                                    string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                                    exc.Insertar(bitacoraa2);
+                                        txtbarras.Text = "";
+                                        String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
+                                        break;
+                                    case "3":
+                                        string updateres2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres2);
+                                        string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
-                                    break;
-                                default:
-                                    String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
-                                    break;
+                                        string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitacoraa2);
+
+                                        txtbarras.Text = "";
+                                        String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
+                                        break;
+                                    default:
+                                        String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
+                                        break;
+
+
+                                }
+
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El código no corresponde a ningún expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
+                        }
+                        else {
+
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                            {
+                                switch (tipo)
+                                {
+                                    case "1":
+                                        string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres);
+                                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
+                                        exc.Insertar(bitacoraa);
+
+                                        txtbarras.Text = "";
+                                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                                        break;
+                                    case "2":
+                                        string updaipo2 = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updaipo2);
+                                        string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitaco);
+
+                                        txtbarras.Text = "";
+                                        String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
+                                        break;
+                                    case "3":
+                                        string updateres2 = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres2);
+                                        string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitacoraa2);
+
+                                        txtbarras.Text = "";
+                                        String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
+                                        break;
+                                    default:
+                                        String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
+                                        break;
+
+
+                                }
 
 
                             }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
+
 
                         }
-                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El código no corresponde a ningún expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
-
                     }
 
                     else if (s8.Length == 15)
@@ -2264,57 +2443,117 @@ namespace KB_Guadalupana.Views.ControlEX
                         string codenv = exc.obtenercodenv(numero);
                         string codexpe = exc.obtenercodexp(numero);
                         string coasg = mex.confirmarareaasig2(numero);
-                        if (codenv != "" && obtener != "" && coasg != "" && etapa !="")
+                        DataTable dthall = new DataTable();
+                        dthall = mex.llenarhallazgos(codexpe);
+
+                        if (dthall.Rows.Count != 0)
                         {
-
-                            switch (tipo)
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
                             {
-                                case "1":
-                                    string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updateres);
-                                    string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
-                                    exc.Insertar(bitacoraa);
+                                switch (tipo)
+                                {
+                                    case "1":
+                                        string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres);
+                                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                                    break;
-                                case "2":
-                                    string updaipo2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updaipo2);
-                                    string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
+                                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
+                                        exc.Insertar(bitacoraa);
 
-                                    string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                                    exc.Insertar(bitaco);
+                                        txtbarras.Text = "";
+                                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                                        break;
+                                    case "2":
+                                        string updaipo2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updaipo2);
+                                        string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
-                                    break;
-                                case "3":
-                                    string updateres2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
-                                    exc.Insertar(updateres2);
-                                    string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
+                                        string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitaco);
 
-                                    string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
-                                    exc.Insertar(bitacoraa2);
+                                        txtbarras.Text = "";
+                                        String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
+                                        break;
+                                    case "3":
+                                        string updateres2 = "UPDATE `ex_envio` SET `estado`= 1 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres2);
+                                        string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
 
-                                    txtbarras.Text = "";
-                                    String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
-                                    break;
-                                default:
-                                    String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
-                                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
-                                    break;
+                                        string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitacoraa2);
+
+                                        txtbarras.Text = "";
+                                        String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
+                                        break;
+                                    default:
+                                        String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
+                                        break;
+
+
+                                }
+                            }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código no corresponde a ningún expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
+                        }
+                        else {
+                            if (codenv != "" && obtener != "" && coasg != "" && etapa != "")
+                            {
+                                switch (tipo)
+                                {
+                                    case "1":
+                                        string updateres = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 3  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres);
+                                        string sigientebt = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitacoraa = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 8, 3 );";
+                                        exc.Insertar(bitacoraa);
+
+                                        txtbarras.Text = "";
+                                        String script = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                                        break;
+                                    case "2":
+                                        string updaipo2 = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updaipo2);
+                                        string sigienteb = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitaco = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigienteb + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitaco);
+
+                                        txtbarras.Text = "";
+                                        String script2 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script2, true);
+                                        break;
+                                    case "3":
+                                        string updateres2 = "UPDATE `ex_envio` SET `estado`= 8 ,`codexetapa`= 5  WHERE Nocredito = '" + numero + "'";
+                                        exc.Insertar(updateres2);
+                                        string sigientebt2 = exc.siguiente("ex_bitacora", "codexbit");
+
+                                        string bitacoraa2 = "INSERT INTO `ex_bitacora` (`codexbit`, `codexenvio`, `codexp`, `ex_fechaev`, `codexevento`, `codexetapa`) VALUES ('" + sigientebt2 + "', '" + codenv + "', '" + codexpe + "', '" + fechaactual + "', 1, 5 );";
+                                        exc.Insertar(bitacoraa2);
+
+                                        txtbarras.Text = "";
+                                        String script4 = "alert('Expediente Validado '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script4, true);
+                                        break;
+                                    default:
+                                        String script3 = "alert('Tipo de expediente no valido '); window.location.href= 'Ex_pendienteAg.aspx';";
+                                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script3, true);
+                                        break;
+
+
+                                }
 
 
                             }
-                        }
-                        else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código no corresponde a ningún expediente o ya fué ingresado y se encuentra en otra etapa'')", true); }
+                            else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' El código ingresado no corresponde a un expediente existente o ya fué ingresado')", true); }
 
+
+                        }
                     }
                     else { ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Número Inválido')", true); }
                     break;

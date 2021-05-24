@@ -1466,5 +1466,24 @@ namespace KB_Guadalupana.Controllers
                 return camporesultante;// devuelve un arrgeglo con los campos 
             }
         }
+
+        public string rolusuario(string usuario)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string camporesultante = "";
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT idpj_rol FROM pj_controlingreso WHERE idpj_usuario = '" + usuario + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return camporesultante;// devuelve un arrgeglo con los campos 
+            }
+        }
     }
 }

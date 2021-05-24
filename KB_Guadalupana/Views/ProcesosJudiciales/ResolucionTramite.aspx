@@ -341,10 +341,10 @@
                 </div>
 
                 <div class="encabezado">
-                  <div class="formato3">
-                    <label class="titulos"><b>Estado de la demanda</b></label>
-                    <asp:DropDownList id="EstadoDemanda" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
-                  </div><br />
+
+                    <div style="display:flex; justify-content:center">
+                        <label style="font-size:15px" class="titulos">Resolución de trámite</label>
+                    </div><br /><br />
 
                   <label class="titulos" style="margin-bottom:10px"><b>Tipo de documento </b></label>
                     
@@ -383,12 +383,17 @@
                        </div>
                        </div>
 
+                     <div class="formato3">
+                        <label class="titulos"><b>Estado de la demanda</b></label>
+                        <asp:DropDownList id="EstadoDemanda" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                      </div><br />
+
                    <div class="formato3">
                         <label class="titulos"><b>Fecha de notificación</b</label>
-                        <input id="FechaNotificacion" runat="server" type="text" class="formatoinput2" placeholder="Fecha notificación" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                        <input id="FechaNotificacion" runat="server" type="date" class="formatoinput2" />
                     </div><br />
 
-                    <label class="titulos">Seleccione las medidas precautorias</label><br /><br />
+                    <label class="titulos">Seleccione las medidas precautorias otorgadas</label><br /><br />
                            <div class="formatocheck">
                              <div class="formatocheck2">
                                 <input id="MedidasPre1" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -413,12 +418,16 @@
 
                          <div class="formatocheck">
                              <div class="formatocheck2">
-                                <input id="MedidasPre5" runat="server" type="checkbox" class="formatocheckbox" value="5" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="MedidasPre5" class="titulos">&nbsp;&nbsp;Otra</label>
+                                <input id="MedidasPre5" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre5" class="titulos">&nbsp;&nbsp;<b>Embargo de bienes</b></label>
                              </div>
-                             <input id="OtrasMedidas" runat="server" type="text" class="formatoinput" placeholder="Ingrese nombre de otra medida" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                         </div><br /><br />
-                    </div>
+                             <div class="formatocheck2">
+                                <input id="MedidasPre6" runat="server" type="checkbox" class="formatocheckbox" value="5" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre6" class="titulos">&nbsp;&nbsp;Otra</label>
+                             </div>
+                         </div>
+                      <input id="OtrasMedidas" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre de otra medida" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                    </div><br /><br />
 
                  <div class="formato2">
                     <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click"/>

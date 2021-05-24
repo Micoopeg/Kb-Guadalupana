@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Data;
 using MySql.Data.MySqlClient;
 using KB_Guadalupana.Controllers;
@@ -9,15 +8,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
+using System.IO;
 
 namespace KB_Guadalupana.Views.ProcesosJudiciales
 {
-    public partial class DevueltosCobros : System.Web.UI.Page
+    public partial class EditarCreditos : System.Web.UI.Page
     {
         Conexion conexiongeneral = new Conexion();
         Sentencia_juridico sn = new Sentencia_juridico();
         ServiceReference1.WebService1SoapClient WS = new ServiceReference1.WebService1SoapClient();
         string documento = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -201,7 +202,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string[] separarfechahora = fechaestado.Split(' ');
                     string[] fechaestado2 = separarfechahora[0].Split('/');
 
-                    if (fechaestado2[0].Length == 1)
+                    if(fechaestado2[0].Length == 1)
                     {
                         FechaEstadoCuenta.Value = fechaestado2[2] + '-' + fechaestado2[1] + '-' + "0" + fechaestado2[0];
                     }
@@ -209,6 +210,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     {
                         FechaEstadoCuenta.Value = fechaestado2[2] + '-' + fechaestado2[1] + '-' + fechaestado2[0];
                     }
+                    
                 }
                 credito.Visible = true;
                 tarjeta.Visible = false;
@@ -232,13 +234,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 Byte[] FileBuffer = User.DownloadData(FilePath);
                 if (FileBuffer != null)
                 {
-                    if (tipo.ToLower() == "pdf")
+                    if(tipo.ToLower() == "pdf")
                     {
                         Response.ContentType = "application/pdf";
                         Response.AddHeader("content-length", FileBuffer.Length.ToString());
                         Response.BinaryWrite(FileBuffer);
                     }
-                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+                    else if(tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
                     {
                         Response.ContentType = "image/tiff";
                         Response.AddHeader("content-length", FileBuffer.Length.ToString());
@@ -250,92 +252,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
 
             }
-        }
-
-
-        protected void PCBoton_Click(object sender, EventArgs e)
-        {
-            string numcredito = Session["credito"] as string;
-
-            string infornet = sn.tipodocumentoInfornet(numcredito);
-            string recibo = sn.tipodocumentoRecibo(numcredito);
-            string dpi = sn.tipodocumentoDPI(numcredito);
-            string cartaingreso = sn.tipodocumentoCartaIngreso(numcredito);
-            string contratos = sn.tipodocumentoContratos(numcredito);
-            string solicitudcredito = sn.tipodocumentoSolicitudCredito(numcredito);
-            string consultaiggs = sn.tipodocumentoConsultaIggs(numcredito);
-            string consultadicabi = sn.tipodocumentoConsultaDicabi(numcredito);
-            string bitacora = sn.tipodocumentoBitacora(numcredito);
-            string estadocuenta = sn.tipodocumentoEstadoCuenta(numcredito);
-
-            if (infornet == "" || recibo == "" || dpi == "" || cartaingreso == "" || contratos == "" || solicitudcredito == "" || consultaiggs == "" || consultadicabi == "" || bitacora == "" || estadocuenta == "")
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los documentos');", true);
-            }
-            else
-            {
-                string sig = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
-
-                string usuario = Session["sesion_usuario"] as string;
-                string idusuario = sn.obteneridusuario(usuario);
-
-                string area = Session["area"] as string;
-
-                if (area == "CONTABILIDAD")
-                {
-                    sn.estadoreingreso(numcredito, "1");
-                    //sn.guardaretapa(sig, "1", numcredito, sn.datetime(), "Reingreso", idusuario, "26", NombreCliente.Value);
-                }
-                else if (area == "JURIDICO")
-                {
-                    sn.estadoreingreso(numcredito, "2");
-                    //sn.guardaretapa(sig, "2", numcredito, sn.datetime(), "Reingreso", idusuario, "26", NombreCliente.Value);
-                }
-
-
-                string tipocredito = Session["TipoCredito"] as string;
-                string fecha;
-
-                decimal total;
-                total = Convert.ToDecimal(Saldo1.Value) + Convert.ToDecimal(Interes1.Value) + Convert.ToDecimal(Mora.Value) + Convert.ToDecimal(Gastos1.Value) + Convert.ToDecimal(GastosJudiciales.Value) + Convert.ToDecimal(OtrosGastos.Value);
-
-                if (tipocredito == "tarjeta")
-                {
-                    fecha = sn.fechacreaciontarjeta(numcredito);
-                    sn.editartarjeta(NumIncidente.Value, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, NumPrestamo.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), FechaEstadoCuenta.Value);
-                }
-                else
-                {
-                    fecha = sn.fechacreacioncredito(numcredito);
-                    sn.editarcredito(NumIncidente.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, NumPrestamo.Value, FechaEstadoCuenta.Value);
-                }
-
-                string[] fechaseparada = fecha.Split(' ');
-                string[] fechacreacion = fechaseparada[0].Split('/');
-                string diacreacion = fechacreacion[0];
-                string mescreacion = fechacreacion[1];
-                string añocreacion = fechacreacion[2];
-
-                string horacreacion = fechaseparada[1];
-
-                string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
-
-                string[] fechayhora = sn.fechayhora();
-                string[] fecha2 = fechayhora[0].Split(' ');
-                string año = fecha2[0];
-                string mes = fecha2[1];
-                string dia = fecha2[2];
-
-                string hora = fechayhora[1];
-                string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
-
-                string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Reingreso", "26", "28", fechahoraactual, fechacreacion2, "Modificado");
-
-                String script = "alert('Se envió exitosamente'); window.location.href= 'AsignarProceso.aspx';";
-                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-            }
-           
         }
 
         protected void agregar_Click(object sender, EventArgs e)
@@ -390,7 +306,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento != 14 AND idpj_tipodocumento != 15 AND idpj_tipodocumento != 16 AND idpj_tipodocumento != 17 AND idpj_tipodocumento != 18";
+                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento IN (1,2,3,4,5,6,7,8,9,10,11,12,13)";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds);
@@ -436,6 +352,55 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
 
             }
+        }
+
+        protected void PCBoton_Click(object sender, EventArgs e)
+        {
+            string numcredito = Session["credito"] as string;
+
+            string infornet = sn.tipodocumentoInfornet(numcredito);
+            string recibo = sn.tipodocumentoRecibo(numcredito);
+            string dpi = sn.tipodocumentoDPI(numcredito);
+            string cartaingreso = sn.tipodocumentoCartaIngreso(numcredito);
+            string contratos = sn.tipodocumentoContratos(numcredito);
+            string solicitudcredito = sn.tipodocumentoSolicitudCredito(numcredito);
+            string consultaiggs = sn.tipodocumentoConsultaIggs(numcredito);
+            string consultadicabi = sn.tipodocumentoConsultaDicabi(numcredito);
+            string bitacora = sn.tipodocumentoBitacora(numcredito);
+            string estadocuenta = sn.tipodocumentoEstadoCuenta(numcredito);
+
+            if (infornet == "" || recibo == "" || dpi == "" || cartaingreso == "" || contratos == "" || solicitudcredito == "" || consultaiggs == "" || consultadicabi == "" || bitacora == "" || estadocuenta == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los documentos');", true);
+            }
+            else
+            {
+
+                string usuario = Session["sesion_usuario"] as string;
+                string idusuario = sn.obteneridusuario(usuario);
+
+
+                string tipocredito = Session["TipoCredito"] as string;
+                string fecha;
+
+                decimal total;
+                total = Convert.ToDecimal(Saldo1.Value) + Convert.ToDecimal(Interes1.Value) + Convert.ToDecimal(Mora.Value) + Convert.ToDecimal(Gastos1.Value) + Convert.ToDecimal(GastosJudiciales.Value) + Convert.ToDecimal(OtrosGastos.Value);
+
+                if (tipocredito == "tarjeta")
+                {
+                    fecha = sn.fechacreaciontarjeta(numcredito);
+                    sn.editartarjeta(NumIncidente.Value, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, NumPrestamo.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), FechaEstadoCuenta.Value);
+                }
+                else
+                {
+                    fecha = sn.fechacreacioncredito(numcredito);
+                    sn.editarcredito(NumIncidente.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, NumPrestamo.Value, FechaEstadoCuenta.Value);
+                }
+
+                String script = "alert('Se realizaron los cambios exitosamente'); window.location.href= 'AsignarProceso.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            }
+
         }
     }
 }

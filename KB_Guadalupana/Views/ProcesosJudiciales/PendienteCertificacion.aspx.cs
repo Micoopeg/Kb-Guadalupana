@@ -17,6 +17,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             llenargridviewcreditos();
             llenargridviewcredito();
+
+            if (gridViewCreditos.Rows.Count == 0)
+            {
+                tablaC.Visible = false;
+                CreditosDevueltos.Visible = false;
+            }
+
         }
 
         public void llenargridviewcreditos()

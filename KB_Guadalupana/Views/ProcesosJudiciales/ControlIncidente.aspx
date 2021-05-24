@@ -207,7 +207,7 @@
                         <asp:GridView ID="gridViewIncidente" runat="server" CssClass="tabla" AutoGenerateColumns="False"
                             OnSelectedIndexChanged = "OnSelectedIndexChangedIncidente" BorderStyle="Solid">
                             <Columns>
-                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de incidente">
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de proceso">
                                     <ItemTemplate>
                                        <asp:Label ID="lblnumincidente" Text='<%# Eval("idpj_incidente") %>' runat="server" />
                                     </ItemTemplate>

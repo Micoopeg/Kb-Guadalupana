@@ -77,7 +77,7 @@
         }
 
         .formatoinput2{
-            width:98%;
+            width:99%;
             margin-top:8px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
@@ -263,9 +263,11 @@
                        </div>
                        </div><br /><br />
 
+                 
+
                        <div class="formatoTitulo" style="margin-bottom:5px">
                              <label class="titulos"><b>No. de factura</b></label>
-                            <label class="titulos" style="margin-left:35%"><b>No. de serie</b></label>
+                            <label class="titulos" style="margin-left:40%"><b>No. de serie</b></label>
                         </div>
                         <div class="formato">
                               <input id="NumFactura" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. factura" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
@@ -279,30 +281,95 @@
 
                     <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>Importe total</b></label>
-                        <label class="titulos" style="margin-left:20%"><b>Fecha de emisión</b></label>
-                        <label class="titulos" style="margin-left:31%"><b>Importe del caso</b></label>
+                        <label class="titulos" style="margin-left:23%"><b>Fecha de emisión</b></label>
+                        <label class="titulos" style="margin-left:18%"><b>Importe del caso</b></label>
                     </div>
                      <div class="formato">
-                        <input id="ImporteTotal" runat="server" type="text" class="formatoinput3" min="0" placeholder="Ingrese importe total" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        Q<input id="ImporteTotal" runat="server" type="text" class="formatoinput3" min="0" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese importe total" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                         <input id="FechaEmision" runat="server" type="date" class="formatoinput3"/>
-                        <input id="ImporteCaso" runat="server" type="text" min="0" class="formatoinput3" placeholder="Ingrese importe del caso" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        Q<input id="ImporteCaso" runat="server" type="text" min="0" class="formatoinput3" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese importe del caso" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                     </div><br />
 
                       <div class="formato3">
                         <label class="titulos"><b>Motivo de pago</b></label>
-                        <asp:DropDownList id="MotivoPago" runat="server" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="MotivoPago_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList id="MotivoPago" runat="server" Width="100%" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="MotivoPago_SelectedIndexChanged"></asp:DropDownList>
                     </div><br />
 
-                     <input id="Otro" runat="server" type="text" min="0" class="formatoinput3" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                     <input id="Otro" runat="server" type="text" min="0" class="formatoinput2" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 
                 </div>
 
                    <div class="formato2">
-                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar"/>
+                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click"/>
                   </div><br />
 
+                      <div class="menu2" id="ventana" runat="server">
+
+                    <div class="formato3">
+                           <label class="titulos"><b>No. de préstamo</b></label>
+                          <input id="CreditoNumero" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                     <div class="formato3">
+                         <label class="titulos"><b>No. de proceso</b></label>
+                        <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                    <div class="formato3">
+                         <label class="titulos"><b>CIF</b></label>
+                        <input id="NumCif" runat="server" type="text" class="formatoinput5" min="0" placeholder="CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                    <div class="formato3">
+                        <label class="titulos"><b>Cliente - Nombre</b></label>
+                        <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
+                    </div><br />
+                </div>
             </div>
+           
+             
         </div>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    posicionarMenu();
+
+    $(window).scroll(function () {
+        posicionarMenu();
+    });
+
+    function posicionarMenu() {
+        var altura_del_header = $('.header').outerHeight(true);
+        var altura_del_menu = $('.menu2').outerHeight(true);
+
+        if ($(window).scrollTop() >= altura_del_header) {
+            $('.menu2').addClass('fixed');
+            $('.menu2').addClass('fixed');
+            $('.wrapper').css('margin-top', (altura_del_menu) + 'px');
+        } else {
+            $('.menu2').removeClass('fixed');
+            $('.wrapper').css('margin-top', '0');
+        }
+    }
+
+</script>
+              <script>
+                  function format(input) {
+                      var num = input.value.replace(/\,/g, '');
+                      if (!isNaN(num)) {
+                          num = num.toString().split('').reverse().join('').replace(/(?=\d*\,?)(\d{3})/g, '$1,');
+                          num = num.split('').reverse().join('').replace(/^[\,]/, '');
+                          input.value = num;
+                      }
+
+                      else {
+                          alert('Solo se permiten numeros');
+                          input.value = input.value.replace(/[^\d\,]*/g, '');
+                      }
+                  }
+
+                  $('#OtrosGastos').mask('000,000,000.00', { reverse: true });
+
+              </script>
 
          <script>
              var texto1 = document.querySelector('#NumFactura');

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PendientePresentacionDemanda.aspx.cs" Inherits="KB_Guadalupana.Views.ProcesosJudiciales.PendientePresentacionDemanda" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PendienteSolicitudCheque.aspx.cs" Inherits="KB_Guadalupana.Views.ProcesosJudiciales.PendienteSolicitudCheque" %>
 
 <!DOCTYPE html>
 
@@ -8,8 +8,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet"/>
-    <title>Presentacion de Demanda</title>
-        <style>
+    <title>Solicitud de cheque</title>
+      <style>
          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
 
         html{
@@ -178,13 +178,13 @@
 
     </style>
 </head>
-    <div id="menu" runat="server" class="menu"></div>
+     <div id="menu" runat="server" class="menu"></div>
 <body>
     <form id="form1" runat="server">
         <div class="general">
             <div class="formularioCobros">
                   <div style="display:flex; justify-content:center">
-                    <label style="font-size:18px" class="titulos">Pendiente presentación de demanda</label>
+                    <label style="font-size:18px" class="titulos">Pendiente solicitud de cheque</label>
                  </div><br />
 
                 
@@ -207,7 +207,7 @@
                                        <asp:Label ID="lblestado" Text='<%# Eval("pj_status") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Presentar demanda" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                <asp:ButtonField   Text="Emitir solicitud" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
                                     <ItemStyle Width="100px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>

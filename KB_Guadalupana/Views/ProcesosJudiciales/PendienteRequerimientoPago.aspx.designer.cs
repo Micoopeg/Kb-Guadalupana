@@ -11,7 +11,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 {
 
 
-    public partial class PendienteCertificacion
+    public partial class PendienteRequerimientoPago
     {
 
         /// <summary>
@@ -33,39 +33,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control gridViewCertificacion.
+        /// Control gridViewDemanda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridViewCertificacion;
-
-        /// <summary>
-        /// Control CreditosDevueltos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CreditosDevueltos;
-
-        /// <summary>
-        /// Control tablaC.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tablaC;
-
-        /// <summary>
-        /// Control gridViewCreditos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridViewCreditos;
+        protected global::System.Web.UI.WebControls.GridView gridViewDemanda;
     }
 }

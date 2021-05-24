@@ -211,14 +211,29 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 string id = Convert.ToString((gridViewDocumentos.SelectedRow.FindControl("lblid") as Label).Text);
                 string documentoselec = sn.obtenerrutadocumento(id);
+
+                string nombrearchivo = sn.nombrearchivo(id);
+                string[] extension = nombrearchivo.Split('.');
+                int tamaño = extension.Length;
+                string tipo = extension[tamaño - 1];
+
                 string FilePath = Server.MapPath(documentoselec);
                 WebClient User = new WebClient();
                 Byte[] FileBuffer = User.DownloadData(FilePath);
                 if (FileBuffer != null)
                 {
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
+                    if (tipo.ToLower() == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+                    {
+                        Response.ContentType = "image/tiff";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
                 }
             }
             catch
@@ -273,10 +288,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
                     sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito);
                 }
+                if (MedidasPre6.Checked)
+                {
+                    string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                    sn.insertarmedidaspre(sig6, "6", OtrasMedidas.Value, numcredito);
+                }
                 if (MedidasPre5.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "5", OtrasMedidas.Value, numcredito);
+                    sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito);
                 }
 
                 string tipocredito = Session["TipoCredito"] as string;
@@ -419,11 +439,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
                         ext = ext.ToLower();
 
-                        if (ext != ".pdf")
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf');", true);
-                        }
-                        else
+                        if (ext == ".pdf" || ext == ".tiff" || ext == ".tif")
                         {
                             string numcredito = Session["credito"] as string;
                             string siguiente = sn.siguiente("pj_documento", "idpj_documento");
@@ -433,6 +449,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                             FileUpload1.SaveAs(Server.MapPath("Subidos/CertificacionContable/" + siguiente + '-' + FileUpload1.FileName));
                             ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
                             llenargridviewdocumentos();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf o tif');", true);
                         }
                     }
                     else

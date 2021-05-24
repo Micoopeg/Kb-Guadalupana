@@ -37,14 +37,29 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 string id = Convert.ToString((gridViewDocumentos.SelectedRow.FindControl("lblid") as Label).Text);
                 string documentoselec = sn.obtenerrutadocumento(id);
+
+                string nombrearchivo = sn.nombrearchivo(id);
+                string[] extension = nombrearchivo.Split('.');
+                int tamaño = extension.Length;
+                string tipo = extension[tamaño - 1];
+
                 string FilePath = Server.MapPath(documentoselec);
                 WebClient User = new WebClient();
                 Byte[] FileBuffer = User.DownloadData(FilePath);
                 if (FileBuffer != null)
                 {
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
+                    if (tipo.ToLower() == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+                    {
+                        Response.ContentType = "image/tiff";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
                 }
             }
             catch
@@ -70,11 +85,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
                         ext = ext.ToLower();
 
-                        if (ext != ".pdf")
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf');", true);
-                        }
-                        else
+                        if (ext == ".pdf" || ext == ".tiff" || ext == ".tif")
                         {
                             string numcredito = Session["credito"] as string;
                             string siguiente = sn.siguiente("pj_documento", "idpj_documento");
@@ -84,6 +95,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                             FileUpload1.SaveAs(Server.MapPath("Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName));
                             ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
                             llenargridviewdocumentos();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf o tif');", true);
                         }
                     }
                     else
@@ -359,7 +374,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     total = Convert.ToDecimal(Saldo1.Value) + Convert.ToDecimal(Interes1.Value) + Convert.ToDecimal(Mora.Value) + Convert.ToDecimal(Gastos1.Value) + Convert.ToDecimal(GastosJudiciales.Value) + Convert.ToDecimal(OtrosGastos.Value);
 
                     string sig = sn.siguienteCredito("pj_tipocredito", "idpj_tipocredito");
-                    sn.guardartipocredito(sig, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, numcredito, fechahoraactual);
+                    sn.guardartipocredito(sig, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, numcredito, fechahoraactual, FechaEstadoCuenta.Value);
                     NumIncidente.Value = sig;
 
                     string usuario = Session["sesion_usuario"] as string;
@@ -385,7 +400,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         decimal total;
                         total = Convert.ToDecimal(Saldo1.Value) + Convert.ToDecimal(Interes1.Value) + Convert.ToDecimal(Mora.Value) + Convert.ToDecimal(Gastos1.Value) + Convert.ToDecimal(GastosJudiciales.Value) + Convert.ToDecimal(OtrosGastos.Value);
                         string sig = sn.siguienteTarjeta("pj_tipotarjeta", "idpj_tipotarjeta");
-                        sn.guardartipotarjeta(sig, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, numcredito, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), fechahoraactual);
+                        sn.guardartipotarjeta(sig, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, numcredito, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), fechahoraactual, FechaEstadoCuenta.Value);
                         NumIncidente.Value = sig;
 
                         string usuario = Session["sesion_usuario"] as string;

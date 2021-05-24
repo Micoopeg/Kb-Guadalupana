@@ -197,6 +197,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 tarjeta.Visible = true;
                 credito.Visible = true;
 
+                string fechaestado = sn.fechaestadotarjeta(numcredito);
+
+                string[] fechaestado2 = fechaestado.Split('-');
+                AñoEstado.Value = fechaestado2[0];
+                MesEstado.Value = fechaestado2[1];
+                DiaEstado.Value = fechaestado2[2];
+
                 string[] campos3 = sn.obtenertipotarjeta(numcredito);
                 for (int i = 0; i < campos3.Length; i++)
                 {
@@ -223,6 +230,14 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             else
             {
                 Session["TipoCredito"] = "credito";
+
+                string fechaestado = sn.fechaestadocredito(numcredito);
+
+                string[] fechaestado2 = fechaestado.Split('-');
+                AñoEstado.Value = fechaestado2[0];
+                MesEstado.Value = fechaestado2[1];
+                DiaEstado.Value = fechaestado2[2];
+
                 for (int i = 0; i < campos2.Length; i++)
                 {
                     NumIncidente.Value = campos2[0];
@@ -244,14 +259,29 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 string id = Convert.ToString((gridViewDocumentos.SelectedRow.FindControl("lblid") as Label).Text);
                 string documentoselec = sn.obtenerrutadocumento(id);
+
+                string nombrearchivo = sn.nombrearchivo(id);
+                string[] extension = nombrearchivo.Split('.');
+                int tamaño = extension.Length;
+                string tipo = extension[tamaño - 1];
+
                 string FilePath = Server.MapPath(documentoselec);
                 WebClient User = new WebClient();
                 Byte[] FileBuffer = User.DownloadData(FilePath);
                 if (FileBuffer != null)
                 {
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
+                    if (tipo.ToLower() == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+                    {
+                        Response.ContentType = "image/tiff";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
                 }
             }
             catch
@@ -325,17 +355,25 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     BaseFont _detalle = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1250, true);
                     iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 11f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
 
-                    //decimal total;
-                    //total = Convert.ToDecimal(SaldoActual.Value) + Convert.ToDecimal(Interes1.Value);
+                //decimal total;
+                //total = Convert.ToDecimal(SaldoActual.Value) + Convert.ToDecimal(Interes1.Value);
 
 
 
-                    //string fechaactual = sn.datetime();
-                    //string[] fecha = fechaactual.Split('-');
-                    //string año = fecha[0];
-                    //string mes = fecha[1];
-                    //string dia = fecha[2];
-                    iTextSharp.text.Paragraph def = new iTextSharp.text.Paragraph("Certificación", new Font(basf, 17));
+                //string fechaactual = sn.datetime();
+                //string[] fecha = fechaactual.Split('-');
+                //string año = fecha[0];
+                //string mes = fecha[1];
+                //string dia = fecha[2];
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+                doc.Add(new Paragraph(" ", parrafo));
+
+                iTextSharp.text.Paragraph def = new iTextSharp.text.Paragraph("Certificación", new Font(basf, 17));
                     def.Alignment = Element.ALIGN_CENTER;
                     doc.Add(def);
                     doc.Add(new Paragraph(" ", parrafo));
@@ -346,7 +384,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                     doc.Add(new Paragraph(" ", parrafo));
 
-                    iTextSharp.text.Paragraph def5 = new iTextSharp.text.Paragraph("En sus Registros Contables figura el préstamo a nombre de " + NombreCliente.Value + " con un monto original de " + MontoOriginalLetras.Value+ " con "+MontoDecimales.Value + "/100 ( Q " + MontoOriginalEspacios.Value + "), y un saldo capital de " + SaldoActualLetras.Value + " con "+SaldoDecimales.Value+ "/100 ( Q " + SaldoEspacios.Value + "), e intereses de " + InteresesLetras.Value + " con " + InteresesDecimales.Value + "/100 ( Q " + InteresesEspacio.Value + "), los cuales hacen un total de " +TotalLetras.Value+ " con " +TotalDecimales.Value+"/100 ( Q " + Total.Value + ").", new Font(basf, 12));
+                    iTextSharp.text.Paragraph def5 = new iTextSharp.text.Paragraph("En sus Registros Contables figura el préstamo a nombre de " + NombreCliente.Value + " con un monto original de " + MontoOriginalLetras.Value+ " con "+MontoDecimales.Value + "/100 ( Q " + MontoOriginalEspacios.Value + "), y un saldo capital de " + SaldoActualLetras.Value + " con "+SaldoDecimales.Value+ "/100 ( Q " + SaldoEspacios.Value + "), e intereses al " +DiaEstadoLetras.Value.ToLower()+ " de " +MesEstadoLetras.Value+ " de " +AñoEstadoLetras.Value.ToLower()+ " (" +FechaEstado.Value+ "), de " + InteresesLetras.Value + " con " + InteresesDecimales.Value + "/100 ( Q " + InteresesEspacio.Value + "), los cuales hacen un total de " +TotalLetras.Value+ " con " +TotalDecimales.Value+"/100 ( Q " + Total.Value + ").", new Font(basf, 12));
                     def5.Alignment = Element.ALIGN_JUSTIFIED;
                     doc.Add(def5);
 
@@ -522,7 +560,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             decimal total;
             string saldofinal = "";
-            if(Saldo1.Value == "")
+            if (Saldo1.Value == "")
             {
                 saldofinal = "0.00";
             }
@@ -593,6 +631,20 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string año;
             año = NumeroALetras((double)Convert.ToDecimal(Año.Value));
             AñoLetras.Value = año;
+
+            string mesestado;
+            mesestado = obtenerNombreMesNumero(Convert.ToInt32(MesEstado.Value));
+            MesEstadoLetras.Value = mesestado;
+
+            string diaestado;
+            diaestado = NumeroALetras((double)Convert.ToDecimal(DiaEstado.Value));
+            DiaEstadoLetras.Value = diaestado;
+
+            string añoestado; 
+            añoestado = NumeroALetras((double)Convert.ToDecimal(AñoEstado.Value));
+            AñoEstadoLetras.Value = añoestado;
+
+            FechaEstado.Value = DiaEstado.Value + '/' + MesEstado.Value + '/' + AñoEstado.Value;
 
 
             string[] monto = MontoOriginal.Value.Split(' ');
@@ -760,5 +812,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             Razones.Visible = true;
             Regresar.Focus();
         }
+
     }
 }

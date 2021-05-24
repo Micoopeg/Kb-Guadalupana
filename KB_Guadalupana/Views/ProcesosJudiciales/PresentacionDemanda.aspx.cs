@@ -26,6 +26,14 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenarcombonotificador();
                 llenarcombodepartamento();
                 llenarcombooficial();
+                //llenarcombodireccion();
+                ResolucionTramite.Visible = false;
+                FacturacionAbogado.Visible = false;
+                llenarcombodocumentoResolucion();
+                llenarcomboestado();
+                llenarcombodocumentofactura();
+                llenarcombomotivo();
+                Otro.Visible = false;
             }
         }
 
@@ -98,31 +106,39 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             try
             {
-                if (FileUpload1.HasFile)
+                if (PTipoDocumento.SelectedValue == "0")
                 {
-                    string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
-                    ext = ext.ToLower();
-
-                    if (ext != ".pdf")
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf');", true);
-                    }
-                    else
-                    {
-                        string numcredito = Session["credito"] as string;
-                        string siguiente = sn.siguiente("pj_documento", "idpj_documento");
-                        documento = "Subidos/Demanda/" + siguiente + '-' + FileUpload1.FileName;
-                        string nombredoc = siguiente + '-' + FileUpload1.FileName;
-                        sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
-                        FileUpload1.SaveAs(Server.MapPath("Subidos/Demanda/" + siguiente + '-' + FileUpload1.FileName));
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
-                        llenargridviewdocumentos();
-                    }
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Seleccione tipo de documento');", true);
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+                    if (FileUpload1.HasFile)
+                    {
+                        string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
+                        ext = ext.ToLower();
+
+                        if (ext == ".pdf" || ext == ".tiff" || ext == ".tif")
+                        {
+                            string numcredito = Session["credito"] as string;
+                            string siguiente = sn.siguiente("pj_documento", "idpj_documento");
+                            documento = "Subidos/Demanda/" + siguiente + '-' + FileUpload1.FileName;
+                            string nombredoc = siguiente + '-' + FileUpload1.FileName;
+                            sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
+                            FileUpload1.SaveAs(Server.MapPath("Subidos/Demanda/" + siguiente + '-' + FileUpload1.FileName));
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
+                            llenargridviewdocumentos();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf o tif');", true);
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+                    }
                 }
+                MedidasPre1.Focus();
             }
             catch
             {
@@ -182,14 +198,29 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 string id = Convert.ToString((gridViewDocumentos.SelectedRow.FindControl("lblid") as Label).Text);
                 string documentoselec = sn.obtenerrutadocumento(id);
+
+                string nombrearchivo = sn.nombrearchivo(id);
+                string[] extension = nombrearchivo.Split('.');
+                int tamaño = extension.Length;
+                string tipo = extension[tamaño - 1];
+
                 string FilePath = Server.MapPath(documentoselec);
                 WebClient User = new WebClient();
                 Byte[] FileBuffer = User.DownloadData(FilePath);
                 if (FileBuffer != null)
                 {
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
+                    if (tipo.ToLower() == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+                    {
+                        Response.ContentType = "image/tiff";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
                 }
             }
             catch
@@ -282,8 +313,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string fechaactual = fechaText();
 
                 string sig3 = sn.siguiente("pj_presentaciondemanda", "idpj_presentaciondemanda");
-                sn.insertarpresentaciondemanda(sig3, NumIncidente.Value, fechaactual, numcredito, Oficial.SelectedValue, Notificador.SelectedValue, NumJuzgado.Value, NombreJuzgado.Value, Departamento.SelectedValue, Municipio.SelectedValue, idusuario);
-                sn.guardaretapa(sig2, "4", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
+                sn.insertarpresentaciondemanda(sig3, NumIncidente.Value, FechaPresentacion.Value, numcredito, Oficial.SelectedValue, Notificador.SelectedValue, NumJuzgado.Value, NombreJuzgado.Value, Departamento.SelectedValue, Municipio.SelectedValue, idusuario);
+               
                 sn.cambiarestado(numcredito, "3");
 
                 if (MedidasPre1.Checked)
@@ -306,10 +337,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
                     sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito);
                 }
+                if (MedidasPre6.Checked)
+                {
+                    string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                    sn.insertarmedidaspre(sig6, "6", OtrasMedidas.Value, numcredito);
+                }
                 if (MedidasPre5.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "5", OtrasMedidas.Value, numcredito);
+                    sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito);
                 }
 
                 string tipocredito = Session["TipoCredito"] as string;
@@ -347,11 +383,21 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                 sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "34", "51", fechahoraactual, fechacreacion2, "Recibido");
 
-                string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "51", fechahoraactual, fechacreacion2, "Resolución de trámite");
+               //if(DireccionCredito.SelectedValue == "1")
+               // {
+               //     string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+               //     sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "51", fechahoraactual, fechacreacion2, "Resolución de trámite");
+               //     sn.guardaretapa(sig2, "4", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
+               // }
+               //else if(DireccionCredito.SelectedValue == "2")
+               // {
+               //     string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+               //     sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "51", fechahoraactual, fechacreacion2, "Facturación");
+               //     sn.guardaretapa(sig2, "5", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
+               // }
 
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se guardó exitosamente');", true);
+                String script = "alert('Se guardó exitosamente'); window.location.href= 'PendientePresentacionDemanda.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
         }
 
@@ -406,5 +452,313 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 Oficial.Items.Insert(0, new ListItem("[Oficial]", "0"));
             }
         }
+
+        protected void VerOpcion_Click(object sender, EventArgs e)
+        {
+            if (Resolucion.Checked)
+            {
+                ResolucionTramite.Visible = true;
+                FacturacionAbogado.Visible = true;
+                EstadoDemanda.Focus();
+            }
+            else if (Facturacion.Checked)
+            {
+                FacturacionAbogado.Visible = true;
+                ResolucionTramite.Visible = false;
+                MotivoPago.Focus();
+            }
+          
+        }
+
+        public void llenarcombodocumentoResolucion()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento = 17";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds);
+                    TDocumentoResolucion.DataSource = ds;
+                    TDocumentoResolucion.DataTextField = "pj_nombretipodoc";
+                    TDocumentoResolucion.DataValueField = "idpj_tipodocumento";
+                    TDocumentoResolucion.DataBind();
+                    TDocumentoResolucion.Items.Insert(0, new ListItem("[Tipo Documento]", "0"));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        protected void AgregarResolucion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FileUpload2.HasFile)
+                {
+                    string ext = System.IO.Path.GetExtension(FileUpload2.FileName);
+                    ext = ext.ToLower();
+
+                    if (ext == ".pdf" || ext == ".tiff" || ext == ".tif")
+                    {
+                        string numcredito = Session["credito"] as string;
+                        string siguiente = sn.siguiente("pj_documento", "idpj_documento");
+                        documento = "Subidos/Resolucion/" + siguiente + '-' + FileUpload2.FileName;
+                        string nombredoc = siguiente + '-' + FileUpload2.FileName;
+                        sn.guardardocumentoexp(siguiente, TDocumentoResolucion.SelectedValue, documento, nombredoc, numcredito);
+                        FileUpload2.SaveAs(Server.MapPath("Subidos/Resolucion/" + siguiente + '-' + FileUpload2.FileName));
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
+                        llenargridviewdocumentosResolucion();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf o tif');", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+                }
+            }
+            catch
+            {
+
+            }
+            EstadoDemanda.Focus();
+        }
+
+        public void llenargridviewdocumentosResolucion()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    string numcredito = Session["credito"] as string;
+                    sqlCon.Open();
+                    string query = "SELECT pj_documento.idpj_documento AS Codigo, pj_tipodocumento.pj_nombretipodoc AS TipoDocumento, pj_documento.pj_nombrearchivo AS Nombre FROM pj_documento INNER JOIN pj_tipodocumento ON pj_documento.idpj_tipodocumento = pj_tipodocumento.idpj_tipodocumento WHERE idpj_credito = '" + numcredito + "' AND pj_tipodocumento.idpj_tipodocumento = 17";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataTable dt = new DataTable();
+                    myCommand.Fill(dt);
+                    gridViewResolucion.DataSource = dt;
+                    gridViewResolucion.DataBind();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public void llenarcomboestado()
+        {
+            EstadoDemanda.Items.Insert(0, new ListItem("[Estado]", "0"));
+            EstadoDemanda.Items.Insert(1, new ListItem("Admitida", "1"));
+            EstadoDemanda.Items.Insert(2, new ListItem("Rechazada", "2"));
+        }
+
+        protected void OnSelectedIndexChangedResolucion(object sender, EventArgs e)
+        {
+            try
+            {
+                string id = Convert.ToString((gridViewResolucion.SelectedRow.FindControl("lblid") as Label).Text);
+                string documentoselec = sn.obtenerrutadocumento(id);
+                string nombrearchivo = sn.nombrearchivo(id);
+                string[] extension = nombrearchivo.Split('.');
+                int tamaño = extension.Length;
+                string tipo = extension[tamaño - 1];
+
+                string FilePath = Server.MapPath(documentoselec);
+                WebClient User = new WebClient();
+                Byte[] FileBuffer = User.DownloadData(FilePath);
+                if (FileBuffer != null)
+                {
+                    if (tipo.ToLower() == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+                    {
+                        Response.ContentType = "image/tiff";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        public void llenarcombodocumentofactura()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento = 18";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds);
+                    TDocumentoFactura.DataSource = ds;
+                    TDocumentoFactura.DataTextField = "pj_nombretipodoc";
+                    TDocumentoFactura.DataValueField = "idpj_tipodocumento";
+                    TDocumentoFactura.DataBind();
+                    TDocumentoFactura.Items.Insert(0, new ListItem("[Tipo Documento]", "0"));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        protected void AgregarFactura_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FileUpload3.HasFile)
+                {
+                    string ext = System.IO.Path.GetExtension(FileUpload3.FileName);
+                    ext = ext.ToLower();
+
+                    if (ext == ".pdf" || ext == ".tiff" || ext == ".tif")
+                    {
+                        string numcredito = Session["credito"] as string;
+                        string siguiente = sn.siguiente("pj_documento", "idpj_documento");
+                        documento = "Subidos/Demanda/" + siguiente + '-' + FileUpload3.FileName;
+                        string nombredoc = siguiente + '-' + FileUpload3.FileName;
+                        sn.guardardocumentoexp(siguiente, TDocumentoFactura.SelectedValue, documento, nombredoc, numcredito);
+                        FileUpload3.SaveAs(Server.MapPath("Subidos/Demanda/" + siguiente + '-' + FileUpload3.FileName));
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
+                        llenargridviewfactura();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf o tif');", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+                }
+            }
+            catch
+            {
+
+            }
+            MotivoPago.Focus();
+        }
+
+        public void llenargridviewfactura()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    string numcredito = Session["credito"] as string;
+                    sqlCon.Open();
+                    string query = "SELECT pj_documento.idpj_documento AS Codigo, pj_tipodocumento.pj_nombretipodoc AS TipoDocumento, pj_documento.pj_nombrearchivo AS Nombre FROM pj_documento INNER JOIN pj_tipodocumento ON pj_documento.idpj_tipodocumento = pj_tipodocumento.idpj_tipodocumento WHERE idpj_credito = '" + numcredito + "' AND pj_tipodocumento.idpj_tipodocumento = 18";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataTable dt = new DataTable();
+                    myCommand.Fill(dt);
+                    gridViewFactura.DataSource = dt;
+                    gridViewFactura.DataBind();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        protected void OnSelectedIndexChangedFactura(object sender, EventArgs e)
+        {
+            try
+            {
+                string id = Convert.ToString((gridViewFactura.SelectedRow.FindControl("lblid") as Label).Text);
+                string documentoselec = sn.obtenerrutadocumento(id);
+                string nombrearchivo = sn.nombrearchivo(id);
+                string[] extension = nombrearchivo.Split('.');
+                int tamaño = extension.Length;
+                string tipo = extension[tamaño - 1];
+
+                string FilePath = Server.MapPath(documentoselec);
+                WebClient User = new WebClient();
+                Byte[] FileBuffer = User.DownloadData(FilePath);
+                if (FileBuffer != null)
+                {
+                    if (tipo.ToLower() == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+                    {
+                        Response.ContentType = "image/tiff";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
+        public void llenarcombomotivo()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM pj_motivopago";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds);
+                    MotivoPago.DataSource = ds;
+                    MotivoPago.DataTextField = "pj_nombremotivo";
+                    MotivoPago.DataValueField = "idpj_motivopago";
+                    MotivoPago.DataBind();
+                    MotivoPago.Items.Insert(0, new ListItem("[Motivo de pago]", "0"));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        protected void MotivoPago_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            if (MotivoPago.SelectedValue == "9")
+            {
+                Otro.Visible = true;
+                Guardar.Focus();
+            }
+            else
+            {
+                Otro.Visible = false;
+                Guardar.Focus();
+            }
+        }
+
+        //public void llenarcombodireccion()
+        //{
+        //    DireccionCredito.Items.Insert(0, new ListItem("[Etapa]", "0"));
+        //    DireccionCredito.Items.Insert(1, new ListItem("Resolución de trámite", "1"));
+        //    DireccionCredito.Items.Insert(2, new ListItem("Facturación", "2"));
+        //}
     }
 }

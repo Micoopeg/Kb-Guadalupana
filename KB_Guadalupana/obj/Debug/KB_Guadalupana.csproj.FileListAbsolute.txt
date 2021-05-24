@@ -8260,3 +8260,4 @@ C:\Users\Administrador\Documents\KB-Despliegue\Kb-Guadalupana\KB_Guadalupana\obj
 C:\Users\Administrador\Documents\KB-Despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csproj.CopyComplete
 C:\Users\Administrador\Documents\KB-Despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.dll
 C:\Users\Administrador\Documents\KB-Despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.pdb
+C:\Users\Administrador\Documents\KB-Despliegue\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csprojAssemblyReference.cache

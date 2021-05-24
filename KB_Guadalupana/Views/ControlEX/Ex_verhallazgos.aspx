@@ -162,7 +162,7 @@
         </asp:GridView>
         
           <asp:GridView ID="DGVHALLVISTA" CssClass="table table-striped" style="width: 400px;text-align:center" runat="server"  HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="10" OnPageIndexChanging="DGVHALLVISTA_PageIndexChanging"  >
+    AutoGenerateColumns="False" BorderStyle="Solid"  AllowPaging="true" PageSize="10" OnPageIndexChanging="DGVHALLVISTA_PageIndexChanging" OnSelectedIndexChanged="DGVHALLVISTA_SelectedIndexChanged" >
                     <Columns>
                           <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="No" Visible="false">
                            <ItemTemplate>
@@ -179,7 +179,10 @@
                            <asp:Label ID="lblcif"  Width="300px" Text='<%# Eval("hallazgo") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                   
+                     <asp:ButtonField Text="Hallazgo Enviado" CommandName="Select" ItemStyle-Width="150" ItemStyle-CssClass="seleccionarregistrogridview">
+                            <ItemStyle Width="150px" >  </ItemStyle>
+
+                            </asp:ButtonField>
 
                      </Columns>
         <HeaderStyle CssClass="prueba" Width="300px" ForeColor="White"></HeaderStyle>

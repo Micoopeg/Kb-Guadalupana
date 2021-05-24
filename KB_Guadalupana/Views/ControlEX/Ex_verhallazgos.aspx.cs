@@ -19,9 +19,9 @@ namespace KB_Guadalupana.Views.ControlEX
         ControladorEX exc = new ControladorEX();
         string fechamin, horamin, fechahora, usernombre, nombrepersona, coduser;
         string codexp,no;
+        string fechaactual; char delimitador2 = ' ';
 
 
-    
 
         protected void DGVHALL_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -53,7 +53,7 @@ namespace KB_Guadalupana.Views.ControlEX
 
             string agencia = mex.buscaragencia(no);
             string noexp = mex.buscarnoexp(no);
-
+            now();
             
             numeroexp.InnerText = "Expediente: " + noexp + "," + agencia;
             procesoesp.InnerText = "Hallazgos del expediente";
@@ -111,6 +111,43 @@ namespace KB_Guadalupana.Views.ControlEX
         {
             Response.Redirect("../Sesion/CerrarSesion.aspx");
         }
+        public void now()
+        {
+
+            string[] fecha = mex.datetime();
+            try
+            {
+                for (int i = 0; i < fecha.Length; i++)
+                {
+                    fechamin = Convert.ToString(fecha.GetValue(0));
+                    string hora = Convert.ToString(fecha.GetValue(1));
+
+                    string[] valores2 = fechamin.Split(delimitador2);
+
+                    fechahora = valores2[0] + "-" + valores2[1] + "-" + valores2[2] + " " + hora;
+
+                    fechaactual = fechahora;
+
+                }
+
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+
+            }
+
+
+        }
+        protected void DGVHALLVISTA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string numhall = (DGVHALLVISTA.SelectedRow.FindControl("lblnumhall") as Label).Text;
+            string sig = exc.siguiente("ex_bitacorahallazgos", "codexhallax");
+            string update = "UPDATE `ex_hallazgos` SET `estadohall`= 2 WHERE codexhall '" +numhall+"' ";
+                exc.Insertar(update);
+            string bitacora = "INSERT INTO `ex_bitacorahallazgos`(`codexhallax`, `codhall`, `estadomomento`, `fecha`) VALUES ('"+sig+"','"+numhall+"',2,'"+fechaactual+"')";
+            exc.Insertar(bitacora);
+        }
 
         public void llenarhall()
         {
@@ -123,7 +160,7 @@ namespace KB_Guadalupana.Views.ControlEX
         public void llenarhallvista()
         {
             DataTable dt1 = new DataTable();
-            dt1 = mex.llenarhallazgos(codexp);
+            dt1 = mex.llenarhallazgos2(codexp);
             DGVHALLVISTA.DataSource = dt1;
             DGVHALLVISTA.DataBind();
 

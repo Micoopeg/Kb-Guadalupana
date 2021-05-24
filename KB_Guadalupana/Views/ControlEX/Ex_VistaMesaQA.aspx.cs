@@ -187,7 +187,8 @@ namespace KB_Guadalupana.Views.ControlEX
 
                 BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
                 iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
-
+                BaseFont _detalletbl = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                iTextSharp.text.Font detalletbl = new iTextSharp.text.Font(_detalletbl, 8f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
 
                 BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
                 iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
@@ -274,7 +275,7 @@ namespace KB_Guadalupana.Views.ControlEX
                         /*c1.Phrase = new Phrase(Convert.ToString(datos2.GetValue(j)));*/
 
 
-                        table.AddCell(Convert.ToString(datos2.GetValue(j)));
+                        table.AddCell(new PdfPCell(new Phrase(Convert.ToString(datos2.GetValue(j)), detalletbl)) { Border = 1, BorderWidthLeft = 1, BorderWidthRight = 1, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
 
                     }
 
@@ -390,7 +391,8 @@ namespace KB_Guadalupana.Views.ControlEX
 
                     BaseFont _parrafo = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
                     iTextSharp.text.Font parrafo = new iTextSharp.text.Font(_titulo, 12f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
-
+                    BaseFont _detalletbl = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+                    iTextSharp.text.Font detalletbl = new iTextSharp.text.Font(_detalletbl, 8f, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
 
                     BaseFont _detalle = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
                     iTextSharp.text.Font detalle = new iTextSharp.text.Font(_detalle, 15f, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 0));
@@ -452,7 +454,7 @@ namespace KB_Guadalupana.Views.ControlEX
                             /*c1.Phrase = new Phrase(Convert.ToString(datos2.GetValue(j)));*/
 
 
-                            table.AddCell(Convert.ToString(datos2.GetValue(j)));
+                            table.AddCell(new PdfPCell(new Phrase(Convert.ToString(datos2.GetValue(j)), detalletbl)) { Border = 1, BorderWidthLeft = 1, BorderWidthRight = 1, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
 
                         }
 

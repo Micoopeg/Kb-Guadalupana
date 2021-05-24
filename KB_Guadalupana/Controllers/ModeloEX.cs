@@ -15,7 +15,7 @@ namespace KB_Guadalupana.Controllers
 
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[950];
                 int i = 0;
                 try
                 {
@@ -43,7 +43,7 @@ namespace KB_Guadalupana.Controllers
 
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[950];
                 int i = 0;
                 try
                 {
@@ -71,7 +71,7 @@ namespace KB_Guadalupana.Controllers
 
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[950];
                 int i = 0;
                 try
                 {
@@ -98,7 +98,7 @@ namespace KB_Guadalupana.Controllers
 
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[950];
                 int i = 0;
                 try
                 {
@@ -125,7 +125,7 @@ namespace KB_Guadalupana.Controllers
 
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[950];
                 int i = 0;
                 try
                 {
@@ -152,7 +152,7 @@ namespace KB_Guadalupana.Controllers
 
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[950];
                 int i = 0;
                 try
                 {
@@ -179,7 +179,7 @@ namespace KB_Guadalupana.Controllers
 
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[950];
                 int i = 0;
                 try
                 {
@@ -206,7 +206,7 @@ namespace KB_Guadalupana.Controllers
 
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[950];
                 int i = 0;
                 try
                 {

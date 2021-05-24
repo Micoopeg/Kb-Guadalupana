@@ -169,9 +169,9 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                 {
                     if (verificararchivoconmismonombre(FileUpload1.FileName) == false)
                     {
-                        FileUpload1.SaveAs(MapPath(kbruta.rutaestaticaarchivoscrm() + FileUpload1.FileName));
+                        FileUpload1.SaveAs(kbruta.rutaestaticaarchivoscrm() + FileUpload1.FileName);
                         Label1.Text = FileUpload1.FileName + " cargado exitosamente";
-                        lblOculto.Text = MapPath(kbruta.rutaestaticaarchivoscrm() + FileUpload1.FileName);
+                        lblOculto.Text = kbruta.rutaestaticaarchivoscrm() + FileUpload1.FileName;
                     }
                     else
                     {

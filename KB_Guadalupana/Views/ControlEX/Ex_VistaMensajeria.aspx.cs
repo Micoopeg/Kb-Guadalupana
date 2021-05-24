@@ -178,7 +178,7 @@ namespace KB_Guadalupana.Views.ControlEX
                             break;
 
                         case "1":
-                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Este Lote Ya Fué Recibido de Mesa de Control')", true);
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(' Este Lote Ya Fué Recibido en mensajeria')", true);
                             name.Text = "";
                             break;
 

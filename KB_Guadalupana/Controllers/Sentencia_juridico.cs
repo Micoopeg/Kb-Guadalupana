@@ -1338,12 +1338,12 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public void guardarfacturaabogado(string id, string numcredito, string usuario, string numfactura, string numserie, string descripcion, string importetotal, string fechaemision, string importecaso, string motivopago, string cif, string nombreaso)
+        public void guardarfacturaabogado(string id, string numcredito, string usuario, string numfactura, string numserie, string descripcion, string importetotal, string fechaemision, string importecaso, string motivopago, string cif, string nombreaso, string nombrecheque)
         {
             using(MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 sqlCon.Open();
-                string query = "INSERT INTO pj_facturacionabogado VALUES ('"+id+"', '"+numcredito+"', '"+usuario+"', '"+numfactura+"', '"+numserie+"', '"+descripcion+"', '"+importetotal+"', '"+fechaemision+"', '"+importecaso+"', '"+motivopago+"', '"+cif+"', '"+nombreaso+"')";
+                string query = "INSERT INTO pj_facturacionabogado VALUES ('"+id+"', '"+numcredito+"', '"+usuario+"', '"+numfactura+"', '"+numserie+"', '"+descripcion+"', '"+importetotal+"', '"+fechaemision+"', '"+importecaso+"', '"+motivopago+"', '"+cif+"', '"+nombreaso+"', '"+nombrecheque+"')";
                 MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
                 MySqlDataReader reader = myCommand.ExecuteReader();
             }
@@ -1483,6 +1483,32 @@ namespace KB_Guadalupana.Controllers
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
                 return camporesultante;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] datosfactura(string credito)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT * FROM pj_facturacionabogado WHERE pj_numcredito = '" + credito + "'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
     }

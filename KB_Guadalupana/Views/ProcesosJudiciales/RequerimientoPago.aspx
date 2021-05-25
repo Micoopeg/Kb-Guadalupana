@@ -258,25 +258,59 @@
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
                         </asp:GridView>
                        </div>
-                       </div><br />
+                       </div><br /><br />
+
+                      <div class="formatoTitulo" style="margin-bottom:5px">
+                             <label class="titulos"><b>No. de factura</b></label>
+                            <label class="titulos" style="margin-left:40%"><b>No. de serie</b></label>
+                        </div>
+                        <div class="formato">
+                              <input id="NumFactura" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. factura" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="Serie" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. serie" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+
+                      <div class="formato3">
+                        <label class="titulos"><b>Descripción</b></label>
+                         <input id="Descripcion" runat="server" type="text" class="formatoinput2" onkeypress="return sololetras(event);" placeholder="Ingrese descripcion" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                    </div><br />
+
+                    <div class="formatoTitulo" style="margin-bottom:5px">
+                        <label class="titulos"><b>Importe total</b></label>
+                        <label class="titulos" style="margin-left:23%"><b>Fecha de emisión</b></label>
+                        <label class="titulos" style="margin-left:18%"><b>Importe del caso</b></label>
+                    </div>
+                     <div class="formato">
+                        Q<input id="ImporteTotal2" runat="server" type="text" class="formatoinput3" min="0" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese importe total" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        <input id="FechaEmision" runat="server" type="date" class="formatoinput3"/>
+                        Q<input id="ImporteCaso" runat="server" type="text" min="0" class="formatoinput3" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese importe del caso" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                    </div><br />
+
+                        
+                      <div class="formato3">
+                         <label class="titulos"><b>Nombre a quién se emite el cheque</b></label>
+                         <input id="NombreCheque" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre" onkeypress="return sololetras(event);" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                    </div><br />
+
+                      <div class="formato3">
+                        <label class="titulos"><b>Motivo de pago</b></label>
+                        <asp:DropDownList id="MotivoPago" runat="server" Width="100%" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="MotivoPago_SelectedIndexChanged1"></asp:DropDownList>
+                    </div><br />
+
+                     <input id="Otro" runat="server" type="text" min="0" class="formatoinput2" onkeypress="return sololetras(event);" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                    <br /><br /><br /><br />
 
                       <div style="display:flex; justify-content:center">
                         <label style="font-size:18px" class="titulos">Solicitud de cheque</label>
                     </div><br />
 
                    <div class="formatoTitulo" style="margin-bottom:5px">
-                            <label class="titulos"><b>Cheque a nombre de </b></label>
-                            <label class="titulos" style="margin-left:33%"><b>Registro contable</b></label>
+                            <label class="titulos"><b>Observaciones </b></label>
+                            <label class="titulos" style="margin-left:39%"><b>Registro contable</b></label>
                         </div>
                         <div class="formato">
-                              <input id="NombreCheque" runat="server" type="text" class="formatoinput" placeholder="Ingrese nombre" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="Observaciones" runat="server" type="text" class="formatoinput" placeholder="Ingrese observaciones" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                              <input id="RegistroContable" runat="server" type="text" class="formatoinput" placeholder="Ingrese registro contable" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                        </div><br />
-
-                     <div class="formato3">
-                        <label class="titulos"><b>Observaciones</b></label>
-                        <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                    </div><br /><br />
+                        </div><br /><br />
 
                     <input id="NombreUsuario" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
                     <input id="FechaActual" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
@@ -287,8 +321,59 @@
                             <asp:Button ID="Generar" runat="server" Width="30%" Height="30px" CssClass="boton3" Text="Generar solictud de cheque" OnClick="Generar_Click" />
                          </div>
                 </div>
+
+                   <div class="formato2">
+                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" />
+                  </div><br />
+
             </div>
         </div>
+
+            <script type="text/javascript">
+                function sololetras(evt) {
+                    var charCode = (evt.which) ? evt.which : event.keyCode
+                    if (charCode > 31 && (charCode < 48 || charCode > 57))
+                        return true;
+
+                    return false;
+                }
+            </script>
+
+              <script>
+                  function format(input) {
+                      var num = input.value.replace(/\,/g, '');
+                      if (!isNaN(num)) {
+                          num = num.toString().split('').reverse().join('').replace(/(?=\d*\,?)(\d{3})/g, '$1,');
+                          num = num.split('').reverse().join('').replace(/^[\,]/, '');
+                          input.value = num;
+                      }
+
+                      else {
+                          alert('Solo se permiten numeros');
+                          input.value = input.value.replace(/[^\d\,]*/g, '');
+                      }
+                  }
+
+                  $('#OtrosGastos').mask('000,000,000.00', { reverse: true });
+
+              </script>
+
+                <script>
+                    var texto1 = document.querySelector('#NumFactura');
+
+                    texto1.addEventListener('keypress', function (e) {
+                        // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
+                        const decimalCode = 46;
+                        // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
+                        if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
+                            e.preventDefault();
+                        }
+                        // chequeo que sólo exista un punto decimal
+                        else if (e.keyCode == decimalCode && /\./.test(this.value)) {
+                            event.preventDefault();
+                        }
+                    }, true)
+                </script>
 
           <script>
            $(document).ready(function () {

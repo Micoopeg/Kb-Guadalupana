@@ -211,8 +211,8 @@ body{
                 </button>
                 <div class="dropdown-content">
                   <a id="Demanda" runat="server" href="PendientePresentacionDemanda.aspx">Presentación de Demanda</a>
-                  <a id="Tramite" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
-                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
+                 <%-- <a id="Tramite" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
+                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>--%>
                 </div>
               </div>
 

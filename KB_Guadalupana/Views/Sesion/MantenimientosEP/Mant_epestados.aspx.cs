@@ -94,9 +94,11 @@ namespace KB_Guadalupana.Views.Sesion.MantenimientosEP
                             string[] var5 = sn.consultarestadodelcorrelativo(var4[i]);
                             if (var5[0] == "2" || var5[0] == "3")
                             {
+                                comboestado.Value = var5[0];
                                 lblcambioestado.Visible = true;
                                 comboestado.Visible = true;
                                 btnefectuar.Visible = true;
+                              
                             }
                             else
                             {

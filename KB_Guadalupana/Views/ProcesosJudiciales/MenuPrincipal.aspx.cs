@@ -22,7 +22,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string area = sn.area(idusuario);
             string rol = sn.rolusuario(idusuario);
 
-            if(rol == "1")
+            if (rol == "1")
             {
                 if (area == "26")
                 {

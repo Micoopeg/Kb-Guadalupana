@@ -346,7 +346,7 @@
                     
 
                 <div class="encabezado">
-                    <label class="titulos" style="margin-bottom:10px"><b>Tipo de documento </b></label>
+                    <label class="titulos" style="margin-bottom:10px"><b>Memorial </b></label>
                     
                      <div class="formato">
                         <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
@@ -519,49 +519,49 @@
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
                         </asp:GridView>
                        </div>
-                       </div>
+                       </div><br /><br />
 
-                     <div class="formato3">
-                        <label class="titulos"><b>Estado de la demanda</b></label>
-                        <asp:DropDownList id="EstadoDemanda" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
-                      </div><br />
+                        <div class="formatoTitulo" style="margin-bottom:5px">
+                            <label class="titulos"><b>Estado de la demanda</b></label>
+                            <label class="titulos" style="margin-left:33%"><b>Fecha de notificación</b></label>
+                        </div>
 
-                   <div class="formato3">
-                        <label class="titulos"><b>Fecha de notificación</b</label>
-                        <input id="FechaNotificacion" runat="server" type="date" class="formatoinput2" />
-                    </div><br />
+                       <div class="formato">
+                            <asp:DropDownList id="EstadoDemanda" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                           <input id="FechaNotificacion" runat="server" type="date" class="formatoinput" />
+                        </div><br /><br />
 
                     <label class="titulos">Seleccione las medidas precautorias otorgadas</label><br /><br />
                            <div class="formatocheck">
                              <div class="formatocheck2">
-                                <input id="Checkbox1" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="MedidasPre1" class="titulos">&nbsp;&nbsp;Embargo de Salario</label>
+                                <input id="Medidas1" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="Medidas1" class="titulos">&nbsp;&nbsp;<b>Embargo de Salario</b></label>
                              </div>
                               <div class="formatocheck2">
-                                <input id="Checkbox2" runat="server" type="checkbox" class="formatocheckbox" value="2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="MedidasPre2" class="titulos">&nbsp;&nbsp;Embargo de cuentas bancarias</label>
+                                <input id="Medidas2" runat="server" type="checkbox" class="formatocheckbox" value="2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="Medidas2" class="titulos">&nbsp;&nbsp;<b>Embargo de cuentas bancarias</b></label>
                               </div>
                          </div>
 
                          <div class="formatocheck">
                              <div class="formatocheck2">
-                                 <input id="Checkbox3" runat="server" type="checkbox" class="formatocheckbox" value="3" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                              <label for="MedidasPre3" class="titulos">&nbsp;&nbsp;Arraigo</label>
+                                 <input id="Medidas3" runat="server" type="checkbox" class="formatocheckbox" value="3" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                              <label for="Medidas3" class="titulos">&nbsp;&nbsp;<b>Arraigo</b></label>
                              </div>
                              <div class="formatocheck2">
-                                <input id="Checkbox4" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="MedidasPre4" class="titulos">&nbsp;&nbsp;Embargo en cooperativas</label>
+                                <input id="Medidas4" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="Medidas4" class="titulos">&nbsp;&nbsp;<b>Embargo en cooperativas</b></label>
                              </div>
                          </div>
 
                          <div class="formatocheck">
                              <div class="formatocheck2">
-                                <input id="Checkbox5" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="MedidasPre5" class="titulos">&nbsp;&nbsp;<b>Embargo de bienes</b></label>
+                                <input id="Medidas5" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="Medidas5" class="titulos">&nbsp;&nbsp;<b>Embargo de bienes</b></label>
                              </div>
                              <div class="formatocheck2">
-                                <input id="Checkbox6" runat="server" type="checkbox" class="formatocheckbox" value="5" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="MedidasPre6" class="titulos">&nbsp;&nbsp;Otra</label>
+                                <input id="Medidas6" runat="server" type="checkbox" class="formatocheckbox" value="5" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="Medidas6" class="titulos">&nbsp;&nbsp;<b>Otra</b></label>
                              </div>
                          </div>
                       <input id="OtraMedida" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre de otra medida" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />

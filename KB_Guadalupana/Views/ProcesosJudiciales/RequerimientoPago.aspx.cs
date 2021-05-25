@@ -26,6 +26,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 llenargridviewdocumentos();
                 llenarinputs();
+                llenarcombomotivo();
+                Otro.Visible = false;
             }
         }
 
@@ -328,6 +330,65 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             ImporteTotal.Value = importetotal;
             NumCredito.Value = numcredito;
         }
+
+        public void datosfactura()
+        {
+            string numcredito = Session["credito"] as string;
+
+            string[] factura = sn.datosfactura(numcredito);
+
+            for (int i = 0; i < factura.Length; i++)
+            {
+                NumFactura.Value = factura[3];
+                Serie.Value = factura[4];
+                Descripcion.Value = factura[5];
+                ImporteTotal2.Value = factura[6];
+                FechaEmision.Value = factura[7];
+                ImporteCaso.Value = factura[8];
+                MotivoPago.SelectedValue = factura[9];
+                NombreCheque.Value = factura[12];
+            }
+        }
+
+        protected void MotivoPago_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            if (MotivoPago.SelectedValue == "9")
+            {
+                Otro.Visible = true;
+                Guardar.Focus();
+            }
+            else
+            {
+                Otro.Visible = false;
+                Guardar.Focus();
+            }
+        }
+
+        public void llenarcombomotivo()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM pj_motivopago";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds);
+                    MotivoPago.DataSource = ds;
+                    MotivoPago.DataTextField = "pj_nombremotivo";
+                    MotivoPago.DataValueField = "idpj_motivopago";
+                    MotivoPago.DataBind();
+                    MotivoPago.Items.Insert(0, new System.Web.UI.WebControls.ListItem("[Motivo de pago]", "0"));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+
         //protected void Generar_Click(object sender, EventArgs e)
         //{
         //    ReportParameter[] reportParameters = new ReportParameter[1];

@@ -314,8 +314,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                 string sig3 = sn.siguiente("pj_presentaciondemanda", "idpj_presentaciondemanda");
                 sn.insertarpresentaciondemanda(sig3, NumIncidente.Value, FechaPresentacion.Value, numcredito, Oficial.SelectedValue, Notificador.SelectedValue, NumJuzgado.Value, NombreJuzgado.Value, Departamento.SelectedValue, Municipio.SelectedValue, idusuario);
-               
-                sn.cambiarestado(numcredito, "3");
+
+                sn.cambiarestado(numcredito, "4");
 
                 if (MedidasPre1.Checked)
                 {
@@ -348,6 +348,52 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito);
                 }
 
+
+                if (Resolucion.Checked)
+                {
+                    string sig7 = sn.siguiente("pj_resoluciontramite", "idpj_resoluciontramite");
+                    sn.insertarresolucion(sig7, numcredito, idusuario, EstadoDemanda.SelectedValue, FechaNotificacion.Value);
+
+                    string sig = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
+                    sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, ClienteNombre.Value, NumCif.Value, NombreCheque.Value);
+
+                    if (Medidas1.Checked)
+                    {
+                        string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                        sn.insertarmedidaspre(sig6, "1", "Embargo de Salario", numcredito);
+                    }
+                    if (Medidas2.Checked)
+                    {
+                        string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                        sn.insertarmedidaspre(sig6, "2", "Embargo de cuentas bancarias", numcredito);
+                    }
+                    if (Medidas3.Checked)
+                    {
+                        string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                        sn.insertarmedidaspre(sig6, "3", "Arraigo", numcredito);
+                    }
+                    if (Medidas4.Checked)
+                    {
+                        string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                        sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito);
+                    }
+                    if (Medidas6.Checked)
+                    {
+                        string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                        sn.insertarmedidaspre(sig6, "6", OtraMedida.Value, numcredito);
+                    }
+                    if (Medidas5.Checked)
+                    {
+                        string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
+                        sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito);
+                    }
+                }
+                else if (Facturacion.Checked)
+                {
+                    string sig = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
+                    sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, ClienteNombre.Value, NumCif.Value, NombreCheque.Value);
+                }
+               
                 string tipocredito = Session["TipoCredito"] as string;
                 string fecha;
 
@@ -383,18 +429,22 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                 sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "34", "51", fechahoraactual, fechacreacion2, "Recibido");
 
-               //if(DireccionCredito.SelectedValue == "1")
-               // {
-               //     string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-               //     sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "51", fechahoraactual, fechacreacion2, "Resolución de trámite");
-               //     sn.guardaretapa(sig2, "4", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
-               // }
-               //else if(DireccionCredito.SelectedValue == "2")
-               // {
-               //     string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-               //     sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "51", fechahoraactual, fechacreacion2, "Facturación");
-               //     sn.guardaretapa(sig2, "5", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
-               // }
+                string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "34", fechahoraactual, fechacreacion2, "Presentación de demanda");
+                sn.guardaretapa(sig2, "5", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
+
+                //if(DireccionCredito.SelectedValue == "1")
+                // {
+                //     string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                //     sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "51", fechahoraactual, fechacreacion2, "Resolución de trámite");
+                //     sn.guardaretapa(sig2, "4", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
+                // }
+                //else if(DireccionCredito.SelectedValue == "2")
+                // {
+                //     string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                //     sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "51", fechahoraactual, fechacreacion2, "Facturación");
+                //     sn.guardaretapa(sig2, "5", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
+                // }
 
                 String script = "alert('Se guardó exitosamente'); window.location.href= 'PendientePresentacionDemanda.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);

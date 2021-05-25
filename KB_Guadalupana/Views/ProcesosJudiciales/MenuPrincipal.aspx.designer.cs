@@ -114,24 +114,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlAnchor Demanda;
 
         /// <summary>
-        /// Control Tramite.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor Tramite;
-
-        /// <summary>
-        /// Control Facturacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor Facturacion;
-
-        /// <summary>
         /// Control MenuAsistente.
         /// </summary>
         /// <remarks>

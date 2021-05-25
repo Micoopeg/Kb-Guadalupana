@@ -26,7 +26,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status FROM pj_etapa_credito WHERE idpj_etapa = 3 AND pj_status IN ('Enviado','Reingreso') ";
+                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status FROM pj_etapa_credito WHERE idpj_etapa = 4 AND pj_status IN ('Enviado','Reingreso') ";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataTable dt = new DataTable();
                     myCommand.Fill(dt);

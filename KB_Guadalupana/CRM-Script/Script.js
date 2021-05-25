@@ -63,3 +63,15 @@ $(document).ready(function () {
         alert('Esta acción está prohibida');
     })
 })
+
+$(document).ready(function () {
+    $("#txtingresocif").on('paste', function (e) {
+        e.preventDefault();
+        alert('Esta acción está prohibida');
+    })
+
+    $("#txtingresocif").on('copy', function (e) {
+        e.preventDefault();
+        alert('Esta acción está prohibida');
+    })
+})

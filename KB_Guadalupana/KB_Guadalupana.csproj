@@ -785,6 +785,8 @@
     <Content Include="Views\Sesion\MantenimientoPep.aspx" />
     <Content Include="Views\Sesion\MantenimientoPrestamos.aspx" />
     <Content Include="Views\Sesion\MantenimientoRoles.aspx" />
+    <Content Include="Views\Sesion\MantenimientosEP\Mant_epestados.aspx" />
+    <Content Include="Views\Sesion\MantenimientosEP\MenuMantenimientos.aspx" />
     <Content Include="Views\Sesion\MantenimientoTelefono.aspx" />
     <Content Include="Views\Sesion\MantenimientoVehiculos.aspx" />
     <Content Include="Views\Sesion\MenuBarra.aspx" />
@@ -1996,6 +1998,20 @@
     </Compile>
     <Compile Include="Views\Sesion\MantenimientoRoles.aspx.designer.cs">
       <DependentUpon>MantenimientoRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\MantenimientosEP\Mant_epestados.aspx.cs">
+      <DependentUpon>Mant_epestados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\MantenimientosEP\Mant_epestados.aspx.designer.cs">
+      <DependentUpon>Mant_epestados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sesion\MantenimientosEP\MenuMantenimientos.aspx.cs">
+      <DependentUpon>MenuMantenimientos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sesion\MantenimientosEP\MenuMantenimientos.aspx.designer.cs">
+      <DependentUpon>MenuMantenimientos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Sesion\MantenimientoTelefono.aspx.cs">
       <DependentUpon>MantenimientoTelefono.aspx</DependentUpon>

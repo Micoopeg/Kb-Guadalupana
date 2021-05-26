@@ -121,7 +121,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento != 14 AND idpj_tipodocumento != 15 AND idpj_tipodocumento != 16 AND idpj_tipodocumento != 17 AND idpj_tipodocumento != 18";
+                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento IN (1,2,3,4,5,6,7,8,9,10,11,12,13)";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds);
@@ -357,6 +357,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los documentos');", true);
             }
+            else if (TipoCredito.SelectedValue == "0")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete tipo de crédito');", true);
+            }
             else
             {
                 string[] fechayhora = sn.fechayhora();
@@ -387,7 +391,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                     sn.insertarbitacora(sig3, sig, numcredito, NombreCliente.Value, "Enviado", "26", "28", fechahoraactual, fechahoraactual, "Sin comentario");
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se ha guardado exitosamente');", true);
+                    String script = "alert('Se ha guardado exitosamente'); window.location.href= 'AsignarProceso.aspx';";
+                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                 }
                 else if (TipoCredito.SelectedValue == "2")
                 {
@@ -411,7 +416,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                         string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                         sn.insertarbitacora(sig3, sig, numcredito, NombreCliente.Value, "Enviado", "26", "28", fechahoraactual, fechahoraactual, "Sin comentario");
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se ha guardado exitosamente');", true);
+
+                        String script = "alert('Se ha guardado exitosamente'); window.location.href= 'AsignarProceso.aspx';";
+                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                     }
                 }
 

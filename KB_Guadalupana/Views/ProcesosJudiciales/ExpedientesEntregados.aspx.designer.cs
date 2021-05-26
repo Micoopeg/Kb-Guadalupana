@@ -87,6 +87,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlInputText NumReporte;
 
         /// <summary>
+        /// Control PTipoDocumento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList PTipoDocumento;
+
+        /// <summary>
         /// Control FileUpload1.
         /// </summary>
         /// <remarks>
@@ -96,12 +105,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
 
         /// <summary>
-        /// Control Agregar.
+        /// Control Guardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Agregar;
+        protected global::System.Web.UI.WebControls.Button Guardar;
     }
 }

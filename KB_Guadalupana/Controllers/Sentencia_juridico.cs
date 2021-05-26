@@ -1511,5 +1511,84 @@ namespace KB_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos 
             }
         }
+
+        public DataTable reporteabogados2(string abogado)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT A.pj_nombre, A.pj_cif, A.pj_numcredito, A.pj_fechaasignacion, B.pj_nombreabogado FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE A.idpj_abogado = '"+abogado+"' AND C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso')";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public void insertarreporteabogado(string id, string usuario, string fecha, string tipodoc, string ruta, string nombrearchivo)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "INSERT INTO pj_reporteabogado VALUES ('"+id+"', '"+usuario+"', '"+fecha+"', '"+tipodoc+"', '"+ruta+"', '"+nombrearchivo+"')";
+                    MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = myCommand.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public DataTable reporteabogados3(string abogado)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT A.pj_nombre AS Nombre, A.pj_cif, A.pj_numcredito AS Credito, A.pj_fechaasignacion, B.pj_nombreabogado FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE A.idpj_abogado = '" + abogado + "' AND C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso')";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public string tipodocumentoReporte(string credito)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string camporesultante = "";
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT idpj_documento FROM pj_documento WHERE idpj_credito= '" + credito + "' AND idpj_tipodocumento=19";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return camporesultante;// devuelve un arrgeglo con los campos 
+            }
+        }
     }
 }

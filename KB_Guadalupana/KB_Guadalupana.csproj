@@ -276,6 +276,17 @@
     <Content Include="bdkbguadalupanaDataSet4.xss">
       <DependentUpon>bdkbguadalupanaDataSet4.xsd</DependentUpon>
     </Content>
+    <Content Include="bdkbguadalupanaDataSetAbogado2.xsc">
+      <DependentUpon>bdkbguadalupanaDataSetAbogado2.xsd</DependentUpon>
+    </Content>
+    <None Include="bdkbguadalupanaDataSetAbogado2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdkbguadalupanaDataSetAbogado2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="bdkbguadalupanaDataSetAbogado2.xss">
+      <DependentUpon>bdkbguadalupanaDataSetAbogado2.xsd</DependentUpon>
+    </Content>
     <None Include="Connected Services\ServiceReference1\WebService1.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
@@ -822,6 +833,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>bdkbguadalupanaDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdkbguadalupanaDataSetAbogado2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdkbguadalupanaDataSetAbogado2.xsd</DependentUpon>
     </Compile>
     <Compile Include="chart.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2112,6 +2128,7 @@
     <Folder Include="Views\ProcesosJudiciales\Subidos\CertificacionContable\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\Demanda\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\DocumentosExpediente\" />
+    <Folder Include="Views\ProcesosJudiciales\Subidos\ReporteAbogado\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\Resolucion\" />
   </ItemGroup>
   <ItemGroup>

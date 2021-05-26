@@ -150,17 +150,6 @@ body{
     <form id="form1" runat="server">
            <div class="topnav" id="myTopnav">
               <a href="../Sesion/MenuBarra.aspx" class="active">Inicio</a>
-             <%-- <a href="#news">News</a>--%>
-              <%--<a href="#contact">Buscar  <i class="fa fa-search"></i></a>--%>
-          <%--    <div class="dropdown">
-                <button class="dropbtn">Buscar
-                    <i class="fa fa-search"></i>
-                </button>
-                <div class="dropdown-content">
-                  <a href="BuscarProcesosFinalizados.aspx">Procesos finalizados</a>
-                  <a href="BuscarProcesosVigentes.aspx">Procesos vigentes</a>
-                </div>
-              </div>--%>
                <a href="Dashboard.aspx">Dashboard <i class="fas fa-chart-bar"></i></a>
             <%--  <a href="ProcesosAsignadosJuridico.aspx">Procesos Asignados <i class="far fa-hand-point-left"></i></a>--%>
               <div id="MenuCobros" runat="server" class="dropdown">

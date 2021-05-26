@@ -412,14 +412,16 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                     sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "34", "26", fechahoraactual, fechacreacion2, Observaciones.Value);
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresa a Cobros');", true);
+                    String script = "alert('El crédito regresa a Cobros'); window.location.href= 'CreditosCertificacionJuridico.aspx';";
+                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                 }
                 else
                 {
                     string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                     sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "34", "28", fechahoraactual, fechacreacion2, Observaciones.Value);
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresa a Contabilidad');", true);
+                    String script = "alert('El crédito regresa a Contabilidad'); window.location.href= 'CreditosCertificacionJuridico.aspx';";
+                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                 }
            }
         }

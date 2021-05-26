@@ -6,6 +6,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+  
+ 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com"/>
@@ -241,12 +243,22 @@
 
     </style>
 </head>
-    <div id="menu" runat="server" class="menu"></div>
+           <script>
+               $(document).ready(function () {
+                   $('.menu').load('MenuPrincipal.aspx');
+               });
+           </script>
+      <div id="menu" runat="server" class="menu"></div>
 <body>
+        
     <form id="form1" runat="server">
         <div class="general">
             <div class="formularioCobros">
-                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                 <asp:ScriptManager ID="ScriptManager1" runat="server">
+
+                 
+
+                 </asp:ScriptManager>
                 <div class="encabezado">
 
                      <div style="display:flex; justify-content:center">
@@ -272,24 +284,54 @@
 
                        <div class="formato">
                              <input id="FechaEntrega" runat="server" type="date" class="formatoinput"/>
-                             <input id="NumReporte" runat="server" type="text" class="formatoinput" placeholder="Ingrese número de reporte" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="NumReporte" runat="server" type="text" class="formatoinput" readonly="readonly" placeholder="Ingrese número de reporte" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                         </div><br /><br />
 
                       <label class="titulos" style="margin-bottom:15px"><b>Reporte de recibido de expedientes</b></label>
-                      <div class="formato">
+                        <div class="formato">
+                        <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
                        <asp:FileUpload id="FileUpload1" runat="server"></asp:FileUpload>
-                       <asp:Button ID="Agregar" OnClick="agregar_Click" runat="server" Width="30%" Height="30px" CssClass="boton3" Text="Agregar" />
                     </div><br /><br />
+
+                      <%--      <div style="justify-content: center;display:flex" class="formato">
+                        <div style="overflow: auto; height: 145px">
+                        <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid">
+                             <Columns>
+                                <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="No. documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lbltipodoc" Text='<%# Eval("TipoDocumento") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="135px"></ItemStyle>
+                                </asp:ButtonField>
+                            </Columns>
+                             <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
+                        </asp:GridView>
+                       </div>
+                       </div>--%>
                 </div><br />
+
+                    <div class="formato2">
+                        <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click"/>
+<%--                    <asp:LinkButton ID="guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click" ></asp:LinkButton>   --%> 
+                  </div><br />
             </div>
         </div>
 
-          <script>
-           $(document).ready(function () {
-               $('.menu').load('MenuPrincipal.aspx');
-           });
-          </script>
-        <script>
+        
+     <%--   <script>
             var texto1 = document.querySelector('#NumReporte');
 
             texto1.addEventListener('keypress', function (e) {
@@ -304,7 +346,9 @@
                     event.preventDefault();
                 }
             }, true)
-        </script>
+        </script>--%>
     </form>
+   
 </body>
+       
 </html>

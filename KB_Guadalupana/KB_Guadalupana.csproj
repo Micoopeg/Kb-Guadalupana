@@ -762,6 +762,7 @@
     <Content Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx" />
     <Content Include="Views\ProcesosJudiciales\RequerimientoPago.aspx" />
     <Content Include="Views\ProcesosJudiciales\ResolucionTramite.aspx" />
+    <Content Include="Views\ProcesosJudiciales\SolicitudCheque.aspx" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
     <Content Include="Views\Seguridad\ModificarModulo.aspx" />
@@ -1784,6 +1785,13 @@
     <Compile Include="Views\ProcesosJudiciales\ResolucionTramite.aspx.designer.cs">
       <DependentUpon>ResolucionTramite.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProcesosJudiciales\SolicitudCheque.aspx.cs">
+      <DependentUpon>SolicitudCheque.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProcesosJudiciales\SolicitudCheque.aspx.designer.cs">
+      <DependentUpon>SolicitudCheque.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.cs">
       <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2126,6 +2134,7 @@
     <Folder Include="Views\Hallazgos\Archivos\" />
     <Folder Include="Views\Hallazgos\Imagenes\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\CertificacionContable\" />
+    <Folder Include="Views\ProcesosJudiciales\Subidos\Cheque\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\Demanda\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\DocumentosExpediente\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\ReporteAbogado\" />

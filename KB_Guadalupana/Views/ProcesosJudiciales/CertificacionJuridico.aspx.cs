@@ -27,6 +27,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 Enviar.Visible = false;
                 Documentos.Visible = false;
                 GuardarC.Visible = false;
+                OtroProceso.Visible = false;
                 llenarcomboarea();
                 llenarcombodocumento();
                 llenarcomboabogado();
@@ -265,7 +266,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             }
             else
             {
-                sn.guardaretapa(sig, "3", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value);
+                sn.guardaretapa(sig, "3", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumIncidente.Value);
                 sn.cambiarestado(numcredito, "2");
 
                 if (MedidasPre1.Checked)
@@ -337,8 +338,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string hora = fechayhora[1];
                 string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
 
+                if(TipoProceso.SelectedValue != "4")
+                {
+                    OtroProceso.Value = sn.tipoProceso(TipoProceso.SelectedValue);
+                }
+
                 string sig2 = sn.siguiente("pj_certificacionjuidico", "idpj_certificacionjuidico");
-                sn.insertarcertificacionjuridico(sig2, NombreAbogado.SelectedValue, TipoProceso.SelectedValue, numcredito, idusuario, fechahoraactual, NombreCliente.Value, CodigoCliente.Value);
+                sn.insertarcertificacionjuridico(sig2, NombreAbogado.SelectedValue, TipoProceso.SelectedValue, OtroProceso.Value, numcredito, idusuario, fechahoraactual, NombreCliente.Value, CodigoCliente.Value);
 
                 string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                 sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, "Sin comentarios");
@@ -606,6 +612,18 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             catch
             {
 
+            }
+        }
+
+        protected void TipoProceso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(TipoProceso.SelectedValue == "4")
+            {
+                OtroProceso.Visible = true;
+            }
+            else
+            {
+                OtroProceso.Visible = false;
             }
         }
     }

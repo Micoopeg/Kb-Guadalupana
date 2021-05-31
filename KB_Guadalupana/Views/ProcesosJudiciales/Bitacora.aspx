@@ -21,6 +21,8 @@
 
         body{
             font-family:"Montserrat";
+            background-color:#34495E;
+            color:white;
         }
 
         .general{
@@ -41,7 +43,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:lightgray;
+            background-color:#435F7A;
             flex-direction:column;
             margin-top:10px;
         }
@@ -194,7 +196,7 @@
 
                 
                     <div style="overflow: auto; height: 450px">
-                        <asp:GridView ID="gridViewIncidente" runat="server" CssClass="tabla" AutoGenerateColumns="False"
+                        <asp:GridView ID="gridViewIncidente" runat="server" CssClass="tabla" AutoGenerateColumns="False" ForeColor="Black"
                              BorderStyle="Solid" OnRowDataBound="gridViewIncidente_RowDataBound">
                             <Columns>
                                   <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de incidente">

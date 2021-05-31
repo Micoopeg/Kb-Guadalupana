@@ -25,7 +25,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status FROM pj_etapa_credito WHERE idpj_etapa = 5 AND pj_status IN ('Enviado','Reingreso') ";
+                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status, pj_numincidente AS Incidente, pj_fecha AS Fecha FROM pj_etapa_credito WHERE idpj_etapa IN (5,7) AND pj_status IN ('Enviado','Reingreso', 'Cargar Voucher') ";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataTable dt = new DataTable();
                     myCommand.Fill(dt);
@@ -57,7 +57,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (_estado == "Reingreso")
                     e.Row.BackColor = System.Drawing.Color.IndianRed;
                 else
-                    e.Row.BackColor = System.Drawing.Color.Transparent;
+                    e.Row.BackColor = System.Drawing.Color.White;
             }
         }
     }

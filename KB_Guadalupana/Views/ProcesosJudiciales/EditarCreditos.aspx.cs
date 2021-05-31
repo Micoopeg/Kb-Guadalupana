@@ -172,6 +172,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Comentario.Value = campos3[16];
                     Total1.InnerText = "Q " + campos3[17];
                     string fechaestado = campos3[19];
+                    Observaciones.Value = campos3[20];
                     string[] separarfechahora = fechaestado.Split(' ');
                     string[] fechaestado2 = separarfechahora[0].Split('/');
 
@@ -199,6 +200,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Total1.InnerHtml = "Q " + campos2[4];
                     Comentario.Value = campos2[5];
                     string fechaestado = campos2[8];
+                    Observaciones.Value = campos2[9];
                     string[] separarfechahora = fechaestado.Split(' ');
                     string[] fechaestado2 = separarfechahora[0].Split('/');
 
@@ -389,12 +391,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (tipocredito == "tarjeta")
                 {
                     fecha = sn.fechacreaciontarjeta(numcredito);
-                    sn.editartarjeta(NumIncidente.Value, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, NumPrestamo.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), FechaEstadoCuenta.Value);
+                    sn.editartarjeta(NumIncidente.Value, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, NumPrestamo.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), FechaEstadoCuenta.Value, Observaciones.Value);
                 }
                 else
                 {
                     fecha = sn.fechacreacioncredito(numcredito);
-                    sn.editarcredito(NumIncidente.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, NumPrestamo.Value, FechaEstadoCuenta.Value);
+                    sn.editarcredito(NumIncidente.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, NumPrestamo.Value, FechaEstadoCuenta.Value, Observaciones.Value);
                 }
 
                 String script = "alert('Se realizaron los cambios exitosamente'); window.location.href= 'AsignarProceso.aspx';";

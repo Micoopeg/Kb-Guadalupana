@@ -63,7 +63,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (_estado == "Devuelto")
                     e.Row.BackColor = System.Drawing.Color.IndianRed;
                 else
-                    e.Row.BackColor = System.Drawing.Color.Transparent;
+                    e.Row.BackColor = System.Drawing.Color.White;
             }
         }
     }

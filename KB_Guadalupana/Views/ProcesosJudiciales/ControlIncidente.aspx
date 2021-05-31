@@ -21,6 +21,8 @@
 
         body{
             font-family:"Montserrat";
+            background-color:#34495E;
+            color:white;
         }
 
         .general{
@@ -41,7 +43,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:lightgray;
+            background-color:#435F7A;
             flex-direction:column;
             margin-top:10px;
         }
@@ -232,7 +234,7 @@
                                        <asp:Label ID="lbldias" Text='<%# Eval("Dias") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Bitácora" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                <asp:ButtonField   Text="Ver Bitácora" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
                                     <ItemStyle Width="100px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>

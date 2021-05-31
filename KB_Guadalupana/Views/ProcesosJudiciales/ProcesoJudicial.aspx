@@ -22,6 +22,8 @@
 
         body{
             font-family:"Montserrat";
+            background-color:#34495E;
+            color:white;
         }
 
         .general{
@@ -42,7 +44,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:lightgray;
+            background-color:#435F7A;
             flex-direction:column;
             margin-top:10px;
         }
@@ -54,7 +56,7 @@
             width:100%;
         }
 
-          .formato3{
+        .formato3{
             display:flex;
             flex-direction:column;
             width:100%;
@@ -78,7 +80,7 @@
         }
 
         .formatoinput2{
-            width:98%;
+            width:99%;
             margin-top:8px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
@@ -215,8 +217,8 @@
              margin-left:0px;
          }
 
-       .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
-.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}
+       .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Montserrat', cursive; text-align:center}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
 .fixed{position:fixed; top:0;visibility:visible}
@@ -270,7 +272,7 @@
                     </div><br /><br />
 
                      <div id="divgridviewprospectos1" style="overflow: auto; height: 147px">
-     <asp:GridView ID="gridview1" CssClass="container"  style="width: 692px;  text-align:center" runat="server"  HeaderStyle-ForeColor="Black"
+     <asp:GridView ID="gridview1" CssClass="container"  style="width: 692px;  text-align:center" runat="server"  HeaderStyle-ForeColor="White"
     AutoGenerateColumns="False" BorderStyle="Solid">
                      <Columns>
                          <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de préstamo" Visible="True">
@@ -293,7 +295,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                      </Columns>
-     <HeaderStyle CssClass="prueba"  ForeColor="Black"></HeaderStyle>
+     <HeaderStyle CssClass="prueba"  ForeColor="White"></HeaderStyle>
         </asp:GridView>
                 </div>
 
@@ -455,8 +457,8 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
-                                    <ItemStyle Width="135px"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
+                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
@@ -574,7 +576,7 @@
                             <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Otros gastos:</b></label>
                              <label class="titulos" style="width:3%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
                             <input id="OtrosGastos" style="width:22%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), otrosGastos(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                             <input id="Comentario" style="width:41%; margin-left:4%;" runat="server" type="text" class="formatoinput" placeholder="Comentario" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="Comentario" style="width:41%; margin-left:4%;" runat="server" type="text" class="formatoinput" placeholder="Comentario" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                           
                         </div><br />
 
@@ -583,7 +585,13 @@
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b> </b></label>
                             <span id="Total1" style="width:30%" runat="server" class="formatoinput"></span>
                         </div>
-                    </div>
+                             <br /><br />
+
+                             <div class="formato3">
+                                <span class="titulos"><b>Observaciones del crédito</b></span>
+                                <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese Observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                            </div>
+                         </div>
                     </div>
                  </div>
 

@@ -224,7 +224,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                 string sig3 = sn.siguiente("pj_resoluciontramite", "idpj_resoluciontramite");
                 sn.insertarresolucion(sig3, numcredito, idusuario, EstadoDemanda.SelectedValue, fechaactual);
-                sn.guardaretapa(sig2, "5", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value);
+                sn.guardaretapa(sig2, "5", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value, NumIncidente.Value);
                 sn.cambiarestado(numcredito, "4");
 
                 if (MedidasPre1.Checked)

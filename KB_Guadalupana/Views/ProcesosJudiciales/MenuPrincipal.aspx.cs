@@ -22,51 +22,51 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string area = sn.area(idusuario);
             string rol = sn.rolusuario(idusuario);
 
-            if (rol == "1")
-            {
-                if (area == "26")
-                {
-                    MenuCobros.Visible = true;
-                    Cobros.Visible = true;
-                    MenuConta.Visible = false;
-                    MenuJuridico.Visible = false;
-                    MenuAbogado.Visible = false;
-                    MenuAsistente.Visible = false;
-                }
-                else if (area == "28")
-                {
-                    MenuCobros.Visible = false;
-                    MenuConta.Visible = true;
-                    Certificacion.Visible = true;
-                    Solicitud.Visible = false;
-                    MenuJuridico.Visible = false;
-                    MenuAbogado.Visible = false;
-                    MenuAsistente.Visible = false;
-                }
-                else if (area == "34")
-                {
-                    MenuCobros.Visible = false;
-                    MenuConta.Visible = false;
-                    MenuJuridico.Visible = true;
-                    Expedientes.Visible = true;
-                    Reporte.Visible = false;
-                    MenuAbogado.Visible = false;
-                    MenuAsistente.Visible = false;
-                }
-            }
-            else
-            {
-                MenuCobros.Visible = true;
-                Cobros.Visible = true;
-                MenuConta.Visible = true;
-                Certificacion.Visible = true;
-                MenuJuridico.Visible = true;
-                Expedientes.Visible = true;
-                Solicitud.Visible = false;
-                MenuAbogado.Visible = false;
-                MenuAsistente.Visible = false;
-                Reporte.Visible = false;
-            }
+            //if (rol == "1")
+            //{
+            //    if (area == "26")
+            //    {
+            //        MenuCobros.Visible = true;
+            //        Cobros.Visible = true;
+            //        MenuConta.Visible = false;
+            //        MenuJuridico.Visible = false;
+            //        MenuAbogado.Visible = false;
+            //        MenuAsistente.Visible = false;
+            //    }
+            //    else if (area == "28")
+            //    {
+            //        MenuCobros.Visible = false;
+            //        MenuConta.Visible = true;
+            //        Certificacion.Visible = true;
+            //        Solicitud.Visible = false;
+            //        MenuJuridico.Visible = false;
+            //        MenuAbogado.Visible = false;
+            //        MenuAsistente.Visible = false;
+            //    }
+            //    else if (area == "34")
+            //    {
+            //        MenuCobros.Visible = false;
+            //        MenuConta.Visible = false;
+            //        MenuJuridico.Visible = true;
+            //        Expedientes.Visible = true;
+            //        Reporte.Visible = false;
+            //        MenuAbogado.Visible = false;
+            //        MenuAsistente.Visible = false;
+            //    }
+            //}
+            //else
+            //{
+            //    MenuCobros.Visible = true;
+            //    Cobros.Visible = true;
+            //    MenuConta.Visible = true;
+            //    Certificacion.Visible = true;
+            //    MenuJuridico.Visible = true;
+            //    Expedientes.Visible = true;
+            //    Solicitud.Visible = false;
+            //    MenuAbogado.Visible = false;
+            //    MenuAsistente.Visible = false;
+            //    Reporte.Visible = false;
+            //}
         }
     }
 }

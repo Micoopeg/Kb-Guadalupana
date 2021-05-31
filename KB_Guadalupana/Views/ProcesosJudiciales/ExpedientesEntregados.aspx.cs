@@ -309,13 +309,14 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                         string credito2;
                         string nombre2;
+                        string incidente;
 
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
                             credito2 = dt.Rows[i]["Credito"].ToString();
                             nombre2 = dt.Rows[i]["Nombre"].ToString();
                             sn.cambiarestado(credito2, "3");
-                            sn.guardaretapa(sig2, "4", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2);
+                            sn.guardaretapa(sig2, "4", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2, "123");
                         }
 
                         String script = "alert('Se guardó exitosamente'); window.location.href= 'MenuPrincipalProcesos.aspx';";

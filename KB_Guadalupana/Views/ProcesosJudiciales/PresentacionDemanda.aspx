@@ -21,6 +21,8 @@
 
         body{
             font-family:"Montserrat";
+            background-color:#34495E;
+            color:white;
         }
 
         .general{
@@ -41,7 +43,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:lightgray;
+            background-color:#435F7A;
             flex-direction:column;
             margin-top:10px;
         }
@@ -235,8 +237,8 @@
             width:30%;
         }
 
-        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
-.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}
+        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Montserrat', cursive; text-align:center}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
 .fixed{position:fixed; top:0;visibility:visible}
@@ -313,7 +315,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                      </Columns>
-     <HeaderStyle CssClass="prueba"  ForeColor="Black"></HeaderStyle>
+     <HeaderStyle CssClass="prueba"  ForeColor="White"></HeaderStyle>
         </asp:GridView>
                 </div>
 
@@ -355,7 +357,7 @@
                     </div><br /><br />
 
                     <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 123px">
+                        <div style="overflow: auto; height: 150px">
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
                             OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid">
                              <Columns>
@@ -374,14 +376,14 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
-                                    <ItemStyle Width="135px"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
+                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
                         </asp:GridView>
                        </div>
-                       </div><br /><br />
+                       </div><br /><br /><br />
 
                     <div>
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -470,7 +472,7 @@
                                 <label for="Facturacion" class="titulos">&nbsp;&nbsp;<b>Facturación</b></label>
                              </div>
                              <div class="formatocheck2">
-                                 <asp:Button ID="VerOpcion" runat="server" Width="70%" Height="30px" CssClass="boton3" Text="Ver" OnClick="VerOpcion_Click" />
+                                 <asp:Button ID="VerOpcion" runat="server" Width="70%" Height="30px" CssClass="boton3" Text="Siguiente" OnClick="VerOpcion_Click" />
                              </div>
                          </div>
                     </div>
@@ -512,8 +514,8 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
-                                    <ItemStyle Width="135px"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
+                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
@@ -601,8 +603,8 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
-                                    <ItemStyle Width="135px"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
+                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
@@ -640,7 +642,7 @@
                         
                       <div class="formato3">
                          <label class="titulos"><b>Nombre a quién se emite el cheque</b></label>
-                         <input id="NombreCheque" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                         <input id="NombreCheque" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre" maxlength="60" onkeypress="return sololetras(event);" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                     </div><br />
 
                       <div class="formato3">
@@ -677,10 +679,43 @@
                     }
                 </script>
 
+          <script>
+              function format(input) {
+                  var num = input.value.replace(/\,/g, '');
+                  if (!isNaN(num)) {
+                      num = num.toString().split('').reverse().join('').replace(/(?=\d*\,?)(\d{3})/g, '$1,');
+                      num = num.split('').reverse().join('').replace(/^[\,]/, '');
+                      input.value = num;
+                  }
+
+                  else {
+                      alert('Solo se permiten numeros');
+                      input.value = input.value.replace(/[^\d\,]*/g, '');
+                  }
+              }
+
+              $('#OtrosGastos').mask('000,000,000.00', { reverse: true });
+
+          </script>
+
              <script>
                  var texto1 = document.querySelector('#NumJuzgado');
+                 var texto1 = document.querySelector('#NumFactura');
 
                  texto1.addEventListener('keypress', function (e) {
+                     // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
+                     const decimalCode = 46;
+                     // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
+                     if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
+                         e.preventDefault();
+                     }
+                     // chequeo que sólo exista un punto decimal
+                     else if (e.keyCode == decimalCode && /\./.test(this.value)) {
+                         event.preventDefault();
+                     }
+                 }, true)
+
+                 texto2.addEventListener('keypress', function (e) {
                      // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
                      const decimalCode = 46;
                      // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal

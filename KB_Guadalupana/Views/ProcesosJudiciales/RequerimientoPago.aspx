@@ -24,6 +24,8 @@
 
         body{
             font-family:"Montserrat";
+            background-color:#34495E;
+            color:white;
         }
 
         .general{
@@ -44,7 +46,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:lightgray;
+            background-color:#435F7A;
             flex-direction:column;
             margin-top:10px;
         }
@@ -209,7 +211,7 @@
             border-color: transparent;
         }
         .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
-.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
 .fixed{position:fixed; top:0;visibility:visible}
@@ -226,6 +228,8 @@
                   <div style="display:flex; justify-content:center">
                     <label style="font-size:18px" class="titulos">Verificación del requerimiento de pago</label>
                  </div><br />
+                
+                   <div class="header"></div>
 
                 <div class="encabezado">
 
@@ -251,8 +255,8 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
-                                    <ItemStyle Width="135px"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
+                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
@@ -297,8 +301,17 @@
                     </div><br />
 
                      <input id="Otro" runat="server" type="text" min="0" class="formatoinput2" onkeypress="return sololetras(event);" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                    <br /><br /><br /><br />
+                    <br /><br />
 
+                        <div class="formato2">
+                            <asp:Button ID="Actualizar" runat="server" CssClass="boton" Text="Actualizar" OnClick="Actualizar_Click" />
+                        </div><br />
+
+                    <br /><br />
+
+                    <div id="pfd" runat="server">
+
+                 
                       <div style="display:flex; justify-content:center">
                         <label style="font-size:18px" class="titulos">Solicitud de cheque</label>
                     </div><br />
@@ -312,18 +325,86 @@
                              <input id="RegistroContable" runat="server" type="text" class="formatoinput" placeholder="Ingrese registro contable" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                         </div><br /><br />
 
+                   </div>
+
                     <input id="NombreUsuario" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
                     <input id="FechaActual" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
                     <input id="ImporteTotal" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
                     <input id="NumCredito" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
+                     <input id="NombreCliente" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
 
                          <div class="formato2">
                             <asp:Button ID="Generar" runat="server" Width="30%" Height="30px" CssClass="boton3" Text="Generar solictud de cheque" OnClick="Generar_Click" />
                          </div>
+
                 </div>
 
                    <div class="formato2">
-                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" />
+                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click" />
+                  </div><br />
+
+                   <div class="menu2" id="ventana" runat="server">
+
+                    <div class="formato3">
+                           <label class="titulos"><b>No. de préstamo</b></label>
+                          <input id="CreditoNumero" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                     <div class="formato3">
+                         <label class="titulos"><b>No. de proceso</b></label>
+                        <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                    <div class="formato3">
+                         <label class="titulos"><b>CIF</b></label>
+                        <input id="NumCif" runat="server" type="text" class="formatoinput5" min="0" placeholder="CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                    </div><br />
+
+                    <div class="formato3">
+                        <label class="titulos"><b>Cliente - Nombre</b></label>
+                        <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
+                    </div><br />
+                </div>
+
+                  <div class="encabezado" id="voucher" runat="server">
+                        <div class="formato">
+                            <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
+                            <asp:FileUpload id="FileUpload1" runat="server"></asp:FileUpload>
+                            <asp:Button ID="Agregar" OnClick="agregar_Click" runat="server" Width="20%" Height="30px" CssClass="boton3" Text="Agregar" />
+                        </div><br /><br />
+
+                           <div style="justify-content: center;display:flex" class="formato">
+                        <div style="overflow: auto; height: 145px">
+                        <asp:GridView ID="gridViewDocumentos2" runat="server" AutoGenerateColumns="False" CssClass="tabla"
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento2" BorderStyle="Solid">
+                             <Columns>
+                                <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="No. documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lbltipodoc" Text='<%# Eval("TipoDocumento") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
+                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
+                                </asp:ButtonField>
+                            </Columns>
+                             <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
+                        </asp:GridView>
+                       </div>
+                       </div>
+                    </div>
+
+                    <div class="formato2">
+                    <asp:Button ID="GuardarVoucher" runat="server" CssClass="boton" Text="Guardar" OnClick="GuardarVoucher_Click" />
                   </div><br />
 
             </div>
@@ -380,6 +461,30 @@
                $('.menu').load('MenuPrincipal.aspx');
            });
           </script>
+
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    posicionarMenu();
+
+    $(window).scroll(function () {
+        posicionarMenu();
+    });
+
+    function posicionarMenu() {
+        var altura_del_header = $('.header').outerHeight(true);
+        var altura_del_menu = $('.menu2').outerHeight(true);
+
+        if ($(window).scrollTop() >= altura_del_header) {
+            $('.menu2').addClass('fixed');
+            $('.menu2').addClass('fixed');
+            $('.wrapper').css('margin-top', (altura_del_menu) + 'px');
+        } else {
+            $('.menu2').removeClass('fixed');
+            $('.wrapper').css('margin-top', '0');
+        }
+    }
+
+</script>
 
          <script>
              var texto1 = document.querySelector('#RegistroContable');

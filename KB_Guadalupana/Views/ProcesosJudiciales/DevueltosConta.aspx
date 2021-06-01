@@ -237,7 +237,7 @@
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>No. de préstamo</b></label>
-                        <label class="titulos" style="margin-left:11%"><b>No. de proceso</b></label>
+                        <label class="titulos" style="margin-left:11%"><b>Incidente</b></label>
                         <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
                         <label class="titulos" style="margin-left:22%"><b>Código cliente</b></label>
                     </div>
@@ -403,12 +403,12 @@
                     <div class="menu2" id="ventana" runat="server">
 
                     <div class="formato3">
-                           <label class="titulos"><b>No. de proceso</b></label>
+                           <label class="titulos"><b>No. de préstamo</b></label>
                           <input id="CreditoNumero" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 
                      <div class="formato3">
-                         <label class="titulos"><b>No. de incidente</b></label>
+                         <label class="titulos"><b>Incidente</b></label>
                         <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 
@@ -420,6 +420,13 @@
                     <div class="formato3">
                         <label class="titulos"><b>Cliente - Nombre</b></label>
                         <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
+                    </div><br />
+
+                      <div class="formato3">
+                        <label class="titulos"><b>Comentarios</b></label>
+                        <textarea id="Comentario1" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
+                        <textarea id="Comentarios2" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
+                        <textarea id="Comentario3" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
                     </div><br />
                 </div>
 

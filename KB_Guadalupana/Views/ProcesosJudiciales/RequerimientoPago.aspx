@@ -351,7 +351,7 @@
                     </div><br />
 
                      <div class="formato3">
-                         <label class="titulos"><b>No. de proceso</b></label>
+                         <label class="titulos"><b>Incidente</b></label>
                         <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 

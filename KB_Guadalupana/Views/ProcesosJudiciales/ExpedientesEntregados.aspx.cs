@@ -23,6 +23,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             if (!IsPostBack)
             {
+                AreaReporte.Visible = false;
+                ReporteSubir.Visible = false;
+                Guardar.Visible = false;
                 llenarcomboabogados();
                 llenarcombodocumento();
 
@@ -165,34 +168,145 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             DataTable dt = new DataTable();
             dt = sn.reporteabogados3(Abogados.SelectedValue);
 
-            if (dt.Rows.Count == 0)
+            DataTable dt2 = new DataTable();
+            dt2 = sn.reporteabogados3Todo(Abogados.SelectedValue, Fecha.Value);
+
+
+            DataTable dt3 = new DataTable();
+            dt3 = sn.reporteabogados3Fecha(Fecha.Value);
+
+            string credito2;
+            string nombre2;
+            string incidente;
+
+            string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+
+            string usuario = Session["sesion_usuario"] as string;
+            string idusuario = sn.obteneridusuario(usuario);
+
+            if (Abogados.SelectedValue != "0" && Fecha.Value != "")
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No hay datos para generar');", true);
+                if (dt2.Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No hay datos para generar');", true);
+                }
+                else
+                {
+                    Session["tabla"] = "Todo";
+                    ReporteAbogados.Reset();
+                    ReportDataSource fuente = new ReportDataSource("DataSetAbogado2", obtenerdatos());
+                    ReportDataSource fuente2 = new ReportDataSource("DataSetFecha", fechaactual());
+                    ReportDataSource fuente3 = new ReportDataSource("DataSetNombre", nombreabogado());
+                    ReportDataSource fuente4 = new ReportDataSource("DataSetDpi", dpi());
+                    ReportDataSource fuente5 = new ReportDataSource("DataSetNombreUsuario", nombreusuario());
+
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente);
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente2);
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente3);
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente4);
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente5);
+                    ReporteAbogados.LocalReport.ReportPath = "Views/ProcesosJudiciales/Reportes/Report1.rdlc";
+                    ReporteAbogados.LocalReport.Refresh();
+
+
+                    for (int i = 0; i < dt2.Rows.Count; i++)
+                    {
+                        credito2 = dt2.Rows[i]["Credito"].ToString();
+                        nombre2 = dt2.Rows[i]["Nombre"].ToString();
+                        incidente = dt2.Rows[i]["Incidente"].ToString();
+                        sn.cambiarestado(credito2, "3");
+                        sn.guardaretapa(sig2, "4", credito2, sn.datetime(), "Pendiente", idusuario, "34", nombre2, incidente);
+                    }
+                }
+            }
+            else if(Abogados.SelectedValue != "0" && Fecha.Value == "")
+            {
+                if (dt.Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No hay datos para generar');", true);
+                }
+                else
+                {
+                    Session["tabla"] = "Abogado";
+                    ReporteAbogados.Reset();
+                    ReportDataSource fuente = new ReportDataSource("DataSetAbogado1", obtenerdatosAbogado());
+                    ReportDataSource fuente2 = new ReportDataSource("DataSetFecha", fechaactual());
+                    ReportDataSource fuente3 = new ReportDataSource("DataSetNombreAbogado", nombreabogado());
+
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente);
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente2);
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente3);
+                    ReporteAbogados.LocalReport.ReportPath = "Views/ProcesosJudiciales/Reportes/ReportAbogado.rdlc";
+                    ReporteAbogados.LocalReport.Refresh();
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        credito2 = dt.Rows[i]["Credito"].ToString();
+                        nombre2 = dt.Rows[i]["Nombre"].ToString();
+                        incidente = dt.Rows[i]["Incidente"].ToString();
+                        sn.cambiarestado(credito2, "3");
+                        sn.guardaretapa(sig2, "4", credito2, sn.datetime(), "Pendiente", idusuario, "34", nombre2, incidente);
+                    }
+                }
+            }
+            else if (Abogados.SelectedValue == "0" && Fecha.Value != "")
+            {
+                if (dt3.Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('No hay datos para generar');", true);
+                }
+                else
+                {
+                    Session["tabla"] = "Fecha";
+                    ReporteAbogados.Reset();
+                    ReportDataSource fuente = new ReportDataSource("DataSetAbogadoSoloFecha", obtenerdatosFecha());
+                    ReportDataSource fuente2 = new ReportDataSource("DataSetFecha", fechaactual());
+
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente);
+                    ReporteAbogados.LocalReport.DataSources.Add(fuente2);
+                    ReporteAbogados.LocalReport.ReportPath = "Views/ProcesosJudiciales/Reportes/ReportFecha.rdlc";
+                    ReporteAbogados.LocalReport.Refresh();
+
+                    for (int i = 0; i < dt3.Rows.Count; i++)
+                    {
+                        credito2 = dt3.Rows[i]["Credito"].ToString();
+                        nombre2 = dt3.Rows[i]["Nombre"].ToString();
+                        incidente = dt3.Rows[i]["Incidente"].ToString();
+                        sn.cambiarestado(credito2, "3");
+                        sn.guardaretapa(sig2, "4", credito2, sn.datetime(), "Pendiente", idusuario, "34", nombre2, incidente);
+                    }
+                }
             }
             else
             {
-                ReporteAbogados.Reset();
-                ReportDataSource fuente = new ReportDataSource("DataSetAbogado2", obtenerdatos());
-                ReportDataSource fuente2 = new ReportDataSource("DataSetFecha", fechaactual());
-                ReportDataSource fuente3 = new ReportDataSource("DataSetNombre", nombreabogado());
-                ReportDataSource fuente4 = new ReportDataSource("DataSetDpi", dpi());
-                ReportDataSource fuente5 = new ReportDataSource("DataSetNombreUsuario", nombreusuario());
-
-                ReporteAbogados.LocalReport.DataSources.Add(fuente);
-                ReporteAbogados.LocalReport.DataSources.Add(fuente2);
-                ReporteAbogados.LocalReport.DataSources.Add(fuente3);
-                ReporteAbogados.LocalReport.DataSources.Add(fuente4);
-                ReporteAbogados.LocalReport.DataSources.Add(fuente5);
-                ReporteAbogados.LocalReport.ReportPath = "Views/ProcesosJudiciales/Reportes/Report1.rdlc";
-                ReporteAbogados.LocalReport.Refresh();
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe seleccionar un filtro');", true);
             }
+
         }
 
         private DataTable obtenerdatos()
         {
             DataTable dt = new DataTable();
 
-            dt = sn.reporteabogados2(Abogados.SelectedValue);
+            dt = sn.reporteabogados2(Abogados.SelectedValue, Fecha.Value);
+
+            return dt;
+        }
+
+        private DataTable obtenerdatosAbogado()
+        {
+            DataTable dt = new DataTable();
+
+            dt = sn.reporteabogadosNombre(Abogados.SelectedValue);
+
+            return dt;
+        }
+
+        private DataTable obtenerdatosFecha()
+        {
+            DataTable dt = new DataTable();
+
+            dt = sn.reporteabogadosFecha(Fecha.Value);
 
             return dt;
         }
@@ -267,9 +381,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
 
             DataTable dt = new DataTable();
-            dt = sn.reporteabogados3(Abogados.SelectedValue);
+            string tabla;
+            tabla = Session["tabla"] as string;
 
-            if (Abogados.SelectedValue == "0")
+            dt = sn.actualizarcreditosreporte();
+         
+
+            if (Abogados.SelectedValue == "0" && Fecha.Value == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe generar reporte antes');", true);
             }
@@ -315,8 +433,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         {
                             credito2 = dt.Rows[i]["Credito"].ToString();
                             nombre2 = dt.Rows[i]["Nombre"].ToString();
-                            sn.cambiarestado(credito2, "3");
-                            sn.guardaretapa(sig2, "4", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2, "123");
+                            incidente = dt.Rows[i]["Incidente"].ToString();
+                            sn.actualizaretapareporte(credito2, "4");
                         }
 
                         String script = "alert('Se guardó exitosamente'); window.location.href= 'MenuPrincipalProcesos.aspx';";
@@ -329,6 +447,22 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 }
 
             }
+        }
+
+        protected void GenerarNuevoReporte_Click(object sender, EventArgs e)
+        {
+            AreaReporte.Visible = true;
+            ReporteSubir.Visible = false;
+            Guardar.Visible = false;
+            Opciones.Visible = false;
+        }
+
+        protected void SubirReporte_Click(object sender, EventArgs e)
+        {
+            AreaReporte.Visible = false;
+            ReporteSubir.Visible = true;
+            Guardar.Visible = true;
+            Opciones.Visible = false;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenargridviewdocumentos();
                 llenarformulario();
                 llenarcombodocumento();
+                llenarcomentarios();
             }
         }
 
@@ -403,6 +404,37 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
 
+        }
+
+        public void llenarcomentarios()
+        {
+            string numcredito = Session["credito"] as string;
+            string[] comentarios = sn.traerComentarios(numcredito);
+
+            for (int i = 0; i < comentarios.Length; i++)
+            {
+                if (comentarios.Length == 1)
+                {
+                    Comentario1.Visible = true;
+                    Comentario1.Value = comentarios[0];
+                }
+                else if (comentarios.Length == 2)
+                {
+                    Comentario1.Value = comentarios[0];
+                    Comentario2.Value = comentarios[1];
+                    Comentario1.Visible = true;
+                    Comentario2.Visible = true;
+                }
+                else
+                {
+                    Comentario1.Value = comentarios[0];
+                    Comentario2.Value = comentarios[1];
+                    Comentario3.Value = comentarios[2];
+                    Comentario1.Visible = true;
+                    Comentario2.Visible = true;
+                    Comentario3.Visible = true;
+                }
+            }
         }
     }
 }

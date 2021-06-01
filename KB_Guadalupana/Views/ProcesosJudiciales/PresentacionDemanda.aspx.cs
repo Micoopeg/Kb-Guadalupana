@@ -21,6 +21,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             if (!IsPostBack)
             {
+                llenarcomentarios();
+                Comentario1.Visible = false;
+                Comentario2.Visible = false;
+                Comentario3.Visible = false;
                 llenarcombodocumento();
                 llenarformulario();
                 llenargridviewdocumentos();
@@ -299,11 +303,57 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected void Guardar_Click(object sender, EventArgs e)
         {
             string numcredito = Session["credito"] as string;
+            string[] importetotal = ImporteTotal.Value.Split('.');
+            string importetotal3 = "";
+
+            if (importetotal[0] == "")
+            {
+                string[] importetotal2 = ImporteTotal.Value.Split(',');
+                for(int i =0; i<importetotal2.Length; i++)
+                {
+                    importetotal3 = importetotal3 + importetotal2[i];
+                }
+            }
+            else
+            {
+                string[] importetotal2 = importetotal[0].Split(',');
+                for (int i = 0; i < importetotal2.Length; i++)
+                {
+                    importetotal3 = importetotal3 + importetotal2[i];
+                }
+                importetotal3 = importetotal3 + importetotal[1];
+            }
+
+
+            string[] importecaso = ImporteCaso.Value.Split('.');
+            string importecaso3 = "";
+
+            if (importecaso[0] == "")
+            {
+                string[] importecaso2 = ImporteTotal.Value.Split(',');
+                for (int i = 0; i < importecaso2.Length; i++)
+                {
+                    importecaso3 = importecaso3 + importecaso2[i];
+                }
+            }
+            else
+            {
+                string[] importecaso2 = importecaso[0].Split(',');
+                for (int i = 0; i < importecaso2.Length; i++)
+                {
+                    importecaso3 = importecaso3 + importecaso2[i];
+                }
+                importecaso3 = importecaso3 + importecaso[1];
+            }
 
             string memorial = sn.tipodocumentoMemorial(numcredito);
             if (memorial == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir el memorial');", true);
+            }
+            else if (Convert.ToInt32(importecaso3) > Convert.ToInt32(importetotal3))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El importe del caso debe ser menor o igual al importe total');", true);
             }
             else
             {
@@ -811,6 +861,37 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 Otro.Visible = false;
                 Guardar.Focus();
+            }
+        }
+
+        public void llenarcomentarios()
+        {
+            string numcredito = Session["credito"] as string;
+            string[] comentarios = sn.traerComentarios(numcredito);
+
+            for (int i = 0; i < comentarios.Length; i++)
+            {
+                if (comentarios.Length == 1)
+                {
+                    Comentario1.Visible = true;
+                    Comentario1.Value = comentarios[0];
+                }
+                else if (comentarios.Length == 2)
+                {
+                    Comentario1.Value = comentarios[0];
+                    Comentario2.Value = comentarios[1];
+                    Comentario1.Visible = true;
+                    Comentario2.Visible = true;
+                }
+                else
+                {
+                    Comentario1.Value = comentarios[0];
+                    Comentario2.Value = comentarios[1];
+                    Comentario3.Value = comentarios[2];
+                    Comentario1.Visible = true;
+                    Comentario2.Visible = true;
+                    Comentario3.Visible = true;
+                }
             }
         }
 

@@ -287,6 +287,28 @@
     <Content Include="bdkbguadalupanaDataSetAbogado2.xss">
       <DependentUpon>bdkbguadalupanaDataSetAbogado2.xsd</DependentUpon>
     </Content>
+    <Content Include="bdkbguadalupanaDataSetAbogadoFecha.xsc">
+      <DependentUpon>bdkbguadalupanaDataSetAbogadoFecha.xsd</DependentUpon>
+    </Content>
+    <None Include="bdkbguadalupanaDataSetAbogadoFecha.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdkbguadalupanaDataSetAbogadoFecha.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="bdkbguadalupanaDataSetAbogadoFecha.xss">
+      <DependentUpon>bdkbguadalupanaDataSetAbogadoFecha.xsd</DependentUpon>
+    </Content>
+    <Content Include="bdkbguadalupanaDataSetSoloFecha.xsc">
+      <DependentUpon>bdkbguadalupanaDataSetSoloFecha.xsd</DependentUpon>
+    </Content>
+    <None Include="bdkbguadalupanaDataSetSoloFecha.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdkbguadalupanaDataSetSoloFecha.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="bdkbguadalupanaDataSetSoloFecha.xss">
+      <DependentUpon>bdkbguadalupanaDataSetSoloFecha.xsd</DependentUpon>
+    </Content>
     <None Include="Connected Services\ServiceReference1\WebService1.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
@@ -839,6 +861,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>bdkbguadalupanaDataSetAbogado2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdkbguadalupanaDataSetAbogadoFecha.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdkbguadalupanaDataSetAbogadoFecha.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdkbguadalupanaDataSetSoloFecha.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdkbguadalupanaDataSetSoloFecha.xsd</DependentUpon>
     </Compile>
     <Compile Include="chart.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2224,6 +2256,8 @@
     <EmbeddedResource Include="ReportesAv\ReporteMontos.rdlc" />
     <EmbeddedResource Include="Views\CRM-SISTEMA\Reporteria\Report1.rdlc" />
     <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\Report1.rdlc" />
+    <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\ReportAbogado.rdlc" />
+    <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\ReportFecha.rdlc" />
     <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\SolicitudChequeR2.rdlc" />
   </ItemGroup>
   <ItemGroup>

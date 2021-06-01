@@ -1512,7 +1512,7 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public DataTable reporteabogados2(string abogado)
+        public DataTable reporteabogados2(string abogado, string fecha)
         {
             DataTable dt = new DataTable();
 
@@ -1521,7 +1521,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT A.pj_nombre, A.pj_cif, A.pj_numcredito, A.pj_fechaasignacion, B.pj_nombreabogado FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE A.idpj_abogado = '"+abogado+"' AND C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso')";
+                    string query = "SELECT A.pj_nombre, A.pj_cif, A.pj_numcredito, A.pj_fechaasignacion, B.pj_nombreabogado FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE A.idpj_abogado = '"+abogado+ "' AND C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso') AND C.pj_fecha = '"+ fecha +"'";
                     MySqlCommand command = new MySqlCommand(query, sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
@@ -1560,7 +1560,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT A.pj_nombre AS Nombre, A.pj_cif, A.pj_numcredito AS Credito, A.pj_fechaasignacion, B.pj_nombreabogado FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE A.idpj_abogado = '" + abogado + "' AND C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso')";
+                    string query = "SELECT A.pj_nombre AS Nombre, A.pj_cif, A.pj_numcredito AS Credito, A.pj_fechaasignacion, B.pj_nombreabogado, C.pj_numincidente AS Incidente FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE A.idpj_abogado = '" + abogado + "' AND C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso')";
                     MySqlCommand command = new MySqlCommand(query, sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
@@ -1748,6 +1748,155 @@ namespace KB_Guadalupana.Controllers
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
                 return camporesultante;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] traerComentarios(string credito)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT pj_comentario FROM pj_bitacora WHERE pj_estado = 'Enviado' AND pj_numcredito = '" + credito + "'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public DataTable reporteabogadosNombre(string abogado)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT A.pj_nombre, A.pj_cif, A.pj_numcredito, A.pj_fechaasignacion, B.pj_nombreabogado FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE A.idpj_abogado = '" + abogado + "' AND C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso')";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public DataTable reporteabogados3Todo(string abogado, string fecha)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT A.pj_nombre AS Nombre, A.pj_cif, A.pj_numcredito AS Credito, A.pj_fechaasignacion, B.pj_nombreabogado, C.pj_numincidente AS Incidente FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE A.idpj_abogado = '" + abogado + "' AND C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso') AND C.pj_fecha = '" + fecha + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public DataTable reporteabogadosFecha(string fecha)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT A.pj_nombre, A.pj_cif, A.pj_numcredito, A.pj_fechaasignacion, B.pj_nombreabogado FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso') AND C.pj_fecha = '" + fecha + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public DataTable reporteabogados3Fecha(string fecha)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT A.pj_nombre AS Nombre, A.pj_cif, A.pj_numcredito AS Credito, A.pj_fechaasignacion, B.pj_nombreabogado, C.pj_numincidente AS Incidente FROM pj_certificacionjuidico AS A INNER JOIN pj_abogado AS B ON B.idpj_abogado = A.idpj_abogado INNER JOIN  pj_etapa_credito AS C ON C.idpj_credito = A.pj_numcredito WHERE C.idpj_etapa = 3 AND C.pj_status IN('Enviado','Reingreso') AND C.pj_fecha = '" + fecha + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public DataTable actualizarcreditosreporte()
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status, pj_numincidente AS Incidente, pj_fecha AS Fecha FROM pj_etapa_credito WHERE idpj_etapa = 4 AND pj_status = 'Pendiente' ";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public void actualizaretapareporte(string credito, string etapa)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE pj_etapa_credito SET pj_status = 'Enviado' WHERE idpj_credito= '" + credito + "' AND idpj_etapa = '" + etapa + "' AND pj_status = 'Pendiente'";
+                    MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = myCommand.ExecuteReader();
+                }
+                catch
+                {
+
+                }
             }
         }
     }

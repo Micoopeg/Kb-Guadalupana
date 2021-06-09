@@ -141,7 +141,7 @@
             <a href="NuevaTarea.aspx" > Nueva Tarea</a>
          <a id="ASIGHOME" runat="server" href="Av_AsignarTarea.aspx" > Asignar Tarea A</a>
           <a href="../Sesion/CerrarSesion.aspx" style="">Cerrar Sesion</a>
-          <span class="nav-text" style=" font-size: 25px; right: 3%; position: absolute; margin-top:5px; color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b>Edgar Casasola</span>
+          <span class="nav-text" style=" font-size: 25px; right: 3%; position: absolute; margin-top:5px; color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
          
       </div>
 
@@ -173,9 +173,11 @@
 
                 <div class="row">
                     <div class="col">
+                        <span>Usuario</span>
                         <input id="NOMUSER" type="text" runat="server" class="form-control form-control-lg" placeholder="Nombre de Usuario"/>
                     </div>
                     <div class="col">
+                        <span>CIF </span>
                         <input id="CIF" type="number" runat="server" class="form-control form-control-lg" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="000000"/>
                     </div>
 

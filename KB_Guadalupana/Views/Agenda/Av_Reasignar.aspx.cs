@@ -25,7 +25,7 @@ namespace KBGuada.Views.session
             Nombreuser = Convert.ToString(Session["sesion_usuario"]);
             user = Convert.ToString(Session["Nombre"]);
             titulo = Convert.ToString(Session["TituloTarea"]);
-
+            NombreUsuario.InnerText = user;
             AVTITULO.Value = titulo;
 
             DataSet ds1 = cav.consultarasigtarea(tarea);

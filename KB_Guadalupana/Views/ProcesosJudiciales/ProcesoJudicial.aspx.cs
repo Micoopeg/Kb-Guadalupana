@@ -353,7 +353,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string avaluo = sn.tipodocumentoAvaluo(numcredito);
             string transunion = sn.tipodocumentoTransunion(numcredito);
 
-            if(infornet == "" || recibo == "" || dpi == "" || cartaingreso == "" || contratos == "" || solicitudcredito == "" || consultaiggs == "" || consultadicabi == "" || bitacora == "" || estadocuenta == "" || avaluo == "" || transunion == "")
+            if(infornet == "" || recibo == "" || dpi == "" || cartaingreso == "" || contratos == "" || solicitudcredito == "" || consultaiggs == "" || consultadicabi == "" || bitacora == "" || estadocuenta == "" || transunion == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los documentos');", true);
             }
@@ -379,7 +379,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                     string sig = sn.siguienteCredito("pj_tipocredito", "idpj_tipocredito");
                     string id = sig + CodigoCliente.Value;
-                    sn.guardartipocredito(id, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, numcredito, fechahoraactual, FechaEstadoCuenta.Value, Observaciones.Value);
+                    sn.guardartipocredito(sig, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, numcredito, fechahoraactual, FechaEstadoCuenta.Value, Observaciones.Value);
                     NumIncidente.Value = sig;
 
                     string usuario = Session["sesion_usuario"] as string;
@@ -407,7 +407,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         total = Convert.ToDecimal(Saldo1.Value) + Convert.ToDecimal(Interes1.Value) + Convert.ToDecimal(Mora.Value) + Convert.ToDecimal(Gastos1.Value) + Convert.ToDecimal(GastosJudiciales.Value) + Convert.ToDecimal(OtrosGastos.Value);
                         string sig = sn.siguienteTarjeta("pj_tipotarjeta", "idpj_tipotarjeta");
                         string id = sig + CodigoCliente.Value;
-                        sn.guardartipotarjeta(id, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, numcredito, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), fechahoraactual, FechaEstadoCuenta.Value, Observaciones.Value);
+                        sn.guardartipotarjeta(sig, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, numcredito, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), fechahoraactual, FechaEstadoCuenta.Value, Observaciones.Value);
                         NumIncidente.Value = sig;
 
                         string usuario = Session["sesion_usuario"] as string;

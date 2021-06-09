@@ -465,7 +465,7 @@
                      <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:13%"><b>Puesto</b></label>
                 </div>
                   <div style="display:flex; flex-direction: row; width:100%">
-                     <input id="CAOperador" runat="server" type="text" onkeypress="return sololetras(event);" maxlength="50" placeholder="Nombres y apellidos (operador)" class="etiquetas" onchange="agregar(this.value);" required/>
+                     <input id="CAOperador" runat="server" type="text" onkeypress="return sololetras(event);" placeholder="Nombres y apellidos (operador)" class="etiquetas" onchange="agregar(this.value);" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                      <input id="CANumperador" min="0" runat="server" type="text" maxlength="11" placeholder="No. operador" class="etiquetas" pattern="[0-9]*" required/>
                       <input id="CAPuestooperador" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
                   </div>
@@ -628,7 +628,7 @@
                 </div>
             </div>
 
-            <b>Observaciones: </b><input id="CAComentario" runat="server" onkeypress="return sololetras(event);" type="text" style="height:10px" class="etiquetas2"/>
+            <b>Observaciones: </b><input id="CAComentario" runat="server" onkeypress="return sololetras(event);" type="text" style="height:10px" class="etiquetas2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 
             <br /><br /><br />
              <div class="datosGenerales2">

@@ -384,17 +384,17 @@
 
             <div class="datosGenerales2">
                  <label style="width:40%; display:flex; justify-content:flex-end"><b>Boletas utilizadas:</b></label>&nbsp;&nbsp;
-                <input id="CBUtilizadas" runat="server" type="text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 3px;padding: 5px;width:30%;height:22px" />
+                <input id="CBUtilizadas" runat="server" type="text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 3px;padding: 5px;width:30%;height:22px" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
             </div>
 
             <div class="datosGenerales2">
                  <label style="width:40%; display:flex; justify-content:flex-end"><b>Boletas reversadas:</b></label>&nbsp;&nbsp;
-                <input id="CBReservadas" runat="server" type="text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 3px;padding: 5px;width:30%;height:22px" />
+                <input id="CBReservadas" runat="server" type="text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 3px;padding: 5px;width:30%;height:22px" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
             </div>
 
             <div class="datosGenerales2">
                  <label style="width:40%; display:flex; justify-content:flex-end"><b>Boletas anuladas:</b></label>&nbsp;&nbsp;
-                <input id="CBAnuladas" runat="server" type="text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 3px;padding: 5px;width:30%;height:22px" />
+                <input id="CBAnuladas" runat="server" type="text" style="font-size: 15px;justify-content: flex-start;display: flex;margin: 3px;padding: 5px;width:30%;height:22px" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
             </div><br />
 
              <div class="solid" style="margin-top: 5px;"></div>

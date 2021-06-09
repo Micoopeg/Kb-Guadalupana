@@ -208,7 +208,7 @@
             border-color: transparent;
         }
         .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
-.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:75px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
 .fixed{position:fixed; top:0;visibility:visible}
@@ -257,8 +257,8 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
-                                    <ItemStyle Width="135px"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
+                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
@@ -275,10 +275,19 @@
                             <input id="FechaEmision" runat="server" type="date" class="formatoinput"/>
                         </div><br />
 
-                        <div class="formato3">
-                             <label class="titulos"><b>Banco</b></label>
-                            <asp:DropDownList id="Banco" runat="server" class="formatoinput2" AutoPostBack="false"></asp:DropDownList>
+                    <div class="formatoTitulo" style="margin-bottom:5px">
+                            <label class="titulos"><b>Monto</b></label>
+                            <label class="titulos" style="margin-left:48%"><b>Banco</b></label>
                         </div>
+
+                        <div class="formato">
+                             Q<input type="text" id="Monto" runat="server" class="formatoinput" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese monto" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            <asp:DropDownList id="Banco" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                        </div><br />
+
+                         <label class="titulos">Observaciones</label>
+                          <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                    <br />
 
                 </div>
 
@@ -286,7 +295,7 @@
                     <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click"/>
                 </div><br />
 
-                     <div class="menu2" id="ventana" runat="server">
+                     <div class="menu2" id="ventana" runat="server" style="overflow: auto; height: 450px">
 
                     <div class="formato3">
                            <label class="titulos"><b>No. de préstamo</b></label>
@@ -307,6 +316,15 @@
                         <label class="titulos"><b>Cliente - Nombre</b></label>
                         <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
                     </div><br />
+
+                         <label class="titulos"><b>Comentarios</b></label>
+                        <asp:Repeater ID="Repeater1" runat="server">
+                            <ItemTemplate>
+                                <div class="formato3">
+                                    <textarea id="Comentario1" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"> <%# Eval("Comentario") %> </textarea>
+                                </div><br />
+                            </ItemTemplate>
+                        </asp:Repeater>
                 </div>
 
             </div>
@@ -335,7 +353,24 @@
     }
 
 </script>
+                  <script>
+                      function format(input) {
+                          var num = input.value.replace(/\,/g, '');
+                          if (!isNaN(num)) {
+                              num = num.toString().split('').reverse().join('').replace(/(?=\d*\,?)(\d{3})/g, '$1,');
+                              num = num.split('').reverse().join('').replace(/^[\,]/, '');
+                              input.value = num;
+                          }
 
+                          else {
+                              alert('Solo se permiten numeros');
+                              input.value = input.value.replace(/[^\d\,]*/g, '');
+                          }
+                      }
+
+                      $('#OtrosGastos').mask('000,000,000.00', { reverse: true });
+
+                  </script>
            <script>
                $(document).ready(function () {
                    $('.menu').load('MenuPrincipal.aspx');

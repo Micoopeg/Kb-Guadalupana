@@ -217,7 +217,7 @@
                                        <asp:Label ID="lblfecha" Text='<%# Eval("Fecha"," {0:d}") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Emitir resolución" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                <asp:ButtonField   Text="Emitir requerimiento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
                                     <ItemStyle Width="100px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>

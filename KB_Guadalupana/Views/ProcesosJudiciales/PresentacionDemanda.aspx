@@ -209,6 +209,11 @@
             border-radius: 5px;
             height: 30px;
             border-color: transparent;
+            font-family:"Montserrat";
+            max-width: 90%;
+            min-width: 90%;
+            max-height:30px;
+            min-height:30px;
         }
 
         .formatocheckbox {
@@ -238,7 +243,7 @@
         }
 
         .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Montserrat', cursive; text-align:center}
-.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:75px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
 .fixed{position:fixed; top:0;visibility:visible}
@@ -263,8 +268,8 @@
                         <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>No. de préstamo</b></label>
                         <label class="titulos" style="margin-left:11%"><b>Incidente</b></label>
-                        <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
-                        <label class="titulos" style="margin-left:22%"><b>CIF</b></label>
+                        <label class="titulos" style="margin-left:16%"><b>DPI</b></label>
+                        <label class="titulos" style="margin-left:23%"><b>CIF</b></label>
                     </div>
 
                     <div class="formato">
@@ -322,7 +327,7 @@
                 </div><br />
 
 
-                    <div class="menu2" id="ventana" runat="server">
+                    <div class="menu2" id="ventana" runat="server" style="overflow: auto; height: 450px">
 
                     <div class="formato3">
                            <label class="titulos"><b>No. de préstamo</b></label>
@@ -344,12 +349,14 @@
                         <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
                     </div><br />
 
-                     <div class="formato3">
-                        <label class="titulos"><b>Comentarios</b></label>
-                        <textarea id="Comentario1" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
-                        <textarea id="Comentario2" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
-                        <textarea id="Comentario3" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
-                    </div><br />
+                         <label class="titulos"><b>Comentarios</b></label>
+                        <asp:Repeater ID="Repeater1" runat="server">
+                            <ItemTemplate>
+                                <div class="formato3">
+                                    <textarea id="Comentario1" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"> <%# Eval("Comentario") %> </textarea>
+                                </div><br />
+                            </ItemTemplate>
+                        </asp:Repeater>
                 </div>
 
                     
@@ -536,9 +543,11 @@
                         </div>
 
                        <div class="formato">
-                            <asp:DropDownList id="EstadoDemanda" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                            <asp:DropDownList id="EstadoDemanda" runat="server" class="formatoinput" AutoPostBack="true" OnSelectedIndexChanged="EstadoDemanda_SelectedIndexChanged"></asp:DropDownList>
                            <input id="FechaNotificacion" runat="server" type="date" class="formatoinput" />
                         </div><br /><br />
+
+                      <input id="DemandaRechazada" runat="server" type="text" class="formatoinput2" placeholder="Ingrese motivo de rechazo" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 
                     <label class="titulos">Seleccione las medidas precautorias otorgadas</label><br /><br />
                            <div class="formatocheck">
@@ -659,6 +668,9 @@
 
                      <input id="Otro" runat="server" type="text" min="0" class="formatoinput2" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 
+                        <label class="titulos">Observaciones del crédito</label>
+                         <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                    <br />
                 </div>
                 </div>
 

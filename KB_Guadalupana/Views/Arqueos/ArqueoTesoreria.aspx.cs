@@ -178,18 +178,25 @@ namespace Modulo_de_arqueos.Views
                 //SUBTOTAL DE BILLETES
                 decimal subtotal1, subtotal2, subtotal3, subtotal4, subtotal5, subtotal6, subtotal7;
                 subtotal1 = Convert.ToDecimal(200.00) * Convert.ToDecimal(TCantidadb1.Value);
+                TSubtotalb1.InnerText = subtotal1.ToString();
                 //TSubtotalb1.Value = Convert.ToString(subtotal1);
                 subtotal2 = Convert.ToDecimal(100.00) * Convert.ToDecimal(TCantidadb2.Value);
+                TSubtotalb2.InnerText = subtotal2.ToString();
                 //TSubtotalb2.Value = Convert.ToString(subtotal2);
                 subtotal3 = Convert.ToDecimal(50.00) * Convert.ToDecimal(TCantidadb3.Value);
+                TSubtotalb3.InnerText = subtotal3.ToString();
                 //TSubtotalb3.Value = Convert.ToString(subtotal3);
                 subtotal4 = Convert.ToDecimal(20.00) * Convert.ToDecimal(TCantidadb4.Value);
+                TSubtotalb4.InnerText = subtotal4.ToString();
                 //TSubtotalb4.Value = Convert.ToString(subtotal4);
                 subtotal5 = Convert.ToDecimal(10.00) * Convert.ToDecimal(TCantidadb5.Value);
+                TSubtotalb5.InnerText = subtotal5.ToString();
                 //TSubtotalb5.Value = Convert.ToString(subtotal5);
                 subtotal6 = Convert.ToDecimal(5.00) * Convert.ToDecimal(TCantidadb6.Value);
+                TSubtotalb6.InnerText = subtotal6.ToString();
                 //TSubtotalb6.Value = Convert.ToString(subtotal6);
                 subtotal7 = Convert.ToDecimal(1.00) * Convert.ToDecimal(TCantidadb7.Value);
+                TSubtotalb7.InnerText = subtotal7.ToString();
                 //TSubtotalb7.Value = Convert.ToString(subtotal7);
 
                 //TOTAL BILLETES
@@ -197,47 +204,59 @@ namespace Modulo_de_arqueos.Views
                 totalbilletes = Convert.ToDecimal(subtotal1) + Convert.ToDecimal(subtotal2) + Convert.ToDecimal(subtotal3) +
                                 Convert.ToDecimal(subtotal4) + Convert.ToDecimal(subtotal5) + Convert.ToDecimal(subtotal6) +
                                 Convert.ToDecimal(subtotal7);
+                TTotalbilletes.InnerText = totalbilletes.ToString();
                 //TTotalbilletes.Value = Convert.ToString(totalbilletes);
 
                 //SUBTOTAL MONEDAS
                 decimal subtotalm1, subtotalm2, subtotalm3, subtotalm4, subtotalm5, subtotalm6;
                 subtotalm1 = Convert.ToDecimal(1) * Convert.ToDecimal(TCantidadm1.Value);
+                TSubtotalm1.InnerText = subtotalm1.ToString();
                 //TSubtotalm1.Value = Convert.ToString(subtotalm1);
                 subtotalm2 = Convert.ToDecimal(0.50) * Convert.ToDecimal(TCantidadm2.Value);
+                TSubtotalm2.InnerText = subtotalm2.ToString();
                 //TSubtotalm2.Value = Convert.ToString(subtotalm2);
                 subtotalm3 = Convert.ToDecimal(0.25) * Convert.ToDecimal(TCantidadm3.Value);
+                TSubtotalm3.InnerText = subtotalm3.ToString();
                 //TSubtotalm3.Value = Convert.ToString(subtotalm3);
                 subtotalm4 = Convert.ToDecimal(0.10) * Convert.ToDecimal(TCantidadm4.Value);
+                TSubtotalm4.InnerText = subtotalm4.ToString();
                 //TSubtotalm4.Value = Convert.ToString(subtotalm4);
                 subtotalm5 = Convert.ToDecimal(0.05) * Convert.ToDecimal(TCantidadm5.Value);
+                TSubtotalm5.InnerText = subtotalm5.ToString();
                 //TSubtotalm5.Value = Convert.ToString(subtotalm5);
                 subtotalm6 = Convert.ToDecimal(0.01) * Convert.ToDecimal(TCantidadm6.Value);
+                TSubtotalm6.InnerText = subtotalm6.ToString();
                 //TSubtotalm6.Value = Convert.ToString(subtotalm6);
 
                 //TOTAL MONEDAS
                 decimal totalmonedas;
                 totalmonedas = Convert.ToDecimal(subtotalm1) + Convert.ToDecimal(subtotalm2) + Convert.ToDecimal(subtotalm3) +
                                 Convert.ToDecimal(subtotalm4) + Convert.ToDecimal(subtotalm5) + Convert.ToDecimal(subtotalm6);
+                TTotalmoneda.InnerText = totalmonedas.ToString();
                 //TTotalmoneda.Value = Convert.ToString(totalmonedas);
 
                 //TOTAL EFECTIVO
                 decimal totalefectivo;
                 totalefectivo = Convert.ToDecimal(totalbilletes) + Convert.ToDecimal(totalmonedas);
+                TEfectivo.InnerText = totalefectivo.ToString();
                 //TEfectivo.Value = Convert.ToString(totalefectivo);
 
                 //TOTAL FONDO TESORERIA
                 decimal fondo;
                 fondo = Convert.ToDecimal(totalefectivo) + Convert.ToDecimal(TSolicitud.Value) + Convert.ToDecimal(TEfectivoentregado.Value);
+                TTotalfondo.InnerText = fondo.ToString();
                 //TTotalfondo.Value = Convert.ToString(fondo);
 
                 //TOTAL CANTIDAD CHEQUES
                 int cheques;
                 cheques = Convert.ToInt32(TChequesq.Value) + Convert.ToInt32(TChequesa.Value);
+                TTotalcheques.InnerText = cheques.ToString();
                 //TTotalcheques.Value = Convert.ToString(cheques);
 
                 //TOTAL MONTO CHEQUES
                 int monto;
                 monto = Convert.ToInt32(TMontoq.Value) + Convert.ToInt32(TMontoa.Value);
+                TTotalmonto.InnerText = monto.ToString();
                 //TTotalmonto.Value = Convert.ToString(monto);
 
                 //VARIABLES SESSION ENCABEZADO
@@ -367,6 +386,31 @@ namespace Modulo_de_arqueos.Views
                     imprimir.Visible = true;
                     operar.Visible = false;
                     EBuscar.Visible = false;
+                    TAgencia.Enabled = false;
+                    TNombreoperador.Disabled = true;
+                    TOperador.Disabled = true;
+                    TPuestooperador.Disabled = true;
+                    TNombreencargado.Disabled = true;
+                    TPuestoencargado.Disabled = true;
+                    TTesoreria.Disabled = true;
+                    TCantidadb1.Disabled = true;
+                    TCantidadb2.Disabled = true;
+                    TCantidadb3.Disabled = true;
+                    TCantidadb4.Disabled = true;
+                    TCantidadb5.Disabled = true;
+                    TCantidadb6.Disabled = true;
+                    TCantidadm1.Disabled = true;
+                    TCantidadm2.Disabled = true;
+                    TCantidadm3.Disabled = true;
+                    TCantidadm4.Disabled = true;
+                    TCantidadm5.Disabled = true;
+                    TCantidadm6.Disabled = true;
+                    TSolicitud.Disabled = true;
+                    TEfectivo.Disabled = true;
+                    TChequesq.Disabled = true;
+                    TChequesa.Disabled = true;
+                    TMontoq.Disabled = true;
+                    TMontoa.Disabled = true;
                 }
             }
            

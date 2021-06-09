@@ -399,7 +399,7 @@
                      <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:4%"><b>Puesto</b></label>
                 </div>
                  <div style="flex-direction:row; display:flex; width:100%">
-                     <input id="CNombre" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Nombre" class="etiquetas" required/>
+                     <input id="CNombre" runat="server" onkeypress="return sololetras(event);" type="text" placeholder="Nombre" class="etiquetas" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                      <input id="CUsuario" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Usuario" class="etiquetas" required/>
                      <input id="COperador" runat="server" maxlength="11" type="text" placeholder="Operador" class="etiquetas" required/>
                       <input id="CPuestooperador" onkeypress="return sololetras(event);" runat="server" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" required/>
@@ -410,14 +410,14 @@
                     <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start; margin-left:22%"><b>Puesto</b></label>
                 </div>
                  <div style="display:flex; flex-direction: row; width:100%; align-items:center">
-                     <input id="CJefe" onkeypress="return sololetras(event);" runat="server" maxlength="50" type="text" placeholder="Nombres y apellidos" class="etiquetas" onchange="agregar(this.value);" required/>
+                     <input id="CJefe" onkeypress="return sololetras(event);" runat="server" type="text" placeholder="Nombres y apellidos" class="etiquetas" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onchange="agregar(this.value);" required/>
                      <input id="CPuestoencargado" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" required/>
                    </div>
                 <div style="display:flex; flex-direction: row; width:100%; align-items:flex-end">
                     <label style="width:28%; font-size:12px; display:flex; justify-content:flex-start;"><b>Comentario</b></label>
                 </div>
                 <div style="display:flex; flex-direction: row; width:100%">
-                    <input id="CComentario" maxlength="50" style="width:100%" runat="server" onkeypress="return sololetras(event);" type="text" placeholder="Comentarios" class="etiquetas" required/>
+                    <input id="CComentario" style="width:100%" runat="server" onkeypress="return sololetras(event);" type="text" placeholder="Comentarios" class="etiquetas" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                 </div>
             </div>
            

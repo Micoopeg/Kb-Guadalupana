@@ -1073,14 +1073,14 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public void insertarcertificacionjuridico(string id, string abogado, string tipoproceso, string procesonombre, string numcredito, string usuario, string fechaasignacion, string nombre, string cif)
+        public void insertarcertificacionjuridico(string id, string abogado, string tipoproceso, string procesonombre, string numcredito, string usuario, string fechaasignacion, string nombre, string cif, string observaciones)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
                     sqlCon.Open();
-                    string query = "INSERT INTO pj_certificacionjuidico VALUES('"+id+"', '"+abogado+"', '"+tipoproceso+"', '"+procesonombre+"', '"+numcredito+"', '"+usuario+"', '"+fechaasignacion+"', '"+nombre+"', '"+cif+"')";
+                    string query = "INSERT INTO pj_certificacionjuidico VALUES('"+id+"', '"+abogado+"', '"+tipoproceso+"', '"+procesonombre+"', '"+numcredito+"', '"+usuario+"', '"+fechaasignacion+"', '"+nombre+"', '"+cif+"', '"+observaciones+"')";
                     MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = myCommand.ExecuteReader();
                 }
@@ -1179,14 +1179,14 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public void insertarresolucion(string id, string numcredito, string usuario, string estado, string fechanotificacion)
+        public void insertarresolucion(string id, string numcredito, string usuario, string estado, string motivorechazo, string fechanotificacion)
         {
             using(MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
                     sqlCon.Open();
-                    string query = "INSERT INTO pj_resoluciontramite VALUES ('"+id+"', '"+numcredito+"', '"+usuario+"', '"+estado+"', '"+fechanotificacion+"')";
+                    string query = "INSERT INTO pj_resoluciontramite VALUES ('"+id+"', '"+numcredito+"', '"+usuario+"', '"+estado+"', '"+ motivorechazo + "', '"+fechanotificacion+"')";
                     MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = myCommand.ExecuteReader();
                 }
@@ -1338,12 +1338,12 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public void guardarfacturaabogado(string id, string numcredito, string usuario, string numfactura, string numserie, string descripcion, string importetotal, string fechaemision, string importecaso, string motivopago, string nombremotivo, string cif, string nombreaso, string nombrecheque)
+        public void guardarfacturaabogado(string id, string numcredito, string usuario, string numfactura, string numserie, string descripcion, string importetotal, string fechaemision, string importecaso, string motivopago, string nombremotivo, string cif, string nombreaso, string nombrecheque, string observaciones, string estado)
         {
             using(MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 sqlCon.Open();
-                string query = "INSERT INTO pj_facturacionabogado VALUES ('"+id+"', '"+numcredito+"', '"+usuario+"', '"+numfactura+"', '"+numserie+"', '"+descripcion+"', '"+importetotal+"', '"+fechaemision+"', '"+importecaso+"', '"+motivopago+"', '"+nombremotivo+"', '"+cif+"', '"+nombreaso+"', '"+nombrecheque+"')";
+                string query = "INSERT INTO pj_facturacionabogado VALUES ('"+id+"', '"+numcredito+"', '"+usuario+"', '"+numfactura+"', '"+numserie+"', '"+descripcion+"', '"+importetotal+"', '"+fechaemision+"', '"+importecaso+"', '"+motivopago+"', '"+nombremotivo+"', '"+cif+"', '"+nombreaso+"', '"+nombrecheque+"', '"+observaciones+"', '"+estado+"')";
                 MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
                 MySqlDataReader reader = myCommand.ExecuteReader();
             }
@@ -1387,7 +1387,7 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public DataTable solicitudcheque(string credito)
+        public DataTable solicitudcheque(string serie)
         {
             DataTable dt = new DataTable();
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
@@ -1396,7 +1396,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT DISTINCT A.pj_cif AS CIF, A.pj_nombreasociado AS Nombre, A.pj_numcredito AS Credito, C.pj_numproceso AS Juicio, CONCAT('Juzgado', B.pj_numjuzgado, ' ' , B.pj_nombrejuzgado) AS Juzgado, CONCAT('SERIE ', A.pj_numserie, ' No. ', A.pj_numfactura) AS Factura, CONCAT('Q ', A.pj_importecaso) AS Importe FROM pj_facturacionabogado AS A INNER JOIN pj_presentaciondemanda AS B ON B.pj_numcredito = A.pj_numcredito INNER JOIN pj_presentaciondemanda AS C ON C.pj_numcredito = A.pj_numcredito INNER JOIN pj_etapa_credito AS D ON D.idpj_credito = A.pj_numcredito WHERE A.pj_numcredito = '" + credito+"' AND D.idpj_etapa = 5 AND D.pj_status IN('Enviado','Reingreso'); ";
+                    string query = "SELECT DISTINCT A.pj_cif AS CIF, A.pj_nombreasociado AS Nombre, A.pj_numcredito AS Credito, B.pj_numproceso AS Juicio, CONCAT('Juzgado', B.pj_numjuzgado, ' ' , B.pj_nombrejuzgado) AS Juzgado, CONCAT('SERIE ', A.pj_numserie, ' No. ', A.pj_numfactura) AS Factura, CONCAT('Q ', A.pj_importecaso) AS Importe FROM pj_facturacionabogado AS A INNER JOIN pj_presentaciondemanda AS B ON B.pj_numcredito = A.pj_numcredito INNER JOIN pj_etapa_credito AS D ON D.idpj_credito = A.pj_numcredito WHERE A.pj_numserie = '"+serie+ "' AND A.pj_estado = 'Pendiente' AND D.idpj_etapa = 5 AND D.pj_status = 'Espera'";
                     MySqlCommand command = new MySqlCommand(query, sqlCon);
                     MySqlDataAdapter ds = new MySqlDataAdapter();
                     ds.SelectCommand = command;
@@ -1533,14 +1533,14 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public void insertarreporteabogado(string id, string usuario, string fecha, string tipodoc, string ruta, string nombrearchivo)
+        public void insertarreporteabogado(string id, string usuario, string fecha, string tipodoc, string ruta, string nombrearchivo, string observaciones)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
                     sqlCon.Open();
-                    string query = "INSERT INTO pj_reporteabogado VALUES ('"+id+"', '"+usuario+"', '"+fecha+"', '"+tipodoc+"', '"+ruta+"', '"+nombrearchivo+"')";
+                    string query = "INSERT INTO pj_reporteabogado VALUES ('"+id+"', '"+usuario+"', '"+fecha+"', '"+tipodoc+"', '"+ruta+"', '"+nombrearchivo+"', '"+observaciones+"')";
                     MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = myCommand.ExecuteReader();
                 }
@@ -1621,14 +1621,14 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public void insertarrequerimientopago(string id, string numcredito, string usuario, string observaciones, string registrocont)
+        public void insertarrequerimientopago(string id, string numcredito, string usuario, string observaciones, string registrocont, string observacionescredito, string concepto)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
                     sqlCon.Open();
-                    string query = "INSERT INTO pj_requerimientopago VALUES ('"+id+"', '"+numcredito+"', '"+usuario+"', '"+observaciones+"', '"+registrocont+"')";
+                    string query = "INSERT INTO pj_requerimientopago VALUES ('"+id+"', '"+numcredito+"', '"+usuario+"', '"+observaciones+"', '"+registrocont+"', '"+observacionescredito+"', '"+concepto+"')";
                     MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = myCommand.ExecuteReader();
                 }
@@ -1658,14 +1658,14 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public void insertarsolicitudcheque(string id, string numcredito, string usuario, string numcheque, string fechaemision, string banco)
+        public void insertarsolicitudcheque(string id, string numcredito, string usuario, string numcheque, string fechaemision, string banco, string observaciones, string monto)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 try
                 {
                     sqlCon.Open();
-                    string query = "INSERT INTO pj_solicitudcheque VALUES('" + id+"', '"+numcredito+"', '"+usuario+"', '"+numcheque+"', '"+fechaemision+"', '"+banco+"')";
+                    string query = "INSERT INTO pj_solicitudcheque VALUES('" + id+"', '"+numcredito+"', '"+usuario+"', '"+numcheque+"', '"+fechaemision+"', '"+banco+"', '"+observaciones+"', '"+monto+"')";
                     MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
                     MySqlDataReader reader = myCommand.ExecuteReader();
                 }
@@ -1897,6 +1897,188 @@ namespace KB_Guadalupana.Controllers
                 {
 
                 }
+            }
+        }
+
+        public DataSet consultarComentarios(string credito)
+        {
+            DataSet ds1 = new DataSet();
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+
+                try
+                {
+                    //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT pj_comentario AS Comentario FROM pj_bitacora WHERE pj_estado = 'Enviado' AND pj_numcredito = '" + credito + "'", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
+
+            }
+
+
+
+        }
+
+        public string numproceso(string credito)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string camporesultante = "";
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT DISTINCT pj_numproceso FROM pj_presentaciondemanda WHERE pj_numcredito = '" + credito + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return camporesultante;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public void cambiarestadoFactura(string credito)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE pj_facturacionabogado SET pj_estado = 'Pendiente' WHERE pj_numcredito= '" + credito + "'";
+                    MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = myCommand.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public string numserie(string credito)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string camporesultante = "";
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT DISTINCT pj_numserie FROM pj_facturacionabogado WHERE pj_numcredito = '" + credito + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return camporesultante;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string pendientesolicitud(string serie)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string camporesultante = "";
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT DISTINCT pj_numserie FROM pj_facturacionabogado WHERE pj_estado = 'Iniciado' AND pj_numserie = '" + serie+"'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return camporesultante;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public DataTable cambioestadofactura(string serie)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT DISTINCT A.pj_cif AS CIF, A.pj_nombreasociado AS Nombre, A.pj_numcredito AS Credito, C.pj_numproceso AS Juicio, CONCAT('Juzgado', B.pj_numjuzgado, ' ' , B.pj_nombrejuzgado) AS Juzgado, CONCAT('SERIE ', A.pj_numserie, ' No. ', A.pj_numfactura) AS Factura, CONCAT('Q ', A.pj_importecaso) AS Importe FROM pj_facturacionabogado AS A INNER JOIN pj_presentaciondemanda AS B ON B.pj_numcredito = A.pj_numcredito INNER JOIN pj_presentaciondemanda AS C ON C.pj_numcredito = A.pj_numcredito INNER JOIN pj_etapa_credito AS D ON D.idpj_credito = A.pj_numcredito WHERE A.pj_numserie = '" + serie + "' AND A.pj_estado = 'Pendiente' AND D.idpj_etapa = 5";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
+            }
+        }
+
+        public void cambiarestadocredito(string credito, string etapa)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE pj_etapa_credito SET pj_status = 'Espera' WHERE idpj_credito= '" + credito + "' AND idpj_etapa = '" + etapa + "'";
+                    MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = myCommand.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public void cambiarestadorechazado(string credito, string etapa)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE pj_etapa_credito SET pj_status = 'Rechazado' WHERE idpj_credito= '" + credito + "' AND idpj_etapa = '" + etapa + "'";
+                    MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = myCommand.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public DataTable solicitudcheque2(string serie)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT DISTINCT A.pj_cif AS CIF, A.pj_nombreasociado AS Nombre, A.pj_numcredito AS Credito, B.pj_numproceso AS Juicio, CONCAT('Juzgado', B.pj_numjuzgado, ' ' , B.pj_nombrejuzgado) AS Juzgado, CONCAT('SERIE ', A.pj_numserie, ' No. ', A.pj_numfactura) AS Factura, CONCAT('Q ', A.pj_importecaso) AS Importe, B.pj_numincidente AS Incidente FROM pj_facturacionabogado AS A INNER JOIN pj_presentaciondemanda AS B ON B.pj_numcredito = A.pj_numcredito INNER JOIN pj_etapa_credito AS D ON D.idpj_credito = A.pj_numcredito WHERE A.pj_numserie = '" + serie + "' AND A.pj_estado = 'Pendiente' AND D.idpj_etapa = 5 AND D.pj_status = 'Espera'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(dt);
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+
+                return dt;
             }
         }
     }

@@ -8433,3 +8433,16 @@ C:\Users\pggteo\Desktop\Documentos\repositorio\Sistema Integrado 20-05-2021\Kb-G
 C:\Users\pggteo\Desktop\Documentos\repositorio\Sistema Integrado 20-05-2021\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.csproj.CopyComplete
 C:\Users\pggteo\Desktop\Documentos\repositorio\Sistema Integrado 20-05-2021\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.dll
 C:\Users\pggteo\Desktop\Documentos\repositorio\Sistema Integrado 20-05-2021\Kb-Guadalupana\KB_Guadalupana\obj\Debug\KB_Guadalupana.pdb
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.Owin.dll
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.Owin.Security.dll
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Owin.dll
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.Owin.xml
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\Microsoft.Owin.Security.xml
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\es\Microsoft.AspNet.SignalR.Core.resources.dll
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\es\Microsoft.AspNet.SignalR.SystemWeb.resources.dll
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\es\Microsoft.Owin.resources.dll
+C:\Users\pgaortiz\Documents\Rama-Aida\Kb-Guadalupana\KB_Guadalupana\bin\es\Microsoft.Owin.Security.resources.dll

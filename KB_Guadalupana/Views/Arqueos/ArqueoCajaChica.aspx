@@ -453,7 +453,7 @@
                      <label style="width:20%; font-size:12px; display:flex; justify-content:flex-start; margin-left:13%"><b>Puesto</b></label>
                 </div>
                  <div style="flex-direction:row; display:flex; width:60%">
-                     <input id="CCNombre" runat="server" onkeypress="return sololetras(event);" maxlength="50"  type="text" placeholder="Nombre" class="etiquetas"  onchange="agregar(this.value);" required/>
+                     <input id="CCNombre" runat="server" onkeypress="return sololetras(event);" type="text" placeholder="Nombre" class="etiquetas" onchange="agregar(this.value);" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                      <input id="CCOperador" runat="server" maxlength="11" type="text" placeholder="Operador" class="etiquetas" required/>
                      <input id="CCPuestooperador" runat="server" onkeypress="return sololetras(event);" maxlength="50" type="text" placeholder="Puesto" class="etiquetas" onchange="agregar2(this.value);" required/>
                  </div>
@@ -717,7 +717,7 @@
 
 <br /><br />
             <div class="datosGenerales2">
-                <input id="CCCOmentario" runat="server" type="text" placeholder="Comentario" class="etiquetas"/>
+                <input id="CCCOmentario" runat="server" type="text" placeholder="Comentario" class="etiquetas" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
             </div><br />
 
              <div class="solid" style="margin-top: 5px;"></div><br /><br /><br />

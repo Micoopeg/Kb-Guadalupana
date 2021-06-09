@@ -7,7 +7,7 @@
         <Value>Logo</Value>
         <Sizing>FitProportional</Sizing>
         <Top>1.02271cm</Top>
-        <Left>0.99014cm</Left>
+        <Left>0.67295cm</Left>
         <Height>1.16486cm</Height>
         <Width>6.76861cm</Width>
         <Style>
@@ -32,7 +32,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
         <Top>1.02271cm</Top>
-        <Left>13.36823cm</Left>
+        <Left>11.78073cm</Left>
         <Height>0.6cm</Height>
         <Width>1.52104cm</Width>
         <ZIndex>1</ZIndex>
@@ -67,7 +67,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
         <Top>3.13077cm</Top>
-        <Left>6.44496cm</Left>
+        <Left>4.85746cm</Left>
         <Height>0.68819cm</Height>
         <Width>8.62952cm</Width>
         <ZIndex>2</ZIndex>
@@ -97,7 +97,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>5.62667cm</Top>
-        <Left>3.45753cm</Left>
+        <Left>1.87003cm</Left>
         <Height>1.11153cm</Height>
         <Width>14.60438cm</Width>
         <ZIndex>3</ZIndex>
@@ -127,7 +127,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
         <Top>11.20056cm</Top>
-        <Left>4.94156cm</Left>
+        <Left>3.35406cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>4</ZIndex>
@@ -157,7 +157,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
         <Top>12.36473cm</Top>
-        <Left>4.94156cm</Left>
+        <Left>3.35406cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>5</ZIndex>
@@ -187,7 +187,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox29</rd:DefaultName>
         <Top>14.37556cm</Top>
-        <Left>4.94156cm</Left>
+        <Left>3.35406cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>6</ZIndex>
@@ -217,7 +217,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
         <Top>14.37556cm</Top>
-        <Left>8.48698cm</Left>
+        <Left>6.89948cm</Left>
         <Height>0.6cm</Height>
         <Width>6.46812cm</Width>
         <ZIndex>7</ZIndex>
@@ -247,7 +247,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
         <Top>12.36473cm</Top>
-        <Left>8.48698cm</Left>
+        <Left>6.89948cm</Left>
         <Height>0.6cm</Height>
         <Width>6.46812cm</Width>
         <ZIndex>8</ZIndex>
@@ -277,7 +277,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
         <Top>11.20056cm</Top>
-        <Left>8.48698cm</Left>
+        <Left>6.89948cm</Left>
         <Height>0.6cm</Height>
         <Width>6.46812cm</Width>
         <ZIndex>9</ZIndex>
@@ -307,7 +307,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
         <Top>13.40701cm</Top>
-        <Left>4.94156cm</Left>
+        <Left>3.35406cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>10</ZIndex>
@@ -337,7 +337,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
         <Top>13.40701cm</Top>
-        <Left>8.48698cm</Left>
+        <Left>6.89948cm</Left>
         <Height>0.6cm</Height>
         <Width>6.46812cm</Width>
         <ZIndex>11</ZIndex>
@@ -533,7 +533,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_nombre</rd:DefaultName>
@@ -563,7 +565,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_cif</rd:DefaultName>
@@ -593,7 +597,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_numcredito</rd:DefaultName>
@@ -623,7 +629,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_fechaasignacion</rd:DefaultName>
@@ -664,7 +672,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSetAbogado1</DataSetName>
         <Top>8.15481cm</Top>
-        <Left>2.2987cm</Left>
+        <Left>0.7112cm</Left>
         <Height>1.2cm</Height>
         <Width>16.54989cm</Width>
         <ZIndex>12</ZIndex>
@@ -735,7 +743,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSetNombreAbogado</DataSetName>
         <Top>4.25028cm</Top>
-        <Left>7.62092cm</Left>
+        <Left>6.03342cm</Left>
         <Height>0.6cm</Height>
         <Width>6.13361cm</Width>
         <ZIndex>13</ZIndex>
@@ -804,7 +812,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSetFecha</DataSetName>
         <Top>1.02271cm</Top>
-        <Left>15.24564cm</Left>
+        <Left>13.65814cm</Left>
         <Height>0.6cm</Height>
         <Width>3.20555cm</Width>
         <ZIndex>14</ZIndex>
@@ -816,9 +824,15 @@
       </Tablix>
     </ReportItems>
     <Height>6.27089in</Height>
-    <Style />
+    <Style>
+      <Border>
+        <Style>None</Style>
+        <Width>0.25pt</Width>
+      </Border>
+      <BackgroundColor>White</BackgroundColor>
+    </Style>
   </Body>
-  <Width>8.25359in</Width>
+  <Width>7.6772in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

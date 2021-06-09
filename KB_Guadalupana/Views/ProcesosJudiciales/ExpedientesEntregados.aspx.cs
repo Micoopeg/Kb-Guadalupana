@@ -21,6 +21,59 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         string[] nombre;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string nombreusuario = Session["Nombre"] as string;
+            NombreUsuario.InnerHtml = nombreusuario;
+            string usuario = Session["sesion_usuario"] as string;
+            string idusuario = sn.obteneridusuario(usuario);
+
+            string area = sn.area(idusuario);
+            string rol = sn.rolusuario(idusuario);
+
+            //if (rol == "1")
+            //{
+            //    if (area == "26")
+            //    {
+            //        MenuCobros.Visible = true;
+            //        Cobros.Visible = true;
+            //        MenuConta.Visible = false;
+            //        MenuJuridico.Visible = false;
+            //        MenuAbogado.Visible = false;
+            //        MenuAsistente.Visible = false;
+            //    }
+            //    else if (area == "28")
+            //    {
+            //        MenuCobros.Visible = false;
+            //        MenuConta.Visible = true;
+            //        Certificacion.Visible = true;
+            //        Solicitud.Visible = false;
+            //        MenuJuridico.Visible = false;
+            //        MenuAbogado.Visible = false;
+            //        MenuAsistente.Visible = false;
+            //    }
+            //    else if (area == "34")
+            //    {
+            //        MenuCobros.Visible = false;
+            //        MenuConta.Visible = false;
+            //        MenuJuridico.Visible = true;
+            //        Expedientes.Visible = true;
+            //        Reporte.Visible = false;
+            //        MenuAbogado.Visible = false;
+            //        MenuAsistente.Visible = false;
+            //    }
+            //}
+            //else
+            //{
+            //    MenuCobros.Visible = true;
+            //    Cobros.Visible = true;
+            //    MenuConta.Visible = true;
+            //    Certificacion.Visible = true;
+            //    MenuJuridico.Visible = true;
+            //    Expedientes.Visible = true;
+            //    Solicitud.Visible = false;
+            //    MenuAbogado.Visible = false;
+            //    MenuAsistente.Visible = false;
+            //    Reporte.Visible = false;
+            //}
             if (!IsPostBack)
             {
                 AreaReporte.Visible = false;
@@ -259,7 +312,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     Session["tabla"] = "Fecha";
                     ReporteAbogados.Reset();
-                    ReportDataSource fuente = new ReportDataSource("DataSetAbogadoSoloFecha", obtenerdatosFecha());
+                    ReportDataSource fuente = new ReportDataSource("DataSetAbgadoSoloFecha", obtenerdatosFecha());
                     ReportDataSource fuente2 = new ReportDataSource("DataSetFecha", fechaactual());
 
                     ReporteAbogados.LocalReport.DataSources.Add(fuente);
@@ -387,11 +440,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             dt = sn.actualizarcreditosreporte();
          
 
-            if (Abogados.SelectedValue == "0" && Fecha.Value == "")
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe generar reporte antes');", true);
-            }
-            else if(FechaEntrega.Value == "")
+           if(FechaEntrega.Value == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los datos');", true);
             }
@@ -417,7 +466,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         string usuario = Session["sesion_usuario"] as string;
                         string idusuario = sn.obteneridusuario(usuario);
                         string sig3 = sn.siguiente("pj_reporteabogado", "idpj_reporteabogado");
-                        sn.insertarreporteabogado(sig3, idusuario, FechaEntrega.Value, PTipoDocumento.SelectedValue, documento, nombredoc);
+                        sn.insertarreporteabogado(sig3, idusuario, FechaEntrega.Value, PTipoDocumento.SelectedValue, documento, nombredoc, ObservacionesCredito.Value);
 
                         string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
 
@@ -425,16 +474,59 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         string numeroc = "";
                         string nombrec = "";
 
+                        string[] fechayhora = sn.fechayhora();
+                        string[] fecha2 = fechayhora[0].Split(' ');
+                        string año = fecha2[0];
+                        string mes = fecha2[1];
+                        string dia = fecha2[2];
+
+                        string hora = fechayhora[1];
+                        string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
+
                         string credito2;
                         string nombre2;
                         string incidente;
+                        string fecha;
+                        string fechacreacion2;
 
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
                             credito2 = dt.Rows[i]["Credito"].ToString();
                             nombre2 = dt.Rows[i]["Nombre"].ToString();
                             incidente = dt.Rows[i]["Incidente"].ToString();
+
+                            string[] campos2 = sn.obtenertipocredito(credito2);
+                            string idcredito = campos2[0];
+                            if (idcredito == null)
+                            {
+                                fecha = sn.fechacreaciontarjeta(credito2);
+                                string[] fechaseparada = fecha.Split(' ');
+                                string[] fechacreacion = fechaseparada[0].Split('/');
+                                string diacreacion = fechacreacion[0];
+                                string mescreacion = fechacreacion[1];
+                                string añocreacion = fechacreacion[2];
+
+                                string horacreacion = fechaseparada[1];
+
+                                fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+                            }
+                            else
+                            {
+                                fecha = sn.fechacreacioncredito(credito2);
+                                string[] fechaseparada = fecha.Split(' ');
+                                string[] fechacreacion = fechaseparada[0].Split('/');
+                                string diacreacion = fechacreacion[0];
+                                string mescreacion = fechacreacion[1];
+                                string añocreacion = fechacreacion[2];
+
+                                string horacreacion = fechaseparada[1];
+
+                                fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+                            }
+
                             sn.actualizaretapareporte(credito2, "4");
+                            string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                            sn.insertarbitacora(sig5, incidente, credito2, nombre2, "Enviado", "34", "51", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
                         }
 
                         String script = "alert('Se guardó exitosamente'); window.location.href= 'MenuPrincipalProcesos.aspx';";

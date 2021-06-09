@@ -26,9 +26,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             if (!IsPostBack)
             {
                 llenarcomentarios();
-                Comentario1.Visible = false;
-                Comentario2.Visible = false;
-                Comentario3.Visible = false;
                 credito.Visible = false;
                 tarjeta.Visible = false;
                 Guardar.Visible = false;
@@ -334,7 +331,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 PdfContentByte cb1 = writer.DirectContent;
                 BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_BOLDITALIC, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                 doc.AddAuthor("Certificacion");
-                doc.AddTitle("Caratulas");
+                doc.AddTitle("Certificacion");
                 doc.Open();
 
                 //iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgecasasola/Desktop/Repos control de Expedientes/Kb-Guadalupana/KB_Guadalupana/Views/Imagenes/F1.png"));
@@ -866,33 +863,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         public void llenarcomentarios()
         {
+            DataSet comentarios = new DataSet();
             string numcredito = Session["credito"] as string;
-            string[] comentarios = sn.traerComentarios(numcredito);
-
-            for(int i=0; i<comentarios.Length; i++)
-            {
-                if(comentarios.Length == 1)
-                {
-                    Comentario1.Visible = true;
-                    Comentario1.Value = comentarios[0];
-                }
-                else if(comentarios.Length == 2)
-                {
-                    Comentario1.Value = comentarios[0];
-                    Comentario2.Value = comentarios[1];
-                    Comentario1.Visible = true;
-                    Comentario2.Visible = true;
-                }
-                else
-                {
-                    Comentario1.Value = comentarios[0];
-                    Comentario2.Value = comentarios[1];
-                    Comentario3.Value = comentarios[2];
-                    Comentario1.Visible = true;
-                    Comentario2.Visible = true;
-                    Comentario3.Visible = true;
-                }
-            }
+            comentarios = sn.consultarComentarios(numcredito);
+            Repeater1.DataSource = comentarios;
+            Repeater1.DataBind();
+            
         }
     }
 }

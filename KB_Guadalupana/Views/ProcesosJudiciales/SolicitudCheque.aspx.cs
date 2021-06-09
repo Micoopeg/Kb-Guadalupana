@@ -24,6 +24,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenarformulario();
                 llenarcombodocumento();
                 llenarcombobanco();
+                llenarcomentarios();
             }
         }
 
@@ -196,7 +197,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string idusuario = sn.obteneridusuario(usuario);
 
                 string sig = sn.siguiente("pj_solicitudcheque", "idpj_solicitudcheque");
-                sn.insertarsolicitudcheque(sig, numcredito, idusuario, NumCheque.Value, FechaEmision.Value, Banco.SelectedValue);
+                sn.insertarsolicitudcheque(sig, numcredito, idusuario, NumCheque.Value, FechaEmision.Value, Banco.SelectedValue, ObservacionesCredito.Value, Monto.Value);
 
                
 
@@ -264,10 +265,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 }
 
                 string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig5, numindicende, numcredito, nombrecliente2, "Recibido", "34", "28", fechahoraactual, fechacreacion2, "Recibido");
+                sn.insertarbitacora(sig5, numindicende, numcredito, nombrecliente2, "Recibido", "34", "28", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
 
                 string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig4, numindicende, numcredito, nombrecliente2, "Enviado", "34", "28", fechahoraactual, fechacreacion2, "Solicitud de cheque");
+                sn.insertarbitacora(sig4, numindicende, numcredito, nombrecliente2, "Enviado", "34", "28", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
 
                 sn.cambiarestado(numcredito, "6");
 
@@ -323,6 +324,16 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     NumeroIncidente.Value = campos2[0];
                 }
             }
+        }
+
+        public void llenarcomentarios()
+        {
+            DataSet comentarios = new DataSet();
+            string numcredito = Session["credito"] as string;
+            comentarios = sn.consultarComentarios(numcredito);
+            Repeater1.DataSource = comentarios;
+            Repeater1.DataBind();
+
         }
     }
 }

@@ -27,8 +27,27 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             if (!IsPostBack)
             {
                 string numcredito = Session["credito"] as string;
+                string serie = sn.numserie(numcredito);
+                //if (sn.pendientesolicitud(serie) == "")
+                //{
+                //    llenarcomentarios();
+                //    llenarformulario();
+                //    Guardar.Visible = false;
+                //    Generar.Visible = false;
+                //    voucher.Visible = true;
+                //    GuardarVoucher.Visible = true;
+                //    Actualizar.Visible = false;
+                //    pfd.Visible = true;
+                //    llenargridviewdocumentos();
+                //    llenarinputs();
+                //    llenarcombomotivo();
+                //    datosfactura();
+                //    llenarcombodocumento();
+                //    Validar.Visible = true;
+                //}
                 if (sn.etapavoucher(numcredito) == "")
                 {
+                    llenarcomentarios();
                     llenarformulario();
                     llenargridviewdocumentos();
                     llenarinputs();
@@ -38,9 +57,16 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Otro.Visible = false;
                     voucher.Visible = false;
                     GuardarVoucher.Visible = false;
+                    Validar.Visible = true;
+                    pfd.Visible = false;
+                    Generar.Visible = false;
+                    TituloObservaciones.Visible = false;
+                    ObservacionesCredito.Visible = false;
+                    Guardar.Visible = false;
                 }
                 else
                 {
+                    llenarcomentarios();
                     llenarformulario();
                     Guardar.Visible = false;
                     Generar.Visible = false;
@@ -53,6 +79,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     llenarcombomotivo();
                     datosfactura();
                     llenarcombodocumento();
+                    Validar.Visible = false;
+                    ObservacionesCredito.Visible = false;
+                    TituloObservaciones.Visible = false;
                 }
             
             }
@@ -104,12 +133,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         protected void Generar_Click(object sender, EventArgs e)
         {
-            if(Observaciones.Value == "" || RegistroContable.Value == "")
+            if(Observaciones.Value == "" || RegistroContable.Value == "" || Concepto.Value == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", "Debe llenar todos los campos", true);
             }
             else
             {
+                llenarfirmas();
                 GenerarPDF();
             }
            
@@ -126,8 +156,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 doc.NewPage();
                 PdfContentByte cb1 = writer.DirectContent;
                 BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_BOLDITALIC, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                doc.AddAuthor("Certificacion");
-                doc.AddTitle("Caratulas");
+                doc.AddAuthor("Solicitud");
+                doc.AddTitle("Solicitud");
                 doc.Open();
 
                 iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Path.Combine("C:/Users/pgaortiz/Documents/Rama-Aida/Kb-Guadalupana/KB_Guadalupana/Imagenes/Imagenes_procesos/encabezado_cheque.jpg"));
@@ -182,7 +212,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 tbl1.AddCell(new PdfPCell(new Phrase("Q " + ImporteTotal2.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_LEFT });
                 doc.Add(new Phrase(" "));
                 tbl1.AddCell(new PdfPCell(new Phrase("Concepto de: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                tbl1.AddCell(new PdfPCell(new Phrase("Pago por gastos y honorarios profesionales por elaboración y presentación de 6 desistimientos promovidos por Cooperativa de Ahorro y Crédito Integral Parroquial Guadalupana, R.L. bajo los oficios de " + NombreCheque.Value + " en contra de los asociados responsables del impago de sus obligaciones creditícias, según cuadro adjunto", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
+                tbl1.AddCell(new PdfPCell(new Phrase(Concepto.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
                 doc.Add(new Phrase(" "));
                 tbl1.AddCell(new PdfPCell(new Phrase("Observaciones: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
                 tbl1.AddCell(new PdfPCell(new Phrase(Observaciones.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
@@ -211,7 +241,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 dt1.Columns.Add("Factura");
                 dt1.Columns.Add("Importe");
 
-                dt1 = sn.solicitudcheque(NumCredito.Value);
+                dt1 = sn.solicitudcheque(Serie.Value);
 
                 PdfPTable table = new PdfPTable(dt1.Columns.Count);
                 var tbl2 = new PdfPTable(dt1.Columns.Count) { WidthPercentage = 100 };
@@ -265,29 +295,33 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 doc.Add(def7);
 
                 var tbl3 = new PdfPTable(new float[] { 50f, 50f }) { WidthPercentage = 100 };
-                tbl3.AddCell(new PdfPCell(new Phrase("___________________________________", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
-                tbl3.AddCell(new PdfPCell(new Phrase("___________________________________", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl3.AddCell(new PdfPCell(new Phrase(Linea1.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl3.AddCell(new PdfPCell(new Phrase(Linea2.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
                 doc.Add(new Phrase(" "));
-                tbl3.AddCell(new PdfPCell(new Phrase("Solicitado por: Lhea Sandoval", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
-                tbl3.AddCell(new PdfPCell(new Phrase("Vo.Bo.: Daniel Fuentes", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl3.AddCell(new PdfPCell(new Phrase(NombreFirma1.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl3.AddCell(new PdfPCell(new Phrase(NombreFirma2.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
                 doc.Add(new Phrase(" "));
-                tbl3.AddCell(new PdfPCell(new Phrase("Jefe Jurídico", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
-                tbl3.AddCell(new PdfPCell(new Phrase("Gerente Jurídico", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl3.AddCell(new PdfPCell(new Phrase(PuestoFirma1.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl3.AddCell(new PdfPCell(new Phrase(PuestoFirma2.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
                 doc.Add(tbl3);
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
+                doc.Add(new Phrase(" "));
                 doc.Add(new Phrase(" "));
                 doc.Add(new Phrase(" "));
                 doc.Add(new Phrase(" "));
 
                 var tbl4 = new PdfPTable(new float[] { 50f, 50f }) { WidthPercentage = 100 };
-                tbl4.AddCell(new PdfPCell(new Phrase("___________________________________", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
-                tbl4.AddCell(new PdfPCell(new Phrase(" ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl4.AddCell(new PdfPCell(new Phrase(Linea3.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl4.AddCell(new PdfPCell(new Phrase(Linea4.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
                 doc.Add(new Phrase(" "));
                 doc.Add(new Phrase(" "));
-                tbl4.AddCell(new PdfPCell(new Phrase("Autorizado por: Danilo Morales", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
-                tbl4.AddCell(new PdfPCell(new Phrase(" ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl4.AddCell(new PdfPCell(new Phrase(NombreFirma3.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl4.AddCell(new PdfPCell(new Phrase(NombreFirma4.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
                 doc.Add(new Phrase(" "));
-                tbl4.AddCell(new PdfPCell(new Phrase("Gerente Financiero", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
-                tbl4.AddCell(new PdfPCell(new Phrase(" ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl4.AddCell(new PdfPCell(new Phrase(PuestoFirma3.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
+                tbl4.AddCell(new PdfPCell(new Phrase(PuestoFirma4.Value, new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_CENTER });
                 doc.Add(new Phrase(" "));
                 doc.Add(tbl4);
 
@@ -469,63 +503,68 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string idusuario = sn.obteneridusuario(usuario);
 
                 string sig = sn.siguiente("pj_requerimientopago", "idpj_requerimientopago");
-                sn.insertarrequerimientopago(sig, numcredito, idusuario, Observaciones.Value, RegistroContable.Value);
+                sn.insertarrequerimientopago(sig, numcredito, idusuario, Observaciones.Value, RegistroContable.Value, ObservacionesCredito.Value, Concepto.Value);
 
-                sn.cambiarestado(numcredito, "5");
+                DataTable dt1 = new DataTable();
+                dt1 = sn.solicitudcheque2(Serie.Value);
 
-                string[] campos2 = sn.obtenertipocredito(numcredito);
-                string idcredito = campos2[0];
-                string fecha = "";
-                string numindicende = "";
-                string nombrecliente = "";
+                string credito2;
+                string nombre2;
+                string incidente;
 
-                if (idcredito == null)
+                for (int i = 0; i < dt1.Rows.Count; i++)
                 {
-                    string[] campos3 = sn.obtenertipotarjeta(numcredito);
-                    for (int i = 0; i < campos3.Length; i++)
+                    credito2 = dt1.Rows[i]["Credito"].ToString();
+                    nombre2 = dt1.Rows[i]["Nombre"].ToString();
+                    incidente = dt1.Rows[i]["Incidente"].ToString();
+
+
+                    string[] campos2 = sn.obtenertipocredito(credito2);
+                    string idcredito = campos2[0];
+                    string fecha = "";
+                    string numindicende = "";
+                    string nombrecliente = "";
+
+                    if (idcredito == null)
                     {
-                        numindicende = campos3[0];
+                        fecha = sn.fechacreaciontarjeta(credito2);
                     }
-                    fecha = sn.fechacreaciontarjeta(numcredito);
-                }
-                else
-                {
-                    for (int i = 0; i < campos2.Length; i++)
+                    else
                     {
-                        numindicende = campos2[0];
+                        fecha = sn.fechacreacioncredito(credito2);
                     }
-                    fecha = sn.fechacreacioncredito(numcredito);
+
+                    string[] fechaseparada = fecha.Split(' ');
+                    string[] fechacreacion = fechaseparada[0].Split('/');
+                    string diacreacion = fechacreacion[0];
+                    string mescreacion = fechacreacion[1];
+                    string añocreacion = fechacreacion[2];
+
+                    string horacreacion = fechaseparada[1];
+
+                    string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+
+
+                    string[] fechayhora = sn.fechayhora();
+                    string[] fecha2 = fechayhora[0].Split(' ');
+                    string año = fecha2[0];
+                    string mes = fecha2[1];
+                    string dia = fecha2[2];
+
+                    string hora = fechayhora[1];
+                    string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
+
+                    sn.cambiarestado(credito2, "5");
+
+                    string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                    sn.insertarbitacora(sig5, incidente, credito2, nombre2, "Recibido", "51", "34", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+
+                    string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                    sn.insertarbitacora(sig4, incidente, credito2, nombre2, "Enviado", "34", "28", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+
+                    string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                    sn.guardaretapa(sig2, "6", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2, incidente);
                 }
-
-                string[] fechaseparada = fecha.Split(' ');
-                string[] fechacreacion = fechaseparada[0].Split('/');
-                string diacreacion = fechacreacion[0];
-                string mescreacion = fechacreacion[1];
-                string añocreacion = fechacreacion[2];
-
-                string horacreacion = fechaseparada[1];
-
-                string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
-
-
-                string[] fechayhora = sn.fechayhora();
-                string[] fecha2 = fechayhora[0].Split(' ');
-                string año = fecha2[0];
-                string mes = fecha2[1];
-                string dia = fecha2[2];
-
-                string hora = fechayhora[1];
-                string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
-
-                string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig5, numindicende, numcredito, NombreCliente.Value, "Recibido", "51", "34", fechahoraactual, fechacreacion2, "Recibido");
-
-                string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig4, numindicende, numcredito, NombreCliente.Value, "Enviado", "34", "28", fechahoraactual, fechacreacion2, "Requerimiento de Pago");
-
-                string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
-                sn.guardaretapa(sig2, "6", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumeroIncidente.Value);
-
                 String script = "alert('Se ha guardado exitosamente'); window.location.href= 'PendienteRequerimientoPago.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
@@ -656,12 +695,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         {
                             string numcredito = Session["credito"] as string;
                             string siguiente = sn.siguiente("pj_documento", "idpj_documento");
-                            documento = "Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName;
+                            documento = "Subidos/Voucher/" + siguiente + '-' + FileUpload1.FileName;
                             string nombredoc = siguiente + '-' + FileUpload1.FileName;
                             sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
-                            FileUpload1.SaveAs(Server.MapPath("Subidos/DocumentosExpediente/" + siguiente + '-' + FileUpload1.FileName));
+                            FileUpload1.SaveAs(Server.MapPath("Subidos/Voucher/" + siguiente + '-' + FileUpload1.FileName));
                             ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
-                            llenargridviewdocumentos();
+                            llenargridviewdocumentos2();
                         }
                         else
                         {
@@ -672,6 +711,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
                     }
+                    GuardarVoucher.Focus();
                 }
              
             }
@@ -747,10 +787,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
 
                 string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig5, numindicende, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, "Recibido");
+                sn.insertarbitacora(sig5, numindicende, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, ObservacionesCredito2.Value);
 
                 string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig4, numindicende, numcredito, NombreCliente.Value, "Enviado", "34", "51", fechahoraactual, fechacreacion2, "Requerimiento de Pago (Voucher)");
+                sn.insertarbitacora(sig4, numindicende, numcredito, NombreCliente.Value, "Enviado", "34", "51", fechahoraactual, fechacreacion2, ObservacionesCredito2.Value);
 
                 string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
                 sn.guardaretapa(sig2, "8", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumeroIncidente.Value);
@@ -803,6 +843,100 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     NumeroIncidente.Value = campos2[0];
                 }
+            }
+
+            NumProceso.Value = sn.numproceso(numcredito);
+        }
+
+        public void llenarcomentarios()
+        {
+            DataSet comentarios = new DataSet();
+            string numcredito = Session["credito"] as string;
+            comentarios = sn.consultarComentarios(numcredito);
+            Repeater1.DataSource = comentarios;
+            Repeater1.DataBind();
+
+        }
+
+        protected void Validar_Click(object sender, EventArgs e)
+        {
+            string numcredito = Session["credito"] as string;
+            string serie = sn.numserie(numcredito);
+            sn.cambiarestadoFactura(numcredito);
+            sn.cambiarestadocredito(numcredito, "5");
+
+            if (sn.pendientesolicitud(serie) == "")
+            {
+                Guardar.Visible = true;
+                Generar.Visible = true;
+                voucher.Visible = false;
+                GuardarVoucher.Visible = false;
+                Actualizar.Visible = false;
+                pfd.Visible = true;
+                Validar.Visible = false;
+                ObservacionesCredito.Visible = true;
+                Concepto.Focus();
+            }
+            else
+            {
+                String script = "alert('Crédito Validado'); window.location.href= 'PendienteRequerimientoPago.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            }
+
+        }
+
+        public void llenarfirmas()
+        {
+            if (Nombre1.Checked)
+            {
+                NombreFirma1.Value = "Solicitado por: Lhea Sandoval";
+                PuestoFirma1.Value = "Jefe Jurídico";
+                Linea1.Value = "___________________________________";
+            }
+            else
+            {
+                NombreFirma1.Value = "";
+                PuestoFirma1.Value = "";
+                Linea1.Value = "";
+            }
+
+            if (Nombre2.Checked)
+            {
+                NombreFirma2.Value = "Vo.Bo.: Daniel Fuentes";
+                PuestoFirma2.Value = "Gerente Jurídico";
+                Linea2.Value = "___________________________________";
+            }
+            else
+            {
+                NombreFirma2.Value = "";
+                PuestoFirma2.Value = "";
+                Linea2.Value = "";
+            }
+
+            if (Nombre3.Checked)
+            {
+                NombreFirma3.Value = "Autorizado por: Danilo Morales";
+                PuestoFirma3.Value = "Gerente Financiero";
+                Linea3.Value = "___________________________________";
+            }
+            else
+            {
+                NombreFirma3.Value = "";
+                PuestoFirma3.Value = "";
+                Linea3.Value = "";
+            }
+
+            if (Nombre4.Checked)
+            {
+                NombreFirma4.Value = "Autorizado por: Juan Carlos Herrera";
+                PuestoFirma4.Value = "Subgerente General";
+                Linea4.Value = "___________________________________";
+            }
+            else
+            {
+                NombreFirma4.Value = "";
+                PuestoFirma4.Value = "";
+                Linea4.Value = "";
             }
         }
 

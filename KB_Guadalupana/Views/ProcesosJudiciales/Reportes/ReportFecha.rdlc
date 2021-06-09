@@ -7,7 +7,7 @@
         <Value>Logo</Value>
         <Sizing>FitProportional</Sizing>
         <Top>0.98743cm</Top>
-        <Left>1.34292cm</Left>
+        <Left>0.81847cm</Left>
         <Height>1.16486cm</Height>
         <Width>6.76861cm</Width>
         <Style>
@@ -32,7 +32,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
         <Top>0.98743cm</Top>
-        <Left>13.57108cm</Left>
+        <Left>12.93608cm</Left>
         <Height>0.6cm</Height>
         <Width>1.52104cm</Width>
         <ZIndex>1</ZIndex>
@@ -67,7 +67,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
         <Top>3.41299cm</Top>
-        <Left>6.33031cm</Left>
+        <Left>6.01281cm</Left>
         <Height>0.68819cm</Height>
         <Width>8.62952cm</Width>
         <ZIndex>2</ZIndex>
@@ -151,7 +151,7 @@
                             <TextRun>
                               <Value>CIF</Value>
                               <Style>
-                                <FontWeight>Normal</FontWeight>
+                                <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -298,7 +298,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_nombre</rd:DefaultName>
@@ -328,7 +330,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_cif</rd:DefaultName>
@@ -358,7 +362,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_numcredito</rd:DefaultName>
@@ -388,7 +394,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_fechaasignacion</rd:DefaultName>
@@ -418,7 +426,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>pj_nombreabogado</rd:DefaultName>
@@ -460,7 +470,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSetAbgadoSoloFecha</DataSetName>
         <Top>7.41398cm</Top>
-        <Left>0.81847cm</Left>
+        <Left>0.50097cm</Left>
         <Height>1.2cm</Height>
         <Width>18.85851cm</Width>
         <ZIndex>3</ZIndex>
@@ -486,7 +496,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>5.08868cm</Top>
-        <Left>3.235cm</Left>
+        <Left>2.9175cm</Left>
         <Height>1.11153cm</Height>
         <Width>14.60438cm</Width>
         <ZIndex>4</ZIndex>
@@ -516,7 +526,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
         <Top>10.54777cm</Top>
-        <Left>5.85817cm</Left>
+        <Left>5.54067cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>5</ZIndex>
@@ -546,7 +556,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
         <Top>11.71194cm</Top>
-        <Left>5.85817cm</Left>
+        <Left>5.54067cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>6</ZIndex>
@@ -576,7 +586,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox29</rd:DefaultName>
         <Top>13.72277cm</Top>
-        <Left>5.85817cm</Left>
+        <Left>5.54067cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>7</ZIndex>
@@ -606,7 +616,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
         <Top>13.72277cm</Top>
-        <Left>9.40359cm</Left>
+        <Left>9.08609cm</Left>
         <Height>0.6cm</Height>
         <Width>6.46812cm</Width>
         <ZIndex>8</ZIndex>
@@ -636,7 +646,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
         <Top>11.71194cm</Top>
-        <Left>9.40359cm</Left>
+        <Left>9.08609cm</Left>
         <Height>0.6cm</Height>
         <Width>6.46812cm</Width>
         <ZIndex>9</ZIndex>
@@ -666,7 +676,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
         <Top>10.54777cm</Top>
-        <Left>9.40359cm</Left>
+        <Left>9.08609cm</Left>
         <Height>0.6cm</Height>
         <Width>6.46812cm</Width>
         <ZIndex>10</ZIndex>
@@ -696,7 +706,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
         <Top>12.75422cm</Top>
-        <Left>5.85817cm</Left>
+        <Left>5.54067cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>11</ZIndex>
@@ -726,7 +736,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox48</rd:DefaultName>
         <Top>12.75422cm</Top>
-        <Left>9.40359cm</Left>
+        <Left>9.08609cm</Left>
         <Height>0.6cm</Height>
         <Width>6.46812cm</Width>
         <ZIndex>12</ZIndex>
@@ -799,7 +809,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSetFecha</DataSetName>
         <Top>0.98743cm</Top>
-        <Left>15.87171cm</Left>
+        <Left>15.23671cm</Left>
         <Height>0.6cm</Height>
         <Width>3.27611cm</Width>
         <ZIndex>13</ZIndex>
@@ -811,7 +821,12 @@
       </Tablix>
     </ReportItems>
     <Height>6.16667in</Height>
-    <Style />
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+      <BackgroundColor>White</BackgroundColor>
+    </Style>
   </Body>
   <Width>8.14248in</Width>
   <Page>

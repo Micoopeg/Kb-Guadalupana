@@ -22,9 +22,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             if (!IsPostBack)
             {
                 llenarcomentarios();
-                Comentario1.Visible = false;
-                Comentario2.Visible = false;
-                Comentario3.Visible = false;
                 llenarcombodocumento();
                 llenarformulario();
                 llenargridviewdocumentos();
@@ -39,6 +36,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenarcombodocumentofactura();
                 llenarcombomotivo();
                 Otro.Visible = false;
+                DemandaRechazada.Visible = false;
+                NombreCheque.Value = Session["Nombre"] as string;
             }
         }
 
@@ -306,7 +305,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string[] importetotal = ImporteTotal.Value.Split('.');
             string importetotal3 = "";
 
-            if (importetotal[0] == "")
+            if (importetotal.Length == 1)
             {
                 string[] importetotal2 = ImporteTotal.Value.Split(',');
                 for(int i =0; i<importetotal2.Length; i++)
@@ -321,16 +320,16 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     importetotal3 = importetotal3 + importetotal2[i];
                 }
-                importetotal3 = importetotal3 + importetotal[1];
+                importetotal3 = importetotal3 + '.' + importetotal[1];
             }
 
 
             string[] importecaso = ImporteCaso.Value.Split('.');
             string importecaso3 = "";
 
-            if (importecaso[0] == "")
+            if (importecaso.Length == 1)
             {
-                string[] importecaso2 = ImporteTotal.Value.Split(',');
+                string[] importecaso2 = ImporteCaso.Value.Split(',');
                 for (int i = 0; i < importecaso2.Length; i++)
                 {
                     importecaso3 = importecaso3 + importecaso2[i];
@@ -343,15 +342,21 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     importecaso3 = importecaso3 + importecaso2[i];
                 }
-                importecaso3 = importecaso3 + importecaso[1];
+                importecaso3 = importecaso3 + '.' + importecaso[1];
             }
 
             string memorial = sn.tipodocumentoMemorial(numcredito);
+            string factura = sn.tipodocumentoFactura(numcredito);
+
             if (memorial == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir el memorial');", true);
             }
-            else if (Convert.ToInt32(importecaso3) > Convert.ToInt32(importetotal3))
+            else if (factura == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir la factura');", true);
+            }
+            else if (Convert.ToDecimal(importecaso3) > Convert.ToDecimal(importetotal3))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El importe del caso debe ser menor o igual al importe total');", true);
             }
@@ -366,7 +371,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string sig3 = sn.siguiente("pj_presentaciondemanda", "idpj_presentaciondemanda");
                 sn.insertarpresentaciondemanda(sig3, NumIncidente.Value, NoProceso.Value, FechaPresentacion.Value, numcredito, Oficial.SelectedValue, Notificador.SelectedValue, NumJuzgado.Value, NombreJuzgado.Value, Departamento.SelectedValue, Municipio.SelectedValue, idusuario);
 
-                sn.cambiarestado(numcredito, "4");
 
                 if (MedidasPre1.Checked)
                 {
@@ -402,16 +406,20 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                 if (Resolucion.Checked)
                 {
+                    if (EstadoDemanda.SelectedValue != "2")
+                    {
+                        DemandaRechazada.Value = "Admitida";
+                    }
                     string sig7 = sn.siguiente("pj_resoluciontramite", "idpj_resoluciontramite");
-                    sn.insertarresolucion(sig7, numcredito, idusuario, EstadoDemanda.SelectedValue, FechaNotificacion.Value);
+                    sn.insertarresolucion(sig7, numcredito, idusuario, EstadoDemanda.SelectedValue, DemandaRechazada.Value, FechaNotificacion.Value);
 
-                    if(MotivoPago.SelectedValue != "9")
+                    if (MotivoPago.SelectedValue != "9")
                     {
                         Otro.Value = sn.motivopago(MotivoPago.SelectedValue);
                     }
 
                     string sig = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
-                    sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, Otro.Value, NumCif.Value, ClienteNombre.Value, NombreCheque.Value);
+                    sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, Otro.Value, NumCif.Value, ClienteNombre.Value, NombreCheque.Value, ObservacionesCredito.Value, "Iniciado");
 
                     if (Medidas1.Checked)
                     {
@@ -451,9 +459,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         Otro.Value = sn.motivopago(MotivoPago.SelectedValue);
                     }
                     string sig = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
-                    sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue,Otro.Value, NumCif.Value, ClienteNombre.Value, NombreCheque.Value);
+                    sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, Otro.Value, NumCif.Value, ClienteNombre.Value, NombreCheque.Value, ObservacionesCredito.Value, "Iniciado");
                 }
-               
+
                 string tipocredito = Session["TipoCredito"] as string;
                 string fecha;
 
@@ -487,11 +495,22 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
 
                 string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "34", "51", fechahoraactual, fechacreacion2, "Recibido");
+                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "34", "51", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
 
-                string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "34", fechahoraactual, fechacreacion2, "Presentación de demanda");
-                sn.guardaretapa(sig2, "5", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value, NumIncidente.Value);
+                if (EstadoDemanda.SelectedValue == "2")
+                {
+                    string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                    sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "51", "34", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+                    sn.cambiarestadorechazado(numcredito, "4");
+                }
+                else
+                {
+                    sn.cambiarestado(numcredito, "4");
+                    string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                    sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "34", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+                    sn.guardaretapa(sig2, "5", numcredito, sn.datetime(), "Enviado", idusuario, "51", NombreCliente.Value, NumIncidente.Value);
+                }
+
 
                 //if(DireccionCredito.SelectedValue == "1")
                 // {
@@ -866,32 +885,24 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         public void llenarcomentarios()
         {
+            DataSet comentarios = new DataSet();
             string numcredito = Session["credito"] as string;
-            string[] comentarios = sn.traerComentarios(numcredito);
+            comentarios = sn.consultarComentarios(numcredito);
+            Repeater1.DataSource = comentarios;
+            Repeater1.DataBind();
+        }
 
-            for (int i = 0; i < comentarios.Length; i++)
+        protected void EstadoDemanda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(EstadoDemanda.SelectedValue == "2")
             {
-                if (comentarios.Length == 1)
-                {
-                    Comentario1.Visible = true;
-                    Comentario1.Value = comentarios[0];
-                }
-                else if (comentarios.Length == 2)
-                {
-                    Comentario1.Value = comentarios[0];
-                    Comentario2.Value = comentarios[1];
-                    Comentario1.Visible = true;
-                    Comentario2.Visible = true;
-                }
-                else
-                {
-                    Comentario1.Value = comentarios[0];
-                    Comentario2.Value = comentarios[1];
-                    Comentario3.Value = comentarios[2];
-                    Comentario1.Visible = true;
-                    Comentario2.Visible = true;
-                    Comentario3.Visible = true;
-                }
+                DemandaRechazada.Visible = true;
+                OtraMedida.Focus();
+            }
+            else
+            {
+                DemandaRechazada.Visible = false;
+                OtraMedida.Focus();
             }
         }
 

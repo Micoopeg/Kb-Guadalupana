@@ -12,6 +12,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet"/>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <title>Expedientes entregados</title>
      <style>
          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
@@ -498,6 +500,9 @@ body{
                        <asp:FileUpload id="FileUpload1" runat="server"></asp:FileUpload>
                     </div><br /><br />
 
+                    <label class="titulos">Observaciones</label>
+                          <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                    <br />
                       <%--      <div style="justify-content: center;display:flex" class="formato">
                         <div style="overflow: auto; height: 145px">
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
@@ -552,6 +557,17 @@ body{
                 }
             }, true)
         </script>--%>
+
+            <script type="text/javascript">
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+            </script>
     </form>
    
 </body>

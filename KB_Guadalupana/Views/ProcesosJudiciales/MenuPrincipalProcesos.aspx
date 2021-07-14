@@ -14,12 +14,6 @@
            width:900px;
         }
 
-        body{
-            font-family:"Montserrat";
-            background-color:#34495E;
-            color:white;
-        }
-
         .formato{
             display:flex;
             align-content:center;
@@ -27,7 +21,6 @@
             justify-content:center;
             width:100%;
             height:600px;
-            flex-direction:column;
         }
 
          html{
@@ -44,10 +37,6 @@
             height:100%;
             margin-top:25px;
         }
-
-         .titulos{
-             font-size:22px;
-         }
     </style>
 </head>
     <div id="menu" runat="server" class="menu"></div>
@@ -55,9 +44,7 @@
     <form id="form1" runat="server">
         
         <div class="formato">
-              <label class="titulos"><b>BIENVENIDO(A) A</b></label>
-            <br />
-            <img class="imagen" src="../../Imagenes/Imagenes_procesos/PJ-GUADALUPANA-BLANCO.PNG"/>
+            <img class="imagen" src="../../Imagenes/Imagenes_procesos/PJ-GUADALUPANA.PNG"/>
         </div>
 
          <script>

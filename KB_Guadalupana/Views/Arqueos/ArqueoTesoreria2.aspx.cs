@@ -56,30 +56,6 @@ namespace Modulo_de_arqueos.Views
                     mostrardetalle();
                     mostrarcheques();
                     operar.Visible = false;
-                    TDAgencia.Enabled = false;
-                    TDNombreop.Disabled = true;
-                    TDNumoperador.Disabled = true;
-                    TDPuestooperador.Disabled = true;
-                    TDNombreencargado.Disabled = true;
-                    TDPuestoencargado.Disabled = true;
-                    TDTesoreria.Disabled = true;
-                    TDCantidadb1.Disabled = true;
-                    TDCantidadb2.Disabled = true;
-                    TDCantidadb3.Disabled = true;
-                    TDCantidadb4.Disabled = true;
-                    TDCantidadb5.Disabled = true;
-                    TDCantidadb5.Disabled = true;
-                    TDCantidadm1.Disabled = true;
-                    TDCantidadm2.Disabled = true;
-                    TDCantidadm3.Disabled = true;
-                    TDCantidadm4.Disabled = true;
-                    TDCantidadm5.Disabled = true;
-                    TDCantidadm6.Disabled = true;
-                    TDRemesa.Disabled = true;
-                    TDChequesp.Disabled = true;
-                    TDMontop.Disabled = true;
-                    TDChequesa.Disabled = true;
-                    TDMontoa.Disabled = true;
                 }
                    
             }
@@ -123,84 +99,65 @@ namespace Modulo_de_arqueos.Views
                 //SUBTOTAL BILLETES
                 decimal subtotalb1, subtotalb2, subtotalb3, subtotalb4, subtotalb5, subtotalb6, subtotalb7;
                 subtotalb1 = Convert.ToDecimal(200.00) * Convert.ToDecimal(TDCantidadb1.Value);
-                TDSubtotalb1.InnerText = subtotalb1.ToString();
                 //TDSubtotalb1.Value = Convert.ToString(subtotalb1);
                 subtotalb2 = Convert.ToDecimal(100.00) * Convert.ToDecimal(TDCantidadb2.Value);
-                TDSubtotalb2.InnerText = subtotalb2.ToString();
                 //TDSubtotalb2.Value = Convert.ToString(subtotalb2);
                 subtotalb3 = Convert.ToDecimal(50.00) * Convert.ToDecimal(TDCantidadb3.Value);
-                TDSubtotalb3.InnerText = subtotalb3.ToString();
                 //TDSubtotalb3.Value = Convert.ToString(subtotalb3);
                 subtotalb4 = Convert.ToDecimal(20.00) * Convert.ToDecimal(TDCantidadb4.Value);
-                TDSubtotalb4.InnerText = subtotalb4.ToString();
                 //TDSubtotalb4.Value = Convert.ToString(subtotalb4);
                 subtotalb5 = Convert.ToDecimal(10.00) * Convert.ToDecimal(TDCantidadb5.Value);
-                TDSubtotalb5.InnerText = subtotalb5.ToString();
                 //TDSubtotalb5.Value = Convert.ToString(subtotalb5);
                 subtotalb6 = Convert.ToDecimal(5.00) * Convert.ToDecimal(TDCantidadb6.Value);
-                TDSubtotalb6.InnerText = subtotalb6.ToString();
                 //TDSubtotalb6.Value = Convert.ToString(subtotalb6);
                 subtotalb7 = Convert.ToDecimal(1.00) * Convert.ToDecimal(TDCantidadb7.Value);
-                TDSubtotalb7.InnerText = subtotalb7.ToString();
                 //TDSubtotalb7.Value = Convert.ToString(subtotalb7);
 
                 //TOTAL BILLETES
                 decimal totalbilletes;
                 totalbilletes = Convert.ToDecimal(subtotalb1) + Convert.ToDecimal(subtotalb2) + Convert.ToDecimal(subtotalb3) + Convert.ToDecimal(subtotalb4) +
                                 Convert.ToDecimal(subtotalb5) + Convert.ToDecimal(subtotalb6) + Convert.ToDecimal(subtotalb7);
-                TDTtotalb.InnerText = totalbilletes.ToString();
                 //TDTtotalb.Value = Convert.ToString(totalbilletes);
 
                 //SUBTOTAL MONEDAS
                 decimal subtotalm1, subtotalm2, subtotalm3, subtotalm4, subtotalm5, subtotalm6;
                 subtotalm1 = Convert.ToDecimal(1.00) * Convert.ToDecimal(TDCantidadm1.Value);
-                TDSubtotalm1.InnerText = subtotalm1.ToString();
                 //TDSubtotalm1.Value = Convert.ToString(subtotalm1);
                 subtotalm2 = Convert.ToDecimal(0.50) * Convert.ToDecimal(TDCantidadm2.Value);
-                TDSubtotalm2.InnerText = subtotalm2.ToString();
                 //TDSubtotalm2.Value = Convert.ToString(subtotalm2);
                 subtotalm3 = Convert.ToDecimal(0.25) * Convert.ToDecimal(TDCantidadm3.Value);
-                TDSubtotalm3.InnerText = subtotalm3.ToString();
                 //TDSubtotalm3.Value = Convert.ToString(subtotalm3);
                 subtotalm4 = Convert.ToDecimal(0.10) * Convert.ToDecimal(TDCantidadm4.Value);
-                TDSubtotalm4.InnerText = subtotalm4.ToString();
                 //TDSubtotalm4.Value = Convert.ToString(subtotalm4);
                 subtotalm5 = Convert.ToDecimal(0.05) * Convert.ToDecimal(TDCantidadm5.Value);
-                TDSubtotalm5.InnerText = subtotalm5.ToString();
                 //TDSubtotalm5.Value = Convert.ToString(subtotalm5);
                 subtotalm6 = Convert.ToDecimal(0.01) * Convert.ToDecimal(TDCantidadm6.Value);
-                TDSubtotalm6.InnerText = subtotalm6.ToString();
                 //TDSubtotalm6.Value = Convert.ToString(subtotalm6);
 
                 //TOTAL MONEDAS
                 decimal totalmonedas;
                 totalmonedas = Convert.ToDecimal(subtotalm1) + Convert.ToDecimal(subtotalm2) + Convert.ToDecimal(subtotalm3) +
                                Convert.ToDecimal(subtotalm4) + Convert.ToDecimal(subtotalm5) + Convert.ToDecimal(subtotalm6);
-                TDTotalm.InnerText = totalmonedas.ToString();
                 //TDTotalm.Value = Convert.ToString(totalmonedas);
 
                 //TOTAL EFECTIVO
                 decimal totalefectivo;
                 totalefectivo = Convert.ToDecimal(totalbilletes) + Convert.ToDecimal(totalmonedas);
-                TDTotal.InnerText = totalefectivo.ToString();
                 //TDTotal.Value = Convert.ToString(totalefectivo);
 
                 //DEPOSITO
                 decimal deposito;
                 deposito = Convert.ToDecimal(totalefectivo) + Convert.ToDecimal(TDRemesa.Value);
-                TDDeposito.InnerText = deposito.ToString();
                 //TDDeposito.Value = Convert.ToString(deposito);
 
                 //CANTIDAD CHEQUES
                 int cantidad;
                 cantidad = Convert.ToInt32(TDChequesp.Value) + Convert.ToInt32(TDChequesa.Value);
-                TDTotalcheques.InnerText = cantidad.ToString();
                 //TDTotalcheques.Value = Convert.ToString(cantidad);
 
                 //TOTAL MONTO CHEQUES
                 decimal monto;
                 monto = Convert.ToDecimal(TDMontoa.Value) + Convert.ToDecimal(TDMontop.Value);
-                TDTotalmonto.InnerText = monto.ToString();
                 //TDTotalmonto.Value = Convert.ToString(monto);
 
                 //INSERTAR ENCABEZADO

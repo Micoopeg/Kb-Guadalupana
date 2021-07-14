@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="preguntasdata" targetNamespace="http://tempuri.org/preguntasdata.xsd" xmlns:mstns="http://tempuri.org/preguntasdata.xsd" xmlns="http://tempuri.org/preguntasdata.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Preguntas1-13TableAdapter" GeneratorDataComponentClassName="Preguntas1_13TableAdapter" Name="Preguntas1-13" UserDataComponentName="Preguntas1-13TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString1 (Web.config)" DbObjectName="bdkbguadalupana.`Preguntas1-13`" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `ORDEN`, `pregunta`, `InfoExtrapregunta` FROM `bdkbguadalupana`.`Preguntas1-13`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ORDEN" DataSetColumn="ORDEN" />
+              <Mapping SourceColumn="pregunta" DataSetColumn="pregunta" />
+              <Mapping SourceColumn="InfoExtrapregunta" DataSetColumn="InfoExtrapregunta" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="preguntasdata" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="preguntasdata" msprop:Generator_UserDSName="preguntasdata">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Preguntas1-13" msprop:Generator_TableClassName="_Preguntas1_13DataTable" msprop:Generator_TableVarName="_tablePreguntas1_13" msprop:Generator_TablePropName="_Preguntas1_13" msprop:Generator_RowDeletingName="_Preguntas1_13RowDeleting" msprop:Generator_RowChangingName="_Preguntas1_13RowChanging" msprop:Generator_RowEvHandlerName="_Preguntas1_13RowChangeEventHandler" msprop:Generator_RowDeletedName="_Preguntas1_13RowDeleted" msprop:Generator_UserTableName="Preguntas1-13" msprop:Generator_RowChangedName="_Preguntas1_13RowChanged" msprop:Generator_RowEvArgName="_Preguntas1_13RowChangeEvent" msprop:Generator_RowClassName="_Preguntas1_13Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ORDEN" msprop:Generator_ColumnVarNameInTable="columnORDEN" msprop:Generator_ColumnPropNameInRow="ORDEN" msprop:Generator_ColumnPropNameInTable="ORDENColumn" msprop:Generator_UserColumnName="ORDEN" type="xs:int" />
+              <xs:element name="pregunta" msprop:Generator_ColumnVarNameInTable="columnpregunta" msprop:Generator_ColumnPropNameInRow="pregunta" msprop:Generator_ColumnPropNameInTable="preguntaColumn" msprop:Generator_UserColumnName="pregunta">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="800" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InfoExtrapregunta" msprop:Generator_ColumnVarNameInTable="columnInfoExtrapregunta" msprop:Generator_ColumnPropNameInRow="InfoExtrapregunta" msprop:Generator_ColumnPropNameInTable="InfoExtrapreguntaColumn" msprop:Generator_UserColumnName="InfoExtrapregunta">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

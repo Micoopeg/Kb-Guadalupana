@@ -138,7 +138,7 @@ namespace KB_Guadalupana.Controllers
                 try
                 {
                     sqlCon.Open();
-                    string sql = "SELECT codgenusuario FROM gen_usuario WHERE gen_usuarionombre = '" + usuario + "'";
+                    string sql = "SELECT codgenusuario FROM gen_usuario WHERE gen_usuarionombre LIKE '" + '%' + usuario + '%' + "'";
                     MySqlCommand command = new MySqlCommand(sql, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
                     reader.Read();
@@ -701,5 +701,66 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public string[] buscarcontrolprocesos(string usuario)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[10];
+                int i = 0;
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM pro_registroingreso WHERE gen_usuario = '" + usuario + "' AND pro_estado = 'Activo'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos     
+            }
+        }
+
+        public void insertaringresoprocesos(string id, string usuario, string tipousuario, string categoria, string subcategoria, string estado, string puesto)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "INSERT INTO pro_registroingreso VALUES ('" + id + "', '" + usuario + "', '" + tipousuario + "', '" + categoria + "', '" + subcategoria + "', '" + estado + "', '"+puesto+"')";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public void modificaringresoprocesos(string usuario, string tipousuario, string categoria, string subcategoria, string estado, string puesto)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "UPDATE pro_registroingreso SET pro_tipousuario='" + tipousuario + "', pro_categoria='" + categoria + "', pro_subcategoria='" + subcategoria + "', pro_estado='" + estado + "', idpro_puesto = '"+puesto+ "' WHERE idpro_registroingreso='" + usuario + "'";
+                    MySqlCommand command = new MySqlCommand(query, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                }
+                catch
+                {
+
+                }
+            }
+        }
     }
     } 

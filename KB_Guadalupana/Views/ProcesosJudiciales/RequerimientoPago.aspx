@@ -24,8 +24,6 @@
 
         body{
             font-family:"Montserrat";
-            background-color:#34495E;
-            color:white;
         }
 
         .general{
@@ -46,7 +44,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:#435F7A;
+            background-color:lightgray;
             flex-direction:column;
             margin-top:10px;
         }
@@ -179,7 +177,6 @@
 
          .titulos{
              font-size:13px;
-             align-items:center;
          }
 
         .formatoTitulo{
@@ -210,39 +207,9 @@
             border-radius: 5px;
             height: 30px;
             border-color: transparent;
-             font-family:"Montserrat";
-            max-width: 90%;
-            min-width: 90%;
-            max-height:30px;
-            min-height:30px;
-        }
-                          .formatocheckbox {
-            width: 25px;
-            -webkit-border-radius: 5px;
-            border-radius: 5px;
-            height: 25px;
-            border-color: transparent;
-            display: flex;
-            align-items: flex-start;
-            align-content:flex-start;
-            justify-content:flex-start;
-        }
-
-        .formatocheck{
-            display:flex;
-            justify-content:space-between;
-            flex-direction:row;
-            width:100%;
-            margin-bottom: 5px;
-        }
-
-        .formatocheck2{
-            display:flex;
-            flex-direction:row;
-            width:45%;
         }
         .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
-.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:75px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
 .fixed{position:fixed; top:0;visibility:visible}
@@ -259,15 +226,13 @@
                   <div style="display:flex; justify-content:center">
                     <label style="font-size:18px" class="titulos">Verificación del requerimiento de pago</label>
                  </div><br />
-                
-                   <div class="header"></div>
 
                 <div class="encabezado">
 
-                    <label class="titulos"><b>Documentos</b></label><br /><br />
+                    <label class="titulos"><b>Factura</b></label><br /><br />
 
                     <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 175px">
+                        <div style="overflow: auto; height: 123px">
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
                             OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid">
                              <Columns>
@@ -286,303 +251,50 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="135px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
                         </asp:GridView>
                        </div>
-                       </div><br /><br />
+                       </div><br />
 
-                      <div class="formatoTitulo" style="margin-bottom:5px">
-                             <label class="titulos"><b>No. de factura</b></label>
-                            <label class="titulos" style="margin-left:40%"><b>No. de serie</b></label>
-                        </div>
-                        <div class="formato">
-                              <input id="NumFactura" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. factura" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                             <input id="Serie" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. serie" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                        </div><br />
-
-                      <div class="formato3">
-                        <label class="titulos"><b>Descripción</b></label>
-                         <input id="Descripcion" runat="server" type="text" class="formatoinput2" onkeypress="return sololetras(event);" placeholder="Ingrese descripcion" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                    </div><br />
-
-                    <div class="formatoTitulo" style="margin-bottom:5px">
-                        <label class="titulos"><b>Importe total</b></label>
-                        <label class="titulos" style="margin-left:23%"><b>Fecha de emisión</b></label>
-                        <label class="titulos" style="margin-left:18%"><b>Importe del caso</b></label>
-                    </div>
-                     <div class="formato">
-                        Q<input id="ImporteTotal2" runat="server" type="text" class="formatoinput3" min="0" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese importe total" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                        <input id="FechaEmision" runat="server" type="date" class="formatoinput3"/>
-                        Q<input id="ImporteCaso" runat="server" type="text" min="0" class="formatoinput3" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese importe del caso" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                    </div><br />
-
-                        
-                      <div class="formato3">
-                         <label class="titulos"><b>Nombre a quién se emite el cheque</b></label>
-                         <input id="NombreCheque" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre" onkeypress="return sololetras(event);" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                    </div><br />
-
-                      <div class="formato3">
-                        <label class="titulos"><b>Motivo de pago</b></label>
-                        <asp:DropDownList id="MotivoPago" runat="server" Width="100%" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="MotivoPago_SelectedIndexChanged1"></asp:DropDownList>
-                    </div><br />
-
-                     <input id="Otro" runat="server" type="text" min="0" class="formatoinput2" onkeypress="return sololetras(event);" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                    <br /><br />
-
-                        <div class="formato2">
-                            <asp:Button ID="Actualizar" runat="server" CssClass="boton" Text="Actualizar Datos" OnClick="Actualizar_Click" />
-                        </div><br />
-
-                    <div class="formato2">
-                            <asp:Button ID="Validar" runat="server" CssClass="boton" Text="Validar" OnClick="Validar_Click" />
-                        </div><br />
-
-                    <br /><br />
-
-                    <div id="pfd" runat="server">
-
-                 
                       <div style="display:flex; justify-content:center">
                         <label style="font-size:18px" class="titulos">Solicitud de cheque</label>
                     </div><br />
 
                    <div class="formatoTitulo" style="margin-bottom:5px">
-                            <label class="titulos"><b>Observaciones </b></label>
-                            <label class="titulos" style="margin-left:39%"><b>Registro contable</b></label>
+                            <label class="titulos"><b>Cheque a nombre de </b></label>
+                            <label class="titulos" style="margin-left:33%"><b>Registro contable</b></label>
                         </div>
                         <div class="formato">
-                             <input id="Observaciones" runat="server" type="text" class="formatoinput" placeholder="Ingrese observaciones" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                              <input id="NombreCheque" runat="server" type="text" class="formatoinput" placeholder="Ingrese nombre" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                              <input id="RegistroContable" runat="server" type="text" class="formatoinput" placeholder="Ingrese registro contable" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                        </div><br /><br />
+                        </div><br />
 
-                        <label class="titulos">Concepto</label>
-                          <input id="Concepto" runat="server" type="text" class="formatoinput2" placeholder="Ingrese concepto" maxlength="600" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-
-                        <br /><br /><br />
-                        <label class="titulos"><b>Seleccione las personas encargadas de firmar la solicitud</b></label><br /><br /><br />
-                           <div class="formatocheck">
-                             <div class="formatocheck2">
-                                <input id="Nombre1" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Nombre1" class="titulos">&nbsp;&nbsp;<b>Lhea Sandoval - Jefe Jurídico</b></label>
-                             </div>
-                              <div class="formatocheck2">
-                                <input id="Nombre2" runat="server" type="checkbox" class="formatocheckbox" value="2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Nombre2" class="titulos">&nbsp;&nbsp;<b>Daniel Fuentes - Gerente Jurídico</b></label>
-                              </div>
-                         </div><br />
-
-                         <div class="formatocheck">
-                             <div class="formatocheck2">
-                                <input id="Nombre3" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Nombre3" class="titulos">&nbsp;&nbsp;<b>Danielo Morales - Gerente Financiero</b></label>
-                             </div>
-                              <div class="formatocheck2">
-                                <input id="Nombre4" runat="server" type="checkbox" class="formatocheckbox" value="2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Nombre4" class="titulos">&nbsp;&nbsp;<b>Juan Carlos Herrera - Subgerente General</b></label>
-                              </div>
-                         </div>
-                    <br /><br /><br />
-
-                   </div>
+                     <div class="formato3">
+                        <label class="titulos"><b>Observaciones</b></label>
+                        <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                    </div><br /><br />
 
                     <input id="NombreUsuario" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
                     <input id="FechaActual" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
                     <input id="ImporteTotal" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
                     <input id="NumCredito" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                     <input id="NombreCliente" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="NombreFirma1" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="PuestoFirma1" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="Linea1" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="NombreFirma2" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="PuestoFirma2" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="Linea2" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="NombreFirma3" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="PuestoFirma3" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="Linea3" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="NombreFirma4" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="PuestoFirma4" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
-                    <input id="Linea4" runat="server" type="text" class="formatoinput2" visible="false" readOnly="readOnly"/>
 
                          <div class="formato2">
                             <asp:Button ID="Generar" runat="server" Width="30%" Height="30px" CssClass="boton3" Text="Generar solictud de cheque" OnClick="Generar_Click" />
-                         </div><br />
-
-                     <span id="TituloObservaciones" runat="server" class="titulos">Observaciones</span>
-                          <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                    <br />
-
+                         </div>
                 </div>
-
-                   <div class="formato2">
-                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click" />
-                  </div><br />
-
-                   <div class="menu2" id="ventana" runat="server" style="overflow: auto; height: 450px">
-
-                    <div class="formato3">
-                           <label class="titulos"><b>No. de préstamo</b></label>
-                          <input id="CreditoNumero" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                     <div class="formato3">
-                         <label class="titulos"><b>Incidente</b></label>
-                        <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                    <div class="formato3">
-                         <label class="titulos"><b>CIF</b></label>
-                        <input id="NumCif" runat="server" type="text" class="formatoinput5" min="0" placeholder="CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                     <div class="formato3">
-                         <label class="titulos"><b>No. Proceso</b></label>
-                        <input id="NumProceso" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. Proceso" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                    </div><br />
-
-                    <div class="formato3">
-                        <label class="titulos"><b>Cliente - Nombre</b></label>
-                        <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
-                    </div><br />
-
-                         <label class="titulos"><b>Comentarios</b></label>
-                        <asp:Repeater ID="Repeater1" runat="server">
-                            <ItemTemplate>
-                                <div class="formato3">
-                                    <textarea id="Comentario1" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"> <%# Eval("Comentario") %> </textarea>
-                                </div><br />
-                            </ItemTemplate>
-                        </asp:Repeater>
-                </div>
-
-                  <div class="encabezado" id="voucher" runat="server">
-                       <label class="titulos"><b>Voucher</b></label>
-                        <div class="formato">
-                            <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
-                            <asp:FileUpload id="FileUpload1" runat="server"></asp:FileUpload>
-                            <asp:Button ID="Agregar" OnClick="agregar_Click" runat="server" Width="20%" Height="30px" CssClass="boton3" Text="Agregar" />
-                        </div><br /><br />
-
-                           <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 145px">
-                        <asp:GridView ID="gridViewDocumentos2" runat="server" AutoGenerateColumns="False" CssClass="tabla"
-                            OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento2" BorderStyle="Solid">
-                             <Columns>
-                                <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="No. documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lbltipodoc" Text='<%# Eval("TipoDocumento") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
-                                </asp:ButtonField>
-                            </Columns>
-                             <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
-                        </asp:GridView>
-                       </div>
-                       </div>
-
-                      <label class="titulos">Observaciones</label>
-                          <input id="ObservacionesCredito2" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                    <br />
-                    </div>
-
-                    <div class="formato2">
-                    <asp:Button ID="GuardarVoucher" runat="server" CssClass="boton" Text="Guardar" OnClick="GuardarVoucher_Click" />
-                  </div><br />
-
             </div>
         </div>
-
-            <script type="text/javascript">
-                function sololetras(evt) {
-                    var charCode = (evt.which) ? evt.which : event.keyCode
-                    if (charCode > 31 && (charCode < 48 || charCode > 57))
-                        return true;
-
-                    return false;
-                }
-            </script>
-
-              <script>
-                  function format(input) {
-                      var num = input.value.replace(/\,/g, '');
-                      if (!isNaN(num)) {
-                          num = num.toString().split('').reverse().join('').replace(/(?=\d*\,?)(\d{3})/g, '$1,');
-                          num = num.split('').reverse().join('').replace(/^[\,]/, '');
-                          input.value = num;
-                      }
-
-                      else {
-                          alert('Solo se permiten numeros');
-                          input.value = input.value.replace(/[^\d\,]*/g, '');
-                      }
-                  }
-
-                  $('#OtrosGastos').mask('000,000,000.00', { reverse: true });
-
-              </script>
-
-                <script>
-                    var texto1 = document.querySelector('#NumFactura');
-
-                    texto1.addEventListener('keypress', function (e) {
-                        // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
-                        const decimalCode = 46;
-                        // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
-                        if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
-                            e.preventDefault();
-                        }
-                        // chequeo que sólo exista un punto decimal
-                        else if (e.keyCode == decimalCode && /\./.test(this.value)) {
-                            event.preventDefault();
-                        }
-                    }, true)
-                </script>
 
           <script>
            $(document).ready(function () {
                $('.menu').load('MenuPrincipal.aspx');
            });
           </script>
-
-         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-    posicionarMenu();
-
-    $(window).scroll(function () {
-        posicionarMenu();
-    });
-
-    function posicionarMenu() {
-        var altura_del_header = $('.header').outerHeight(true);
-        var altura_del_menu = $('.menu2').outerHeight(true);
-
-        if ($(window).scrollTop() >= altura_del_header) {
-            $('.menu2').addClass('fixed');
-            $('.menu2').addClass('fixed');
-            $('.wrapper').css('margin-top', (altura_del_menu) + 'px');
-        } else {
-            $('.menu2').removeClass('fixed');
-            $('.wrapper').css('margin-top', '0');
-        }
-    }
-
-</script>
 
          <script>
              var texto1 = document.querySelector('#RegistroContable');

@@ -83,7 +83,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='4'";
+                    string consultaGraAsis = "SELECT count(*) FROM sh_respuesta_asignacion WHERE sh_estatus='4';";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -109,7 +109,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(sh_estado_id_shestado) from sh_hallazgo where sh_estado_id_shestado='2' or sh_estado_id_shestado='3'";
+                    string consultaGraAsis = "SELECT count(*) FROM sh_respuesta_asignacion WHERE sh_estatus='2' OR sh_estatus='3';";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -135,7 +135,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='1'";
+                    string consultaGraAsis = "SELECT count(*) FROM sh_respuesta_asignacion WHERE sh_estatus='1';";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -161,7 +161,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='5'";
+                    string consultaGraAsis = "SELECT count(*) FROM sh_respuesta_asignacion WHERE sh_estatus='5';";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -187,7 +187,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo";
+                    string consultaGraAsis = "SELECT count(*) FROM sh_respuesta_asignacion;";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -213,7 +213,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='6'";
+                    string consultaGraAsis = "SELECT count(*) FROM sh_respuesta_asignacion WHERE sh_estatus='6';";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -283,29 +283,40 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public string[] consultarHallazgo(string dato)
+        public string[] consultarHallazgorestructurado(string dato)
         {
+           
             using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
             {
-                string[] Campos = new string[30];
+                string[] Campos = new string[3000];
                 int i = 0;
+                List<string> miLista = new List<string>();
                 try
                 {
-                    string consultaGraAsis = "select id_shhallazgo,sh_mes,sh_año,sh_rubro,sh_hallazgo,sh_recomendacion,sh_estado_id_shestado , sh_calificacion,	sh_archivo,sh_comentario from sh_hallazgo where id_shhallazgo='" + dato + "'";
-                    sqlCon.Open();
-                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
+                    sqlCon.Open();     
+                    MySqlCommand command = new MySqlCommand("SELECT d.id_shgerencia,e.id_sharea,a.codshrespuestaasignacion,a.sh_calificacion,c.sh_mes,c.sh_año,c.sh_rubro,f.id_shestado,a.sh_imagensolucion,c.sh_hallazgo,a.sh_recomendacion,a.sh_comentarioauditor,a.sh_comentario FROM sh_respuesta_asignacion a INNER JOIN sh_asignacion b ON a.codshasignacion=b.id_shasignacion INNER JOIN sh_hallazgo c ON b.sh_hallazgo_id_shhallazgo=c.id_shhallazgo INNER JOIN sh_gerencias d ON b.sh_gerencias_id_shgerencia=d.id_shgerencia INNER JOIN sh_area e ON b.sh_idarea=e.id_sharea INNER JOIN sh_estado f on a.sh_estatus=f.id_shestado WHERE a.codshrespuestaasignacion='" + dato + "';", sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    if (reader.Read())
                     {
                         for (int p = 0; p < reader.FieldCount; p++)
                         {
-                            Campos[i] = reader.GetString(p);
-                            i++;
+                                miLista.Add(reader.GetString(p));
+                                 i++;
                         }
                     }
+                    else
+                    {
+                        miLista.Add("0");
+                        Campos = miLista.ToArray();
+                        return Campos;// devuelve un arrgeglo con los campos   
+                    }
+
+
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
-                return Campos;// devuelve un arrgeglo con los campos 
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
             }
         }
 
@@ -826,7 +837,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='7'";
+                    string consultaGraAsis = "select count(sh_estatus) from sh_respuesta_asignacion where sh_estatus='7'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -852,7 +863,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "select count(`sh_estado_id_shestado`) from sh_hallazgo where `sh_estado_id_shestado`='8'";
+                    string consultaGraAsis = "select count(sh_estatus) from sh_respuesta_asignacion where sh_estatus='8'";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -870,6 +881,153 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
+        public string[] consultararchivodehallazgo(string dato)
+        {
+
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT c.sh_archivo FROM sh_respuesta_asignacion a INNER JOIN sh_asignacion b ON a.codshasignacion=b.id_shasignacion INNER JOIN sh_hallazgo c ON b.sh_hallazgo_id_shhallazgo=c.id_shhallazgo INNER JOIN sh_gerencias d ON b.sh_gerencias_id_shgerencia=d.id_shgerencia INNER JOIN sh_area e ON b.sh_idarea=e.id_sharea INNER JOIN sh_estado f on a.sh_estatus=f.id_shestado WHERE a.codshrespuestaasignacion='"+dato+"';", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        miLista.Add("0");
+                        Campos = miLista.ToArray();
+                        return Campos;// devuelve un arrgeglo con los campos   
+                    }
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultarimagensolucionh(string dato)
+        {
+
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT sh_imagensolucion FROM sh_respuesta_asignacion where codshrespuestaasignacion='" + dato + "'", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        miLista.Add("0");
+                        Campos = miLista.ToArray();
+                        return Campos;// devuelve un arrgeglo con los campos   
+                    }
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultarrespuestadehallazgo(string dato)
+        {
+
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT a.sh_comentario FROM sh_respuesta_asignacion a INNER JOIN sh_asignacion b ON a.codshasignacion=b.id_shasignacion INNER JOIN sh_hallazgo c ON b.sh_hallazgo_id_shhallazgo=c.id_shhallazgo INNER JOIN sh_gerencias d ON b.sh_gerencias_id_shgerencia=d.id_shgerencia INNER JOIN sh_area e ON b.sh_idarea=e.id_sharea INNER JOIN sh_estado f on a.sh_estatus=f.id_shestado WHERE a.codshrespuestaasignacion='" + dato + "';", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        miLista.Add("0");
+                        Campos = miLista.ToArray();
+                        return Campos;// devuelve un arrgeglo con los campos   
+                    }
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultaridhallazgo(string dato)
+        {
+
+            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    //"SELECT * FROM " + tabla + " where" + campo + "='" + dato + "';"
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT c.id_shhallazgo FROM sh_respuesta_asignacion a INNER JOIN sh_asignacion b ON a.codshasignacion=b.id_shasignacion INNER JOIN sh_hallazgo c ON b.sh_hallazgo_id_shhallazgo=c.id_shhallazgo INNER JOIN sh_gerencias d ON b.sh_gerencias_id_shgerencia=d.id_shgerencia INNER JOIN sh_area e ON b.sh_idarea=e.id_sharea INNER JOIN sh_estado f on a.sh_estatus=f.id_shestado WHERE a.codshrespuestaasignacion='"+dato+"';", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        miLista.Add("0");
+                        Campos = miLista.ToArray();
+                        return Campos;// devuelve un arrgeglo con los campos   
+                    }
+
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
 
     }
 

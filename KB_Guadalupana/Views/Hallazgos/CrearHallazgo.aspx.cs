@@ -1,4 +1,5 @@
-﻿using KB_Guadalupana.Controllers;
+﻿
+using KB_Guadalupana.Controllers;
 using KB_Guadalupana.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -127,6 +128,7 @@ namespace KB_Guadalupana.Views.Hallazgos
 
                             string[] var1 = sen.cidhallazgo();
                             string val = Convert.ToString(var1[0]);
+                            Session["Recomendacion"] = Recomendacion.Value;
 
                             if (val != sig199)
                             {
@@ -155,6 +157,7 @@ namespace KB_Guadalupana.Views.Hallazgos
 
                     string[] var1 = sen.cidhallazgo();
                     string val = Convert.ToString(var1[0]);
+                    Session["Recomendacion"] = Recomendacion.Value;
 
                     if (val != sig199)
                     {

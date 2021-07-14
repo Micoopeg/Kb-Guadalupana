@@ -33,32 +33,32 @@ namespace KB_Guadalupana.Views.Hallazgos
 
             if (!IsPostBack)
             {
-                mostrarIE();
+                
                 llenarcombosucursal();
                 actualizar();
                 BloquearGerencias2();
-                llenarcombosucursal1();
-                actualizar1();
                 archivo();
                 llenarcomboestado();
+                mostrarIE();
             }
         }
 
         public void mostrarIE()
         {
             ideditar = Session["Idguardar"].ToString();
-            string[] var1 = sen.consultarHallazgo(ideditar);
+            string[] var1 = sen.consultarHallazgorestructurado(ideditar);
             for (int i = 0; i < var1.Length; i++)
             {
-                ID.Value = Convert.ToString(var1[0]);
-                MesH.Value = Convert.ToString(var1[1]);
-                Año.Value = Convert.ToString(var1[2]);
-                Rubro.Value = Convert.ToString(var1[3]);
-                Hallazgo.Value = Convert.ToString(var1[4]);
-                Recomendacion.Value = Convert.ToString(var1[5]);
-                cmbestado.SelectedValue = Convert.ToString(var1[6]);
-                Cal.Value = Convert.ToString(var1[7]);
-                txtcomentario.Value = Convert.ToString(var1[9]);
+                ID.Value = Convert.ToString(var1[2]);
+                Cal.Value = Convert.ToString(var1[3]);
+                MesH.Value = Convert.ToString(var1[4]);
+                Año.Value = Convert.ToString(var1[5]);
+                Rubro.Value = Convert.ToString(var1[6]);
+                cmbestado.SelectedValue = Convert.ToString(var1[7]);
+                Hallazgo.Value = Convert.ToString(var1[9]);
+                Recomendacion.Value = Convert.ToString(var1[10]);             
+                txtcomentario.Value = Convert.ToString(var1[11]);
+                txtrespuesta.Value = Convert.ToString(var1[12]);
             }
         }
 
@@ -68,19 +68,12 @@ namespace KB_Guadalupana.Views.Hallazgos
 
             string[] var1 = sen.consultarValor(ideditar);
             consulta = Convert.ToString(var1[0]);
+            Rubro.Disabled = true;
+            Hallazgo.Disabled = true;
 
             //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('id: " + ideditar + " Valor: "+consulta+"');", true);
 
-            if (consulta == valor)
-            {
-                gerencia2.Visible = false;
-                gerencia21.Visible = false;
-            }
-            if (consulta != valor)
-            {
-                gerencia2.Visible = true;
-                gerencia21.Visible = true;
-            }
+            
         }
 
         //Si hay 1 gerencias y areas asignadas
@@ -126,86 +119,34 @@ namespace KB_Guadalupana.Views.Hallazgos
             }
         }
 
-        public void actualizar()
-        {
-            string valor;
 
-            llenarcombosucursal();
 
-            ideditar = Session["Idguardar"].ToString();
-            string[] var1 = sen.consultarGerencia11(ideditar);
-
-            IGAgencia1.Text = Convert.ToString(var1[0]);
-            valor = Convert.ToString(var1[0]);
-            llenarcomboarea(long.Parse(valor));
-            IGADepa1.SelectedValue = Convert.ToString(var1[1]);
-        }
-        // ----------------------------------------------------------------
-        //Si hay 2 gerencias y areas asignadas
-        public void llenarcombosucursal1()
+        public void llenarcomboestado()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
             {
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "select * from sh_gerencias";
+                    string QueryString = "select * from sh_estado";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
-                    myCommand.Fill(ds, "GerenciasH");
-                    IGAgencia4.DataSource = ds;
-                    IGAgencia4.DataTextField = "sh_gerencianombre";
-                    IGAgencia4.DataValueField = "id_shgerencia";
-                    IGAgencia4.DataBind();
-                    IGAgencia4.Items.Insert(0, new ListItem("[Gerencias]", "0"));
+                    myCommand.Fill(ds, "estado");
+                    cmbestado.DataSource = ds;
+                    cmbestado.DataTextField = "sh_nombre";
+                    cmbestado.DataValueField = "id_shestado";
+                    cmbestado.DataBind();
+                    cmbestado.Items.Insert(0, new ListItem("[Estados]", "0"));
                 }
                 catch { }
             }
         }
-
-        public void llenarcomboarea1(long codtiposucursal)
-        {
-            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string QueryString = "select * from sh_area where 	sh_gerencias_id_shgerencia ='" + codtiposucursal + "';";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataSet ds = new DataSet();
-                    myCommand.Fill(ds, "area");
-                    IGAgencia2.DataSource = ds;
-                    IGAgencia2.DataTextField = "sh_areanombre";
-                    IGAgencia2.DataValueField = "id_sharea";
-                    IGAgencia2.DataBind();
-                    IGAgencia2.Items.Insert(0, new ListItem("[Area/Departamento]", "0"));
-                }
-                catch { Console.WriteLine("Verifique los campos"); }
-            }
-        }
-
-        public void actualizar1()
-        {
-            string valor;
-
-            llenarcombosucursal1();
-
-            ideditar = Session["Idguardar"].ToString();
-            string[] var1 = sen.consultarGerencia1(ideditar);
-
-            IGAgencia4.Text = Convert.ToString(var1[0]);
-            valor = Convert.ToString(var1[0]);
-            llenarcomboarea1(long.Parse(valor));
-            IGAgencia2.SelectedValue = Convert.ToString(var1[1]);
-        }
-        // ----------------------------------------------------------------
-        // Validar si subio un arhivo
         public void archivo()
         {
             string ruta;
             ideditar = Session["Idguardar"].ToString();
-            string[] var1 = sen.consultarHallazgo(ideditar);
-            ruta = Convert.ToString(var1[8]);
+            string[] var1 = sen.consultararchivodehallazgo(ideditar);
+            ruta = Convert.ToString(var1[0]);
 
 
             //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Entra funcion');", true);
@@ -220,16 +161,81 @@ namespace KB_Guadalupana.Views.Hallazgos
                 Archivo.Visible = true;
             }
         }
-        //-----------------------------------------------------------------
+
+        public void actualizar()
+        {
+            string valor;
+
+            llenarcombosucursal();
+
+            ideditar = Session["Idguardar"].ToString();
+            string[] var1 = sen.consultarHallazgorestructurado(ideditar);
+
+            IGAgencia1.Text = Convert.ToString(var1[0]);
+            valor = Convert.ToString(var1[0]);
+            llenarcomboarea(long.Parse(valor));
+            IGADepa1.SelectedValue = Convert.ToString(var1[1]);
+        }
         protected void Guardar_Hallazgo_Click(object sender, EventArgs e)
         {
             string ruta;
             ideditar = Session["Idguardar"].ToString();
-            string[] var1 = sen.consultarHallazgo(ideditar);
-            ruta = Convert.ToString(var1[8]);
+            string[] var1 = sen.consultararchivodehallazgo(ideditar);
+            ruta = Convert.ToString(var1[0]);
             string rutaestatica = kbruta.rutaestaticaarchivoshallazgos();
 
             string FilePath = rutaestatica+ruta; //Variable ruta
+            WebClient user = new WebClient();
+            if (File.Exists(FilePath))
+            {
+                Byte[] FileBuffer = user.DownloadData(FilePath);
+                if (FileBuffer != null)
+                {
+                    string[] partes = ruta.Split('.');
+                    string subcadena = partes[1];
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('id: " + subcadena + "');", true);
+
+                    if ((subcadena == "png") || (subcadena == "jpg"))
+                    {
+                        Response.ContentType = "text/plain";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (subcadena == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (subcadena == "docx")
+                    {
+                        Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    //Response.ContentType = "application/docx";
+                }
+                else
+                {
+                    Response.Write("erorr");
+                }
+            }
+            else
+            {
+                Response.Write("NO SE ENCUENTRA EL ARCHIVO EN ALMACENADO");
+            }
+        }
+
+        protected void Visualizar_Hallazgo_Click(object sender, EventArgs e)
+        {
+            string ruta;
+            ideditar = Session["Idguardar"].ToString();
+            string[] var1 = sen.consultarimagensolucionh(ideditar);
+            ruta = Convert.ToString(var1[0]);
+            string rutaestatica = kbruta.rutaestaticaarchivoshallazgos();
+
+            string FilePath = rutaestatica + ruta; //Variable ruta
             WebClient user = new WebClient();
             if (File.Exists(FilePath))
             {
@@ -277,11 +283,12 @@ namespace KB_Guadalupana.Views.Hallazgos
 
             ideditar = Session["Idguardar"].ToString();
 
-            string[] campos = { "id_shhallazgo", "sh_estado_id_shestado" };
-            string[] valores = { ideditar, "6" };
+            string[] campos = { "codshrespuestaasignacion", "sh_estatus" };
+            string[] valores = { ID.Value, "6" };
             try
             {
-                logic.modificartablas("sh_hallazgo", campos, valores);
+                logic.modificartablas("sh_respuesta_asignacion", campos, valores);
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hallazgo Eliminado'); window.location.href= 'VistaHallazgo.aspx';", true);
             }
             catch { }
             finally
@@ -292,176 +299,65 @@ namespace KB_Guadalupana.Views.Hallazgos
                 }
                 catch
                 { }
-            }
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hallazgo Eliminado'); window.location.href= 'VistaHallazgo.aspx';", true);
+            }            
         }
 
         protected void guardarh_Hallazgo_Click(object sender, EventArgs e)
         {
-            if (FileUpload1.HasFile)
-            {
+            string[] arridhallazgo = sen.consultaridhallazgo(ID.Value);
+            string idhallazgo = Convert.ToString(arridhallazgo[0]);
+
+            //EN EL CASO QUE SUBA UN ARCHIVO
+            if (FileUpload1.HasFile){
                 string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
                 ext = ext.ToLower();
-
                 if ((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
                 {
                     string idvalor = Session["Idguardar"].ToString();
+                    string doc = idvalor + FileUpload1.FileName;
+                    FileUpload1.SaveAs(kbruta.rutaestaticaarchivoshallazgos() + idvalor + FileUpload1.FileName);                  
 
-                    string doc =  idvalor + FileUpload1.FileName;
-                    //string doc = "Archivos/" + idvalor + FileUpload1.FileName;
-
-                    FileUpload1.SaveAs(kbruta.rutaestaticaarchivoshallazgos() + idvalor + FileUpload1.FileName);
-
-                    ideditar = Session["Idguardar"].ToString();
-
-                    string[] campos = { "id_shhallazgo", "sh_rubro", "sh_hallazgo", "sh_archivo", "sh_recomendacion", "sh_mes", "sh_año", "sh_calificacion", "sh_comentario", "sh_estado_id_shestado" };
-                    string[] valores = { ideditar, Rubro.Value, Hallazgo.Value, doc, Recomendacion.Value, MesH.Value, Año.Value, Cal.Value,txtcomentario.Value, cmbestado.SelectedValue };
+                    string[] campos = { "id_shhallazgo", "sh_archivo"};
+                    string[] valores = { idhallazgo, doc};
                     try
                     {
                         logic.modificartablas("sh_hallazgo", campos, valores);
-                    }
-                    catch
-                    { }
-                    finally
+                    }catch { }
+
+                    string[] campos1 = { "codshrespuestaasignacion", "sh_comentario", "sh_calificacion", "sh_comentarioauditor", "sh_estatus", "sh_recomendacion" };
+                    string[] valores1 = { ID.Value, txtrespuesta.Value, Cal.Value, txtcomentario.Value, cmbestado.SelectedValue, Recomendacion.Value };
+                    try
                     {
-                        try
-                        {
-                            cn.desconectar();
-                        }
-                        catch
-                        { }
+                        logic.modificartablas("sh_respuesta_asignacion", campos1, valores1);
                     }
+                    catch (Exception ex) { Response.Write(ex); }
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hallazgo Actualizado'); window.location.href= 'EditarHallazgo.aspx';", true);
                 }
                 else
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo no es compatible, los formatos permitos son: .docx,pdf,jpg y png')", true);
                 }
             }
-            else
+            else //EN EL CASO DE QUE NO SUBA UN ARCHIVO.
             {
-                ideditar = Session["Idguardar"].ToString();
-                string[] campos = { "id_shhallazgo", "sh_rubro", "sh_hallazgo", "sh_recomendacion", "sh_mes", "sh_año", "sh_calificacion", "sh_comentario","sh_estado_id_shestado" };
-                string[] valores = { ideditar, Rubro.Value, Hallazgo.Value, Recomendacion.Value, MesH.Value, Año.Value, Cal.Value,txtcomentario.Value,cmbestado.SelectedValue };
-                try
+                if (Rubro.Value == "" || cmbestado.SelectedValue == "[Estados]")
                 {
-                    logic.modificartablas("sh_hallazgo", campos, valores);
-                }
-                catch
-                { }
-                finally
-                {
-                    try
-                    {
-                        cn.desconectar();
-                    }
-                    catch
-                    { }
-                }
-
-
-
-                ideditar = Session["Idguardar"].ToString();
-                string[] var2 = sen.consultarasiganacioncontador(ideditar);
-
-                string valor = Convert.ToString(var2[0]);
-
-                if (valor == "2")
-                {
-                    ideditar = Session["Idguardar"].ToString();
-                    string[] var1 = sen.consultarasiganacion1(ideditar);
-
-                    string idpermisos = Convert.ToString(var1[0]);
-
-                    string[] campos1 = { "id_shasignacion", "sh_hallazgo_id_shhallazgo", "sh_gerencias_id_shgerencia", "sh_idarea" };
-                    string[] valores1 = { idpermisos, ideditar, IGAgencia1.Text, IGADepa1.Text };
-                    try
-                    {
-                        logic.modificartablas("sh_asignacion", campos1, valores1);
-                    }
-                    catch
-                    { }
-                    finally
-                    {
-                        try
-                        {
-                            cn.desconectar();
-                        }
-                        catch
-                        { }
-                    }
-
-                    string[] var3 = sen.consultarasiganacion11(ideditar);
-
-                    string idpermisos1 = Convert.ToString(var3[0]);
-
-                    string[] campos2 = { "id_shasignacion", "sh_hallazgo_id_shhallazgo", "sh_gerencias_id_shgerencia", "sh_idarea" };
-                    string[] valores2 = { idpermisos1, ideditar, IGAgencia4.Text, IGAgencia2.Text };
-                    try
-                    {
-                        logic.modificartablas("sh_asignacion", campos2, valores2);
-                    }
-                    catch
-                    { }
-                    finally
-                    {
-                        try
-                        {
-                            cn.desconectar();
-                        }
-                        catch
-                        { }
-                    }
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('PORFAVOR COLOCAR UN ESTADO VALIDO O VERIFICAR QUE EL RUBRO NO SE ENCUENTRE VACIO')", true);
                 }
                 else
                 {
-                    ideditar = Session["Idguardar"].ToString();
-                    string[] var1 = sen.consultarasiganacion1(ideditar);
-
-                    string idpermisos = Convert.ToString(var1[0]);
-
-                    string[] campos1 = { "id_shasignacion", "sh_hallazgo_id_shhallazgo", "sh_gerencias_id_shgerencia", "sh_idarea" };
-                    string[] valores1 = { idpermisos, ideditar, IGAgencia1.Text, IGADepa1.Text };
+                    string[] campos1 = { "codshrespuestaasignacion", "sh_comentario", "sh_calificacion", "sh_comentarioauditor", "sh_estatus", "sh_recomendacion" };
+                    string[] valores1 = { ID.Value, txtrespuesta.Value, Cal.Value, txtcomentario.Value, cmbestado.SelectedValue, Recomendacion.Value };
                     try
                     {
-                        logic.modificartablas("sh_asignacion", campos1, valores1);
+                        logic.modificartablas("sh_respuesta_asignacion", campos1, valores1);
                     }
-                    catch
-                    { }
-                    finally
-                    {
-                        try
-                        {
-                            cn.desconectar();
-                        }
-                        catch
-                        { }
-                    }
+                    catch (Exception ex) { Response.Write(ex); }
                 }
-            }
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hallazgo Actualizado'); window.location.href= 'VistaHallazgo.aspx';", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hallazgo Actualizado'); window.location.href= 'VistaHallazgo.aspx';", true);
+            }            
         }
 
-        public void llenarcomboestado()
-        {
-            using (MySqlConnection sqlCon = new MySqlConnection(con.cadenadeconexion()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string QueryString = "select * from sh_estado";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
-                    DataSet ds = new DataSet();
-                    myCommand.Fill(ds, "estado");
-                    cmbestado.DataSource = ds;
-                    cmbestado.DataTextField = "sh_nombre";
-                    cmbestado.DataValueField = "id_shestado";
-                    cmbestado.DataBind();
-                    cmbestado.Items.Insert(0, new ListItem("[Estados]", "0"));
-                }
-                catch { }
-            }
-        }
-
+  
     }
 }

@@ -1,0 +1,89 @@
+﻿* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.4;
+}
+
+h1 {
+    font-size: 15%;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.paddingBlock {
+    padding: 20px 0;
+    text-align:justify;
+}
+
+.eqWrap {
+    display: flex;
+}
+
+.eq {
+    padding: 10px;
+}
+
+    .eq:nth-of-type(odd) {
+        background: white;
+        border: solid 1px black;
+        margin-left:1px;
+        font-size:13px
+    }
+
+    .eq:nth-of-type(even) {
+        background: white;
+        border: solid 1px black;
+        margin-left: 1px;
+        font-size: 13px
+    }
+
+.equalHW {
+    flex: 1;
+}
+
+.equalHMWrap {
+    justify-content: space-between;
+}
+
+.equalHM {
+    width: 32%;
+}
+
+.equalHMRWrap {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.equalHMR {
+    width: 32%;
+    margin-bottom: 2%;
+}
+
+.equalHMVWrap {
+    flex-wrap: wrap;
+}
+
+.equalHMV {
+    width: 32%;
+    margin: 1%;
+}
+
+    .equalHMV:nth-of-type(3n) {
+        margin-right: 0;
+    }
+
+    .equalHMV:nth-of-type(3n+1) {
+        margin-left: 0;
+    }

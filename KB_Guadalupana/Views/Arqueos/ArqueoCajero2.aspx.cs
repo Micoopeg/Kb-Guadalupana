@@ -32,17 +32,6 @@ namespace Modulo_de_arqueos.Views
             {
                 mostrardetalle();
                 operar.Visible = false;
-                CPCantidad.Disabled = true;
-                CPCantidadDo.Disabled = true;
-                CPMonto.Disabled = true;
-                CPMontoDo.Disabled = true;
-                CACantidad.Disabled = true;
-                CACantidadDo.Disabled = true;
-                CAMonto.Disabled = true;
-                CAMontoDo.Disabled = true;
-                CBUtilizadas.Disabled = true;
-                CBReservadas.Disabled = true;
-                CBAnuladas.Disabled = true;
             }
            
         }
@@ -61,13 +50,11 @@ namespace Modulo_de_arqueos.Views
                 decimal totalquetzales;
                 totalquetzales = Convert.ToDecimal(CPMonto.Value) + Convert.ToDecimal(CAMonto.Value);
                 //CQTotal.Value = totalquetzales.ToString();
-                CQTotal.InnerText = totalquetzales.ToString();
 
                 //TOTALES DE MONTO DOLARES
                 decimal totaldolares;
                 totaldolares = Convert.ToDecimal(CPMontoDo.Value) + Convert.ToDecimal(CAMontoDo.Value);
                 //CDTotal.Value = totaldolares.ToString();
-                CDTotal.InnerText = totaldolares.ToString();
 
                 //INSERTAR DATOS DE CHEQUES
                 string idencabezado = Session["id"] as string;

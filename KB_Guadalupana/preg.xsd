@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="preg" targetNamespace="http://tempuri.org/preg.xsd" xmlns:mstns="http://tempuri.org/preg.xsd" xmlns="http://tempuri.org/preg.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString3" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString3 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString3.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="preguntasescalaTableAdapter" GeneratorDataComponentClassName="preguntasescalaTableAdapter" Name="preguntasescala" UserDataComponentName="preguntasescalaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString3 (Web.config)" DbObjectName="bdkbguadalupana.preguntasescala" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `orden`, `pregunta`, `InfoExtrapregunta`, `rangonumerico`, `valortexto` FROM `bdkbguadalupana`.`preguntasescala`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="orden" DataSetColumn="orden" />
+              <Mapping SourceColumn="pregunta" DataSetColumn="pregunta" />
+              <Mapping SourceColumn="InfoExtrapregunta" DataSetColumn="InfoExtrapregunta" />
+              <Mapping SourceColumn="rangonumerico" DataSetColumn="rangonumerico" />
+              <Mapping SourceColumn="valortexto" DataSetColumn="valortexto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="preg" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="preg" msprop:Generator_UserDSName="preg">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="preguntasescala" msprop:Generator_TableClassName="preguntasescalaDataTable" msprop:Generator_TableVarName="tablepreguntasescala" msprop:Generator_TablePropName="preguntasescala" msprop:Generator_RowDeletingName="preguntasescalaRowDeleting" msprop:Generator_RowChangingName="preguntasescalaRowChanging" msprop:Generator_RowEvHandlerName="preguntasescalaRowChangeEventHandler" msprop:Generator_RowDeletedName="preguntasescalaRowDeleted" msprop:Generator_UserTableName="preguntasescala" msprop:Generator_RowChangedName="preguntasescalaRowChanged" msprop:Generator_RowEvArgName="preguntasescalaRowChangeEvent" msprop:Generator_RowClassName="preguntasescalaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="orden" msprop:Generator_ColumnVarNameInTable="columnorden" msprop:Generator_ColumnPropNameInRow="orden" msprop:Generator_ColumnPropNameInTable="ordenColumn" msprop:Generator_UserColumnName="orden" type="xs:int" />
+              <xs:element name="pregunta" msprop:Generator_ColumnVarNameInTable="columnpregunta" msprop:Generator_ColumnPropNameInRow="pregunta" msprop:Generator_ColumnPropNameInTable="preguntaColumn" msprop:Generator_UserColumnName="pregunta">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="800" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InfoExtrapregunta" msprop:Generator_ColumnVarNameInTable="columnInfoExtrapregunta" msprop:Generator_ColumnPropNameInRow="InfoExtrapregunta" msprop:Generator_ColumnPropNameInTable="InfoExtrapreguntaColumn" msprop:Generator_UserColumnName="InfoExtrapregunta">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="rangonumerico" msprop:Generator_ColumnVarNameInTable="columnrangonumerico" msprop:Generator_ColumnPropNameInRow="rangonumerico" msprop:Generator_ColumnPropNameInTable="rangonumericoColumn" msprop:Generator_UserColumnName="rangonumerico">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="valortexto" msprop:Generator_ColumnVarNameInTable="columnvalortexto" msprop:Generator_ColumnPropNameInRow="valortexto" msprop:Generator_ColumnPropNameInTable="valortextoColumn" msprop:Generator_UserColumnName="valortexto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

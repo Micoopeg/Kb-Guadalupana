@@ -21,8 +21,6 @@
 
         body{
             font-family:'Montserrat';
-            background-color:#34495E;
-            color:white;
         }
 
         .general{
@@ -43,7 +41,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:#435F7A;
+            background-color:lightgray;
             flex-direction:column;
             margin-top:10px;
         }
@@ -237,7 +235,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                             <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarcelulargridview icon-prev"  CommandName="Select" ItemStyle-Width="120">
-                            <ItemStyle Width="120px" ForeColor="White"></ItemStyle>
+                            <ItemStyle Width="120px"></ItemStyle>
                              </asp:ButtonField>
                      </Columns>
      <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>
@@ -256,11 +254,6 @@
                                   <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de crédito">
                                     <ItemTemplate>
                                        <asp:Label ID="lblnumcredito" Text='<%# Eval("Credito") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de incidente">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblincidente" Text='<%# Eval("Incidente") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre">
@@ -288,8 +281,8 @@
                                        <asp:Label ID="lblfecha" Text='<%# Eval("Fecha") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver crédito" FooterStyle-ForeColor="White" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="100px" ForeColor="White"></ItemStyle>
+                                <asp:ButtonField   Text="Ver crédito" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="100px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>
@@ -314,18 +307,8 @@
                                        <asp:Label ID="lblnombre" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Incidente">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblincidente" Text='<%# Eval("Incidente") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblfecha" Text='<%# Eval("Fecha"," {0:d}") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:ButtonField   Text="Editar crédito" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="120px" ForeColor="White"></ItemStyle>
+                                <asp:ButtonField   Text="Editar crédito" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="100px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>

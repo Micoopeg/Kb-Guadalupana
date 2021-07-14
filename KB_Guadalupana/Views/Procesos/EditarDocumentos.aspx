@@ -153,7 +153,7 @@
             background-color: #003A6E;
             color: white;
             border:0px;
-             width:22%;
+             width:45%;
              display: flex;
              align-items: center;
             align-content:center;
@@ -208,15 +208,17 @@
                         <input id="Version" runat="server" type="text" class="formatoinput" placeholder="Ingrese versión" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                          <input id="FechaAprobacion" runat="server" type="date" class="formatoinput"/>
                     </div><br />
-                     <div class="formatoTitulo" style="margin-bottom:5px">
+                      <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>Estado</b></label>
-                        <label class="titulos" style="margin-left:28%"><b>Origen</b></label>
-                         <label class="titulos" style="margin-left:28%"><b>Dirigido a:</b></label>
+                        <label class="titulos" style="margin-left:18%"><b>Origen</b></label>
+                         <label class="titulos" style="margin-left:18%"><b>Dirigido a usuario:</b></label>
+                         <label class="titulos" style="margin-left:7%"><b>Tipo de restricción:</b></label>
                     </div>
                      <div class="formato">
-                         <asp:DropDownList id="Estado" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
-                         <asp:DropDownList id="Origen" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
-                         <asp:DropDownList id="UsuarioDirigido" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
+                         <asp:DropDownList id="Estado" runat="server" class="formatoinput4" AutoPostBack="false"></asp:DropDownList>
+                         <asp:DropDownList id="Origen" runat="server" class="formatoinput4" AutoPostBack="false"></asp:DropDownList>
+                         <asp:DropDownList id="UsuarioDirigido" runat="server" class="formatoinput4" AutoPostBack="false"></asp:DropDownList>
+                         <asp:DropDownList id="TipoRestriccion" runat="server" class="formatoinput4" AutoPostBack="false"></asp:DropDownList>
                     </div><br />
                      <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>Categoría</b></label>
@@ -227,14 +229,20 @@
                          <asp:DropDownList id="Subcategoria" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
                     </div><br />
 
+                     <div class="formatoTitulo" style="margin-bottom:5px">
+                        <label class="titulos" style="margin-left:70%"><b>Subir nuevo documento</b></label>
+                    </div>
+
                     <div class="formato">
-                         <asp:FileUpload id="FileUpload1" runat="server" class="formatoinput2"></asp:FileUpload>
+                        <asp:Button ID="VerDocumento" runat="server" CssClass="boton3" Text="Ver Documento" OnClick="VerDocumento_Click"/>
+                        <asp:FileUpload id="FileUpload1" runat="server" class="formatoinput"></asp:FileUpload>
                     </div>
                     
                     <br /><br />
 
                     <div class="formato2">
-                        <asp:Button ID="Actualizar" runat="server" CssClass="boton" Text="Actualizar"/>
+                        <asp:Button ID="Actualizar" runat="server" CssClass="boton2" Text="Actualizar" OnClick="Actualizar_Click"/>
+                        <asp:Button ID="EliminarDocumento" runat="server" CssClass="boton" Text="Eliminar Documento" OnClick="Eliminar_Click"/>
                     </div>
                 </div>
                  <div class="linea"></div><br /><br />

@@ -254,8 +254,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     //string fechabd = año + '-' + mes + '-' + dia;
 
                     string sig = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
-                    //sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, ClienteNombre.Value, NumCif.Value);
-                    sn.guardaretapa(sig2, "6", numcredito, sn.datetime(), "Enviado", idusuario, "51", ClienteNombre.Value, NumeroIncidente.Value);
+                    sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, ClienteNombre.Value, NumCif.Value);
+                    sn.guardaretapa(sig2, "6", numcredito, sn.datetime(), "Enviado", idusuario, "51", ClienteNombre.Value);
                     sn.cambiarestado(numcredito, "5");
 
                     string tipocredito = Session["TipoCredito"] as string;

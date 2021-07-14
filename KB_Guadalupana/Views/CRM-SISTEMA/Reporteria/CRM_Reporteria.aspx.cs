@@ -38,7 +38,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
                 llenarsemaforo();
                 llenartipodomicilio();
                 llenarcomboagencia();
-                llenarcomboagente();
+                
             }
         }
 
@@ -260,12 +260,42 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
 
             if (chkporusuario.Checked == true)
             {
-                combousuario.Visible = true;
+
+                if (chkporagencia.Checked == true)
+                {
+                    combousuario.ClearSelection();
+                    llenarcombousuarioporagencia(comboagencia.SelectedValue);
+                    combousuario.Visible = true;
+                }
+                else
+                {
+                    combousuario.Visible = true;
+                }
             }
             else
             {
                 combousuario.ClearSelection();
                 combousuario.Visible = false;
+            }
+        }
+        public void llenarcombousuarioporagencia(string agencia)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "Select * FROM crmcontrol_ingreso where crmcontrol_ingresosucursal='" + agencia + "' AND crmcontrol_ingresorol=3;";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "agentesucursal");
+                    combousuario.DataSource = ds;
+                    combousuario.DataTextField = "crmcontrol_ingresousuario";
+                    combousuario.DataValueField = "crmcontrol_ingresousuario";
+                    combousuario.DataBind();
+                    combousuario.Items.Insert(0, new ListItem("[Descripción estado]", ""));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
             }
         }
 
@@ -382,7 +412,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
                     myCommand.Fill(ds, "agencias");
                     comboagencia.DataSource = ds;
                     comboagencia.DataTextField = "crm_genagenciasnombre";
-                    comboagencia.DataValueField = "codcrmgenagencias";
+                    comboagencia.DataValueField = "crm_genagenciasnombre";
                     comboagencia.DataBind();
                     comboagencia.Items.Insert(0, new ListItem("[Seleccione la agencia]", ""));
                 }
@@ -402,7 +432,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
                     myCommand.Fill(ds, "agente");
                     combousuario.DataSource = ds;
                     combousuario.DataTextField = "crmcontrol_ingresousuario";
-                    combousuario.DataValueField = "codcrmcontrolingreso";
+                    combousuario.DataValueField = "crmcontrol_ingresousuario";
                     combousuario.DataBind();
                     combousuario.Items.Insert(0, new ListItem("[Seleccione el usuario]", ""));
                 }

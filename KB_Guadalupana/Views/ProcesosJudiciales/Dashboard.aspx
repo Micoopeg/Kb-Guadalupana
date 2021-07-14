@@ -14,14 +14,10 @@
         html{
             width:100%;
             height:100%;
-                background-color:#34495E;
-            color:white;
         }
 
         .body{
             font-family:"Montserrat";
-            background-color:#34495E;
-            color:white;
         }
 
         .general{
@@ -195,7 +191,7 @@
          font-size:65px;
      }
      .opciones{
-         background-color:#435F7A;
+         background-color: #0066BF;
          color: white;
          padding: 15px 15px;
          cursor: pointer;

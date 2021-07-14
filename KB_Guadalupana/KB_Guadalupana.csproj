@@ -97,12 +97,6 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1427.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -282,38 +276,16 @@
     <Content Include="bdkbguadalupanaDataSet4.xss">
       <DependentUpon>bdkbguadalupanaDataSet4.xsd</DependentUpon>
     </Content>
-    <Content Include="bdkbguadalupanaDataSetAbogado2.xsc">
-      <DependentUpon>bdkbguadalupanaDataSetAbogado2.xsd</DependentUpon>
+    <Content Include="bdkbguadalupanaDataSetUsuarios.xsc">
+      <DependentUpon>bdkbguadalupanaDataSetUsuarios.xsd</DependentUpon>
     </Content>
-    <None Include="bdkbguadalupanaDataSetAbogado2.xsd">
+    <None Include="bdkbguadalupanaDataSetUsuarios.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>bdkbguadalupanaDataSetAbogado2.Designer.cs</LastGenOutput>
+      <LastGenOutput>bdkbguadalupanaDataSetUsuarios1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="bdkbguadalupanaDataSetAbogado2.xss">
-      <DependentUpon>bdkbguadalupanaDataSetAbogado2.xsd</DependentUpon>
-    </Content>
-    <Content Include="bdkbguadalupanaDataSetAbogadoFecha.xsc">
-      <DependentUpon>bdkbguadalupanaDataSetAbogadoFecha.xsd</DependentUpon>
-    </Content>
-    <None Include="bdkbguadalupanaDataSetAbogadoFecha.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>bdkbguadalupanaDataSetAbogadoFecha.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="bdkbguadalupanaDataSetAbogadoFecha.xss">
-      <DependentUpon>bdkbguadalupanaDataSetAbogadoFecha.xsd</DependentUpon>
-    </Content>
-    <Content Include="bdkbguadalupanaDataSetSoloFecha.xsc">
-      <DependentUpon>bdkbguadalupanaDataSetSoloFecha.xsd</DependentUpon>
-    </Content>
-    <None Include="bdkbguadalupanaDataSetSoloFecha.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>bdkbguadalupanaDataSetSoloFecha.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="bdkbguadalupanaDataSetSoloFecha.xss">
-      <DependentUpon>bdkbguadalupanaDataSetSoloFecha.xsd</DependentUpon>
+    <Content Include="bdkbguadalupanaDataSetUsuarios.xss">
+      <DependentUpon>bdkbguadalupanaDataSetUsuarios.xsd</DependentUpon>
     </Content>
     <None Include="Connected Services\ServiceReference1\WebService1.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
@@ -414,6 +386,15 @@
     <Content Include="Imagenes\Imagenes\MantenimientoVehiculos1.PNG" />
     <Content Include="Imagenes\Imagenes\MantenimientoVehiculos2.PNG" />
     <Content Include="Imagenes\Imagenes\MantenimientoVehiculos3.PNG" />
+    <Content Include="Imagenes\Imagenes_areas\Auditoria_Interna.jpg" />
+    <Content Include="Imagenes\Imagenes_areas\Comision_Vigilancia.jpg" />
+    <Content Include="Imagenes\Imagenes_areas\Consejo_Administracion.jpg" />
+    <Content Include="Imagenes\Imagenes_areas\Gerencia_Administartiva.jpg" />
+    <Content Include="Imagenes\Imagenes_areas\Gerencia_Financiera.jpg" />
+    <Content Include="Imagenes\Imagenes_areas\Gerencia_General.jpg" />
+    <Content Include="Imagenes\Imagenes_areas\Gerencia_Juridica.jpg" />
+    <Content Include="Imagenes\Imagenes_areas\Gerencia_Negocios.jpg" />
+    <Content Include="Imagenes\Imagenes_areas\Unidad_de_Cumplimiento.jpg" />
     <Content Include="Imagenes\Imagenes_arqueos\Buscar_arqueo.PNG" />
     <Content Include="Imagenes\Imagenes_arqueos\Cheques_Cajero.PNG" />
     <Content Include="Imagenes\Imagenes_arqueos\Cheques_tesoreria.PNG" />
@@ -433,6 +414,9 @@
     <Content Include="Imagenes\Imagenes_arqueos\Registro_CajaChica.PNG" />
     <Content Include="Imagenes\Imagenes_arqueos\SA-Guadalupana-Azul.png" />
     <Content Include="Imagenes\Imagenes_arqueos\SA-Guadalupana1-Blanco.png" />
+    <Content Include="Imagenes\Imagenes_procesos\encabezado_cheque.jpg" />
+    <Content Include="Imagenes\Imagenes_procesos\Logotipo.png" />
+    <Content Include="Imagenes\Imagenes_procesos\PJ-GUADALUPANA.png" />
     <Content Include="Imagenes\logo.jpeg" />
     <Content Include="Imagenes\Logo.png" />
     <Content Include="Imagenes\Logo2.png" />
@@ -628,6 +612,50 @@
     <Content Include="NombreUsuarioDataSet.xss">
       <DependentUpon>NombreUsuarioDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="REPORTENOTASDATA.xsc">
+      <DependentUpon>REPORTENOTASDATA.xsd</DependentUpon>
+    </Content>
+    <Content Include="preguntasdata.xsc">
+      <DependentUpon>preguntasdata.xsd</DependentUpon>
+    </Content>
+    <Content Include="preg.xsc">
+      <DependentUpon>preg.xsd</DependentUpon>
+    </Content>
+    <None Include="preg.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>preg.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="preg.xss">
+      <DependentUpon>preg.xsd</DependentUpon>
+    </Content>
+    <None Include="preguntasdata.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>preguntasdata.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="preguntasdata.xss">
+      <DependentUpon>preguntasdata.xsd</DependentUpon>
+    </Content>
+    <None Include="REPORTENOTASDATA.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>REPORTENOTASDATA.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="REPORTENOTASDATA.xss">
+      <DependentUpon>REPORTENOTASDATA.xsd</DependentUpon>
+    </Content>
+    <Content Include="reportependientesdata.xsc">
+      <DependentUpon>reportependientesdata.xsd</DependentUpon>
+    </Content>
+    <None Include="reportependientesdata.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>reportependientesdata.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="reportependientesdata.xss">
+      <DependentUpon>reportependientesdata.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="ReportesAv\ReporteUsuarios.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -636,8 +664,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -661,6 +687,12 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SQEstilos\EstilosDash.css" />
+    <Content Include="SQEstilos\Estiloseval.css" />
+    <Content Include="SQEstilos\Estilosmalla.css" />
+    <Content Include="SQEstilos\EstilosMenu.css" />
+    <Content Include="SQEstilos\jseval.js" />
+    <Content Include="SQEstilos\jsmenu.js" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -734,6 +766,17 @@
     <Content Include="Views\CRM-SISTEMA\Ingresodata\CRM_Ingresodedatos.aspx" />
     <Content Include="Views\CRM-SISTEMA\MenuPrincipal\CRM_MenuPrincipal.aspx" />
     <Content Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx" />
+    <Content Include="Views\Evaluaciones\Principal.aspx" />
+    <Content Include="Views\Evaluaciones\pruebas.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_Dashboard.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_Evaluacion.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_EvaluacionAsignacion.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_EvaluacionCrear.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_EvaluacionMod.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_ImprimirEvaluacion.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_Personal.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_Preguntas.aspx" />
+    <Content Include="Views\Evaluaciones\SQ_Puestos.aspx" />
     <Content Include="Views\Hallazgos\AsignarHallazgo.aspx" />
     <Content Include="Views\Hallazgos\ConsultaHallazgo.aspx" />
     <Content Include="Views\Hallazgos\ConsultarHallazgos.aspx" />
@@ -760,6 +803,7 @@
     <Content Include="Views\MantenimientosControl\controlArqueos.aspx" />
     <Content Include="Views\MantenimientosControl\controlCRM.aspx" />
     <Content Include="Views\MantenimientosControl\controlExpedientes.aspx" />
+    <Content Include="Views\MantenimientosControl\ControlProcesos.aspx" />
     <Content Include="Views\MantenimientosControl\controlProcesosJudiciales.aspx" />
     <Content Include="Views\MantenimientosControl\SeguridadArqueo.aspx" />
     <Content Include="Views\PaginaDeError\Error404.aspx" />
@@ -775,14 +819,12 @@
     <Content Include="Views\ProcesosJudiciales\DashboardJuridico.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosCobros.aspx" />
     <Content Include="Views\ProcesosJudiciales\DevueltosConta.aspx" />
-    <Content Include="Views\ProcesosJudiciales\DiligenciamientoMedidas.aspx" />
     <Content Include="Views\ProcesosJudiciales\EditarCreditos.aspx" />
     <Content Include="Views\ProcesosJudiciales\ExpedientesEntregados.aspx" />
     <Content Include="Views\ProcesosJudiciales\FacturacionAbogado.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipal.aspx" />
     <Content Include="Views\ProcesosJudiciales\MenuPrincipalProcesos.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx" />
-    <Content Include="Views\ProcesosJudiciales\PendienteDiligenciamiento.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteFacturacionAbogado.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendientePresentacionDemanda.aspx" />
     <Content Include="Views\ProcesosJudiciales\PendienteRequerimientoPago.aspx" />
@@ -794,14 +836,23 @@
     <Content Include="Views\ProcesosJudiciales\Reportes\ReporteAbogados.aspx" />
     <Content Include="Views\ProcesosJudiciales\RequerimientoPago.aspx" />
     <Content Include="Views\ProcesosJudiciales\ResolucionTramite.aspx" />
-    <Content Include="Views\ProcesosJudiciales\SolicitudCheque.aspx" />
     <Content Include="Views\Procesos\Busqueda.aspx" />
     <Content Include="Views\Procesos\BusquedaCategorias.aspx" />
+    <Content Include="Views\Procesos\BusquedaGeneral.aspx" />
     <Content Include="Views\Procesos\DocumentosAEditar.aspx" />
     <Content Include="Views\Procesos\EditarDocumentos.aspx" />
+    <Content Include="Views\Procesos\MantenimientoAreas.aspx" />
+    <Content Include="Views\Procesos\MantenimientoUsuarios.aspx" />
     <Content Include="Views\Procesos\MenuCategorias.aspx" />
+    <Content Include="Views\Procesos\MenuCategorias2.aspx" />
     <Content Include="Views\Procesos\MenuPrincipal.aspx" />
+    <Content Include="Views\Procesos\MenuPrueba.aspx" />
     <Content Include="Views\Procesos\RegistroDocumento.aspx" />
+    <Content Include="Views\Procesos\Reporte.aspx" />
+    <Content Include="Views\Procesos\Reportes\FormularioUsuarios.aspx" />
+    <Content Include="Views\Procesos\Reportes\ReporteDocumentos.aspx" />
+    <Content Include="Views\Procesos\ReporteUsuarios.aspx" />
+    <Content Include="Views\Procesos\Subidos\4-delete.png" />
     <Content Include="Views\Seguridad\AsignacionAplicacion.aspx" />
     <Content Include="Views\Seguridad\ModificarEstado.aspx" />
     <Content Include="Views\Seguridad\ModificarModulo.aspx" />
@@ -874,20 +925,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bdkbguadalupanaDataSet4.xsd</DependentUpon>
     </Compile>
-    <Compile Include="bdkbguadalupanaDataSetAbogado2.Designer.cs">
+    <Compile Include="bdkbguadalupanaDataSetUsuarios1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>bdkbguadalupanaDataSetAbogado2.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="bdkbguadalupanaDataSetAbogadoFecha.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>bdkbguadalupanaDataSetAbogadoFecha.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="bdkbguadalupanaDataSetSoloFecha.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>bdkbguadalupanaDataSetSoloFecha.xsd</DependentUpon>
+      <DependentUpon>bdkbguadalupanaDataSetUsuarios.xsd</DependentUpon>
     </Compile>
     <Compile Include="chart.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -913,6 +954,7 @@
     <Compile Include="Controllers\KB_Rutas.cs" />
     <Compile Include="Controllers\ModeloAV.cs" />
     <Compile Include="Controllers\ModeloEX.cs" />
+    <Compile Include="Controllers\ModeloSQ.cs" />
     <Compile Include="Controllers\Sentencia.cs" />
     <Compile Include="Controllers\Sentencia_arqueos.cs" />
     <Compile Include="Controllers\Sentencia_Hallazgo.cs" />
@@ -958,6 +1000,7 @@
       <DependentUpon>graficmonto.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\ControladorAV.cs" />
+    <Compile Include="Models\ControladorSQ.cs" />
     <Compile Include="Models\CRM_Logica.cs" />
     <Compile Include="Models\ControladorEX.cs" />
     <Compile Include="Models\Logica.cs" />
@@ -998,7 +1041,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NombreUsuarioDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="preg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>preg.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="preguntasdata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>preguntasdata.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REPORTENOTASDATA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>REPORTENOTASDATA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="reportependientesdata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reportependientesdata.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ReportesAv\ReporteUsuarios.aspx.cs">
       <DependentUpon>ReporteUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1471,6 +1534,83 @@
     <Compile Include="Views\CRM-SISTEMA\Reporteria\CRM_Reporteria.aspx.designer.cs">
       <DependentUpon>CRM_Reporteria.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Evaluaciones\Principal.aspx.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\Principal.aspx.designer.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\pruebas.aspx.cs">
+      <DependentUpon>pruebas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\pruebas.aspx.designer.cs">
+      <DependentUpon>pruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Dashboard.aspx.cs">
+      <DependentUpon>SQ_Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Dashboard.aspx.designer.cs">
+      <DependentUpon>SQ_Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Evaluacion.aspx.cs">
+      <DependentUpon>SQ_Evaluacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Evaluacion.aspx.designer.cs">
+      <DependentUpon>SQ_Evaluacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_EvaluacionAsignacion.aspx.cs">
+      <DependentUpon>SQ_EvaluacionAsignacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_EvaluacionAsignacion.aspx.designer.cs">
+      <DependentUpon>SQ_EvaluacionAsignacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_EvaluacionCrear.aspx.cs">
+      <DependentUpon>SQ_EvaluacionCrear.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_EvaluacionCrear.aspx.designer.cs">
+      <DependentUpon>SQ_EvaluacionCrear.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_EvaluacionMod.aspx.cs">
+      <DependentUpon>SQ_EvaluacionMod.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_EvaluacionMod.aspx.designer.cs">
+      <DependentUpon>SQ_EvaluacionMod.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_ImprimirEvaluacion.aspx.cs">
+      <DependentUpon>SQ_ImprimirEvaluacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_ImprimirEvaluacion.aspx.designer.cs">
+      <DependentUpon>SQ_ImprimirEvaluacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Personal.aspx.cs">
+      <DependentUpon>SQ_Personal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Personal.aspx.designer.cs">
+      <DependentUpon>SQ_Personal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Preguntas.aspx.cs">
+      <DependentUpon>SQ_Preguntas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Preguntas.aspx.designer.cs">
+      <DependentUpon>SQ_Preguntas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Puestos.aspx.cs">
+      <DependentUpon>SQ_Puestos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Evaluaciones\SQ_Puestos.aspx.designer.cs">
+      <DependentUpon>SQ_Puestos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Hallazgos\AsignarHallazgo.aspx.cs">
       <DependentUpon>AsignarHallazgo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1611,6 +1751,13 @@
     <Compile Include="Views\MantenimientosControl\controlExpedientes.aspx.designer.cs">
       <DependentUpon>controlExpedientes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\MantenimientosControl\ControlProcesos.aspx.cs">
+      <DependentUpon>ControlProcesos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\MantenimientosControl\ControlProcesos.aspx.designer.cs">
+      <DependentUpon>ControlProcesos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\MantenimientosControl\controlProcesosJudiciales.aspx.cs">
       <DependentUpon>controlProcesosJudiciales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1716,13 +1863,6 @@
     <Compile Include="Views\ProcesosJudiciales\DevueltosConta.aspx.designer.cs">
       <DependentUpon>DevueltosConta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProcesosJudiciales\DiligenciamientoMedidas.aspx.cs">
-      <DependentUpon>DiligenciamientoMedidas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ProcesosJudiciales\DiligenciamientoMedidas.aspx.designer.cs">
-      <DependentUpon>DiligenciamientoMedidas.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\ProcesosJudiciales\EditarCreditos.aspx.cs">
       <DependentUpon>EditarCreditos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1764,13 +1904,6 @@
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\PendienteCertificacion.aspx.designer.cs">
       <DependentUpon>PendienteCertificacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProcesosJudiciales\PendienteDiligenciamiento.aspx.cs">
-      <DependentUpon>PendienteDiligenciamiento.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ProcesosJudiciales\PendienteDiligenciamiento.aspx.designer.cs">
-      <DependentUpon>PendienteDiligenciamiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcesosJudiciales\PendienteFacturacionAbogado.aspx.cs">
       <DependentUpon>PendienteFacturacionAbogado.aspx</DependentUpon>
@@ -1849,13 +1982,6 @@
     <Compile Include="Views\ProcesosJudiciales\ResolucionTramite.aspx.designer.cs">
       <DependentUpon>ResolucionTramite.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProcesosJudiciales\SolicitudCheque.aspx.cs">
-      <DependentUpon>SolicitudCheque.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ProcesosJudiciales\SolicitudCheque.aspx.designer.cs">
-      <DependentUpon>SolicitudCheque.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Procesos\Busqueda.aspx.cs">
       <DependentUpon>Busqueda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1869,6 +1995,13 @@
     </Compile>
     <Compile Include="Views\Procesos\BusquedaCategorias.aspx.designer.cs">
       <DependentUpon>BusquedaCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Procesos\BusquedaGeneral.aspx.cs">
+      <DependentUpon>BusquedaGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\BusquedaGeneral.aspx.designer.cs">
+      <DependentUpon>BusquedaGeneral.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Procesos\DocumentosAEditar.aspx.cs">
       <DependentUpon>DocumentosAEditar.aspx</DependentUpon>
@@ -1884,12 +2017,33 @@
     <Compile Include="Views\Procesos\EditarDocumentos.aspx.designer.cs">
       <DependentUpon>EditarDocumentos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Procesos\MantenimientoAreas.aspx.cs">
+      <DependentUpon>MantenimientoAreas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\MantenimientoAreas.aspx.designer.cs">
+      <DependentUpon>MantenimientoAreas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Procesos\MantenimientoUsuarios.aspx.cs">
+      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\MantenimientoUsuarios.aspx.designer.cs">
+      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Procesos\MenuCategorias.aspx.cs">
       <DependentUpon>MenuCategorias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Procesos\MenuCategorias.aspx.designer.cs">
       <DependentUpon>MenuCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Procesos\MenuCategorias2.aspx.cs">
+      <DependentUpon>MenuCategorias2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\MenuCategorias2.aspx.designer.cs">
+      <DependentUpon>MenuCategorias2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Procesos\MenuPrincipal.aspx.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
@@ -1898,12 +2052,47 @@
     <Compile Include="Views\Procesos\MenuPrincipal.aspx.designer.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Procesos\MenuPrueba.aspx.cs">
+      <DependentUpon>MenuPrueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\MenuPrueba.aspx.designer.cs">
+      <DependentUpon>MenuPrueba.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Procesos\RegistroDocumento.aspx.cs">
       <DependentUpon>RegistroDocumento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Procesos\RegistroDocumento.aspx.designer.cs">
       <DependentUpon>RegistroDocumento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Procesos\Reporte.aspx.cs">
+      <DependentUpon>Reporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\Reporte.aspx.designer.cs">
+      <DependentUpon>Reporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Procesos\Reportes\FormularioUsuarios.aspx.cs">
+      <DependentUpon>FormularioUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\Reportes\FormularioUsuarios.aspx.designer.cs">
+      <DependentUpon>FormularioUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Procesos\Reportes\ReporteDocumentos.aspx.cs">
+      <DependentUpon>ReporteDocumentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\Reportes\ReporteDocumentos.aspx.designer.cs">
+      <DependentUpon>ReporteDocumentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Procesos\ReporteUsuarios.aspx.cs">
+      <DependentUpon>ReporteUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Procesos\ReporteUsuarios.aspx.designer.cs">
+      <DependentUpon>ReporteUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\AsignacionAplicacion.aspx.cs">
       <DependentUpon>AsignacionAplicacion.aspx</DependentUpon>
@@ -2244,20 +2433,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Evaluaciones\Reportes\" />
     <Folder Include="Views\Hallazgos\Archivos\" />
     <Folder Include="Views\Hallazgos\Imagenes\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\CertificacionContable\" />
-    <Folder Include="Views\ProcesosJudiciales\Subidos\Cheque\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\Demanda\" />
-    <Folder Include="Views\ProcesosJudiciales\Subidos\Documentacion\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\DocumentosExpediente\" />
-    <Folder Include="Views\ProcesosJudiciales\Subidos\Informe\" />
-    <Folder Include="Views\ProcesosJudiciales\Subidos\Memorial\" />
-    <Folder Include="Views\ProcesosJudiciales\Subidos\ReporteAbogado\" />
     <Folder Include="Views\ProcesosJudiciales\Subidos\Resolucion\" />
-    <Folder Include="Views\ProcesosJudiciales\Subidos\Transaccion\" />
-    <Folder Include="Views\ProcesosJudiciales\Subidos\Voucher\" />
-    <Folder Include="Views\Procesos\Subidos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2331,6 +2513,94 @@
     </Content>
     <Content Include="Views\CRM-SISTEMA\Asesores\Archivos\06.01.21 Leads Tele Mercadeo delimitado.csv" />
     <Content Include="Views\CRM-SISTEMA\Ingresodata\Archivos\1802201 prueba delimitada.csv" />
+    <Content Include="Views\Procesos\Reportes\Report1.rdlc" />
+    <Content Include="Views\Procesos\Subidos\1--certificacion %2836%29.pdf" />
+    <Content Include="Views\Procesos\Subidos\1-1-certificacion %281%29.pdf" />
+    <Content Include="Views\Procesos\Subidos\1-MANUAL DE CUMPLIMIENTO PARA LA PREVENCIÓN DE LD Y PARA PREVENIR Y REPRIMIR EL FT.pdf" />
+    <Content Include="Views\Procesos\Subidos\10-POLÍTICA DE CONTRATISTAS O PROVEEDORES DEL ESTADO.pdf" />
+    <Content Include="Views\Procesos\Subidos\11-POLÍTICA DE OPERACIONES EN MIRED INTERSISTEMA.pdf" />
+    <Content Include="Views\Procesos\Subidos\12-POLÍTICA PARA EL PAGO DE REMESAS.pdf" />
+    <Content Include="Views\Procesos\Subidos\13-POLÍTICA PARA LA RECEPCIÓN DE MONEDA EXTRANJERA EN EFECTIVO.pdf" />
+    <Content Include="Views\Procesos\Subidos\14-LEY CONTRA EL LAVADO DE DINERO U OTROS ACTIVOS.pdf" />
+    <Content Include="Views\Procesos\Subidos\15-LEY PARA PREVENIR Y REPRIMIR EL FINANCIAMIENTO DEL TERRORISMO.pdf" />
+    <Content Include="Views\Procesos\Subidos\16-REGLAMENTO DE LA LEY CONTRA EL LAVADO DE DINERO U OTROS ACTIVOS.pdf" />
+    <Content Include="Views\Procesos\Subidos\17-REGLAMENTO DE LA LEY PARA PREVENIR Y REPRIMIR EL FINANCIAMIENTO DEL TERRORISMO.pdf" />
+    <Content Include="Views\Procesos\Subidos\18-INSTRUCTIVO PARA COMPLETAR LOS FORMULARIOS DE LA UNIDAD DE CUMPLIMIENTO.xlsx" />
+    <Content Include="Views\Procesos\Subidos\19-MANUAL DE AUDITORÍA INTERNA.pdf" />
+    <Content Include="Views\Procesos\Subidos\2--certificacion %2836%29.pdf" />
+    <Content Include="Views\Procesos\Subidos\2-1-certificacion %281%29.pdf" />
+    <Content Include="Views\Procesos\Subidos\2-POLÍTICA PARA LA ADMINISTRACIÓN DE RIESGO DE LAVADO DE DINERO U OTROS ACTIVOS Y DE FINANCIAMIENTO DEL TERRORISMO.pdf" />
+    <Content Include="Views\Procesos\Subidos\20-POLÍTICA GENERAL DE AUDITORÍA INTERNA.pdf" />
+    <Content Include="Views\Procesos\Subidos\21-POLÍTICA SOBRE CONFLICTOS DE INTERÉS .pdf" />
+    <Content Include="Views\Procesos\Subidos\22-REGLAMENTO DE FUNCIONAMIENTO DEL CONSEJO DE ADMINISTRACIÓN.pdf" />
+    <Content Include="Views\Procesos\Subidos\23-ESTATUTO DE LA COOPERATIVA DE AHORRO Y CRÉDITO INTEGRAL PARROQUIAL GUADALUPANA, R.L..pdf" />
+    <Content Include="Views\Procesos\Subidos\25-REGLAMENTO QUE NORMARÁ LA CONVOCATORIA Y CALIFICACIÓN DE LOS CANDIDATOS A MIEMBROS DIRECTIVOS.pdf" />
+    <Content Include="Views\Procesos\Subidos\26-REGLAMENTO DE FUNCIONAMIENTO DE FUNCIONAMIENTO DE LA COMISIÓN DE VIGILANCIA.pdf" />
+    <Content Include="Views\Procesos\Subidos\27-NORMATIVA QUE REGULA LA RELACIÓN ENTRE LA COOPERATIVA Y LA AUDITORÍA EXTERNA.pdf" />
+    <Content Include="Views\Procesos\Subidos\28-REGLAMENTO DE COMPRAS Y CONTRATACIÓN DE SERVICIOS Y OBRAS A UTILIZAR .pdf" />
+    <Content Include="Views\Procesos\Subidos\29-REGLAMENTO DE CAJA Y BANCOS.pdf" />
+    <Content Include="Views\Procesos\Subidos\3-POLÍTICA CONOZCA A SU ASOCIADO YO USUARIO.pdf" />
+    <Content Include="Views\Procesos\Subidos\3-ReportFecha %281%29.pdf" />
+    <Content Include="Views\Procesos\Subidos\30-REGLAMENTO PARA LA ADMINISTRACIÓN DE CAJA CHICA.pdf" />
+    <Content Include="Views\Procesos\Subidos\31-MANUAL DE POLITICAS Y PROCEDIMIENTOS PARA TESORERIA, INVERSIONES Y LIQUIDEZ.pdf" />
+    <Content Include="Views\Procesos\Subidos\32-PROCEDIMIENTO PARA ACTUALIZAR FIRMAS AUTORIZADAS EN CHEQUES Y ACCESOS DE LA BANCA VIRTUAL VERSIÓN 1.pdf" />
+    <Content Include="Views\Procesos\Subidos\33-POLÍTICAS SEGURO DE CRÉDITO COLUMNA.pdf" />
+    <Content Include="Views\Procesos\Subidos\34-PROCEDIMIENTO PARA RECLAMO DE SEGUROS.pdf" />
+    <Content Include="Views\Procesos\Subidos\35-REGLAMENTO DE APORTACIONES.pdf" />
+    <Content Include="Views\Procesos\Subidos\36-REGLAMENTO QUE NORMARÁ LOS DEPÓSITOS A PLAZO FIJO.pdf" />
+    <Content Include="Views\Procesos\Subidos\37-REGLAMENTO DE CUENTA MI PROMESA.pdf" />
+    <Content Include="Views\Procesos\Subidos\38-INSTRUCTIVO PARA COMPLETAR EL RECONOCIMIENTO DE DEUDA.pdf" />
+    <Content Include="Views\Procesos\Subidos\39-INSTRUCTIVO PARA EL CONTROL Y MANEJO DE EFECTIVO.pdf" />
+    <Content Include="Views\Procesos\Subidos\40-INSTRUCTIVO PARA EL CONTROL Y MANEJO DE LIBROS AUXILIARES.pdf" />
+    <Content Include="Views\Procesos\Subidos\41-INSTRUCTIVO PARA EL RAZONAMIENTO DE RECIBO DE ENERGÍA ELÉCTRICA.pdf" />
+    <Content Include="Views\Procesos\Subidos\42-INSTRUCTIVO PARA EL REGISTRO Y ACTUALIZACION DE DATOS EN EL SISTEMA MULTIMAIN.pdf" />
+    <Content Include="Views\Procesos\Subidos\43-INSTRUCTIVO PARA LA ELABORACIÓN DE ACTAS DE COMITÉ DE CRÉDITO.pdf" />
+    <Content Include="Views\Procesos\Subidos\44-PROCEDIMIENTO PARA LA REVISIÓN Y FOLIADO DEL EXPEDIENTE DE CRÉDITOS MAYORES.pdf" />
+    <Content Include="Views\Procesos\Subidos\45-PROCEDIMIENTO PARA OTORGAR EXTRAFINANCIAMIENTO DE LA TARJETA DE CRÉDITO.pdf" />
+    <Content Include="Views\Procesos\Subidos\46-PROTOCOLO DE ATENCIÓN PARA ASOCIADOS O NUEVOS ASOCIADOS CON DPI VENCIDO.pdf" />
+    <Content Include="Views\Procesos\Subidos\47-POLÍTICA PARA LA ADMINISTRACIÓN Y RECUPERACIÓN DE TARJETA DE CRÉDITO Y PRÉSTAMOS DEPURADOS .pdf" />
+    <Content Include="Views\Procesos\Subidos\48-POLÍTICA DE COBRANZA .pdf" />
+    <Content Include="Views\Procesos\Subidos\49-POLÍTICA PARA LA EXONERACIÓN DE INTERESES, RECARGOS POR MORA Y GASTOS DE COBRANZA PARA LA RECUPERACIÓN DE CRÉDITOS EN MORA.pdf" />
+    <Content Include="Views\Procesos\Subidos\5--certificacion %2836%29.pdf" />
+    <Content Include="Views\Procesos\Subidos\5-POLÍTICA CONOZCA A SUS DIRIGENTES Y EMPLEADOS.pdf" />
+    <Content Include="Views\Procesos\Subidos\50-ANEXO DE POLÍTICA DE EXONERACIÓN.pdf" />
+    <Content Include="Views\Procesos\Subidos\51-REGLAMENTO ACTUACIÓN ABOGADOS Y MANDATARIOS JUDICIALES.pdf" />
+    <Content Include="Views\Procesos\Subidos\52-POLÍTICA DE CRÉDITOS.pdf" />
+    <Content Include="Views\Procesos\Subidos\53-MANUAL DE PROCEDIMIENTOS DE CRÉDITO .pdf" />
+    <Content Include="Views\Procesos\Subidos\54-REGLAMENTO PARA LA VENTA DE ACTIVOS EXTRAORDINARIOS.pdf" />
+    <Content Include="Views\Procesos\Subidos\55-POLÍTICA DE COPIA DE SEGURIDAD DE APLICACIONES INTERNAS.pdf" />
+    <Content Include="Views\Procesos\Subidos\56-POLÍTICA DE SEGURIDAD INFORMÁTICA .pdf" />
+    <Content Include="Views\Procesos\Subidos\57-PROCEDIMIENTO PARA EL CONTROL DE USUARIOS Y ACCESOS.pdf" />
+    <Content Include="Views\Procesos\Subidos\58-MANUAL DE PROCEDIMIENTOS DEL ÁREA DE RECEPCIÓN.pdf" />
+    <Content Include="Views\Procesos\Subidos\59-PROCEDIMIENTO CONTROL DE ACCESOS CLAVES Y LLAVES DE SEGURIDAD.pdf" />
+    <Content Include="Views\Procesos\Subidos\6-POLÍTICA PARA EL ANÁLISIS DE TRANSACCIONES INUSUALES Y SOSPECHOSAS.pdf" />
+    <Content Include="Views\Procesos\Subidos\60-MANUAL DE SALUD Y SEGURIDAD OCUPACIONAL.pdf" />
+    <Content Include="Views\Procesos\Subidos\61-PROTOCOLOS DE SEGURIDAD.pdf" />
+    <Content Include="Views\Procesos\Subidos\62-MANUAL DE PERFIL DE PUESTOS DE TRABAJO.pdf" />
+    <Content Include="Views\Procesos\Subidos\63-MANUAL DE PROCEDIMIENTOS PARA PROMOCIONES, ASCENSOS Y TRASLADOS DE PERSONAL.pdf" />
+    <Content Include="Views\Procesos\Subidos\64-MANUAL DE PROCEDIMIENTOS PARA REALIZAR GESTIONES DEL IGSS.pdf" />
+    <Content Include="Views\Procesos\Subidos\65-MANUAL DE TRABAJO EN CASA Y HORARIOS FLEXIBLES.pdf" />
+    <Content Include="Views\Procesos\Subidos\66-POLÍTICA Y PROCEDIMIENTO DE REVISIÓN SALARIAL DE COLABORADORES.pdf" />
+    <Content Include="Views\Procesos\Subidos\67-PROCEDIMIENTO DE AUTORIZACIÓN PARA BECAS UNIVERSITARIAS.pdf" />
+    <Content Include="Views\Procesos\Subidos\68-PROCEDIMIENTO DE HORAS EXTRAORDINARIAS.pdf" />
+    <Content Include="Views\Procesos\Subidos\69-PROCEDIMIENTO DE SOLICITUD Y AUTORIZACIÓN DE VACACIONES.pdf" />
+    <Content Include="Views\Procesos\Subidos\7-POLÍTICA DE CRÉDITOS CANCELADOS ANTICIPADAMENTE.pdf" />
+    <Content Include="Views\Procesos\Subidos\70-PROCEDIMIENTO PARA APLICAR MEDIDAS DISCIPLINARIAS.pdf" />
+    <Content Include="Views\Procesos\Subidos\71-PROCEDIMIENTO PARA LA ELABORACIÓN Y PAGO DE NÓMINA.pdf" />
+    <Content Include="Views\Procesos\Subidos\72-PROCEDIMIENTO DE HORAS EXTRAORDINARIAS.pdf" />
+    <Content Include="Views\Procesos\Subidos\72-PROCEDIMIENTO PARA SOLICITAR ANTICIPO SALARIAL.pdf" />
+    <Content Include="Views\Procesos\Subidos\73-REGLAMENTO INTERNO DE TRABAJO.pdf" />
+    <Content Include="Views\Procesos\Subidos\74-REGLAMENTO PARA OTORGAR ANTICIPOS SALARIALES .pdf" />
+    <Content Include="Views\Procesos\Subidos\75-REGLAMENTO ORGÁNICO FUNCIONAL.pdf" />
+    <Content Include="Views\Procesos\Subidos\76-POLÍTICA DE SEGURIDAD INFORMÁTICA.pdf" />
+    <Content Include="Views\Procesos\Subidos\77-POLÍTICA DE SEGURIDAD INFORMÁTICA.pdf" />
+    <Content Include="Views\Procesos\Subidos\78-POLÍTICA Y PROCEDIMIENTO DE REVISIÓN SALARIAL.pdf" />
+    <Content Include="Views\Procesos\Subidos\79-REGLAMENTO DE TALENTO HUMANO.pdf" />
+    <Content Include="Views\Procesos\Subidos\8-POLÍTICA DE MONITOREO Y COMPORTAMIENTO TRANSACCIONAL.pdf" />
+    <Content Include="Views\Procesos\Subidos\80-Registro de Candidato Consejo de Administración.xlsx" />
+    <Content Include="Views\Procesos\Subidos\81-Normativa Prudencial Micoope.pdf" />
+    <Content Include="Views\Procesos\Subidos\9-POLITICA DE DEPÓSITOS EN CUENTAS A NOMBRE DE LA COOPERATIVA.pdf" />
+    <Content Include="Views\Procesos\Reportes\Report2.rdlc" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2342,9 +2612,12 @@
     <EmbeddedResource Include="ReportesAv\Report1.rdlc" />
     <EmbeddedResource Include="ReportesAv\ReporteMontos.rdlc" />
     <EmbeddedResource Include="Views\CRM-SISTEMA\Reporteria\Report1.rdlc" />
+    <EmbeddedResource Include="Views\Evaluaciones\Preguntas.rdlc" />
+    <EmbeddedResource Include="Views\Evaluaciones\Report1.rdlc" />
+    <EmbeddedResource Include="Views\Evaluaciones\Report2.rdlc" />
+    <EmbeddedResource Include="Views\Evaluaciones\ReporteDesempeño.rdlc" />
+    <EmbeddedResource Include="Views\Evaluaciones\ReporteDesempeñoJefe.rdlc" />
     <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\Report1.rdlc" />
-    <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\ReportAbogado.rdlc" />
-    <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\ReportFecha.rdlc" />
     <EmbeddedResource Include="Views\ProcesosJudiciales\Reportes\SolicitudChequeR2.rdlc" />
   </ItemGroup>
   <ItemGroup>

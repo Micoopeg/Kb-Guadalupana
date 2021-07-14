@@ -88,16 +88,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                     {
                         //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                         sqlCon.Open();
-                        string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes," +
-                            "t4.sh_nombre,t2.sh_gerencianombre, t3.sh_areanombre, t0.sh_recomendacion," +
-                            "t4.sh_nombre,t5.sh_comentario as Comen,t5.sh_fecha as Fecha,t5.sh_usuario " +
-                            "from sh_hallazgo t0 " +
-                            "inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
-                            "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
-                            "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
-                            "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
-                            "left join sh_respuesta t5 on t0.id_shhallazgo=t5.sh_hallazgo_id_shhallazgo " +
-                            "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "'";
+                        string QueryString = "SELECT a.codshrespuestaasignacion,c.sh_rubro,c.sh_mes,d.sh_gerencianombre,e.sh_areanombre,f.sh_nombre FROM sh_respuesta_asignacion a INNER JOIN sh_asignacion b ON a.codshasignacion=b.id_shasignacion INNER JOIN sh_hallazgo c ON b.sh_hallazgo_id_shhallazgo=c.id_shhallazgo INNER JOIN sh_gerencias d ON b.sh_gerencias_id_shgerencia=d.id_shgerencia INNER JOIN sh_area e ON b.sh_idarea=e.id_sharea INNER JOIN sh_estado f on a.sh_estatus=f.id_shestado WHERE c.sh_mes='"+trimestre+"' AND c.sh_año='"+año+ "' AND a.sh_estatus!='6';";
                         MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                         DataTable ds3 = new DataTable();
                         command.Fill(ds3);
@@ -119,12 +110,7 @@ namespace KB_Guadalupana.Views.Hallazgos
                     {
                         //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + sesion + "');", true);
                         sqlCon.Open();
-                        string QueryString = "select t0.id_shhallazgo,t0.sh_rubro,t0.sh_hallazgo,t0.sh_mes,t4.sh_nombre,t2.sh_gerencianombre,t3.sh_areanombre " +
-                            "from sh_hallazgo t0 inner join sh_asignacion t1 on t0.id_shhallazgo = t1.sh_hallazgo_id_shhallazgo " +
-                            "inner join sh_gerencias t2 on t1.sh_gerencias_id_shgerencia= t2.id_shgerencia " +
-                            "inner join sh_area t3 on t1.sh_idarea= t3.id_sharea " +
-                            "inner join sh_estado t4 on t0.sh_estado_id_shestado= t4.id_shestado " +
-                            "where t0.sh_mes='" + trimestre + "' and t0.sh_año='" + año + "' and t1.sh_gerencias_id_shgerencia='" + gerencia + "' and t1.sh_idarea='" + area + "' and t0.sh_estado_id_shestado ='" + estado + "'";
+                        string QueryString = "SELECT a.codshrespuestaasignacion,c.sh_rubro,c.sh_mes,d.sh_gerencianombre,e.sh_areanombre,f.sh_nombre FROM sh_respuesta_asignacion a INNER JOIN sh_asignacion b ON a.codshasignacion=b.id_shasignacion INNER JOIN sh_hallazgo c ON b.sh_hallazgo_id_shhallazgo=c.id_shhallazgo INNER JOIN sh_gerencias d ON b.sh_gerencias_id_shgerencia=d.id_shgerencia INNER JOIN sh_area e ON b.sh_idarea=e.id_sharea INNER JOIN sh_estado f on a.sh_estatus=f.id_shestado WHERE c.sh_mes='"+trimestre+"' AND c.sh_año='"+año+"' AND b.sh_gerencias_id_shgerencia='"+gerencia+"' AND b.sh_idarea='"+area+"' AND a.sh_estatus='"+estado+"';";
                         MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                         DataTable ds3 = new DataTable();
                         command.Fill(ds3);

@@ -26,7 +26,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenargridviewdocumentos();
                 llenarformulario();
                 llenarcombodocumento();
-                llenarcomentarios();
             }
         }
 
@@ -173,7 +172,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Comentario.Value = campos3[16];
                     Total1.InnerText = "Q " + campos3[17];
                     string fechaestado = campos3[19];
-                    Observaciones.Value = campos3[20];
                     string[] separarfechahora = fechaestado.Split(' ');
                     string[] fechaestado2 = separarfechahora[0].Split('/');
 
@@ -201,7 +199,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Total1.InnerHtml = "Q " + campos2[4];
                     Comentario.Value = campos2[5];
                     string fechaestado = campos2[8];
-                    Observaciones.Value = campos2[9];
                     string[] separarfechahora = fechaestado.Split(' ');
                     string[] fechaestado2 = separarfechahora[0].Split('/');
 
@@ -392,49 +389,18 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (tipocredito == "tarjeta")
                 {
                     fecha = sn.fechacreaciontarjeta(numcredito);
-                    sn.editartarjeta(NumIncidente.Value, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, NumPrestamo.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), FechaEstadoCuenta.Value, Observaciones.Value);
+                    sn.editartarjeta(NumIncidente.Value, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, NumPrestamo.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), FechaEstadoCuenta.Value);
                 }
                 else
                 {
                     fecha = sn.fechacreacioncredito(numcredito);
-                    sn.editarcredito(NumIncidente.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, NumPrestamo.Value, FechaEstadoCuenta.Value, Observaciones.Value);
+                    sn.editarcredito(NumIncidente.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, NumPrestamo.Value, FechaEstadoCuenta.Value);
                 }
 
                 String script = "alert('Se realizaron los cambios exitosamente'); window.location.href= 'AsignarProceso.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
 
-        }
-
-        public void llenarcomentarios()
-        {
-            string numcredito = Session["credito"] as string;
-            string[] comentarios = sn.traerComentarios(numcredito);
-
-            for (int i = 0; i < comentarios.Length; i++)
-            {
-                if (comentarios.Length == 1)
-                {
-                    Comentario1.Visible = true;
-                    Comentario1.Value = comentarios[0];
-                }
-                else if (comentarios.Length == 2)
-                {
-                    Comentario1.Value = comentarios[0];
-                    Comentario2.Value = comentarios[1];
-                    Comentario1.Visible = true;
-                    Comentario2.Visible = true;
-                }
-                else
-                {
-                    Comentario1.Value = comentarios[0];
-                    Comentario2.Value = comentarios[1];
-                    Comentario3.Value = comentarios[2];
-                    Comentario1.Visible = true;
-                    Comentario2.Visible = true;
-                    Comentario3.Visible = true;
-                }
-            }
         }
     }
 }

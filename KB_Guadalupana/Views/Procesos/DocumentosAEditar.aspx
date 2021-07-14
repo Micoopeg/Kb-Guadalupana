@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <title>Editar</title>
        <style>
          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
@@ -176,6 +177,10 @@
             padding:7px;
         }
 
+      .tabla th{
+           padding:5px;
+      }
+
         .linea2{
             border-left: 1px black solid;
             height:25px;
@@ -192,6 +197,27 @@
                     <label style="font-size:18px" class="titulos"><b>Documentos para editar</b></label>
                  </div><br />
 
+                 <div class="linea"></div>
+
+                <div class="encabezado">
+                    <div class="formato3">
+                        <label class="titulos"><b>Nombre del documento</b></label>
+                        <div style="margin-top:10px;" class="formato">
+                            <i style="width:4%; display:flex;align-items:center; justify-content:center" class='fas fa-search'></i>
+                            <div style="width:2%;display:flex;align-items:center; justify-content:center" class="linea2"></div>
+                           <input id="NombreDocumento" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre del documento" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div>
+                    </div><br /><br />
+                     <div class="formato2">
+                        <asp:Button ID="Buscar" runat="server" CssClass="boton2" Text="Buscar" OnClick="Buscar_Click"/>
+                    </div>
+                     <div class="formato2">
+                        <asp:Button ID="VerTodo" runat="server" CssClass="boton" Text="Ver Todo" OnClick="VerTodo_Click"/>
+                    </div>
+                </div>
+                  <div class="linea"></div><br /><br />
+
+
                 <div class="encabezado">
                        <div style="justify-content: center;display:flex" class="formato">
                        <%-- style="overflow: auto; height: 145px"--%>
@@ -206,7 +232,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Código">
                                     <ItemTemplate>
-                                       <asp:Label ID="lblcodigo" Text='<%# Eval("Codigo") %>' runat="server" />
+                                       <asp:Label ID="lblcodigo" Width="80px" Text='<%# Eval("Codigo") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">

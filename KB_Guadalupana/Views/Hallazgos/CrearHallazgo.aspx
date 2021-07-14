@@ -299,7 +299,7 @@ padding: 8px;
             <a href="../Sesion/CerrarSesion.aspx" style="right: 0%;position: absolute;">Cerrar Sesion</a>
     </div>
         <div id="content" class="col-lg-12">
-            <div class="content"style="text-align: justify"><b>Usuario:</b> El tamaño maximo para poder cargar el archivo debe de ser de 10MB. Evitar subir archivos que contengan punto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-mail-forward" style="font-size:25px;color:red;right:115px;height:165px"></i></div>
+            <div class="content"style="text-align: justify"><b>Usuario:</b> El tamaño maximo para poder cargar el archivo debe de ser de 10MB. Evitar subir archivos que contengan punto &nbsp;</div>
         </div>
     <form id="form1" runat="server">
                <h1 style="color:white">Crear Hallazgo</h1>

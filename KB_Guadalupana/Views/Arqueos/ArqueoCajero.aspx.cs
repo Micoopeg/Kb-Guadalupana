@@ -202,46 +202,33 @@ namespace Modulo_de_arqueos.Views
                 //SUMA DE BILLETES
                 decimal sumab1, sumab2, sumab3, sumab4, sumab5, sumab6, sumab7;
                     sumab1 = Convert.ToDecimal(200.00) * Convert.ToDecimal(CCantidad1.Value);
-                CBTotal1.InnerText = sumab1.ToString();
                     //CBTotal1.Value = Convert.ToString(sumab1);
                     sumab2 = Convert.ToDecimal(100.00) * Convert.ToDecimal(CCantidad2.Value);
-                CBTotal2.InnerText = sumab2.ToString();
                     //CBTotal2.Value = Convert.ToString(sumab2);
                     sumab3 = Convert.ToDecimal(50.00) * Convert.ToDecimal(CCantidad3.Value);
-                CBTotal3.InnerText = sumab3.ToString();
                     //CBTotal3.Value = Convert.ToString(sumab3);
                     sumab4 = Convert.ToDecimal(20.00) * Convert.ToDecimal(CCantidad4.Value);
-                CBTotal4.InnerText = sumab4.ToString();
                     //CBTotal4.Value = Convert.ToString(sumab4);
                     sumab5 = Convert.ToDecimal(10.00) * Convert.ToDecimal(CCantidad5.Value);
-                CBTotal5.InnerText = sumab5.ToString();
                     //CBTotal5.Value = Convert.ToString(sumab5);
                     sumab6 = Convert.ToDecimal(5.00) * Convert.ToDecimal(CCantidad6.Value);
-                CBTotal6.InnerText = sumab6.ToString();
                     //CBTotal6.Value = Convert.ToString(sumab6);
                     sumab7 = Convert.ToDecimal(1.00) * Convert.ToDecimal(CCantidad7.Value);
-                CBTotal7.InnerText = sumab7.ToString();
                     //CBTotal7.Value = Convert.ToString(sumab7);
 
                 //SUMA DE MONEDAS
                 decimal sumam1, sumam2, sumam3, sumam4, sumam5, sumam6;
                 sumam1 = Convert.ToDecimal(1.00) * Convert.ToInt32(CMCantidad1.Value);
-                CMTotal1.InnerText = sumam1.ToString();
                 //CMTotal1.Value = Convert.ToString(sumam1);
                 sumam2 = Convert.ToDecimal(0.50) * Convert.ToDecimal(CMCantidad2.Value);
-                CMTotal2.InnerText = sumam2.ToString();
                 //CMTotal2.Value = Convert.ToString(sumam2);
                 sumam3 = Convert.ToDecimal(0.25) * Convert.ToDecimal(CMCantidad3.Value);
-                CMTotal3.InnerText = sumam3.ToString();
                 //CMTotal3.Value = Convert.ToString(sumam3);
                 sumam4 = Convert.ToDecimal(0.10) * Convert.ToDecimal(CMCantidad4.Value);
-                CMTotal4.InnerText = sumam4.ToString();
                 //CMTotal4.Value = Convert.ToString(sumam4);
                 sumam5 = Convert.ToDecimal(0.05) * Convert.ToDecimal(CMCantidad5.Value);
-                CMTotal5.InnerText = sumam5.ToString();
                 //CMTotal5.Value = Convert.ToString(sumam5);
                 sumam6 = Convert.ToDecimal(0.01) * Convert.ToDecimal(CMCantidad6.Value);
-                CMTotal6.InnerText = sumam6.ToString();
                 //CMTotal6.Value = Convert.ToString(sumam6);
 
                 //INSERTAR ENCABEZADO
@@ -303,7 +290,6 @@ namespace Modulo_de_arqueos.Views
                     sumatotal = Convert.ToDecimal(sumab1) + Convert.ToDecimal(sumab2) + Convert.ToDecimal(sumab3) + Convert.ToDecimal(sumab4) + Convert.ToDecimal(sumab5) +
                     Convert.ToDecimal(sumab6) + Convert.ToDecimal(sumab7) + Convert.ToDecimal(sumam1) + Convert.ToDecimal(sumam2) + Convert.ToDecimal(sumam3) +
                     Convert.ToDecimal(sumam4) + Convert.ToDecimal(sumam5) + Convert.ToDecimal(sumam6);
-                CTotalefectivo.InnerText = sumatotal.ToString();
                 //CTotalefectivo.Value = Convert.ToString(sumatotal);
 
                 //INSERTAR DETALLE
@@ -371,30 +357,6 @@ namespace Modulo_de_arqueos.Views
                     imprimir.Visible = true;
                     operar.Visible = false;
                     EBuscar.Visible = false;
-
-                    CAgencia.Enabled = false;
-                    CNombre.Disabled = true;
-                    CUsuario.Disabled = true;
-                    COperador.Disabled = true;
-                    CPuestooperador.Disabled = true;
-                    CJefe.Disabled = true;
-                    CPuestoencargado.Disabled = true;
-                    CComentario.Disabled = true;
-                    CCantidad1.Disabled = true;
-                    CCantidad3.Disabled = true;
-                    CCantidad2.Disabled = true;
-                    CCantidad4.Disabled = true;
-                    CCantidad5.Disabled = true;
-                    CCantidad6.Disabled = true;
-                    CCantidad7.Disabled = true;
-                    CMCantidad1.Disabled = true;
-                    CMCantidad2.Disabled = true;
-                    CMCantidad3.Disabled = true;
-                    CMCantidad4.Disabled = true;
-                    CMCantidad5.Disabled = true;
-                    CMCantidad6.Disabled = true;
-                    CTotalrecibido.Disabled = true;
-                    CTotalentregado.Disabled = true;
                 }
             }
         }

@@ -13,10 +13,11 @@ namespace KB_Guadalupana.Controllers
         protected MySqlDataAdapter AdaptadorDatos;
         protected MySqlDataReader reader;
         protected DataSet data;
-            
+
         public string cadenadeconexiongeneral()
         {
-            string connectionString = @"Server=10.60.81.4;Database=bdkbguadalupana;Uid=User4pDes@rrollo;Pwd=BDK0ntr@PG1;";
+            string connectionString = @"Server=10.60.81.5;Database=bdkbguadalupana;Uid=BDuser1205;Pwd=K91nforPGADM;";
+            //string connectionString = @"Server=10.60.81.5;Database=bdkbguadalupana;Uid=User4pDes@rrollo;Pwd=BDK0ntr@PG1;";
             //string connectionString = @"Server=localhost;Database=bdkbguadalupana;Uid=root;Pwd=;";
             return connectionString;
         }

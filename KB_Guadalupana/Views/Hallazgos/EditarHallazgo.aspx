@@ -312,16 +312,15 @@ padding: 8px;
       <p class="col-md-3">
             <label style="color:white">Area/Departamento</label>
             <asp:DropDownList id="IGADepa1" runat="server" class="dis" style="max-width: 170px" ></asp:DropDownList>
-        </p>
-         <p class="col-md-3" id="gerencia2" runat="server">
-            <label style="color:white">Gerencia</label>
-         <asp:DropDownList id="IGAgencia4"  runat="server" class="dis" style="max-width: 170px" ></asp:DropDownList>
-        </p>
-      <p class="col-md-3" id="gerencia21" runat="server">
-            <label style="color:white">Area/Departamento</label>
-            <asp:DropDownList id="IGAgencia2" runat="server" class="dis" style="max-width: 170px" ></asp:DropDownList>
-        </p>
-      </div>
+     </p>
+               <p class="col-md-5">
+                   <a style="color:white">Respuesta</a>
+            <textarea id="txtrespuesta" runat="server" name="texto" rows="3" cols="42"></textarea>
+     </p>
+         <br />
+         
+          <asp:LinkButton ID="visualizarhallazgo" runat="server" class="button" Text="Ver Archivo" style="margin-left: 5px;margin-top: 0px;background-color: orange;" OnClick="Visualizar_Hallazgo_Click" ClientIDMode="Static"></asp:LinkButton>      
+         </div>
   </div>
   <div class="inset">
       <div class="row">
@@ -402,7 +401,7 @@ padding: 8px;
         <p class="col-md-3" id="Archivo" runat="server">
             <label style="color:white">Ver Archivo</label>
             <br>
-             <asp:LinkButton ID="guardarinformacion" runat="server" class="button" Text="Abrir Archivo" style="margin-left: 5px;margin-top: 0px;background-color: orange;" OnClick="Guardar_Hallazgo_Click" ClientIDMode="Static"></asp:LinkButton>
+           <asp:LinkButton ID="LinkButton1" runat="server" class="button" Text="Abrir Archivo" style="margin-left: 5px;margin-top: 0px;background-color: orange;" OnClick="Guardar_Hallazgo_Click" ClientIDMode="Static"></asp:LinkButton>
         </p>
         <p class="col-md-6">
             <label style="color:white">Hallazgo</label>
@@ -433,9 +432,7 @@ padding: 8px;
         </form>
 
     </div>
-
 </div> 
-
      <script type="text/javascript">
       
          function Guardar()

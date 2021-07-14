@@ -11,16 +11,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"/>
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet"/>
+    
     <title>Búsqueda</title>
      <style>
          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
         html{
             width:100%;
             height:100%;
+             font-family:'Montserrat';
         }
 
         body{
-            font-family:"Montserrat";
+            font-family:'Montserrat';
+                 background-image:url("../../Imagenes/Imagenes_areas/fondo_blanco_liso.jpg");
+         
+  background-size: 100%;
         }
 
         .formularioCobros{
@@ -122,7 +127,7 @@
             justify-content: flex-start;
         }
 
-                .boton{
+            .boton{
             border-style: none;
              border-color: inherit;
              border-width: 0px;
@@ -181,32 +186,33 @@
         }
 
         .linea2{
-            border-left: 1px black solid;
+            border-left: 1px #003563 solid;
             height:25px;
             width:5px;
         }
     </style>
 </head>
-<body>
+<body style="background-size:cover">
      <div id="menu" runat="server" class="menu"></div>
     <form id="form1" runat="server">
         <div class="general">
+            <p id="color" runat="server" hidden="hidden"></p>
             <div class="formularioCobros">
                   <div style="display:flex; justify-content:center">
-                    <label style="font-size:18px" class="titulos"><b>Búsqueda de Documentos</b></label>
+                    <label style="font-size:18px; color:#003563" class="titulos"><b>Búsqueda de Documentos</b></label>
                  </div><br />
                   <div style="display:flex; justify-content:center">
-                    <span id="NombreCategoria" runat="server" style="font-size:16px" class="titulos"><b></b></span>
+                    <span id="NombreCategoria" runat="server" style="font-size:16px; color:#003563" class="titulos"><b></b></span>
                  </div><br />
 
                  <div class="linea"></div>
 
                 <div class="encabezado">
                     <div class="formato3">
-                        <label class="titulos"><b>Nombre del documento</b></label>
+                        <label class="titulos" style="color:#003563"><b>Nombre del documento</b></label>
                         <div style="margin-top:10px;" class="formato">
-                            <i style="width:4%; display:flex;align-items:center; justify-content:center" class='fas fa-file-alt'></i>
-                            <div style="width:2%;display:flex;align-items:center; justify-content:center" class="linea2"></div>
+                            <img style="max-width:4%; display:flex;align-items:center; justify-content:center;color:#003563" src="../../Imagenes/lupa_azul.png"/>
+                            <div style="width:2%;display:flex;align-items:center; justify-content:center; color:#003563" class="linea2"></div>
                             <asp:DropDownList style="width:92%" id="NombreDocumento" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
                         </div>
                     </div><br /><br />
@@ -221,9 +227,9 @@
 
                  <div class="encabezado" style="width:140%">
                     <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 145px">
+                        <div>
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
-                            OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid" AllowPaging="true" PageSize="10" OnPageIndexChanging="documento_PageIndexChanging">
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid" AllowPaging="true" PageSize="10" OnPageIndexChanging="documento_PageIndexChanging" BackColor="White">
                              <Columns>
                                <asp:TemplateField ControlStyle-CssClass="diseño" visible="false" HeaderText="Código">
                                     <ItemTemplate>
@@ -232,7 +238,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Código">
                                     <ItemTemplate>
-                                       <asp:Label ID="lblcodigo" Text='<%# Eval("Codigo") %>' runat="server" />
+                                       <asp:Label ID="lblcodigo" Width="86px" Text='<%# Eval("Codigo") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">
@@ -260,7 +266,7 @@
                                        <asp:Label ID="lblorigen" Text='<%# Eval("Origen") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="fas fa-search" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
                                     <ItemStyle Width="135px" ForeColor="Black"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
@@ -271,7 +277,36 @@
                 </div>
             </div>
         </div>
-
+        <%-- <script type="text/javascript">
+             var color = document.getElementById("color").innerHTML;
+             if (color == "1") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Gerencia_Administartiva.jpg')";
+             }
+             else if (color == "2") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Gerencia_Negocios.jpg')";
+             }
+             else if (color == "3") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Gerencia_Juridica.jpg')";
+             }
+             else if (color == "4") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Gerencia_Financiera.jpg')";
+             }
+             else if (color == "5") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Unidad_de_Cumplimiento.jpg')";
+             }
+             else if (color == "6") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Comision_Vigilancia.jpg')";
+             }
+             else if (color == "7") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Gerencia_General.jpg')";
+             }
+             else if (color == "8") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Consejo_Administracion.jpg')";
+             }
+             else if (color == "9") {
+                 document.body.style.backgroundImage = "url('../../Imagenes/Imagenes_areas/Auditoria_Interna.jpg')";
+             }
+         </script>--%>
         <script>
             $(document).ready(function () {
                 $('.menu').load('MenuPrincipal.aspx');

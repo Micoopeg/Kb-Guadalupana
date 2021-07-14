@@ -79,7 +79,7 @@
         }
 
           .formatoinput4 {
-            width: 21%;
+            width: 23%;
             border: 0.5px black solid;
             height: 30px;
             display: flex;
@@ -198,7 +198,7 @@
                     </div><br />
                     <div class="formato3">
                         <label class="titulos"><b>Nombre del documento</b></label>
-                        <input id="NombreDocumento" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre del documento" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        <input id="NombreDocumento" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre del documento" maxlength="500" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                     </div><br />
                     <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>Versión</b></label>
@@ -210,13 +210,15 @@
                     </div><br />
                      <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>Estado</b></label>
-                        <label class="titulos" style="margin-left:28%"><b>Origen</b></label>
-                         <label class="titulos" style="margin-left:28%"><b>Dirigido a:</b></label>
+                        <label class="titulos" style="margin-left:18%"><b>Origen</b></label>
+                         <label class="titulos" style="margin-left:18%"><b>Dirigido a usuario:</b></label>
+                         <label class="titulos" style="margin-left:7%"><b>Tipo de restricción:</b></label>
                     </div>
                      <div class="formato">
-                         <asp:DropDownList id="Estado" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
-                         <asp:DropDownList id="Origen" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
-                         <asp:DropDownList id="UsuarioDirigido" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
+                         <asp:DropDownList id="Estado" runat="server" class="formatoinput4" AutoPostBack="false"></asp:DropDownList>
+                         <asp:DropDownList id="Origen" runat="server" class="formatoinput4" AutoPostBack="false"></asp:DropDownList>
+                         <asp:DropDownList id="UsuarioDirigido" runat="server" class="formatoinput4" AutoPostBack="false"></asp:DropDownList>
+                         <asp:DropDownList id="TipoRestriccion" runat="server" class="formatoinput4" AutoPostBack="false"></asp:DropDownList>
                     </div><br />
                      <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>Categoría</b></label>
@@ -241,7 +243,6 @@
 
                 <div class="encabezado" style="width:140%">
                     <div style="justify-content: center;display:flex" class="formato">
-                       <%-- style="overflow: auto; height: 145px"--%>
                         <div>
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
                             OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid" AllowPaging="true" PageSize="10" OnPageIndexChanging="documento_PageIndexChanging">
@@ -263,7 +264,7 @@
                                 </asp:TemplateField>
                                   <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
                                     <ItemTemplate>
-                                       <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
+                                       <asp:Label ID="lblnombredoc" Width="200px" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Versión">
@@ -288,7 +289,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Usuario">
                                     <ItemTemplate>
-                                       <asp:Label ID="lblusuario" Text='<%# Eval("Usuario") %>' runat="server" />
+                                       <asp:Label ID="lblusuario" Width="70px" Text='<%# Eval("Usuario") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Categoría">
@@ -296,8 +297,18 @@
                                        <asp:Label ID="lblcategoria" Text='<%# Eval("Categoria") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                   <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Restricción">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblrestriccion" Text='<%# Eval("Restriccion") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Subcategoria">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblsubcategoria" Text='<%# Eval("Subcategoria") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
-                                    <ItemStyle Width="135px" ForeColor="Black"></ItemStyle>
+                                    <ItemStyle Width="80px" ForeColor="Black"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#003563"></HeaderStyle>

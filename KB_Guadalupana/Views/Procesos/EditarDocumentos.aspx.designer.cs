@@ -105,6 +105,15 @@ namespace KB_Guadalupana.Views.Procesos
         protected global::System.Web.UI.WebControls.DropDownList UsuarioDirigido;
 
         /// <summary>
+        /// Control TipoRestriccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TipoRestriccion;
+
+        /// <summary>
         /// Control Categoria.
         /// </summary>
         /// <remarks>
@@ -123,6 +132,15 @@ namespace KB_Guadalupana.Views.Procesos
         protected global::System.Web.UI.WebControls.DropDownList Subcategoria;
 
         /// <summary>
+        /// Control VerDocumento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button VerDocumento;
+
+        /// <summary>
         /// Control FileUpload1.
         /// </summary>
         /// <remarks>
@@ -139,5 +157,14 @@ namespace KB_Guadalupana.Views.Procesos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Actualizar;
+
+        /// <summary>
+        /// Control EliminarDocumento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EliminarDocumento;
     }
 }

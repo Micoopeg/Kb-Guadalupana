@@ -21,14 +21,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             if (!IsPostBack)
             {
-                llenarcomentarios();
                 llenargridviewdocumentos();
                 llenarformulario();
                 validado.Visible = false;
                 Enviar.Visible = false;
                 Documentos.Visible = false;
                 GuardarC.Visible = false;
-                OtroProceso.Visible = false;
                 llenarcomboarea();
                 llenarcombodocumento();
                 llenarcomboabogado();
@@ -267,7 +265,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             }
             else
             {
-                sn.guardaretapa(sig, "3", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumIncidente.Value);
+                sn.guardaretapa(sig, "3", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value);
                 sn.cambiarestado(numcredito, "2");
 
                 if (MedidasPre1.Checked)
@@ -339,19 +337,14 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string hora = fechayhora[1];
                 string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
 
-                if(TipoProceso.SelectedValue != "4")
-                {
-                    OtroProceso.Value = sn.tipoProceso(TipoProceso.SelectedValue);
-                }
-
                 string sig2 = sn.siguiente("pj_certificacionjuidico", "idpj_certificacionjuidico");
-                sn.insertarcertificacionjuridico(sig2, NombreAbogado.SelectedValue, TipoProceso.SelectedValue, OtroProceso.Value, numcredito, idusuario, fechahoraactual, NombreCliente.Value, CodigoCliente.Value, ObservacionesCredito.Value);
+                sn.insertarcertificacionjuridico(sig2, NombreAbogado.SelectedValue, TipoProceso.SelectedValue, numcredito, idusuario, fechahoraactual, NombreCliente.Value, CodigoCliente.Value);
 
                 string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+                sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "28", "34", fechahoraactual, fechacreacion2, "Sin comentarios");
 
                 string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Pendiente reporte", "34", "34", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+                sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "34", "51", fechahoraactual, fechacreacion2, "Sin comentarios");
 
 
                 String script = "alert('Se guardó exitosamente'); window.location.href= 'CreditosCertificacionJuridico.aspx';";
@@ -419,16 +412,14 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                     sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "34", "26", fechahoraactual, fechacreacion2, Observaciones.Value);
 
-                    String script = "alert('El crédito regresa a Cobros'); window.location.href= 'CreditosCertificacionJuridico.aspx';";
-                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresa a Cobros');", true);
                 }
                 else
                 {
                     string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                     sn.insertarbitacora(sig3, NumIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "34", "28", fechahoraactual, fechacreacion2, Observaciones.Value);
 
-                    String script = "alert('El crédito regresa a Contabilidad'); window.location.href= 'CreditosCertificacionJuridico.aspx';";
-                    ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El crédito regresa a Contabilidad');", true);
                 }
            }
         }
@@ -458,7 +449,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                             FileUpload1.SaveAs(Server.MapPath("Subidos/CertificacionContable/" + siguiente + '-' + FileUpload1.FileName));
                             ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
                             llenargridviewdocumentos();
-                            Saldo1.Focus();
                         }
                         else
                         {
@@ -470,7 +460,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
                     }
                 }
-                Saldo1.Focus();
+                MedidasPre1.Focus();
             }
             catch
             {
@@ -615,31 +605,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
 
             }
-        }
-
-        protected void TipoProceso_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(TipoProceso.SelectedValue == "4")
-            {
-                OtroProceso.Visible = true;
-                GuardarC.Focus();
-            }
-            else
-            {
-                OtroProceso.Visible = false;
-                GuardarC.Focus();
-            }
-        }
-
-        public void llenarcomentarios()
-        {
-            DataSet comentarios = new DataSet();
-            string numcredito = Session["credito"] as string;
-            comentarios = sn.consultarComentarios(numcredito);
-            Repeater1.DataSource = comentarios;
-            Repeater1.DataBind();
-
-
         }
     }
 }

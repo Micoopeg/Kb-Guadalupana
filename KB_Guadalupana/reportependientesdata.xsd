@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportependientesdata" targetNamespace="http://tempuri.org/reportependientesdata.xsd" xmlns:mstns="http://tempuri.org/reportependientesdata.xsd" xmlns="http://tempuri.org/reportependientesdata.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="reportependientesTableAdapter" GeneratorDataComponentClassName="reportependientesTableAdapter" Name="reportependientes" UserDataComponentName="reportependientesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString1 (Web.config)" DbObjectName="bdkbguadalupana.reportependientes" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `COD`, `CIF`, `NOMBRE`, `PUESTO`, `GERENCIA`, `EVALUACIONES_A_CARGO`, `EVALUACION_PROPIA`, `EVALUACION_JEFE`, `EVALUACIONES_COMPLETADAS` FROM `bdkbguadalupana`.`reportependientes`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="COD" DataSetColumn="COD" />
+              <Mapping SourceColumn="CIF" DataSetColumn="CIF" />
+              <Mapping SourceColumn="NOMBRE" DataSetColumn="NOMBRE" />
+              <Mapping SourceColumn="PUESTO" DataSetColumn="PUESTO" />
+              <Mapping SourceColumn="GERENCIA" DataSetColumn="GERENCIA" />
+              <Mapping SourceColumn="EVALUACIONES_A_CARGO" DataSetColumn="EVALUACIONES_A_CARGO" />
+              <Mapping SourceColumn="EVALUACION_PROPIA" DataSetColumn="EVALUACION_PROPIA" />
+              <Mapping SourceColumn="EVALUACION_JEFE" DataSetColumn="EVALUACION_JEFE" />
+              <Mapping SourceColumn="EVALUACIONES_COMPLETADAS" DataSetColumn="EVALUACIONES_COMPLETADAS" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="reportependientesdata" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="reportependientesdata" msprop:Generator_UserDSName="reportependientesdata">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="reportependientes" msprop:Generator_TableClassName="reportependientesDataTable" msprop:Generator_TableVarName="tablereportependientes" msprop:Generator_TablePropName="reportependientes" msprop:Generator_RowDeletingName="reportependientesRowDeleting" msprop:Generator_RowChangingName="reportependientesRowChanging" msprop:Generator_RowEvHandlerName="reportependientesRowChangeEventHandler" msprop:Generator_RowDeletedName="reportependientesRowDeleted" msprop:Generator_UserTableName="reportependientes" msprop:Generator_RowChangedName="reportependientesRowChanged" msprop:Generator_RowEvArgName="reportependientesRowChangeEvent" msprop:Generator_RowClassName="reportependientesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="COD" msprop:Generator_ColumnVarNameInTable="columnCOD" msprop:Generator_ColumnPropNameInRow="COD" msprop:Generator_ColumnPropNameInTable="CODColumn" msprop:Generator_UserColumnName="COD" type="xs:int" minOccurs="0" />
+              <xs:element name="CIF" msprop:Generator_ColumnVarNameInTable="columnCIF" msprop:Generator_ColumnPropNameInRow="CIF" msprop:Generator_ColumnPropNameInTable="CIFColumn" msprop:Generator_UserColumnName="CIF" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOMBRE" msprop:Generator_ColumnVarNameInTable="columnNOMBRE" msprop:Generator_ColumnPropNameInRow="NOMBRE" msprop:Generator_ColumnPropNameInTable="NOMBREColumn" msprop:Generator_UserColumnName="NOMBRE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PUESTO" msprop:Generator_ColumnVarNameInTable="columnPUESTO" msprop:Generator_ColumnPropNameInRow="PUESTO" msprop:Generator_ColumnPropNameInTable="PUESTOColumn" msprop:Generator_UserColumnName="PUESTO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GERENCIA" msprop:Generator_ColumnVarNameInTable="columnGERENCIA" msprop:Generator_ColumnPropNameInRow="GERENCIA" msprop:Generator_ColumnPropNameInTable="GERENCIAColumn" msprop:Generator_UserColumnName="GERENCIA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EVALUACIONES_A_CARGO" msprop:Generator_ColumnVarNameInTable="columnEVALUACIONES_A_CARGO" msprop:Generator_ColumnPropNameInRow="EVALUACIONES_A_CARGO" msprop:Generator_ColumnPropNameInTable="EVALUACIONES_A_CARGOColumn" msprop:Generator_UserColumnName="EVALUACIONES_A_CARGO" type="xs:long" minOccurs="0" />
+              <xs:element name="EVALUACION_PROPIA" msprop:Generator_ColumnVarNameInTable="columnEVALUACION_PROPIA" msprop:Generator_ColumnPropNameInRow="EVALUACION_PROPIA" msprop:Generator_ColumnPropNameInTable="EVALUACION_PROPIAColumn" msprop:Generator_UserColumnName="EVALUACION_PROPIA" type="xs:int" />
+              <xs:element name="EVALUACION_JEFE" msprop:Generator_ColumnVarNameInTable="columnEVALUACION_JEFE" msprop:Generator_ColumnPropNameInRow="EVALUACION_JEFE" msprop:Generator_ColumnPropNameInTable="EVALUACION_JEFEColumn" msprop:Generator_UserColumnName="EVALUACION_JEFE" type="xs:int" />
+              <xs:element name="EVALUACIONES_COMPLETADAS" msprop:Generator_ColumnVarNameInTable="columnEVALUACIONES_COMPLETADAS" msprop:Generator_ColumnPropNameInRow="EVALUACIONES_COMPLETADAS" msprop:Generator_ColumnPropNameInTable="EVALUACIONES_COMPLETADASColumn" msprop:Generator_UserColumnName="EVALUACIONES_COMPLETADAS" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

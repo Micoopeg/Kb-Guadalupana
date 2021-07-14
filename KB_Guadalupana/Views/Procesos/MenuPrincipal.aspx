@@ -5,7 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <title>Menu Principal</title>
     <style>
           @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
@@ -16,7 +18,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: #00325E;
+  background-color: #69A43C;
 }
 
 .topnav a {
@@ -30,8 +32,8 @@ body {
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #ddd;
-  color: black;
+  background-color: #4D782C;
+  color: white;
 }
 
 .topnav a.active {
@@ -130,23 +132,38 @@ body {
   text-align: left;
 }
 
+.logo2{
+    padding:0px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    margin-right:15px;
+    color:white;
+}
+
 </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <div class="topnav" id="myTopnav">
-              <a href="./Sesion/MenuBarra.aspx" class="active">Inicio</a>
-               <div id="Menu" runat="server" class="dropdown">
+              <a href="../Sesion/MenuBarra.aspx" class="active">Inicio</a>
+               <div id="Procesos" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                   <a id="CrearDocumento" runat="server" href="RegistroDocumento.aspx">Crear Documento</a>
                   <a id="EditarDocumento" runat="server" href="DocumentosAEditar.aspx">Editar Documento</a>
+                  <a id="Reporte" runat="server" href="Reporte.aspx">Reporte Documentos</a>
+                    <a id="Rusuarios" runat="server" href="ReporteUsuarios.aspx">Reporte Usuarios</a>
+                  <a id="Usuarios" runat="server" href="MantenimientoUsuarios.aspx">Usuarios</a>
+                  <a id="Areas" runat="server" href="MantenimientoAreas.aspx">Categorías y subcategorías</a>
                 </div>
               </div>
-              <a href="MenuCategorias.aspx">Categorías</a>
+              <a href="MenuCategorias2.aspx">Categorías</a>
+              <a href="BusquedaGeneral.aspx">Búsqueda  <img style="max-width:15px; color:white;" src="../../Imagenes/lupa_blanca2.png"/></a>
               <a href="../Sesion/CerrarSesion.aspx">Cerrar sesión  <i class="fa fa-power-off"></i></a>
               <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                <div class="logo2">

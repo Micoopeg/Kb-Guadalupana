@@ -25,7 +25,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status, pj_numincidente AS Incidente, pj_fecha AS Fecha FROM pj_etapa_credito WHERE idpj_etapa = 6 AND pj_status IN ('Enviado','Reingreso') ";
+                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status FROM pj_etapa_credito WHERE idpj_etapa = 4 AND pj_status IN ('Enviado','Reingreso') ";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataTable dt = new DataTable();
                     myCommand.Fill(dt);
@@ -44,7 +44,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             string numcredito = Convert.ToString((gridViewDemanda.SelectedRow.FindControl("lblnumcredito") as Label).Text);
             Session["credito"] = numcredito;
-            Response.Redirect("SolicitudCheque.aspx");
+            Response.Redirect("ResolucionTramite.aspx");
         }
 
         protected void gridViewCertificacion_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -57,7 +57,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (_estado == "Reingreso")
                     e.Row.BackColor = System.Drawing.Color.IndianRed;
                 else
-                    e.Row.BackColor = System.Drawing.Color.White;
+                    e.Row.BackColor = System.Drawing.Color.Transparent;
             }
         }
     }

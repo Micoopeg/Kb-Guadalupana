@@ -284,7 +284,6 @@ namespace Modulo_de_arqueos.Views
                 PuestoFirma.InnerHtml = CCPuestooperador.Value;
                 PuestoFirma2.InnerHtml = CCPuestoencargado.Value;
                 guardar.Enabled = true;
-                GuardarEncabezado.Visible = false;
             }
             catch (Exception err)
             {
@@ -300,54 +299,39 @@ namespace Modulo_de_arqueos.Views
                 //SUBTOTAL BILLETES
                 decimal subtotalb1, subtotalb2, subtotalb3, subtotalb4, subtotalb5, subtotalb6, subtotalb7;
                 subtotalb1 = Convert.ToDecimal(200.00) * Convert.ToDecimal(CACantidad1.Value);
-                CASubtotalb1.InnerText = subtotalb1.ToString();
                 subtotalb2 = Convert.ToDecimal(100.00) * Convert.ToDecimal(CACantidad2.Value);
-                CASubtotalb2.InnerText = subtotalb2.ToString();
                 subtotalb3 = Convert.ToDecimal(50.00) * Convert.ToDecimal(CACantidad3.Value);
-                CASubtotalb3.InnerText = subtotalb3.ToString();
                 subtotalb4 = Convert.ToDecimal(20.00) * Convert.ToDecimal(CACantidad4.Value);
-                CASubtotalb4.InnerText = subtotalb4.ToString();
                 subtotalb5 = Convert.ToDecimal(10.00) * Convert.ToDecimal(CACantidad5.Value);
-                CASubtotalb5.InnerText = subtotalb5.ToString();
                 subtotalb6 = Convert.ToDecimal(5.00) * Convert.ToDecimal(CACantidad6.Value);
-                CASubtotalb6.InnerText = subtotalb6.ToString();
                 subtotalb7 = Convert.ToDecimal(1.00) * Convert.ToDecimal(CACantidad7.Value);
-                CASubtotalb7.InnerText = subtotalb7.ToString();
 
                 //TOTAL BILLETES
                 decimal totalbilletes;
                 totalbilletes = Convert.ToDecimal(subtotalb1) + Convert.ToDecimal(subtotalb2) + Convert.ToDecimal(subtotalb3) + Convert.ToDecimal(subtotalb4) +
                                 Convert.ToDecimal(subtotalb5) + Convert.ToDecimal(subtotalb6) + Convert.ToDecimal(subtotalb7);
-                CATotalb.InnerText = totalbilletes.ToString();
+
                 //SUBTOTAL MONEDAS
                 decimal subtotalm1, subtotalm2, subtotalm3, subtotalm4, subtotalm5, subtotalm6;
                 subtotalm1 = Convert.ToDecimal(1.00) * Convert.ToDecimal(CACantidadm1.Value);
-                CASubtotalm1.InnerText = subtotalm1.ToString();
                 subtotalm2 = Convert.ToDecimal(0.50) * Convert.ToDecimal(CACantidadm2.Value);
-                CASubtotalm2.InnerText = subtotalm2.ToString();
                 subtotalm3 = Convert.ToDecimal(0.25) * Convert.ToDecimal(CACantidadm3.Value);
-                CASubtotalm3.InnerText = subtotalm3.ToString();
                 subtotalm4 = Convert.ToDecimal(0.10) * Convert.ToDecimal(CACantidadm4.Value);
-                CASubtotalm4.InnerText = subtotalm4.ToString();
                 subtotalm5 = Convert.ToDecimal(0.05) * Convert.ToDecimal(CACantidadm5.Value);
-                CASubtotalm5.InnerText = subtotalm5.ToString();
                 subtotalm6 = Convert.ToDecimal(0.01) * Convert.ToDecimal(CACantidadm6.Value);
-                CASubtotalm6.InnerText = subtotalm6.ToString();
 
                 //TOTAL MONEDAS
                 decimal totalmonedas;
                 totalmonedas = Convert.ToDecimal(subtotalm1) + Convert.ToDecimal(subtotalm2) + Convert.ToDecimal(subtotalm3) +
                                Convert.ToDecimal(subtotalm4) + Convert.ToDecimal(subtotalm5) + Convert.ToDecimal(subtotalm6);
-                CATotalm.InnerText = totalmonedas.ToString();
+
                 //TOTAL EFECTIVO
                 decimal total;
                 total = Convert.ToDecimal(totalbilletes) + Convert.ToDecimal(totalmonedas);
-                CATotalefectivo.InnerText = total.ToString();
 
                 //TOTAL CAJA
                 decimal caja;
                 caja = Convert.ToDecimal(CCTotalsaldo.Value) + Convert.ToDecimal(total);
-                CATotalcaja.InnerText = caja.ToString();
 
                 //INSERTAR DETALLE DE CUADRE
                 sig1 = Session["idcajachica"] as string;
@@ -451,28 +435,6 @@ namespace Modulo_de_arqueos.Views
                     EBuscar.Visible = false;
                     agregarRegistro.Visible = false;
                     guardar.Visible = false;
-
-                    CCNombre.Disabled = true;
-                    CCOperador.Disabled = true;
-                    CCPuestooperador.Disabled = true;
-                    CCNombreencargado.Disabled = true;
-                    CCPuestoencargado.Disabled = true;
-                    SaldoInicial2.Disabled = true;
-                    CCAgencia.Enabled = false;
-                    CACantidad1.Disabled = true;
-                    CACantidad2.Disabled = true;
-                    CACantidad3.Disabled = true;
-                    CACantidad4.Disabled = true;
-                    CACantidad5.Disabled = true;
-                    CACantidad6.Disabled = true;
-                    CACantidad7.Disabled = true;
-                    CACantidadm1.Disabled = true;
-                    CACantidadm2.Disabled = true;
-                    CACantidadm3.Disabled = true;
-                    CACantidadm4.Disabled = true;
-                    CACantidadm5.Disabled = true;
-                    CACantidadm6.Disabled = true;
-                    CCCOmentario.Disabled = true;
                     mostrargridviewcajachica();
                     mostrardetalle();
                 }

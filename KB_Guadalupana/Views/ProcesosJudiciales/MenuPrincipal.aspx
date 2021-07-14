@@ -16,7 +16,7 @@ body{
 }
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #404040;
+  background-color: #003059;
   overflow: hidden;
   margin:0px;
   border:0px;
@@ -150,6 +150,17 @@ body{
     <form id="form1" runat="server">
            <div class="topnav" id="myTopnav">
               <a href="../Sesion/MenuBarra.aspx" class="active">Inicio</a>
+             <%-- <a href="#news">News</a>--%>
+              <%--<a href="#contact">Buscar  <i class="fa fa-search"></i></a>--%>
+          <%--    <div class="dropdown">
+                <button class="dropbtn">Buscar
+                    <i class="fa fa-search"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="BuscarProcesosFinalizados.aspx">Procesos finalizados</a>
+                  <a href="BuscarProcesosVigentes.aspx">Procesos vigentes</a>
+                </div>
+              </div>--%>
                <a href="Dashboard.aspx">Dashboard <i class="fas fa-chart-bar"></i></a>
             <%--  <a href="ProcesosAsignadosJuridico.aspx">Procesos Asignados <i class="far fa-hand-point-left"></i></a>--%>
               <div id="MenuCobros" runat="server" class="dropdown">
@@ -200,9 +211,8 @@ body{
                 </button>
                 <div class="dropdown-content">
                   <a id="Demanda" runat="server" href="PendientePresentacionDemanda.aspx">Presentación de Demanda</a>
-                  <a id="Diligenciamiento" runat="server" href="PendienteDiligenciamiento.aspx">Diligenciamiento a medidas precautorias</a>
-                 <%-- <a id="Tramite" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
-                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>--%>
+                  <a id="Tramite" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
+                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
                 </div>
               </div>
 

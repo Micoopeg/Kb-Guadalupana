@@ -19,8 +19,6 @@
 
         body{
             font-family:"Montserrat";
-            background-color:#34495E;
-            color:white;
         }
 
         .general{
@@ -41,7 +39,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:#435F7A;
+            background-color:lightgray;
             flex-direction:column;
             margin-top:10px;
         }
@@ -189,7 +187,7 @@
                     <label style="font-size:18px" class="titulos">Pendiente requerimiento de pago</label>
                  </div><br />
                     <div style="overflow: auto; height: 400px">
-                        <asp:GridView ID="gridViewDemanda" runat="server" CssClass="tabla" AutoGenerateColumns="False" ForeColor="Black"
+                        <asp:GridView ID="gridViewDemanda" runat="server" CssClass="tabla" AutoGenerateColumns="False"
                             OnSelectedIndexChanged = "OnSelectedIndexChangedDemanda" BorderStyle="Solid" OnRowDataBound="gridViewCertificacion_RowDataBound">
                             <Columns>
                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de crédito">
@@ -207,17 +205,7 @@
                                        <asp:Label ID="lblestado" Text='<%# Eval("pj_status") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                       <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Incidente">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblincidente" Text='<%# Eval("Incidente") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblfecha" Text='<%# Eval("Fecha"," {0:d}") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:ButtonField   Text="Emitir requerimiento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                <asp:ButtonField   Text="Emitir resolución" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
                                     <ItemStyle Width="100px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>

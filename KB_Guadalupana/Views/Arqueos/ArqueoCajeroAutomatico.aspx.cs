@@ -157,53 +157,39 @@ namespace Modulo_de_arqueos.Views
                 //SUBTOTAL BILLETES
                 decimal subtotalb1, subtotalb2, subtotalb3, subtotalb4, subtotalb5, subtotalb6, subtotalb7;
                 subtotalb1 = 200 * Convert.ToDecimal(CACantidad1.Value);
-                CASubtotalb1.InnerText = subtotalb1.ToString();
                 //CASubtotalb1.Value = Convert.ToString(subtotalb1);
                 subtotalb2 = 100 * Convert.ToDecimal(CACantidad2.Value);
-                CASubtotalb2.InnerText = subtotalb2.ToString();
                 //CASubtotalb2.Value = Convert.ToString(subtotalb2);
                 subtotalb3 = 50 * Convert.ToDecimal(CACantidad3.Value);
-                CASubtotalb3.InnerText = subtotalb3.ToString();
                 //CASubtotalb3.Value = Convert.ToString(subtotalb3);
                 subtotalb4 = 20 * Convert.ToDecimal(CACantidad4.Value);
-                CASubtotalb4.InnerText = subtotalb4.ToString();
                 //CASubtotalb4.Value = Convert.ToString(subtotalb4);
                 subtotalb5 = 10 * Convert.ToDecimal(CACantidad5.Value);
-                CASubtotalb5.InnerText = subtotalb5.ToString();
                 //CASubtotalb5.Value = Convert.ToString(subtotalb5);
                 subtotalb6 = 5 * Convert.ToDecimal(CACantidad6.Value);
-                CASubtotalb6.InnerText = subtotalb6.ToString();
                 //CASubtotalb6.Value = Convert.ToString(subtotalb6);
                 subtotalb7 = 1 * Convert.ToDecimal(CACantidad7.Value);
-                CASubtotalb7.InnerText = subtotalb7.ToString();
                 //CASubtotalb7.Value = Convert.ToString(subtotalb7);
 
                 //TOTAL BILLETES
                 decimal totalb;
                 totalb = Convert.ToDecimal(subtotalb1) + Convert.ToDecimal(subtotalb2) + Convert.ToDecimal(subtotalb3) + Convert.ToDecimal(subtotalb4) +
                          Convert.ToDecimal(subtotalb5) + Convert.ToDecimal(subtotalb6) + Convert.ToDecimal(subtotalb7);
-                CATotalb.InnerText = totalb.ToString();
                 //CATotalb.Value = Convert.ToString(totalb);
 
                 //SUBTOTAL MONEDAS
                 decimal subtotalm1, subtotalm2, subtotalm3, subtotalm4, subtotalm5, subtotalm6;
                 subtotalm1 = 1 * Convert.ToDecimal(CACantidadm1.Value);
-                CASubtotalm1.InnerText = subtotalm1.ToString();
                 //CASubtotalm1.Value = Convert.ToString(subtotalm1);
                 subtotalm2 = Convert.ToDecimal(0.50) * Convert.ToDecimal(CACantidadm2.Value);
-                CASubtotalm2.InnerText = subtotalm2.ToString();
                 //CASubtotalm2.Value = Convert.ToString(subtotalm2);
                 subtotalm3 = Convert.ToDecimal(0.25) * Convert.ToDecimal(CACantidadm3.Value);
-                CASubtotalm3.InnerText = subtotalm3.ToString();
                 //CASubtotalm3.Value = Convert.ToString(subtotalm3);
                 subtotalm4 = Convert.ToDecimal(0.10) * Convert.ToDecimal(CACantidadm4.Value);
-                CASubtotalm4.InnerText = subtotalm4.ToString();
                 //CASubtotalm4.Value = Convert.ToString(subtotalm4);
                 subtotalm5 = Convert.ToDecimal(0.05) * Convert.ToDecimal(CACantidadm5.Value);
-                CASubtotalm5.InnerText = subtotalm5.ToString();
                 //CASubtotalm5.Value = Convert.ToString(subtotalm5);
                 subtotalm6 = Convert.ToDecimal(0.01) * Convert.ToDecimal(CACantidadm6.Value);
-                CASubtotalm6.InnerText = subtotalm6.ToString();
                 //CASubtotalm6.Value = Convert.ToString(subtotalm6);
 
                 //TOTAL MONEDAS
@@ -211,19 +197,16 @@ namespace Modulo_de_arqueos.Views
                 //totalm = subtotalm1 + subtotalm2 + subtotalm3 + subtotalm4 + subtotalm5 + subtotalm6;
                 totalm = Convert.ToDecimal(subtotalm1) + Convert.ToDecimal(subtotalm2) + Convert.ToDecimal(subtotalm3) +
                          Convert.ToDecimal(subtotalm4) + Convert.ToDecimal(subtotalm5) + Convert.ToDecimal(subtotalm6);
-                CATotalm.InnerText = totalm.ToString();
                 //CATotalm.Value = Convert.ToString(totalm);
 
                 //TOTAL EFECTIVO
                 decimal totalefectivo;
                 totalefectivo = Convert.ToDecimal(totalb) + Convert.ToDecimal(totalm);
-                CATotalefectivo.InnerText = totalefectivo.ToString();
                 //CATotalefectivo.Value = totalefectivo.ToString();
 
                 //DIFERENCIA
                 decimal diferencia;
                 diferencia = Convert.ToDecimal(totalefectivo) - Convert.ToDecimal(CAEfectivoreporte.Value);
-                CADiferencia.InnerText = diferencia.ToString();
                 //CADiferencia.Value = diferencia.ToString();
 
                 //INSERTAR ENCABEZADO
@@ -324,29 +307,6 @@ namespace Modulo_de_arqueos.Views
                     imprimir.Visible = true;
                     operar.Visible = false;
                     EBuscar.Visible = false;
-
-                    CAAgencia.Enabled = false;
-                    CAOperador.Disabled = true;
-                    CANumperador.Disabled = true;
-                    CAPuestooperador.Disabled = true;
-                    CANombreencargado.Disabled = true;
-                    CAPuestoencargado.Disabled = true;
-                    CAAtm.Disabled = true;
-                    CACantidad1.Disabled = true;
-                    CACantidad2.Disabled = true;
-                    CACantidad3.Disabled = true;
-                    CACantidad4.Disabled = true;
-                    CACantidad5.Disabled = true;
-                    CACantidad6.Disabled = true;
-                    CACantidad7.Disabled = true;
-                    CACantidadm1.Disabled = true;
-                    CACantidadm2.Disabled = true;
-                    CACantidadm3.Disabled = true;
-                    CACantidadm4.Disabled = true;
-                    CACantidadm5.Disabled = true;
-                    CACantidadm6.Disabled = true;
-                    CAEfectivoreporte.Disabled = true;
-                    CAComentario.Disabled = true;
                 }
             }
         }

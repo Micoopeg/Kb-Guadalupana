@@ -87,6 +87,9 @@ namespace KB_Guadalupana.Views.Hallazgos
             string[] var1 = sen.consultarAsigancion(id);
             valor = Convert.ToString(var1[0].Trim());
 
+            string recomendacion;
+            recomendacion = Session["Recomendacion"].ToString();
+
             //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('ID:" + id + " Valor: " + valor + "');", true);
 
             if (valor == valor1)
@@ -94,6 +97,10 @@ namespace KB_Guadalupana.Views.Hallazgos
                 string sig199 = logic.siguiente("sh_asignacion ", "	id_shasignacion ");
                 string[] valores199 = { sig199, IGAgencia1.Text, id, IGADepa1.Text };
                 logic.insertartablas("sh_asignacion", valores199);
+
+                string sig200 = logic.siguiente("sh_respuesta_asignacion ", "codshrespuestaasignacion");
+                string[] valores200 = { sig200, "", "", "null",sig199,"0","","5",recomendacion,"" };
+                logic.insertartablas("sh_respuesta_asignacion", valores200);
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hallazgo Asignado');", true);
             }
             if (valor == valor2)
@@ -101,6 +108,10 @@ namespace KB_Guadalupana.Views.Hallazgos
                 string sig1999 = logic.siguiente("sh_asignacion ", "	id_shasignacion ");
                 string[] valores1999 = { sig1999, IGAgencia1.Text, id, IGADepa1.Text };
                 logic.insertartablas("sh_asignacion", valores1999);
+
+                string sig201 = logic.siguiente("sh_respuesta_asignacion ", "codshrespuestaasignacion");
+                string[] valores201 = { sig201, "", "", "null", sig1999, "0", "", "5", recomendacion, "" };
+                logic.insertartablas("sh_respuesta_asignacion", valores201);
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "Key", "alert('2 Areas Asignadas al Hallazgo');", true);
 
                 IGAgencia1.Visible = false;

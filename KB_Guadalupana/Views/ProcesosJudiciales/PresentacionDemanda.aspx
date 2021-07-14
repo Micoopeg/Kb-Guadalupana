@@ -21,8 +21,6 @@
 
         body{
             font-family:"Montserrat";
-            background-color:#34495E;
-            color:white;
         }
 
         .general{
@@ -43,7 +41,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:#435F7A;
+            background-color:lightgray;
             flex-direction:column;
             margin-top:10px;
         }
@@ -209,11 +207,6 @@
             border-radius: 5px;
             height: 30px;
             border-color: transparent;
-            font-family:"Montserrat";
-            max-width: 90%;
-            min-width: 90%;
-            max-height:30px;
-            min-height:30px;
         }
 
         .formatocheckbox {
@@ -242,8 +235,8 @@
             width:30%;
         }
 
-        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Montserrat', cursive; text-align:center}
-.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:75px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
+        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
 .fixed{position:fixed; top:0;visibility:visible}
@@ -267,9 +260,9 @@
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>No. de préstamo</b></label>
-                        <label class="titulos" style="margin-left:11%"><b>Incidente</b></label>
-                        <label class="titulos" style="margin-left:16%"><b>DPI</b></label>
-                        <label class="titulos" style="margin-left:23%"><b>CIF</b></label>
+                        <label class="titulos" style="margin-left:11%"><b>No. de proceso</b></label>
+                        <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
+                        <label class="titulos" style="margin-left:22%"><b>CIF</b></label>
                     </div>
 
                     <div class="formato">
@@ -320,14 +313,14 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                      </Columns>
-     <HeaderStyle CssClass="prueba"  ForeColor="White"></HeaderStyle>
+     <HeaderStyle CssClass="prueba"  ForeColor="Black"></HeaderStyle>
         </asp:GridView>
                 </div>
 
                 </div><br />
 
 
-                    <div class="menu2" id="ventana" runat="server" style="overflow: auto; height: 450px">
+                    <div class="menu2" id="ventana" runat="server">
 
                     <div class="formato3">
                            <label class="titulos"><b>No. de préstamo</b></label>
@@ -335,7 +328,7 @@
                     </div><br />
 
                      <div class="formato3">
-                         <label class="titulos"><b>Incidente</b></label>
+                         <label class="titulos"><b>No. de proceso</b></label>
                         <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 
@@ -348,21 +341,12 @@
                         <label class="titulos"><b>Cliente - Nombre</b></label>
                         <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
                     </div><br />
-
-                         <label class="titulos"><b>Comentarios</b></label>
-                        <asp:Repeater ID="Repeater1" runat="server">
-                            <ItemTemplate>
-                                <div class="formato3">
-                                    <textarea id="Comentario1" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"> <%# Eval("Comentario") %> </textarea>
-                                </div><br />
-                            </ItemTemplate>
-                        </asp:Repeater>
                 </div>
 
                     
 
                 <div class="encabezado">
-                    <label class="titulos" style="margin-bottom:10px"><b>Memorial </b></label>
+                    <label class="titulos" style="margin-bottom:10px"><b>Tipo de documento </b></label>
                     
                      <div class="formato">
                         <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
@@ -371,7 +355,7 @@
                     </div><br /><br />
 
                     <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 150px">
+                        <div style="overflow: auto; height: 123px">
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
                             OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid">
                              <Columns>
@@ -390,14 +374,14 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="135px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
                         </asp:GridView>
                        </div>
-                       </div><br /><br /><br />
+                       </div><br /><br />
 
                     <div>
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -486,7 +470,7 @@
                                 <label for="Facturacion" class="titulos">&nbsp;&nbsp;<b>Facturación</b></label>
                              </div>
                              <div class="formatocheck2">
-                                 <asp:Button ID="VerOpcion" runat="server" Width="70%" Height="30px" CssClass="boton3" Text="Siguiente" OnClick="VerOpcion_Click" />
+                                 <asp:Button ID="VerOpcion" runat="server" Width="70%" Height="30px" CssClass="boton3" Text="Ver" OnClick="VerOpcion_Click" />
                              </div>
                          </div>
                     </div>
@@ -528,58 +512,56 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="135px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
                         </asp:GridView>
                        </div>
-                       </div><br /><br />
+                       </div>
 
-                        <div class="formatoTitulo" style="margin-bottom:5px">
-                            <label class="titulos"><b>Estado de la demanda</b></label>
-                            <label class="titulos" style="margin-left:33%"><b>Fecha de notificación</b></label>
-                        </div>
+                     <div class="formato3">
+                        <label class="titulos"><b>Estado de la demanda</b></label>
+                        <asp:DropDownList id="EstadoDemanda" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                      </div><br />
 
-                       <div class="formato">
-                            <asp:DropDownList id="EstadoDemanda" runat="server" class="formatoinput" AutoPostBack="true" OnSelectedIndexChanged="EstadoDemanda_SelectedIndexChanged"></asp:DropDownList>
-                           <input id="FechaNotificacion" runat="server" type="date" class="formatoinput" />
-                        </div><br /><br />
-
-                      <input id="DemandaRechazada" runat="server" type="text" class="formatoinput2" placeholder="Ingrese motivo de rechazo" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                   <div class="formato3">
+                        <label class="titulos"><b>Fecha de notificación</b</label>
+                        <input id="FechaNotificacion" runat="server" type="date" class="formatoinput2" />
+                    </div><br />
 
                     <label class="titulos">Seleccione las medidas precautorias otorgadas</label><br /><br />
                            <div class="formatocheck">
                              <div class="formatocheck2">
-                                <input id="Medidas1" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Medidas1" class="titulos">&nbsp;&nbsp;<b>Embargo de Salario</b></label>
+                                <input id="Checkbox1" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre1" class="titulos">&nbsp;&nbsp;Embargo de Salario</label>
                              </div>
                               <div class="formatocheck2">
-                                <input id="Medidas2" runat="server" type="checkbox" class="formatocheckbox" value="2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Medidas2" class="titulos">&nbsp;&nbsp;<b>Embargo de cuentas bancarias</b></label>
+                                <input id="Checkbox2" runat="server" type="checkbox" class="formatocheckbox" value="2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre2" class="titulos">&nbsp;&nbsp;Embargo de cuentas bancarias</label>
                               </div>
                          </div>
 
                          <div class="formatocheck">
                              <div class="formatocheck2">
-                                 <input id="Medidas3" runat="server" type="checkbox" class="formatocheckbox" value="3" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                              <label for="Medidas3" class="titulos">&nbsp;&nbsp;<b>Arraigo</b></label>
+                                 <input id="Checkbox3" runat="server" type="checkbox" class="formatocheckbox" value="3" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                              <label for="MedidasPre3" class="titulos">&nbsp;&nbsp;Arraigo</label>
                              </div>
                              <div class="formatocheck2">
-                                <input id="Medidas4" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Medidas4" class="titulos">&nbsp;&nbsp;<b>Embargo en cooperativas</b></label>
+                                <input id="Checkbox4" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre4" class="titulos">&nbsp;&nbsp;Embargo en cooperativas</label>
                              </div>
                          </div>
 
                          <div class="formatocheck">
                              <div class="formatocheck2">
-                                <input id="Medidas5" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Medidas5" class="titulos">&nbsp;&nbsp;<b>Embargo de bienes</b></label>
+                                <input id="Checkbox5" runat="server" type="checkbox" class="formatocheckbox" value="4" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre5" class="titulos">&nbsp;&nbsp;<b>Embargo de bienes</b></label>
                              </div>
                              <div class="formatocheck2">
-                                <input id="Medidas6" runat="server" type="checkbox" class="formatocheckbox" value="5" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Medidas6" class="titulos">&nbsp;&nbsp;<b>Otra</b></label>
+                                <input id="Checkbox6" runat="server" type="checkbox" class="formatocheckbox" value="5" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                <label for="MedidasPre6" class="titulos">&nbsp;&nbsp;Otra</label>
                              </div>
                          </div>
                       <input id="OtraMedida" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre de otra medida" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -619,8 +601,8 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="135px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
@@ -658,7 +640,7 @@
                         
                       <div class="formato3">
                          <label class="titulos"><b>Nombre a quién se emite el cheque</b></label>
-                         <input id="NombreCheque" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre" maxlength="60" onkeypress="return sololetras(event);" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                         <input id="NombreCheque" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre" maxlength="60" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                     </div><br />
 
                       <div class="formato3">
@@ -668,9 +650,6 @@
 
                      <input id="Otro" runat="server" type="text" min="0" class="formatoinput2" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 
-                        <label class="titulos">Observaciones del crédito</label>
-                         <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                    <br />
                 </div>
                 </div>
 
@@ -698,43 +677,10 @@
                     }
                 </script>
 
-          <script>
-              function format(input) {
-                  var num = input.value.replace(/\,/g, '');
-                  if (!isNaN(num)) {
-                      num = num.toString().split('').reverse().join('').replace(/(?=\d*\,?)(\d{3})/g, '$1,');
-                      num = num.split('').reverse().join('').replace(/^[\,]/, '');
-                      input.value = num;
-                  }
-
-                  else {
-                      alert('Solo se permiten numeros');
-                      input.value = input.value.replace(/[^\d\,]*/g, '');
-                  }
-              }
-
-              $('#OtrosGastos').mask('000,000,000.00', { reverse: true });
-
-          </script>
-
              <script>
                  var texto1 = document.querySelector('#NumJuzgado');
-                 var texto1 = document.querySelector('#NumFactura');
 
                  texto1.addEventListener('keypress', function (e) {
-                     // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
-                     const decimalCode = 46;
-                     // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal
-                     if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != decimalCode) {
-                         e.preventDefault();
-                     }
-                     // chequeo que sólo exista un punto decimal
-                     else if (e.keyCode == decimalCode && /\./.test(this.value)) {
-                         event.preventDefault();
-                     }
-                 }, true)
-
-                 texto2.addEventListener('keypress', function (e) {
                      // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44
                      const decimalCode = 46;
                      // chequeo que el keyCode corresponda a las teclas de los números y al punto decimal

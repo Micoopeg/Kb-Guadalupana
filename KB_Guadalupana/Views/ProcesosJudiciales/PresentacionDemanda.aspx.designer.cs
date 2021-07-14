@@ -168,15 +168,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlTextArea ClienteNombre;
 
         /// <summary>
-        /// Control Repeater1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
-
-        /// <summary>
         /// Control PTipoDocumento.
         /// </summary>
         /// <remarks>
@@ -447,67 +438,58 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl FechaNotificacion;
 
         /// <summary>
-        /// Control DemandaRechazada.
+        /// Control Checkbox1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText DemandaRechazada;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox1;
 
         /// <summary>
-        /// Control Medidas1.
+        /// Control Checkbox2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Medidas1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox2;
 
         /// <summary>
-        /// Control Medidas2.
+        /// Control Checkbox3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Medidas2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox3;
 
         /// <summary>
-        /// Control Medidas3.
+        /// Control Checkbox4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Medidas3;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox4;
 
         /// <summary>
-        /// Control Medidas4.
+        /// Control Checkbox5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Medidas4;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox5;
 
         /// <summary>
-        /// Control Medidas5.
+        /// Control Checkbox6.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Medidas5;
-
-        /// <summary>
-        /// Control Medidas6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Medidas6;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox6;
 
         /// <summary>
         /// Control OtraMedida.
@@ -643,15 +625,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText Otro;
-
-        /// <summary>
-        /// Control ObservacionesCredito.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText ObservacionesCredito;
 
         /// <summary>
         /// Control Guardar.

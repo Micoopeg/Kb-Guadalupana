@@ -21,8 +21,6 @@
 
         body{
             font-family:"Montserrat";
-            background-color:#34495E;
-            color:white;
         }
 
         .general{
@@ -43,7 +41,7 @@
 
         .encabezado{
             padding:25px;
-            background-color:#435F7A;
+            background-color:lightgray;
             flex-direction:column;
             margin-top:10px;
         }
@@ -79,7 +77,7 @@
         }
 
         .formatoinput2{
-            width:99%;
+            width:98%;
             margin-top:8px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
@@ -212,8 +210,8 @@
             max-height:30px;
             min-height:30px;
         }
-        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Montserrat', cursive; text-align:center}
-.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:75px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
+        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
+.menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left;color:black; padding-top:5px; left:0; margin-left:0px;margin-top:125px;background-color:lightgray; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
 .fixed{position:fixed; top:0;visibility:visible}
@@ -237,7 +235,7 @@
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>No. de proceso</b></label>
-                        <label class="titulos" style="margin-left:11%"><b>Incidente</b></label>
+                        <label class="titulos" style="margin-left:11%"><b>No. de incidente</b></label>
                         <label class="titulos" style="margin-left:11%"><b>DPI</b></label>
                         <label class="titulos" style="margin-left:22%"><b>CIF</b></label>
                     </div>
@@ -290,7 +288,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                      </Columns>
-     <HeaderStyle CssClass="prueba"  ForeColor="White"></HeaderStyle>
+     <HeaderStyle CssClass="prueba"  ForeColor="Black"></HeaderStyle>
         </asp:GridView>
                 </div>
 
@@ -400,7 +398,7 @@
 
                 </div><br />
 
-                    <div class="menu2" id="ventana" runat="server" style="overflow: auto; height: 450px">
+                    <div class="menu2" id="ventana" runat="server">
 
                     <div class="formato3">
                            <label class="titulos"><b>No. de préstamo</b></label>
@@ -408,7 +406,7 @@
                     </div><br />
 
                      <div class="formato3">
-                         <label class="titulos"><b>Incidente</b></label>
+                         <label class="titulos"><b>No. de proceso</b></label>
                         <input id="NumeroIncidente" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 
@@ -421,16 +419,6 @@
                         <label class="titulos"><b>Cliente - Nombre</b></label>
                         <textarea id="ClienteNombre" runat="server" type="text" class="formatoinput5" placeholder="Cliente - Nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"></textarea>
                     </div><br />
-
-                         <label class="titulos"><b>Comentarios</b></label>
-                        <asp:Repeater ID="Repeater1" runat="server">
-                            <ItemTemplate>
-                                <div class="formato3">
-                                    <textarea id="Comentario1" runat="server" type="text" class="formatoinput5" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"> <%# Eval("Comentario") %> </textarea>
-                                </div><br />
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    
                 </div>
 
                 <div class="encabezado">
@@ -456,8 +444,8 @@
                                        <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="135px"></ItemStyle>
                                 </asp:ButtonField>
                             </Columns>
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
@@ -493,10 +481,6 @@
                      <input id="MesEstadoLetras" runat="server" type="text" class="formatoinput" visible="false"/>
                      <input id="AñoEstadoLetras" runat="server" type="text" class="formatoinput" visible="false"/>
                      <input id="FechaEstado" runat="server" type="text" class="formatoinput" visible="false"/>
-                     <input id="Signototal" runat="server" type="text" class="formatoinput" visible="false"/>
-                     <input id="SignoSaldo" runat="server" type="text" class="formatoinput" visible="false"/>
-                       <input id="SignoMonto" runat="server" type="text" class="formatoinput" visible="false"/>
-                    <input id="SignoIntereses" runat="server" type="text" class="formatoinput" visible="false"/>
                 </div><br />
 
                 <div class="encabezado">

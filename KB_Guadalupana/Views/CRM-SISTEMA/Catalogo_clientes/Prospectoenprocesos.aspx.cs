@@ -303,6 +303,29 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
             }
 
         }
+        public void llenargridviewbusqueda(string sucursal,string busqueda)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select a.codcrminfoprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE a.codcrmsemaforoestado=2 AND d.crmcontrol_ingresosucursal='" + sucursal + "' AND crminfogeneral_prospectonombrecompleto LIKE '%" + busqueda + "%';";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    gridviewprospectos.DataSource = ds3;
+                    gridviewprospectos.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+
+            }
+
+        }
         public void llenaragencias()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))

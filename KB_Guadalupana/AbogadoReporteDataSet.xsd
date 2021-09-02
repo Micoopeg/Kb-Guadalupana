@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AbogadoReporteDataSet" targetNamespace="http://tempuri.org/AbogadoReporteDataSet.xsd" xmlns:mstns="http://tempuri.org/AbogadoReporteDataSet.xsd" xmlns="http://tempuri.org/AbogadoReporteDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString2.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ReporteAbogadoTableAdapter" GeneratorDataComponentClassName="ReporteAbogadoTableAdapter" Name="ReporteAbogado" UserDataComponentName="ReporteAbogadoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString2 (Web.config)" DbObjectName="bdkbguadalupana.ReporteAbogado" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `pj_nombre`, `pj_cif`, `pj_numcredito`, `pj_fechaasignacion`, `pj_nombreabogado` FROM `bdkbguadalupana`.`ReporteAbogado`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pj_nombre" DataSetColumn="pj_nombre" />
+              <Mapping SourceColumn="pj_cif" DataSetColumn="pj_cif" />
+              <Mapping SourceColumn="pj_numcredito" DataSetColumn="pj_numcredito" />
+              <Mapping SourceColumn="pj_fechaasignacion" DataSetColumn="pj_fechaasignacion" />
+              <Mapping SourceColumn="pj_nombreabogado" DataSetColumn="pj_nombreabogado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AbogadoReporteDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="AbogadoReporteDataSet" msprop:Generator_UserDSName="AbogadoReporteDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ReporteAbogado" msprop:Generator_TableClassName="ReporteAbogadoDataTable" msprop:Generator_TableVarName="tableReporteAbogado" msprop:Generator_TablePropName="ReporteAbogado" msprop:Generator_RowDeletingName="ReporteAbogadoRowDeleting" msprop:Generator_RowChangingName="ReporteAbogadoRowChanging" msprop:Generator_RowEvHandlerName="ReporteAbogadoRowChangeEventHandler" msprop:Generator_RowDeletedName="ReporteAbogadoRowDeleted" msprop:Generator_UserTableName="ReporteAbogado" msprop:Generator_RowChangedName="ReporteAbogadoRowChanged" msprop:Generator_RowEvArgName="ReporteAbogadoRowChangeEvent" msprop:Generator_RowClassName="ReporteAbogadoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pj_nombre" msprop:Generator_ColumnVarNameInTable="columnpj_nombre" msprop:Generator_ColumnPropNameInRow="pj_nombre" msprop:Generator_ColumnPropNameInTable="pj_nombreColumn" msprop:Generator_UserColumnName="pj_nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pj_cif" msprop:Generator_ColumnVarNameInTable="columnpj_cif" msprop:Generator_ColumnPropNameInRow="pj_cif" msprop:Generator_ColumnPropNameInTable="pj_cifColumn" msprop:Generator_UserColumnName="pj_cif" type="xs:int" />
+              <xs:element name="pj_numcredito" msprop:Generator_ColumnVarNameInTable="columnpj_numcredito" msprop:Generator_ColumnPropNameInRow="pj_numcredito" msprop:Generator_ColumnPropNameInTable="pj_numcreditoColumn" msprop:Generator_UserColumnName="pj_numcredito" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pj_fechaasignacion" msprop:Generator_ColumnVarNameInTable="columnpj_fechaasignacion" msprop:Generator_ColumnPropNameInRow="pj_fechaasignacion" msprop:Generator_ColumnPropNameInTable="pj_fechaasignacionColumn" msprop:Generator_UserColumnName="pj_fechaasignacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="pj_nombreabogado" msprop:Generator_ColumnVarNameInTable="columnpj_nombreabogado" msprop:Generator_ColumnPropNameInRow="pj_nombreabogado" msprop:Generator_ColumnPropNameInTable="pj_nombreabogadoColumn" msprop:Generator_UserColumnName="pj_nombreabogado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

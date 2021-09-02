@@ -22,14 +22,14 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
 
             nombreusuario = Convert.ToString(Session["usuariodelcrm"]);
             int rolusuario = Convert.ToInt32(Session["roldelcrm"]);
-            if (rolusuario == 4 || rolusuario == 6)
+            if (rolusuario == 4 || rolusuario == 6 || rolusuario == 2)
             {
                 llenargridviewmantenimiento();
 
             }
             else
             {
-                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
+                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../../../Index.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }
@@ -236,6 +236,37 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Mantenimientos
             {
                 return false;
             }
+        }
+
+        public void llenargridviewmantenimientofiltro(string filtro)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "SELECT * FROM crminfogeneral_prospecto WHERE crminfogeneral_prospectonombrecompleto LIKE '%"+filtro+"%';";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    gridviewmant.DataSource = ds3;
+                    gridviewmant.DataBind();
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+
+            }
+
+        }
+
+        protected void btnbuscar_Click(object sender, EventArgs e)
+        {
+            llenargridviewmantenimientofiltro(txtbusqueda.Value);
         }
     }
 }

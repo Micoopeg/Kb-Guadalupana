@@ -43,7 +43,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected void OnSelectedIndexChangedAsignacion(object sender, EventArgs e)
         {
             string numcredito = Convert.ToString((gridViewAsignacion.SelectedRow.FindControl("lblnumcredito") as Label).Text);
-            Session["credito_asignado"] = numcredito;
+            Session["credito"] = numcredito;
             Response.Redirect("ProcesoJudicial.aspx");
         }
     }

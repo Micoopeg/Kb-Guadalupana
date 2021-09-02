@@ -1,0 +1,20 @@
+﻿.bg-light {
+    background-color: #003869d4 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+    .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+        color: white;
+    }
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(255 255 255);
+}
+
+.navbar-light .navbar-toggler-icon {
+    
+    background-image: url('../imagenes/menu2.png');
+}

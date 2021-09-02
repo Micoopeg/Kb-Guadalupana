@@ -370,7 +370,7 @@ padding: 8px;
     <div id="bloqueo" runat="server">
         <p class="col-md-6">
             <label style="color:white">Solución</label>
-            <textarea id="Textarea1" runat="server" name="texto" rows="3" cols="42"></textarea>
+            <textarea id="Textarea1" runat="server" name="texto" rows="3" cols="42" maxlength="1500" placeholder="HASTA 1,500 CARACTERES"></textarea>
         </p> 
        <p class="col-md-6" style="margin-top: -142px;margin-left: 394px;">
             <label style="color:white">Cargar Imagen</label>

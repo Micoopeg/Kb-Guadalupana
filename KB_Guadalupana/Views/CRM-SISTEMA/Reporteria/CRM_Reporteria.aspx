@@ -96,8 +96,8 @@
             <asp:DropDownList ID="combofinalidadservicio" runat="server">
                 <asp:ListItem Value="">Finalidad de servicio</asp:ListItem>
             </asp:DropDownList>
-            <asp:TextBox runat="server" CssClass="texto" ID="txtingresos" placeholder="Q - Ingresos"></asp:TextBox>
-            <asp:TextBox runat="server" CssClass="texto" ID="txtmonto" placeholder="Q - Monto"></asp:TextBox>
+            <asp:TextBox runat="server" CssClass="texto" ID="txtingresos" onkeypress="return numeros(event);"  placeholder="Q - Ingresos"></asp:TextBox>
+            <asp:TextBox runat="server" CssClass="texto" ID="txtmonto" onkeypress="return numeros(event);"  placeholder="Q - Monto"></asp:TextBox>
             <asp:DropDownList ID="combotrabajoactual" runat="server">
                 <asp:ListItem Value="">¿Poseè trabajo actual?</asp:ListItem>
                 <asp:ListItem Value="1">Si</asp:ListItem>
@@ -113,7 +113,7 @@
                 <asp:ListItem Value="1">Si</asp:ListItem>
                 <asp:ListItem Value="2">No</asp:ListItem>
             </asp:DropDownList>
-            <asp:TextBox runat="server" CssClass="texto" ID="txtañodomicilios" placeholder="Años de domicilio"></asp:TextBox>
+            <asp:TextBox runat="server" CssClass="texto" onkeypress="return numeros(event);"  ID="txtañodomicilios" placeholder="Años de domicilio"></asp:TextBox>
             <asp:TextBox runat="server" CssClass="texto" ID="txttipodecontacto" placeholder="Tipo de contacto"></asp:TextBox>
             <asp:DropDownList ID="comboagencia" runat="server">
             <asp:ListItem Value="">Seleccione la agencia</asp:ListItem>
@@ -135,6 +135,6 @@
             
 
     </form>
-    
+    <script src="../../../CRM-Script/Script.js" type="text/javascript"></script>
 </body>
 </html>

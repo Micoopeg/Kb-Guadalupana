@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="REPORTENOTASDATA" targetNamespace="http://tempuri.org/REPORTENOTASDATA.xsd" xmlns:mstns="http://tempuri.org/REPORTENOTASDATA.xsd" xmlns="http://tempuri.org/REPORTENOTASDATA.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="reportenotasTableAdapter" GeneratorDataComponentClassName="reportenotasTableAdapter" Name="reportenotas" UserDataComponentName="reportenotasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString1 (Web.config)" DbObjectName="bdkbguadalupana.reportenotas" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `EVALUADO`, `PUESTO_EVALUADO`, `EVALUADOR`, `PUESTO_EVALUADOR`, `NOTA` FROM `bdkbguadalupana`.`reportenotas`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EVALUADO" DataSetColumn="EVALUADO" />
+              <Mapping SourceColumn="PUESTO_EVALUADO" DataSetColumn="PUESTO_EVALUADO" />
+              <Mapping SourceColumn="EVALUADOR" DataSetColumn="EVALUADOR" />
+              <Mapping SourceColumn="PUESTO_EVALUADOR" DataSetColumn="PUESTO_EVALUADOR" />
+              <Mapping SourceColumn="NOTA" DataSetColumn="NOTA" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="REPORTENOTASDATA" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="REPORTENOTASDATA" msprop:Generator_UserDSName="REPORTENOTASDATA">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="reportenotas" msprop:Generator_TableClassName="reportenotasDataTable" msprop:Generator_TableVarName="tablereportenotas" msprop:Generator_TablePropName="reportenotas" msprop:Generator_RowDeletingName="reportenotasRowDeleting" msprop:Generator_RowChangingName="reportenotasRowChanging" msprop:Generator_RowEvHandlerName="reportenotasRowChangeEventHandler" msprop:Generator_RowDeletedName="reportenotasRowDeleted" msprop:Generator_UserTableName="reportenotas" msprop:Generator_RowChangedName="reportenotasRowChanged" msprop:Generator_RowEvArgName="reportenotasRowChangeEvent" msprop:Generator_RowClassName="reportenotasRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EVALUADO" msprop:Generator_ColumnVarNameInTable="columnEVALUADO" msprop:Generator_ColumnPropNameInRow="EVALUADO" msprop:Generator_ColumnPropNameInTable="EVALUADOColumn" msprop:Generator_UserColumnName="EVALUADO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PUESTO_EVALUADO" msprop:Generator_ColumnVarNameInTable="columnPUESTO_EVALUADO" msprop:Generator_ColumnPropNameInRow="PUESTO_EVALUADO" msprop:Generator_ColumnPropNameInTable="PUESTO_EVALUADOColumn" msprop:Generator_UserColumnName="PUESTO_EVALUADO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EVALUADOR" msprop:Generator_ColumnVarNameInTable="columnEVALUADOR" msprop:Generator_ColumnPropNameInRow="EVALUADOR" msprop:Generator_ColumnPropNameInTable="EVALUADORColumn" msprop:Generator_UserColumnName="EVALUADOR">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PUESTO_EVALUADOR" msprop:Generator_ColumnVarNameInTable="columnPUESTO_EVALUADOR" msprop:Generator_ColumnPropNameInRow="PUESTO_EVALUADOR" msprop:Generator_ColumnPropNameInTable="PUESTO_EVALUADORColumn" msprop:Generator_UserColumnName="PUESTO_EVALUADOR">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOTA" msprop:Generator_ColumnVarNameInTable="columnNOTA" msprop:Generator_ColumnPropNameInRow="NOTA" msprop:Generator_ColumnPropNameInTable="NOTAColumn" msprop:Generator_UserColumnName="NOTA" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

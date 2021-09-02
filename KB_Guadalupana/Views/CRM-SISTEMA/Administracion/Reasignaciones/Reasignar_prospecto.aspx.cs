@@ -77,7 +77,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
                 }
                 else
                 {
-                    String script = "alert('El usuario  no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
+                    String script = "alert('El usuario  no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../../../Index.aspx';";
                     ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
                 }
@@ -95,13 +95,18 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
         }
         protected void btnmenuprincipal_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../../MenuPrincipal/CRM_MenuPrincipal.aspx");
+            String script = "window.location.href= '../../MenuPrincipal/CRM_MenuPrincipal.aspx';";
+            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
 
         }
-        protected void btncerrasesion_Click(object sender, EventArgs e)
+        protected void btnasignarleed_Click(object sender, EventArgs e)
         {
-            String script = "alert('Se encuentra saliendo del programa'); window.location.href= '../../Index.aspx';";
+            String script = "window.location.href= 'Asignacionporlead.aspx';";
             ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            //Asignar Leads
+
+
         }
 
 
@@ -331,7 +336,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "SELECT codcrmcontrolingreso,crmcontrol_ingresousuario FROM crmcontrol_ingreso where crmcontrol_ingresorol =3 AND crmcontrol_ingresosucursal='" + agencia+"';";
+                    string QueryString = "SELECT codcrmcontrolingreso,crmcontrol_ingresousuario FROM crmcontrol_ingreso where crmcontrol_ingresorol =3 AND crmcontrol_ingresosucursal='" + agencia + "';";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "usuarioagencia133");
@@ -372,7 +377,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
                 try
                 {
                     sqlCon.Open();
-                    string QueryString = "SELECT crmcontrol_ingresousuario FROM crmcontrol_ingreso where crmcontrol_ingresorol =3 AND crmcontrol_ingresosucursal='"+agencia+"' AND  crmcontrol_ingresosucursal!='TELEMERCADEO' ;";
+                    string QueryString = "SELECT crmcontrol_ingresousuario FROM crmcontrol_ingreso where crmcontrol_ingresorol =3 AND crmcontrol_ingresosucursal='" + agencia + "' AND  crmcontrol_ingresosucursal!='TELEMERCADEO' ;";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds, "usuarioagencia2");
@@ -409,12 +414,12 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
         protected void comboagenciaagentedar_SelectedIndexChanged(object sender, EventArgs e)
         {
             llenaragentesucursalfuente(comboagenciaagentedar.SelectedValue);
-  
+
             comboagenciaagentedar.Visible = true;
             comboagentedar.Visible = true;
             comboagenciaegenterecibir.Visible = true;
-            comboagenterecibir.Visible = true;  
-            
+            comboagenterecibir.Visible = true;
+
         }
         protected void comboagenciagenterecibir_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -441,13 +446,13 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
                 centinela2 = centinela2 + 3;
                 centinela1 = centinela1 + 2;
                 i = centinela1;
-               // Response.Write(id1 + id2);
-                string[] campos1 = { "codcrmcontrolingreso", "codcrmcontrolingreso"};
-                string[] valores1 = { id1, id2};
+                // Response.Write(id1 + id2);
+                string[] campos1 = { "codcrmcontrolingreso", "codcrmcontrolingreso" };
+                string[] valores1 = { id1, id2 };
                 try
                 {
                     //logic.modificartablas("crmcontrol_prospecto_agente", campos1, valores1);
-                    logic.modificarregistrodeagente(id1,id2);
+                    logic.modificarregistrodeagente(id1, id2);
                     logic.bitacoraingresoprocedimientos(Nombresesion, "CRM", "Reasignar Prospecto", "Asignación para sucursales");
                 }
                 catch
@@ -470,6 +475,11 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
                 Console.WriteLine("dejo de funcionar");
                 logic.bitacoraingresoprocedimientos(Nombresesion, "CRM", "Reasignar Prospecto", "Fallo Asignación para agentes");
             }
+        }
+
+        protected void btnmenuprincipal_Click1(object sender, EventArgs e)
+        {
+
         }
     }
 }

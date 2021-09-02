@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
+using System.IO;
 
 namespace KB_Guadalupana.Views.Hallazgos
 {
@@ -20,6 +21,7 @@ namespace KB_Guadalupana.Views.Hallazgos
         Sentencia_Hallazgo sen = new Sentencia_Hallazgo();
         Logica_Hallazgos logic = new Logica_Hallazgos();
         Conexion cn = new Conexion();
+        KB_Rutas kbrutas = new KB_Rutas();
         string ideditar;
         string consulta;
         string valor = "1";
@@ -36,15 +38,20 @@ namespace KB_Guadalupana.Views.Hallazgos
         public void mostrarIE()
         {
             ideditar = Session["Idguardarse"].ToString();
-            string[] var1 = sen.consultarHallazgo(ideditar);
+            string[] var1 = sen.consultarHallazgorestructurado(ideditar);
             for (int i = 0; i < var1.Length; i++)
             {
-                ID.Value = Convert.ToString(var1[0]);
-                MesH.Value = Convert.ToString(var1[1]);
-                Año.Value = Convert.ToString(var1[2]);
-                Rubro.Value = Convert.ToString(var1[3]);
-                Hallazgo.Value = Convert.ToString(var1[4]);
-                Recomendacion.Value = Convert.ToString(var1[5]);
+                ID.Value = Convert.ToString(var1[2]);
+                MesH.Value = Convert.ToString(var1[4]);
+                Año.Value = Convert.ToString(var1[5]);
+                Rubro.Value = Convert.ToString(var1[6]);
+                Hallazgo.Value = Convert.ToString(var1[9]);
+                Recomendacion.Value = Convert.ToString(var1[10]);
+            }
+            string[] var2 = sen.consultarrespuestadehallazgo(ideditar);
+            for (int i = 0; i < var2.Length; i++)
+            {
+                Textarea1.Value = Convert.ToString(var2[0]);
             }
         }
 
@@ -54,8 +61,8 @@ namespace KB_Guadalupana.Views.Hallazgos
         {
             string ruta;
             ideditar = Session["Idguardarse"].ToString();
-            string[] var1 = sen.consultarHallazgo(ideditar);
-            ruta = Convert.ToString(var1[8]);
+            string[] var1 = sen.consultararchivodehallazgo(ideditar);
+            ruta = Convert.ToString(var1[0]);
 
 
             //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Entra funcion');", true);
@@ -75,152 +82,175 @@ namespace KB_Guadalupana.Views.Hallazgos
         {
             string ruta;
             ideditar = Session["Idguardarse"].ToString();
-            string[] var1 = sen.consultarHallazgo(ideditar);
-            ruta = Convert.ToString(var1[8]);
+            // string[] var1 = sen.consultarHallazgorestructurado(ideditar);
+            //  string[] var1 = sen.consultarimagensolucionh(ideditar);
+            //string[] var1 = sen.consultarimagensolucionh(ideditar);
+            string[] var2 = sen.consultararchivodehallazgo(ideditar);
 
-            string FilePath = Server.MapPath(ruta); //Variable ruta
+            //ruta = Convert.ToString(var1[8]);
+            ruta = Convert.ToString(var2[0]);
+
+            string rutaestatica = kbrutas.rutaestaticaarchivoshallazgos();
+
+            string FilePath = rutaestatica + ruta; //Variable ruta
             WebClient user = new WebClient();
-            Byte[] FileBuffer = user.DownloadData(FilePath);
-            if (FileBuffer != null)
+            if (File.Exists(FilePath))
             {
-                string[] partes = ruta.Split('.');
-                string subcadena = partes[1];
+                Byte[] FileBuffer = user.DownloadData(FilePath);
+                if (FileBuffer != null)
+                {
 
-                //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('id: " + subcadena + "');", true);
+                    string[] partes = ruta.Split('.');
+                    string subcadena = partes[1];
 
-                if ((subcadena == "png") || (subcadena == "jpg"))
-                {
-                    Response.ContentType = "text/plain";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('id: " + subcadena + "');", true);
+
+                    if ((subcadena == "png") || (subcadena == "jpg"))
+                    {
+                        Response.ContentType = "text/plain";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (subcadena == "pdf")
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    else if (subcadena == "docx")
+                    {
+                        Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        Response.BinaryWrite(FileBuffer);
+                    }
+                    //Response.ContentType = "application/docx";
                 }
-                else if (subcadena == "pdf")
-                {
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
-                }
-                else if (subcadena == "docx")
-                {
-                    Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-                    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                    Response.BinaryWrite(FileBuffer);
-                }
-                //Response.ContentType = "application/docx";
+            }
+            else
+            {
+                Response.Write("EL ARCHIVO QUE ESTÁ BUSCANDO NO SE ENCUENTRA ALMACENADO");
             }
         }
 
-        protected void Eliminar_Hallazgo_Click(object sender, EventArgs e)
-        {
 
-            ideditar = Session["Idguardar"].ToString();
-
-            string[] campos = { "id_shhallazgo", "sh_estado_id_shestado" };
-            string[] valores = { ideditar, "6" };
-            try
-            {
-                logic.modificartablas("sh_hallazgo", campos, valores);
-            }
-            catch { }
-            finally
-            {
-                try
-                {
-                    cn.desconectar();
-                }
-                catch
-                { }
-            }
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Hallazgo Eliminado'); window.location.href= 'VistaHallazgo.aspx';", true);
-        }
 
         protected void Guardarse_Hallazgo_Click(object sender, EventArgs e)
         {
-
-            if (FileUpload2.HasFile)
+            string[] var12 = sen.consultarimagensolucionh(ID.Value);
+            if (var12[0] == "null" || var12[0] == "" || var12[0] == null || var12[0] == "0")
             {
-                string ext = System.IO.Path.GetExtension(FileUpload2.FileName);
-                ext = ext.ToLower();
-
-                if ((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
+                if (FileUpload2.HasFile)
                 {
-                    string idvalor = Session["Idguardarse"].ToString();
+                    string ext = System.IO.Path.GetExtension(FileUpload2.FileName);
+                    ext = ext.ToLower();
 
-                    string doc = "Archivos/" + idvalor + FileUpload2.FileName;
-
-                    FileUpload2.SaveAs(Server.MapPath("Archivos/" + idvalor + FileUpload2.FileName));
-
-
-                    string[] var1 = sen.consultarHora();
-                    string fecha = Convert.ToString(var1[0]);
-                    string abre = Session["sesion_usuario"].ToString();
-
-
-                    string sig199 = logic.siguiente("sh_respuesta ", "id_shrespuesta");
-                    string[] valores199 = { sig199, Textarea1.Value, fecha, doc, idvalor, abre };
-                    logic.insertartablas("sh_respuesta", valores199);
-
-                    ideditar = Session["Idguardarse"].ToString();
-
-                    string[] campos = { "id_shhallazgo", "sh_estado_id_shestado" };
-                    string[] valores = { ideditar, "2" };
-                    try
+                    if ((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
                     {
-                        logic.modificartablas("sh_hallazgo", campos, valores);
-                    }
-                    catch
-                    { }
-                    finally
-                    {
+                        string idvalor = Session["Idguardarse"].ToString();
+
+                        string doc = idvalor + FileUpload2.FileName;
+                        string rutadoc = kbrutas.rutaestaticaarchivoshallazgos();
+                        FileUpload2.SaveAs(rutadoc + doc);
+
+                        ideditar = Session["Idguardarse"].ToString();
+                        string[] campos = { "codshrespuestaasignacion", "sh_imagensolucion" };
+                        string[] valores = { ideditar, doc };
                         try
                         {
-                            cn.desconectar();
+                            logic.modificartablas("sh_respuesta_asignacion", campos, valores);
+
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Respuesta Enviada'); window.location.href= RespuestaEnviada.aspx", true);
+                            bloqueo.Visible = false;
+                        }
+                        catch
+                        {
+                        }
+                        string[] var1 = sen.consultarHora();
+                        string fecha = Convert.ToString(var1[0]);
+                        string abre = Session["sesion_usuario"].ToString();
+                        ideditar = Session["Idguardarse"].ToString();
+                        string[] campos2 = { "codshrespuestaasignacion", "sh_comentario", "sh_estatus", "sh_fecha", "sh_usuario" };
+                        string[] valores2 = { ideditar, Textarea1.Value, "2", fecha, abre };
+                        try
+                        {
+                            logic.modificartablas("sh_respuesta_asignacion", campos2, valores2);
+                            bloqueo.Visible = false;
                         }
                         catch
                         { }
                     }
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Respuesta Enviada'); window.location.href= RespuestaEnviada.aspx", true);
-                    bloqueo.Visible = false;
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo no es compatible, los formatos permitos son: .docx,pdf,jpg y png')", true);
+                    }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo no es compatible, los formatos permitos son: .docx,pdf,jpg y png')", true);
+                    string[] var1 = sen.consultarHora();
+                    string fecha = Convert.ToString(var1[0]);
+                    string abre = Session["sesion_usuario"].ToString();
+                    ideditar = Session["Idguardarse"].ToString();
+                    string[] campos = { "codshrespuestaasignacion", "sh_comentario", "sh_estatus", "sh_fecha", "sh_usuario" };
+                    string[] valores = { ideditar, Textarea1.Value, "2", fecha, abre };
+                    try
+                    {
+                        logic.modificartablas("sh_respuesta_asignacion", campos, valores);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Respuesta Enviada'); window.location.href= RespuestaEnviada.aspx", true);
+                        bloqueo.Visible = false;
+                    }
+                    catch
+                    { }
                 }
             }
             else
             {
                 string[] var1 = sen.consultarHora();
                 string fecha = Convert.ToString(var1[0]);
-
-                string idvalor = Session["Idguardarse"].ToString();
-                string sig199 = logic.siguiente("sh_respuesta ", "id_shrespuesta");
                 string abre = Session["sesion_usuario"].ToString();
-                string[] valores199 = { sig199, Textarea1.Value, fecha, "null", idvalor, abre };
-                logic.insertartablas("sh_respuesta", valores199);
-
                 ideditar = Session["Idguardarse"].ToString();
-
-                string[] campos = { "id_shhallazgo", "sh_estado_id_shestado" };
-                string[] valores = { ideditar, "2" };
+                string[] campos = { "codshrespuestaasignacion", "sh_comentario", "sh_estatus", "sh_fecha", "sh_usuario" };
+                string[] valores = { ideditar, Textarea1.Value, "2", fecha, abre };
                 try
                 {
-                    logic.modificartablas("sh_hallazgo", campos, valores);
+                    logic.modificartablas("sh_respuesta_asignacion", campos, valores);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Respuesta Enviada'); window.location.href= RespuestaEnviada.aspx", true);
+                    bloqueo.Visible = false;
                 }
                 catch
                 { }
-                finally
+                if (FileUpload2.HasFile)
                 {
-                    try
-                    {
-                        cn.desconectar();
-                    }
-                    catch
-                    { }
-                }
+                    string ext = System.IO.Path.GetExtension(FileUpload2.FileName);
+                    ext = ext.ToLower();
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Respuesta Enviada'); window.location.href= RespuestaEnviada.aspx", true);
-                bloqueo.Visible = false;
+                    if ((ext == ".docx") || (ext == ".pdf") || (ext == ".jpg") || (ext == ".png"))
+                    {
+                        string idvalor = Session["Idguardarse"].ToString();
+
+                        string doc = idvalor + FileUpload2.FileName;
+                        string rutadoc = kbrutas.rutaestaticaarchivoshallazgos();
+                        FileUpload2.SaveAs(rutadoc + doc);
+
+                        ideditar = Session["Idguardarse"].ToString();
+                        string[] campos2 = { "codshrespuestaasignacion", "sh_imagensolucion" };
+                        string[] valores2 = { ideditar, doc };
+                        try
+                        {
+                            logic.modificartablas("sh_respuesta_asignacion", campos2, valores2);
+
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Respuesta Enviada'); window.location.href= RespuestaEnviada.aspx", true);
+                            bloqueo.Visible = false;
+                        }
+                        catch
+                        {
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo no es compatible, los formatos permitos son: .docx,pdf,jpg y png')", true);
+                    }
+
+                }
             }
         }
     }

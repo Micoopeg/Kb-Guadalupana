@@ -1,5 +1,6 @@
 ﻿using CRM_Guadalupana.Controllers;
 using CRM_Guadalupana.Models;
+using KB_Guadalupana.Controllers;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -12,24 +13,26 @@ using System.Web.UI.WebControls;
 
 namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 {
-   
+
     public partial class CRM_Ingresodedatos : System.Web.UI.Page
     {
         string usuarioglobal;
         CRM_Logica logic = new CRM_Logica();
         CRM_Sentencias sn = new CRM_Sentencias();
-        CRM_Conexion cn =  new CRM_Conexion(); 
+        CRM_Conexion cn = new CRM_Conexion();
+        KB_Rutas kbruta = new KB_Rutas();
         string registrodpiremplazable = "0"; //remplazable dpi en el ingreso de los datos
         string dpiguardar = "";
         DateTime fechaactual; //FECHA PARA VLAIDACIONES DE NO ESTAR VACIO EL CAMPO
-        public bool validardatosdesesion() {
+        public bool validardatosdesesion()
+        {
 
 
             string usuario = Convert.ToString(Session["usuariodelcrm"]);
             int rol = Convert.ToInt32(Session["roldelcrm"]);
             string sucursal = Convert.ToString(Session["sucurusalcrm"]);
             usuarioglobal = usuario;
-            if (rol == 1 || rol == 6 )
+            if (rol == 1 || rol == 6)
             {
                 return true;
             }
@@ -42,26 +45,26 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (validardatosdesesion()==true)
+            if (validardatosdesesion() == true)
             {
-               // Response.Write("Logro entrar");
-               if (!IsPostBack)
-                {                 
+                // Response.Write("Logro entrar");
+                if (!IsPostBack)
+                {
                     btngridview.Visible = false;
                     GridView1.Visible = false;
                     btnaceptar.Visible = false;
-                    Chkautorizar.Visible = false;                    
+                    Chkautorizar.Visible = false;
                 }
-               
+
             }
             else
             {
-                String script = "alert('El usuario "+usuarioglobal+" no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
+                String script = "alert('El usuario " + usuarioglobal + " no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }
 
-        
+
 
         }
 
@@ -80,7 +83,10 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
         bool verificararchivoconmismonombre(string fileName)
         {
             string ext = Path.GetFileName(fileName);
-            if (File.Exists(MapPath("Archivos/" + ext)))
+            //string ruta = Path.Combine(Server.MapPath("~/"), "Pedidos");
+            //if (File.Exists(HttpContext.Current.Server.MapPath("C:/ARCHIVOS_KBGUADALUPANA/SISTEMA_CRM/ArchiverodeLeads/" + ext)))            
+            string ruta = kbruta.rutaestaticaarchivoscrm();
+            if (File.Exists((ruta + ext)))
             {
                 return true;
             }
@@ -153,7 +159,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 
             GridView1.DataSource = tabla;
             GridView1.DataBind();
-           
+
         }
 
         protected void btncargardatos_Click(object sender, EventArgs e)
@@ -164,9 +170,9 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                 {
                     if (verificararchivoconmismonombre(FileUpload1.FileName) == false)
                     {
-                        FileUpload1.SaveAs(MapPath("Archivos/" + FileUpload1.FileName));
+                        FileUpload1.SaveAs(kbruta.rutaestaticaarchivoscrm() + FileUpload1.FileName);
                         Label1.Text = FileUpload1.FileName + " cargado exitosamente";
-                        lblOculto.Text = MapPath("Archivos/" + FileUpload1.FileName);
+                        lblOculto.Text = kbruta.rutaestaticaarchivoscrm() + FileUpload1.FileName;
                     }
                     else
                     {
@@ -198,9 +204,9 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             try
             {
 
-                 CargarDatos(lblOculto.Text);              
-                 ingresargridviewbd();
-                 PopulateGridview();
+                CargarDatos(lblOculto.Text);
+                ingresargridviewbd();
+                PopulateGridview();
                 FileUpload1.Visible = false;
                 btncargardatos.Visible = false;
                 btngridview.Visible = false;
@@ -215,13 +221,13 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 
         protected void btnguardarenbasededatos_Click(object sender, EventArgs e)
         {
-            if (Chkautorizar.Checked==true)
+            if (Chkautorizar.Checked == true)
             {
                 Ingresaryasignarprospectos();
                 logic.eliminadoderegistrosprotegida("crmtamporal_cargadedatos");
                 String script = "alert('Los datos han sido procesados correctamente'); window.location.href='../MenuPrincipal/CRM_MenuPrincipal.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
-                logic.bitacoraingresoprocedimientos(usuarioglobal, "CRM", "ingreso de datos", "Alimentación de CRM - Excel importado: '"+FileUpload1.FileName+"' ");
+                logic.bitacoraingresoprocedimientos(usuarioglobal, "CRM", "ingreso de datos", "Alimentación de CRM - Excel importado: '" + FileUpload1.FileName + "' ");
             }
             else
             {
@@ -251,7 +257,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                 string contacto = row.Cells[9].Text;
                 if (row.Cells[0].Text == "Fecha" || row.Cells[1].Text == "Nombre" ||
                     row.Cells[2].Text == "Teléfono" || row.Cells[3].Text == "Correo" ||
-                    row.Cells[4].Text == "DPI" || 
+                    row.Cells[4].Text == "DPI" ||
                     row.Cells[5].Text == "Cantidad" || row.Cells[6].Text == "Finalidad" ||
                     row.Cells[7].Text == "Zona" || row.Cells[8].Text == "Tipo de servicio" ||
                     row.Cells[9].Text == "Contacto")
@@ -260,10 +266,10 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                 }
                 else
                 {
-                    
+
                     string sig = logic.siguiente("crmtamporal_cargadedatos", "codcrmtamporalcargadedatos");
-                    string[] valores1 = { sig,fecha,nombre,telefono,correo,dpi,cantidad,finalidad,zona,tiposervicio,contacto };
-                     logic.insertartablas("crmtamporal_cargadedatos", valores1);
+                    string[] valores1 = { sig, fecha, nombre, telefono, correo, dpi, cantidad, finalidad, zona, tiposervicio, contacto };
+                    logic.insertartablas("crmtamporal_cargadedatos", valores1);
 
                 }
 
@@ -405,8 +411,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
             if (centinela1 == var2.Length)
             {
                 centinela1 = 0;
-                
-                for (iplus=centinela1; iplus < var2.Length;)
+
+                for (iplus = centinela1; iplus < var2.Length;)
                 {
                     string sucursal = var2[centinela1 + 0];
                     string agente = var2[centinela1 + 1];
@@ -429,75 +435,75 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 
 
 
-                foreach (GridViewRow row in GridView1.Rows)
-                    {
-                        double cantidaddecimal = 0;
-                        string numero = row.Cells[0].Text;
-                        string fecha = row.Cells[1].Text;
-                        string nombre = row.Cells[2].Text;
-                        string telefono = row.Cells[3].Text;
-                        string correo = row.Cells[4].Text;
-                        string dpi = row.Cells[5].Text;
-                        string cantidad = row.Cells[6].Text;
-                        if (cantidad != "Cantidad")
-                        {
-                            cantidaddecimal = Convert.ToDouble(cantidad);
-                        }
-                        string zona = row.Cells[7].Text;
-                        string finalidad = row.Cells[8].Text;
-                        string tiposervicio = row.Cells[9].Text;
-                        string contactadopor = row.Cells[10].Text;
-                        if (cantidaddecimal >= 50000)
-                        {
-                            //para agencias
-                        }
-                        else
-                        {
-                            //para sucursales
-                        }
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                double cantidaddecimal = 0;
+                string numero = row.Cells[0].Text;
+                string fecha = row.Cells[1].Text;
+                string nombre = row.Cells[2].Text;
+                string telefono = row.Cells[3].Text;
+                string correo = row.Cells[4].Text;
+                string dpi = row.Cells[5].Text;
+                string cantidad = row.Cells[6].Text;
+                if (cantidad != "Cantidad")
+                {
+                    cantidaddecimal = Convert.ToDouble(cantidad);
+                }
+                string zona = row.Cells[7].Text;
+                string finalidad = row.Cells[8].Text;
+                string tiposervicio = row.Cells[9].Text;
+                string contactadopor = row.Cells[10].Text;
+                if (cantidaddecimal >= 50000)
+                {
+                    //para agencias
+                }
+                else
+                {
+                    //para sucursales
+                }
 
-                        if (dpi == comprobardpi)
-                        {
-                            //Coloca el registro con el usuario existente
-                        }
-                        else
-                        {
-                            //crea el registro
-                            //coloca el registr ocon el nuevo usuario
-                        }
-                        //insertar el registro en la base de datos crminfoprospecto; 
-                    }//cierre dle registro
+                if (dpi == comprobardpi)
+                {
+                    //Coloca el registro con el usuario existente
+                }
+                else
+                {
+                    //crea el registro
+                    //coloca el registr ocon el nuevo usuario
+                }
+                //insertar el registro en la base de datos crminfoprospecto; 
+            }//cierre dle registro
 
 
         }//cierre de la función
 
         public void Ingresaryasignarprospectos()
         {
-           
+
             int centinelaagencias = 0;
             int centinelateleventas = 0;
             int centinelatabla = 0;
-            string agenteacargo ="";
+            string agenteacargo = "";
             // Variables nuevas para remplazarlas en el ingreso de datos
-            string nuevopi="";
+            string nuevopi = "";
             string[] tablatemporal = sn.consultartabla("crmtamporal_cargadedatos");
-            for (int i=0; i<tablatemporal.Length;i++)
-            {          
-              /*Variables Globales*/
+            for (int i = 0; i < tablatemporal.Length; i++)
+            {
+                /*Variables Globales*/
                 int num = gvPhoneBook.Rows.Count;
                 double cantidaddecimal = 0;
                 /*Variables*/
                 string No = tablatemporal[centinelatabla];
-                string fecha = tablatemporal[centinelatabla+1];
-                string nombre = tablatemporal[centinelatabla+2];
-                string telefono = tablatemporal[centinelatabla+3];
-                string correo = tablatemporal[centinelatabla+4];
-                string dpi = tablatemporal[centinelatabla+5];              
-                string cantidad = tablatemporal[centinelatabla+6];
-                string finalidad = tablatemporal[centinelatabla+7];
-                string zona = tablatemporal[centinelatabla+8];
-                string tiposervicio = tablatemporal[centinelatabla+9];
-                string contactadopor = tablatemporal[centinelatabla+10];
+                string fecha = tablatemporal[centinelatabla + 1];
+                string nombre = tablatemporal[centinelatabla + 2];
+                string telefono = tablatemporal[centinelatabla + 3];
+                string correo = tablatemporal[centinelatabla + 4];
+                string dpi = tablatemporal[centinelatabla + 5];
+                string cantidad = tablatemporal[centinelatabla + 6];
+                string finalidad = tablatemporal[centinelatabla + 7];
+                string zona = tablatemporal[centinelatabla + 8];
+                string tiposervicio = tablatemporal[centinelatabla + 9];
+                string contactadopor = tablatemporal[centinelatabla + 10];
                 if (fecha == "Fecha" && nombre == "Nombre" && telefono == "Tel&#233;fono" && correo == "Correo" && dpi == "DPI" && cantidad == "Cantidad"
                     && zona == "Zona" && finalidad == "Finalidad" && tiposervicio == "Tipo de servicio" && contactadopor == "Contacto")
                 {
@@ -514,10 +520,10 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     else
                     {
                         string sig1 = logic.siguiente("crminfogeneral_prospecto", "codcrminfogeneralprospecto");
-                        string[] valores2 = {sig1,dpi,"","",nombre,"0"};
+                        string[] valores2 = { sig1, dpi, "", "", nombre, "0" };
                         logic.insertartablas("crminfogeneral_prospecto", valores2);
                         dpiguardar = sig1;
-                      
+
 
                     }
 
@@ -562,8 +568,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                             agenteacargo = var1[centinelaagencias];
                             centinelaagencias = centinelaagencias + 3;
                         }
-                        
-                       
+
+
                     }
                     //Response.Write("Datos:" + fecha + nombre + telefono + correo + dpi + cantidad + zona + finalidad +
                     //tiposervicio + contactadopor + cantidad + cantidaddecimal + "<br>");
@@ -574,9 +580,9 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
                     logic.insertartablas("crminfo_prospecto", valores1);
 
                     string sig3 = logic.siguiente("crmcontrol_prospecto_agente", "codcrmcontrolprospectoagente");
-                         string[] var4 = sn.fechaactual();
-                        fechaactual = Convert.ToDateTime(var4[0]);
-                    string[] valores3 = { sig3,sig,agenteacargo, string.Format("{0: yyyy-MM-dd}", fechaactual) };   
+                    string[] var4 = sn.fechaactual();
+                    fechaactual = Convert.ToDateTime(var4[0]);
+                    string[] valores3 = { sig3, sig, agenteacargo, string.Format("{0: yyyy-MM-dd}", fechaactual) };
                     logic.insertartablas("crmcontrol_prospecto_agente", valores3);
 
                 }
@@ -589,24 +595,24 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
         public bool comprobardpiexistente(string dpiacomprobar)
         {
             string[] var2 = sn.consultardpiexistente();
-           
+
             int cont = 0;
             while (cont != var2.Length)
             {
                 string dpiextraido = Convert.ToString(var2[cont]);
-             
+
                 if (dpiacomprobar != dpiextraido)
                 {
                     cont = cont + 1;
-                  
+
                 }
                 else
                 {
                     registrodpiremplazable = dpiacomprobar;
-                   
+
                     return true;
                 }
-               
+
             }
             return false;
         }
@@ -619,8 +625,10 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Ingresodata
 
         protected void btncerrasesion_Click(object sender, EventArgs e)
         {
-            String script = "alert('Se encuentra saliendo del programa'); window.location.href= '../../Index.aspx';";
+            String script = "window.location.href= 'IngresoManual.aspx';";
             ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
         }
+
     }
-    }
+
+}

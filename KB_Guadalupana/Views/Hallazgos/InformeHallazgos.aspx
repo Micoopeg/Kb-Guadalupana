@@ -205,7 +205,7 @@ body {
          <Columns>
                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No.">
                         <ItemTemplate>
-                           <asp:Label ID="idhallazgo" Text='<%# Eval("id_shhallazgo") %>' runat="server" />
+                           <asp:Label ID="idhallazgo" Text='<%# Eval("codshrespuestaasignacion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Mes">
@@ -245,12 +245,12 @@ body {
                     </asp:TemplateField>
                       <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha Repuesta">
                            <ItemTemplate>
-                           <asp:Label ID="Estado6" Text='<%# Eval("Fecha") %>' runat="server" />
+                           <asp:Label ID="Estado6" Text='<%# Eval("sh_fecha") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Repuesta Gerencia">
                            <ItemTemplate>
-                           <asp:Label ID="Estado7" Text='<%# Eval("Comen") %>' runat="server" />
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_comentario") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estatus" >
@@ -258,6 +258,16 @@ body {
                            <asp:Label ID="Estado7" Text='<%# Eval("sh_nombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Calificación" >
+                           <ItemTemplate >
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_calificacion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Comentario de auditor" >
+                           <ItemTemplate >
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_comentarioauditor") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>             
                      </Columns>
      <HeaderStyle CssClass="prueba"  ForeColor="white" BackColor="#003563" ></HeaderStyle>
         </asp:GridView>
@@ -268,7 +278,7 @@ body {
                      <Columns>
                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No.">
                         <ItemTemplate>
-                           <asp:Label ID="idhallazgo" Text='<%# Eval("id_shhallazgo") %>' runat="server" />
+                           <asp:Label ID="idhallazgo" Text='<%# Eval("codshrespuestaasignacion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Mes">
@@ -303,12 +313,12 @@ body {
                     </asp:TemplateField>
                            <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha Repuesta">
                            <ItemTemplate>
-                           <asp:Label ID="Estado6" Text='<%# Eval("sh_nombre") %>' runat="server" />
+                           <asp:Label ID="Estado6" Text='<%# Eval("sh_fecha") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Repuesta Gerencia">
                            <ItemTemplate>
-                           <asp:Label ID="Estado7" Text='<%# Eval("sh_nombre") %>' runat="server" />
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_comentario") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estatus">
@@ -316,6 +326,16 @@ body {
                            <asp:Label ID="Estado7" Text='<%# Eval("sh_nombre") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Calificación" >
+                           <ItemTemplate >
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_calificacion") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Comentario de auditor" >
+                           <ItemTemplate >
+                           <asp:Label ID="Estado7" Text='<%# Eval("sh_comentarioauditor") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>       
                      </Columns>
      <HeaderStyle CssClass="prueba"  ForeColor="white" BackColor="#003563"></HeaderStyle>
         </asp:GridView>

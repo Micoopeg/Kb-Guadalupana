@@ -14,6 +14,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>CRM - GUADALUPANA</title>
         <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg"/>
+
     <style type="text/css">
         .img-fluid {
             height: 107px;
@@ -32,7 +33,7 @@
                         <div class="col" style="width:940px">                            
                         </div>
                         <div class="col" style=" text-align:right" >
-                         <asp:Button ID="btncerrasesion" Visible="false" style="text-align:right;color:white;" BackColor="#69a43c" Width="100%" Height="100%" runat="server" Text="Cerrar Sesión" BorderStyle="None" OnClick="btncerrasesion_Click" />                    
+                         <asp:Button ID="asignarleed" Visible="true" style="text-align:right;color:white;" BackColor="#69a43c" Width="100%" Height="100%" runat="server" Text="Asignar Lead" BorderStyle="None" OnClick="btnasignarleed_Click" />                    
                         </div>
                       
                     </div>       
@@ -68,7 +69,6 @@
         </asp:DropDownList>
         <asp:DropDownList ID="comboagentedar"  runat="server" CssClass="custom-dropdown big">
             <asp:ListItem Value="0">Seleccione un agente</asp:ListItem>
-            <asp:ListItem Value="4">pggteo3</asp:ListItem>
         </asp:DropDownList>
            <asp:DropDownList ID="comboagenciaegenterecibir" AutoPostBack="true" OnSelectedIndexChanged="comboagenciagenterecibir_SelectedIndexChanged" runat="server" CssClass="custom-dropdown big">
             <asp:ListItem Value="0">Seleccione una agencia</asp:ListItem>
@@ -76,7 +76,6 @@
         </asp:DropDownList>
              <asp:DropDownList ID="comboagenterecibir" runat="server" CssClass="custom-dropdown big">
             <asp:ListItem Value="0">Seleccione un agente</asp:ListItem>
-            <asp:ListItem Value="4">pggteo3</asp:ListItem>
         </asp:DropDownList>
         <br />
              <asp:Label ID="lblaceptar" runat="server" Text="Error" Visible="false"></asp:Label>

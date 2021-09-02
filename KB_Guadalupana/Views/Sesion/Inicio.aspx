@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
        <div class="menu"></div>
-         <img src="../../Imagenes/F1.png" alt="Nature" class="responsive"  style="width: 255px; position: absolute; top: 40%;left: 46%; margin-top: -75px; margin-left: -75px;" />
+         <img src="../../Imagenes/f_logo.png" alt="Nature" class="responsive"  style="width: 255px; position: absolute; top: 40%;left: 46%; margin-top: -75px; margin-left: -75px;" />
     </form>
 </body>
    <script>

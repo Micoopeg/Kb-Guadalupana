@@ -146,7 +146,7 @@
           <a href="NuevaTarea.aspx" > Nueva Tarea</a>
           <a id="ASIGHOME" runat="server" href="Av_AsignarTarea.aspx" > Asignar Tareas A</a>
           <a href="../Sesion/CerrarSesion.aspx" style="">Cerrar Sesion</a>
-          <span class="nav-text" style=" font-size: 25px; right: 3%; position: absolute; margin-top:5px; color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b>Edgar Casasola</span>
+          <span class="nav-text" style=" font-size: 25px; right: 3%; position: absolute; margin-top:5px; color: white; height: 20px;"><b runat="server" id="NombreUsuario"></b></span>
          
       </div>
 

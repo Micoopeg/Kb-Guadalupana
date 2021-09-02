@@ -12,6 +12,8 @@
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css' />
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="Diseño/stylelogin.css" />
+
+  
 <style> 
   
 body, html 
@@ -39,7 +41,7 @@ body, html
 }
 </style>
 </head>
-<body  class="bg">
+<body  class="bg" onload="window.history.forward();" >
     <img class="sobre" src="Imagenes/barra.png"  />
     <form id="form1" runat="server">
      <div id="login-button">
@@ -72,5 +74,15 @@ body, html
         }
       
     </script>
+    <script type="text/javascript">
+        window.location.hash = "no-back-button";
+
+        window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+
+        window.onhashchange = function () { window.location.hash = "no-back-button"; }
+
+
+    </script>
+
 </body>
 </html>

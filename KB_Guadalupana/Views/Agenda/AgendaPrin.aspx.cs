@@ -29,7 +29,7 @@ namespace KBGuada.Views
         {
 
             usernombre = Convert.ToString( Session["sesion_usuario"] );
-            nombrepersona = Convert.ToString( Session["Nombre"]);
+            nombrepersona = Convert.ToString( Session["Nombre"] );
             NombreUsuario.InnerText = Session["Nombre"].ToString();
             entrie = cav.obtenercoduser(usernombre);
             if (entrie == "" || entrie == null) {
@@ -37,7 +37,7 @@ namespace KBGuada.Views
                 String script = "alert('Favor soliitar acceso a su agenda')";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
-                Response.Redirect("../Sesion/Inicio.aspx");
+                Response.Redirect("../Sesion/MenuBarra.aspx");
             }
             else { permisos(cav.obtenercoduser(usernombre)); }
 

@@ -134,23 +134,44 @@ namespace KB_Guadalupana.Views.MantenimientosControl
             }
             else
             {
-                string[] valores = { txtcodigo.Value, comboagencia.SelectedValue, combousuario.SelectedValue, comboroles.SelectedValue };
-                try
+                string var1 = sn.validarusuariocrm("crmcontrol_ingreso", "crmcontrol_ingresousuario", combousuario.SelectedValue);
+                if (var1.Length == 0)
                 {
-                    logic.insertartablas("crmcontrol_ingreso", valores);
-                    comboagencia.ClearSelection();
-                    combousuario.ClearSelection();
-                    comboroles.ClearSelection();
-                    string varinc = sn.obtenerfinal("crmcontrol_ingreso", "codcrmcontrolingreso");
-                    txtcodigo.Value = varinc;
-                    llenargridviewmantenimiento();
-                    logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Control de usuario", "Registro guardado");
+
+                    string[] valores = { txtcodigo.Value, comboagencia.SelectedValue, combousuario.SelectedValue, comboroles.SelectedValue };
+                    try
+                    {
+                        logic.insertartablas("crmcontrol_ingreso", valores);
+                        comboagencia.ClearSelection();
+                        combousuario.ClearSelection();
+                        comboroles.ClearSelection();
+                        string varinc = sn.obtenerfinal("crmcontrol_ingreso", "codcrmcontrolingreso");
+                        txtcodigo.Value = varinc;
+                        llenargridviewmantenimiento();
+                        logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Control de usuario", "Registro guardado");
+                    }
+                    catch
+                    {
+                        Console.WriteLine("dejo de funcionar");
+                        logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Control de usuario", "Intento guardadar");
+                    }
+
                 }
-                catch
+                else
                 {
-                    Console.WriteLine("dejo de funcionar");
-                    logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Control de usuario", "Intento guardadar");
+
+                    if (combousuario.SelectedValue == var1)
+                    {
+                        String script = "alert('El usuario que desea asignar ya se encuentra asignado');";
+                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                    }
+                    else
+                    {
+                        String script = "alert('El usuario que desea asignar ya se encuentra asignado');";
+                        ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+                    }
                 }
+
             }
 
         }
@@ -198,6 +219,35 @@ namespace KB_Guadalupana.Views.MantenimientosControl
                     logic.bitacoraingresoprocedimientos(nombreusuario, "CRM", "Control usuario", "Intento Modificar - Correlativo:'" + txtcodigo.Value + "'");
                 }
             }
+        }
+        public void llenargridviewmantenimientobusqueda(string filtro)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "SELECT * FROM crmcontrol_ingreso WHERE crmcontrol_ingresousuario LIKE '%" + filtro + "%' ;";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    gridviewmant.DataSource = ds3;
+                    gridviewmant.DataBind();
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+
+            }
+
+        }
+        protected void btnbuscar_Click(object sender, EventArgs e)
+        {
+            llenargridviewmantenimientobusqueda(txtbusqueda.Value);
         }
     }
 }

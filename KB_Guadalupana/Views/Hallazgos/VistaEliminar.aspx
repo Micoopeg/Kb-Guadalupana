@@ -173,7 +173,7 @@ body {
                      <Columns>
                           <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="ID">
                         <ItemTemplate>
-                           <asp:Label ID="idhallazgo" Text='<%# Eval("id_shhallazgo") %>' runat="server" />
+                           <asp:Label ID="idhallazgo" Text='<%# Eval("codshrespuestaasignacion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Rubro">

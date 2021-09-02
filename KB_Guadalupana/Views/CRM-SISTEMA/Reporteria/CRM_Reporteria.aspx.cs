@@ -15,8 +15,22 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
     {
         CRM_Sentencias sn = new CRM_Sentencias();
         CRM_Conexion cn = new CRM_Conexion();
+        string nombreusuario;
         protected void Page_Load(object sender, EventArgs e)
         {
+            nombreusuario = Convert.ToString(Session["usuariodelcrm"]);
+            int rolusuario = Convert.ToInt32(Session["roldelcrm"]);
+            if (rolusuario == 2 || rolusuario == 6 || rolusuario == 5)
+            {
+
+            }
+            else
+            {
+
+                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+            }
             if (!IsPostBack)
             {
                 combotiposervicio.Visible = false;
@@ -38,13 +52,25 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
                 llenarsemaforo();
                 llenartipodomicilio();
                 llenarcomboagencia();
-                llenarcomboagente();
+
             }
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            refrescarreporte();
+            string fechainicio1 = fechainicio.Value;
+            string fechafin1 = fechafin.Value;
+            if (fechainicio1 == "" || fechafin1 == "")
+            {
+                String script = "alert('OBLIGATORIO COLOCAR UNA FECHA PARA FILTRAR');";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+
+            }
+            else
+            {
+                refrescarreporte();
+            }
+
         }
         private DataTable obtenermontos()
         {
@@ -61,7 +87,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
             ReportViewer1.Reset();
             ReportDataSource fuente = new ReportDataSource("ReporteDataSet", obtenermontos());
             ReportViewer1.LocalReport.DataSources.Add(fuente);
-            ReportViewer1.LocalReport.ReportPath = "Views/CRM-SISTEMA/Reporteria/Report1.rdlc";
+            ReportViewer1.LocalReport.ReportPath = "Views/CRM-SISTEMA/Reporteria/ReporteCRM.rdlc";
             ReportViewer1.LocalReport.Refresh();
 
         }
@@ -260,7 +286,17 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
 
             if (chkporusuario.Checked == true)
             {
-                combousuario.Visible = true;
+
+                if (chkporagencia.Checked == true)
+                {
+                    combousuario.ClearSelection();
+                    llenarcombousuarioporagencia(comboagencia.SelectedValue);
+                    combousuario.Visible = true;
+                }
+                else
+                {
+                    combousuario.Visible = true;
+                }
             }
             else
             {
@@ -349,6 +385,27 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
                 catch { Console.WriteLine("Verifique los campos"); }
             }
         }
+
+        public void llenarcombousuarioporagencia(string agencia)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "Select * FROM crmcontrol_ingreso where crmcontrol_ingresosucursal='" + agencia + "' AND crmcontrol_ingresorol=3;";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds, "agentesucursal");
+                    combousuario.DataSource = ds;
+                    combousuario.DataTextField = "crmcontrol_ingresousuario";
+                    combousuario.DataValueField = "crmcontrol_ingresousuario";
+                    combousuario.DataBind();
+                    combousuario.Items.Insert(0, new ListItem("[Descripción estado]", ""));
+                }
+                catch { Console.WriteLine("Verifique los campos"); }
+            }
+        }
         public void llenartipodomicilio()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
@@ -382,7 +439,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
                     myCommand.Fill(ds, "agencias");
                     comboagencia.DataSource = ds;
                     comboagencia.DataTextField = "crm_genagenciasnombre";
-                    comboagencia.DataValueField = "codcrmgenagencias";
+                    comboagencia.DataValueField = "crm_genagenciasnombre";
                     comboagencia.DataBind();
                     comboagencia.Items.Insert(0, new ListItem("[Seleccione la agencia]", ""));
                 }
@@ -402,7 +459,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
                     myCommand.Fill(ds, "agente");
                     combousuario.DataSource = ds;
                     combousuario.DataTextField = "crmcontrol_ingresousuario";
-                    combousuario.DataValueField = "codcrmcontrolingreso";
+                    combousuario.DataValueField = "crmcontrol_ingresousuario";
                     combousuario.DataBind();
                     combousuario.Items.Insert(0, new ListItem("[Seleccione el usuario]", ""));
                 }
@@ -417,8 +474,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Reporteria
         }
 
 
-      
 
-        
+
+
     }
-    }
+}

@@ -32,7 +32,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
             }
             else
             {
-                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para accer al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
+                String script = "alert('El usuario " + nombreusuario + " no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }
@@ -154,7 +154,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
             }
             else { 
             string busqueda = txtnombrecompleto.Value;
-            llenargridview(busqueda);
+            llenargridviewbusqueda(sucurusalcrm,busqueda);
             gridviewprospectos.Visible = true;
             }
         }
@@ -297,6 +297,29 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Catalogo_clientes
                 {
                     sqlCon.Open();
                     string QueryString = "select a.codcrminfoprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE a.codcrmsemaforoestado=4 AND crminfogeneral_prospectonombrecompleto LIKE '%" + busqueda + "%';";
+                    MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
+                    DataTable ds3 = new DataTable();
+                    command.Fill(ds3);
+                    gridviewprospectos.DataSource = ds3;
+                    gridviewprospectos.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -");
+                }
+
+            }
+
+        }
+        public void llenargridviewbusqueda(string sucursal, string busqueda)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string QueryString = "select a.codcrminfoprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE a.codcrmsemaforoestado=2 AND d.crmcontrol_ingresosucursal='" + sucursal + "' AND crminfogeneral_prospectonombrecompleto LIKE '%" + busqueda + "%';";
                     MySqlDataAdapter command = new MySqlDataAdapter(QueryString, sqlCon);
                     DataTable ds3 = new DataTable();
                     command.Fill(ds3);

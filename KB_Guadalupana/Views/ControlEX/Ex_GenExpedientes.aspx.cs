@@ -21,8 +21,8 @@ namespace KB_Guadalupana.Views.ControlEX
         ModeloEX mex = new ModeloEX();
         protected void Page_Load(object sender, EventArgs e)
         {
-            usernombre = Convert.ToString(Session["sesion_usuario"] = "pgecasasola");
-            nombrepersona = Convert.ToString(Session["Nombre"] = "Edgar Casasola");
+            usernombre = Convert.ToString(Session["sesion_usuario"] );
+            nombrepersona = Convert.ToString(Session["Nombre"]);
             //ean = Convert.ToString(Session["EAN"]);
 
            

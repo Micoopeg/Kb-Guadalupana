@@ -53,7 +53,7 @@
    <form id="form1" runat="server">
     <div class="area"></div>
        <div class="menu"></div>
-         <img src="../../Imagenes/F1.png" alt="Nature" class="responsive"  style="width: 255px; position: absolute; top: 40%;left: 46%; margin-top: -75px; margin-left: -75px;" />
+         <img src="../../Imagenes/f_logo.png" alt="Nature" class="responsive"  style="width: 455px; position: absolute; top: 46%;left: 40%; margin-top: -75px; margin-left: -75px;" />
    
        <nav class="main-menu">
          <header class="main-header">
@@ -91,7 +91,7 @@
         <ul class ="opc1"  runat="server"  disable style="cursor:pointer;">
                 <li class="has-subnav">
                     <a >
-                       <i class="fa fa-check"></i>
+                       <i class="fa fa-angle-double-right"></i>
                         <span class="nav-text">
                           <asp:Label ID="lblarea" runat="server" Visible="false" Text='<%# Eval("gen_areanombre") %>'></asp:Label>
                            <%# Eval("gen_areanombre") %>

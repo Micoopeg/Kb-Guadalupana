@@ -33,13 +33,13 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.Administracion.Reasignaciones
         protected global::System.Web.UI.WebControls.Button btnmenuprincipal;
 
         /// <summary>
-        /// Control btncerrasesion.
+        /// Control asignarleed.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btncerrasesion;
+        protected global::System.Web.UI.WebControls.Button asignarleed;
 
         /// <summary>
         /// Control chkagenica.

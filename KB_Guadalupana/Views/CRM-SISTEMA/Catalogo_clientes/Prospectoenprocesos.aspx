@@ -11,6 +11,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="../../../CRM-Estilos/Estiloparagraficas.css" />
     <link rel="stylesheet" href="../../../CRM-Estilos/EstiloGridClientes.css" />
+    <link rel="stylesheet" href="../../../CRM-Estilos/estiloparamodal.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -18,11 +19,15 @@
         .seleccionarcelulargridview{
 
         }
+        .seguirgridview{
+
+        }
     </style>
 
 </head>
-<body style="background-color:#2c3e50">
+<body style="background-color:#2c3e50">   
     <form id="form1" runat="server">
+         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <header style="background-color:#69a43c">
   <div class="row">
     <div class="col-sm-4" >
@@ -51,10 +56,10 @@
             <br />
             <br />
         <div id="divgridviewprospectos1" style="overflow: auto; height: 147px">
-     <asp:GridView ID="gridviewprospectos" CssClass="container"  style="width: 692px;  text-align:center" runat="server"  HeaderStyle-ForeColor="Black"
-    AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChangedprospectos" BorderStyle="Solid">
+     <asp:GridView ID="gridviewprospectos" CssClass="container"  style="width: 1020px;  text-align:center" runat="server"  HeaderStyle-ForeColor="Black"
+    AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChangedprospectos" BorderStyle="Solid" OnRowCommand="gridviewprospectos_RowCommand">
                      <Columns>
-                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Leed" Visible="True">
+                         <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Lead" Visible="True">
                            <ItemTemplate>
                            <asp:Label ID="lblcodprospeto" Text='<%# Eval("codcrminfoprospecto") %>' runat="server" />
                         </ItemTemplate>
@@ -73,9 +78,16 @@
                             <asp:Label ID="lblnombretelefono" Text='<%# Eval("crminfogeneral_prospectonombrecompleto") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                            <asp:ButtonField Text="Seleccionar" ItemStyle-CssClass="seleccionarcelulargridview icon-prev"  CommandName="Select" ItemStyle-Width="150">
-                            <ItemStyle Width="150px"></ItemStyle>
-                             </asp:ButtonField>
+                         <asp:TemplateField HeaderText="Visualización">
+                           <ItemTemplate>  
+                <asp:LinkButton ID="btnver" runat ="server" CommandArgument='<%#Eval("codcrminfoprospecto")%>'  Text="Ver"  CommandName ="Select" ></asp:LinkButton>  
+                     </ItemTemplate>  
+                    </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Seguimiento">
+                           <ItemTemplate>  
+                <asp:LinkButton ID="btnseguir" runat ="server" CommandArgument='<%#Eval("codcrminfoprospecto")%>'  Text="Seguir"  CommandName ="Seguir" ></asp:LinkButton>  
+                     </ItemTemplate>  
+                    </asp:TemplateField>
                      </Columns>
      <HeaderStyle CssClass="prueba"  ForeColor="White"></HeaderStyle>
         </asp:GridView>
@@ -244,6 +256,7 @@
          
                 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src="../../../CRM-Script/Script.js" type="text/javascript"></script>
+        <script src="../../../CRM-Script/scriptparamodal.js" type="text/javascript"></script>
     </form>
 </body>
 </html>

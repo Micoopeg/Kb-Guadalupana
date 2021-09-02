@@ -8,249 +8,114 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>CRM - GUADALUPANA</title>
-    <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg"/>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'/>
-    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	 <link rel="stylesheet" href="../../../CRM-Estilos/Estilos.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../Imagenes/logo.jpeg" />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' />
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../CRM-Estilos/Estilos.css" type="text/css" />
 
     <style type="text/css">
         .img-fluid {
             height: 107px;
             width: 124px;
         }
-        .chart1 {}
-        .chart1 {}
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            border-top: 1px solid white;
+            background: white;
+            color: #333;
+            height: 150px;
+            width: 100%;
+            font-family: 'Lobster', cursive;
+            text-align: center
+        }
+
+        .menu {
+            height: 180px;
+            width: 100%;
+            background: white;
+            color: black;
+            text-align: center
+        }
+
+        .wrapper {
+            height: 1000px;
+            width: 100%;
+            padding-top: 20px
+        }
+
+        .fixed {
+            position: fixed;
+            top: 4px;
+            width: 81%;
+        }
+        .sub12{
+        background-color:#004078;
+        }
     </style>
 
 </head>
 
 <body>
     <form id="form1" runat="server">
-        <header style="background-color:#005363; margin-top:10px" >           
+        <header style="background-color: #005363; margin-top: 10px">
         </header>
-         <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        <asp:Timer ID="Timer1" runat="server" Interval="3000"></asp:Timer>
         <!-- partial:index.partial.html -->
-        <div id="responsive-admin-menu">
+        <div id="responsive-admin-menu" style="height: 1963px">
             <div id="responsive-menu">
                 <div class="menuicon">≡</div>
             </div>
             <center>
 			<div id="logo">
-				<a href="../MenuPrincipal/CRM_MenuPrincipal.aspx"><img src="../../../Imagenes/logo.jpeg" class="img-fluid" style="width: auto;border-radius:49px;height: 100px;position: absolute;left: 44px;" alt="Responsive image" /></a>
+				<a href="../MenuPrincipal/CRM_MenuPrincipal.aspx"><img src="../../../Imagenes/logo.jpeg" class="img-fluid" style="width: auto;border-radius:49px;height: 100px;position: absolute;left: 44px;" alt="Responsive image" /></a>                
     </div>
 	</center>
             <!--Menu-->
-         
-                <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
-          
-            <ContentTemplate>    
-                   <div id="menu">
-                <a href="CRM_Alertas.aspx" title="Alertas"><i class="icon-bullhorn"></i><span>Alertas ( <asp:Label ID="Label2" runat="server" Text="1" ForeColor="White"></asp:Label> )</span></a>           
-                <a href="CRM_Prospectosfinalizados.aspx" title="Asociadosfinalizados"><i class="icon-file-alt"></i><span>Prospectos Finalizados</span></a>
-                <a href="CRM_Crearreferido.aspx" title="Crearasociadoreferido"><i class="icon-book"></i><span>Crear Referido</span></a>
-          <%-- <a href="" title="cerarsesion"><i class="icon-signout"></i><span>  
-			Cerrar Sesión</span></a>--%>
-                   </div>
-                </ContentTemplate>
-                      <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
-            </Triggers>
-        </asp:UpdatePanel>
-                
-          
-           
-           
+            <div id="menu">
+                <a href="CRM_Alertas.aspx" title="Alertas"><i class="icon-bullhorn"></i><span>Alertas (
+                            <asp:Label ID="Label2" runat="server" Text="1" ForeColor="White"></asp:Label>
+                    )</span></a>
+               <%-- <a href="CRM_Prospectosfinalizados.aspx" title="Asociadosfinalizados"><i class="icon-file-alt"></i><span>Prospectos Finalizados</span></a>
+                <a href="CRM_Prospectosenproceso.aspx" title="AsociadosAprobados"><i class="icon-file-alt"></i><span>Prospectos Aprobados</span></a>
+                --%><a href="CRM_Crearreferido.aspx" title="Crear Referido"><i class="icon-book"></i><span>Crear Referido</span></a>
+                <asp:LinkButton ID="btnmostrartodoproceso" style="margin-left:6px"  runat="server" OnClick="btnmostrartodoproceso_Click">|-[MOSTRAR TODOS]-|</asp:LinkButton>                
+                <asp:Repeater ID="Repeater1" runat="server">
+                    <ItemTemplate>                       
+                <asp:LinkButton ID="btn12" runat="server" CssClass="sub12" Text='<%# Eval("crmestado_descripcionnombre") %>' OnClick="btn12_Click" Style="display: table-caption; width:inherit; margin-left:1px"><i class="icon-bullhorn"></i>                       
+                 </asp:LinkButton>                        
+                        <asp:Label ID="Label3" Visible="false" runat="server" Text='<%# Eval("codcrmestadodescripcion") %>'></asp:Label>                     
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
             <!--Menu-->
-               
         </div>
 
-        <div id="content-wrapper">
-            <div style="border: 1px #e8e8e8 solid; width: 49%; float: left; margin: 10px 0px 10px 0px">
+        <div id="content-wrapper" style="height: 1931px">
+            <div style="border: 1px #e8e8e8 solid; width: 100%; float: right; margin: 10px 0px 10px 0px">
                 <div style="border-bottom: 1px #e8e8e8 solid; background-color: #f3f3f3; padding: 8px; font-size: 13px; font-weight: 700; color: #45484d;">
-                    ESTATUS DE CLIENTES
-                    </div>
-                <div style="padding: 2px; font-size: 13px;">
-                     <center>
-                          <asp:Chart  ID="Chart1" runat="server" canresize="true"  Palette="None" AlternateText="El grafico no se puede carga por la conexion a internet" BorderlineColor="Black" PaletteCustomColors="Yellow; 255, 128, 0; 192, 0, 0; 0, 192, 0" Width="280px">  
-            <series>  
-                <asp:Series Name="Series1" ChartType="Pie" Legend="Legend1" LabelBackColor="White" >  
-                </asp:Series>   
-                <asp:Series ChartArea="ChartArea1" Legend="Legend1" Name="Series2" ChartType="Pie">
-                </asp:Series>
-            </series>    
-            <chartareas>  
-                <asp:ChartArea Name="ChartArea1">  
-                </asp:ChartArea>  
-            </chartareas>  
-                              <Legends>
-                                  <asp:Legend Name="Legend1">
-                                  </asp:Legend>
-                              </Legends>
-                              <BorderSkin BackColor="Transparent" />
-        </asp:Chart>              
-                        </center>
-                    </div>
+                    ESTATUS DE POSPECTOS
                 </div>
-
-            <div style="border: 1px #e8e8e8 solid; width: 49%; float: right; margin: 10px 0px 10px 0px">
-                <div style="border-bottom: 1px #e8e8e8 solid; background-color: #f3f3f3; padding: 8px; font-size: 13px; font-weight: 700; color: #45484d;">
-                    ESTATUS DE ALERTAS
-                </div>
-                <div style="padding: 2px; font-size: 13px; height:300px">
-                    <br />
-                    <br />
-                      <br />
-                      <br />
-                                        <center>
-                          <asp:Chart Height="280px" ID="Chart2" runat="server" canresize="true"  Palette="None" AlternateText="El grafico no se puede carga por la conexion a internet" BorderlineColor="Black" PaletteCustomColors="Green">  
-            <series>  
-                <asp:Series Name="Series1" Legend="Legend1" IsVisibleInLegend="False" >  
-                </asp:Series>   
-                <asp:Series ChartArea="ChartArea2" Name="Series2" IsVisibleInLegend="False">
-                </asp:Series>
-            </series>    
-            <chartareas>  
-                <asp:ChartArea Name="ChartArea2" ShadowColor="White">  
-                    <AxisY LineColor="OliveDrab">
-                        <MajorGrid LineColor="Transparent" LineDashStyle="NotSet" />
-                        <MinorGrid LineColor="Transparent" />
-                        <MajorTickMark LineColor="SeaGreen" />
-                    </AxisY>
-                    <AxisX LineColor="OliveDrab">
-                        <MajorGrid LineColor="Maroon" LineDashStyle="NotSet" />
-                        <MinorGrid LineColor="Transparent" />
-                        <MajorTickMark LineColor="SeaGreen" />
-                        <LabelStyle ForeColor="Green" />
-                    </AxisX>
-                    <AxisX2>
-                        <MajorGrid LineColor="Transparent" />
-                        <MinorGrid LineColor="Transparent" />
-                    </AxisX2>
-                    <AxisY2>
-                        <MajorGrid LineColor="Transparent" />
-                        <MinorGrid LineColor="Transparent" />
-                    </AxisY2>
-                </asp:ChartArea>  
-            </chartareas>  
-                              <BorderSkin BackColor="Transparent" BackImageTransparentColor="White" BackSecondaryColor="Transparent" PageColor="Black" />
-        </asp:Chart>              
-                        </center>
-               </div>
-            </div>
-
-            <br />
-            <br />
-
-            <div style="border: 1px #e8e8e8 solid; width: 100%; height:906px; float: right; margin: 10px 0px 10px 0px">
-                <div style="border-bottom: 1px #e8e8e8 solid; background-color: #f3f3f3; padding: 8px; font-size: 13px; font-weight: 700; color: #45484d;">
-                    CONTROL DE PROSPECTOS
-                </div>
-                <div style="padding: 8px; font-size: 13px;">
-        <h4 style="text-align:center">INFORMACIÓN GENERAL</h4>
-       <input id="txtnumerogeneral" style="margin-left:1%;" placeholder="DPI" visible="false" runat="server" type="text" tabindex="1" class="inputscortos"  autofocus="autofocus" />
-       <input id="txtnumeroderegistro" style="margin-left:1%;" placeholder="DPI" visible="false" runat="server" type="text" tabindex="1" class="inputscortos"   autofocus="autofocus" />
-      <input id="txtnumerodpi" disabled="disabled" onkeypress="return numeros(event);" style="margin-left:1%;" placeholder="DPI" runat="server" type="text" tabindex="1" class="inputscortos"  autofocus="autofocus" />
-
-      <input id="txtnombrecompleto" onkeypress="return soloLetras(event)" style="margin-left:2%;" placeholder="Nombre Completo" runat="server" type="text" tabindex="2" class="inputslargos"   autofocus="autofocus"/>
-      <input id="txttelefono"  onkeypress="return numeros(event);" style="margin-left:2%;" placeholder="Teléfono" runat="server" type="text" tabindex="3" class="inputscortos" maxlength="8"   autofocus="autofocus"/>
-     <input id="txtemail" style="margin-left:2%;" placeholder="Correo electrónico" runat="server" type="text" tabindex="4" class="inputslargos"   autofocus="autofocus"/>
-     <div style="border: 1px #e8e8e8 solid; width: 30%; float: left; margin: 10px 0px 10px 0px">
-         <%-- AREA DE INGRESOS --%>           
-         <h4 style="text-align:center" >ÁREA DE INGRESOS</h4>
-    <input id="txtingreso" onkeypress="return solonumeros(event);" style="margin-left:3%; width:40%" placeholder="Q - Ingresos" runat="server" type="text" tabindex="5" class="inputscortos"   autofocus="autofocus"/>
-     <input id="txtegresos" onkeypress="return solonumeros(event);" style="margin-left:3%; width:40%" placeholder="Q - Egresos" runat="server" type="text" tabindex="6" class="inputscortos"   autofocus="autofocus"/>
-     </div>
-   <div style="border: 1px #e8e8e8 solid; width: 68%; float: right; margin: 10px 0px 10px 0px">
-       <%-- AREA DE EMPLEADOS --%>
-     <h4 style="text-align:center" >ÁREA DE EMPLEO</h4>
-    <input id="txtañoslaborados" onkeypress="return numeros(event);" style="margin-left:9%; width:18%; " placeholder="Años laborados" runat="server" type="text" tabindex="7" class="inputscortos"   autofocus="autofocus"/>
-       <asp:DropDownList ID="combotienetrabajo" runat="server" style="margin-left:1%; width:24%;" TabIndex="8" CssClass="inputscortos">
-            <asp:ListItem Text="¿Trabaja actualmente?" Value="0"></asp:ListItem>  
-             <asp:ListItem Text="Si" Value="1"></asp:ListItem>
-                <asp:ListItem Text="No" Value="2"></asp:ListItem>
-       </asp:DropDownList>
-       <input id="txttabajoactual" style="margin-left:1%; width:33%" placeholder="Trabajo actual" runat="server" type="text" tabindex="9" class="inputscortos"   autofocus="autofocus"/>
-     </div>
- <div id="divareaseguimiento" runat="server" style="border: 1px #e8e8e8 solid; width: 100%; margin: 10px 0px 10px 0px">
-<%-- AREA DE SEGUIMIENTOS --%>
-     <h4 style="text-align:left" >Área de segumiento</h4>
-     <asp:DropDownList ID="combotiposervicio" runat="server" OnSelectedIndexChanged="tiposervicio_SelectedIndexChanged" AutoPostBack="true"  style="margin-left:1%; width:12%;" TabIndex="10" CssClass="inputscortos">
-      <asp:ListItem Text="Tipo de servicio" Value="0"></asp:ListItem>  
-         </asp:DropDownList>
-      <input id="txtmonto" onkeypress="return solonumeros(event);" style="margin-left:1%; width:8%; " placeholder="Q - Monto" runat="server" type="text" tabindex="11" class="inputscortos"   autofocus="autofocus"/>
-            <select id="combofinalidaddeservicio" runat="server" style="margin-left:1%; width:24%;" class="inputscortos">
-            <option value="0">Seleccione la finalidad del servicio </option>
-           </select> 
-           <asp:DropDownList ID="combocontactollamadas" runat="server" style="margin-left:1%; width:18%;" TabIndex="12" CssClass="inputscortos">
-      <asp:ListItem Text="Estado de la llamada" Value="0"></asp:ListItem>  
-               </asp:DropDownList>
-      <input id="txtfechainicio" style="margin-left:2%; width:13%; " runat="server" type="date" tabindex="13" class="inputscortos" value="2020-04-25" min="1950-01-01" max="2021-12-31"  autofocus="autofocus"/>
-    <input id="txtfechafin" style="margin-left:2%; width:13%; " runat="server" type="date" tabindex="14" class="inputscortos" value="2020-04-25" min="1950-01-01" max="2021-12-31"   autofocus="autofocus"/>
-   <hr style="border:groove" />   
-     <asp:DropDownList ID="combosemaforoestado" OnSelectedIndexChanged="seleccionsemaforo_SelectedIndexChanged" AutoPostBack="true" runat="server" style="margin-left:21%; width:15%;" TabIndex="15" CssClass="inputscortos">
-         <asp:ListItem Text="Seleccione el color" Value="0"></asp:ListItem>  
-         </asp:DropDownList>
-     <asp:TextBox style="margin-left:2%;"  Width="30px" Height="30px" ID="txtcolorestado" Enabled="false" runat="server" TabIndex="16"></asp:TextBox>
-       <asp:DropDownList ID="combosemaforodescripcion" runat="server" style="margin-left:10%; width:21%; text-align:center;" TabIndex="17" CssClass="inputscortos">
-     <asp:ListItem Text="Motivo del estado" Value="0"></asp:ListItem>  
-           </asp:DropDownList>
-   
-      <hr style="border:groove" />   
-     
-       <h4 style="text-align:center" >INFORMACIÓN ADCIONAL</h4>
-         <asp:DropDownList ID="combocuentaigss" runat="server" style="margin-left:2%; width:14%;" TabIndex="18" CssClass="inputscortos">
-       <asp:ListItem Text="¿Cuenta con IGSS?" Value="0"></asp:ListItem>  
-             <asp:ListItem Text="Si" Value="1"></asp:ListItem>  
-             <asp:ListItem Text="No" Value="2"></asp:ListItem>  
-         </asp:DropDownList>
-       <asp:DropDownList ID="combotipodomicilio" runat="server" style="margin-left:2%; width:15%;" TabIndex="19" CssClass="inputscortos">
-       <asp:ListItem Text="Tipo del domicilio" Value="0"></asp:ListItem> 
-       </asp:DropDownList>
-      <input id="txtañodomicilio" onkeypress="return numeros(event);" style="margin-left:1%;" placeholder="¿Años de residencia?" runat="server" type="text" tabindex="20" class="inputscortos"   autofocus="autofocus"/>
-      <asp:DropDownList ID="comboposeecuentacoope" runat="server" style="margin-left:2%; width:20%;" TabIndex="21" CssClass="inputscortos">
-      <asp:ListItem Text="¿Posee cuenta en cooperativa?" Value="0"></asp:ListItem>
-          <asp:ListItem Text="Si" Value="1"></asp:ListItem>
-          <asp:ListItem Text="No" Value="2"></asp:ListItem>
-      </asp:DropDownList> 
-     <asp:DropDownList ID="combosucursalmascerca" runat="server" style="margin-left:2%; width:22%;" TabIndex="22" CssClass="inputscortos">
-      <asp:ListItem Text="¿Sucursal más cercana?" Value="0"></asp:ListItem>
-         <asp:ListItem Text="Central" Value="1"></asp:ListItem>
-
-     </asp:DropDownList>
-     <center> 
-         <input id="txtcontactadopor"  style="margin-left:1%;" placeholder="Contactado Por:" runat="server" type="text" tabindex="18" class="inputscortos"   autofocus="autofocus" />
-       <input id="txtdpireferencia" onkeypress="return numeros(event);" style="margin-left:1%;" placeholder="Dpi de referencia" runat="server" type="text" tabindex="19" class="inputscortos"   autofocus="autofocus" />
-         </center>
-     <%-- AREA DE COMENTARIOS / DESCRIPCIÓN --%>
-<div class="form-group" style="float:none">
-  <textarea class="form-control rounded-0" style="width:95%; margin-left:28px; text-align:center;" placeholder="Descripción" tabindex="23" id="exampleFormControlTextarea1" runat="server" rows="5"></textarea>
-</div>
-     <br />
-     <%-- AREA DE BOTONES --%> 
-     <center>
-   
-    <asp:LinkButton ID="LinkButton1" class="btn btn-warning" style=" text-decoration:none; width:45%" value="Crear Alerta" type="button" runat="server" tabindex="24" name="Crear Alerta" title="Crear Alerta" OnClick="Btn_abriralerta_Click" >Crear Alerta</asp:LinkButton>
-         <asp:LinkButton ID="LinkButton2" class="btn btn-success" style=" text-decoration:none; width:45%" value="Guardar" type="button" runat="server" tabindex="25" name="Guardar" title="Guardar" OnClick="Btn_Guardarprospecto_Click" >Guardar</asp:LinkButton>
-   
-   
-         </center>
-
-                    <%-- AREA DEL GRIDVIEW --%>      
- 
-                </div>   
-                    </div>
-<center>
-            
-                 <h4>Prospectos pendientes</h4>
+                <div class="menu" style="border-style: groove;">
+                    <center>            
                   <%-- GRIDVIEW Inversiones--%>
-               <div id="divGridprospecto" style="overflow: auto; height: 100px" runat="server">
+                        <%-- GRIDVIEW Inversione2s--%>
+                        <span runat="server" id="bnombre">Buscar por nombre:</span><asp:TextBox BorderStyle="Groove" runat="server" style="margin-left:1%"  ID="txtbusquedaprospecto"></asp:TextBox>
+                        <asp:LinkButton runat="server" style="text-decoration:none" ID="busquedaporfiltro" OnClick="busquedaporfiltro_Click">Buscar</asp:LinkButton>
+                         <asp:CheckBox ID="chkproceso" OnCheckedChanged="chkproceso_CheckedChanged" AutoPostBack="true" runat="server" Text="Proceso"></asp:CheckBox>
+                        <asp:CheckBox ID="chknocontesta" runat="server" OnCheckedChanged="chknocontesta_CheckedChanged" AutoPostBack="true" Text="No contesta"></asp:CheckBox>
+                       <br />
+                        <asp:Label ID="mensajeprospecto" runat="server" Visible="false"></asp:Label>
+                        <div id="divGridprospecto" style="overflow: auto; height: 153px" runat="server">
                  <asp:GridView ID="gridviewprospectos" CssClass="mGrid"  runat="server" HeaderStyle-BackColor="#003563" HeaderStyle-ForeColor="White"
-    AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedprospectos" BorderStyle="Solid" Width="82%" >
+    AutoGenerateColumns="False" OnSelectedIndexChanged = "OnSelectedIndexChangedprospectos" BorderStyle="Solid" Width="90%" >
                      <Columns>
                          <asp:TemplateField HeaderText="Numero" Visible="false">
                            <ItemTemplate>
-                            <asp:Label ID="lblcodigo" Text='<%# Eval("codcrminfoprospecto") %>' runat="server" />
+                            <asp:Label ID="lblcodigo" Text='<%# Eval("codcrminfoprospecto")%>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                          <asp:TemplateField HeaderText="Numero" Visible="false">
@@ -329,7 +194,7 @@
                             <asp:Label ID="lblprimerallamada" Text='<%# string.Format("{0: yyyy-MM-dd}",Eval("crminfo_prospectofechaprimerllamada")) %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                              <asp:TemplateField HeaderText="Ultima llamada"  Visible="false">
+                              <asp:TemplateField HeaderText="Ultima llamada"  Visible="true">
                            <ItemTemplate>
 
                             <asp:Label ID="lblultimallamada" Text='<%# string.Format("{0: yyyy-MM-dd}",Eval("crminfo_prospectofechaultimallamada")) %>' runat="server" />
@@ -370,9 +235,9 @@
                             <asp:Label ID="lblsucursalcercana" Text='<%# Eval("crminfo_prospectosucursalcerca") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                          <asp:TemplateField HeaderText="Descripcion"  Visible="false">
+                          <asp:TemplateField HeaderText="Comentario o descripción"  Visible="true">
                            <ItemTemplate>
-                            <asp:Label ID="lbldescripcion" Text='<%# Eval("crminfo_prospectosucursalcerca") %>' runat="server" />
+                            <asp:Label ID="lbldescripcion" Text='<%# Eval("crminfo_prospectodescripcion") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                  <asp:TemplateField HeaderText="Contactado por"  Visible="false">
@@ -392,12 +257,214 @@
 <HeaderStyle BackColor="#0084F7" CssClass="prueba" ForeColor="White"></HeaderStyle>
         </asp:GridView>
                   </div>          
-          </center>          
-      </div>
+          </center>
+                </div>
             </div>
-        <!-- partial -->
+            <div class="wrapper">
+                <div style="border: 1px #e8e8e8 solid; width: 100%; height: 1148px; float: right; margin: 10px 0px 10px 0px">
+                    <div style="border-bottom: 1px #e8e8e8 solid; background-color: #f3f3f3; padding: 8px; font-size: 13px; font-weight: 700; color: #45484d;">
+                        CONTROL DE PROSPECTOS
+                    </div>
+                    <div style="padding: 8px; font-size: 13px;">
+                        <h4 style="text-align: left">INFORMACIÓN GENERAL</h4>
+                        <input id="txtnumerogeneral" style="margin-left: 1%;" placeholder="DPI" visible="false" runat="server" type="text" tabindex="1" class="inputscortos" autofocus="autofocus" />
+                        <input id="txtnumeroderegistro" style="margin-left: 1%;" placeholder="DPI" visible="false" runat="server" type="text" tabindex="1" class="inputscortos" autofocus="autofocus" />
+
+                        <span>Documento DPI:</span>
+                        <input id="txtnumerodpi" disabled="disabled" onkeypress="return numeros(event);" style="margin-left: 112px; width:296px; font-size:26px;text-align:center" placeholder="DPI" runat="server" type="text" tabindex="1" class="inputscortos" autofocus="autofocus" />
+                        <br />
+                        <span>Nombre Completo:</span>
+                        <input id="txtnombrecompleto" onkeypress="return soloLetras(event)" style="margin-left: 93px; width:296px; text-align:center" placeholder="Nombre Completo" runat="server" type="text" tabindex="2" class="inputslargos" autofocus="autofocus" />
+                        <br />
+                        <span>Numero de teléfono:</span>
+                        <input id="txttelefono" onkeypress="return numeros(event);" style="margin-left: 83px; width:296px; text-align:center" placeholder="Teléfono" runat="server" type="text" tabindex="3" class="inputscortos" maxlength="8" autofocus="autofocus" />
+                        <br />
+                        <span>Correo Electrónico:</span>
+                        <input id="txtemail" style="margin-left: 93px;width:296px; text-align:center; " placeholder="Correo electrónico" runat="server" type="text" tabindex="4" class="inputslargos" autofocus="autofocus" />
+                        <br />
+                        <span>Monto:</span>
+                        <span style="margin-left: 141px; font-size: 16px">Q</span><input id="txtmonto" style="width:296px; font-size:18px; text-align:center; margin-left:9px" placeholder="Q - Monto" runat="server" type="text" tabindex="5" class="inputscortos" autofocus="autofocus" />
+                        <br />
+                    </div>
+                    <%-- AREA DE INGRESOS --%>
+                    <h4 style="text-align: left">ÁREA DE INGRESOS</h4>
+                    <span>Ingresos:</span>
+                    <span style="margin-left: 2%; font-size: 16px">Q</span><input id="txtingreso" onkeypress="return solonumeros(event);" style="width: 296px; margin-left:109px; text-align:center" placeholder="Q - Ingresos" runat="server" type="text" tabindex="6" class="inputscortos" autofocus="autofocus" />
+                    <br />
+                    <span>Egresos:</span>
+                    <span style="margin-left: 2%; font-size: 16px">Q</span><input id="txtegresos" onkeypress="return solonumeros(event);" style="width: 296px; margin-left:113px; text-align:center" placeholder="Q - Egresos" runat="server" type="text" tabindex="7" class="inputscortos" autofocus="autofocus" />
+                    <br />
+                    <div style="padding: 2px; font-size: 13px;">
+                        <%-- AREA DE EMPLEADOS --%>
+                        <h4 style="text-align: left">ÁREA DE EMPLEO</h4>
+                        <span>Años laborados</span>
+                        <input id="txtañoslaborados" onkeypress="return numeros(event);" style="margin-left: 118px; width: 296px;" placeholder="Años laborados" runat="server" type="text" tabindex="8" class="inputscortos" autofocus="autofocus" />
+                        <br />
+                        <span>¿Trabaja actualmente?</span>
+                        <asp:DropDownList ID="combotienetrabajo" runat="server" Style="margin-left: 75px; width: 296px;" TabIndex="9" CssClass="inputscortos">
+                            <asp:ListItem Text="Seleccione una opción" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Si" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="No" Value="2"></asp:ListItem>
+                        </asp:DropDownList>
+                        <br />
+                        <span>¿En que empresa labora o que actividad realiza?</span>
+                        <input id="txttabajoactual" style="margin-left: 6px; width: 212px" placeholder="Trabajo actual" runat="server" type="text" tabindex="10" class="inputscortos" autofocus="autofocus" />
+                        <br />
+                        <span>¿Cuenta con IGSS?</span>
+                        <asp:DropDownList ID="combocuentaigss" runat="server" Style="margin-left: 96px; width: 299px;" TabIndex="11" CssClass="inputscortos">
+                            <asp:ListItem Text="Seleccione una opción" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Si" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="No" Value="2"></asp:ListItem>
+                        </asp:DropDownList>
+                        <br />
+                    </div>
+                    <%-- AREA DE SEGUIMIENTOS --%>
+                    <h4 style="text-align: left">Área de seguimiento</h4>
+                    <span>Tipo de servicio:</span>
+                    <asp:DropDownList ID="combotiposervicio" runat="server" OnSelectedIndexChanged="tiposervicio_SelectedIndexChanged" AutoPostBack="true" Style="margin-left: 123px; width: 249px; text-align:center" TabIndex="12" CssClass="inputscortos">
+                        <asp:ListItem Text="Tipo de servicio" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                    <span>Destino o Finalidad de servicio:</span>
+                    <select id="combofinalidaddeservicio" runat="server" style="margin-left: 11px; width: 249px; text-align:center" tabindex="13" class="inputscortos">
+                        <option value="0">Seleccione la finalidad del servicio </option>
+                    </select>
+                    <br />
+                    <span>Estado de la llamada:</span>
+                    <asp:DropDownList ID="combocontactollamadas" runat="server" Style="margin-left: 82px; width: 249px; text-align:center" TabIndex="14" CssClass="inputscortos">
+                        <asp:ListItem Text="Estado de la llamada" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                    <span>Primera llamada</span>
+                    <input id="txtfechainicio" style="margin-left: 117px; width: 249px; text-align:center" runat="server" type="date" tabindex="15" class="inputscortos" value="2020-04-25" min="1950-01-01" max="2021-12-31" autofocus="autofocus" />
+                    <br />
+                    <span>Ultima llamada</span>
+                    <input id="txtfechafin" style="margin-left: 127px; width: 249px; text-align:center" runat="server" type="date" tabindex="16" class="inputscortos" value="2020-04-25" min="1950-01-01" max="2021-12-31" autofocus="autofocus" />
+                    <hr style="border: groove" />
+                    <br />
+                    <span>Color de semáforo:</span>
+                    <asp:DropDownList ID="combosemaforoestado" OnSelectedIndexChanged="seleccionsemaforo_SelectedIndexChanged" AutoPostBack="true" runat="server" Style="margin-left: 96px; width: 250px;" TabIndex="17" CssClass="inputscortos">
+                        <asp:ListItem Text="Seleccione el color" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:TextBox Style="margin-left: 5%;" Width="30px" Height="30px" ID="txtcolorestado" Enabled="false" runat="server" TabIndex="18"></asp:TextBox>
+                    <br />
+                    <span>Motivo del estado:</span>
+                    <asp:DropDownList ID="combosemaforodescripcion" runat="server" Style="margin-left: 100px; width: 250px; text-align: center;" TabIndex="19" CssClass="inputscortos">
+                        <asp:ListItem Text="Motivo del estado" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <hr style="border: groove" />
+                    <h4 style="text-align: left">INFORMACIÓN ADCIONAL</h4>
+                    <span>Tipo de domicilio:</span>
+                    <asp:DropDownList ID="combotipodomicilio" runat="server" Style="margin-left: 112px; width: 250px;" TabIndex="20" CssClass="inputscortos">
+                        <asp:ListItem Text="Tipo del domicilio" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                    <span>¿Años en domicilio?</span>
+                    <input id="txtañodomicilio" onkeypress="return numeros(event);" style="margin-left: 97px; width: 250px;" placeholder="¿Años de residencia?" runat="server" type="text" tabindex="21" class="inputscortos" autofocus="autofocus" />
+                    <br />
+                    <span>¿Posee cuenta en cooperativa?</span>
+                    <asp:DropDownList ID="comboposeecuentacoope" runat="server" Style="margin-left: 14px; width: 250px;" TabIndex="22" CssClass="inputscortos">
+                        <asp:ListItem Text="Seleccione una opción" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Si" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="No" Value="2"></asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                    <span>Sucursal más cercana:</span>
+                    <asp:DropDownList ID="combosucursalmascerca" runat="server" Style="margin-left: 77px; width: 250px;" TabIndex="23" CssClass="inputscortos">
+                        <asp:ListItem Text="¿Sucursal más cercana?" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Central" Value="1"></asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                    <span>Contactado por:</span>
+                    <input id="txtcontactadopor" style="margin-left: 123px; width: 250px;" placeholder="Contactado Por:" runat="server" type="text" tabindex="24" class="inputscortos" autofocus="autofocus" />
+                    <br />
+                    <span>DPI de referencia:</span>
+                    <input id="txtdpireferencia" maxlength="13" onkeypress="return numeros(event);" style="margin-left: 111px; width: 250px;" placeholder="DPI de referencia" runat="server" type="text" tabindex="25" class="inputscortos" autofocus="autofocus" />
+                    <%-- AREA DE COMENTARIOS / DESCRIPCIÓN --%>
+                    <div class="form-group" style="float: none">
+                        <textarea class="form-control rounded-0" style="margin-left: 28px; width: 95%; text-align:center" placeholder="Descripción" tabindex="26" id="exampleFormControlTextarea1" runat="server" rows="5" maxlength="150"></textarea>
+                    </div>
+                    <br />
+                    <%-- AREA DE BOTONES --%>
+                    <center>
+   
+    <asp:LinkButton ID="LinkButton1" class="btn btn-warning" style=" text-decoration:none; width:45%" value="Crear Alerta" type="button" runat="server" tabindex="28" name="Crear Alerta" title="Crear Alerta" OnClick="Btn_abriralerta_Click" >Crear Alerta</asp:LinkButton>
+         <asp:LinkButton ID="LinkButton2" class="btn btn-success" style=" text-decoration:none; width:45%" value="Guardar" type="button" runat="server" tabindex="27" name="Guardar" title="Guardar" OnClick="Btn_Guardarprospecto_Click" >Guardar</asp:LinkButton>
+   
+   
+         </center>
+
+                    <%-- AREA DEL GRIDVIEW --%>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <br />
+        <br />
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src="../../../CRM-Script/Script.js" type="text/javascript"></script>
     </form>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $("#txtmonto").on({
+            "focus": function (event) {
+                $(event.target).select();
+            },
+            "keyup": function (event) {
+                $(event.target).val(function (index, value) {
+                    return value.replace(/\D/g, "")
+                        .replace(/([0-9])([0-9]{2})$/, '$1,$2')
+                        .replace(/\B(?=(\d{3})+(?!\d)\,?)/g, ",");
+                });
+            }
+        });
+        $("#txtingreso").on({
+            "focus": function (event) {
+                $(event.target).select();
+            },
+            "keyup": function (event) {
+                $(event.target).val(function (index, value) {
+                    return value.replace(/\D/g, "")
+                        .replace(/([0-9])([0-9]{2})$/, '$1,$2')
+                        .replace(/\B(?=(\d{3})+(?!\d)\,?)/g, ",");
+                });
+            }
+        });
+        $("#txtegresos").on({
+            "focus": function (event) {
+                $(event.target).select();
+            },
+            "keyup": function (event) {
+                $(event.target).val(function (index, value) {
+                    return value.replace(/\D/g, "")
+                        .replace(/([0-9])([0-9]{2})$/, '$1,$2')
+                        .replace(/\B(?=(\d{3})+(?!\d)\,?)/g, ",");
+                });
+            }
+        });
+    </script>
+
+    <script>
+        posicionarMenu();
+        $(window).scroll(function () {
+            posicionarMenu();
+        });
+
+        function posicionarMenu() {
+            var altura_del_header = 35;
+            var altura_del_menu = $('.menu').outerHeight(true);
+
+            if ($(window).scrollTop() >= altura_del_header) {
+                $('.menu').addClass('fixed');
+                $('.wrapper').css('margin-top', (altura_del_menu) + 'px');
+            } else {
+                $('.menu').removeClass('fixed');
+                $('.wrapper').css('margin-top', '0');
+            }
+        }
+
+    </script>
 </body>
 </html>

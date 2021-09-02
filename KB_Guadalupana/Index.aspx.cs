@@ -22,9 +22,10 @@ namespace Login_Web
       
         protected void Page_Load(object sender, EventArgs e)
         {
+
           
         }
-
+   
         protected void iniciarsesion_Click(object sender, EventArgs e)
         {
 
@@ -46,18 +47,19 @@ namespace Login_Web
                 //}
 
                 // Response.Redirect("Views/Sesion/Inicio.aspx");
-                
-                    if (sn.consultarbd("gen_usuario") == true)
-                    {
-                        Response.Redirect("Views/Sesion/MenuBarra.aspx");
-                      //Response.Redirect("Views/Sesion/MenuBarra.aspx");
-                }
-                else
-                    {
-                        Response.Write("Sin conexion");
-                        Response.Redirect("Views/PaginaDeError/Error404.aspx");
-                    }
-                    
+
+                ////if (sn.consultarbd("gen_usuario") == true)
+                ////{
+                ////    Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                ////    //Response.Redirect("Views/Sesion/MenuBarra.aspx");
+                ////}
+                ////else
+                ////{
+                ////    Response.Write("Sin conexion");
+                ////    Response.Redirect("Views/PaginaDeError/Error404.aspx");
+                ////}
+                Response.Redirect("Views/Sesion/MenuBarra.aspx");
+
 
             }
             else
@@ -82,23 +84,23 @@ namespace Login_Web
                 dsearch = new DirectorySearcher(de);
                 dsearch.PropertiesToLoad.Add("name");
                 dsearch.PropertiesToLoad.Add("mail");
-            
-                dsearch.Filter = "(&(objectCategory=User)(samaccountname="+userName+"))";
-              //  dsearch.Filter = "(&(objectClass=user)(|(sn=Smith)(givenName=John)))";
+
+                dsearch.Filter = "(&(objectCategory=User)(samaccountname=" + userName + "))";
+                //  dsearch.Filter = "(&(objectClass=user)(|(sn=Smith)(givenName=John)))";
                 results = dsearch.FindAll();
 
                 foreach (SearchResult sr in results)
                 {
                     if ((sr.Properties["name"].Count > 0))
-                        {
-                              nombre = (sr.Properties["name"][0].ToString());
-                            //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('"+ (sr.Properties["givenname"][0].ToString()) +"');", true);
-                        }
+                    {
+                        nombre = (sr.Properties["name"][0].ToString());
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('"+ (sr.Properties["givenname"][0].ToString()) +"');", true);
+                    }
                     if ((sr.Properties["sn"].Count > 0))
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('"+ (sr.Properties["sn"][0].ToString()) +"');", true);
-                        }
-                   
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('" + (sr.Properties["sn"][0].ToString()) + "');", true);
+                    }
+
                     ret = true;
                 }
             }

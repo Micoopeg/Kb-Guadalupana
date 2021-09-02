@@ -9,8 +9,10 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <title>Menu Principal</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
 body{
     margin:0px;
+    font-family:"Montserrat";
 }
 /* Add a black background color to the top navigation */
 .topnav {
@@ -131,6 +133,8 @@ body{
 }
 .logo{
     max-height:25px;
+    color: white;
+    font-size: 20px;
 }
 .logo2{
     padding:0px;
@@ -145,7 +149,7 @@ body{
 <body>
     <form id="form1" runat="server">
            <div class="topnav" id="myTopnav">
-              <a href="../Sesion/Inicio.aspx" class="active">Inicio</a>
+              <a href="../Sesion/MenuBarra.aspx" class="active">Inicio</a>
              <%-- <a href="#news">News</a>--%>
               <%--<a href="#contact">Buscar  <i class="fa fa-search"></i></a>--%>
           <%--    <div class="dropdown">
@@ -158,13 +162,13 @@ body{
                 </div>
               </div>--%>
                <a href="Dashboard.aspx">Dashboard <i class="fas fa-chart-bar"></i></a>
-              <a href="ProcesosAsignadosJuridico.aspx">Procesos Asignados <i class="far fa-hand-point-left"></i></a>
-              <div class="dropdown">
-                <button class="dropbtn">Nuevo
+            <%--  <a href="ProcesosAsignadosJuridico.aspx">Procesos Asignados <i class="far fa-hand-point-left"></i></a>--%>
+              <div id="MenuCobros" runat="server" class="dropdown">
+                <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                  <a id="Cobros" runat="server" href="AsignarProceso.aspx">Asignar Proceso</a>
+                  <a id="Cobros" runat="server" href="AsignarProceso.aspx">Creación Expediente de Origen</a>
                   <%--<a href="ProcesoCoordinadorLegal.aspx">2-Proceso Coordinador Legal</a>
                   <a href="SumarioyEjecutivo.aspx">3-Tipo de proceso</a>
                   <a href="NotificacionSumarioyEjecutivo.aspx">4-Notificacion</a>
@@ -180,12 +184,56 @@ body{
                   <a href="ProcesoAsistenteJuridico.aspx">Proceso asistente jurídico</a>--%>
                 </div>
               </div>
+
+               <div id="MenuConta" runat="server" class="dropdown">
+                <button class="dropbtn">Menú
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a id="Certificacion" runat="server" href="PendienteCertificacion.aspx">Emisión de Certificación Contable</a>
+                  <a id="Solicitud" runat="server" href="PendienteSolicitudCheque.aspx">Solicitud de cheque</a>
+                </div>
+              </div>
+
+             <div id="MenuJuridico" runat="server" class="dropdown">
+                <button class="dropbtn">Menú
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a id="Expedientes" runat="server" href="CreditosCertificacionJuridico.aspx">Verificación de expedientes</a>
+                  <a id="Reporte" runat="server" href="ExpedientesEntregados.aspx">Reporte Asignaciones</a>
+                </div>
+              </div>
+
+                <div id="MenuAbogado" runat="server" class="dropdown">
+                <button class="dropbtn">Menú
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a id="Demanda" runat="server" href="PendientePresentacionDemanda.aspx">Presentación de Demanda</a>
+                  <a id="Tramite" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
+                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
+                </div>
+              </div>
+
+             <div id="MenuAsistente" runat="server" class="dropdown">
+                <button class="dropbtn">Menú
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a id="RequerimientoPago" runat="server" href="PendienteRequerimientoPago.aspx">Requerimiento de pago</a>
+                </div>
+              </div>
+
+             <a href="ControlIncidente.aspx">Control de Incidente  <i class="fas fa-pen"></i></a>
+
               <a href="../Sesion/CerrarSesion.aspx">Cerrar sesión  <i class="fa fa-power-off"></i></a>
               <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                <div class="logo2">
-                <img src="../../Imagenes/Imagenes_procesos/logotipo.png" class="logo"/>
+                <span class="logo" id="NombreUsuario" runat="server"><b></b></span>
                </div>
             </div>
+
 
         <script type="text/javascript">
             function myFunction() {

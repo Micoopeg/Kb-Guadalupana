@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NombreAbogadoData" targetNamespace="http://tempuri.org/NombreAbogadoData.xsd" xmlns:mstns="http://tempuri.org/NombreAbogadoData.xsd" xmlns="http://tempuri.org/NombreAbogadoData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="bdkbguadalupanaConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdkbguadalupanaConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.bdkbguadalupanaConnectionString2.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NombreAbogadoTableAdapter" GeneratorDataComponentClassName="NombreAbogadoTableAdapter" Name="NombreAbogado" UserDataComponentName="NombreAbogadoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdkbguadalupanaConnectionString2 (Web.config)" DbObjectName="bdkbguadalupana.NombreAbogado" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `pj_nombreabogado` FROM `bdkbguadalupana`.`NombreAbogado`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pj_nombreabogado" DataSetColumn="pj_nombreabogado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NombreAbogadoData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="NombreAbogadoData" msprop:Generator_UserDSName="NombreAbogadoData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NombreAbogado" msprop:Generator_TableClassName="NombreAbogadoDataTable" msprop:Generator_TableVarName="tableNombreAbogado" msprop:Generator_TablePropName="NombreAbogado" msprop:Generator_RowDeletingName="NombreAbogadoRowDeleting" msprop:Generator_RowChangingName="NombreAbogadoRowChanging" msprop:Generator_RowEvHandlerName="NombreAbogadoRowChangeEventHandler" msprop:Generator_RowDeletedName="NombreAbogadoRowDeleted" msprop:Generator_UserTableName="NombreAbogado" msprop:Generator_RowChangedName="NombreAbogadoRowChanged" msprop:Generator_RowEvArgName="NombreAbogadoRowChangeEvent" msprop:Generator_RowClassName="NombreAbogadoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pj_nombreabogado" msprop:Generator_ColumnVarNameInTable="columnpj_nombreabogado" msprop:Generator_ColumnPropNameInRow="pj_nombreabogado" msprop:Generator_ColumnPropNameInTable="pj_nombreabogadoColumn" msprop:Generator_UserColumnName="pj_nombreabogado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -40,7 +40,7 @@
             <div class="ui-widget">
   <h1 class="ui-value">
       <asp:Label ID="lblaprobados" runat="server" Text="Label"></asp:Label></h1>
-  <span class="ui-label"><a href="">Aprobados</a></span>
+  <span class="ui-label"><a href="CRM_SubestadoAprobado">Aprobados</a></span>
 </div>
 
             <div class="ui-widget">
@@ -50,12 +50,12 @@
 
             <div class="ui-widget">
   <h1 class="ui-value"><asp:Label ID="lblnocontestada" runat="server" Text="Label"></asp:Label></h1>
-  <span class="ui-label"><a href="">No contesta</a></span>
+  <span class="ui-label"><a href="CRM_SubestadoNocontesta">No contesta</a></span>
 </div>
 
             <div class="ui-widget">
   <h1 class="ui-value"><asp:Label ID="lblnoaplica" runat="server" Text="Label"></asp:Label></h1>
-  <span class="ui-label"><a href="">No aplica</a></span>
+  <span class="ui-label"><a href="CRM_SubestadoNoaprobado">No aplica</a></span>
 </div>
 
         </div>
@@ -68,7 +68,7 @@
   <div class="container">
   <div class="row">
     <div class="col-sm-6" >
-      <h3>Gr&aacute;fica total de prospectos </h3>
+      <h3>Gr&aacute;fica total de prospectos(%) </h3>
        <center>
       <asp:Chart  ID="Chart1" style="margin-top:15px" runat="server" canresize="true"  Palette="None" AlternateText="El grafico no se puede carga por la conexion a internet" BorderlineColor="Black" PaletteCustomColors="Yellow; 255, 128, 0; 192, 0, 0; 0, 192, 0" Width="280px">  
             <series>  
@@ -91,9 +91,10 @@
     </div>
    
     <div class="col-sm-6">
-      <h3>Gr&aacute;fica por agencia</h3>  
+      <h3>Gr&aacute;fica por agencia(%)</h3>  
         <asp:DropDownList ID="comboagencias" OnSelectedIndexChanged="seleccionagencia_SelectedIndexChanged" AutoPostBack="true" Width="75%" runat="server" style="text-align-last: center; text-align:center">
             <asp:ListItem Value="0">Seleccione una agencia</asp:ListItem>
+
 
         </asp:DropDownList>
         <center>

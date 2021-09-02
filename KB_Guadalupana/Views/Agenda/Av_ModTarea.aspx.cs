@@ -39,6 +39,7 @@ namespace KBGuada.Views.session
 
             Nombreuser = Convert.ToString(Session["sesion_usuario"]);
             user = Convert.ToString(Session["Nombre"]);
+            NombreUsuario.InnerText = user;
             if (!IsPostBack)
             {
 

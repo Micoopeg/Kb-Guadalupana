@@ -23,8 +23,8 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
         protected void Page_Load(object sender, EventArgs e)
         {
             //Buscar todos los asociados dependiendo     
-           // Session["sesion_usuario"] = "pggteo";
-           
+            // Session["sesion_usuario"] = "pggteo";
+
             Nombresesion = Session["sesion_usuario"].ToString();
             obtenciondeinformacion();
             Session["controlingreso"] = controlingresocrm;
@@ -34,7 +34,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
             int rolusuario = Convert.ToInt32(Session["roldelcrm"]);
             switch (rolusuario)
             {
-              
+
                 case 0:
                     String script = "alert('ERROR DEL APLICATIVO COMUNICAR CON EL DEPARTAMENTO DE INFORMATICA ÁREA DE PROGRAMACIÓN');";
                     ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
@@ -46,7 +46,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
                     btncatalogodeclientes.Visible = false;
                     btnmantenimientos.Visible = false;
                     btncharts.Visible = false;
-                    btndashboards.Visible = false; 
+                    btndashboards.Visible = false;
                     btnasignacionforzosa.Visible = false;
                     break;
                 case 2:
@@ -54,10 +54,10 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
                     btningresodedatos.Visible = false;
                     btncarteraasociados.Visible = false;
                     btncatalogodeclientes.Visible = true;
-                    btnmantenimientos.Visible = false;
+                    btnmantenimientos.Visible = true;
                     btncharts.Visible = true;
                     btndashboards.Visible = true;
-                    btnasignacionforzosa.Visible=true;
+                    btnasignacionforzosa.Visible = true;
                     break;
                 case 3:
                     //INGRESO PARA GRAFICAS DEL CRM
@@ -103,7 +103,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
                     //INGRESO PARA COORDINADOR DE AGENCIAS
                     btningresodedatos.Visible = false;
                     btncarteraasociados.Visible = false;
-                    btncatalogodeclientes.Visible = true;
+                    btncatalogodeclientes.Visible = false;
                     btnmantenimientos.Visible = false;
                     btncharts.Visible = true;
                     btndashboards.Visible = false;
@@ -115,18 +115,18 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
                     break;
 
             }
-            int numerofrase = rnd.Next(1,4);
+            int numerofrase = rnd.Next(1, 4);
             string[] varfrase = sn.consultarconcampo("crm_frasesdeldia", "idcrm_frasesdeldia", Convert.ToString(numerofrase));
             string frase = varfrase[1];
             lblfrase.Text = frase;
         }
         protected void obtenciondeinformacion()
         {
-            
+
             string[] var1 = sn.consultarconcampoingresocrm("crmcontrol_ingreso", "crmcontrol_ingresousuario", Nombresesion);
-            if (var1[0]=="0")
+            if (var1[0] == "0")
             {
-                String script = "alert('El usuario no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../Sesion/MenuBarra.aspx';";
+                String script = "alert('El usuario no tiene permisos para acceder al sitio web consultar con el departamento de informática '); window.location.href= '../../../Index.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
 
             }
@@ -143,7 +143,7 @@ namespace CRM_Guadalupana.Views.CRM_SISTEMA.MenuPrincipal
         {
             logic.bitacoraingreso(Nombresesion, "CRM", "Egreso");
             Response.Redirect("../../Sesion/MenuBarra.aspx");
-            
+
         }
     }
 }

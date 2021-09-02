@@ -1951,7 +1951,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT sum(a.ep_prestamomomentoinicial) as Total FROM ep_prestamo a" +
+                    string consultaGraAsis = "SELECT sum(a.ep_prestamosaldoactual) as Total FROM ep_prestamo a" +
                         " INNER JOIN ep_tipoprestamo b INNER JOIN ep_institucion c INNER JOIN ep_tipoinstitucion d " +
                         "INNER JOIN ep_informaciongeneral e ON a.codeptipoprestamo=b.codeptipoprestamo " +
                         "AND a.codepinstitucion=c.codepinstitucion AND a.codeptipoinstitucion=d.codeptipoinstitucion " +
@@ -2288,11 +2288,7 @@ namespace KB_Guadalupana.Controllers
                 int i = 0;
                 try
                 {
-                    string consultaGraAsis = "SELECT ep_menajecasadetallecantidad,ep_menajecasadetallevalor from ep_menajecasadetalle a " +
-                        "INNER JOIN ep_menajedecasaencabezado b INNER JOIN ep_informaciongeneral c " +
-                        "ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado " +
-                        "and b.codepinformaciongeneralcif=c.codepinformaciongeneralcif" +
-                        " WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=12";
+                    string consultaGraAsis = "SELECT a.ep_menajecasadetallevalor from ep_menajecasadetalle a INNER JOIN ep_menajedecasaencabezado b INNER join ep_informaciongeneral c ON a.codmenajedecasaencabezado=b.codepmenajedecasaencabezado AND b.codepinformaciongeneralcif = c.codepinformaciongeneralcif WHERE c.ep_informaciongeneralcif='" + cif + "' AND a.codeptipobien=12";
                     sqlCon.Open();
                     MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
                     MySqlDataReader reader = command.ExecuteReader();
@@ -3852,6 +3848,135 @@ namespace KB_Guadalupana.Controllers
                 {
                     return false;
                 }
+            }
+        }
+
+        //PARA       //MANTENIMIENTOS
+        public string[] consultarloteactivo()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT codepadministracionlote FROM ep_administracionlote where ep_administracionloteestado='1' AND ep_administracionfechafin > now();";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] consultarcorrelativoepcif(string cifcolaborador)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT codepinformaciongeneralcif from ep_informaciongeneral where ep_informaciongeneralcif='"+cifcolaborador+"';";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+
+        public string[] consultarloteepcif(string correlativocifcolaborador)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT codepadministracionlote from ep_control where codepinformaciongeneralcif='"+correlativocifcolaborador+"';";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+        public string[] consultarestadodelcorrelativo(string correlativocifcolaborador)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[30];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT codeptipoestado from ep_informaciongeneral where codepinformaciongeneralcif='" + correlativocifcolaborador + "';";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
+            }
+        }
+        public string[] consultarmdipermisos(string usuario)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                try
+                {
+                    string consultaGraAsis = "SELECT  b.gen_literalapp,c.gen_usuarionombre FROM gen_mdimenu a INNER JOIN gen_aplicacion b ON a.codgenapp=b.codgenapp INNER JOIN gen_usuario c ON a.codgenusuario=c.codgenusuario WHERE c.gen_usuarionombre='"+usuario+"'";
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand(consultaGraAsis, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            Campos[i] = reader.GetString(p);
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return Campos;// devuelve un arrgeglo con los campos 
             }
         }
     }

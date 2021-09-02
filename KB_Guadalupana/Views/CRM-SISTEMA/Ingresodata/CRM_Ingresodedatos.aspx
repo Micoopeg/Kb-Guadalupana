@@ -25,7 +25,7 @@
                             
                         </div>
                         <div class="col" style=" text-align:right" >
-                         <asp:Button ID="btncerrasesion" Visible="false" style="text-align:right" BackColor="#69a43c" Width="100%" Height="100%" runat="server" Text="Cerrar Sesión" BorderStyle="None" OnClick="btncerrasesion_Click" />                    
+                         <asp:Button ID="btncerrasesion" Visible="true" style="text-align:right" BackColor="#69a43c" Width="100%" Height="100%" runat="server" Text="Ingreso Manual" BorderStyle="None" OnClick="btncerrasesion_Click" />                    
                         </div>
                     </div>
                
@@ -39,6 +39,7 @@
             <center>
               <asp:FileUpload ID="FileUpload1" runat="server" ForeColor="#69a43c" BorderStyle="Double" Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" />
               <asp:Button ID="btncargardatos" runat="server" Text="Cargar datos" OnClick="btncargardatos_Click"></asp:Button>
+             
                 <asp:Button ID="btngridview" runat="server" Text="Mostrar Gridview" OnClick="btnmostrardatos_Click"></asp:Button>
                <asp:CheckBox ID="Chkautorizar" Text="Autorizar Envío" runat="server" Font-Bold="True" ></asp:CheckBox>
                 &nbsp;&nbsp;&nbsp;
@@ -52,6 +53,10 @@
     <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                   <hr style="border:double;color:black;" />
                  <br />
+                   <img id="imgdelestandar" src="../../../Imagenes/imagendeformato.PNG"/>
+                <br />
+                <br />
+                <h5>EL FORMATO EN EL QUE SE SUBE EL ARCHIVO ES DELIMITADO POR COMA (.CSV)</h5>
                 <div style="overflow: auto; height: 1px;">
                                      <asp:GridView ID="GridView1"  runat="server" Height="251px" Width="420px">
                                     </asp:GridView>

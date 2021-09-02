@@ -648,7 +648,67 @@ namespace CRM_Guadalupana.Controllers
             }
 
         }
+        public DataSet consultarsubestadosasprobado()
+        {
+            DataSet ds1 = new DataSet();
 
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT b.crmestado_descripcionnombre, COUNT(a.codcrmestadodescripcion) as totalestado FROM crminfo_prospecto a INNER JOIN crmestado_descripcion b ON a.codcrmestadodescripcion=b.codcrmestadodescripcion WHERE a.codcrmsemaforoestado=1 GROUP BY a.codcrmestadodescripcion;", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
+            }
+
+        }
+
+        public DataSet consultarsubestadosnocontesta()
+        {
+            DataSet ds1 = new DataSet();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT b.crmestado_descripcionnombre, COUNT(a.codcrmestadodescripcion) as totalestado FROM crminfo_prospecto a INNER JOIN crmestado_descripcion b ON a.codcrmestadodescripcion=b.codcrmestadodescripcion WHERE a.codcrmsemaforoestado=3 GROUP BY a.codcrmestadodescripcion;", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
+            }
+
+        }
+        public DataSet consultarsubestadosnoaplica()
+        {
+            DataSet ds1 = new DataSet();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT b.crmestado_descripcionnombre, COUNT(a.codcrmestadodescripcion) as totalestado FROM crminfo_prospecto a INNER JOIN crmestado_descripcion b ON a.codcrmestadodescripcion=b.codcrmestadodescripcion WHERE a.codcrmsemaforoestado=4 GROUP BY a.codcrmestadodescripcion;", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
+            }
+
+        }
+
+
+      
         public string[] consultarconcampoingresocrm(string tabla, string campo, string dato)//metodo que obtiene la lista de los campos que requiere una tabla
         {
             using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
@@ -684,6 +744,278 @@ namespace CRM_Guadalupana.Controllers
                 return Campos;// devuelve un arrgeglo con los campos               
             }
         }
+
+        public void despidocrm(string variabledeeliminacion)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    string consulta = "DELETE FROM crmcontrol_ingreso where codcrmcontrolingreso='" + variabledeeliminacion + "';";
+                    Console.WriteLine(consulta);
+                    comm = new MySqlCommand(consulta, sqlCon);
+                    MySqlDataReader mostrar = comm.ExecuteReader();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err.Message);
+
+                }
+            }
+        }
+        public void trasladodeleadspordespido(string fuente, string destino)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+
+                try
+                {
+                    sqlCon.Open();
+                    string consulta = "UPDATE crmcontrol_prospecto_agente SET codcrmcontrolingreso ='" + destino + "'  WHERE codcrmcontrolingreso='" + fuente + "';";
+                    comm = new MySqlCommand(consulta, sqlCon);
+                    MySqlDataReader mostrar = comm.ExecuteReader();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err.Message);
+                }
+            }
+        }
+        public DataSet consultarsubestadoproceso()
+        {
+            DataSet ds1 = new DataSet();
+
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT codcrmestadodescripcion,crmestado_descripcionnombre FROM crmestado_descripcion where codcrmsemaforoestado='2' OR codcrmsemaforoestado='3'", sqlCon);
+                    MySqlDataAdapter ds = new MySqlDataAdapter();
+                    ds.SelectCommand = command;
+                    ds.Fill(ds1);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                return ds1;
+            }
+
+        }
+
+        public string[] consultaparaseguimientoleads(string codigo) //nos muestra prospectos aprobados
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("select a.codcrminfoprospecto,a.codcrminfogeneralprospecto,b.crminfogeneral_prospectodpi,b.crminfogeneral_prospectonombrecompleto,a.crminfo_prospectotelefono,a.crminfo_prospectoemail,a.crminfo_prospectoingresos,a.crminfo_prospectoegresos,a.crminfo_prospectoañoslaborados,a.crminfo_prospectotrabajaactualmente,a.crminfo_prospectodescripciontrabajoactual,a.codcrmtiposervicio,a.crminfo_prospectomonto,a.codcrmfinalidadservicio,a.codcrmcontactollamadas,a.crminfo_prospectofechaprimerllamada,a.crminfo_prospectofechaultimallamada,a.codcrmsemaforoestado,a.codcrmestadodescripcion,a.crminfo_prospectocuentaconigss,a.codcrmtipodomicilio,a.crminfo_prospectoañosdomicilio,a.crminfo_prospectocuentaencooperativa,a.crminfo_prospectosucursalcerca,a.crminfo_prospectodescripcion,a.crminfo_contactadopor,a.crminfo_prospectoreferenciado FROM crminfo_prospecto a INNER JOIN crminfogeneral_prospecto b INNER JOIN crmcontrol_prospecto_agente c INNER JOIN crmcontrol_ingreso d ON a.codcrminfogeneralprospecto=b.codcrminfogeneralprospecto AND c.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=d.codcrmcontrolingreso WHERE a.codcrminfoprospecto='" + codigo + "' AND (codcrmsemaforoestado=2 OR codcrmsemaforoestado=3);", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultasumatoriadeestados() //nos muestra prospectos aprobados
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT count(codcrmsemaforoestado) AS Cantidad  FROM crminfo_prospecto;", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultasumatoriadeestadosporagencia(string agencia)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT count(a.codcrmsemaforoestado) AS Cantidad  FROM crminfo_prospecto a INNER JOIN crmcontrol_prospecto_agente b INNER JOIN crmcontrol_ingreso c ON  b.codcrminfoprospecto=a.codcrminfoprospecto AND c.codcrmcontrolingreso=b.codcrmcontrolingreso WHERE c.crmcontrol_ingresosucursal='" + agencia + "' GROUP BY c.crmcontrol_ingresosucursal", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultaaleatroiadepersonaltelemercadeo()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM crmcontrol_ingreso where crmcontrol_ingresorol=3 AND crmcontrol_ingresosucursal='TELEMERCADEO' ORDER BY RAND()LIMIT 1", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultaaleatroiadepersonalagencias()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM crmcontrol_ingreso where crmcontrol_ingresorol=3 AND crmcontrol_ingresosucursal!='TELEMERCADEO' ORDER BY RAND()LIMIT 1", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultasielDPIestaenlaBD(string DPItextbox)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM crminfogeneral_prospecto WHERE crminfogeneral_prospectodpi='" + DPItextbox + "'", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+
+        public string[] consultarleadsquenosondemercadeo(string busqueda)
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                string[] Campos = new string[3000];
+                int i = 0;
+                List<string> miLista = new List<string>();
+                try
+                {
+                    sqlCon.Open();
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM crmcontrol_prospecto_agente a INNER JOIN crmcontrol_ingreso b ON b.codcrmcontrolingreso=a.codcrmcontrolingreso WHERE b.crmcontrol_ingresorol='3' AND b.crmcontrol_ingresosucursal='TELEMERCADEO' AND a.codcrminfoprospecto='" + busqueda + "'", sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int p = 0; p < reader.FieldCount; p++)
+                        {
+                            miLista.Add(reader.GetString(p));
+                            i++;
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nERROR EN CONSULTA\n -"); }
+                Campos = miLista.ToArray();
+                return Campos;// devuelve un arrgeglo con los campos               
+            }
+        }
+        public string validarusuariocrm(string tabla, string campo, string dato)
+        {
+            String camporesultante = "";
+            using (MySqlConnection sqlCon = new MySqlConnection(cn.cadenadeconexion()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string sql = "SELECT crmcontrol_ingresousuario FROM " + tabla + " where " + campo + "='" + dato + "'";
+                    MySqlCommand command = new MySqlCommand(sql, sqlCon);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    camporesultante = reader.GetValue(0).ToString();
+                    //Console.WriteLine("El resultado es: " + camporesultante);
+                    if (String.IsNullOrEmpty(camporesultante))
+                        camporesultante = "1";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(camporesultante);
+                }
+                return camporesultante;
+            }
+        }
+
     }
 }
        

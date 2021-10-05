@@ -75,7 +75,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
             if (var1.Length == 4)
             {
-                Response.Write("NO HAY DATOS QUE MOSTRARA");
+                String script = "alert('Se perdió la conexión, intente más tarde'); window.location.href= 'PendienteCertificacion.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
@@ -116,11 +117,11 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     ClienteNombre.Value = campos[20];
                     MontoOriginal.Value = "Q " + campos[9];
                     CapitalDesem.Value = "Q " + campos[9];
-                    Interes1.Value = campos[16];
-                    Intereses2.Value = campos[16];
-                    Mora.Value = campos[14];
+                    //Interes1.Value = campos[16];
+                    //Intereses2.Value = campos[16];
+                    //Mora.Value = campos[14];
                     DescripcionDoc.Value = campos[24];
-                    Saldo1.Value = campos[15];
+                    //Saldo1.Value = campos[15];
 
                     if (campos[25] == "VACIO")
                     {
@@ -145,10 +146,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     if (campos[8] == "            .00")
                     {
                         SaldoActual.Value = "Q 0.00";
+                        Saldo1.Value = "Q 0.00";
                     }
                     else
                     {
                         SaldoActual.Value = "Q " + campos[8];
+                        Saldo1.Value = "Q " + campos[8];
                     }
                 }
 
@@ -222,6 +225,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     OtrosGastos.Value = campos3[15];
                     Comentario.Value = campos3[16];
                     Total1.InnerText = "Q " + campos3[17];
+                    Incendio.Value = campos3[20];
+                    Interes1.Value = campos3[21];
+                    Intereses2.Value = campos3[21];
+                    Mora.Value = campos3[22];
                 }
             }
             else
@@ -236,6 +243,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     OtrosGastos.Value = campos2[3];
                     Comentario.Value = campos2[5];
                     Total1.InnerText = "Q " + campos2[4];
+                    Incendio.Value = campos2[9];
+                    Interes1.Value = campos2[10];
+                    Intereses2.Value = campos2[10];
+                    Mora.Value = campos2[11];
                 }
                 credito.Visible = true;
                 tarjeta.Visible = false;
@@ -687,7 +698,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             sn.insertarbitacora(sig5, NumIncidente.Value, numcredito, NombreCliente.Value, "Reingreso", "28", "34", fechahoraactual, fechacreacion2, "Modificado");
 
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se envió exitosamente');", true);
+            String script = "alert('Se envió exitosamente'); window.location.href= 'PendienteCertificacion.aspx';";
+            ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
         }
 
         public void llenarcomentarios()

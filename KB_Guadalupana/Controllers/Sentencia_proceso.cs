@@ -36,12 +36,12 @@ namespace KB_Guadalupana.Controllers
             }
         }
 
-        public void insertardocumento(string id, string tipodoc, string codigo, string nombredoc, string nombrearchivo, string ruta, string version, string fechaaprobacion, string estado, string origen, string tipousuario, string categoria, string subcategoria, string usuario)
+        public void insertardocumento(string id, string tipodoc, string codigo, string nombredoc, string nombrearchivo, string ruta, string version, string fechaaprobacion, string estado, string origen, string tipousuario, string categoria, string subcategoria, string usuario, string restriccion)
         {
             using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
             {
                 sqlCon.Open();
-                string query = "INSERT INTO pro_registro VALUES('" + id + "', '" + tipodoc + "', '" + codigo + "', '"+nombredoc+"', '"+nombrearchivo+"', '"+ruta+"', '"+version+"', '"+fechaaprobacion+"', '"+estado+"', '"+origen+"', '"+tipousuario+"', '"+categoria+"', '"+subcategoria+"', '"+usuario+"')";
+                string query = "INSERT INTO pro_registro VALUES('" + id + "', '" + tipodoc + "', '" + codigo + "', '"+nombredoc+"', '"+nombrearchivo+"', '"+ruta+"', '"+version+"', '"+fechaaprobacion+"', '"+estado+"', '"+origen+"', '"+tipousuario+"', '"+categoria+"', '"+subcategoria+"', '"+usuario+"', '"+restriccion+"')";
                 MySqlCommand myCommand = new MySqlCommand(query, sqlCon);
                 MySqlDataReader reader = myCommand.ExecuteReader();
             }

@@ -16,6 +16,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected void Page_Load(object sender, EventArgs e)
         {
             llenargridviewcreditos();
+            llenargridviewdesistimiento();
+
+            if (gridViewDesistimiento.Rows.Count == 0)
+            {
+                facturaciondesistimiento.Visible = false;
+            }
         }
 
         public void llenargridviewcreditos()
@@ -25,12 +31,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status FROM pj_etapa_credito WHERE idpj_etapa = 5 AND pj_status IN ('Enviado','Reingreso') ";
+                    string query = "SELECT idpj_etapa AS etapa, idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status, pj_numincidente AS Incidente, pj_fecha AS Fecha FROM pj_etapa_credito WHERE idpj_etapa IN(10,25) AND pj_status IN ('Enviado','Reingreso') ";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataTable dt = new DataTable();
                     myCommand.Fill(dt);
-                    gridViewDemanda.DataSource = dt;
-                    gridViewDemanda.DataBind();
+                    gridViewCreditos.DataSource = dt;
+                    gridViewCreditos.DataBind();
                 }
                 catch
                 {
@@ -40,10 +46,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         }
 
-        protected void OnSelectedIndexChangedDemanda(object sender, EventArgs e)
+        protected void OnSelectedIndexChangedCreditos(object sender, EventArgs e)
         {
-            string numcredito = Convert.ToString((gridViewDemanda.SelectedRow.FindControl("lblnumcredito") as Label).Text);
+            string numcredito = Convert.ToString((gridViewCreditos.SelectedRow.FindControl("lblnumcredito") as Label).Text);
             Session["credito"] = numcredito;
+            string estado = Convert.ToString((gridViewCreditos.SelectedRow.FindControl("lbletapa") as Label).Text);
+            Session["etapa"] = estado;
             Response.Redirect("FacturacionAbogado.aspx");
         }
 
@@ -57,8 +65,39 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (_estado == "Reingreso")
                     e.Row.BackColor = System.Drawing.Color.IndianRed;
                 else
-                    e.Row.BackColor = System.Drawing.Color.Transparent;
+                    e.Row.BackColor = System.Drawing.Color.White;
             }
+        }
+
+        public void llenargridviewdesistimiento()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT idpj_etapa AS etapa, idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status, pj_numincidente AS Incidente, pj_fecha AS Fecha FROM pj_etapa_credito WHERE idpj_etapa IN(33) AND pj_status IN ('Enviado','Reingreso') ";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataTable dt = new DataTable();
+                    myCommand.Fill(dt);
+                    gridViewDesistimiento.DataSource = dt;
+                    gridViewDesistimiento.DataBind();
+                }
+                catch
+                {
+
+                }
+            }
+
+        }
+
+        protected void OnSelectedIndexChangedDesistimiento(object sender, EventArgs e)
+        {
+            string numcredito = Convert.ToString((gridViewDesistimiento.SelectedRow.FindControl("lblnumcredito") as Label).Text);
+            Session["credito"] = numcredito;
+            string estado = Convert.ToString((gridViewDesistimiento.SelectedRow.FindControl("lbletapa") as Label).Text);
+            Session["etapa"] = estado;
+            Response.Redirect("FacturacionDesistimiento.aspx");
         }
     }
 }

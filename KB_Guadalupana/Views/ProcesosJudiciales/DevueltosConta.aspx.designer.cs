@@ -618,6 +618,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected global::System.Web.UI.HtmlControls.HtmlInputText Num2;
 
         /// <summary>
+        /// Control IntegracionC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl IntegracionC;
+
+        /// <summary>
         /// Control tarjeta.
         /// </summary>
         /// <remarks>
@@ -633,7 +642,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl NumTarjeta;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText NumTarjeta;
 
         /// <summary>
         /// Control NumCuenta.
@@ -642,7 +651,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl NumCuenta;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText NumCuenta;
 
         /// <summary>
         /// Control CIF.
@@ -651,7 +660,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CIF;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText CIF;
 
         /// <summary>
         /// Control PrimerNombre.
@@ -778,6 +787,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText GastosJudiciales;
+
+        /// <summary>
+        /// Control Incendio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Incendio;
 
         /// <summary>
         /// Control OtrosGastos.

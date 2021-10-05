@@ -166,6 +166,10 @@
              font-size:13px;
          }
 
+         .titulos2{
+             font-size:15px;
+         }
+
         .formatoTitulo{
             display:flex;
             flex-direction:row;
@@ -253,6 +257,13 @@
                              <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>
                         </asp:GridView>
                     </div>
+
+                <br /><br />
+
+                 <label class="titulos2">Etapa actual</label>
+                    <input id="EtapaActual" runat="server" type="text" class="formatoinput2" placeholder="Etapa actual" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="true"/>
+                 <br />
+
             </div>
         </div>
 

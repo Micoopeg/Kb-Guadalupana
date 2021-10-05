@@ -266,6 +266,12 @@
 
                     <label class="titulos"><b>Documentos</b></label><br /><br />
 
+                     <div class="formato" id="subircheque" runat="server">
+                        <asp:DropDownList id="DocumentoCheque" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
+                        <asp:FileUpload id="FileUpload2" runat="server"></asp:FileUpload>
+                        <asp:Button ID="Agregar2" OnClick="agregar2_Click" runat="server" Width="20%" Height="30px" CssClass="boton3" Text="Agregar" />
+                    </div><br /><br /><br />
+
                     <div style="justify-content: center;display:flex" class="formato">
                         <div style="overflow: auto; height: 175px">
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
@@ -335,12 +341,19 @@
                     <br /><br />
 
                         <div class="formato2">
-                            <asp:Button ID="Actualizar" runat="server" CssClass="boton" Text="Actualizar Datos" OnClick="Actualizar_Click" />
+                            <asp:Button ID="Actualizar" runat="server" Width="45%" CssClass="boton3" Text="Actualizar Datos" OnClick="Actualizar_Click" />
                         </div><br />
 
+                    <div id="ObservacionesFactura" visible="false" runat="server">
+                        <span id="Span1" runat="server" class="titulos">Razones de rechazo</span>
+                        <input id="Text1" runat="server" type="text" class="formatoinput2" placeholder="Ingrese razones de rechazo (si es el caso)" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        <br />
+                    </div>
+
                     <div class="formato2">
-                            <asp:Button ID="Validar" runat="server" CssClass="boton" Text="Validar" OnClick="Validar_Click" />
-                        </div><br />
+                        <asp:Button ID="Validar" runat="server" CssClass="boton" Text="Validar" OnClick="Validar_Click" />
+                        <asp:Button ID="Rechazar" runat="server" CssClass="boton" Text="Rechazar" OnClick="Rechazar_Click" Visible="false"/>
+                    </div><br />
 
                     <br /><br />
 
@@ -353,15 +366,26 @@
 
                    <div class="formatoTitulo" style="margin-bottom:5px">
                             <label class="titulos"><b>Observaciones </b></label>
-                            <label class="titulos" style="margin-left:39%"><b>Registro contable</b></label>
+                            <label class="titulos" style="margin-left:39%"><b>Concepto</b></label>
                         </div>
                         <div class="formato">
                              <input id="Observaciones" runat="server" type="text" class="formatoinput" placeholder="Ingrese observaciones" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                             <input id="RegistroContable" runat="server" type="text" class="formatoinput" placeholder="Ingrese registro contable" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="Concepto" runat="server" type="text" class="formatoinput" placeholder="Ingrese concepto" maxlength="600" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br /><br />
 
-                        <label class="titulos">Concepto</label>
-                          <input id="Concepto" runat="server" type="text" class="formatoinput2" placeholder="Ingrese concepto" maxlength="600" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        <div class="formatoTitulo" style="margin-bottom:5px">
+                            <label class="titulos"><b>Nombre de la cuenta</b></label>
+                            <label class="titulos" style="margin-left:15%"><b>No. de cuenta</b></label>
+                            <label class="titulos" style="margin-left:17%"><b>Centro de costo</b></label>
+                        </div>
+                        <div class="formato">
+                            <input id="NombreCuenta" runat="server" type="text" class="formatoinput3" placeholder="Ingrese observaciones" maxlength="200" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="NumCuenta" runat="server" type="text" class="formatoinput3" placeholder="Ingrese concepto" maxlength="600" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                             <input id="CentroCosto" runat="server" type="text" class="formatoinput3" placeholder="Ingrese centro de costo" maxlength="600" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        </div>
+
+                       <%-- <label class="titulos">Concepto</label>
+                          <input id="" runat="server" type="text" class="formatoinput2" placeholder="Ingrese concepto" maxlength="600" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />--%>
 
                         <br /><br /><br />
                         <label class="titulos"><b>Seleccione las personas encargadas de firmar la solicitud</b></label><br /><br /><br />
@@ -379,7 +403,7 @@
                          <div class="formatocheck">
                              <div class="formatocheck2">
                                 <input id="Nombre3" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                                <label for="Nombre3" class="titulos">&nbsp;&nbsp;<b>Danielo Morales - Gerente Financiero</b></label>
+                                <label for="Nombre3" class="titulos">&nbsp;&nbsp;<b>Danilo Morales - Gerente Financiero</b></label>
                              </div>
                               <div class="formatocheck2">
                                 <input id="Nombre4" runat="server" type="checkbox" class="formatocheckbox" value="2" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />

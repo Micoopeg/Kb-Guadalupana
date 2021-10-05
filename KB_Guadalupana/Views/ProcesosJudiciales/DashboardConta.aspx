@@ -14,10 +14,14 @@
         html{
             width:100%;
             height:100%;
+                background-color:#34495E;
+            color:white;
         }
 
         .body{
             font-family:"Montserrat";
+            background-color:#34495E;
+            color:white;
         }
 
         .general{
@@ -156,12 +160,12 @@
       .menu2{
          display:flex;
          flex-direction:row;
-         width: 100%;
+         width: 850px;
          height: 460px;
          flex-wrap:wrap;
          align-items:flex-start;
          align-content:flex-start;
-         justify-content:space-around;
+         justify-content:center;
      }
      .menu2:after{
          content: "";
@@ -191,12 +195,12 @@
          font-size:65px;
      }
      .opciones{
-         background-color: #0066BF;
+         background-color:#435F7A;
          color: white;
          padding: 15px 15px;
          cursor: pointer;
-         margin: 5px;
-         width:220px;
+         margin: 15px 30px;
+         width:230px;
          height:150px;
          flex-direction:column;
      }
@@ -235,7 +239,17 @@
                         </div>
                         <div class="items">
                             <div class="numero"><b><span class="numero" id="BtnConta" runat="server">0</span></b></div>
-                            <asp:Button CssClass="area" runat="server" ID="BtnCobros"  Text="Emisión de Certificación Contable"/>
+                            <asp:Button CssClass="area" runat="server" ID="BtnCobros"  Text="Emisión de Certificación Contable" OnClick="BtnCobros_Click"/>
+                        </div>
+                     </div>
+
+                    <div class="opciones">
+                        <div style="display:flex;justify-content:flex-end;align-items:flex-end;align-content:flex-end">
+                            <i class='far fa-folder-open' style='font-size:24px'></i>
+                        </div>
+                        <div class="items">
+                            <div class="numero"><b><span class="numero" id="SolicitudCant" runat="server">0</span></b></div>
+                            <asp:Button CssClass="area" runat="server" ID="SolicitudCheque"  Text="Solicitud de cheque" OnClick="SolicitudCheque_Click"/>
                         </div>
                      </div>
 

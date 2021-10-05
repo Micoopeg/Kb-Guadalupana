@@ -174,7 +174,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
             if (var1.Length == 4)
             {
-                Response.Write("NO HAY DATOS QUE MOSTRARA");
+                String script = "alert('Se perdió la conexión, intente más tarde'); window.location.href= 'AsignarProceso.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
@@ -220,19 +221,19 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Interes1.Value = campos[16];
                     Mora.Value = campos[14];
                     DescripcionDoc.Value = campos[24];
-                    Saldo1.Value = campos[15];
+                    //Saldo1.Value = campos[15];
 
-                    if(campos[25] == "VACIO")
+                    if (campos[25] == "VACIO")
                     {
                         Oficial1.Visible = false;
                         NombreOficial.Visible = false;
                     }
-                    if(campos[26] == "VACIO")
+                    if (campos[26] == "VACIO")
                     {
                         Oficial2.Visible = false;
                         NombreOficial2.Visible = false;
                     }
-                    if(campos[27] == "VACIO")
+                    if (campos[27] == "VACIO")
                     {
                         Oficial3.Visible = false;
                         NombreOficial3.Visible = false;
@@ -242,13 +243,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     NombreOficial2.Value = campos[26];
                     NombreOficial3.Value = campos[27];
 
-                    if(campos[8] == "            .00")
+                    if (campos[8] == "            .00")
                     {
-                        SaldoActual.Value = "Q 0.00";
+                        SaldoActual.Value = "0.00";
+                        Saldo1.Value = "0.00";
                     }
                     else
                     {
-                        SaldoActual.Value = "Q " + campos[8];
+                        SaldoActual.Value = campos[8];
+                        Saldo1.Value = campos[8];
                     }
                     //Gastos1.Value = campos[31];
                     //GastosJudiciales.Value = campos[32];
@@ -257,7 +260,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
             }
 
-           
+
 
             //for (int i = 0; i < campos.Length; i++)
             //{
@@ -377,20 +380,25 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     decimal total;
                     total = Convert.ToDecimal(Saldo1.Value) + Convert.ToDecimal(Interes1.Value) + Convert.ToDecimal(Mora.Value) + Convert.ToDecimal(Gastos1.Value) + Convert.ToDecimal(GastosJudiciales.Value) + Convert.ToDecimal(OtrosGastos.Value);
 
-                    string sig = sn.siguienteCredito("pj_tipocredito", "idpj_tipocredito");
-                    string id = sig + CodigoCliente.Value;
-                    sn.guardartipocredito(sig, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, numcredito, fechahoraactual, FechaEstadoCuenta.Value, Observaciones.Value);
-                    NumIncidente.Value = sig;
+                    string sig4 = sn.siguienteCredito("pj_creditosgeneral", "idpj_numincidente");
+
+                    sn.insertacreditosgeneral(sig4, numcredito, "1", NombreCliente.Value, sn.datetime());
+
+                    //string sig = sn.siguienteCredito("pj_tipocredito", "idpj_tipocredito");
+                    //string id = sig + CodigoCliente.Value;
+
+                    sn.guardartipocredito(sig4, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, numcredito, fechahoraactual, FechaEstadoCuenta.Value, Incendio.Value, Interes1.Value, Mora.Value);
+                    NumIncidente.Value = sig4;
 
                     string usuario = Session["sesion_usuario"] as string;
                     string idusuario = sn.obteneridusuario(usuario);
 
                     string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
-                    sn.guardaretapa(sig2, "1", numcredito, sn.datetime(), "Enviado", idusuario, "28", NombreCliente.Value, sig);
+                    sn.guardaretapa(sig2, "1", numcredito, sn.datetime(), "Enviado", idusuario, "28", NombreCliente.Value, sig4);
 
                     
                     string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                    sn.insertarbitacora(sig3, sig, numcredito, NombreCliente.Value, "Enviado", "26", "28", fechahoraactual, fechahoraactual, Observaciones.Value);
+                    sn.insertarbitacora(sig3, sig4, numcredito, NombreCliente.Value, "Enviado", "26", "28", fechahoraactual, fechahoraactual, Observaciones.Value);
 
                     String script = "alert('Se ha guardado exitosamente'); window.location.href= 'AsignarProceso.aspx';";
                     ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
@@ -405,19 +413,23 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     {
                         decimal total;
                         total = Convert.ToDecimal(Saldo1.Value) + Convert.ToDecimal(Interes1.Value) + Convert.ToDecimal(Mora.Value) + Convert.ToDecimal(Gastos1.Value) + Convert.ToDecimal(GastosJudiciales.Value) + Convert.ToDecimal(OtrosGastos.Value);
-                        string sig = sn.siguienteTarjeta("pj_tipotarjeta", "idpj_tipotarjeta");
-                        string id = sig + CodigoCliente.Value;
-                        sn.guardartipotarjeta(sig, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, numcredito, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), fechahoraactual, FechaEstadoCuenta.Value, Observaciones.Value);
-                        NumIncidente.Value = sig;
+
+                        string sig4 = sn.siguienteTarjeta("pj_creditosgeneral", "idpj_numincidente");
+                        sn.insertacreditosgeneral(sig4, numcredito, "2", NombreCliente.Value, sn.datetime());
+
+                        //string sig = sn.siguienteTarjeta("pj_tipotarjeta", "idpj_tipotarjeta");
+                        //string id = sig + CodigoCliente.Value;
+                        sn.guardartipotarjeta(sig4, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, numcredito, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), fechahoraactual, FechaEstadoCuenta.Value, Incendio.Value, Interes1.Value, Mora.Value);
+                        NumIncidente.Value = sig4;
 
                         string usuario = Session["sesion_usuario"] as string;
                         string idusuario = sn.obteneridusuario(usuario);
 
                         string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
-                        sn.guardaretapa(sig2, "1", numcredito, sn.datetime(), "Enviado", idusuario, "26", NombreCliente.Value, sig);
+                        sn.guardaretapa(sig2, "1", numcredito, sn.datetime(), "Enviado", idusuario, "26", NombreCliente.Value, sig4);
 
                         string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                        sn.insertarbitacora(sig3, sig, numcredito, NombreCliente.Value, "Enviado", "26", "28", fechahoraactual, fechahoraactual, Observaciones.Value);
+                        sn.insertarbitacora(sig3, sig4, numcredito, NombreCliente.Value, "Enviado", "26", "28", fechahoraactual, fechahoraactual, Observaciones.Value);
 
                         String script = "alert('Se ha guardado exitosamente'); window.location.href= 'AsignarProceso.aspx';";
                         ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);

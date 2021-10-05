@@ -228,6 +228,101 @@
                     </div>
                 <br /><br />
 
+                <div id="Resolucion" runat="server">
+                     <div style="display:flex; justify-content:center">
+                    <label style="font-size:18px" class="titulos">Pendiente primera resolución</label>
+                 </div><br />
+
+                
+                    <div style="overflow: auto; height: 400px">
+                        <asp:GridView ID="gridViewResolucion" runat="server" CssClass="tabla" AutoGenerateColumns="False" ForeColor="Black"
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedResolucion" BorderStyle="Solid">
+                            <Columns>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de crédito">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnumcredito" Text='<%# Eval("Credito") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnombre" Text='<%# Eval("Nombre") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblestado" Text='<%# Eval("pj_status") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                       <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. Incidente">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblincidente" Text='<%# Eval("Incidente") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                        <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblfecha" Text='<%# Eval("Fecha"," {0:d}") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:ButtonField   Text="Presentar demanda" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="100px"></ItemStyle>
+                                </asp:ButtonField>
+                            </Columns>
+                             <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+                  <div style="display:flex; justify-content:center">
+                        <span id="CreditosDevueltos" runat="server" style="font-size:18px" class="titulos">Créditos devueltos</span>
+                    </div><br />
+
+                <div id="tablaC" runat="server" style="overflow: auto; height: 300px">
+                        <asp:GridView ID="gridViewCreditos" runat="server" CssClass="tabla" AutoGenerateColumns="False" ForeColor="Black" BackColor="White"
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedCreditos" BorderStyle="Solid">
+                            <Columns>
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de crédito">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnumcredito" Text='<%# Eval("Credito") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                   <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de incidente">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblincidente" Text='<%# Eval("Incidente") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnombre" Text='<%# Eval("Nombre") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Estado">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblestado" Text='<%# Eval("Estado") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                   <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Del área de">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lbldeArea" Text='<%# Eval("DeArea") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Comentario">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblcomentario" Text='<%# Eval("Comentario") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Fecha">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblfecha" Text='<%# Eval("Fecha","{0:d}") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:ButtonField   Text="Ver crédito" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="Black">
+                                    <ItemStyle Width="100px" ForeColor="Black"></ItemStyle>
+                                </asp:ButtonField>
+                            </Columns>
+                             <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>
+                        </asp:GridView>
+                    </div><br /><br />
+
             </div>
         </div>
 

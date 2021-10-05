@@ -230,32 +230,32 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (MedidasPre1.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "1", "Embargo de Salario", numcredito);
+                    sn.insertarmedidaspre(sig6, "1", "Embargo de Salario", numcredito, "3");
                 }
                 if (MedidasPre2.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "2", "Embargo de cuentas bancarias", numcredito);
+                    sn.insertarmedidaspre(sig6, "2", "Embargo de cuentas bancarias", numcredito, "3");
                 }
                 if (MedidasPre3.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "3", "Arraigo", numcredito);
+                    sn.insertarmedidaspre(sig6, "3", "Arraigo", numcredito, "3");
                 }
                 if (MedidasPre4.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito);
+                    sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito, "3");
                 }
                 if (MedidasPre5.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito);
+                    sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito, "3");
                 }
                 if (MedidasPre6.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "6", OtrasMedidas.Value, numcredito);
+                    sn.insertarmedidaspre(sig6, "6", OtrasMedidas.Value, numcredito, "3");
                 }
 
                 string tipocredito = Session["TipoCredito"] as string;
@@ -297,7 +297,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 sn.insertarbitacora(sig4, NumIncidente.Value, numcredito, NombreCliente.Value, "Enviado", "51", "51", fechahoraactual, fechacreacion2, "Resolución de trámite");
 
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se guardó exitosamente');", true);
+                String script = "alert('Se guardó exitosamente'); window.location.href= 'PendienteResolucionFavorable.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
         }
 

@@ -16,15 +16,49 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         Sentencia_juridico sn = new Sentencia_juridico();
         protected void Page_Load(object sender, EventArgs e)
         {
-            creditoscobros();
+            if (!IsPostBack)
+            {
+                creditoscobros();
+                creditosdiligenciamiento();
+                creditosfondos();
+            }
         }
 
         public void creditoscobros()
         {
             string cantidad;
-            cantidad = sn.creditoscobros();
+            cantidad = sn.creditoscobrosexpediente();
             CantidadCobros.InnerHtml = cantidad;
 
+        }
+
+        public void creditosdiligenciamiento()
+        {
+            string cantidad;
+            cantidad = sn.creditoscobrosdiligenciamiento();
+            DiligenciamientoCant.InnerHtml = cantidad;
+        }
+
+        public void creditosfondos()
+        {
+            string cantidad;
+            cantidad = sn.creditoscobrosfondos();
+            FondosCant.InnerHtml = cantidad;
+        }
+
+        protected void BtnCobros_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AsignarProceso.aspx");
+        }
+
+        protected void Diligenciamiento_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DiligenciamientoCobros.aspx");
+        }
+
+        protected void EntregaFondos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PendienteResolucionFavorable.aspx");
         }
     }
 }

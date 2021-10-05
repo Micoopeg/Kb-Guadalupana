@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
+using System.IO;
+using ClosedXML.Excel;
 
 namespace KB_Guadalupana.Views.Procesos
 {
@@ -15,6 +17,8 @@ namespace KB_Guadalupana.Views.Procesos
     {
         Conexion conexiongeneral = new Conexion();
         Sentencia_proceso sn = new Sentencia_proceso();
+        private object ExcelWorkbook;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -86,17 +90,28 @@ namespace KB_Guadalupana.Views.Procesos
                         Response.AddHeader("content-length", FileBuffer.Length.ToString());
                         Response.BinaryWrite(FileBuffer);
                     }
-                    else if (tipo.ToLower() == "doc")
+                    else if (tipo.ToLower() == "docx")
                     {
-                        Response.ContentType = "application/msword";
+                        Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
                         Response.AddHeader("content-length", FileBuffer.Length.ToString());
                         Response.BinaryWrite(FileBuffer);
+
                     }
-                    else if (tipo.ToLower() == "xls")
+                    else if (tipo.ToLower() == "xls" || tipo.ToLower() == "xlsx")
                     {
-                        Response.ContentType = "application/vnd.ms-excel";
-                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                        Response.BinaryWrite(FileBuffer);
+                        //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        //Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                        //Response.BinaryWrite(FileBuffer);
+
+
+                        Response.ClearContent();
+                        //Response.AddHeader("content-disposition", "attachment;filename=" + nombrearchivo+ "");
+                        Response.AddHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                        Response.WriteFile(FilePath, 0, nombrearchivo.Length);
+                        Response.End();
+
+
+
                     }
                     else if (tipo.ToLower() == "png")
                     {
@@ -116,6 +131,11 @@ namespace KB_Guadalupana.Views.Procesos
             {
 
             }
+        }
+
+        private MemoryStream GetStream(object excelWorkbook)
+        {
+            throw new NotImplementedException();
         }
 
         public void llenargridviewdocumentos()

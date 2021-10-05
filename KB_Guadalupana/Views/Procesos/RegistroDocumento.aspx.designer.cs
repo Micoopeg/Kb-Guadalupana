@@ -105,6 +105,15 @@ namespace KB_Guadalupana.Views.Procesos
         protected global::System.Web.UI.WebControls.DropDownList UsuarioDirigido;
 
         /// <summary>
+        /// Control Restriccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Restriccion;
+
+        /// <summary>
         /// Control Categoria.
         /// </summary>
         /// <remarks>

@@ -551,7 +551,7 @@
                         <label style="font-size:15px" class="titulos">Integración de cuenta</label>
                     </div><br /><br />
 
-                  <%--  <label style="margin-left:13%" class="titulos">Tipo de demanda</label>
+                    <%--<label style="margin-left:13%" class="titulos">Tipo de demanda</label>
                     <div style="justify-content:center; align-items:center; align-content:center; display:flex; flex-direction:column">
                         
                         <asp:DropDownList Width="74%" id="TipoCredito" runat="server" class="formatoinput2"  OnSelectedIndexChanged="TipoCredito_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -586,8 +586,8 @@
                         </div>
 
                         <div class="formato">
-                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese otro nombre" value="No posee" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese apellido casada" value="No posee" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -606,8 +606,8 @@
                         </div>
 
                          <div class="formato">
-                               <input id="Limite" runat="server" type="text" onkeyup="format(this)" onchange="format(this);" class="formatoinput" placeholder="Ingrese el limite" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                               <input id="Saldo" runat="server" onkeyup="format(this)" onchange="format(this);" type="text" class="formatoinput" placeholder="Ingrese el saldo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               Q<input id="Limite" runat="server" type="text" onkeyup="format(this)" onchange="format(this);" class="formatoinput" placeholder="Ingrese el limite" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               Q<input id="Saldo" runat="server" onkeyup="format(this)" onchange="format(this);" type="text" class="formatoinput" placeholder="Ingrese el saldo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
                     </div><br /><br />
 
@@ -639,9 +639,15 @@
                         </div><br />
 
                          <div class="formato4" style="display:flex; justify-content:flex-start">
-                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Gastos judiciales:</b></label>
+                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Seguro:</b></label>
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
                             <input id="GastosJudiciales" style="width:32%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), gastosJudiciales(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+
+                        <div class="formato4" style="display:flex; justify-content:flex-start">
+                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Incendio:</b></label>
+                             <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
+                            <input id="Incendio" style="width:32%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), incendio(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                         </div><br />
 
                         <div class="formato4" style="display:flex; justify-content:flex-start">
@@ -657,16 +663,8 @@
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b> </b></label>
                             <span id="Total1" style="width:30%" runat="server" class="formatoinput"></span>
                         </div>
-                             <br /><br />
-                              <div class="formato3">
-                                <span class="titulos"><b>Observaciones del crédito</b></span>
-                                <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese Observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
-                            </div>
                     </div>
                     </div>
-
-
-                  
                  </div>
 
                   <div class="formato2">

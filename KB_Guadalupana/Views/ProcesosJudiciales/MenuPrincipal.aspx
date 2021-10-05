@@ -150,31 +150,56 @@ body{
     <form id="form1" runat="server">
            <div class="topnav" id="myTopnav">
               <a href="../Sesion/MenuBarra.aspx" class="active">Inicio</a>
-               <a href="Dashboard.aspx">Dashboard <i class="fas fa-chart-bar"></i></a>
-            <%--  <a href="ProcesosAsignadosJuridico.aspx">Procesos Asignados <i class="far fa-hand-point-left"></i></a>--%>
-              <div id="MenuCobros" runat="server" class="dropdown">
+
+               <div id="Opciones" runat="server" class="dropdown">
+                <button class="dropbtn" onclick="return false;">Opciones
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                   <a href="Dashboard.aspx">Dashboard   <i class="fas fa-chart-bar"></i></a>
+                   <a href="ControlIncidente.aspx">Control de Incidente    <i class="fas fa-pen"></i></a>
+                   <a href="PendientePagoExtrajudicial.aspx">Pago extrajudicial   <i class="fas fa-coins"></i></a>
+                </div>
+              </div>
+               
+                       <div id="Menu" runat="server" class="dropdown">
+                        <button class="dropbtn" onclick="return false;">Menú
+                          <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <asp:Repeater ID="Repeater1" runat="server" EnableViewState="true">
+                                <ItemTemplate>
+                                    <a id="Opciones" runat="server" href='<%# Eval("Ruta") %>'><%# Eval("Nombre") %></a>
+                                </ItemTemplate>
+                            </asp:Repeater> 
+                       </div>
+                      </div>
+                  
+             
+              <%-- <div id="Opciones" runat="server" class="dropdown">
+                <button class="dropbtn">Opciones
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                   <a href="Dashboard.aspx">Dashboard   <i class="fas fa-chart-bar"></i></a>
+                   <a href="ControlIncidente.aspx">Control de Incidente    <i class="fas fa-pen"></i></a>
+                   <a href="PendientePagoExtrajudicial.aspx">Pago extrajudicial   <i class="fas fa-coins"></i></a>
+                </div>
+              </div>
+
+             <div id="MenuCobros" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                   <a id="Cobros" runat="server" href="AsignarProceso.aspx">Creación Expediente de Origen</a>
-                  <%--<a href="ProcesoCoordinadorLegal.aspx">2-Proceso Coordinador Legal</a>
-                  <a href="SumarioyEjecutivo.aspx">3-Tipo de proceso</a>
-                  <a href="NotificacionSumarioyEjecutivo.aspx">4-Notificacion</a>
-                  <a href="NotificacionAceptadaEjecutivo.aspx">5-Notificacion Aceptada</a>
-                  <a href="SentenciaSyE.aspx">6-Sentencia</a>
-                  <a href="Memorial.aspx">7-Memorial</a>
-                  <a href="Escrituracion.aspx">8-Escrituración</a>
-                  <a href="PosesionBien.aspx">9-Posesion del bien</a>
-                  <a href="Honorarios.aspx">10-Honorarios</a>
-                  <a href="Desistimiento.aspx">-Desistimiento</a>
-                  <a href="ProcesoJefeJuridico.aspx">Proceso jefatura jurídica</a>
-                  <a href="ProcesoAbogadoExterno.aspx">Proceso abogado externo</a>
-                  <a href="ProcesoAsistenteJuridico.aspx">Proceso asistente jurídico</a>--%>
+                  <a id="SonSuficientes" runat="server" href="DiligenciamientoCobros.aspx">Diligenciamiento</a>
+                  <a id="ResolucionFav" runat="server" href="PendienteResolucionFavorable.aspx">Gestión para entrega de fondos</a>
+       
                 </div>
               </div>
 
-               <div id="MenuConta" runat="server" class="dropdown">
+             <div id="MenuConta" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
@@ -194,15 +219,17 @@ body{
                 </div>
               </div>
 
-                <div id="MenuAbogado" runat="server" class="dropdown">
+             <div id="MenuAbogado" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                   <a id="Demanda" runat="server" href="PendientePresentacionDemanda.aspx">Presentación de Demanda</a>
                   <a id="Diligenciamiento" runat="server" href="PendienteDiligenciamiento.aspx">Diligenciamiento a medidas precautorias</a>
-                 <%-- <a id="Tramite" runat="server" href="PendienteResolucion.aspx">Resolución de trámite</a>
-                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>--%>
+                  <a id="NotificacionEVA" runat="server" href="PendienteNotificacionApremio.aspx">Notificación al asociado E.V.A.</a>
+                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
+                  <a id="Notificacion" runat="server" href="PendienteNotificacion.aspx">Notificación al asociado</a>
+                 
                 </div>
               </div>
 
@@ -213,9 +240,8 @@ body{
                 <div class="dropdown-content">
                   <a id="RequerimientoPago" runat="server" href="PendienteRequerimientoPago.aspx">Requerimiento de pago</a>
                 </div>
-              </div>
+              </div>--%>
 
-             <a href="ControlIncidente.aspx">Control de Incidente  <i class="fas fa-pen"></i></a>
 
               <a href="../Sesion/CerrarSesion.aspx">Cerrar sesión  <i class="fa fa-power-off"></i></a>
               <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>

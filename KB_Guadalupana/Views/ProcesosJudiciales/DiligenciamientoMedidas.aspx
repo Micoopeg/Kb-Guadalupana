@@ -51,6 +51,7 @@
             flex-direction:row;
             justify-content: space-between;
             width:100%;
+            align-items: center;
         }
 
           .formato3{
@@ -74,6 +75,7 @@
             display: flex;
             align-items: center;
             align-content:center;
+             margin-top:8px;
         }
 
         .formatoinput2{
@@ -96,7 +98,7 @@
             align-content:center;
         }
 
-          .formatoinput4 {
+        .formatoinput4 {
             width: 21%;
             -webkit-border-radius: 5px;
             border-radius: 5px;
@@ -327,7 +329,7 @@
                 <div class="encabezado">
                      <label style="font-size:15px" class="titulos"><b>Diligenciamiento a medidas precautorias</b></label><br /><br />
 
-                                              <label class="titulos"><b>Seleccione las medidas precautorias obligatorias</b></label><br /><br />
+                                              <label class="titulos"><b>Seleccione las medidas precautorias otorgadas</b></label><br /><br />
                            <div class="formatocheck">
                              <div class="formatocheck2">
                                 <input id="MedidasPre1" runat="server" type="checkbox" class="formatocheckbox" value="1" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
@@ -365,7 +367,7 @@
 
                      <div class="formato3">
                         <label class="titulos"><b>¿Son efectivas?</b></label>
-                        <asp:DropDownList id="SonEfectivas" runat="server" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="SonEfectivas_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList id="SonEfectivas" runat="server" Width="100%" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="SonEfectivas_SelectedIndexChanged"></asp:DropDownList>
                     </div><br /><br />
 
                     <div id="SiEfectivas" runat="server">
@@ -406,19 +408,29 @@
                        </div>
                        </div><br /><br /><br />
 
-                        <div class="formato3">
-                            <span id="TituloBanco" runat="server" class="titulos"><b>Banco</b></span>
-                             <asp:DropDownList id="Banco" runat="server" Width="100%" class="formatoinput2" AutoPostBack="false"></asp:DropDownList>
+                        <div id="infoBanco2" runat="server">
+                            <div class="formatoTitulo" style="margin-bottom:5px">
+                                <label class="titulos"><b>Banco</b></label>
+                                <label class="titulos" style="margin-left:47%"><b>Monto embargado</b></label>
+                            </div>
+                            <div class="formato">
+                                 <asp:DropDownList id="Banco" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                                 <input id="MontoEmbargado" runat="server" type="text" class="formatoinput" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese monto embargado" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            </div>
+                            <br />
                         </div>
-                        <div class="formato3">
-                            <span id="TituloCooperativa" runat="server" class="titulos"><b>Cooperativa</b></span>
-                             <asp:DropDownList id="Cooperativa" runat="server" Width="100%" class="formatoinput2" AutoPostBack="false"></asp:DropDownList>
-                        </div><br />
 
-                        <div class="formato3">
-                              <span id="TituloMonto" runat="server" class="titulos"><b>Monto</b></span>
-                            <input id="Monto" runat="server" type="text" class="formatoinput2" placeholder="Ingrese arraigo" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        <div id="infoCooperativa" runat="server">
+                            <div class="formatoTitulo" style="margin-bottom:5px">
+                                <span id="TituloCooperativa" runat="server" class="titulos"><b>Cooperativa</b></span>
+                                <label class="titulos" style="margin-left:42%"><b>Monto embargado</b></label>
+                            </div>
+                            <div class="formato">
+                                 <asp:DropDownList id="Cooperativa" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                                 <input id="MontoEmbargado2" runat="server" type="text" class="formatoinput" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese monto embargado" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            </div><br />
                         </div>
+
 
                         <div class="formato3">
                             <span id="TituloTrabajo" runat="server" class="titulos"><b>Lugar de trabajo</b></span>
@@ -427,8 +439,13 @@
 
                    
                         <div class="formato3">
-                            <span id="TituloArraigo" runat="server" class="titulos"><b>Arraigo</b></span>
-                            <input id="Arraigo" runat="server" type="text" class="formatoinput2" placeholder="Ingrese arraigo" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            <span id="TituloArraigo" runat="server" class="titulos"><b>Fecha presentación de oficio a migración</b></span>
+                            <input id="Arraigo" runat="server" type="date" class="formatoinput2" />
+                        </div><br />
+
+                         <div class="formato3">
+                            <span id="OficioTrabajo" runat="server" class="titulos"><b>Fecha presentación de oficio al lugar de trabajo</b></span>
+                            <input id="OficioTrabajo2" runat="server" type="date" class="formatoinput2" />
                         </div>
 
                         <br /><br />
@@ -436,9 +453,20 @@
 
                     <div class="formato3" id="Suficientes" runat ="server">
                         <label class="titulos"><b>¿Son suficientes?</b></label>
-                        <asp:DropDownList id="SonSuficientes" runat="server" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="SonSuficientes_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList id="SonSuficientes" runat="server" Width="100%" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="SonSuficientes_SelectedIndexChanged"></asp:DropDownList>
                     <br /><br />
                      </div>
+
+                      <div id="SiSuficiente" runat="server">
+                         <div class="formato3">
+                            <label class="titulos"><b>Comentario</b></label>
+                            <input id="Comentario2" runat="server" type="text" class="formatoinput2" placeholder="Ingrese comentario" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+
+                          <div class="formato" style="align-content:center;justify-content:center;align-items:center">
+                            <asp:Button ID="SolicitudCobros" runat="server" Width="35%" Height="30px" CssClass="boton3" Text="Enviar Solicitud a Cobros" OnClick="SolicitudCobros_Click" />
+                        </div><br />
+                    </div>
 
                     <div id="NoEfectivas" runat="server">
                          <div class="formato3">
@@ -451,9 +479,8 @@
                         </div>
                           <div class="formato">
                             <input id="DiasMora" runat="server" type="text" class="formatoinput" placeholder="Días de mora" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
-                            <asp:Button ID="EnviarSolicitud" runat="server" Width="35%" Height="30px" CssClass="boton3" Text="Enviar Solicitud" />
+                            <asp:Button ID="EnviarSolicitud" runat="server" Width="35%" Height="30px" CssClass="boton3" Text="Enviar Solicitud" OnClick="EnviarSolicitud_Click" />
                         </div><br />
-
                     </div>
 
                     
@@ -461,7 +488,7 @@
                     <div class="formato3" id="HayResultado" runat="server">
                         <br /><br />
                         <label class="titulos"><b>¿Hay Resultados?</b></label>
-                        <asp:DropDownList id="Resultado" runat="server" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="Resultado_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList id="Resultado" runat="server" Width="100%" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="Resultado_SelectedIndexChanged"></asp:DropDownList>
                     <br /><br />
                     </div>
 
@@ -502,135 +529,143 @@
                        </div>
                        </div><br /><br />
 
-                          <div class="formato3">
+                          <div class="formato3" id="Empresa" runat="server">
                             <label class="titulos"><b>Empresa donde labora</b></label>
                             <input id="EmpresaLabora" runat="server" type="text" class="formatoinput2" placeholder="Ingrese empresa donde labora" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                         </div><br />
 
-                        <label style="font-size:13px" class="titulos"><b>Vehículo(s)</b></label><br /><br />
+                        <div id="Vehiculos" runat="server">
+                            <label style="font-size:13px" class="titulos"><b>Vehículo(s)</b></label><br /><br />
 
-                        <div class="formato" style="align-items:center">
-                            <div style="width:100%">
-                                <div class="formatoTitulo" style="margin-bottom:5px">
-                                    <label class="titulos"><b>NIT</b></label>
-                                    <label class="titulos" style="margin-left:46%"><b>Placa</b></label>
+                            <div class="formato" style="align-items:center">
+                                <div style="width:100%">
+                                    <div class="formatoTitulo" style="margin-bottom:5px">
+                                        <label class="titulos"><b>NIT</b></label>
+                                        <label class="titulos" style="margin-left:46%"><b>Placa</b></label>
+                                    </div>
+                                    <div class="formato">
+                                        <input id="NIT" runat="server" type="text" class="formatoinput" placeholder="Ingrese NIT" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                                        <input id="Placa" runat="server" type="text" class="formatoinput" placeholder="Ingrese Placa" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                                    </div><br />
+
+                                    <div class="formatoTitulo" style="margin-bottom:5px">
+                                        <label class="titulos"><b>Modelo</b></label>
+                                        <label class="titulos" style="margin-left:38%"><b>Marca</b></label>
+                                    </div>
+                                    <div class="formato">
+                                        <input id="Modelo" runat="server" type="text" class="formatoinput" placeholder="Ingrese Marca" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                                        <input id="Marca" runat="server" type="text" class="formatoinput" placeholder="Ingrese Modelo" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                                    </div><br />
                                 </div>
-                                <div class="formato">
-                                    <input id="NIT" runat="server" type="text" class="formatoinput" placeholder="Ingrese NIT" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                                    <input id="Placa" runat="server" type="text" class="formatoinput" placeholder="Ingrese Placa" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                                </div><br />
-
-                                <div class="formatoTitulo" style="margin-bottom:5px">
-                                    <label class="titulos"><b>Modelo</b></label>
-                                    <label class="titulos" style="margin-left:38%"><b>Marca</b></label>
+                                <div class="formato3" style="justify-content:center;width:100%;display:flex;align-items:center;align-content:center">
+                                 <asp:Button ID="AgregarVehiculo" runat="server" Width="50%" Height="30px" CssClass="boton3" Text="Agregar Vehículo" OnClick="AgregarVehiculo_Click" /><br />
+                                 <asp:Button ID="ActualizarVehiculo" runat="server" Width="50%" Height="30px" CssClass="boton3" Text="Actualizar Vehículo" OnClick="ActualizarVehiculo_Click" /><br />
+                                 <asp:Button ID="Cancelar" runat="server" Width="50%" Height="30px" CssClass="boton3" Text="Cancelar" OnClick="CancelarVehiculo_Click" />
                                 </div>
-                                <div class="formato">
-                                    <input id="Modelo" runat="server" type="text" class="formatoinput" placeholder="Ingrese Marca" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                                    <input id="Marca" runat="server" type="text" class="formatoinput" placeholder="Ingrese Modelo" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                                </div><br />
-                            </div>
-                            <div style="justify-content:center;width:100%;display:flex;">
-                             <asp:Button ID="AgregarVehiculo" runat="server" Width="50%" Height="30px" CssClass="boton3" Text="Agregar Vehículo" />
-                            </div>
-                         </div><br /><br />
+                             </div><br /><br />
 
-                        <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 150px">
-                        <asp:GridView ID="gridViewVehiculo" runat="server" AutoGenerateColumns="False" CssClass="tabla"
-                            OnSelectedIndexChanged = "OnSelectedIndexChangedVehiculo" BorderStyle="Solid">
-                             <Columns>
-                                <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="No. documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblnit" Text='<%# Eval("Nit") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblplaca" Text='<%# Eval("Placa") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblmodelo" Text='<%# Eval("Modelo") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                 <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblmarca" Text='<%# Eval("Marca") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Registro" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
-                                </asp:ButtonField>
-                            </Columns>
-                             <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
-                        </asp:GridView>
-                       </div>
-                       </div><br /><br />
+                            <div style="justify-content: center;display:flex" class="formato">
+                            <div style="overflow: auto; height: 150px; width:100%">
+                            <asp:GridView ID="gridViewVehiculo" runat="server" AutoGenerateColumns="False" CssClass="tabla"
+                                OnSelectedIndexChanged = "OnSelectedIndexChangedVehiculo" BorderStyle="Solid">
+                                 <Columns>
+                                    <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="Codigo">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ControlStyle-CssClass="diseño" HeaderText="Nit">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblnit" Text='<%# Eval("Nit") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Placa">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblplaca" Text='<%# Eval("Placa") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Modelo">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblmodelo" Text='<%# Eval("Modelo") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Marca">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblmarca" Text='<%# Eval("Marca") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:ButtonField Text="Editar" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="20%" ControlStyle-ForeColor="White">
+                                        <ItemStyle Width="90%" ForeColor="White"></ItemStyle>
+                                    </asp:ButtonField>
+                                </Columns>
+                                 <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" Width="20%" BackColor="#0071D4"></HeaderStyle>
+                            </asp:GridView>
+                           </div>
+                           </div><br /><br />
+                        </div>
 
-                         <label style="font-size:13px" class="titulos"><b>Bienes Inmuebles</b></label><br /><br />
+                         <div id="Bienes" runat="server">
+                             <label style="font-size:13px" class="titulos"><b>Bienes Inmuebles</b></label><br /><br />
 
-                        <div class="formato" style="align-items:center">
-                            <div style="width:100%">
-                                 <div class="formatoTitulo" style="margin-bottom:5px">
-                                    <label class="titulos"><b>Finca</b></label>
-                                    <label class="titulos" style="margin-left:39%"><b>Folio</b></label>
+                             <div class="formato" style="align-items:center">
+                                <div style="width:100%">
+                                     <div class="formatoTitulo" style="margin-bottom:5px">
+                                        <label class="titulos"><b>Finca</b></label>
+                                        <label class="titulos" style="margin-left:39%"><b>Folio</b></label>
+                                    </div>
+                                     <div class="formato">
+                                        <input id="Finca" runat="server" type="text" class="formatoinput" placeholder="Ingrese Finca" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                                        <input id="Folio" runat="server" type="text" class="formatoinput" placeholder="Ingrese Folio" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                                    </div><br />
+
+                                    <div class="formato3">
+                                        <label class="titulos"><b>Libro</b></label>
+                                        <input id="Libro" runat="server" type="text" class="formatoinput2" placeholder="Ingrese Libro" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                                    </div><br />
                                 </div>
-                                 <div class="formato">
-                                    <input id="Finca" runat="server" type="text" class="formatoinput" placeholder="Ingrese Finca" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                                    <input id="Folio" runat="server" type="text" class="formatoinput" placeholder="Ingrese Folio" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                                </div><br />
-
-                                <div class="formato3">
-                                    <label class="titulos"><b>Libro</b></label>
-                                    <input id="Libro" runat="server" type="text" class="formatoinput2" placeholder="Ingrese Libro" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                                </div><br />
-                            </div>
-                            <div style="justify-content:center;width:100%;display:flex;">
-                                <asp:Button ID="AgregarBienes" runat="server" Width="50%" Height="30px" CssClass="boton3" Text="Agregar Bien Inmueble" />
-                            </div>
-                            </div>
+                                <div class="formato3" style="justify-content:center;width:100%;display:flex;align-items:center;align-content:center">
+                                    <asp:Button ID="AgregarBienes" runat="server" Width="50%" Height="30px" CssClass="boton3" Text="Agregar Bien Inmueble" OnClick="AgregarBienes_Click" /><br />
+                                    <asp:Button ID="ActualizarBienes" runat="server" Width="50%" Height="30px" CssClass="boton3" Text="Actualizar Bien Inmueble" OnClick="ActualizarBienes_Click" /><br />
+                                    <asp:Button ID="Cancelar2" runat="server" Width="50%" Height="30px" CssClass="boton3" Text="Cancelar" OnClick="Cancelar2_Click" />
+                                </div>
+                                </div>
 
                              <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 150px">
-                        <asp:GridView ID="gridViewBienes" runat="server" AutoGenerateColumns="False" CssClass="tabla"
-                            OnSelectedIndexChanged = "OnSelectedIndexChangedBienes" BorderStyle="Solid">
-                             <Columns>
-                                <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="No. documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblfinca" Text='<%# Eval("Finca") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lblfolio" Text='<%# Eval("Folio") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
-                                    <ItemTemplate>
-                                       <asp:Label ID="lbllibro" Text='<%# Eval("Libro") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:ButtonField   Text="Ver Registro" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
-                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
-                                </asp:ButtonField>
-                            </Columns>
-                             <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
-                        </asp:GridView>
-                       </div>
-                       </div><br /><br />
+                            <div style="overflow: auto; height: 150px; width:100%">
+                            <asp:GridView ID="gridViewBienes" runat="server" AutoGenerateColumns="False" CssClass="tabla"
+                                OnSelectedIndexChanged = "OnSelectedIndexChangedBienes" BorderStyle="Solid">
+                                 <Columns>
+                                    <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="No. documento">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Finca">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblfinca" Text='<%# Eval("Finca") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Folio">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblfolio" Text='<%# Eval("Folio") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Libro">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lbllibro" Text='<%# Eval("Libro") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:ButtonField   Text="Editar" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="25%" ControlStyle-ForeColor="White">
+                                        <ItemStyle Width="90%" ForeColor="White"></ItemStyle>
+                                    </asp:ButtonField>
+                                </Columns>
+                                 <HeaderStyle CssClass="prueba" Height="23px" Width="25%" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
+                            </asp:GridView>
+                           </div>
+                           </div><br /><br />
+                         </div>
                          
-                          <label class="titulos"><b>Memorial</b></label><br />
+                          <label class="titulos"><b>Memorial de Medidas Precautorias</b></label><br />
                         <div class="formato">
                             <asp:DropDownList id="TipoMemorial" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
                             <asp:FileUpload id="FileUpload5" runat="server"></asp:FileUpload>
@@ -666,7 +701,7 @@
                        </div>
                        </div><br /><br />
 
-                         <label style="font-size:13px" class="titulos"><b>Gestión realizada para cada medida</b></label><br /><br />
+                         <label style="font-size:13px" class="titulos"><b>Gestión realizada para cada medida precautoria otorgada</b></label><br /><br />
 
                         <div class="formato">
                              <label class="titulos"><b>Embargo de Salario</b></label>
@@ -696,41 +731,65 @@
                          <div class="formato3">
                             <label class="titulos"><b>Fecha de presentación del memorial</b></label>
                             <input id="FechaMemorial" runat="server" type="date" class="formatoinput2"/>
+                         </div><br /><br />
+
+                         <div class="formatoTitulo" style="margin-bottom:5px">
+                            <label class="titulos"><b>Fecha de solicitud de sentencia</b></label>
+                            <label class="titulos" style="margin-left:28%"><b>Fecha de presentación de demanda en vía de apremio</b></label>
+                         </div>
+                         <div class="formato">
+                            <input id="FechaSolicitud" runat="server" type="date" class="formatoinput"/>
+                            <input id="FechaPresentacionApremio" runat="server" type="date" class="formatoinput"/>
                          </div><br />
 
                     </div>
 
                      <div class="formato3" id="EsVoluntaria" runat="server">
                         <label class="titulos"><b>¿La transacción es voluntaria?</b></label>
-                        <asp:DropDownList id="Voluntaria" runat="server" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="Voluntaria_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList id="Voluntaria" runat="server" Width="100%" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="Voluntaria_SelectedIndexChanged"></asp:DropDownList>
                     </div><br /><br />
 
                     <div id="TransaccionVoluntaria" runat="server"><br />
-                        <br />
-                        <div class="formato3">
-                            <label class="titulos" style="margin-left:39%"><b>Fecha de presentación</b></label>
-                            <input id="FechaPresentacion" runat="server" type="date" class="formatoinput"/>
+                        <div class="formato3" id="fechaPresentacionMemorial" runat="server">
+                            <label class="titulos"><b>Fecha de presentación de memorial de transacción</b></label>
+                            <input id="FechaPresentacion" runat="server" type="date" class="formatoinput2"/>
                         </div><br />
 
                         <div id="InfoMonto" runat="server" class="formato3">
                              <label class="titulos"><b>Monto a transar</b></label>
-                             <input id="MontoTransar" runat="server" type="text" class="formatoinput" placeholder="Ingrese monto a transar" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="MontoTransar" runat="server" type="text" class="formatoinput2" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese monto a transar" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            <br /><br />
                         </div>
 
                          <div id="InfoTrabajo" runat="server" class="formato3">
                             <label class="titulos"><b>Lugar de trabajo</b></label>
                             <input id="LugarTrabajo2" runat="server" type="text" class="formatoinput2" placeholder="Ingrese lugar de trabajo" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                        </div><br />
+                            <br />
+                         </div>
 
-                        <div id="InfoBanco" runat="server" class="formato3">
-                            <label class="titulos"><b>Banco</b></label>
-                            <asp:DropDownList id="Banco2" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                        <div id="infoBanco" runat="server">
+                            <div class="formatoTitulo" style="margin-bottom:5px">
+                                <label class="titulos"><b>Banco</b></label>
+                                <label class="titulos" style="margin-left:47%"><b>Monto embargado</b></label>
+                            </div>
+                            <div class="formato">
+                                <asp:DropDownList id="Banco2" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                                <input id="MontoEmbargado3" runat="server" type="text" class="formatoinput" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese monto embargado" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            </div><br />
                         </div>
 
-                        <div id="InfoCooperativa" runat="server" class="formato3">
-                            <label class="titulos"><b>Cooperativa</b></label>
-                            <asp:DropDownList id="Cooperativa2" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
-                        </div><br /><br />
+                        <div id="infoCooperativa2" runat="server">
+                             <div class="formatoTitulo" style="margin-bottom:5px">
+                                    <span id="Span1" runat="server" class="titulos"><b>Cooperativa</b></span>
+                                    <label class="titulos" style="margin-left:42%"><b>Monto embargado</b></label>
+                            </div>
+                            <div class="formato">
+                                 <asp:DropDownList id="Cooperativa2" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                                 <input id="MontoEmbargado4" runat="server" type="text" class="formatoinput" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese monto embargado" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            </div><br /><br />
+                        </div>
+
+                        <div id="MemorialTransaccion" runat="server">
 
                         <label class="titulos"><b>Memorial de transacción</b></label><br />
                          <div class="formato">
@@ -767,6 +826,8 @@
                         </asp:GridView>
                        </div>
                        </div><br /><br />
+
+                       </div>
                     </div>
 
 
@@ -808,20 +869,113 @@
                        </div><br /><br />
 
                           <div class="formatoTitulo" style="margin-bottom:5px">
-                            <label class="titulos"><b>Fecha de resolución</b></label>
-                            <label class="titulos" style="margin-left:39%"><b>Fecha de notificación</b></label>
+                            <label class="titulos"><b>Fecha de resolución de transaciión</b></label>
+                            <label class="titulos" style="margin-left:35%"><b>Fecha de notificación</b></label>
                         </div>
                         <div class="formato">
                             <input id="FechaResolucion" runat="server" type="date" class="formatoinput"/>
                             <input id="FechaNotificacion" runat="server" type="date" class="formatoinput"/>
                         </div><br />
+
+                       <div class="formato3">
+                            <label class="titulos"><b>Observaciones</b></label>
+                            <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+
+                          <div id="Facturacion" runat="server">
+
+                        <div style="display:flex; justify-content:center">
+                            <label style="font-size:15px" class="titulos">Facturación</label>
+                        </div><br /><br />
+
+                      <label class="titulos" style="margin-bottom:10px"><b>Factura </b></label>
+                    
+                     <div class="formato">
+                        <asp:DropDownList id="TDocumentoFactura" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
+                       <asp:FileUpload id="FileUpload6" runat="server"></asp:FileUpload>
+                         <asp:Button ID="AgregarFactura" runat="server" Width="20%" Height="30px" CssClass="boton3" Text="Agregar" OnClick="AgregarFactura_Click" />
+                    </div><br /><br />
+
+                    <div style="justify-content: center;display:flex" class="formato">
+                        <div style="overflow: auto; height: 123px">
+                        <asp:GridView ID="gridViewFactura" runat="server" AutoGenerateColumns="False" CssClass="tabla"
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedFactura" BorderStyle="Solid">
+                             <Columns>
+                                <asp:TemplateField ControlStyle-CssClass="diseño" Visible="false" HeaderText="No. documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblid" Text='<%# Eval("Codigo") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Tipo documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lbltipodoc" Text='<%# Eval("TipoDocumento") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                  <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="Nombre documento">
+                                    <ItemTemplate>
+                                       <asp:Label ID="lblnombredoc" Text='<%# Eval("Nombre") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:ButtonField   Text="Ver Documento" ItemStyle-CssClass="celda fas fa-angle-double-right" CommandName="Select" ItemStyle-Width="90px" ControlStyle-ForeColor="White">
+                                    <ItemStyle Width="135px" ForeColor="White"></ItemStyle>
+                                </asp:ButtonField>
+                            </Columns>
+                             <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
+                        </asp:GridView>
+                       </div>
+                       </div><br /><br />
+
+                 
+
+                       <div class="formatoTitulo" style="margin-bottom:5px">
+                             <label class="titulos"><b>No. de factura</b></label>
+                            <label class="titulos" style="margin-left:40%"><b>No. de serie</b></label>
+                        </div>
+                        <div class="formato">
+                              <input id="NumFactura" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. factura" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="Serie" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. serie" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+
+                      <div class="formato3">
+                        <label class="titulos"><b>Descripción</b></label>
+                         <input id="Descripcion" runat="server" type="text" class="formatoinput2" placeholder="Ingrese descripcion" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                    </div><br />
+
+                    <div class="formatoTitulo" style="margin-bottom:5px">
+                        <label class="titulos"><b>Importe total</b></label>
+                        <label class="titulos" style="margin-left:23%"><b>Fecha de emisión</b></label>
+                        <label class="titulos" style="margin-left:18%"><b>Importe del caso</b></label>
+                    </div>
+                     <div class="formato">
+                        Q<input id="ImporteTotal" runat="server" type="text" class="formatoinput3" min="0" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese importe total" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        <input id="FechaEmision" runat="server" type="date" class="formatoinput3"/>
+                        Q<input id="ImporteCaso" runat="server" type="text" min="0" class="formatoinput3" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese importe del caso" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                    </div><br />
+
+                        
+                 <%--     <div class="formato3">
+                         <label class="titulos"><b>Nombre a quién se emite el cheque</b></label>
+                         <input id="NombreCheque" runat="server" type="text" class="formatoinput2" placeholder="Ingrese nombre" maxlength="60" onkeypress="return sololetras(event);" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                    </div><br />--%>
+
+                      <div class="formato3">
+                        <label class="titulos"><b>Motivo de pago</b></label>
+                        <asp:DropDownList id="MotivoPago" runat="server" Width="100%" class="formatoinput2" AutoPostBack="true" OnSelectedIndexChanged="MotivoPago_SelectedIndexChanged1"></asp:DropDownList>
+                    </div><br />
+
+                     <input id="Otro" runat="server" type="text" min="0" class="formatoinput2" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+
+                        
+                    <br />
+                </div>
+
                     </div>
 
 
                 </div>
 
                 <div class="formato2">
-                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar"/>
+                    <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" Visible="false" OnClick="Guardar_Click"/>
                  </div><br />
 
                   <div class="menu2" id="ventana" runat="server" style="overflow: auto; height: 450px">

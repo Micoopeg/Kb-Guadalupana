@@ -25,6 +25,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 llenarcombomotivo();
                 Otro.Visible = false;
                 llenarformulario();
+                llenarcomentarios();
+                NombreCheque.Value = Session["Nombre"] as string;
             }
         }
 
@@ -71,7 +73,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 try
                 {
                     sqlCon.Open();
-                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento = 18";
+                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento = 32";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataSet ds = new DataSet();
                     myCommand.Fill(ds);
@@ -96,7 +98,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     string numcredito = Session["credito"] as string;
                     sqlCon.Open();
-                    string query = "SELECT pj_documento.idpj_documento AS Codigo, pj_tipodocumento.pj_nombretipodoc AS TipoDocumento, pj_documento.pj_nombrearchivo AS Nombre FROM pj_documento INNER JOIN pj_tipodocumento ON pj_documento.idpj_tipodocumento = pj_tipodocumento.idpj_tipodocumento WHERE idpj_credito = '" + numcredito + "' AND pj_tipodocumento.idpj_tipodocumento = 16";
+                    string query = "SELECT pj_documento.idpj_documento AS Codigo, pj_tipodocumento.pj_nombretipodoc AS TipoDocumento, pj_documento.pj_nombrearchivo AS Nombre FROM pj_documento INNER JOIN pj_tipodocumento ON pj_documento.idpj_tipodocumento = pj_tipodocumento.idpj_tipodocumento WHERE idpj_credito = '" + numcredito + "' AND pj_tipodocumento.idpj_tipodocumento = 32";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataTable dt = new DataTable();
                     myCommand.Fill(dt);
@@ -140,6 +142,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                         Response.BinaryWrite(FileBuffer);
                     }
                 }
+                gridViewDocumentos.Focus();
             }
             catch
             {
@@ -181,10 +184,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             {
                 Otro.Visible = false;
             }
+            Guardar.Focus();
         }
 
         public void llenarformulario()
         {
+
             string numcredito = Session["credito"] as string;
             string var1 = WS.buscarcredito(numcredito);
             char delimitador = '|';
@@ -192,38 +197,60 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
             if (var1.Length == 4)
             {
-                Response.Write("NO HAY DATOS QUE MOSTRARA");
+                String script = "alert('Se perdió la conexión, intente más tarde'); window.location.href= 'PendienteFacturacionAbogado.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
+                gridview1.DataSource = WS.buscarresponsables(numcredito);
+                gridview1.DataBind();
+
                 for (int i = 0; i < campos.Length; i++)
                 {
+                    //DiasMora.Value = campos[6];
+                    NumPrestamo.Value = campos[1];
                     CreditoNumero.Value = campos[1];
+                    DPI.Value = campos[21];
+                    CodigoCliente.Value = campos[19];
                     NumCif.Value = campos[19];
+                    NombreCliente.Value = campos[20];
                     ClienteNombre.Value = campos[20];
-                }
+                    MontoOriginal.Value = "Q " + campos[9];
+                    CapitalDesem.Value = "Q " + campos[9];
 
-                string[] campos2 = sn.obtenertipocredito(numcredito);
-                string idcredito = campos2[0];
-                if (idcredito == null)
-                {
-                    Session["TipoCredito"] = "tarjeta";
-
-                    string[] campos3 = sn.obtenertipotarjeta(numcredito);
-                    for (int i = 0; i < campos3.Length; i++)
+                    if (campos[8] == "            .00")
                     {
-                        NumeroIncidente.Value = campos3[0];
+                        SaldoActual.Value = "Q 0.00";
                     }
-                }
-                else
-                {
-                    Session["TipoCredito"] = "credito";
-                    for (int i = 0; i < campos2.Length; i++)
+                    else
                     {
-                        NumeroIncidente.Value = campos2[0];
+                        SaldoActual.Value = "Q " + campos[8];
                     }
                 }
 
+            }
+
+            string[] campos2 = sn.obtenertipocredito(numcredito);
+            string idcredito = campos2[0];
+            if (idcredito == null)
+            {
+                Session["TipoCredito"] = "tarjeta";
+
+                string[] campos3 = sn.obtenertipotarjeta(numcredito);
+                for (int i = 0; i < campos3.Length; i++)
+                {
+                    NumIncidente.Value = campos3[0];
+                    NumeroIncidente.Value = campos3[0];
+                }
+            }
+            else
+            {
+                Session["TipoCredito"] = "credito";
+                for (int i = 0; i < campos2.Length; i++)
+                {
+                    NumIncidente.Value = campos2[0];
+                    NumeroIncidente.Value = campos2[0];
+                }
             }
         }
 
@@ -255,8 +282,35 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                     string sig = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
                     //sn.guardarfacturaabogado(sig, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, ClienteNombre.Value, NumCif.Value);
-                    sn.guardaretapa(sig2, "6", numcredito, sn.datetime(), "Enviado", idusuario, "51", ClienteNombre.Value, NumeroIncidente.Value);
-                    sn.cambiarestado(numcredito, "5");
+                    string etapa = Session["etapa"] as string;
+
+                    if (MotivoPago.SelectedValue != "9")
+                    {
+                        Otro.Value = sn.motivopago(MotivoPago.SelectedValue);
+                    }
+
+                    if (etapa == "10")
+                    {
+                        sn.guardaretapa(sig2, "11", numcredito, sn.datetime(), "Enviado", idusuario, "51", ClienteNombre.Value, NumeroIncidente.Value);
+                        sn.cambiarestado(numcredito, "10");
+                        string sig3 = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
+                        sn.guardarfacturaabogado(sig3, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, Otro.Value, NumCif.Value, ClienteNombre.Value, NombreCheque.Value, Observaciones.Value, "Iniciado", "11");
+                    }
+                    else if (etapa == "33")
+                    {
+                        sn.guardaretapa(sig2, "34", numcredito, sn.datetime(), "Enviado", idusuario, "51", ClienteNombre.Value, NumeroIncidente.Value);
+                        sn.cambiarestado(numcredito, "33");
+                        string sig3 = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
+                        sn.guardarfacturaabogado(sig3, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, Otro.Value, NumCif.Value, ClienteNombre.Value, NombreCheque.Value, Observaciones.Value, "Iniciado", "34");
+                    }
+                    else
+                    {
+                        sn.guardaretapa(sig2, "27", numcredito, sn.datetime(), "Enviado", idusuario, "51", ClienteNombre.Value, NumeroIncidente.Value);
+                        sn.cambiarestado(numcredito, "25");
+                        string sig3 = sn.siguiente("pj_facturacionabogado", "idpj_facturacionabogado");
+                        sn.guardarfacturaabogado(sig3, numcredito, idusuario, NumFactura.Value, Serie.Value, Descripcion.Value, ImporteTotal.Value, FechaEmision.Value, ImporteCaso.Value, MotivoPago.SelectedValue, Otro.Value, NumCif.Value, ClienteNombre.Value, NombreCheque.Value, Observaciones.Value, "Iniciado", "27");
+                    }
+
 
                     string tipocredito = Session["TipoCredito"] as string;
                     string fecha;
@@ -291,16 +345,25 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string fechahoraactual = año1 + '-' + mes2 + '-' + dia3 + ' ' + hora;
 
                     string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                    sn.insertarbitacora(sig5, NumeroIncidente.Value, numcredito, ClienteNombre.Value, "Recibido", "51", "51", fechahoraactual, fechacreacion2, "Recibido");
+                    sn.insertarbitacora(sig5, NumeroIncidente.Value, numcredito, ClienteNombre.Value, "Recibido", "26", "51", fechahoraactual, fechacreacion2, Observaciones.Value);
 
                     string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
-                    sn.insertarbitacora(sig4, NumeroIncidente.Value, numcredito, ClienteNombre.Value, "Enviado", "51", "34", fechahoraactual, fechacreacion2, "Facturación");
+                    sn.insertarbitacora(sig4, NumeroIncidente.Value, numcredito, ClienteNombre.Value, "Enviado", "51", "34", fechahoraactual, fechacreacion2, Observaciones.Value);
 
 
                     String script = "alert('Se guardó exitosamente'); window.location.href= 'PendienteFacturacionAbogado.aspx';";
                     ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
                 }
             }
+        }
+
+        public void llenarcomentarios()
+        {
+            DataSet comentarios = new DataSet();
+            string numcredito = Session["credito"] as string;
+            comentarios = sn.consultarComentarios(numcredito);
+            Repeater1.DataSource = comentarios;
+            Repeater1.DataBind();
         }
     }
 }

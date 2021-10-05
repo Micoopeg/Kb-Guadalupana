@@ -212,11 +212,13 @@
                         <label class="titulos"><b>Estado</b></label>
                         <label class="titulos" style="margin-left:28%"><b>Origen</b></label>
                          <label class="titulos" style="margin-left:28%"><b>Dirigido a:</b></label>
+                          <label class="titulos" style="margin-left:28%"><b>Restriccion:</b></label>
                     </div>
                      <div class="formato">
                          <asp:DropDownList id="Estado" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
                          <asp:DropDownList id="Origen" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
                          <asp:DropDownList id="UsuarioDirigido" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
+                          <asp:DropDownList id="Restriccion" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
                     </div><br />
                      <div class="formatoTitulo" style="margin-bottom:5px">
                         <label class="titulos"><b>Categoría</b></label>

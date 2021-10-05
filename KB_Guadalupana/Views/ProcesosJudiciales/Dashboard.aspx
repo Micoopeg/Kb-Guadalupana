@@ -160,7 +160,7 @@
       .menu2{
          display:flex;
          flex-direction:row;
-         width: 850px;
+         width: 750px;
          height: 460px;
          flex-wrap:wrap;
          align-items:flex-start;
@@ -262,7 +262,7 @@
                     </div>
                 </div>
 
-                 <div class="opciones">
+                <%-- <div class="opciones">
                     <div style="display:flex;justify-content:flex-end;align-items:flex-end;align-content:flex-end">
                         <i class='far fa-folder-open' style='font-size:24px'></i>
                     </div>
@@ -280,7 +280,7 @@
                         <div class="numero"><b><span class="numero" id="Asistente" runat="server">0</span></b></div>
                         <asp:Button CssClass="area" runat="server" ID="BtnAsistente" Text="Asistente Legal"/>
                     </div>
-                </div>
+                </div>--%>
 
                 <div class="opciones">
                     <div style="display:flex;justify-content:flex-end;align-items:flex-end;align-content:flex-end">
@@ -288,7 +288,7 @@
                     </div>
                     <div class="items">
                         <div class="numero"><b><span class="numero" id="Abogado" runat="server">0</span></b></div>
-                        <asp:Button CssClass="area" runat="server" ID="BtnAbogado" Text="Abogado Externo" OnClick="BtnJuridico_Click"/>
+                        <asp:Button CssClass="area" runat="server" ID="BtnAbogado" Text="Abogado Externo" OnClick="BtnAbogado_Click"/>
                     </div>
                 </div>
              </div>

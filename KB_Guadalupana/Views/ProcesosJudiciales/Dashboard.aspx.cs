@@ -20,6 +20,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             creditoscobros();
             creditosconta();
             creditosjuridico();
+            creditosabogado();
         }
 
         protected void BtnCobros_Click(object sender, EventArgs e)
@@ -39,24 +40,66 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         public void creditoscobros()
         {
-            string cantidad;
-            cantidad = sn.creditoscobros();
-            CantidadCobros.InnerHtml = cantidad;
+            string cantidadexpedientes, cantidaddili, cantidadfondos;
+            int total;
+
+            cantidadexpedientes = sn.creditoscobrosexpediente();
+            cantidaddili = sn.creditoscobrosdiligenciamiento();
+            cantidadfondos = sn.creditoscobrosfondos();
+
+            total = Convert.ToInt32(cantidadexpedientes) + Convert.ToInt32(cantidaddili) + Convert.ToInt32(cantidadfondos);
+
+            CantidadCobros.InnerHtml = total.ToString();
 
         }
 
         public void creditosconta()
         {
-            string cantidad;
-            cantidad = sn.cantidadcreditosconta();
-            BtnConta.InnerHtml = cantidad;
+            string cantidadcerti, cantidadsolicitud;
+            int total;
+
+            cantidadcerti = sn.cantidadcreditoscontacertificacion();
+            cantidadsolicitud = sn.cantidadcreditoscontasolicitud();
+
+            total = Convert.ToInt32(cantidadcerti) + Convert.ToInt32(cantidadsolicitud);
+
+            BtnConta.InnerHtml = total.ToString();
         }
 
         public void creditosjuridico()
         {
-            string cantidad;
-            cantidad = sn.cantidadcreditosjuridico();
-            Juridico.InnerHtml = cantidad;
+            string cantidadveri, cantidadreporte, cantidadrequerimiento;
+            int total;
+
+            cantidadveri = sn.cantidadcreditosjuridicoexpedientes();
+            cantidadreporte = sn.cantidadcreditosjuridicoreporte();
+            cantidadrequerimiento = sn.cantidadcreditosjuridicorequerimiento();
+
+            total = Convert.ToInt32(cantidadveri) + Convert.ToInt32(cantidadreporte) + Convert.ToInt32(cantidadrequerimiento);
+
+            Juridico.InnerHtml = total.ToString() ;
+        }
+
+        public void creditosabogado()
+        {
+            string cantidaddemanda, cantidadmedidas, cantidadnotieva, cantidadfacturacion, cantidadnotificacion, cantidadresolucion;
+            int total;
+
+            cantidaddemanda = sn.cantidadcreditosabogadodemanda();
+            cantidadmedidas = sn.cantidadcreditosabogadodiligenciamiento();
+            cantidadnotieva = sn.cantidadcreditosabogadonotificacioneva();
+            cantidadfacturacion = sn.cantidadcreditosabogadofacturacion();
+            cantidadnotificacion = sn.cantidadcreditosabogadonotificacion();
+            cantidadresolucion = sn.cantidadcreditosresolucion();
+
+            total = Convert.ToInt32(cantidaddemanda) + Convert.ToInt32(cantidadmedidas) + Convert.ToInt32(cantidadnotieva) + Convert.ToInt32(cantidadfacturacion) + Convert.ToInt32(cantidadnotificacion) + Convert.ToInt32(cantidadresolucion);
+
+            Abogado.InnerHtml = total.ToString();
+        }
+
+        protected void BtnAbogado_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DashboardAbogado.aspx");
         }
 
         //public void llenargridviewcreditos()

@@ -247,10 +247,10 @@
                     </div>
 
                     <div class="formato">
-                        <input id="NumPrestamo" runat="server" type="text" class="formatoinput3" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                        <input id="NumPrestamo" runat="server" type="text" class="formatoinput4" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                          <input id="NumIncidente" runat="server" type="text" class="formatoinput4" min="0" placeholder="No. incidente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" visible="false" readOnly="readOnly"/>
-                        <input id="DPI" runat="server" type="text" class="formatoinput3" placeholder="DPI" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                         <input id="CodigoCliente" runat="server" type="text" min="0" class="formatoinput3" placeholder="Código cliente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                        <input id="DPI" runat="server" type="text" class="formatoinput4" placeholder="DPI" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                         <input id="CodigoCliente" runat="server" type="text" min="0" class="formatoinput4" placeholder="Código cliente" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 
                     <div class="formato3">
@@ -567,16 +567,22 @@
                         </div><br />
 
                          <div class="formato4" style="display:flex; justify-content:flex-start">
-                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Gastos judiciales:</b></label>
+                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Seguro:</b></label>
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
                             <input id="GastosJudiciales" style="width:32%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), gastosJudiciales(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+
+                        <div class="formato4" style="display:flex; justify-content:flex-start">
+                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Incendio:</b></label>
+                             <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
+                            <input id="Incendio" style="width:32%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), incendio(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                         </div><br />
 
                         <div class="formato4" style="display:flex; justify-content:flex-start">
                             <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Otros gastos:</b></label>
                              <label class="titulos" style="width:3%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
                             <input id="OtrosGastos" style="width:22%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), otrosGastos(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
-                             <input id="Comentario" style="width:41%; margin-left:4%;" runat="server" type="text" class="formatoinput" placeholder="Comentario" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                             <input id="Comentario" style="width:41%; margin-left:4%;" runat="server" type="text" class="formatoinput" placeholder="Comentario" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                           
                         </div><br />
 
@@ -585,13 +591,12 @@
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b> </b></label>
                             <span id="Total1" style="width:30%" runat="server" class="formatoinput"></span>
                         </div>
-                             <br /><br />
 
-                             <div class="formato3">
-                                <span class="titulos"><b>Observaciones del crédito</b></span>
-                                <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese Observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
-                            </div>
-                         </div>
+                              <div class="formato3">
+                            <span class="titulos"><b>Observaciones</b></span>
+                            <input id="Observaciones" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones " maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+                    </div>
                     </div>
                  </div>
 
@@ -782,8 +787,8 @@
                 v = v.toString().split('').reverse().join('').replace(/(\d{3})/g, '$1,');
                 v = v.split('').reverse().join('').replace(/^[\,]/, '');
                 return v;
-            }   
-             
+            }
+
             function gastos1(numero) {
                 var cantidad = 0;
                 var total = 0;
@@ -793,6 +798,8 @@
                 var Interes1 = 0;
                 var Saldo1 = 0;
                 var totaldinero = 0;
+                var incendio = 0;
+                var comisiones = 0;
 
                 //alert(new Intl.NumberFormat("de-DE").format(numero));
                 var formatter = new Intl.NumberFormat('es-GT', {
@@ -802,8 +809,8 @@
                 //document.getElementById('Total1').innerHTML = "Funciona";
                 //alert(formatter.format(numero));
 
-             
-                 cantidad = document.getElementById('Total1').innerHTML;
+
+                cantidad = document.getElementById('Total1').innerHTML;
                 if (cantidad == null || cantidad == undefined || cantidad == "") {
 
                     total = document.getElementById('OtrosGastos').value;
@@ -884,7 +891,687 @@
                         Saldo1 = saldocapfinal;
                     }
 
-                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1));
+                    incendio = document.getElementById('Incendio').value;
+                    incendio = (incendio == null || incendio == undefined || incendio == "") ? 0 : incendio;
+                    if (incendio != 0) {
+                        var incendiovar = incendio.split(',');
+
+                        var incendiofinal = "";
+
+                        for (var i = 0; i < incendiovar.length; i++) {
+                            incendiofinal = incendiofinal + incendiovar[i];
+                        }
+                        incendio = incendiofinal;
+                    }
+
+
+                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1) + parseFloat(incendio));
+
+                    //alert(formatter.format(Mora));
+                    //alert(Saldo1);
+                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
+                }
+                else {
+
+                    total = document.getElementById('OtrosGastos').value;
+                    total = (total == null || total == undefined || total == "") ? 0 : total;
+                    if (total != 0) {
+                        var otrosgastos = total.split(',');
+
+                        var otrosgastosfinal = "";
+
+                        for (var i = 0; i < otrosgastos.length; i++) {
+                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
+                        }
+                        total = otrosgastosfinal;
+                    }
+
+                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
+                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
+                    if (GastosJudiciales != 0) {
+                        var gastosc = GastosJudiciales.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        GastosJudiciales = gastofinal;
+                    }
+
+                    Gastos1 = document.getElementById('Gastos1').value;
+                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
+                    if (Gastos1 != 0) {
+                        var gastosc = Gastos1.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        Gastos1 = gastofinal;
+                    }
+
+                    Mora = document.getElementById('Mora').value;
+                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
+                    if (Mora != 0) {
+                        var saldo = Mora.split(',');
+
+                        var saldofinal = "";
+
+                        for (var i = 0; i < saldo.length; i++) {
+                            saldofinal = saldofinal + saldo[i];
+                        }
+                        Mora = saldofinal;
+                    }
+
+                    Interes1 = document.getElementById('Interes1').value;
+                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
+                    if (Interes1 != 0) {
+                        var interes = Interes1.split(',');
+
+                        var interesfinal = "";
+
+                        for (var i = 0; i < interes.length; i++) {
+                            interesfinal = interesfinal + interes[i];
+                        }
+                        Interes1 = interesfinal;
+                    }
+
+                    Saldo1 = document.getElementById('Saldo1').value;
+                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
+                    if (Saldo1 != 0) {
+                        var saldocap = Saldo1.split(',');
+
+                        var saldocapfinal = "";
+
+                        for (var i = 0; i < saldocap.length; i++) {
+                            saldocapfinal = saldocapfinal + saldocap[i];
+                        }
+                        Saldo1 = saldocapfinal;
+                    }
+
+                    incendio = document.getElementById('Incendio').value;
+                    incendio = (incendio == null || incendio == undefined || incendio == "") ? 0 : incendio;
+                    if (incendio != 0) {
+                        var incendiovar = incendio.split(',');
+
+                        var incendiofinal = "";
+
+                        for (var i = 0; i < incendiovar.length; i++) {
+                            incendiofinal = incendiofinal + incendiovar[i];
+                        }
+                        incendio = incendiofinal;
+                    }
+
+                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1) + parseFloat(incendio));
+
+                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
+                }
+
+
+
+            }
+
+            function gastosJudiciales(numero) {
+                var cantidad = 0;
+                var total = 0;
+                var GastosJudiciales = 0;
+                var Gastos1 = 0;
+                var Mora = 0;
+                var Interes1 = 0;
+                var Saldo1 = 0;
+                var totaldinero = 0;
+                var incendio = 0;
+                var comisiones = 0;
+
+                //alert(new Intl.NumberFormat("de-DE").format(numero));
+                var formatter = new Intl.NumberFormat('es-GT', {
+                    style: 'currency',
+                    currency: 'GTQ',
+                });
+                //document.getElementById('Total1').innerHTML = "Funciona";
+                //alert(formatter.format(numero));
+
+
+                cantidad = document.getElementById('Total1').innerHTML;
+                if (cantidad == null || cantidad == undefined || cantidad == "") {
+
+                    total = document.getElementById('OtrosGastos').value;
+                    total = (total == null || total == undefined || total == "") ? 0 : total;
+                    if (total != 0) {
+                        var otrosgastos = total.split(',');
+
+                        var otrosgastosfinal = "";
+
+                        for (var i = 0; i < otrosgastos.length; i++) {
+                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
+                        }
+                        total = otrosgastosfinal;
+                    }
+
+                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
+                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
+                    if (GastosJudiciales != 0) {
+                        var gastosc = GastosJudiciales.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        GastosJudiciales = gastofinal;
+                    }
+
+                    Gastos1 = document.getElementById('Gastos1').value;
+                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
+                    if (Gastos1 != 0) {
+                        var gastosc = Gastos1.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        Gastos1 = gastofinal;
+                    }
+
+                    Mora = document.getElementById('Mora').value;
+                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
+                    if (Mora != 0) {
+                        var saldo = Mora.split(',');
+
+                        var saldofinal = "";
+
+                        for (var i = 0; i < saldo.length; i++) {
+                            saldofinal = saldofinal + saldo[i];
+                        }
+                        Mora = saldofinal;
+                    }
+
+                    Interes1 = document.getElementById('Interes1').value;
+                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
+                    if (Interes1 != 0) {
+                        var interes = Interes1.split(',');
+
+                        var interesfinal = "";
+
+                        for (var i = 0; i < interes.length; i++) {
+                            interesfinal = interesfinal + interes[i];
+                        }
+                        Interes1 = interesfinal;
+                    }
+
+                    Saldo1 = document.getElementById('Saldo1').value;
+                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
+                    if (Saldo1 != 0) {
+                        var saldocap = Saldo1.split(',');
+
+                        var saldocapfinal = "";
+
+                        for (var i = 0; i < saldocap.length; i++) {
+                            saldocapfinal = saldocapfinal + saldocap[i];
+                        }
+                        Saldo1 = saldocapfinal;
+                    }
+
+                    incendio = document.getElementById('Incendio').value;
+                    incendio = (incendio == null || incendio == undefined || incendio == "") ? 0 : incendio;
+                    if (incendio != 0) {
+                        var incendiovar = incendio.split(',');
+
+                        var incendiofinal = "";
+
+                        for (var i = 0; i < incendiovar.length; i++) {
+                            incendiofinal = incendiofinal + incendiovar[i];
+                        }
+                        incendio = incendiofinal;
+                    }
+
+                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1) + parseFloat(incendio));
+
+                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
+                }
+                else {
+
+                    total = document.getElementById('OtrosGastos').value;
+                    total = (total == null || total == undefined || total == "") ? 0 : total;
+                    if (total != 0) {
+                        var otrosgastos = total.split(',');
+
+                        var otrosgastosfinal = "";
+
+                        for (var i = 0; i < otrosgastos.length; i++) {
+                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
+                        }
+                        total = otrosgastosfinal;
+                    }
+
+                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
+                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
+                    if (GastosJudiciales != 0) {
+                        var gastosc = GastosJudiciales.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        GastosJudiciales = gastofinal;
+                    }
+
+                    Gastos1 = document.getElementById('Gastos1').value;
+                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
+                    if (Gastos1 != 0) {
+                        var gastosc = Gastos1.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        Gastos1 = gastofinal;
+                    }
+
+                    Mora = document.getElementById('Mora').value;
+                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
+                    if (Mora != 0) {
+                        var saldo = Mora.split(',');
+
+                        var saldofinal = "";
+
+                        for (var i = 0; i < saldo.length; i++) {
+                            saldofinal = saldofinal + saldo[i];
+                        }
+                        Mora = saldofinal;
+                    }
+
+                    Interes1 = document.getElementById('Interes1').value;
+                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
+                    if (Interes1 != 0) {
+                        var interes = Interes1.split(',');
+
+                        var interesfinal = "";
+
+                        for (var i = 0; i < interes.length; i++) {
+                            interesfinal = interesfinal + interes[i];
+                        }
+                        Interes1 = interesfinal;
+                    }
+
+                    Saldo1 = document.getElementById('Saldo1').value;
+                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
+                    if (Saldo1 != 0) {
+                        var saldocap = Saldo1.split(',');
+
+                        var saldocapfinal = "";
+
+                        for (var i = 0; i < saldocap.length; i++) {
+                            saldocapfinal = saldocapfinal + saldocap[i];
+                        }
+                        Saldo1 = saldocapfinal;
+                    }
+
+                    incendio = document.getElementById('Incendio').value;
+                    incendio = (incendio == null || incendio == undefined || incendio == "") ? 0 : incendio;
+                    if (incendio != 0) {
+                        var incendiovar = incendio.split(',');
+
+                        var incendiofinal = "";
+
+                        for (var i = 0; i < incendiovar.length; i++) {
+                            incendiofinal = incendiofinal + incendiovar[i];
+                        }
+                        incendio = incendiofinal;
+                    }
+
+                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1) + parseFloat(incendio));
+
+                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
+                }
+
+
+
+            }
+
+            function otrosGastos(numero) {
+                var cantidad = 0;
+                var total = 0;
+                var GastosJudiciales = 0;
+                var Gastos1 = 0;
+                var Mora = 0;
+                var Interes1 = 0;
+                var Saldo1 = 0;
+                var totaldinero = 0;
+                var incendio = 0;
+                var comisiones = 0;
+
+                //alert(new Intl.NumberFormat("de-DE").format(numero));
+                var formatter = new Intl.NumberFormat('es-GT', {
+                    style: 'currency',
+                    currency: 'GTQ',
+                });
+                //document.getElementById('Total1').innerHTML = "Funciona";
+                //alert(formatter.format(numero));
+
+
+                cantidad = document.getElementById('Total1').innerHTML;
+                if (cantidad == null || cantidad == undefined || cantidad == "") {
+
+                    total = document.getElementById('OtrosGastos').value;
+                    total = (total == null || total == undefined || total == "") ? 0 : total;
+                    if (total != 0) {
+                        var otrosgastos = total.split(',');
+
+                        var otrosgastosfinal = "";
+
+                        for (var i = 0; i < otrosgastos.length; i++) {
+                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
+                        }
+                        total = otrosgastosfinal;
+                    }
+
+                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
+                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
+                    if (GastosJudiciales != 0) {
+                        var gastosc = GastosJudiciales.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        GastosJudiciales = gastofinal;
+                    }
+
+                    Gastos1 = document.getElementById('Gastos1').value;
+                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
+                    if (Gastos1 != 0) {
+                        var gastosc = Gastos1.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        Gastos1 = gastofinal;
+                    }
+
+                    Mora = document.getElementById('Mora').value;
+                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
+                    if (Mora != 0) {
+                        var saldo = Mora.split(',');
+
+                        var saldofinal = "";
+
+                        for (var i = 0; i < saldo.length; i++) {
+                            saldofinal = saldofinal + saldo[i];
+                        }
+                        Mora = saldofinal;
+                    }
+
+                    Interes1 = document.getElementById('Interes1').value;
+                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
+                    if (Interes1 != 0) {
+                        var interes = Interes1.split(',');
+
+                        var interesfinal = "";
+
+                        for (var i = 0; i < interes.length; i++) {
+                            interesfinal = interesfinal + interes[i];
+                        }
+                        Interes1 = interesfinal;
+                    }
+
+                    Saldo1 = document.getElementById('Saldo1').value;
+                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
+                    if (Saldo1 != 0) {
+                        var saldocap = Saldo1.split(',');
+
+                        var saldocapfinal = "";
+
+                        for (var i = 0; i < saldocap.length; i++) {
+                            saldocapfinal = saldocapfinal + saldocap[i];
+                        }
+                        Saldo1 = saldocapfinal;
+                    }
+
+                    incendio = document.getElementById('Incendio').value;
+                    incendio = (incendio == null || incendio == undefined || incendio == "") ? 0 : incendio;
+                    if (incendio != 0) {
+                        var incendiovar = incendio.split(',');
+
+                        var incendiofinal = "";
+
+                        for (var i = 0; i < incendiovar.length; i++) {
+                            incendiofinal = incendiofinal + incendiovar[i];
+                        }
+                        incendio = incendiofinal;
+                    }
+
+
+                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1) + parseFloat(incendio));
+
+                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
+                }
+                else {
+
+                    total = document.getElementById('OtrosGastos').value;
+                    total = (total == null || total == undefined || total == "") ? 0 : total;
+                    if (total != 0) {
+                        var otrosgastos = total.split(',');
+
+                        var otrosgastosfinal = "";
+
+                        for (var i = 0; i < otrosgastos.length; i++) {
+                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
+                        }
+                        total = otrosgastosfinal;
+                    }
+
+                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
+                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
+                    if (GastosJudiciales != 0) {
+                        var gastosc = GastosJudiciales.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        GastosJudiciales = gastofinal;
+                    }
+
+                    Gastos1 = document.getElementById('Gastos1').value;
+                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
+                    if (Gastos1 != 0) {
+                        var gastosc = Gastos1.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        Gastos1 = gastofinal;
+                    }
+
+                    Mora = document.getElementById('Mora').value;
+                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
+                    if (Mora != 0) {
+                        var saldo = Mora.split(',');
+
+                        var saldofinal = "";
+
+                        for (var i = 0; i < saldo.length; i++) {
+                            saldofinal = saldofinal + saldo[i];
+                        }
+                        Mora = saldofinal;
+                    }
+
+                    Interes1 = document.getElementById('Interes1').value;
+                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
+                    if (Interes1 != 0) {
+                        var interes = Interes1.split(',');
+
+                        var interesfinal = "";
+
+                        for (var i = 0; i < interes.length; i++) {
+                            interesfinal = interesfinal + interes[i];
+                        }
+                        Interes1 = interesfinal;
+                    }
+
+                    Saldo1 = document.getElementById('Saldo1').value;
+                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
+                    if (Saldo1 != 0) {
+                        var saldocap = Saldo1.split(',');
+
+                        var saldocapfinal = "";
+
+                        for (var i = 0; i < saldocap.length; i++) {
+                            saldocapfinal = saldocapfinal + saldocap[i];
+                        }
+                        Saldo1 = saldocapfinal;
+                    }
+
+                    incendio = document.getElementById('Incendio').value;
+                    incendio = (incendio == null || incendio == undefined || incendio == "") ? 0 : incendio;
+                    if (incendio != 0) {
+                        var incendiovar = incendio.split(',');
+
+                        var incendiofinal = "";
+
+                        for (var i = 0; i < incendiovar.length; i++) {
+                            incendiofinal = incendiofinal + incendiovar[i];
+                        }
+                        incendio = incendiofinal;
+                    }
+
+                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1) + parseFloat(incendio));
+
+                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
+                }
+
+
+
+            }
+
+            function incendio(numero) {
+                var cantidad = 0;
+                var total = 0;
+                var GastosJudiciales = 0;
+                var Gastos1 = 0;
+                var Mora = 0;
+                var Interes1 = 0;
+                var Saldo1 = 0;
+                var totaldinero = 0;
+                var incendio = 0;
+                var comisiones = 0;
+
+                //alert(new Intl.NumberFormat("de-DE").format(numero));
+                var formatter = new Intl.NumberFormat('es-GT', {
+                    style: 'currency',
+                    currency: 'GTQ',
+                });
+                //document.getElementById('Total1').innerHTML = "Funciona";
+                //alert(formatter.format(numero));
+
+
+                cantidad = document.getElementById('Total1').innerHTML;
+                if (cantidad == null || cantidad == undefined || cantidad == "") {
+
+                    total = document.getElementById('OtrosGastos').value;
+                    total = (total == null || total == undefined || total == "") ? 0 : total;
+                    if (total != 0) {
+                        var otrosgastos = total.split(',');
+
+                        var otrosgastosfinal = "";
+
+                        for (var i = 0; i < otrosgastos.length; i++) {
+                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
+                        }
+                        total = otrosgastosfinal;
+                    }
+
+                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
+                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
+                    if (GastosJudiciales != 0) {
+                        var gastosc = GastosJudiciales.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        GastosJudiciales = gastofinal;
+                    }
+
+                    Gastos1 = document.getElementById('Gastos1').value;
+                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
+                    if (Gastos1 != 0) {
+                        var gastosc = Gastos1.split(',');
+
+                        var gastofinal = "";
+
+                        for (var i = 0; i < gastosc.length; i++) {
+                            gastofinal = gastofinal + gastosc[i];
+                        }
+                        Gastos1 = gastofinal;
+                    }
+
+                    Mora = document.getElementById('Mora').value;
+                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
+                    if (Mora != 0) {
+                        var saldo = Mora.split(',');
+
+                        var saldofinal = "";
+
+                        for (var i = 0; i < saldo.length; i++) {
+                            saldofinal = saldofinal + saldo[i];
+                        }
+                        Mora = saldofinal;
+                    }
+
+                    Interes1 = document.getElementById('Interes1').value;
+                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
+                    if (Interes1 != 0) {
+                        var interes = Interes1.split(',');
+
+                        var interesfinal = "";
+
+                        for (var i = 0; i < interes.length; i++) {
+                            interesfinal = interesfinal + interes[i];
+                        }
+                        Interes1 = interesfinal;
+                    }
+
+                    Saldo1 = document.getElementById('Saldo1').value;
+                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
+                    if (Saldo1 != 0) {
+                        var saldocap = Saldo1.split(',');
+
+                        var saldocapfinal = "";
+
+                        for (var i = 0; i < saldocap.length; i++) {
+                            saldocapfinal = saldocapfinal + saldocap[i];
+                        }
+                        Saldo1 = saldocapfinal;
+                    }
+
+                    incendio = document.getElementById('Incendio').value;
+                    incendio = (incendio == null || incendio == undefined || incendio == "") ? 0 : incendio;
+                    if (incendio != 0) {
+                        var incendiovar = incendio.split(',');
+
+                        var incendiofinal = "";
+
+                        for (var i = 0; i < incendiovar.length; i++) {
+                            incendiofinal = incendiofinal + incendiovar[i];
+                        }
+                        incendio = incendiofinal;
+                    }
+
+                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1) + parseFloat(incendio));
 
                     //alert(formatter.format(Interes1));
                     document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
@@ -969,200 +1656,20 @@
                         Saldo1 = saldocapfinal;
                     }
 
-                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1));
+                    incendio = document.getElementById('Incendio').value;
+                    incendio = (incendio == null || incendio == undefined || incendio == "") ? 0 : incendio;
+                    if (incendio != 0) {
+                        var incendiovar = incendio.split(',');
 
-                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
-                }
+                        var incendiofinal = "";
 
-
-              
-            }
-
-            function gastosJudiciales(numero) {
-                var cantidad = 0;
-                var total = 0;
-                var GastosJudiciales = 0;
-                var Gastos1 = 0;
-                var Mora = 0;
-                var Interes1 = 0;
-                var Saldo1 = 0;
-                var totaldinero = 0;
-
-                //alert(new Intl.NumberFormat("de-DE").format(numero));
-                var formatter = new Intl.NumberFormat('es-GT', {
-                    style: 'currency',
-                    currency: 'GTQ',
-                });
-                //document.getElementById('Total1').innerHTML = "Funciona";
-                //alert(formatter.format(numero));
-
-
-                cantidad = document.getElementById('Total1').innerHTML;
-                if (cantidad == null || cantidad == undefined || cantidad == "") {
-
-                    total = document.getElementById('OtrosGastos').value;
-                    total = (total == null || total == undefined || total == "") ? 0 : total;
-                    if (total != 0) {
-                        var otrosgastos = total.split(',');
-
-                        var otrosgastosfinal = "";
-
-                        for (var i = 0; i < otrosgastos.length; i++) {
-                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
+                        for (var i = 0; i < incendiovar.length; i++) {
+                            incendiofinal = incendiofinal + incendiovar[i];
                         }
-                        total = otrosgastosfinal;
+                        incendio = incendiofinal;
                     }
 
-                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
-                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
-                    if (GastosJudiciales != 0) {
-                        var gastosc = GastosJudiciales.split(',');
-
-                        var gastofinal = "";
-
-                        for (var i = 0; i < gastosc.length; i++) {
-                            gastofinal = gastofinal + gastosc[i];
-                        }
-                        GastosJudiciales = gastofinal;
-                    }
-
-                    Gastos1 = document.getElementById('Gastos1').value;
-                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
-                    if (Gastos1 != 0) {
-                        var gastosc = Gastos1.split(',');
-
-                        var gastofinal = "";
-
-                        for (var i = 0; i < gastosc.length; i++) {
-                            gastofinal = gastofinal + gastosc[i];
-                        }
-                        Gastos1 = gastofinal;
-                    }
-
-                    Mora = document.getElementById('Mora').value;
-                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
-                    if (Mora != 0) {
-                        var saldo = Mora.split(',');
-
-                        var saldofinal = "";
-
-                        for (var i = 0; i < saldo.length; i++) {
-                            saldofinal = saldofinal + saldo[i];
-                        }
-                        Mora = saldofinal;
-                    }
-
-                    Interes1 = document.getElementById('Interes1').value;
-                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
-                    if (Interes1 != 0) {
-                        var interes = Interes1.split(',');
-
-                        var interesfinal = "";
-
-                        for (var i = 0; i < interes.length; i++) {
-                            interesfinal = interesfinal + interes[i];
-                        }
-                        Interes1 = interesfinal;
-                    }
-
-                    Saldo1 = document.getElementById('Saldo1').value;
-                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
-                    if (Saldo1 != 0) {
-                        var saldocap = Saldo1.split(',');
-
-                        var saldocapfinal = "";
-
-                        for (var i = 0; i < saldocap.length; i++) {
-                            saldocapfinal = saldocapfinal + saldocap[i];
-                        }
-                        Saldo1 = saldocapfinal;
-                    }
-
-                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1));
-
-                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
-                }
-                else {
-
-                    total = document.getElementById('OtrosGastos').value;
-                    total = (total == null || total == undefined || total == "") ? 0 : total;
-                    if (total != 0) {
-                        var otrosgastos = total.split(',');
-
-                        var otrosgastosfinal = "";
-
-                        for (var i = 0; i < otrosgastos.length; i++) {
-                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
-                        }
-                        total = otrosgastosfinal;
-                    }
-
-                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
-                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
-                    if (GastosJudiciales != 0) {
-                        var gastosc = GastosJudiciales.split(',');
-
-                        var gastofinal = "";
-
-                        for (var i = 0; i < gastosc.length; i++) {
-                            gastofinal = gastofinal + gastosc[i];
-                        }
-                        GastosJudiciales = gastofinal;
-                    }
-
-                    Gastos1 = document.getElementById('Gastos1').value;
-                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
-                    if (Gastos1 != 0) {
-                        var gastosc = Gastos1.split(',');
-
-                        var gastofinal = "";
-
-                        for (var i = 0; i < gastosc.length; i++) {
-                            gastofinal = gastofinal + gastosc[i];
-                        }
-                        Gastos1 = gastofinal;
-                    }
-
-                    Mora = document.getElementById('Mora').value;
-                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
-                    if (Mora != 0) {
-                        var saldo = Mora.split(',');
-
-                        var saldofinal = "";
-
-                        for (var i = 0; i < saldo.length; i++) {
-                            saldofinal = saldofinal + saldo[i];
-                        }
-                        Mora = saldofinal;
-                    }
-
-                    Interes1 = document.getElementById('Interes1').value;
-                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
-                    if (Interes1 != 0) {
-                        var interes = Interes1.split(',');
-
-                        var interesfinal = "";
-
-                        for (var i = 0; i < interes.length; i++) {
-                            interesfinal = interesfinal + interes[i];
-                        }
-                        Interes1 = interesfinal;
-                    }
-
-                    Saldo1 = document.getElementById('Saldo1').value;
-                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
-                    if (Saldo1 != 0) {
-                        var saldocap = Saldo1.split(',');
-
-                        var saldocapfinal = "";
-
-                        for (var i = 0; i < saldocap.length; i++) {
-                            saldocapfinal = saldocapfinal + saldocap[i];
-                        }
-                        Saldo1 = saldocapfinal;
-                    }
-
-                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1));
+                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1) + parseFloat(incendio));
 
                     document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
                 }
@@ -1171,198 +1678,6 @@
 
             }
 
-            function otrosGastos(numero) {
-                var cantidad = 0;
-                var total = 0;
-                var GastosJudiciales = 0;
-                var Gastos1 = 0;
-                var Mora = 0;
-                var Interes1 = 0;
-                var Saldo1 = 0;
-                var totaldinero = 0;
-
-                //alert(new Intl.NumberFormat("de-DE").format(numero));
-                var formatter = new Intl.NumberFormat('es-GT', {
-                    style: 'currency',
-                    currency: 'GTQ',
-                });
-                //document.getElementById('Total1').innerHTML = "Funciona";
-                //alert(formatter.format(numero));
-
-
-                cantidad = document.getElementById('Total1').innerHTML;
-                if (cantidad == null || cantidad == undefined || cantidad == "") {
-
-                    total = document.getElementById('OtrosGastos').value;
-                    total = (total == null || total == undefined || total == "") ? 0 : total;
-                    if (total != 0) {
-                        var otrosgastos = total.split(',');
-
-                        var otrosgastosfinal = "";
-
-                        for (var i = 0; i < otrosgastos.length; i++) {
-                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
-                        }
-                        total = otrosgastosfinal;
-                    }
-
-                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
-                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
-                    if (GastosJudiciales != 0) {
-                        var gastosc = GastosJudiciales.split(',');
-
-                        var gastofinal = "";
-
-                        for (var i = 0; i < gastosc.length; i++) {
-                            gastofinal = gastofinal + gastosc[i];
-                        }
-                        GastosJudiciales = gastofinal;
-                    }
-
-                    Gastos1 = document.getElementById('Gastos1').value;
-                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
-                    if (Gastos1 != 0) {
-                        var gastosc = Gastos1.split(',');
-
-                        var gastofinal = "";
-
-                        for (var i = 0; i < gastosc.length; i++) {
-                            gastofinal = gastofinal + gastosc[i];
-                        }
-                        Gastos1 = gastofinal;
-                    }
-
-                    Mora = document.getElementById('Mora').value;
-                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
-                    if (Mora != 0) {
-                        var saldo = Mora.split(',');
-
-                        var saldofinal = "";
-
-                        for (var i = 0; i < saldo.length; i++) {
-                            saldofinal = saldofinal + saldo[i];
-                        }
-                        Mora = saldofinal;
-                    }
-
-                    Interes1 = document.getElementById('Interes1').value;
-                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
-                    if (Interes1 != 0) {
-                        var interes = Interes1.split(',');
-
-                        var interesfinal = "";
-
-                        for (var i = 0; i < interes.length; i++) {
-                            interesfinal = interesfinal + interes[i];
-                        }
-                        Interes1 = interesfinal;
-                    }
-
-                    Saldo1 = document.getElementById('Saldo1').value;
-                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
-                    if (Saldo1 != 0) {
-                        var saldocap = Saldo1.split(',');
-
-                        var saldocapfinal = "";
-
-                        for (var i = 0; i < saldocap.length; i++) {
-                            saldocapfinal = saldocapfinal + saldocap[i];
-                        }
-                        Saldo1 = saldocapfinal;
-                    }
-
-                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1));
-
-                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
-                }
-                else {
-
-                    total = document.getElementById('OtrosGastos').value;
-                    total = (total == null || total == undefined || total == "") ? 0 : total;
-                    if (total != 0) {
-                        var otrosgastos = total.split(',');
-
-                        var otrosgastosfinal = "";
-
-                        for (var i = 0; i < otrosgastos.length; i++) {
-                            otrosgastosfinal = otrosgastosfinal + otrosgastos[i];
-                        }
-                        total = otrosgastosfinal;
-                    }
-
-                    GastosJudiciales = document.getElementById('GastosJudiciales').value;
-                    GastosJudiciales = (GastosJudiciales == null || GastosJudiciales == undefined || GastosJudiciales == "") ? 0 : GastosJudiciales;
-                    if (GastosJudiciales != 0) {
-                        var gastosc = GastosJudiciales.split(',');
-
-                        var gastofinal = "";
-
-                        for (var i = 0; i < gastosc.length; i++) {
-                            gastofinal = gastofinal + gastosc[i];
-                        }
-                        GastosJudiciales = gastofinal;
-                    }
-
-                    Gastos1 = document.getElementById('Gastos1').value;
-                    Gastos1 = (Gastos1 == null || Gastos1 == undefined || Gastos1 == "") ? 0 : Gastos1;
-                    if (Gastos1 != 0) {
-                        var gastosc = Gastos1.split(',');
-
-                        var gastofinal = "";
-
-                        for (var i = 0; i < gastosc.length; i++) {
-                            gastofinal = gastofinal + gastosc[i];
-                        }
-                        Gastos1 = gastofinal;
-                    }
-
-                    Mora = document.getElementById('Mora').value;
-                    Mora = (Mora == null || Mora == undefined || Mora == "") ? 0 : Mora;
-                    if (Mora != 0) {
-                        var saldo = Mora.split(',');
-
-                        var saldofinal = "";
-
-                        for (var i = 0; i < saldo.length; i++) {
-                            saldofinal = saldofinal + saldo[i];
-                        }
-                        Mora = saldofinal;
-                    }
-
-                    Interes1 = document.getElementById('Interes1').value;
-                    Interes1 = (Interes1 == null || Interes1 == undefined || Interes1 == "") ? 0 : Interes1;
-                    if (Interes1 != 0) {
-                        var interes = Interes1.split(',');
-
-                        var interesfinal = "";
-
-                        for (var i = 0; i < interes.length; i++) {
-                            interesfinal = interesfinal + interes[i];
-                        }
-                        Interes1 = interesfinal;
-                    }
-
-                    Saldo1 = document.getElementById('Saldo1').value;
-                    Saldo1 = (Saldo1 == null || Saldo1 == undefined || Saldo1 == "") ? 0 : Saldo1;
-                    if (Saldo1 != 0) {
-                        var saldocap = Saldo1.split(',');
-
-                        var saldocapfinal = "";
-
-                        for (var i = 0; i < saldocap.length; i++) {
-                            saldocapfinal = saldocapfinal + saldocap[i];
-                        }
-                        Saldo1 = saldocapfinal;
-                    }
-
-                    totaldinero = (parseFloat(total) + parseFloat(GastosJudiciales) + parseFloat(Gastos1) + parseFloat(Mora) + parseFloat(Interes1) + parseFloat(Saldo1));
-
-                    document.getElementById('Total1').innerHTML = formatter.format(totaldinero);
-                }
-
-
-
-            }
 
 
         </script>

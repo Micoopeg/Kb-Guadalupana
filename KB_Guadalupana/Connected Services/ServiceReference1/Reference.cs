@@ -57,6 +57,62 @@ namespace KB_Guadalupana.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/buscarcreditoexpedientes", ReplyAction="*")]
         System.Threading.Tasks.Task<string> buscarcreditoexpedientesAsync(string variablebusqueda);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacolocacionesnegocios", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet cargarconsultacolocacionesnegocios();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacolocacionesnegocios", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacolocacionesnegociosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacaptacionesnegocios", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet cargarconsultacaptacionesnegocios();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacaptacionesnegocios", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacaptacionesnegociosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultagistoricocolocaciones", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet cargarconsultagistoricocolocaciones();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultagistoricocolocaciones", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultagistoricocolocacionesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultagistorrecuperacion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet cargarconsultagistorrecuperacion(string fecha1, string fecha2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultagistorrecuperacion", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultagistorrecuperacionAsync(string fecha1, string fecha2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultagistoricocolo", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet cargarconsultagistoricocolo();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultagistoricocolo", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultagistoricocoloAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacantidadregistrocolocaciones", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet cargarconsultacantidadregistrocolocaciones();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacantidadregistrocolocaciones", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacantidadregistrocolocacionesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacantidadregistrocaptaciones", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet cargarconsultacantidadregistrocaptaciones();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacantidadregistrocaptaciones", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacantidadregistrocaptacionesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacantidadregistrorecuperacion", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet cargarconsultacantidadregistrorecuperacion(string fecha1, string fecha2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/cargarconsultacantidadregistrorecuperacion", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacantidadregistrorecuperacionAsync(string fecha1, string fecha2);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -132,6 +188,70 @@ namespace KB_Guadalupana.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> buscarcreditoexpedientesAsync(string variablebusqueda) {
             return base.Channel.buscarcreditoexpedientesAsync(variablebusqueda);
+        }
+        
+        public System.Data.DataSet cargarconsultacolocacionesnegocios() {
+            return base.Channel.cargarconsultacolocacionesnegocios();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacolocacionesnegociosAsync() {
+            return base.Channel.cargarconsultacolocacionesnegociosAsync();
+        }
+        
+        public System.Data.DataSet cargarconsultacaptacionesnegocios() {
+            return base.Channel.cargarconsultacaptacionesnegocios();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacaptacionesnegociosAsync() {
+            return base.Channel.cargarconsultacaptacionesnegociosAsync();
+        }
+        
+        public System.Data.DataSet cargarconsultagistoricocolocaciones() {
+            return base.Channel.cargarconsultagistoricocolocaciones();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultagistoricocolocacionesAsync() {
+            return base.Channel.cargarconsultagistoricocolocacionesAsync();
+        }
+        
+        public System.Data.DataSet cargarconsultagistorrecuperacion(string fecha1, string fecha2) {
+            return base.Channel.cargarconsultagistorrecuperacion(fecha1, fecha2);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultagistorrecuperacionAsync(string fecha1, string fecha2) {
+            return base.Channel.cargarconsultagistorrecuperacionAsync(fecha1, fecha2);
+        }
+        
+        public System.Data.DataSet cargarconsultagistoricocolo() {
+            return base.Channel.cargarconsultagistoricocolo();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultagistoricocoloAsync() {
+            return base.Channel.cargarconsultagistoricocoloAsync();
+        }
+        
+        public System.Data.DataSet cargarconsultacantidadregistrocolocaciones() {
+            return base.Channel.cargarconsultacantidadregistrocolocaciones();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacantidadregistrocolocacionesAsync() {
+            return base.Channel.cargarconsultacantidadregistrocolocacionesAsync();
+        }
+        
+        public System.Data.DataSet cargarconsultacantidadregistrocaptaciones() {
+            return base.Channel.cargarconsultacantidadregistrocaptaciones();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacantidadregistrocaptacionesAsync() {
+            return base.Channel.cargarconsultacantidadregistrocaptacionesAsync();
+        }
+        
+        public System.Data.DataSet cargarconsultacantidadregistrorecuperacion(string fecha1, string fecha2) {
+            return base.Channel.cargarconsultacantidadregistrorecuperacion(fecha1, fecha2);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> cargarconsultacantidadregistrorecuperacionAsync(string fecha1, string fecha2) {
+            return base.Channel.cargarconsultacantidadregistrorecuperacionAsync(fecha1, fecha2);
         }
     }
 }

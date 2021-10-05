@@ -382,17 +382,56 @@ body{
 <body>
            <div class="topnav" id="myTopnav">
               <a href="../Sesion/MenuBarra.aspx" class="active">Inicio</a>
-               <a href="Dashboard.aspx">Dashboard <i class="fas fa-chart-bar"></i></a>
-              <div id="MenuCobros" runat="server" class="dropdown">
+
+               <div id="Div1" runat="server" class="dropdown">
+                <button class="dropbtn" onclick="return false;">Opciones
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                   <a href="Dashboard.aspx">Dashboard   <i class="fas fa-chart-bar"></i></a>
+                   <a href="ControlIncidente.aspx">Control de Incidente    <i class="fas fa-pen"></i></a>
+                   <a href="PendientePagoExtrajudicial.aspx">Pago extrajudicial   <i class="fas fa-coins"></i></a>
+                </div>
+              </div>
+               
+                       <div id="Div2" runat="server" class="dropdown">
+                        <button class="dropbtn" onclick="return false;">Menú
+                          <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <asp:Repeater ID="Repeater1" runat="server" EnableViewState="true">
+                                <ItemTemplate>
+                                    <a id="Opciones" runat="server" href='<%# Eval("Ruta") %>'><%# Eval("Nombre") %></a>
+                                </ItemTemplate>
+                            </asp:Repeater> 
+                       </div>
+                      </div>
+                  
+             
+              <%-- <div id="Opciones" runat="server" class="dropdown">
+                <button class="dropbtn">Opciones
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                   <a href="Dashboard.aspx">Dashboard   <i class="fas fa-chart-bar"></i></a>
+                   <a href="ControlIncidente.aspx">Control de Incidente    <i class="fas fa-pen"></i></a>
+                   <a href="PendientePagoExtrajudicial.aspx">Pago extrajudicial   <i class="fas fa-coins"></i></a>
+                </div>
+              </div>
+
+             <div id="MenuCobros" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                   <a id="Cobros" runat="server" href="AsignarProceso.aspx">Creación Expediente de Origen</a>
+                  <a id="SonSuficientes" runat="server" href="DiligenciamientoCobros.aspx">Diligenciamiento</a>
+                  <a id="ResolucionFav" runat="server" href="PendienteResolucionFavorable.aspx">Gestión para entrega de fondos</a>
+       
                 </div>
               </div>
 
-               <div id="MenuConta" runat="server" class="dropdown">
+             <div id="MenuConta" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
@@ -412,12 +451,17 @@ body{
                 </div>
               </div>
 
-                <div id="MenuAbogado" runat="server" class="dropdown">
+             <div id="MenuAbogado" runat="server" class="dropdown">
                 <button class="dropbtn">Menú
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                   <a id="Demanda" runat="server" href="PendientePresentacionDemanda.aspx">Presentación de Demanda</a>
+                  <a id="Diligenciamiento" runat="server" href="PendienteDiligenciamiento.aspx">Diligenciamiento a medidas precautorias</a>
+                  <a id="NotificacionEVA" runat="server" href="PendienteNotificacionApremio.aspx">Notificación al asociado E.V.A.</a>
+                  <a id="Facturacion" runat="server" href="PendienteFacturacionAbogado.aspx">Facturación</a>
+                  <a id="Notificacion" runat="server" href="PendienteNotificacion.aspx">Notificación al asociado</a>
+                 
                 </div>
               </div>
 
@@ -428,9 +472,8 @@ body{
                 <div class="dropdown-content">
                   <a id="RequerimientoPago" runat="server" href="PendienteRequerimientoPago.aspx">Requerimiento de pago</a>
                 </div>
-              </div>
+              </div>--%>
 
-             <a href="ControlIncidente.aspx">Control de Incidente  <i class="fas fa-pen"></i></a>
 
               <a href="../Sesion/CerrarSesion.aspx">Cerrar sesión  <i class="fa fa-power-off"></i></a>
               <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
@@ -438,6 +481,7 @@ body{
                 <span class="logo" id="NombreUsuario" runat="server"><b></b></span>
                </div>
             </div>
+
     <form id="form1" runat="server">
         <div class="general">
             <div class="formularioCobros">
@@ -475,12 +519,18 @@ body{
 
                      <div class="formato2">
                     <asp:Button ID="GenerarReporte" runat="server" CssClass="boton" Text="Generar" OnClick="Generar_Click"/>
+                   
                          </div>
                     <br /><br />
 
                     <div class="formato">
                         <rsweb:ReportViewer ID="ReporteAbogados" runat="server" style="min-width:100%; max-width:100%; width:25%  " ShowBackButton="False" ShowFindControls="False" ShowRefreshButton="False" ShowZoomControl="False" ></rsweb:ReportViewer>
                     </div>
+
+                    <div class="formato2">
+                         <asp:Button ID="GuardarReporte" runat="server" CssClass="boton" Text="Guardar" OnClick="GuardarReporte_Click"/>
+                    </div>
+
                 </div>
 
                 <div class="encabezado" id="ReporteSubir" runat="server">
@@ -494,9 +544,10 @@ body{
                              <input id="NumReporte" runat="server" type="text" class="formatoinput" readonly="readonly" placeholder="Ingrese número de reporte" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                         </div><br /><br />
 
-                      <label class="titulos" style="margin-bottom:15px"><b>Reporte de recibido de expedientes</b></label>
+                      
                         <div class="formato">
-                        <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
+                        <label class="titulos" style="margin-bottom:15px"><b>Reporte de recibido de expedientes</b></label>
+                        <%--<asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>--%>
                        <asp:FileUpload id="FileUpload1" runat="server"></asp:FileUpload>
                     </div><br /><br />
 

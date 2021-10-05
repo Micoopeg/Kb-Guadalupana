@@ -74,7 +74,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
             if (var1.Length == 4)
             {
-                Response.Write("NO HAY DATOS QUE MOSTRARA");
+                String script = "alert('Se perdió la conexión, intente más tarde'); window.location.href= 'CreditosCertificacionJuridico.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
@@ -115,10 +116,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     ClienteNombre.Value = campos[20];
                     MontoOriginal.Value = "Q " + campos[9];
                     CapitalDesem.Value = "Q " + campos[9];
-                    Interes1.Value = campos[16];
-                    Mora.Value = campos[14];
+                    //Interes1.Value = campos[16];
+                    //Mora.Value = campos[14];
                     DescripcionDoc.Value = campos[24];
-                    Saldo1.Value = campos[15];
+                    //Saldo1.Value = campos[15];
                     //Gastos1.Value = campos[31];
                     //GastosJudiciales.Value = campos[32];
                     //OtrosGastos.Value = campos[33];
@@ -147,10 +148,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     if (campos[8] == "            .00")
                     {
                         SaldoActual.Value = "Q 0.00";
+                        Saldo1.Value = "Q 0.00";
                     }
                     else
                     {
                         SaldoActual.Value = "Q " + campos[8];
+                        Saldo1.Value = "Q " + campos[8];
                     }
                 }
 
@@ -185,6 +188,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     OtrosGastos.Value = campos3[15];
                     Comentario.Value = campos3[16];
                     Total1.InnerText = "Q " + campos3[17];
+                    Incendio.Value = campos3[20];
+                    Interes1.Value = campos3[21];
+                    Mora.Value = campos3[22];
                 }
                 credito.Visible = true;
                 tarjeta.Visible = true;
@@ -197,10 +203,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     NumIncidente.Value = campos2[0];
                     NumeroIncidente.Value = campos2[0];
                     Gastos1.Value = campos2[1];
-                    GastosJudiciales.Value =campos2[2];
+                    GastosJudiciales.Value = campos2[2];
                     OtrosGastos.Value = campos2[3];
                     Total1.InnerHtml = "Q " + campos2[4];
                     Comentario.Value = campos2[5];
+                    Incendio.Value = campos2[9];
+                    Interes1.Value = campos2[10];
+                    Mora.Value = campos2[11];
                 }
                 credito.Visible = true;
                 tarjeta.Visible = false;
@@ -273,32 +282,32 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (MedidasPre1.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "1", "Embargo de Salario", numcredito);
+                    sn.insertarmedidaspre(sig6, "1", "Embargo de Salario", numcredito, "1");
                 }
                 if (MedidasPre2.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "2", "Embargo de cuentas bancarias", numcredito);
+                    sn.insertarmedidaspre(sig6, "2", "Embargo de cuentas bancarias", numcredito, "1");
                 }
                 if (MedidasPre3.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "3", "Arraigo", numcredito);
+                    sn.insertarmedidaspre(sig6, "3", "Arraigo", numcredito, "1");
                 }
                 if (MedidasPre4.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito);
+                    sn.insertarmedidaspre(sig6, "4", "Embargo en cooperativas", numcredito, "1");
                 }
                 if (MedidasPre6.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "6", OtrasMedidas.Value, numcredito);
+                    sn.insertarmedidaspre(sig6, "6", OtrasMedidas.Value, numcredito, "1");
                 }
                 if (MedidasPre5.Checked)
                 {
                     string sig6 = sn.siguiente("pj_asignacionmedidas", "idpj_asignacionmedidas");
-                    sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito);
+                    sn.insertarmedidaspre(sig6, "5", "Embargo de bienes", numcredito, "1");
                 }
 
                 string tipocredito = Session["TipoCredito"] as string;

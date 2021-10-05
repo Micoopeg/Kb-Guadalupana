@@ -63,7 +63,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
             if (var1.Length == 4)
             {
-                Response.Write("NO HAY DATOS QUE MOSTRARA");
+                String script = "alert('Se perdió la conexión, intente más tarde'); window.location.href= 'AsignarProceso.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
@@ -104,10 +105,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     ClienteNombre.Value = campos[20];
                     MontoOriginal.Value = "Q " + campos[9];
                     CapitalDesem.Value = "Q " + campos[9];
-                    Interes1.Value = campos[16];
-                    Mora.Value = campos[14];
+                    //Interes1.Value = campos[16];
+                    //Mora.Value = campos[14];
                     DescripcionDoc.Value = campos[24];
-                    Saldo1.Value = campos[15];
+                    //Saldo1.Value = campos[15];
                     //Gastos1.Value = campos[31];
                     //GastosJudiciales.Value = campos[32];
                     //OtrosGastos.Value = campos[33];
@@ -136,10 +137,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     if (campos[8] == "            .00")
                     {
                         SaldoActual.Value = "Q 0.00";
+                        Saldo1.Value = "Q 0.00";
                     }
                     else
                     {
                         SaldoActual.Value = "Q " + campos[8];
+                        Saldo1.Value = "Q " + campos[8];
                     }
                 }
 
@@ -175,9 +178,11 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Comentario.Value = campos3[16];
                     Total1.InnerText = "Q " + campos3[17];
                     string fechaestado = campos3[19];
-                    Observaciones.Value = campos3[20];
                     string[] separarfechahora = fechaestado.Split(' ');
                     string[] fechaestado2 = separarfechahora[0].Split('/');
+                    Incendio.Value = campos3[20];
+                    Interes1.Value = campos3[21];
+                    Mora.Value = campos3[22];
 
                     if (fechaestado2[0].Length == 1)
                     {
@@ -203,9 +208,11 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Total1.InnerHtml = "Q " + campos2[4];
                     Comentario.Value = campos2[5];
                     string fechaestado = campos2[8];
-                    Observaciones.Value = campos2[9];
                     string[] separarfechahora = fechaestado.Split(' ');
                     string[] fechaestado2 = separarfechahora[0].Split('/');
+                    Incendio.Value = campos2[9];
+                    Interes1.Value = campos2[10];
+                    Mora.Value = campos2[11];
 
                     if (fechaestado2[0].Length == 1)
                     {
@@ -273,8 +280,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string consultadicabi = sn.tipodocumentoConsultaDicabi(numcredito);
             string bitacora = sn.tipodocumentoBitacora(numcredito);
             string estadocuenta = sn.tipodocumentoEstadoCuenta(numcredito);
+            string transunion = sn.tipodocumentoTransunion(numcredito);
 
-            if (infornet == "" || recibo == "" || dpi == "" || cartaingreso == "" || contratos == "" || solicitudcredito == "" || consultaiggs == "" || consultadicabi == "" || bitacora == "" || estadocuenta == "")
+            if (infornet == "" || recibo == "" || dpi == "" || cartaingreso == "" || contratos == "" || solicitudcredito == "" || consultaiggs == "" || consultadicabi == "" || bitacora == "" || estadocuenta == "" || transunion == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los documentos');", true);
             }
@@ -308,12 +316,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 if (tipocredito == "tarjeta")
                 {
                     fecha = sn.fechacreaciontarjeta(numcredito);
-                    sn.editartarjeta(NumIncidente.Value, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, NumPrestamo.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), FechaEstadoCuenta.Value, Observaciones.Value);
+                    sn.editartarjeta(NumIncidente.Value, NumTarjeta.Value, NumCuenta.Value, CIF.Value, PrimerNombre.Value, SegundoNombre.Value, OtroNombre.Value, ApellidoCasada.Value, PrimerApellido.Value, SegundoApellido.Value, Limite.Value, Saldo.Value, NumPrestamo.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, Comentario.Value, string.Format("{0:#,0.00}", total), FechaEstadoCuenta.Value, Incendio.Value, Interes1.Value, Mora.Value);
                 }
                 else
                 {
                     fecha = sn.fechacreacioncredito(numcredito);
-                    sn.editarcredito(NumIncidente.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, NumPrestamo.Value, FechaEstadoCuenta.Value, Observaciones.Value);
+                    sn.editarcredito(NumIncidente.Value, Gastos1.Value, GastosJudiciales.Value, OtrosGastos.Value, string.Format("{0:#,0.00}", total), Comentario.Value, NumPrestamo.Value, FechaEstadoCuenta.Value, Incendio.Value, Interes1.Value, Mora.Value);
                 }
 
                 string[] fechaseparada = fecha.Split(' ');
@@ -341,7 +349,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 String script = "alert('Se envió exitosamente'); window.location.href= 'AsignarProceso.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
-           
+
         }
 
         protected void agregar_Click(object sender, EventArgs e)

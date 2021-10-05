@@ -21,7 +21,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         Conexion conexiongeneral = new Conexion();
         Sentencia_juridico sn = new Sentencia_juridico();
         string documento = "";
+        
         ServiceReference1.WebService1SoapClient WS = new ServiceReference1.WebService1SoapClient();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,7 +47,23 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 //    llenarcombodocumento();
                 //    Validar.Visible = true;
                 //}
-                if (sn.etapavoucher(numcredito) == "")
+                string estado = Session["etapa"] as string;
+
+                string[] voucher2;
+                if(estado == "12" || estado == "11" || estado == "13")
+                {
+                    voucher2 = sn.etapavoucher2(numcredito);
+                }
+                else if (estado == "18" || estado == "16" || estado == "17")
+                {
+                    voucher2 = sn.etapavoucher3(numcredito);
+                }
+                else
+                {
+                    voucher2 = sn.etapavoucher(numcredito);
+                }
+                
+                if ((voucher2[1] == "" || voucher2[1] == null) && (voucher2[0] == "" || voucher2[0] == null) && (voucher2[2] == "" || voucher2[2] == null))
                 {
                     llenarcomentarios();
                     llenarformulario();
@@ -54,10 +72,13 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     llenarcombomotivo();
                     datosfactura();
                     llenarcombodocumento();
+                    llenarcombodocumentocheque();
                     Otro.Visible = false;
                     voucher.Visible = false;
                     GuardarVoucher.Visible = false;
                     Validar.Visible = true;
+                    //ObservacionesFactura.Visible = true;
+                    //Rechazar.Visible = true;
                     pfd.Visible = false;
                     Generar.Visible = false;
                     TituloObservaciones.Visible = false;
@@ -68,6 +89,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     llenarcomentarios();
                     llenarformulario();
+                    subircheque.Visible = false;
                     Guardar.Visible = false;
                     Generar.Visible = false;
                     voucher.Visible = true;
@@ -79,9 +101,20 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     llenarcombomotivo();
                     datosfactura();
                     llenarcombodocumento();
+                    llenarcombodocumentocheque();
                     Validar.Visible = false;
+                    //ObservacionesFactura.Visible = false;
+                    //Rechazar.Visible = false;
                     ObservacionesCredito.Visible = false;
                     TituloObservaciones.Visible = false;
+                    NumFactura.Disabled = true;
+                    Serie.Disabled = true;
+                    Descripcion.Disabled = true;
+                    ImporteTotal2.Disabled = true;
+                    FechaEmision.Disabled = true;
+                    ImporteCaso.Disabled = true;
+                    NombreCheque.Disabled = true;
+                    MotivoPago.Enabled = false;
                 }
             
             }
@@ -95,7 +128,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
                     string numcredito = Session["credito"] as string;
                     sqlCon.Open();
-                    string query = "SELECT pj_documento.idpj_documento AS Codigo, pj_tipodocumento.pj_nombretipodoc AS TipoDocumento, pj_documento.pj_nombrearchivo AS Nombre FROM pj_documento INNER JOIN pj_tipodocumento ON pj_documento.idpj_tipodocumento = pj_tipodocumento.idpj_tipodocumento WHERE idpj_credito = '" + numcredito + "' AND pj_documento.idpj_tipodocumento IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)";
+                    string query = "SELECT pj_documento.idpj_documento AS Codigo, pj_tipodocumento.pj_nombretipodoc AS TipoDocumento, pj_documento.pj_nombrearchivo AS Nombre FROM pj_documento INNER JOIN pj_tipodocumento ON pj_documento.idpj_tipodocumento = pj_tipodocumento.idpj_tipodocumento WHERE idpj_credito = '" + numcredito + "' AND pj_documento.idpj_tipodocumento IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20)";
                     MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
                     DataTable dt = new DataTable();
                     myCommand.Fill(dt);
@@ -133,7 +166,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         protected void Generar_Click(object sender, EventArgs e)
         {
-            if(Observaciones.Value == "" || RegistroContable.Value == "" || Concepto.Value == "")
+            if(Observaciones.Value == "" || NombreCuenta.Value == "" || Concepto.Value == "" || NumCuenta.Value == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", "Debe llenar todos los campos", true);
             }
@@ -147,6 +180,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         public void GenerarPDF()
         {
+            string estado = Session["etapa"] as string;
             Document doc = new Document(PageSize.LETTER);
             doc.SetMargins(40f, 40f, 40f, 40f);
             try
@@ -208,18 +242,24 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 tbl1.AddCell(new PdfPCell(new Phrase("Cheque al nombre de: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
                 tbl1.AddCell(new PdfPCell(new Phrase(NombreCheque.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_LEFT });
                 doc.Add(new Phrase(" "));
-                tbl1.AddCell(new PdfPCell(new Phrase("Monto a pagar: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                tbl1.AddCell(new PdfPCell(new Phrase("Q " + ImporteTotal2.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_LEFT });
-                doc.Add(new Phrase(" "));
+                //tbl1.AddCell(new PdfPCell(new Phrase("Monto a pagar: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                //tbl1.AddCell(new PdfPCell(new Phrase("Q " + ImporteTotal2.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_LEFT });
+                //doc.Add(new Phrase(" "));
                 tbl1.AddCell(new PdfPCell(new Phrase("Concepto de: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
                 tbl1.AddCell(new PdfPCell(new Phrase(Concepto.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
+                doc.Add(new Phrase(" "));
+                tbl1.AddCell(new PdfPCell(new Phrase("Factura No.: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                tbl1.AddCell(new PdfPCell(new Phrase(NumFactura.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
+                doc.Add(new Phrase(" "));
+                tbl1.AddCell(new PdfPCell(new Phrase("Serie: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                tbl1.AddCell(new PdfPCell(new Phrase(Serie.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
                 doc.Add(new Phrase(" "));
                 tbl1.AddCell(new PdfPCell(new Phrase("Observaciones: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
                 tbl1.AddCell(new PdfPCell(new Phrase(Observaciones.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_JUSTIFIED });
                 doc.Add(new Phrase(" "));
-                tbl1.AddCell(new PdfPCell(new Phrase("Resgistro Contable: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
-                tbl1.AddCell(new PdfPCell(new Phrase(RegistroContable.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_LEFT });
-                doc.Add(new Phrase(" "));
+                //tbl1.AddCell(new PdfPCell(new Phrase("Resgistro Contable: ", new Font(basf, 11))) { Border = 0, HorizontalAlignment = Element.ALIGN_LEFT });
+                //tbl1.AddCell(new PdfPCell(new Phrase(RegistroContable.Value, new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_LEFT });
+                //doc.Add(new Phrase(" "));
                 doc.Add(tbl1);
 
                 doc.Add(new Phrase(" "));
@@ -236,21 +276,32 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 dt1.Columns.Add("CIF");
                 dt1.Columns.Add("Nombre");
                 dt1.Columns.Add("Credito");
-                dt1.Columns.Add("Juicio");
-                dt1.Columns.Add("Juzgado");
-                dt1.Columns.Add("Factura");
+                dt1.Columns.Add("Nombre de la cuenta");
+                dt1.Columns.Add("No. de cuenta");
+                dt1.Columns.Add("Centro de costo");
                 dt1.Columns.Add("Importe");
 
-                dt1 = sn.solicitudcheque(Serie.Value);
+                if (estado == "11")
+                {
+                    dt1 = sn.solicitudchequeEstapa2(Serie.Value);
+                }
+                else if(estado == "16")
+                {
+                    dt1 = sn.solicitudchequeEstapa3(Serie.Value);
+                }
+                else
+                {
+                    dt1 = sn.solicitudcheque(Serie.Value);
+                }
 
                 PdfPTable table = new PdfPTable(dt1.Columns.Count);
                 var tbl2 = new PdfPTable(dt1.Columns.Count) { WidthPercentage = 100 };
                 var c1 = new PdfPCell(new Phrase("CIF", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 4f, HorizontalAlignment = Element.ALIGN_CENTER };
                 var c2 = new PdfPCell(new Phrase("Nombre", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
                 var c3 = new PdfPCell(new Phrase("Credito", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
-                var c7 = new PdfPCell(new Phrase("Juicio", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
-                var c4 = new PdfPCell(new Phrase("Juzgado", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
-                var c5 = new PdfPCell(new Phrase("Factura", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
+                var c7 = new PdfPCell(new Phrase("Nombre de la cuenta", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
+                var c4 = new PdfPCell(new Phrase("No. de cuenta", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
+                var c5 = new PdfPCell(new Phrase("Centro de costo", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
                 var c6 = new PdfPCell(new Phrase("Importe", new Font(basf, 11))) { Border = 0, BorderWidthBottom = .5f, BorderWidthTop = .5f, BorderWidthLeft = .5f, BorderWidthRight = .5f, Padding = 2f, HorizontalAlignment = Element.ALIGN_CENTER };
 
                 table.TotalWidth = 532f;
@@ -283,9 +334,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     tbl2.AddCell(new PdfPCell(new Phrase(dt1.Rows[i]["CIF"].ToString(), new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
                     tbl2.AddCell(new PdfPCell(new Phrase(dt1.Rows[i]["Nombre"].ToString(), new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
                     tbl2.AddCell(new PdfPCell(new Phrase(dt1.Rows[i]["Credito"].ToString(), new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
-                    tbl2.AddCell(new PdfPCell(new Phrase(dt1.Rows[i]["Juicio"].ToString(), new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
-                    tbl2.AddCell(new PdfPCell(new Phrase(dt1.Rows[i]["Juzgado"].ToString(), new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
-                    tbl2.AddCell(new PdfPCell(new Phrase(dt1.Rows[i]["Factura"].ToString(), new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
+                    tbl2.AddCell(new PdfPCell(new Phrase(NombreCuenta.Value, new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
+                    tbl2.AddCell(new PdfPCell(new Phrase(NumCuenta.Value, new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
+                    tbl2.AddCell(new PdfPCell(new Phrase(CentroCosto.Value, new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
                     tbl2.AddCell(new PdfPCell(new Phrase(dt1.Rows[i]["Importe"].ToString(), new Font(basf, 11))) { Border = 0, BorderColorLeft = BaseColor.BLACK, BorderWidthLeft = .5f, BorderColorRight = BaseColor.BLACK, BorderWidthRight = .5f, BorderColorTop = BaseColor.BLACK, BorderWidthTop = .5f, BorderColorBottom = BaseColor.BLACK, BorderWidthBottom = .5f, HorizontalAlignment = Element.ALIGN_CENTER });
                     doc.Add(tbl2);
                 }
@@ -385,7 +436,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
                 doc.Close();
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename= -certificacion" + ".pdf");
+                Response.AddHeader("content-disposition", "attachment;filename= -Solicitud_cheque" + ".pdf");
                 HttpContext.Current.Response.Write(doc);
                 Response.Flush();
                 Response.End();
@@ -413,8 +464,27 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         public void datosfactura()
         {
             string numcredito = Session["credito"] as string;
+            string estado = Session["etapa"] as string;
 
-            string[] factura = sn.datosfactura(numcredito);
+            string[] factura;
+
+            if(estado == "13")
+            {
+                factura = sn.datosfactura2(numcredito);
+            }
+            else if(estado == "7")
+            {
+                factura = sn.datosfactura3(numcredito);
+            }
+            else if(estado == "18")
+            {
+                factura = sn.datosfactura4(numcredito);
+            }
+            else
+            {
+               factura = sn.datosfactura(numcredito);
+            }
+           
 
             for (int i = 0; i < factura.Length; i++)
             {
@@ -491,22 +561,42 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
         protected void Guardar_Click(object sender, EventArgs e)
         {
-            if (Observaciones.Value == "" || RegistroContable.Value == "")
+            string estado = Session["etapa"] as string;
+            string numcredito = Session["credito"] as string;
+            string cheque = sn.tipodocumentoCheque(numcredito);
+
+            if (Observaciones.Value == "" || cheque == "")
             {
-                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", "Debe llenar todos los campos", true);
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", "Complete los datos", true);
             }
             else
             {
-                string numcredito = Session["credito"] as string;
-
+               
                 string usuario = Session["sesion_usuario"] as string;
                 string idusuario = sn.obteneridusuario(usuario);
 
-                string sig = sn.siguiente("pj_requerimientopago", "idpj_requerimientopago");
-                sn.insertarrequerimientopago(sig, numcredito, idusuario, Observaciones.Value, RegistroContable.Value, ObservacionesCredito.Value, Concepto.Value);
+                
 
                 DataTable dt1 = new DataTable();
-                dt1 = sn.solicitudcheque2(Serie.Value);
+                
+                if(estado == "11")
+                {
+                    dt1 = sn.solicitudcheque2Etapa2(Serie.Value);
+                    string sig = sn.siguiente("pj_requerimientopago", "idpj_requerimientopago");
+                    sn.insertarrequerimientopago(sig, numcredito, idusuario, Observaciones.Value, Concepto.Value, NombreCuenta.Value, NumCuenta.Value, CentroCosto.Value, ObservacionesCredito.Value, "12");
+                }
+                else if (estado == "16")
+                {
+                    dt1 = sn.solicitudcheque2Etapa3(Serie.Value);
+                    string sig = sn.siguiente("pj_requerimientopago", "idpj_requerimientopago");
+                    sn.insertarrequerimientopago(sig, numcredito, idusuario, Observaciones.Value, Concepto.Value, NombreCuenta.Value, NumCuenta.Value, CentroCosto.Value, ObservacionesCredito.Value, "17");
+                }
+                else
+                {
+                    dt1 = sn.solicitudcheque2(Serie.Value);
+                    string sig = sn.siguiente("pj_requerimientopago", "idpj_requerimientopago");
+                    sn.insertarrequerimientopago(sig, numcredito, idusuario, Observaciones.Value, Concepto.Value, NombreCuenta.Value, NumCuenta.Value, CentroCosto.Value, ObservacionesCredito.Value, "6");
+                }
 
                 string credito2;
                 string nombre2;
@@ -554,7 +644,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string hora = fechayhora[1];
                     string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
 
-                    sn.cambiarestado(credito2, "5");
+                  
 
                     string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                     sn.insertarbitacora(sig5, incidente, credito2, nombre2, "Recibido", "51", "34", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
@@ -562,8 +652,40 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                     sn.insertarbitacora(sig4, incidente, credito2, nombre2, "Enviado", "34", "28", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
 
-                    string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
-                    sn.guardaretapa(sig2, "6", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2, incidente);
+
+
+                    if (estado == "11")
+                    {
+                        sn.cambiarestado(credito2, "11");
+
+                        string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                        sn.guardaretapa(sig2, "12", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2, incidente);
+                    }
+                    else if (estado == "16")
+                    {
+                        sn.cambiarestado(credito2, "16");
+
+                        string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                        sn.guardaretapa(sig2, "17", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2, incidente);
+                    }
+                    else
+                    {
+                        sn.cambiarestado5(credito2, "5");
+
+                        string tipoproceso = sn.obtenertipoproceso(numcredito);
+
+                        if (tipoproceso == "3")
+                        {
+                            string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                            sn.guardaretapa(sig2, "20", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2, incidente);
+                        }
+                        else
+                        {
+                            string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                            sn.guardaretapa(sig2, "6", credito2, sn.datetime(), "Enviado", idusuario, "34", nombre2, incidente);
+                        }
+                    }
+                   
                 }
                 String script = "alert('Se ha guardado exitosamente'); window.location.href= 'PendienteRequerimientoPago.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
@@ -607,6 +729,30 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     PTipoDocumento.DataValueField = "idpj_tipodocumento";
                     PTipoDocumento.DataBind();
                     PTipoDocumento.Items.Insert(0, new System.Web.UI.WebControls.ListItem("[Tipo Documento]", "0"));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public void llenarcombodocumentocheque()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento = 20";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds);
+                    DocumentoCheque.DataSource = ds;
+                    DocumentoCheque.DataTextField = "pj_nombretipodoc";
+                    DocumentoCheque.DataValueField = "idpj_tipodocumento";
+                    DocumentoCheque.DataBind();
+                    DocumentoCheque.Items.Insert(0, new System.Web.UI.WebControls.ListItem("[Tipo Documento]", "0"));
                 }
                 catch
                 {
@@ -730,8 +876,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             string numcredito = Session["credito"] as string;
             string voucher = sn.tipodocumentoVoucher(numcredito);
+            string estado = Session["etapa"] as string;
 
-            if(voucher == "")
+            if (voucher == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete el documento');", true);
             }
@@ -740,7 +887,33 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string usuario = Session["sesion_usuario"] as string;
                 string idusuario = sn.obteneridusuario(usuario);
 
-                sn.cambiarestado(numcredito, "7");
+                if (estado == "13")
+                {
+                    sn.cambiarestado(numcredito, "13");
+                    string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                    sn.guardaretapa(sig2, "14", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumeroIncidente.Value);
+                }
+                else if (estado == "18")
+                {
+                    sn.cambiarestado(numcredito, "18");
+                    string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                    sn.guardaretapa(sig2, "19", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumeroIncidente.Value);
+                }
+                else
+                {
+                    string tipoproceso = sn.obtenertipoproceso(numcredito);
+                    sn.cambiarestado(numcredito, "7");
+                    string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+
+                    if (tipoproceso == "3")
+                    {
+                        sn.guardaretapa(sig2, "20", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumeroIncidente.Value);
+                    }
+                    else
+                    {
+                        sn.guardaretapa(sig2, "8", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumeroIncidente.Value);
+                    }
+                }
 
                 string[] campos2 = sn.obtenertipocredito(numcredito);
                 string idcredito = campos2[0];
@@ -792,9 +965,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                 sn.insertarbitacora(sig4, numindicende, numcredito, NombreCliente.Value, "Enviado", "34", "51", fechahoraactual, fechacreacion2, ObservacionesCredito2.Value);
 
-                string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
-                sn.guardaretapa(sig2, "8", numcredito, sn.datetime(), "Enviado", idusuario, "34", NombreCliente.Value, NumeroIncidente.Value);
-
                 String script = "alert('Se ha guardado exitosamente'); window.location.href= 'PendienteRequerimientoPago.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
@@ -810,7 +980,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
             if (var1.Length == 4)
             {
-                Response.Write("NO HAY DATOS QUE MOSTRARA");
+                String script = "alert('Se perdió la conexión, intente más tarde'); window.location.href= 'PendienteRequerimientoPago.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
@@ -861,9 +1032,26 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         protected void Validar_Click(object sender, EventArgs e)
         {
             string numcredito = Session["credito"] as string;
+            string estado = Session["etapa"] as string;
             string serie = sn.numserie(numcredito);
-            sn.cambiarestadoFactura(numcredito);
-            sn.cambiarestadocredito(numcredito, "5");
+            
+
+            if(estado == "11")
+            {
+                sn.cambiarestadocredito(numcredito, "11");
+                sn.cambiarestadoFactura2(numcredito);
+            }
+            else if(estado == "16")
+            {
+                sn.cambiarestadocredito(numcredito, "16");
+                sn.cambiarestadoFactura3(numcredito);
+            }
+            else
+            {
+                sn.cambiarestadocredito5(numcredito, "5");
+                sn.cambiarestadoFactura(numcredito);
+            }
+           
 
             if (sn.pendientesolicitud(serie) == "")
             {
@@ -874,6 +1062,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 Actualizar.Visible = false;
                 pfd.Visible = true;
                 Validar.Visible = false;
+                //ObservacionesFactura.Visible = false;
+                //Rechazar.Visible = false;
                 ObservacionesCredito.Visible = true;
                 Concepto.Focus();
             }
@@ -940,6 +1130,122 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             }
         }
 
+        protected void Rechazar_Click(object sender, EventArgs e)
+        {
+            if (ObservacionesCredito.Value == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Ingrese las razones de rechazo');", true);
+            }
+            else
+            {
+                string numcredito = Session["credito"] as string;
+                string estado = Session["etapa"] as string;
+
+                if(estado == "11")
+                {
+                    sn.estadodevuelto(numcredito, "34", "11");
+                }
+                else if(estado == "16")
+                {
+                    sn.estadodevuelto(numcredito, "34", "16");
+                }
+                else
+                {
+                    sn.estadodevuelto(numcredito, "34", "5");
+                }
+               
+                string tipocredito = Session["TipoCredito"] as string;
+                string id = "";
+                string tabla = "";
+                string fecha;
+
+                if (tipocredito == "tarjeta")
+                {
+                    id = "idpj_tipotarjeta";
+                    tabla = "pj_tipotarjeta";
+                    fecha = sn.fechacreaciontarjeta(numcredito);
+                }
+                else
+                {
+                    id = "idpj_tipocredito";
+                    tabla = "pj_tipocredito";
+                    fecha = sn.fechacreacioncredito(numcredito);
+                }
+
+                string[] fechaseparada = fecha.Split(' ');
+                string[] fechacreacion = fechaseparada[0].Split('/');
+                string diacreacion = fechacreacion[0];
+                string mescreacion = fechacreacion[1];
+                string añocreacion = fechacreacion[2];
+
+                string horacreacion = fechaseparada[1];
+
+                string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+
+                string[] fechayhora = sn.fechayhora();
+                string[] fecha2 = fechayhora[0].Split(' ');
+                string año = fecha2[0];
+                string mes = fecha2[1];
+                string dia = fecha2[2];
+
+                string hora = fechayhora[1];
+                string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
+
+                string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig5, NumeroIncidente.Value, numcredito, NombreCliente.Value, "Recibido", "51", "34", fechahoraactual, fechacreacion2, "Sin comentarios");
+
+                string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig3, NumeroIncidente.Value, numcredito, NombreCliente.Value, "Devuelto", "34", "51", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+
+                String script = "alert('Crédito devuelto a Abogado'); window.location.href= 'PendienteRequerimientoPago.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            }
+        }
+
+        protected void agregar2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DocumentoCheque.SelectedValue == "0")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Seleccione tipo de documento');", true);
+                }
+                else
+                {
+                    if (FileUpload2.HasFile)
+                    {
+                        string ext = System.IO.Path.GetExtension(FileUpload2.FileName);
+                        ext = ext.ToLower();
+
+                        if (ext == ".pdf" || ext == ".tiff" || ext == ".tif")
+                        {
+                            string numcredito = Session["credito"] as string;
+                            string siguiente = sn.siguiente("pj_documento", "idpj_documento");
+                            documento = "Subidos/Cheque/" + siguiente + '-' + FileUpload2.FileName;
+                            string nombredoc = siguiente + '-' + FileUpload2.FileName;
+                            sn.guardardocumentoexp(siguiente, DocumentoCheque.SelectedValue, documento, nombredoc, numcredito);
+                            FileUpload2.SaveAs(Server.MapPath("Subidos/Cheque/" + siguiente + '-' + FileUpload2.FileName));
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
+                            llenargridviewdocumentos();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf o tif');", true);
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+                    }
+                }
+
+            }
+            catch
+            {
+
+            }
+        }
+
         //protected void Generar_Click(object sender, EventArgs e)
         //{
         //    ReportParameter[] reportParameters = new ReportParameter[1];
@@ -949,5 +1255,5 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         //}
 
 
-    }
+        }
 }

@@ -22,35 +22,188 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             if (!IsPostBack)
             {
                 llenarformulario();
-                llenarcombodocumento();
+                //llenarcombodocumento();
                 llenarcombobanco();
                 llenarcomentarios();
+                llenargridviewdocumentos();
+                Observaciones.Visible = false;
+                Guardar.Visible = false;
+                Enviar.Visible = false;
             }
         }
 
-        public void llenarcombodocumento()
-        {
-            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento = 20";
-                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
-                    DataSet ds = new DataSet();
-                    myCommand.Fill(ds);
-                    PTipoDocumento.DataSource = ds;
-                    PTipoDocumento.DataTextField = "pj_nombretipodoc";
-                    PTipoDocumento.DataValueField = "idpj_tipodocumento";
-                    PTipoDocumento.DataBind();
-                    PTipoDocumento.Items.Insert(0, new ListItem("[Tipo Documento]", "0"));
-                }
-                catch
-                {
+        //public void llenarcombodocumento()
+        //{
+        //    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+        //    {
+        //        try
+        //        {
+        //            sqlCon.Open();
+        //            string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento = 20";
+        //            MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+        //            DataSet ds = new DataSet();
+        //            myCommand.Fill(ds);
+        //            PTipoDocumento.DataSource = ds;
+        //            PTipoDocumento.DataTextField = "pj_nombretipodoc";
+        //            PTipoDocumento.DataValueField = "idpj_tipodocumento";
+        //            PTipoDocumento.DataBind();
+        //            PTipoDocumento.Items.Insert(0, new ListItem("[Tipo Documento]", "0"));
+        //        }
+        //        catch
+        //        {
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
+
+        //public void llenarcombodocumento2()
+        //{
+        //    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+        //    {
+        //        try
+        //        {
+        //            sqlCon.Open();
+        //            string query = "SELECT * FROM pj_tipodocumento  WHERE idpj_tipodocumento = 33";
+        //            MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+        //            DataSet ds = new DataSet();
+        //            myCommand.Fill(ds);
+        //            PTipoDocumento.DataSource = ds;
+        //            PTipoDocumento.DataTextField = "pj_nombretipodoc";
+        //            PTipoDocumento.DataValueField = "idpj_tipodocumento";
+        //            PTipoDocumento.DataBind();
+        //            PTipoDocumento.Items.Insert(0, new ListItem("[Tipo Documento]", "0"));
+        //        }
+        //        catch
+        //        {
+
+        //        }
+        //    }
+        //}
+
+        //public void llenargridviewdocumentos()
+        //{
+        //    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+        //    {
+        //        try
+        //        {
+        //            string numcredito = Session["credito"] as string;
+        //            sqlCon.Open();
+        //            string query = "SELECT pj_documento.idpj_documento AS Codigo, pj_tipodocumento.pj_nombretipodoc AS TipoDocumento, pj_documento.pj_nombrearchivo AS Nombre FROM pj_documento INNER JOIN pj_tipodocumento ON pj_documento.idpj_tipodocumento = pj_tipodocumento.idpj_tipodocumento WHERE idpj_credito = '" + numcredito + "' AND pj_documento.idpj_tipodocumento = 20";
+        //            MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+        //            DataTable dt = new DataTable();
+        //            myCommand.Fill(dt);
+        //            gridViewDocumentos.DataSource = dt;
+        //            gridViewDocumentos.DataBind();
+        //        }
+        //        catch
+        //        {
+
+        //        }
+        //    }
+        //}
+
+        //public void llenargridviewdocumentos2()
+        //{
+        //    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+        //    {
+        //        try
+        //        {
+        //            string numcredito = Session["credito"] as string;
+        //            sqlCon.Open();
+        //            string query = "SELECT pj_documento.idpj_documento AS Codigo, pj_tipodocumento.pj_nombretipodoc AS TipoDocumento, pj_documento.pj_nombrearchivo AS Nombre FROM pj_documento INNER JOIN pj_tipodocumento ON pj_documento.idpj_tipodocumento = pj_tipodocumento.idpj_tipodocumento WHERE idpj_credito = '" + numcredito + "' AND pj_documento.idpj_tipodocumento = 33";
+        //            MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+        //            DataTable dt = new DataTable();
+        //            myCommand.Fill(dt);
+        //            gridViewDocumentos.DataSource = dt;
+        //            gridViewDocumentos.DataBind();
+        //        }
+        //        catch
+        //        {
+
+        //        }
+        //    }
+        //}
+
+        //protected void agregar_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (PTipoDocumento.SelectedValue == "0")
+        //        {
+        //            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Seleccione tipo de documento');", true);
+        //        }
+        //        else
+        //        {
+        //            if (FileUpload1.HasFile)
+        //            {
+        //                string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
+        //                ext = ext.ToLower();
+
+        //                if (ext == ".pdf" || ext == ".tiff" || ext == ".tif")
+        //                {
+        //                    string numcredito = Session["credito"] as string;
+        //                    string siguiente = sn.siguiente("pj_documento", "idpj_documento");
+        //                    documento = "Subidos/Cheque/" + siguiente + '-' + FileUpload1.FileName;
+        //                    string nombredoc = siguiente + '-' + FileUpload1.FileName;
+        //                    sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
+        //                    FileUpload1.SaveAs(Server.MapPath("Subidos/Cheque/" + siguiente + '-' + FileUpload1.FileName));
+        //                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
+        //                    llenargridviewdocumentos();
+        //                }
+        //                else
+        //                {
+        //                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf o tif');", true);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
+        //            }
+        //        }
+
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //}
+
+        //protected void OnSelectedIndexChangedDocumento(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string id = Convert.ToString((gridViewDocumentos.SelectedRow.FindControl("lblid") as Label).Text);
+        //        string documentoselec = sn.obtenerrutadocumento(id);
+
+        //        string nombrearchivo = sn.nombrearchivo(id);
+        //        string[] extension = nombrearchivo.Split('.');
+        //        int tamaño = extension.Length;
+        //        string tipo = extension[tamaño - 1];
+
+        //        string FilePath = Server.MapPath(documentoselec);
+        //        WebClient User = new WebClient();
+        //        Byte[] FileBuffer = User.DownloadData(FilePath);
+        //        if (FileBuffer != null)
+        //        {
+        //            if (tipo.ToLower() == "pdf")
+        //            {
+        //                Response.ContentType = "application/pdf";
+        //                Response.AddHeader("content-length", FileBuffer.Length.ToString());
+        //                Response.BinaryWrite(FileBuffer);
+        //            }
+        //            else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
+        //            {
+        //                Response.ContentType = "image/tiff";
+        //                Response.AddHeader("content-length", FileBuffer.Length.ToString());
+        //                Response.BinaryWrite(FileBuffer);
+        //            }
+        //        }
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //}
 
         public void llenargridviewdocumentos()
         {
@@ -71,87 +224,6 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 {
 
                 }
-            }
-        }
-
-        protected void agregar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (PTipoDocumento.SelectedValue == "0")
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Seleccione tipo de documento');", true);
-                }
-                else
-                {
-                    if (FileUpload1.HasFile)
-                    {
-                        string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
-                        ext = ext.ToLower();
-
-                        if (ext == ".pdf" || ext == ".tiff" || ext == ".tif")
-                        {
-                            string numcredito = Session["credito"] as string;
-                            string siguiente = sn.siguiente("pj_documento", "idpj_documento");
-                            documento = "Subidos/Cheque/" + siguiente + '-' + FileUpload1.FileName;
-                            string nombredoc = siguiente + '-' + FileUpload1.FileName;
-                            sn.guardardocumentoexp(siguiente, PTipoDocumento.SelectedValue, documento, nombredoc, numcredito);
-                            FileUpload1.SaveAs(Server.MapPath("Subidos/Cheque/" + siguiente + '-' + FileUpload1.FileName));
-                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Espere un momento mientras se sube el archivo');", true);
-                            llenargridviewdocumentos();
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('El archivo debe ser en formato pdf o tif');", true);
-                        }
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir un archivo');", true);
-                    }
-                }
-                
-            }
-            catch
-            {
-
-            }
-        }
-
-        protected void OnSelectedIndexChangedDocumento(object sender, EventArgs e)
-        {
-            try
-            {
-                string id = Convert.ToString((gridViewDocumentos.SelectedRow.FindControl("lblid") as Label).Text);
-                string documentoselec = sn.obtenerrutadocumento(id);
-
-                string nombrearchivo = sn.nombrearchivo(id);
-                string[] extension = nombrearchivo.Split('.');
-                int tamaño = extension.Length;
-                string tipo = extension[tamaño - 1];
-
-                string FilePath = Server.MapPath(documentoselec);
-                WebClient User = new WebClient();
-                Byte[] FileBuffer = User.DownloadData(FilePath);
-                if (FileBuffer != null)
-                {
-                    if (tipo.ToLower() == "pdf")
-                    {
-                        Response.ContentType = "application/pdf";
-                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                        Response.BinaryWrite(FileBuffer);
-                    }
-                    else if (tipo.ToLower() == "tif" || tipo.ToLower() == "tiff")
-                    {
-                        Response.ContentType = "image/tiff";
-                        Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                        Response.BinaryWrite(FileBuffer);
-                    }
-                }
-            }
-            catch
-            {
-
             }
         }
 
@@ -183,11 +255,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
         {
             string numcredito = Session["credito"] as string;
             string cheque = sn.tipodocumentoCheque(numcredito);
-            if (cheque == "")
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Debe subir el documento');", true);
-            }
-            else if(NumCheque.Value == "" || FechaEmision.Value == "" || Banco.SelectedValue == "0")
+            if(NumCheque.Value == "" || FechaEmision.Value == "" || Banco.SelectedValue == "0")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Complete los datos');", true);
             }
@@ -196,11 +264,7 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string usuario = Session["sesion_usuario"] as string;
                 string idusuario = sn.obteneridusuario(usuario);
 
-                string sig = sn.siguiente("pj_solicitudcheque", "idpj_solicitudcheque");
-                sn.insertarsolicitudcheque(sig, numcredito, idusuario, NumCheque.Value, FechaEmision.Value, Banco.SelectedValue, ObservacionesCredito.Value, Monto.Value);
-
-               
-
+                
 
                 string[] campos2 = sn.obtenertipocredito(numcredito);
                 string idcredito = campos2[0];
@@ -270,10 +334,38 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 string sig4 = sn.siguiente("pj_bitacora", "idpj_bitacora");
                 sn.insertarbitacora(sig4, numindicende, numcredito, nombrecliente2, "Enviado", "34", "28", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
 
-                sn.cambiarestado(numcredito, "6");
+                string estado = Session["etapa"] as string;
 
-                string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
-                sn.guardaretapa(sig2, "7", numcredito, sn.datetime(), "Cargar Voucher", idusuario, "28", nombrecliente2, NumeroIncidente.Value);
+                if(estado == "12")
+                {
+                    sn.cambiarestado(numcredito, "12");
+
+                    string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                    sn.guardaretapa(sig2, "13", numcredito, sn.datetime(), "Cargar Voucher", idusuario, "28", nombrecliente2, NumeroIncidente.Value);
+
+                    string sig = sn.siguiente("pj_solicitudcheque", "idpj_solicitudcheque");
+                    sn.insertarsolicitudcheque(sig, numcredito, idusuario, NumCheque.Value, FechaEmision.Value, Banco.SelectedValue, ObservacionesCredito.Value, Monto.Value, "13");
+                }
+                else if (estado == "17")
+                {
+                    sn.cambiarestado(numcredito, "17");
+
+                    string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                    sn.guardaretapa(sig2, "18", numcredito, sn.datetime(), "Cargar Voucher", idusuario, "28", nombrecliente2, NumeroIncidente.Value);
+
+                    string sig = sn.siguiente("pj_solicitudcheque", "idpj_solicitudcheque");
+                    sn.insertarsolicitudcheque(sig, numcredito, idusuario, NumCheque.Value, FechaEmision.Value, Banco.SelectedValue, ObservacionesCredito.Value, Monto.Value, "18");
+                }
+                else
+                {
+                    sn.cambiarestado(numcredito, "6");
+
+                    string sig2 = sn.siguiente("pj_etapa_credito", "idpj_correlativo_etapa");
+                    sn.guardaretapa(sig2, "7", numcredito, sn.datetime(), "Cargar Voucher", idusuario, "28", nombrecliente2, NumeroIncidente.Value);
+
+                    string sig = sn.siguiente("pj_solicitudcheque", "idpj_solicitudcheque");
+                    sn.insertarsolicitudcheque(sig, numcredito, idusuario, NumCheque.Value, FechaEmision.Value, Banco.SelectedValue, ObservacionesCredito.Value, Monto.Value, "7");
+                }
 
                 String script = "alert('Se guardó exitosamente'); window.location.href= 'PendienteSolicitudCheque.aspx';";
                 ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
@@ -290,7 +382,8 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
 
             if (var1.Length == 4)
             {
-                Response.Write("NO HAY DATOS QUE MOSTRAR");
+                String script = "alert('Se perdió la conexión, intente más tarde'); window.location.href= 'PendienteSolicitudCheque.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
             }
             else
             {
@@ -334,6 +427,98 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             Repeater1.DataSource = comentarios;
             Repeater1.DataBind();
 
+        }
+
+        protected void Validar_Click(object sender, EventArgs e)
+        {
+            Validar.Visible = false;
+            Rechazar.Visible = false;
+            Observaciones.Visible = true;
+            Guardar.Visible = true;
+            Enviar.Visible = false;
+        }
+
+        protected void Rechazar_Click(object sender, EventArgs e)
+        {
+            Validar.Visible = false;
+            Rechazar.Visible = false;
+            Observaciones.Visible = true;
+            Guardar.Visible = false;
+            Enviar.Visible = true;
+        }
+
+        protected void Enviar_Click(object sender, EventArgs e)
+        {
+            if (ObservacionesCredito.Value == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Ingrese las razones de rechazo');", true);
+            }
+            else
+            {
+                string estado = Session["etapa"] as string;
+
+                string numcredito = Session["credito"] as string;
+                
+
+                string tipocredito = Session["TipoCredito"] as string;
+                string id = "";
+                string tabla = "";
+                string fecha;
+
+                if (tipocredito == "tarjeta")
+                {
+                    id = "idpj_tipotarjeta";
+                    tabla = "pj_tipotarjeta";
+                    fecha = sn.fechacreaciontarjeta(numcredito);
+                }
+                else
+                {
+                    id = "idpj_tipocredito";
+                    tabla = "pj_tipocredito";
+                    fecha = sn.fechacreacioncredito(numcredito);
+                }
+
+                string[] fechaseparada = fecha.Split(' ');
+                string[] fechacreacion = fechaseparada[0].Split('/');
+                string diacreacion = fechacreacion[0];
+                string mescreacion = fechacreacion[1];
+                string añocreacion = fechacreacion[2];
+
+                string horacreacion = fechaseparada[1];
+
+                string fechacreacion2 = añocreacion + '-' + mescreacion + '-' + diacreacion + ' ' + horacreacion;
+
+                string[] fechayhora = sn.fechayhora();
+                string[] fecha2 = fechayhora[0].Split(' ');
+                string año = fecha2[0];
+                string mes = fecha2[1];
+                string dia = fecha2[2];
+
+                string hora = fechayhora[1];
+                string fechahoraactual = año + '-' + mes + '-' + dia + ' ' + hora;
+
+                if (estado == "12")
+                {
+                    sn.estadodevuelto(numcredito, "28", "12");
+                }
+                else if (estado == "17")
+                {
+                    sn.estadodevuelto(numcredito, "28", "17");
+                }
+                else
+                {
+                    sn.estadodevuelto(numcredito, "28", "6");
+                }
+
+                string sig5 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig5, NumeroIncidente.Value, numcredito, ClienteNombre.Value, "Recibido", "34", "28", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+
+                string sig3 = sn.siguiente("pj_bitacora", "idpj_bitacora");
+                sn.insertarbitacora(sig3, NumeroIncidente.Value, numcredito, ClienteNombre.Value, "Devuelto", "28", "34", fechahoraactual, fechacreacion2, ObservacionesCredito.Value);
+
+                String script = "alert('Crédito devuelto a Jurídico'); window.location.href= 'PendienteRequerimientoPago.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType().GetType(), "alertMessage", script, true);
+            }
         }
     }
 }

@@ -25,8 +25,9 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 //llenarcombonombre();
                 llenargridviewcredito();
                 llenargridviewcreditoeditado();
+                //llenargridviewinvestigacion();
 
-                if(gridViewCreditos.Rows.Count == 0)
+                if (gridViewCreditos.Rows.Count == 0)
                 {
                     tablaC.Visible = false;
                     CreditosDevueltos.Visible = false;
@@ -37,6 +38,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                     Div1.Visible = false;
                     EditarCreditos.Visible = false;
                 }
+
+                //if(gridViewInvestigacion.Rows.Count == 0)
+                //{
+                //    Div2.Visible = false;
+                //    SolicitudIvestigacion.Visible = false;
+                //}
             }
         }
 
@@ -395,5 +402,34 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             Session["credito"] = numcredito;
             Response.Redirect("EditarCreditos.aspx");
         }
+
+        //public void llenargridviewinvestigacion()
+        //{
+        //    using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+        //    {
+        //        try
+        //        {
+        //            sqlCon.Open();
+        //            string query = "SELECT idpj_credito AS Credito, pj_nombrecliente AS Nombre, pj_status, pj_numincidente AS Incidente, pj_fecha AS Fecha FROM pj_etapa_credito WHERE idpj_etapa = 9 AND pj_status = 'Investigacion'";
+        //            MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+        //            DataTable dt = new DataTable();
+        //            myCommand.Fill(dt);
+
+        //            gridViewInvestigacion.DataSource = dt;
+        //            gridViewInvestigacion.DataBind();
+        //        }
+        //        catch
+        //        {
+
+        //        }
+        //    }
+        //}
+
+        //protected void OnSelectedIndexChangedInvestigacion(object sender, EventArgs e)
+        //{
+        //    string numcredito = Convert.ToString((gridViewInvestigacion.SelectedRow.FindControl("lblnumcredito") as Label).Text);
+        //    Session["credito"] = numcredito;
+        //    Response.Redirect("NuevaInvestigacion.aspx");
+        //}
     }
 }

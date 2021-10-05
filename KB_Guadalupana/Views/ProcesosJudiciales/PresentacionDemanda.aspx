@@ -361,7 +361,7 @@
 
                     
 
-                <div class="encabezado">
+                <div class="encabezado" id="Presentacion" runat="server">
                     <label class="titulos" style="margin-bottom:10px"><b>Memorial </b></label>
                     
                      <div class="formato">
@@ -406,7 +406,7 @@
                             <label class="titulos" style="margin-left:5%"><b>Oficial</b></label>
                         </div>
                         <div class="formato">
-                            <input id="NoProceso" runat="server" type="text" placeholder="Ingrese no. proceso" class="formatoinput3" min="0" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            <input id="NoProceso" runat="server" type="text" placeholder="Ingrese no. proceso" class="formatoinput3" min="0" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                             <input id="FechaPresentacion" runat="server" type="date" class="formatoinput3"/>
                               <asp:DropDownList id="Oficial" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
                         </div><br />
@@ -668,15 +668,33 @@
 
                      <input id="Otro" runat="server" type="text" min="0" class="formatoinput2" placeholder="Ingrese otro motivo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
 
-                        <label class="titulos">Observaciones del crédito</label>
-                         <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        
                     <br />
                 </div>
                 </div>
 
-                   <div class="formato2">
+                <div class="formato2">
+                    <asp:Button ID="Validar" runat="server" CssClass="boton" Text="Aceptar" OnClick="Validar_Click"/>
+                    <asp:Button ID="Rechazar" runat="server" CssClass="boton2" Text="Rechazar" OnClick="Rechazar_Click"/>
+                  </div><br />
+
+                <div id="Observaciones" runat="server" class="encabezado">
+                    <label class="titulos">Observaciones del crédito</label>
+                    <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                </div>
+
+                 <div class="formato2">
                     <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click"/>
                   </div><br />
+                    <div class="formato2">
+                    <asp:Button ID="GuardarD" runat="server" CssClass="boton" Text="Guardar" Visible="false" OnClick="GuardarD_Click"/>
+                  </div><br />
+
+                <div class="formato2">
+                    <asp:Button ID="Regresar" runat="server" CssClass="boton" Text="Enviar" OnClick="Regresar_Click"/>
+                </div>
+                <br /><br />
+
 
                 </div>
             </div>
@@ -719,7 +737,7 @@
 
              <script>
                  var texto1 = document.querySelector('#NumJuzgado');
-                 var texto1 = document.querySelector('#NumFactura');
+                 var texto2 = document.querySelector('#NumFactura');
 
                  texto1.addEventListener('keypress', function (e) {
                      // keyCode del punto decimal, también se puede cambiar por la coma que sería el 44

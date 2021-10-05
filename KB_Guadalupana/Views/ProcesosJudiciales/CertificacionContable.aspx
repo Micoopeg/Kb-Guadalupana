@@ -484,6 +484,11 @@
                     <input id="MontoOriginalEspacios" runat="server" type="text" class="formatoinput" visible="false"/>
                        <input id="SaldoEspacios" runat="server" type="text" class="formatoinput" visible="false"/>
                      <input id="InteresesEspacio" runat="server" type="text" class="formatoinput" visible="false"/>
+                      <input id="IncendioEspacio" runat="server" type="text" class="formatoinput" visible="false"/>
+                    <input id="MoraEspacio" runat="server" type="text" class="formatoinput" visible="false"/>
+                    <input id="GastosEspacio" runat="server" type="text" class="formatoinput" visible="false"/>
+                    <input id="SeguroEspacio" runat="server" type="text" class="formatoinput" visible="false"/>
+                    <input id="TotalEspacio" runat="server" type="text" class="formatoinput" visible="false"/>
                              <input id="Num1" runat="server" type="text" class="formatoinput" visible="false"/>
                              <input id="Num2" runat="server" type="text" class="formatoinput" visible="false"/>
                       <input id="DiaEstado" runat="server" type="text" class="formatoinput" visible="false"/>
@@ -495,27 +500,31 @@
                      <input id="FechaEstado" runat="server" type="text" class="formatoinput" visible="false"/>
                      <input id="Signototal" runat="server" type="text" class="formatoinput" visible="false"/>
                      <input id="SignoSaldo" runat="server" type="text" class="formatoinput" visible="false"/>
-                       <input id="SignoMonto" runat="server" type="text" class="formatoinput" visible="false"/>
+                     <input id="SignoMonto" runat="server" type="text" class="formatoinput" visible="false"/>
                     <input id="SignoIntereses" runat="server" type="text" class="formatoinput" visible="false"/>
                 </div><br />
 
-                <div class="encabezado">
+                <div id="IntegracionC" runat="server" style="display:flex; justify-content:center" class="encabezado">
 
                     <div style="display:flex; justify-content:center">
                         <label style="font-size:15px" class="titulos">Integración de cuenta</label>
                     </div><br /><br />
 
-                
+                    <%--<label style="margin-left:13%" class="titulos">Tipo de demanda</label>
+                    <div style="justify-content:center; align-items:center; align-content:center; display:flex; flex-direction:column">
+                        
+                        <asp:DropDownList Width="74%" id="TipoCredito" runat="server" class="formatoinput2"  OnSelectedIndexChanged="TipoCredito_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                    </div><br /><br />--%>
 
-                       <div id ="tarjeta" runat="server">
+                      <div id ="tarjeta" runat="server">
                         <div class="formatoTitulo" style="margin-bottom:5px">
                             <label class="titulos"><b>No. de tarjeta</b></label>
                             <label class="titulos" style="margin-left:40%"><b>No. de cuenta</b></label>
                         </div>
 
                         <div class="formato">
-                               <input id="NumTarjeta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de tarjeta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                               <input id="NumCuenta" runat="server" type="number" class="formatoinput" placeholder="Ingrese no. de cuenta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                               <input id="NumTarjeta" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. de tarjeta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="NumCuenta" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. de cuenta" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                          <div class="formatoTitulo" style="margin-bottom:5px">
@@ -525,9 +534,9 @@
                         </div>
 
                         <div class="formato">
-                             <input id="CIF" runat="server" type="number" class="formatoinput3" placeholder="Ingrese CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                             <input id="PrimerNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                             <input id="SegundoNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese segundo nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                             <input id="CIF" runat="server" type="text" class="formatoinput3" placeholder="Ingrese CIF" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                             <input id="PrimerNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese primer nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                             <input id="SegundoNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput3" placeholder="Ingrese segundo nombre" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                          <div class="formatoTitulo" style="margin-bottom:5px">
@@ -536,8 +545,8 @@
                         </div>
 
                         <div class="formato">
-                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                               <input id="OtroNombre" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese otro nombre" value="No posee" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="ApellidoCasada" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese apellido casada" value="No posee" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -546,8 +555,8 @@
                         </div>
 
                          <div class="formato">
-                               <input id="PrimerApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                               <input id="SegundoApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                               <input id="PrimerApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese primer apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               <input id="SegundoApellido" runat="server" onkeypress="return sololetras(event);" type="text" class="formatoinput" placeholder="Ingrese segundo apellido" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
@@ -556,12 +565,12 @@
                         </div>
 
                          <div class="formato">
-                               <input id="Limite" runat="server" type="text" class="formatoinput" placeholder="Ingrese el limite" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
-                               <input id="Saldo" runat="server" type="text" class="formatoinput" placeholder="Ingrese el saldo" maxlength="15" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                               Q<input id="Limite" runat="server" type="text" onkeyup="format(this)" onchange="format(this);" class="formatoinput" placeholder="Ingrese el limite" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                               Q<input id="Saldo" runat="server" onkeyup="format(this)" onchange="format(this);" type="text" class="formatoinput" placeholder="Ingrese el saldo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                         </div><br />
                     </div><br /><br />
 
-                       <div style="display:flex; justify-content:center">
+                    <div style="display:flex; justify-content:center">
                          <div id="credito" style="display:flex; justify-content:flex-start; align-content:flex-start; flex-direction:column; align-items:flex-start;width:75%" runat="server">
                         
                              <div class="formato4" style="display:flex; justify-content:flex-start">
@@ -585,20 +594,26 @@
                          <div class="formato4" style="display:flex; justify-content:flex-start">
                             <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Gastos cobranza:</b></label>
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
-                            <input id="Gastos1" style="width:32%;text-align:end" runat="server" onchange="gastos1(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                            <input id="Gastos1" style="width:32%;text-align:end" onkeyup="format(this)" onchange="format(this), gastos1(this.value);" runat="server" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                         </div><br />
 
                          <div class="formato4" style="display:flex; justify-content:flex-start">
-                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Gastos judiciales:</b></label>
+                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Seguro:</b></label>
                              <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
-                            <input id="GastosJudiciales" style="width:32%;text-align:end" runat="server" onchange="gastosJudiciales(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
+                            <input id="GastosJudiciales" style="width:32%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), gastosJudiciales(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                        </div><br />
+
+                        <div class="formato4" style="display:flex; justify-content:flex-start">
+                            <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Incendio:</b></label>
+                             <label class="titulos" style="width:4%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
+                            <input id="Incendio" style="width:32%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), incendio(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                         </div><br />
 
                         <div class="formato4" style="display:flex; justify-content:flex-start">
                             <label class="titulos" style="display:flex;align-items:center;justify-content:flex-start; width:130px"><b>Otros gastos:</b></label>
                              <label class="titulos" style="width:3%;margin-left:20px;display:flex;align-items:center"><b>Q</b></label>
-                            <input id="OtrosGastos" style="width:21%;text-align:end" runat="server" onchange="otrosGastos(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readonly="readonly"/>
-                             <input id="Comentario" style="width:41%; margin-left:4%;" runat="server" type="text" class="formatoinput" placeholder="Comentario" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                            <input id="OtrosGastos" style="width:22%;text-align:end" runat="server" onkeyup="format(this)" onchange="format(this), otrosGastos(this.value);" type="text" min="0" class="formatoinput" value="0" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
+                             <input id="Comentario" style="width:41%; margin-left:4%;" runat="server" type="text" class="formatoinput" placeholder="Comentario" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                           
                         </div><br />
 

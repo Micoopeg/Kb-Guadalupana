@@ -99,7 +99,8 @@
         .formato2{
             display:flex;
             flex-direction:row;
-            justify-content: space-around;
+            justify-content: space-evenly;
+            align-items: center;
         }
 
         .boton{
@@ -122,7 +123,6 @@
              color: black; 
              border: 2px solid #69A43C;
             width:45%;
-            margin-top:15px;
             height: 30px;
         }
 
@@ -167,7 +167,7 @@
              font-size:13px;
               width: 29%;
              display:flex;
-             justify-content: flex-end;
+             
          }
 
         .formatoTitulo{
@@ -201,13 +201,38 @@
                 <div class="pagina">
                     <label class="titulos">Ordenar incidentes por fecha:</label>
                     <asp:DropDownList id="OrdenarFecha" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
-                    <asp:Button ID="Buscar" runat="server" CssClass="boton" Text="Buscar" OnClick="Buscar_Click"/>
+                    <asp:Button ID="Buscar" runat="server" CssClass="boton" Text="Ordenar" OnClick="Buscar_Click"/>
                 </div>
                 <br /><br />
 
+                        <div class="formatoTitulo" style="margin-bottom:5px">
+                             <label class="titulos"><b>No. crédito</b></label>
+                            <label class="titulos" style="margin-left:24%"><b>No. proceso</b></label>
+                        </div>
+                        <div class="formato">
+                             <input id="NumCredito" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. de crédito" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="NumProceso" runat="server" type="text" class="formatoinput" placeholder="Ingrese no. proceso" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+
+                        <div class="formatoTitulo" style="margin-bottom:5px">
+                            <label class="titulos"><b>Nombres</b></label>
+                            <label class="titulos" style="margin-left:25%"><b>Apellidos</b></label>
+                        </div>
+                        <div class="formato">
+                              <input id="Nombres" runat="server" type="text" class="formatoinput" placeholder="Ingrese nombres" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                             <input id="Apellidos" runat="server" type="text" class="formatoinput" placeholder="Ingrese apellidos" maxlength="50" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                        </div><br />
+
+                <div class="formato2">
+                    <asp:Button ID="Buscar2" runat="server" Width="40%" CssClass="boton" Text="Buscar" OnClick="Buscar2_Click"/>
+                    <asp:Button ID="VerTodos" runat="server" Width="40%" CssClass="boton2" Text="Ver todos" OnClick="VerTodos_Click"/>
+                </div>
+                 
+                <br /><br /><br />
+
                     <div style="overflow: auto; height: 400px">
                         <asp:GridView ID="gridViewIncidente" runat="server" CssClass="tabla" AutoGenerateColumns="False"
-                            OnSelectedIndexChanged = "OnSelectedIndexChangedIncidente" BorderStyle="Solid">
+                            OnSelectedIndexChanged = "OnSelectedIndexChangedIncidente" BorderStyle="Solid" OnRowDataBound="gridViewIncidente_RowDataBound">
                             <Columns>
                                   <asp:TemplateField ControlStyle-CssClass="diseño"  HeaderText="No. de proceso">
                                     <ItemTemplate>
@@ -241,6 +266,7 @@
                              <HeaderStyle CssClass="prueba"  ForeColor="White" BackColor="#0069C4"></HeaderStyle>
                         </asp:GridView>
                     </div>
+                <br /><br />
             </div>
         </div>
         

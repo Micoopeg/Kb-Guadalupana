@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <title>Menu Principal</title>
     <style>
-          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
 body {
   margin: 0;
   font-family:"Montserrat";
@@ -147,6 +147,7 @@ body {
                 </div>
               </div>
               <a href="MenuCategorias.aspx">Categorías</a>
+              <a href="BusquedaGeneral.aspx">Categorías</a>
               <a href="../Sesion/CerrarSesion.aspx">Cerrar sesión  <i class="fa fa-power-off"></i></a>
               <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                <div class="logo2">

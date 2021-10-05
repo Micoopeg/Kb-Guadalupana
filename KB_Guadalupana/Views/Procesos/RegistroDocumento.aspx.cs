@@ -27,6 +27,7 @@ namespace KB_Guadalupana.Views.Procesos
                 llenarcombousuario();
                 llenarcombocategoria();
                 llenargridviewdocumentos();
+                llenarcomborestriccion();
                 Session["sesion_usuario"] = "pgaortiz";
             }
         }
@@ -175,6 +176,30 @@ namespace KB_Guadalupana.Views.Procesos
             }
         }
 
+        public void llenarcomborestriccion()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(conexiongeneral.cadenadeconexiongeneral()))
+            {
+                try
+                {
+                    sqlCon.Open();
+                    string query = "SELECT * FROM pro_restriccion";
+                    MySqlDataAdapter myCommand = new MySqlDataAdapter(query, sqlCon);
+                    DataSet ds = new DataSet();
+                    myCommand.Fill(ds);
+                    Restriccion.DataSource = ds;
+                    Restriccion.DataTextField = "pro_nombreres";
+                    Restriccion.DataValueField = "idpro_restriccion";
+                    Restriccion.DataBind();
+                    Restriccion.Items.Insert(0, new ListItem("[Seleccione opción]", "0"));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
         protected void documento_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gridViewDocumentos.PageIndex = e.NewPageIndex;
@@ -255,14 +280,14 @@ namespace KB_Guadalupana.Views.Procesos
                     string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
                     ext = ext.ToLower();
 
-                    if (ext == ".pdf" || ext == ".tiff" || ext == ".tif" || ext == ".doc" || ext == ".xls" || ext == ".jpeg" || ext == ".jpg" || ext == ".png")
+                    if (ext == ".pdf" || ext == ".tiff" || ext == ".tif" || ext == ".docx" || ext == ".xls" || ext == ".xlsx" || ext == ".jpeg" || ext == ".jpg" || ext == ".png")
                     {
                         string siguiente = sn.siguiente("pro_registro", "idpro_registro");
                         documento = "Subidos/" + siguiente + '-' + FileUpload1.FileName;
                         string nombredoc = siguiente + '-' + FileUpload1.FileName;
                         string usuario = Session["sesion_usuario"] as string;
                         string idusuario = sn.obteneridusuario(usuario);
-                        sn.insertardocumento(siguiente, TipoDocumento.SelectedValue, Codigo.Value, NombreDocumento.Value, nombredoc, documento, Version.Value, FechaAprobacion.Value, Estado.SelectedValue, Origen.SelectedValue, UsuarioDirigido.SelectedValue, Categoria.SelectedValue, Subcategoria.SelectedValue, idusuario);
+                        sn.insertardocumento(siguiente, TipoDocumento.SelectedValue, Codigo.Value, NombreDocumento.Value, nombredoc, documento, Version.Value, FechaAprobacion.Value, Estado.SelectedValue, Origen.SelectedValue, UsuarioDirigido.SelectedValue, Categoria.SelectedValue, Subcategoria.SelectedValue, idusuario,Restriccion.SelectedValue);
                         FileUpload1.SaveAs(Server.MapPath("Subidos/" + siguiente + '-' + FileUpload1.FileName));
                         ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('Se guardó el documento exitosamente');", true);
                         llenargridviewdocumentos();

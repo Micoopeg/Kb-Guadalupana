@@ -202,12 +202,13 @@
                   .formatoinput5{
             width:90%;
             margin-top:8px;
+            font-family:"Montserrat";
             -webkit-border-radius: 5px;
             border-radius: 5px;
             height: 30px;
             border-color: transparent;
         }
-        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Lobster', cursive; text-align:center}
+        .header{ border-top:1px solid white;background:white; color:#333; height:0px; width:100%; font-family: 'Montserrat', cursive; text-align:center}
 .menu2{visibility:hidden; height:auto; width:17%; color:white; text-align:left; padding-top:5px; left:0; margin-left:0px;margin-top:75px;background-color:#435F7A; border:2px #4B752B solid;padding-left:13px;}
 .wrapper{ height:100px; width:100%; padding-top:20px}
  
@@ -231,14 +232,14 @@
 
                     <label class="titulos" style="margin-bottom:10px"><b>Cheque </b></label>
 
-                     <div class="formato">
+                    <%-- <div class="formato">
                         <asp:DropDownList id="PTipoDocumento" runat="server" class="formatoinput3" AutoPostBack="false"></asp:DropDownList>
                         <asp:FileUpload id="FileUpload1" runat="server"></asp:FileUpload>
                         <asp:Button ID="Agregar" OnClick="agregar_Click" runat="server" Width="20%" Height="30px" CssClass="boton3" Text="Agregar" />
-                    </div><br /><br />
+                    </div><br /><br /><br />--%>
 
                       <div style="justify-content: center;display:flex" class="formato">
-                        <div style="overflow: auto; height: 145px">
+                        <div style="overflow: auto; height: 150px">
                         <asp:GridView ID="gridViewDocumentos" runat="server" AutoGenerateColumns="False" CssClass="tabla"
                             OnSelectedIndexChanged = "OnSelectedIndexChangedDocumento" BorderStyle="Solid">
                              <Columns>
@@ -264,7 +265,7 @@
                              <HeaderStyle CssClass="prueba" Height="23px" ForeColor="White" BackColor="#0071D4"></HeaderStyle>
                         </asp:GridView>
                        </div>
-                       </div>
+                       </div><br /><br />
 
                         <div class="formatoTitulo" style="margin-bottom:5px">
                             <label class="titulos"><b>No. de cheque</b></label>
@@ -284,21 +285,31 @@
                              Q<input type="text" id="Monto" runat="server" class="formatoinput" onkeyup="format(this)" onchange="format(this);" placeholder="Ingrese monto" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                             <asp:DropDownList id="Banco" runat="server" class="formatoinput" AutoPostBack="false"></asp:DropDownList>
                         </div><br />
-
-                         <label class="titulos">Observaciones</label>
-                          <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                    <br />
-
                 </div>
 
                 <div class="formato2">
+                        <asp:Button ID="Validar" runat="server" CssClass="boton" Text="Validar" OnClick="Validar_Click" />
+                        <asp:Button ID="Rechazar" runat="server" CssClass="boton2" Text="Rechazar" OnClick="Rechazar_Click"/>
+                    </div><br />
+
+                <div id="Observaciones" runat="server">
+                    <div class="encabezado">
+                        <label class="titulos">Observaciones</label>
+                        <input id="ObservacionesCredito" runat="server" type="text" class="formatoinput2" placeholder="Ingrese observaciones" maxlength="150" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        <br />
+                    </div>
+                </div>
+               
+
+                <div class="formato2">
                     <asp:Button ID="Guardar" runat="server" CssClass="boton" Text="Guardar" OnClick="Guardar_Click"/>
-                </div><br />
+                    <asp:Button ID="Enviar" runat="server" CssClass="boton2" Text="Enviar" OnClick="Enviar_Click"/>
+                </div><br /><br />
 
                      <div class="menu2" id="ventana" runat="server" style="overflow: auto; height: 450px">
 
                     <div class="formato3">
-                           <label class="titulos"><b>No. de préstamo</b></label>
+                          <label class="titulos"><b>No. de préstamo</b></label>
                           <input id="CreditoNumero" runat="server" type="text" class="formatoinput5" min="0" placeholder="No. prestamo" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" readOnly="readOnly"/>
                     </div><br />
 

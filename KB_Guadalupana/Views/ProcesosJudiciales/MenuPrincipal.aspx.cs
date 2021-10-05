@@ -22,6 +22,10 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             string area = sn.area(idusuario);
             string rol = sn.rolusuario(idusuario);
 
+            llenaropciones();
+
+
+
             //if (rol == "1")
             //{
             //    if (area == "26")
@@ -68,5 +72,16 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
             //    Reporte.Visible = false;
             //}
         }
+
+        public void llenaropciones()
+        {
+            DataSet opciones = new DataSet();
+            string usuario = Session["sesion_usuario"] as string;
+            string idusuario = sn.obteneridusuario(usuario);
+            opciones = sn.consultaropciones(idusuario);
+            Repeater1.DataSource = opciones;
+            Repeater1.DataBind();
+        }
+
     }
 }

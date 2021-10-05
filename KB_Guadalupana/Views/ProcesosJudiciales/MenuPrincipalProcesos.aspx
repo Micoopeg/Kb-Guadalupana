@@ -55,7 +55,7 @@
     <form id="form1" runat="server">
         
         <div class="formato">
-              <label class="titulos"><b>BIENVENIDO(A) A</b></label>
+              <label class="titulos"><b>BIENVENIDO A</b></label>
             <br />
             <img class="imagen" src="../../Imagenes/Imagenes_procesos/PJ-GUADALUPANA-BLANCO.PNG"/>
         </div>

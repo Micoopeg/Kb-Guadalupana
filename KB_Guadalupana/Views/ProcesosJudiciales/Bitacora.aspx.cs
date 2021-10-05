@@ -13,10 +13,12 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
     public partial class Bitacora : System.Web.UI.Page
     {
         Conexion conexiongeneral = new Conexion();
+        Sentencia_juridico sn = new Sentencia_juridico();
         
         protected void Page_Load(object sender, EventArgs e)
         {
             llenargridviewbitacora();
+            estapaactual();
         }
 
         public void llenargridviewbitacora()
@@ -65,6 +67,15 @@ namespace KB_Guadalupana.Views.ProcesosJudiciales
                 else
                     e.Row.BackColor = System.Drawing.Color.White;
             }
+        }
+
+        public void estapaactual()
+        {
+            string numcredito = Session["credito"] as string;
+            string id = sn.obteneridultimaetapa(numcredito);
+
+            string ultimaetapa = sn.obtenerultimaetapa(numcredito, id);
+            EtapaActual.Value = ultimaetapa;
         }
     }
 }
